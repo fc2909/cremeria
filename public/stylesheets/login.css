@@ -1,0 +1,39 @@
+body{
+	background-image: url("/../images/fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 764px;
+
+}
+.btnlogin{
+	background: #ff7008;
+	color: white;
+	width: 60%;
+	text-align: center;
+}
+.footer{
+	background: rgba(0,0,0,.5);
+	color: white;
+
+
+}
+.cont{
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,.5);
+}
+input[type="text"],input[type="password"]{
+	
+	text-align: center;
+	
+}
+.cust{
+	
+	background: #ff7008;
+	margin-top: 1px;
+	width: 44px;
+	height: 36px;
+	padding-top: 8px;
+	border: 1px solid #ff7008;
+    color: #ffffff;
+}

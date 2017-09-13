@@ -1,0 +1,2 @@
+class Usuaario < ApplicationRecord
+end

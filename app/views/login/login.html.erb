@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Cremeria Las Torres</title>
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
 
+<HTML>
+<HEAD>
+  <meta charset="UTF-8">
+  <title>Cremeria Las Torres</title>
+  
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+   
+  
+ 
+ 
 
-</head>
-<body>
+</HEAD>
+<BODY>
 
    <div class="container-fluid fondo">
    <div class="row">
      <div class="hidden-xs col-sm-2 col-md-2">
+     <br>
           <img src="/images/logo.png" class="img-responsive">
      </div>
    </div>
@@ -35,14 +40,32 @@
            </div>
            </div>
            <br><br>
-           <a type="button" class="btn btnlogin">Iniciar sesión</a><br>
+           <a type="button" class="btn btnlogin" onclick="ingresar()">Iniciar sesión</a><br>
          </div>
+        
          <br>
        </div>
        </div>
-       <div class="col-md-5"></div>
+       <div class = "col-md-5"> </div>
    </div>
 </div>
+  <div class= "modal fade" tabindex ="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title">ERROR</h4>
+            </div>
+            <div class="modal-body">
+              Datos incorrectos
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeModal()">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 <br><br><br><br><br><br><br><br><br><br><br>
 <footer>
    <div class="col-md-12 footer">
@@ -51,5 +74,33 @@
         </div>      
     </div>
 </footer>
-</body>
-</html>
+</BODY>
+</HTML>
+<script type="text/javascript">
+function ingresar(){
+
+  var pass = $(".pass").val();
+  //alert(pass);
+  var name = $('.name').val();
+  $.ajax({    
+    url : '/login',    
+    data : { usuario: name, contrasenia: pass},    
+    type : 'GET',    
+    success : function(json) {  
+        
+      //alert(json);
+      //document.documentElement.innerHTML = json;
+      console.log(json);
+    },    
+
+    error : function(xhr, status) {  
+         
+      $('#modal').modal('show');
+    },    
+    complete : function(xhr, status) {        
+    }});
+}
+function closeModal(){
+  $('#modal').modal('hide');
+}
+</script>

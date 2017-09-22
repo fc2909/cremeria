@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170916162342) do
+ActiveRecord::Schema.define(version: 20170920165836) do
 
-  create_table "usuarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "usuario"
-    t.string   "contrasenia"
-    t.integer  "tipo"
-    t.integer  "activo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "logs", primary_key: "idLog", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "url"
+    t.text     "data",       limit: 65535
+    t.integer  "idUsuario"
+    t.string   "tipo"
+    t.date     "fecha"
+    t.time     "hora"
+    t.integer  "activo",                   default: 1, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  create_table "usuarios", primary_key: "idUsuario", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "usuario",     limit: 10
+    t.string  "contrasenia"
+    t.integer "tipo"
+    t.integer "activo",                 default: 1, null: false
   end
 
 end

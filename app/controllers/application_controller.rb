@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
-  before_action :save_logs, except: [:loggin, :login, :logout]
+	# Prevent CSRF attacks by raising an exception.
+	# For APIs, you may want to use :null_session instead.
+	#protect_from_forgery with: :exception
+	#protect_from_forgery with: :null_session
+	before_action :save_logs, except: [:loggin, :login, :logout]
 	before_action :check_user, except: [:login, :loggin]
 
 	def errs(num)
@@ -9,6 +12,7 @@ class ApplicationController < ActionController::Base
 
 	def menu
 		@usuario = session[:usuario]
+		puts "hola mundo"
 	end
 
 	def get_data(model)
@@ -249,7 +253,7 @@ class ApplicationController < ActionController::Base
 			puts session[:usuario].blank?
 			if session[:usuario].blank?
 				puts 'inicio sesion'
-				redirect_to singup_path
+				redirect_to singup_path and return
 			end
 		end
 end

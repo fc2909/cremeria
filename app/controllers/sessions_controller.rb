@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-skip_before_filter :save_logs, :check_user
+	skip_before_filter :save_logs, :check_user
 	after_action :check_user, only: [:create]
 	def new
 		redirect_to root_path
@@ -8,12 +8,13 @@ skip_before_filter :save_logs, :check_user
 	def create
 		usuario = Usuario.authenticate(params[:usuario], params[:contrasenia])
 		puts usuario.to_json
+		
 		if usuario.present?
-			sesion = { id: usuario[:id], tipo: usuario[:tipo]}
+			sesion = { idUsuario: usuario[:idUsuario], tipo: usuario[:tipo]}
 			session[:usuario] = sesion
 			puts session.to_json
 			#redirect_to index_path
-			render :js => "window.location = '/login'"
+			render :js => "window.location = '/index'"
 		else
 			render :json => errs("1")
 		end
@@ -23,7 +24,7 @@ skip_before_filter :save_logs, :check_user
 		session[:id] = nil
 		session[:tipo] = nil
 		#render :json => {ok:1}
-		render :js => "window.location = '/login'"
+		render :js => "window.location = '/singup'"
 		#redirect_to singup_path, turbolinks: true
-end
+	end
 end

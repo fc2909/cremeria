@@ -1,0 +1,54 @@
+.menunav{
+  background: #2f2f2f;
+  color: white;
+  box-shadow: 3px 3px 8px #fff;
+  padding-top: 1px;
+}
+.menunav:hover{
+  box-shadow: 3px 3px 3px #1eff00;
+}
+.user{
+  height: 65px;
+  width: 65px;
+  text-align: center;
+  padding-top: 1px;
+  }
+  .user:hover{
+  height: 65px;
+  width: 65px;
+  text-align: center;
+  padding-top: 1px;
+  border: 1px solid #ffffff;
+  }
+.btn-nav{
+  background: #2f2f2f;
+  color: white;
+  vertical-align: middle;
+  padding-top: 1px;
+}
+.btn-nav:hover {
+  color: #fff;
+  text-align: center;
+  padding-top: 1px;
+  border: 1px solid #ffffff;
+}
+body{
+  background: #313131;
+}
+.imagenes{
+  height: 200px;
+  width: 160px;
+  display:block!important;
+-webkit-transition:-webkit-transform .1s ease-out;
+-moz-transition:-moz-transform .1s ease-out;
+-o-transition:-o-transform .1s ease-out;
+-ms-transition:-ms-transform .1s ease-out;
+transition:transform .1s ease-out;
+}
+.imagenes:hover{
+-moz-transform: scale(1.1);
+-webkit-transform: scale(1.1);
+-o-transform: scale(1.1);
+-ms-transform: scale(1.1);
+transform: scale(1.1)
+}

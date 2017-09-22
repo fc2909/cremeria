@@ -1,6 +1,9 @@
 class Usuario < ApplicationRecord
+	self.primary_key = :idUsuario
 	def self.authenticate(usuario, contrasenia)
 		usuario = Usuario.find_by("usuario = :usuario COLLATE utf8_bin AND contrasenia = :contrasenia COLLATE utf8_bin AND activo = 1", {usuario: usuario, contrasenia: contrasenia})
+		puts "hola desde usuario.rb"
+		puts usuario
 		if usuario.present?
 			usuario
 		else

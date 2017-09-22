@@ -1,0 +1,17 @@
+.btnMenu{
+	height: 60px;
+	width: 60px;
+	background-color: #777;
+	text-align: center;
+	font-size: 25px;
+	padding-top: 10px;
+	position: absolute;
+}
+.tituloPantalla{
+	height: 60px;
+	width: 100%;
+	position: absolute;
+}
+.completo{
+	width: 100%;
+}

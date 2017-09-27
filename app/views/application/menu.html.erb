@@ -1,5 +1,4 @@
-<HTML>
-	<HEAD>
+
       <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
       <link rel="stylesheet" type="text/css" href="/stylesheets/loggin.css">
       <link rel="stylesheet" type="text/css" href="/stylesheets/aplication.css">
@@ -9,23 +8,24 @@
   <div class="container-fluid">
     <div class="nav-header">
         <div class="col-xs-2 col-md-2 ">
-          <a href="#" class="btn btn-nav"> <h3>Salir</h3></a>
+        <a href="" class="btn btn-nav" onclick="click_regresar()">Salir</a>
         </div>
-        <div class="col-xs-8 col-md-8 text-center">
-           <h3>MENÚ</h3>
+        <div class="col-xs-8 col-md-8 text-center tituloPantalla">
+           <h3>────── MENÚ ──────</h3>
         </div>
         <div class="col-xs-1 col-md-1"></div>
         <div class="col-xs-1 col-md-1 ">
-          <img class="user text-center" src="/images/user2.png" alt="">
+          <a ><img class="user text-center" src="/images/user2.png" alt=""></a>
+         
         </div>
     </div>
   </div>
 </nav>
-</HEAD>
-	<BODY>
-  <br><br><br><br>br
-		<div class="container">
-      <div class="row ">
+  <br><br><br><br><br>
+  
+		<div class="container" >
+      <div class="row" id="contenido">
+      <!--
         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 cuadro">
           <img class="imagenes" src="/images/ventas.png" alt="">
         </div>
@@ -35,7 +35,48 @@
         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 cuadro">
           <img class="imagenes" src="/images/clientes.png" alt="">
         </div>
+        -->
       </div>  
     </div>
-	</BODY>
-</HTML>
+
+    <div class= "modal fade" tabindex ="-1" role="dialog" id="modalEfectivo">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title">ENTRADA DE EFECTIVO</h4>
+            </div>
+            <div class="modal-body textModal">
+              <div class="row">
+                <div class="col-md-4"> Tipo </div>
+ 
+                <div class="col-md-4"> Nombre </div>
+              
+              
+                <div class="col-md-4"> Cantidad </div>
+                <div class="col-md-4">  
+          <input type="number" class="form-control clear cantidad" placeholder="Cantidad">
+
+                </div>
+                <div class="col-md-2">
+                  <input type="text" class="form-control clear medidaInv" disabled placeholder="Medida">
+                </div>
+
+                
+              </div>
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeModalInventario()">Cancelar</button>
+               <button type="button" class="btn btn-success agregarInventario" onclick="agregarCantidad()">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<script type="text/javascript">
+  
+  window.usuario = JSON.parse('<%= @usuario.as_json %>'.replace(/&quot;/g, '\"').replace(/=&gt;/g, ':').replace(/nil/g, '""'));
+</script>

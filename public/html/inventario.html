@@ -1,0 +1,87 @@
+
+
+    <div class = "fondo">
+    <div class="row ">
+    <div class="col-md-1 form-group">
+         
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras" >ID</label>
+          <input type="text" class="form-control clear" placeholder="ID">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">Nombre</label>
+          <input type="text" class="form-control clear" placeholder="Nombre">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Detalle</label>
+          <input type="text" class="form-control clear" placeholder="$">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Mayoreo</label>
+          <input type="text" class="form-control clear" placeholder="$">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Foráneo</label>
+          <input type="text" class="form-control clear" placeholder="$">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Cantidad</label>
+          <input type="text" class="form-control clear" placeholder="">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Medida</label>
+          <select class="form-control clear medida">
+            <option value="1">Kg</option>
+            <option value="2">L</option>
+            <option value="3">Pzas</option>
+            </select>
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">S. Minimo</label>
+          <input type="text" class="form-control clear" placeholder="">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">S. Máximo</label>
+          <input type="text" class="form-control clear" placeholder="">
+        </div>
+      </div> 
+  <div class="row ">
+<div class="col-md-3">
+      <button type="button" class="btn boton" onclick="addInventario()">Insertar</button>
+  </div>
+   <div class="col-md-3">
+    <button type="button" class="btn boton" onclick="limpiar()">Limpiar</button>
+  </div>
+   <div class="col-md-3">
+    <button type="button" class="btn boton" onclick="delInventario()">Eliminar</button>
+  </div>
+   <div class="col-md-3">
+    <button type="button" class="btn boton" onclick="modalInventario()">Agregar inventario</button>
+  </div>
+
+  </div>
+</div>
+  <div class="row fondoBlanco">
+    <div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="green">
+      <tr>
+        <th class="letras">ID</th>
+        <th class="letras">Nombre</th>
+        <th class="letras">Precio Detalle</th>
+        <th class="letras">Precio Mayoreo</th>
+        <th class="letras">Precio Foraneo</th>
+        <th class="letras">Cantidad</th>
+        <th class="letras">Medida</th>
+        <th class="letras">Stock Minimo</th>
+        <th class="letras">Stock Máximo</th>
+        <th class="letras">Existencia</th>
+      </tr>
+    </thead>
+    <tbody class="contCata">
+      
+    </tbody>
+  </table>
+</div>
+

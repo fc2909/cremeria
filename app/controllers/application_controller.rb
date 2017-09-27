@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
 	def menu
 		@usuario = session[:usuario]
-		puts "hola mundo"
+		
 	end
 
 	def get_data(model)

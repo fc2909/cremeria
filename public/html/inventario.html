@@ -1,87 +1,107 @@
 
 
     <div class = "fondo">
-    <div class="row ">
-    <div class="col-md-1 form-group">
-         
-        </div>
-        <div class="col-md-1 form-group">
+    
+
+   
+
+    <div class="row col-md-12">
+    
+
+        <div class="col-md-2 form-group">
           <label class="letras" >ID</label>
-          <input type="text" class="form-control clear" placeholder="ID">
+          <input type="text" class="form-control clear idInventario" placeholder="ID">
+        </div>
+        <div class="col-md-3 form-group">
+          <label class="letras">Descripción</label>
+          <input type="text" class="form-control clear descripcion" placeholder="Descripción">
         </div>
         <div class="col-md-2 form-group">
-          <label class="letras">Nombre</label>
-          <input type="text" class="form-control clear" placeholder="Nombre">
-        </div>
-        <div class="col-md-1 form-group">
           <label class="letras">Detalle</label>
-          <input type="text" class="form-control clear" placeholder="$">
+          <input type="text" class="form-control clear detalle" placeholder="$">
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-2 form-group">
           <label class="letras">Mayoreo</label>
-          <input type="text" class="form-control clear" placeholder="$">
+          <input type="text" class="form-control clear mayoreo" placeholder="$">
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-2 form-group">
           <label class="letras">Foráneo</label>
-          <input type="text" class="form-control clear" placeholder="$">
+          <input type="text" class="form-control clear foraneo" placeholder="$">
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-2 form-group">
+          <label class="letras">Restaurante</label>
+          <input type="text" class="form-control restaurante" placeholder="$">
+        </div>
+        <div class="col-md-2 form-group">
           <label class="letras">Cantidad</label>
-          <input type="text" class="form-control clear" placeholder="">
+          <input type="text" class="form-control clear cantidad" placeholder="#">
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-2 form-group">
           <label class="letras">Medida</label>
           <select class="form-control clear medida">
             <option value="1">Kg</option>
-            <option value="2">L</option>
-            <option value="3">Pzas</option>
+            <option value="2">Pzas.</option>
+            <option value="3">L</option>
             </select>
         </div>
-        <div class="col-md-1 form-group">
+        <div class=" col-md-2 form-group">
           <label class="letras">S. Minimo</label>
-          <input type="text" class="form-control clear" placeholder="">
+          <input type="text" class="form-control clear s_min" placeholder="#">
         </div>
-        <div class="col-md-1 form-group">
+        <div class=" col-md-2 form-group">
           <label class="letras">S. Máximo</label>
-          <input type="text" class="form-control clear" placeholder="">
+          <input type="text" class="form-control clear s_max" placeholder="#">
         </div>
       </div> 
   <div class="row ">
-<div class="col-md-3">
-      <button type="button" class="btn boton" onclick="addInventario()">Insertar</button>
+<div class="col-xs-3 col-md-3">
+      <button type="button" class="btn botoninv" onclick="addInventario()">Insertar</button>
   </div>
-   <div class="col-md-3">
-    <button type="button" class="btn boton" onclick="limpiar()">Limpiar</button>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botoninv" onclick="limpiar()">Limpiar</button>
   </div>
-   <div class="col-md-3">
-    <button type="button" class="btn boton" onclick="delInventario()">Eliminar</button>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botoninv" onclick="delInventario()">Eliminar</button>
   </div>
-   <div class="col-md-3">
-    <button type="button" class="btn boton" onclick="modalInventario()">Agregar inventario</button>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botoninv" onclick="modalInventario()">Agregar inventario</button>
   </div>
 
   </div>
+  <br><br>
 </div>
-  <div class="row fondoBlanco">
-    <div class="table-responsive">
+
+ <div class="row">
+
+
+  <div class="table-responsive tabla">
   <table class="table table-striped">
-    <thead class="green">
-      <tr>
-        <th class="letras">ID</th>
+    <thead class="text-center">
+      <tr class="letras">
+         <th class="letras">ID</th>
         <th class="letras">Nombre</th>
         <th class="letras">Precio Detalle</th>
         <th class="letras">Precio Mayoreo</th>
         <th class="letras">Precio Foraneo</th>
+        <th class="letras">Precio Restaurante</th>
         <th class="letras">Cantidad</th>
         <th class="letras">Medida</th>
         <th class="letras">Stock Minimo</th>
         <th class="letras">Stock Máximo</th>
-        <th class="letras">Existencia</th>
+      
       </tr>
     </thead>
-    <tbody class="contCata">
-      
+    <tbody class="contCata tinventarios" >
+     
     </tbody>
   </table>
 </div>
+
+ 
+ 
+  </div>
+
+
+
+
 

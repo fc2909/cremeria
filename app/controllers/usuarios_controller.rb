@@ -1,5 +1,5 @@
 class UsuariosController < ApplicationController
-def index 
+	def index 
 		#get_data('usuario')
 		usuario = Usuario.select(:idUsuario, :usuario, :contrasenia, :tipo, :activo)
 		if params[:where].present?
@@ -13,7 +13,7 @@ def index
 		SetResul({:data=> set_data(create_params, params[:action], nil, 'usuario') })
 	end
 	def update
-		SetResul({:data=> set_data(model_params, params[:action], find_model, 'usuario') })
+		SetResul({:data=> set_data(update_params, params[:action], find_model, 'usuario') })
 	end
 	def destroy
 		SetResul({:data=> set_data(delete_model, "update", find_model, 'usuario') })
@@ -49,5 +49,4 @@ def index
 			params = ActionController::Parameters.new(activo: 0)
 			params.permit(:activo)
 		end
-end
 end

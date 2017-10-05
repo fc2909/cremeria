@@ -1,8 +1,14 @@
 .menunav{
-  background: #012d41;
+  background: #012d42;
   color: white;
+  width: 100%;
+  position: fixed;
   /*box-shadow: 3px 3px 8px #fff;
   padding-top: 1px;*/
+}
+.tabla{
+  background: #333333
+
 }
 .user{
   height: 65px;
@@ -18,7 +24,7 @@
   border: 1px solid #ffffff;
   }
 .btn-nav{
-  background: #012d41;
+  
   color: white;
   vertical-align: middle;
   padding-top: 1px;
@@ -32,6 +38,10 @@
 body{
   /*background: #313131;*/
   background: #012d41;
+}
+.btn-modals{
+  background: #012d41;
+  color: white; 
 }
 .imagenes{
   height: 200px;
@@ -57,14 +67,36 @@ transform: scale(1.1)
 .letras{
  color: white;
 }
-.boton{
+.botoninv{
   width: 100%;
-  background: #540032;
+  background: #ff404e;
   color: white;
 }
 .boton:hover{
   width: 100%;
   background: #540032;
   color: green;
+}
+.usuario1{
+  background: #74ceb7;
+  width: 100%;
+}
+.usuario1modal{
+  background: #74ceb7;
+
+}
+.contCata{
+  
+}
+.tusuarios{
+  background: #74ceb7;
+}
+.tinventarios{
+ background: #bdf25d;
+  color: black;
+}
+
+.seleccionar:hover{
+background: #cccccc;
 }
 

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idInventario: 1
+  descripcion: MyString
+  detalle: 1
+  mayoreo: 1
+  foraneo: 1
+  restaurante: 1
+  medida: 1
+  medida: MyString
+  s_min: 1
+  s_max: 1
+  activo: 1
+
+two:
+  idInventario: 1
+  descripcion: MyString
+  detalle: 1
+  mayoreo: 1
+  foraneo: 1
+  restaurante: 1
+  medida: 1
+  medida: MyString
+  s_min: 1
+  s_max: 1
+  activo: 1

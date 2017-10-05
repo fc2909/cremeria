@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170920165836) do
+ActiveRecord::Schema.define(version: 20171004171841) do
+
+  create_table "inventarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "idInventario"
+    t.string   "descripcion"
+    t.integer  "detalle"
+    t.integer  "mayoreo"
+    t.integer  "foraneo"
+    t.integer  "restaurante"
+    t.integer  "cantidad"
+    t.string   "medida"
+    t.integer  "s_min"
+    t.integer  "s_max"
+    t.integer  "activo"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "logs", primary_key: "idLog", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "url"

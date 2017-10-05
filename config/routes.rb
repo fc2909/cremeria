@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get 'singup' => 'application#loggin'
 
   resources :usuarios
-
+  resources :inventarios do
+    collection do
+      post 'agregar'
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

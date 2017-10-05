@@ -1,0 +1,66 @@
+<div class="col-md-1"></div>
+  <div class="col-md-10" >
+    <div class="row fondoBlanco">
+
+ <div class="col-xs-4 col-md-4 form-group letras">
+    <label >Nombre</label>
+    <input type="text" class="form-control  clear nombre" placeholder="Nombre">
+  </div>
+     
+ 
+  <div class="col-xs-4 col-md-4 form-group letras">
+    <label >Contraseña</label>
+    <input type="text" class="form-control  clear contrasenia" placeholder="Contraseña">
+  </div>  
+<div class="col-xs-4 col-md-4 form-group">
+    <label class="letras">Tipo</label>
+    <select class="form-control  clear tipo">
+<option value="5">Vendedor</option>
+<option value="4">Despachador</option>
+<option value="3">Contador</option>
+<option value="2">Administrador</option>
+<option value="1">Director</option>
+    </select>
+  </div>
+ 
+  <div class="col-sm-3 col-md-3">
+      <button type="button" class="btn usuario1" onclick="addUsuario()">Insertar</button>
+  </div>
+   <div class="col-sm-3 col-md-3">
+    <button type="button" class="btn usuario1" onclick="upUsuario()">Modificar</button>
+  </div>
+   <div class="col-sm-3 col-md-3">
+    <button type="button" class="btn usuario1" onclick="limpiar()">Limpiar</button>
+  </div>
+   <div class="col-sm-3 col-md-3">
+    <button type="button" class="btn usuario1" onclick="delUsuario()">Eliminar</button>
+  </div >
+
+  </div>
+
+<br><br><br><br>
+
+  <div class="row">
+  
+
+  <div class="col-sm-12"> 
+  <div class="table-responsive tabla">
+  <table class="table table-striped">
+    <thead class="text-center">
+      <tr class="letras">
+        <th>Nombre</th>
+        <th>Contraseña</th>
+        <th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody class="contCata" >
+     
+    </tbody>
+  </table>
+</div></div>
+ 
+ 
+  </div>
+  <div class="col-md-1"></div>
+
+ 

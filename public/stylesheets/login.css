@@ -5,10 +5,17 @@ body{
     height: 764px;
 
 }
+.logo{
+width: 200px;
+height: 200px;
+}
 .btnlogin{
 	background: #ff7008;
 	color: white;
-	width: 60%;
+	
+}
+.login{
+	width: 90%;
 	text-align: center;
 }
 .footer{
@@ -18,22 +25,19 @@ body{
 
 }
 .cont{
-width: 100%;
-height: 100%;
+
+width: 300px;
+height: 300px;
 background: rgba(0,0,0,.5);
 }
+
 input[type="text"],input[type="password"]{
-	
-	text-align: center;
+
+        width: 100%;
+		text-align: center;
 	
 }
 .cust{
 	
-	background: #ff7008;
-	margin-top: 1px;
-	width: 44px;
-	height: 36px;
-	padding-top: 8px;
-	border: 1px solid #ff7008;
-    color: #ffffff;
+text-align:  center;
 }

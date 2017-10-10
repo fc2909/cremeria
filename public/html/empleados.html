@@ -1,0 +1,119 @@
+
+    
+    <div class = "fondo">
+    <div class="row col-md-12 formempleados">
+    
+
+        <div class="col-md-1 form-group">
+          <label class="letras" >ID</label>
+          <input type="text" class="form-control clear idEmpleado" placeholder="ID">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">Nombre</label>
+          <input type="text" class="form-control clear nombre" placeholder="Nombre">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">Apellido Paterno</label>
+          <input type="text" class="form-control clear a_paterno" placeholder="Apellido Paterno">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">Apellido Materno</label>
+          <input type="text" class="form-control clear a_materno" placeholder="Apellido Materno">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">N. Seguro Social</label>
+          <input type="text" class="form-control clear s_social" placeholder="Seguro Social">
+        </div>
+        <div class="col-md-3 form-group">
+          <label class="letras">Curp</label>
+          <input type="text" class="form-control clear Curp" placeholder="Curp">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="letras">Domicilio</label>
+          <input type="text" class="form-control Domicilio" placeholder="Domicilio">
+        </div>
+        <div class=" col-md-2 form-group">
+             <label class="letras">RFC</label>
+             <input type="text" class="form-control clear rfc" placeholder="RFC">
+          </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">Tipo de Empleado</label>
+          <select class="form-control clear tipoempleado" onchange="tipoempleado(value)">
+            <option value="1">Ayudante General</option>
+            <option value="2">Vendedor</option>
+            <option value="3">Gerente de Ventas</option>
+            <option value="4">Gerente de Operaciones</option>
+            <option value="5">Supervisor</option>
+            <option value="6">Administrador</option>
+            <option value="7">Consejo</option>
+            </select>
+        </div>
+        <div class="col-md-2 form-group licencia"></div>
+        <div class="col-md-2 form-group exp"></div>
+        <div class="col-md-2 form-group ruta"></div>
+        <div class="col-md-2 form-group tipovende"></div>
+
+
+
+
+
+
+      </div> 
+  <div class="row ">
+<div class="col-xs-3 col-md-3">
+      <button type="button" class="btn botonempl" onclick="addEmpleado()">Insertar</button>
+  </div>
+  
+   <div class="col-sm-3 col-md-3">
+    <button type="button" class="btn botonempl" onclick="upUsuario()">Modificar</button>
+  </div>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botonempl" onclick="limpiar()">Limpiar</button>
+  </div>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botonempl" onclick="delEmpleado()">Eliminar</button>
+  </div>
+  
+</div>
+<br><br>
+  </div>
+  <br><br>
+</div>
+
+ <div class="row">
+
+
+  <div class="table-responsive tabla">
+  <table class="table table-striped">
+    <thead class="text-center">
+      <tr class="letras">
+         <th class="letras">ID</th>
+        <th class="letras">Nombre</th>
+        <th class="letras">Apellido Paterno</th>
+        <th class="letras">Apellido Materno</th>
+        <th class="letras">S. Social</th>
+        <th class="letras">Curp</th>
+        <th class="letras">Domicilio</th>
+        <th class="letras">RFC</th>
+        <th class="letras">Tipo de Empleado</th>
+        <th class="letras">N. Licencia</th>
+        <th class="letras">Fecha Exp.</th>
+        
+        
+      
+      </tr>
+    </thead>
+    <tbody class="contCata tinventarios" >
+     
+    </tbody>
+  </table>
+</div>
+
+ 
+ 
+  </div>
+
+
+
+
+

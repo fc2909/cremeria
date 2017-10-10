@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'index' => 'application#menu'
   get 'singup' => 'application#loggin'
 
+
   resources :usuarios
+   resources :historiales_inventarios
   resources :inventarios do
     collection do
       post 'agregar'

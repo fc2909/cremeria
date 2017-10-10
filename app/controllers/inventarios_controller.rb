@@ -1,6 +1,7 @@
 class InventariosController < ApplicationController
 def index 
 		get_data('inventario')
+		
 	end
 	def create 
 		SetResul({:data=> set_data(model_params, params[:action], nil, 'inventario') })
@@ -14,6 +15,7 @@ def index
 	end
 
 	def agregar
+		puts 'agregar'
 		# url:'/inventarios/agregar', data:{idInventario:1, cantidad:12, costo:13}, type:'POST'
 		ActiveRecord::Base.transaction do
 			# varialbles
@@ -39,10 +41,10 @@ def index
 
 	private
 		def find_model
-			Inventario.find(params[:id, :descripcion, :cantidad])
+			Inventario.find(params[:id])
 		end
 		def model_params
-			params.permit(:idInventario, :descripcion, :detalle, :mayoreo, :foraneo, :restaurante, :cantidad, :medida, :s_min, :s_max)
+			params.permit(:id, :idInventario, :descripcion, :detalle, :mayoreo, :foraneo, :restaurante, :cantidad, :medida, :s_min, :s_max)
 		end
 		def delete_model
 			params = ActionController::Parameters.new(activo: 0)

@@ -1,5 +1,5 @@
 class Inventario < ApplicationRecord
-	self.primary_key = :idInventario
+	self.primary_key = :id
 
 	# --------------------------- Scopes ------------------------------- #
 	default_scope { where(activo: 1) }

@@ -8,15 +8,19 @@ class UsuariosController < ApplicationController
 			end
 		end
 		render :json => usuario
+
 	end
 	def create 
 		SetResul({:data=> set_data(create_params, params[:action], nil, 'usuario') })
+		
 	end
 	def update
 		SetResul({:data=> set_data(update_params, params[:action], find_model, 'usuario') })
+
 	end
 	def destroy
 		SetResul({:data=> set_data(delete_model, "update", find_model, 'usuario') })
+
 		#SetResul({:data=> set_data(nil, "delete", find_model, 'usuario') })
 	end
 

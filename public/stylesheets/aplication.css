@@ -72,6 +72,11 @@ transform: scale(1.1)
   background: #ff404e;
   color: white;
 }
+.botonempl{
+  width: 100%;
+  background: green;
+  color: white;
+}
 .boton:hover{
   width: 100%;
   background: #540032;

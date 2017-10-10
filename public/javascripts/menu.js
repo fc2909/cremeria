@@ -26,6 +26,34 @@ $(document).ready(function(){
 
 
 });
+/*--------------------- otros ------------------------------*/
+function tipoempleado(value){
+
+var licencia = ' <label class="letras">N. Licencia</label><input type="text" class="form-control clear n_licencia" placeholder="Licencia">' ;
+var exp = '<label class="letras">Fecha de Expiración</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">' ;
+var ruta = '<label class="letras">Ruta</label><select class="form-control clear ruta" ><option value="1">C1</option><option value="2">C2</option><option value="3">C3</option><option value="4">C4</option><option value="5">C5</option><option value="6">C6</option><option value="7">C7</option><option value="8">C8</option> </select>';
+var tipovende = ' <label class="letras">Tipo de Venta</label><select class="form-control clear tipoventa" ><option value="1">Detalle</option><option value="2">Mayoreo</option><option value="3">Detalle Foráneo</option><option value="4">Restaurantes</option></select>';
+ if(value==2){
+$(".licencia").html(licencia);
+$(".exp").html(exp);
+$(".ruta").html(ruta);
+$(".tipovende").html(tipovende);
+
+
+  }
+  else{
+     $('.licencia').removeClass('hidden');
+     $('.exp').removeClass('hidden');
+     $('.ruta').removeClass('hidden');
+     $('.tipovende').removeClass('hidden');
+
+     $('.licencia').html('');
+     $('.exp').html('');
+     $('.ruta').html('');
+     $('.tipovende').html('');
+  }
+
+}
 /*--------------------- Regresar menu ----------------------*/
 
 function click_regresar(){
@@ -45,9 +73,11 @@ function click_regresar(){
 /*-------------------- cargar listas ---------------------------------*/
 function loadUsuarios(lista){
   var html = '';
-  for(var h=0;h<lista.length; h++)
+  for(var h=0;h<lista.length; h++){
     html+= '<tr class="seleccionar" onclick="selectUsuario('+ lista[h].idUsuario +')" data-id="'+ lista[h].idUsuario +'"><td>' + lista[h].usuario + '</td><td>' + lista[h].contrasenia + '</td><td>' + tipoUsuario[lista[h].tipo - 1] + '</td></tr>';
+      $('.contCata').html('');
   $('.contCata').html(html);
+  }
   arrGlobal = lista;
 }
 function loadInventarios(lista){
@@ -69,13 +99,18 @@ function addUsuario(){
   if(nombre!= "" && contrasenia != "" && tipo != ""){
 
     var json = {usuario: nombre, contrasenia: contrasenia, tipo: tipo};
+      
     addRegistro(json, 'usuarios', loadUsuarios);
+     
+
   }
   else{
 
       $('#modal .textModal').html('Faltan Datos.'); 
       $('#modal').modal('show');
   }
+getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
+
 }
 function addInventario(){
   var idInventario = $(".idInventario").val();
@@ -99,13 +134,17 @@ function addInventario(){
       $('#modal .textModal').html('Faltan Datos.'); 
       $('#modal').modal('show');
   }
+getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+
 }
 
 /*------------------- limpiar funciones --------------------------*/
 function limpiar(){
   $(".clear").val("");
 }
-
+function limpiarm(){
+  $("#modalInventario .clear").val("");
+}
 /*-------------------- eliminar elementos -------------------------*/
 function delUsuario(){
   var nombre = $(".nombre").val();
@@ -119,9 +158,11 @@ function delUsuario(){
       $('#modal').modal('show');
  
 }
+getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
+
 }
 function delInventario(){
-    var idInventario = $(".idInventario").val();
+  var idInventario = $(".idInventario").val();
   var descripcion = $(".descripcion").val();
   var detalle = $(".detalle").val();
   var mayoreo = $(".mayoreo").val();
@@ -134,12 +175,14 @@ function delInventario(){
 
   if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""){
 
-  delRegistro(idGlobal, 'inventarios', loadInventarios);
+  delRegistro(idGlobal,'inventarios', loadInventarios);
 }else {
    $('#modal .textModal').html('Seleccione de la tabla el producto a eliminar.'); 
       $('#modal').modal('show');
  
 }
+getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+
 }
 /*-------------------- actualizar registro ------------------------*/
 function upUsuario(){
@@ -149,10 +192,14 @@ function upUsuario(){
   var json = {usuario: nombre, contrasenia: contrasenia, tipo: tipo};
   if(nombre != '' && contrasenia != '')
     upRegistro(idGlobal, json, 'usuarios', loadUsuarios);
+
+
   else{
      $('#modal .textModal').html('Seleccione de la tabla el usuario a modificar.'); 
       $('#modal').modal('show');
   }
+  getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
+
 }
 /*----------------------- seleccionar en la tabla ------------------------*/
 function selectUsuario(id){
@@ -169,7 +216,7 @@ function selectUsuario(id){
 function selectInventario(id){
   idGlobal = id;
   for(var a=0; a<arrGlobal.length; a++){
-    if(arrGlobal[a].idInventario == id){
+    if(arrGlobal[a].id == id){
       $(".idInventario").val(arrGlobal[a].idInventario);
       $(".descripcion").val(arrGlobal[a].descripcion);
       $(".detalle").val(arrGlobal[a].detalle);
@@ -255,7 +302,7 @@ function getFunction(url, mensajes, functionFinal){
       $('#modal .textModal').html(mensajes.success); 
 
       functionFinal(json);
-
+      
     },    
 
     error : function(xhr, status) {    
@@ -265,10 +312,10 @@ function getFunction(url, mensajes, functionFinal){
     complete : function(xhr, status) { 
 
     }});
-
+ 
 }
 function executeFunctionDone(data, url, mensajes, done){
-  
+   
   $.ajax({    
     url : url,    
     data : data,    
@@ -276,7 +323,7 @@ function executeFunctionDone(data, url, mensajes, done){
     success : function(json) {    
 
       done(json);
-     
+    
     },    
 
     error : function(xhr, status) {    
@@ -297,8 +344,7 @@ function click_usuarios(){
  $('.tituloPantalla').html('<h3 class="inventario"> USUARIOS </h3>');
 
 getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
- /*getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
-*/
+
 }
 function click_inventario(){
   $('.btn-nav').removeClass('hidden');
@@ -308,10 +354,115 @@ function click_inventario(){
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
 }
+
+function click_ventas(){
+  $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú </h3>');
+ $('#contenido').load('/html/ventas.html');
+ $('.tituloPantalla').html('<h3 class="ventas"> VENTAS </h3>');
+ /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+*/
+
+
+}
+function click_empleados(){
+  $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú </h3>');
+ $('#contenido').load('/html/empleados.html');
+ $('.tituloPantalla').html('<h3 class="ventas"> EMPLEADOS </h3>');
+ /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+*/
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+
+}
+function click_salidaventa(){
+  $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Venta </h3>');
+ $('#contenido').load('/html/salida_venta.html');
+ $('.tituloPantalla').html('<h3 class="ventas"> SALIDA </h3>');
+ /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+*/
+$('#modal .textModal').html('Salida en construcción.'); 
+      $('#modal').modal('show');
+
+}
+function click_recepcionventa(){
+  $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Venta </h3>');
+ $('#contenido').load('/html/rec_venta.html');
+ $('.tituloPantalla').html('<h3 class="ventas"> RECEPCIÓN  </h3>');
+ /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+*/
+$('#modal .textModal').html('Salida en construcción.'); 
+      $('#modal').modal('show');
+
+}
+
+function click_clientes(){
+
+
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+
+}
+
+function click_mvehicular(){
+
+
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+
+}
+
+function click_logistica(){
+
+
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+
+}
+
+function click_nomina(){
+
+
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+
+}
+
+function click_reportes() {
+
+
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+
+}
+function click_bitacoras(){
+
+
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+
+}
+function click_vendedores(){
+
+$('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menu </h3>');
+ $('#contenido').load('/html/vendedores.html');
+ $('.tituloPantalla').html('<h3 class="vendedor"> VENDEDORES  </h3>');
+
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+
+}
 /*-------------------- modales ----------------------*/
 function modalEfectivos(){
-
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+      /*
       $('#modalEfectivo').modal('show')
+*/
 }
 function closeModaladdusuario(){
   $('#modaladdusuario').modal('hide');
@@ -320,9 +471,14 @@ function closeModal(){
   $('#modal').modal('hide');
 }
 function modalInventario(){
-
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+/*
       $('#modalInventario').modal('show');
      updateListaModal();
+*/
+getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+
 }
 function updateListaModal(){
     var tipo = $("#modalInventario .tipo").val();
@@ -337,18 +493,17 @@ function updateListaModal(){
 }
 
 function updateListaModalMedida(){
-  var tipo = $("#modalInventario .descripcionInventario").val();
+  var tipo = $("#modalInventario .tipo").val();
 
    for(var a=0; a<arrGlobal.length; a++){
-    if(arrGlobal[a].descripcion == tipo)
-      alert(tipo);
-       $("#modalInventario .medidaInv").val(medidas[arrGlobal[a].medida-1]); 
+    if(arrGlobal[a].idInventario == tipo)
+       $("#modalInventario .medidaInv").val(medidas[arrGlobal[a].medida - 1]); 
     }
 }
 
 function closeModalInventario(){
       $('#modalInventario').modal('hide');
-      limpiar();
+      limpiarm();
 
 }
 function closeModalInventario2(lista){
@@ -358,12 +513,19 @@ function closeModalInventario2(lista){
             
 }
 function agregarCantidad(){
-       var data = {descripcion: $("#modalInventario .descripcionInventario").val(),
+
+$('#modal .textModal').html('Modulo en construcción.'); 
+      $('#modal').modal('show');
+
+/*
+  var data = {idInventario: $("#modalInventario .tipo").val(),
                     cantidad: $("#modalInventario .cantidad").val()
                     , costo:0};
-
+ 
         executeFunctionDone(data, '/inventarios/agregar', {tipo:"POST", error: "Ocurrio un error al agregar inventario."},
         closeModalInventario2);
+     
+  */     
 
 }
 
@@ -375,9 +537,7 @@ function click_cerrarSesion(){
     //data : { usuario: name, contrasenia: pass},    
     type : 'DELETE',    
     success : function(json) {  
-        
-      //alert(json);
-      //document.documentElement.innerHTML = json;
+   
       console.log(json);
     },    
 

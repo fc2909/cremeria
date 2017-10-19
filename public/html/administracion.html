@@ -1,7 +1,7 @@
-
+<div class="col-md-12">
     
-
-    <div class="row col-md-12 formempleados">
+ 
+    <div class="row col-md-12 fondo">
     
 
         <div class="col-md-1 form-group">
@@ -22,26 +22,26 @@
         </div>
         <div class="col-md-2 form-group">
           <label class="letras">N. Seguro Social</label>
-          <input type="text" class="form-control clear s_social" placeholder="Seguro Social">
+          <input type="text" class="form-control clear n_seguro" placeholder="Seguro Social">
         </div>
         <div class="col-md-3 form-group">
           <label class="letras">Curp</label>
-          <input type="text" class="form-control clear Curp" placeholder="Curp">
+          <input type="text" class="form-control clear curp" placeholder="Curp">
         </div>
         <div class="col-md-4 form-group">
           <label class="letras">Domicilio</label>
-          <input type="text" class="form-control domicilio" placeholder="Domicilio">
+          <input type="text" class="form-control clear domicilio" placeholder="Domicilio">
         </div>
         <div class=" col-md-2 form-group">
              <label class="letras">RFC</label>
              <input type="text" class="form-control clear rfc" placeholder="RFC">
           </div>
-<!--
+
         <div class="col-md-2 form-group">
           <label class="letras">Tipo de Empleado</label>
           <select class="form-control clear tipoempleado" onchange="tipoempleado(value)">
             <option value="1">Ayudante General</option>
-            <option value="2">Vendedor</option>
+           
             <option value="3">Gerente de Ventas</option>
             <option value="4">Gerente de Operaciones</option>
             <option value="5">Supervisor</option>
@@ -49,34 +49,16 @@
             <option value="7">Consejo</option>
             </select>
         </div>
--->
-        <div class="col-md-2 form-group licencia">
-          <label class="letras">N. Licencia</label><input type="text" class="form-control clear n_licencia" placeholder="Licencia">
+
+      <div class="col-md-4">
         </div>
             
-        <div class="col-md-2 form-group exp">
-          <label class="letras">Fecha de Expiración</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
-        </div>
-        <div class="col-md-2 form-group ruta">
-          <label class="letras">Ruta</label><select class="form-control clear ruta" ><option value="1">C1</option><option value="2">C2</option><option value="3">C3</option><option value="4">C4</option><option value="5">C5</option><option value="6">C6</option><option value="7">C7</option><option value="8">C8</option> </select>
-        </div>
-        <div class="col-md-3 form-group tipovende">
-          <label class="letras">Tipo de Venta</label><select class="form-control clear tipoventa" ><option value="1">Detalle</option><option value="2">Mayoreo</option><option value="3">Detalle Foráneo</option><option value="4">Restaurantes</option></select>
-        </div>
 
-
-
-
-
-
-
-      </div> 
-  <div class="row col-md-12">
 <div class="col-xs-3 col-md-3">
       <button type="button" class="btn botonempl insertar" onclick="addEmpleado()">Insertar</button>
   </div>
   
-   <div class="col-sm-3 col-md-3">
+   <div class="col-xs-3 col-md-3">
     <button type="button" class="btn botonempl modificar" onclick="upEmpleado()">Modificar</button>
   </div>
    <div class="col-xs-3 col-md-3">
@@ -85,14 +67,14 @@
    <div class="col-xs-3 col-md-3">
     <button type="button" class="btn botonempl eliminar" onclick="delEmpleado()">Eliminar</button>
   </div>
-  
-</div>
-<br><br>
- 
   <br><br>
 </div>
 
- <div class="row col-md-12">
+
+  <br>
+
+
+ <div class="row col-md-12 fondo">
 
 
   <div class="table-responsive tabla">
@@ -107,10 +89,8 @@
         <th class="letras">Curp</th>
         <th class="letras">Domicilio</th>
         <th class="letras">RFC</th>
-        <th class="letras">N. Licencia</th>
-        <th class="letras">Fecha Exp.</th>
-        <th class="letras">Ruta</th>
-        <th class="letras">tipo de venta</th>
+        <th class="letras">Tipo de Empleado</th>
+        
         
         
       
@@ -122,9 +102,9 @@
   </table>
 </div>
 
+ `
  
- 
-  </div>
+  </div>  </div>
 
 
 

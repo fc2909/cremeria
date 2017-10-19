@@ -2,6 +2,10 @@ var arrGlobal, idGlobal, menu;
 
 var tipoUsuario = ['Director','Administrador','Contador','Despachador','Vendedor']
 var medidas = ['Kg.','Pzas.','L'];
+var t_rutas = ['C1','C2','C3','C4','C5','C6','C7','C8'];
+var t_ventas = ['Detalle','Mayoreo','Detalle Foraneo','Restaurantes'];
+var t_Empleado = ['Ayudante General','Vendedor','Gerente de Ventas','Gerente de Operaciones','Supervisor','Administrador','Consejo'];
+var dias = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
 $(document).ready(function(){
   var usuario = window.usuario.tipo;
   menu="/html/menu_";
@@ -26,7 +30,33 @@ $(document).ready(function(){
 
 
 });
+
+function makeArray() {
+for (i = 0; i<makeArray.arguments.length; i++)
+this[i + 1] = makeArray.arguments[i];
+}
+
+  var months = new makeArray('Enero','Febrero','Marzo','Abril','Mayo',
+'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
+var date = new Date();
+var today = date.getDay();
+var day = date.getDate();
+var month = date.getMonth() + 1;
+var yy = date.getYear();
+var year = (yy < 1000) ? yy + 1900 : yy;
+var fecha = "Hoy es " + day + " de " + months[month] + " del " + year;
+var d = new Date();
+
+/*
+var d = new Date();
+document.write('Fecha: '+d.getDate(),'<br>Dia de la semana: '+d.getDay(),'<br>Mes (0 al 11): '+d.getMonth(),'<br>Año: '+d.getFullYear(),'<br>Hora: '+d.getHours(),'<br>Hora UTC: '+d.getUTCHours(),'<br>Minutos: '+d.getMinutes(),'<br>Segundos: '+d.getSeconds());
+*/
+
+
+
 /*--------------------- otros ------------------------------*/
+
+
 function tipoempleado(value){
 
 var licencia = ' <label class="letras">N. Licencia</label><input type="text" class="form-control clear n_licencia" placeholder="Licencia">' ;
@@ -39,6 +69,8 @@ $(".exp").html(exp);
 $(".ruta").html(ruta);
 $(".tipovende").html(tipovende);
 
+   $('#modal .textModal').html('El vendedor por asignar aparecerá automáticamente en la sección de vendedores.'); 
+      $('#modal').modal('show');
 
   }
   else{
@@ -89,6 +121,53 @@ function loadInventarios(lista){
   arrGlobal = lista;
 }
 
+function loadVendedores(lista){
+  var html = '';
+  
+  for(var h=0;h<lista.length; h++)
+    if(lista[h].tipo==2){
+html+= '<tr class="seleccionar" onclick="selectVendedores('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idEmpleados + '</td><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + lista[h].n_seguro + '</td><td>' + lista[h].curp + '</td><td>' + lista[h].domicilio  + '</td><td>' + lista[h].rfc + '</td><td>' +  lista[h].n_licencia + '</td><td>' + lista[h].f_exp + '</td><td>' + t_rutas[lista[h].ruta - 1] + '</td><td>' + t_ventas[lista[h].t_venta - 1] + '</td><td>' + lista[h].l_credito + '</td><td>' + lista[h].l_bon + '</td><td>' + lista[h].merma +'</td></tr>';
+    }
+     $('.contCata').html(html);
+  arrGlobal = lista;
+}
+
+function loadAdministracion(lista){
+  var html = '';
+  
+  for(var h=0;h<lista.length; h++)
+    if(lista[h].tipo != 2){
+html+= '<tr class="seleccionar" onclick="selectAdministracion('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idEmpleados + '</td><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + lista[h].n_seguro + '</td><td>' + lista[h].curp + '</td><td>' + lista[h].domicilio  + '</td><td>' + lista[h].rfc + '</td><td>' + t_Empleado[lista[h].tipo-1] + '</td></tr>';
+    }
+     $('.contCata').html(html);
+  arrGlobal = lista;
+}
+
+function loadEmpleados(lista){
+  var html = '';
+  
+  for(var h=0;h<lista.length; h++)
+    if(lista[h].tipo != 2){
+html+= '<tr class="seleccionar" onclick="selectAdministracion('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idEmpleados + '</td><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + lista[h].n_seguro + '</td><td>' + lista[h].curp + '</td><td>' + lista[h].domicilio  + '</td><td>' + lista[h].rfc + '</td><td>' + lista[h].tipo + '</td></tr>';
+    }else{
+     
+html+= '<tr class="seleccionar" onclick="selectVendedores('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idEmpleados + '</td><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + lista[h].n_seguro + '</td><td>' + lista[h].curp + '</td><td>' + lista[h].domicilio  + '</td><td>' + lista[h].rfc + '</td><td>' +  lista[h].n_licencia + '</td><td>' + lista[h].f_exp + '</td><td>' + lista[h].ruta+ '</td><td>' + lista[h].t_venta + '</td><td>' + l_credito + '</td><td>' + l_bon + '</td><td>' + l_merma +'</td></tr>';
+    }
+
+     $('.contCata').html(html);
+  arrGlobal = lista;
+}
+
+function loadSalida(lista){
+  var html = '';
+  
+  for(var h=0;h<lista.length; h++)
+    if(lista[h].tipo==2){
+html+= '<tr class="seleccionar" onclick="click_Salida('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta - 1]  + '</td><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + t_ventas[lista[h].t_venta - 1] + '</td><td>' + lista[h].l_credito + '</td><td>' + lista[h].l_bon + '</td></tr>';
+    }
+     $('.contCata').html(html);
+  arrGlobal = lista;
+}
 /*-------------------- agregar registros -----------------------------*/
 function addUsuario(){
   
@@ -138,6 +217,76 @@ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar
 
 }
 
+function addVendedor(){
+  var idEmpleados = $(".idVendedor").val();
+  var nombre_Emple = $(".nombre").val();
+  var paterno_Emple = $(".a_paterno").val();
+  var materno_Emple = $(".a_materno").val();
+  var n_seguro = $(".n_seguro").val();
+  var curp = $(".curp").val();
+  var domicilio = $(".domicilio").val();
+  var rfc = $(".rfc").val();
+  var tipo = $(".tipoempleado").val();
+  var n_licencia = $(".n_licencia").val();
+  var f_exp = $(".f_licencia").val();
+  var ruta = $(".rutavende").val();
+  var t_venta = $(".tipoventa").val();
+  var l_credito = $(".credito").val();
+  var l_bon = $(".bonificacion").val();
+  var merma = $(".merma").val();
+ 
+
+
+   
+  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma};
+    addRegistro(json, 'empleados', loadVendedores);
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+
+}
+
+function addEmpleado(){
+  var idEmpleados = $(".idEmpleado").val();
+  var nombre_Emple = $(".nombre").val();
+  var paterno_Emple = $(".a_paterno").val();
+  var materno_Emple = $(".a_materno").val();
+  var n_seguro = $(".n_seguro").val();
+  var curp = $(".curp").val();
+  var domicilio = $(".domicilio").val();
+  var rfc = $(".rfc").val();
+  var tipo = $(".tipoempleado").val();
+  var n_licencia = $(".n_licencia").val();
+  var f_exp = $(".f_licencia").val();
+  var ruta = $(".rutavende").val();
+  var t_venta = $(".tipoventa").val();
+   
+  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta};
+    addRegistro(json, 'empleados', loadAdministracion);
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
+
+}
+function addfecha(){
+
+var fecha = '<input type="date"  class="form-control clear fecha selectfecha" >';
+$(".fecha_hoy").html(fecha);
+  }
+
+
 /*------------------- limpiar funciones --------------------------*/
 function limpiar(){
   $(".clear").val("");
@@ -159,7 +308,7 @@ function delUsuario(){
  
 }
 getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
-
+limpiar();
 }
 function delInventario(){
   var idInventario = $(".idInventario").val();
@@ -182,9 +331,132 @@ function delInventario(){
  
 }
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+limpiar();
+}
 
+function delVendedor(){
+  var idEmpleados = $(".idVendedor").val();
+  var nombre_Emple = $(".nombre").val();
+  var paterno_Emple = $(".a_paterno").val();
+  var materno_Emple = $(".a_materno").val();
+  var n_seguro = $(".n_seguro").val();
+  var curp = $(".curp").val();
+  var domicilio = $(".domicilio").val();
+  var rfc = $(".rfc").val();
+  var tipo = $(".tipoempleado").val();
+  var n_licencia = $(".n_licencia").val();
+  var f_exp = $(".f_licencia").val();
+  var ruta = $(".rutavende").val();
+  var t_venta = $(".tipoventa").val();
+   
+ 
+  
+
+  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+
+
+  delRegistro(idGlobal,'empleados', loadVendedores);
+}else {
+   $('#modal .textModal').html('Seleccione de la tabla el producto a eliminar.'); 
+      $('#modal').modal('show');
+ 
+}
+ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+
+limpiar();
+}
+
+function delEmpleado(){
+  var idEmpleados = $(".idEmpleado").val();
+  var nombre_Emple = $(".nombre").val();
+  var paterno_Emple = $(".a_paterno").val();
+  var materno_Emple = $(".a_materno").val();
+  var n_seguro = $(".n_seguro").val();
+  var curp = $(".curp").val();
+  var domicilio = $(".domicilio").val();
+  var rfc = $(".rfc").val();
+  var tipo = $(".tipoempleado").val();
+
+ 
+  
+
+  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+
+
+  delRegistro(idGlobal,'empleados', loadAdministracion);
+}else {
+   $('#modal .textModal').html('Seleccione de la tabla el producto a eliminar.'); 
+      $('#modal').modal('show');
+ 
+}
+ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
+
+limpiar();
 }
 /*-------------------- actualizar registro ------------------------*/
+function upVendedor(){
+  var idEmpleados = $(".idVendedor").val();
+  var nombre_Emple = $(".nombre").val();
+  var paterno_Emple = $(".a_paterno").val();
+  var materno_Emple = $(".a_materno").val();
+  var n_seguro = $(".n_seguro").val();
+  var curp = $(".curp").val();
+  var domicilio = $(".domicilio").val();
+  var rfc = $(".rfc").val();
+  var tipo = $(".tipoempleado").val();
+  var n_licencia = $(".n_licencia").val();
+  var f_exp = $(".f_licencia").val();
+  var ruta = $(".rutavende").val();
+  var t_venta = $(".tipoventa").val();
+  var l_credito = $(".credito").val();
+  var l_bon = $(".bonificacion").val();
+  var merma = $(".merma").val();
+   
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma};
+
+
+ if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+
+    upRegistro(idGlobal, json, 'empleados', loadVendedores);
+    
+  }
+  else{
+
+       $('#modal .textModal').html('Seleccione de la tabla el usuario a modificar.'); 
+      $('#modal').modal('show');
+  }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+
+}
+
+function upEmpleado(){
+  var idEmpleados = $(".idEmpleado").val();
+  var nombre_Emple = $(".nombre").val();
+  var paterno_Emple = $(".a_paterno").val();
+  var materno_Emple = $(".a_materno").val();
+  var n_seguro = $(".n_seguro").val();
+  var curp = $(".curp").val();
+  var domicilio = $(".domicilio").val();
+  var rfc = $(".rfc").val();
+  var tipo = $(".tipoempleado").val();
+
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo};
+
+
+ if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+
+    upRegistro(idGlobal, json, 'empleados', loadAdministracion);
+    
+  }
+  else{
+
+       $('#modal .textModal').html('Seleccione de la tabla el usuario a modificar.'); 
+      $('#modal').modal('show');
+  }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
+
+}
+
 function upUsuario(){
   var nombre = $(".nombre").val();
   var contrasenia = $(".contrasenia").val();
@@ -215,6 +487,7 @@ function selectUsuario(id){
 
 function selectInventario(id){
   idGlobal = id;
+
   for(var a=0; a<arrGlobal.length; a++){
     if(arrGlobal[a].id == id){
       $(".idInventario").val(arrGlobal[a].idInventario);
@@ -231,6 +504,48 @@ function selectInventario(id){
   }
 }
 
+function selectVendedores(id){
+  idGlobal = id;
+  for(var a=0; a<arrGlobal.length; a++){
+    if(arrGlobal[a].id == id){
+       $(".idVendedor").val(arrGlobal[a].idEmpleados);
+       $(".nombre").val(arrGlobal[a].nombre_Emple);
+       $(".a_paterno").val(arrGlobal[a].paterno_Emple);
+       $(".a_materno").val(arrGlobal[a].materno_Emple);
+       $(".n_seguro").val(arrGlobal[a].n_seguro);
+       $(".curp").val(arrGlobal[a].curp);
+       $(".domicilio").val(arrGlobal[a].domicilio);
+       $(".rfc").val(arrGlobal[a].rfc);
+   
+       $(".n_licencia").val(arrGlobal[a].n_licencia);
+       $(".f_licencia").val(arrGlobal[a].f_exp);
+       $(".ruta").val(arrGlobal[a].ruta);
+       $(".tipoventa").val(arrGlobal[a].t_venta);
+       $(".credito").val(arrGlobal[a].l_credito);
+       $(".bonificacion").val(arrGlobal[a].l_bon);
+       $(".merma").val(arrGlobal[a].merma);
+    }
+  }
+}
+
+function selectAdministracion(id){
+  idGlobal = id;
+
+  for(var a=0; a<arrGlobal.length; a++){
+    if(arrGlobal[a].id == id){
+       $(".idEmpleado").val(arrGlobal[a].idEmpleados);
+       $(".nombre").val(arrGlobal[a].nombre_Emple);
+       $(".a_paterno").val(arrGlobal[a].paterno_Emple);
+       $(".a_materno").val(arrGlobal[a].materno_Emple);
+       $(".n_seguro").val(arrGlobal[a].n_seguro);
+       $(".curp").val(arrGlobal[a].curp);
+       $(".domicilio").val(arrGlobal[a].domicilio);
+       $(".rfc").val(arrGlobal[a].rfc);
+       $(".tipoempleado").val(arrGlobal[a].tipo);
+     
+    }
+  }
+}
 
 /*-------------------- funciones globales -------------------------*/
 function addRegistro(json, url, loadFuncion ){
@@ -359,21 +674,20 @@ function click_ventas(){
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/ventas.html');
- $('.tituloPantalla').html('<h3 class="ventas"> VENTAS </h3>');
- /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
-*/
+ $('.tituloPantalla').html('<h3 class="ventas"> VENTAS </h3><p>( '+dias[today -1]+', '+day+' de '+months[month]+' del '+year+' )</p>');
+ /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);*/
+
 
 
 }
 function click_empleados(){
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
- $('#contenido').load('/html/empleados.html');
+ $('#contenido').load('/html/menuempleados.html');
  $('.tituloPantalla').html('<h3 class="ventas"> EMPLEADOS </h3>');
  /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 */
-$('#modal .textModal').html('Modulo en construcción.'); 
-      $('#modal').modal('show');
+
 
 }
 function click_salidaventa(){
@@ -381,10 +695,8 @@ function click_salidaventa(){
  $('.btn-nav').html('<h3> Venta </h3>');
  $('#contenido').load('/html/salida_venta.html');
  $('.tituloPantalla').html('<h3 class="ventas"> SALIDA </h3>');
- /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
-*/
-$('#modal .textModal').html('Salida en construcción.'); 
-      $('#modal').modal('show');
+
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadSalida);
 
 }
 function click_recepcionventa(){
@@ -452,10 +764,30 @@ $('.btn-nav').removeClass('hidden');
  $('#contenido').load('/html/vendedores.html');
  $('.tituloPantalla').html('<h3 class="vendedor"> VENDEDORES  </h3>');
 
-$('#modal .textModal').html('Modulo en construcción.'); 
-      $('#modal').modal('show');
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
 
 }
+function click_administracion(){
+
+
+
+ $('#contenido').load('/html/administracion.html');
+
+ $('.tituloPantalla').html('<h3 class="administracion">  ADMINISTRACIÓN   </h3>');
+
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
+
+}
+
+function click_Salida(id){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menu </h3>');
+ $('#contenido').load('/html/venta.html');
+ $('.tituloPantalla').html('<h3 class="vendedor"> VENTA  </h3>');
+
+
+}
+
 /*-------------------- modales ----------------------*/
 function modalEfectivos(){
 $('#modal .textModal').html('Modulo en construcción.'); 
@@ -471,12 +803,11 @@ function closeModal(){
   $('#modal').modal('hide');
 }
 function modalInventario(){
-$('#modal .textModal').html('Modulo en construcción.'); 
-      $('#modal').modal('show');
-/*
+
+
       $('#modalInventario').modal('show');
      updateListaModal();
-*/
+
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
 }
@@ -514,10 +845,9 @@ function closeModalInventario2(lista){
 }
 function agregarCantidad(){
 
-$('#modal .textModal').html('Modulo en construcción.'); 
-      $('#modal').modal('show');
 
-/*
+
+
   var data = {idInventario: $("#modalInventario .tipo").val(),
                     cantidad: $("#modalInventario .cantidad").val()
                     , costo:0};
@@ -525,7 +855,7 @@ $('#modal .textModal').html('Modulo en construcción.');
         executeFunctionDone(data, '/inventarios/agregar', {tipo:"POST", error: "Ocurrio un error al agregar inventario."},
         closeModalInventario2);
      
-  */     
+ 
 
 }
 

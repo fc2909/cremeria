@@ -1,27 +1,145 @@
-<div class="col-ms-1"></div>
-<div class="col-ms-10"> 
-<div class="row">
+
+    <div class="col-md-12">
+    <div class="row col-md-12 fondo">
+    
+
+        <div class="col-md-1 form-group ">
+          <label class="letras" >ID</label>
+          <input type="text" class="form-control clear idVendedor" placeholder="ID">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">Nombre</label>
+          <input type="text" class="form-control clear nombre" placeholder="Nombre">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">Apellido Paterno</label>
+          <input type="text" class="form-control clear a_paterno" placeholder="Apellido Paterno">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">Apellido Materno</label>
+          <input type="text" class="form-control clear a_materno" placeholder="Apellido Materno">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">N. Seguro Social</label>
+          <input type="text" class="form-control clear n_seguro" placeholder="Seguro Social">
+        </div>
+        <div class="col-md-3 form-group">
+          <label class="letras">Curp</label>
+          <input type="text" class="form-control clear curp" placeholder="Curp">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="letras">Domicilio</label>
+          <input type="text" class="form-control clear domicilio" placeholder="Domicilio">
+        </div>
+        <div class=" col-md-2 form-group">
+             <label class="letras">RFC</label>
+             <input type="text" class="form-control clear rfc" placeholder="RFC">
+          </div>
+
+        <div class="col-md-2 form-group">
+          <label class="letras">Tipo de Empleado</label>
+          <select class="form-control clear tipoempleado" disabled  onchange="tipoempleado(value)">
+            
+            <option value="2">Vendedor</option>
+            
+            </select>
+        </div>
+
+        <div class="col-md-2 form-group licencia">
+          <label class="letras">N. Licencia</label><input type="text" class="form-control clear n_licencia" placeholder="Licencia">
+        </div>
+            
+        <div class="col-md-2 form-group exp">
+          <label class="letras">Fecha de Expiración</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
+        </div>
+        <div class="col-md-2 form-group ">
+          <label class="letras">Ruta</label><select class="form-control clear rutavende" ><option value="1">C1</option><option value="2">C2</option><option value="3">C3</option><option value="4">C4</option><option value="5">C5</option><option value="6">C6</option><option value="7">C7</option><option value="8">C8</option> </select>
+        </div>
+        <div class="col-md-3 form-group tipovende">
+          <label class="letras">Tipo de Venta</label><select class="form-control clear tipoventa" ><option value="1">Detalle</option><option value="2">Mayoreo</option><option value="3">Detalle Foráneo</option><option value="4">Restaurantes</option></select>
+        </div>
+         <div class="col-md-2 form-group licencia">
+          <label class="letras">Crédito</label><input type="text" class="form-control clear credito" placeholder="Crédito">
+        </div>
+         <div class="col-md-2 form-group licencia">
+          <label class="letras">Bonificación</label><input type="text" class="form-control clear bonificacion" placeholder="Bonificación">
+        </div>
+         <div class="col-md-2 form-group licencia">
+          <label class="letras">Merma</label><input type="text" class="form-control clear merma" placeholder="Merma">
+        </div>
+
+
+
+
+
+
+
+     
+<div class="col-xs-3 col-md-3">
+      <button type="button" class="btn botonempl" onclick="addVendedor()">Insertar</button>
+  </div>
   
+   <div class="col-sm-3 col-md-3">
+    <button type="button" class="btn botonempl" onclick="upVendedor()">Modificar</button>
+  </div>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botonempl" onclick="limpiar()">Limpiar</button>
+  </div>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botonempl" onclick="delVendedor()">Eliminar</button>
+  </div>
+  <br><br><br>
+</div>
+
+   <br>
+
+ 
+ 
 
   
-  <div class="table-responsive tabla">
-  <table class="table table-striped">
+  
+
+
+ <div class="row col-md-12 fondo">
+
+
+  <div class=" tabla">
+  <table class="table table-hover table-condensed text-center table-responsive">
     <thead class="text-center">
       <tr class="letras">
-         <th class="letras">Ruta</th>
-        <th class="letras">Vendedor</th>
-        <th class="letras">Tipo</th>
+         <th class="letras">ID</th>
+        <th class="letras">Nombre</th>
+        <th class="letras">Apellido Paterno</th>
+        <th class="letras">Apellido Materno</th>
+        <th class="letras">S. Social</th>
+        <th class="letras">Curp</th>
+        <th class="letras">Domicilio</th>
+        <th class="letras">RFC</th>
+        <th class="letras">N. Licencia</th>
+        <th class="letras">Fecha Exp.</th>
+        <th class="letras">Ruta</th>
+        <th class="letras">tipo de venta</th>
         <th class="letras">Crédito</th>
-        <th class="letras">Bonificación</th>
+        <th class="letras">Bonificacion</th>
+        <th class="letras">Merma</th>
+
+        
+        
+      
       </tr>
     </thead>
-    <tbody class="contCata tusuarios" >
+    <tbody class="contCata tinventarios" >
      
     </tbody>
   </table>
-</div></div>
+</div>
+
  
- 
+ '
   </div>
 
-<div class="col-ms-1"></div>
+
+
+
+
+</div>

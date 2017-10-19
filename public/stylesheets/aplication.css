@@ -3,13 +3,20 @@
   color: white;
   width: 100%;
   position: fixed;
-  /*box-shadow: 3px 3px 8px #fff;
-  padding-top: 1px;*/
+  
 }
 .tabla{
+  width: 100%;
   background: #333333
 
+
 }
+.fondo{
+  background: rgba(0,0,0,.5);
+  padding-top: 20px;
+
+}
+
 .user{
   height: 65px;
   width: 65px;
@@ -22,6 +29,10 @@
   text-align: center;
   padding-top: 1px;
   border: 1px solid #ffffff;
+  }
+  .fecha{
+
+      width: 85%;
   }
 .btn-nav{
   
@@ -46,6 +57,7 @@ body{
 .imagenes{
   height: 200px;
   width: 160px;
+  
 
   display:block!important;
 -webkit-transition:-webkit-transform .1s ease-out;
@@ -55,11 +67,14 @@ body{
 transition:transform .1s ease-out;
 }
 .imagenes:hover{
+  box-shadow: 0px 5px 20px black;
+  padding-top: 0px;
 -moz-transform: scale(1.1);
 -webkit-transform: scale(1.1);
 -o-transform: scale(1.1);
 -ms-transform: scale(1.1);
-transform: scale(1.1)
+transform: scale(1.1);
+
 }
 .cuadro{
   height: 220px;
@@ -86,15 +101,42 @@ transform: scale(1.1)
   background: #74ceb7;
   width: 100%;
 }
+.insertar:hover{
+  width: 100%;
+  background: green;
+  color: white;
+}
+.modificar:hover{
+  width: 100%;
+  background: yellow;
+  color: black;
+}
+.limpiar:hover{
+  width: 100%;
+  background: blue;
+  color: white;
+}
+.eliminar:hover{
+  width: 100%;
+  background: red;
+  color: white;
+}
 .usuario1modal{
   background: #74ceb7;
-
 }
 .contCata{
-  
+  background: #012d41;
+
 }
 .tusuarios{
   background: #74ceb7;
+  
+}
+.fecha_hoy{
+  color: white;
+}
+.cambiar_fecha{
+  color: white;
 }
 .tinventarios{
  background: #bdf25d;
@@ -102,6 +144,15 @@ transform: scale(1.1)
 }
 
 .seleccionar:hover{
-background: #cccccc;
+
+box-shadow: 0px 0px 10px green;
+padding-top: 0px;
+
+
+
+}
+.seleccionar:active{
+color: green;
+
 }
 

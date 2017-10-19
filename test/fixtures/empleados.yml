@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idEmpleados: 1
+  nombre_Emple: MyString
+  paterno_Emple: MyString
+  materno_Emple: MyString
+  n_seguro: MyString
+  curp: MyString
+  domicilio: MyString
+  rfc: MyString
+  tipo: 1
+  n_licencia: MyString
+  f_exp: MyString
+  ruta: 1
+  t_venta: 1
+  activo: 1
+
+two:
+  idEmpleados: 1
+  nombre_Emple: MyString
+  paterno_Emple: MyString
+  materno_Emple: MyString
+  n_seguro: MyString
+  curp: MyString
+  domicilio: MyString
+  rfc: MyString
+  tipo: 1
+  n_licencia: MyString
+  f_exp: MyString
+  ruta: 1
+  t_venta: 1
+  activo: 1

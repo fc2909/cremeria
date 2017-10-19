@@ -24,7 +24,7 @@ def index
 			idUsuario = session[:idUsuario]
 
 			#Agregar cantidad al inventario
-			unless Inventario.where(id: params[:id]).update_all(["cantidad = cantidad + #{params[:cantidad]}"])
+			unless Inventario.where(idInventario: params[:idInventario]).update_all(["cantidad = cantidad + #{params[:cantidad]}"])
 				render :json => {'errmsg' => @control.errors.full_messages.to_sentence(:last_word_connector => ', ', :two_words_connector => ', '), 'errnum' => 9500, 'data' => nil, 'params' => control_params}
 				raise ActiveRecord::Rollback
 			end

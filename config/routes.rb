@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
 
   resources :usuarios
-   resources :historiales_inventarios
+  resources :empleados
+  resources :historiales_inventarios
   resources :inventarios do
     collection do
       post 'agregar'

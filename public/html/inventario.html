@@ -1,11 +1,5 @@
-
-
-    <div class = "fondo">
-    
-
-   
-
-    <div class="row col-md-12">
+<div class="col-md-12">
+    <div class="row col-md-12 fondo">
     
 
         <div class="col-md-2 form-group">
@@ -16,23 +10,23 @@
           <label class="letras">Descripción</label>
           <input type="text" class="form-control clear descripcion" placeholder="Descripción">
         </div>
-        <div class="col-md-2 form-group">
+        <div class="col-md-1 form-group">
           <label class="letras">Detalle</label>
           <input type="text" class="form-control clear detalle" placeholder="$">
         </div>
-        <div class="col-md-2 form-group">
+        <div class="col-md-1 form-group">
           <label class="letras">Mayoreo</label>
           <input type="text" class="form-control clear mayoreo" placeholder="$">
         </div>
-        <div class="col-md-2 form-group">
+        <div class="col-md-1 form-group">
           <label class="letras">Foráneo</label>
           <input type="text" class="form-control clear foraneo" placeholder="$">
         </div>
-        <div class="col-md-2 form-group">
+        <div class="col-md-1 form-group">
           <label class="letras">Restaurante</label>
-          <input type="text" class="form-control restaurante" placeholder="$">
+          <input type="text" class="form-control clear restaurante" placeholder="$">
         </div>
-        <div class="col-md-2 form-group">
+        <div class="col-md-1 form-group">
           <label class="letras">Cantidad</label>
           <input type="text" class="form-control clear cantidad" placeholder="#">
         </div>
@@ -52,30 +46,33 @@
           <label class="letras">S. Máximo</label>
           <input type="text" class="form-control clear s_max" placeholder="#">
         </div>
-      </div> 
-  <div class="row ">
+        <div class="col-md-8"></div>
+     
 <div class="col-xs-3 col-md-3">
-      <button type="button" class="btn botoninv" onclick="addInventario()">Insertar</button>
+      <button type="button" class="btn botoninv insertar" onclick="addInventario()">Insertar</button>
   </div>
    <div class="col-xs-3 col-md-3">
-    <button type="button" class="btn botoninv" onclick="limpiar()">Limpiar</button>
+    <button type="button" class="btn botoninv limpiar" onclick="limpiar()">Limpiar</button>
   </div>
    <div class="col-xs-3 col-md-3">
-    <button type="button" class="btn botoninv" onclick="delInventario()">Eliminar</button>
+    <button type="button" class="btn botoninv eliminar" onclick="delInventario()">Eliminar</button>
   </div>
    <div class="col-xs-3 col-md-3">
-    <button type="button" class="btn botoninv" onclick="modalInventario()">Agregar inventario</button>
+    <button type="button" class="btn botoninv modificar" onclick="modalInventario()">Agregar inventario</button>
   </div>
 
+<br>
+<br>
+<br>
   </div>
-  <br><br>
-</div>
+  <br>
 
- <div class="row">
+
+ <div class="row col-md-12 fondo">
 
 
   <div class="table-responsive tabla">
-  <table class="table table-striped">
+  <table class="table table-hover table-condensed text-center">
     <thead class="text-center">
       <tr class="letras">
          <th class="letras">ID</th>
@@ -97,10 +94,11 @@
   </table>
 </div>
 
- 
+ '
  
   </div>
 
+</div>
 
 
 

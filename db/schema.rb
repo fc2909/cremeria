@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004171841) do
+ActiveRecord::Schema.define(version: 20171010171114) do
+
+  create_table "empleados", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "idEmpleados"
+    t.string   "nombre_Emple"
+    t.string   "paterno_Emple"
+    t.string   "materno_Emple"
+    t.string   "n_seguro"
+    t.string   "curp"
+    t.string   "domicilio"
+    t.string   "rfc"
+    t.integer  "tipo"
+    t.string   "n_licencia"
+    t.string   "f_exp"
+    t.integer  "ruta"
+    t.integer  "t_venta"
+    t.integer  "l_credito"
+    t.integer  "l_bon"
+    t.integer  "merma"
+    t.integer  "activo"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "inventarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "idInventario"
@@ -41,7 +63,7 @@ ActiveRecord::Schema.define(version: 20171004171841) do
   end
 
   create_table "usuarios", primary_key: "idUsuario", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "usuario",     limit: 10
+    t.string  "usuario",     limit: 20
     t.string  "contrasenia"
     t.integer "tipo"
     t.integer "activo",                 default: 1, null: false

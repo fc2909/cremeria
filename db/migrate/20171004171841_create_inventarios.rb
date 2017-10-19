@@ -1,7 +1,8 @@
 class CreateInventarios < ActiveRecord::Migration[5.0]
   def change
-    create_table :inventarios do |t|
-      t.column :idInventario, 'INT AUTO_INCREMENT PRIMARY KEY' #primary_key: true
+    create_table :inventarios, id: false do |t|
+      t.column :id, 'INT AUTO_INCREMENT PRIMARY KEY' #primary_key: true
+      t.integer :idInventario
       t.string :descripcion
       t.integer :detalle
       t.integer :mayoreo

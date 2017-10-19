@@ -282,7 +282,7 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 }
 function addfecha(){
 
-var fecha = '<input type="date"  class="form-control clear fecha selectfecha" >';
+var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
 $(".fecha_hoy").html(fecha);
   }
 
@@ -695,8 +695,12 @@ function click_salidaventa(){
  $('.btn-nav').html('<h3> Venta </h3>');
  $('#contenido').load('/html/salida_venta.html');
  $('.tituloPantalla').html('<h3 class="ventas"> SALIDA </h3>');
+var fecha = $(".selectfecha").val(); 
 
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadSalida);
+if(fecha == undefined){
+  /*alert(fecha+"hey");*/
+   getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadSalida);
+}
 
 }
 function click_recepcionventa(){

@@ -1,4 +1,4 @@
-var arrGlobal, idGlobal, menu;
+var arrGlobal, idGlobal, menu, today_v;
 
 var tipoUsuario = ['Director','Administrador','Contador','Despachador','Vendedor']
 var medidas = ['Kg.','Pzas.','L'];
@@ -86,6 +86,28 @@ $(".tipovende").html(tipovende);
   }
 
 }
+
+function getVenta(url, mensajes, functionFinal){
+  $.ajax({    
+    url : url,    
+    data : {},    
+    type : 'GET',    
+    success : function(json) {   
+      $('#modal .textModal').html(mensajes.success); 
+
+      functionFinal(json);
+      
+    },    
+
+    error : function(xhr, status) {    
+    $('#modal .textModal').html(mensajes); 
+      $('#modal').modal('show');
+    },    
+    complete : function(xhr, status) { 
+
+    }});
+ 
+}
 /*--------------------- Regresar menu ----------------------*/
 
 function click_regresar(){
@@ -159,6 +181,16 @@ html+= '<tr class="seleccionar" onclick="selectVendedores('+ lista[h].id +')" da
 }
 
 function loadSalida(lista){
+  var html = '';
+  
+  for(var h=0;h<lista.length; h++)
+    if(lista[h].tipo==2){
+html+= '<tr class="seleccionar" onclick="click_Salida('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta - 1]  + '</td><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + t_ventas[lista[h].t_venta - 1] + '</td><td>' + lista[h].l_credito + '</td><td>' + lista[h].l_bon + '</td></tr>';
+    }
+     $('.contCata').html(html);
+  arrGlobal = lista;
+}
+function loadDays(lista){
   var html = '';
   
   for(var h=0;h<lista.length; h++)
@@ -694,12 +726,21 @@ function click_salidaventa(){
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Venta </h3>');
  $('#contenido').load('/html/salida_venta.html');
- $('.tituloPantalla').html('<h3 class="ventas"> SALIDA </h3>');
+ 
 var fecha = $(".selectfecha").val(); 
-
-if(fecha == undefined){
+today_v = year+'-'+month+'-'+day;
+alert(fecha+" "+today_v);
+if( fecha == NaN || fecha == undefined || fecha == "" || fecha == today_v){
   /*alert(fecha+"hey");*/
-   getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadSalida);
+   getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDays);
+   
+$('.tituloPantalla').html('<h3 class="ventas"> SALIDA </h3><p>( '+dias[today -1]+', '+day+' de '+months[month]+' del '+year+' )</p>');   
+alert(today_v+"hey");
+}else{
+   today_v = fecha; 
+$('.tituloPantalla').html('<h3 class="ventas"> SALIDA </h3><p>( '+today_v+' )</p>');  
+
+alert(fecha+"hey");
 }
 
 }
@@ -784,10 +825,13 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 }
 
 function click_Salida(id){
+  
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menu </h3>');
  $('#contenido').load('/html/venta.html');
- $('.tituloPantalla').html('<h3 class="vendedor"> VENTA  </h3>');
+ $('.tituloPantalla').html('<h3 class="vendedor"> VENTA </h3> <p>( '+today_v+' ) - '+id+'</p>');
+
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentadiaria);
 
 
 }

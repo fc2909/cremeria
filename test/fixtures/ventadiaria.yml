@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  descripcionventa: MyString
+  piezas: 1
+  peso: 1
+  hora: MyString
+  empleado: 1
+  fecha: MyString
+
+two:
+  id: 1
+  descripcionventa: MyString
+  piezas: 1
+  peso: 1
+  hora: MyString
+  empleado: 1
+  fecha: MyString

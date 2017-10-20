@@ -1,0 +1,2 @@
+class VentadiariaController < ApplicationController
+end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :usuarios
   resources :empleados
+  resources :ventadiaria
   resources :historiales_inventarios
   resources :inventarios do
     collection do

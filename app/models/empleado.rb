@@ -3,5 +3,5 @@ class Empleado < ApplicationRecord
 
 	# --------------------------- Scopes ------------------------------- #
 	default_scope { where(activo: 1) }
-	default_scope { order(:nombre_Emple) }
+	default_scope { order(:id) }
 end

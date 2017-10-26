@@ -37,14 +37,14 @@ ActiveRecord::Schema.define(version: 20171020170109) do
   create_table "inventarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "idInventario"
     t.string   "descripcion"
-    t.integer  "detalle"
-    t.integer  "mayoreo"
-    t.integer  "foraneo"
-    t.integer  "restaurante"
-    t.integer  "cantidad"
+    t.string   "detalle"
+    t.string   "mayoreo"
+    t.string   "foraneo"
+    t.string   "restaurante"
+    t.string   "cantidad"
     t.string   "medida"
-    t.integer  "s_min"
-    t.integer  "s_max"
+    t.string   "s_min"
+    t.string   "s_max"
     t.integer  "activo"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -72,12 +72,15 @@ ActiveRecord::Schema.define(version: 20171020170109) do
   create_table "ventadiaria", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "idProducto"
     t.string   "descripcionventa"
-    t.integer  "piezas"
-    t.integer  "peso"
+    t.string   "piezas"
+    t.string   "peso"
+    t.string   "precioUnitario"
+    t.string   "valorMercancia"
     t.string   "hora"
     t.integer  "empleado"
     t.string   "fecha"
     t.integer  "activo"
+    t.string   "user"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

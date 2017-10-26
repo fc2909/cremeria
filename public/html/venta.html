@@ -1,33 +1,34 @@
 <div class="col-md-12">
+<div class="totalVenta text-center"></div>
+
     <div class="row col-md-12 fondo">
         <div class="col-md-3 form-group">
           <label class="letras" >ID</label>
-          <input type="text" class="form-control clear idInventario" placeholder="ID">
+          <input type="text" id="idProducto" class="form-control clear idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="ID" onload="">
         </div>
         <div class="col-md-3 form-group">
           <label class="letras">Descripción</label>
-          <input type="text" class="form-control clear descripcion" disabled placeholder="Descripción">
+          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="Descripción">
         </div>
         
         <div class="col-md-3 form-group">
           <label class="letras">Piezas</label>
-          <input type="text" class="form-control clear cantidad" placeholder="#">
+          <input type="text" id="piezas" class="form-control clear piezas" onchange="cambio(); " placeholder="#">
         </div>
-       <div class="col-md-3 form-group">
-          <label class="letras">Peso</label>
-          <input type="text" class="form-control clear cantidad" placeholder="#">
+       <div class="col-md-3 form-group pesos">
+          
         </div>
 <div class="col-xs-3 col-md-3">
-      <button type="button" class="btn botoninv" onclick="addInventario()">Insertar</button>
+      <button type="button" id="add" class="btn botoninv" onclick="addVenta()">Insertar</button>
   </div>
    <div class="col-xs-3 col-md-3">
     <button type="button" class="btn botoninv" onclick="limpiar()">Limpiar</button>
   </div>
   <div class="col-xs-3 col-md-3">
-    <button type="button" class="btn botoninv" onclick="upVenta()">Limpiar</button>
+    <button type="button" class="btn botoninv" onclick="upVenta()">Modificar</button>
   </div>
    <div class="col-xs-3 col-md-3">
-    <button type="button" class="btn botoninv" onclick="delInventario()">Eliminar</button>
+    <button type="button" class="btn botoninv" onclick="delVenta()">Eliminar</button>
   </div>
    
   <br><br>

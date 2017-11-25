@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020170109) do
+ActiveRecord::Schema.define(version: 20171103174731) do
 
   create_table "empleados", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "idEmpleados"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20171020170109) do
   create_table "usuarios", primary_key: "idUsuario", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "usuario",     limit: 20
     t.string  "contrasenia"
+    t.string  "pin"
     t.integer "tipo"
     t.integer "activo",                 default: 1, null: false
   end
@@ -74,15 +75,50 @@ ActiveRecord::Schema.define(version: 20171020170109) do
     t.string   "descripcionventa"
     t.string   "piezas"
     t.string   "peso"
+    t.integer  "medida"
+    t.string   "piezasv"
+    t.string   "pesov"
     t.string   "precioUnitario"
     t.string   "valorMercancia"
-    t.string   "hora"
+    t.string   "cantidadregresada"
+    t.string   "venta"
+    t.string   "horadespacho"
+    t.string   "horarecepcion"
     t.integer  "empleado"
-    t.string   "fecha"
+    t.integer  "vendedor"
+    t.integer  "ruta"
+    t.string   "fechadespacho"
+    t.string   "fecharecepcion"
     t.integer  "activo"
     t.string   "user"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "ventaspasadas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "idVentap"
+    t.string   "fecha"
+    t.string   "ruta"
+    t.string   "nombre"
+    t.integer  "tipo"
+    t.string   "credito_p"
+    t.string   "bonificacion_p"
+    t.string   "v_mercancia"
+    t.string   "t_venta"
+    t.string   "cobrado"
+    t.string   "t_vendido"
+    t.string   "creditos"
+    t.string   "efectivo"
+    t.string   "otros"
+    t.string   "t_venta_merca"
+    t.string   "f_s_dia"
+    t.string   "loquedeberiatraer"
+    t.string   "f_s_real"
+    t.string   "user"
+    t.string   "despachador"
+    t.integer  "activo"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end

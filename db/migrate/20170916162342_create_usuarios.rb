@@ -4,6 +4,7 @@ class CreateUsuarios < ActiveRecord::Migration[5.0]
 			t.column :idUsuario, 'INT AUTO_INCREMENT PRIMARY KEY' #primary_key: true
 			t.string :usuario, :limit => 20
 			t.string :contrasenia
+			t.string :pin
 			t.integer :tipo
 			
 			t.integer :activo, null: false, default:1

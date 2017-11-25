@@ -1,7 +1,7 @@
-class Ventadiarium < ApplicationRecord
+class Ventaspasada < ApplicationRecord
 	self.primary_key = :id
 
 	# --------------------------- Scopes ------------------------------- #
 	default_scope { where(activo: 1) }
-	default_scope { reorder(:idProducto) }
+	default_scope { order(:ruta) }
 end

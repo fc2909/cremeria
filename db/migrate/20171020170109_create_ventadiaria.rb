@@ -6,11 +6,20 @@ class CreateVentadiaria < ActiveRecord::Migration[5.0]
       t.string :descripcionventa
       t.string :piezas
       t.string :peso
+      t.integer :medida
+      t.string :piezasv
+      t.string :pesov
       t.string :precioUnitario
       t.string :valorMercancia
-      t.string :hora
+      t.string :cantidadregresada
+      t.string :venta
+      t.string :horadespacho
+      t.string :horarecepcion
       t.integer :empleado
-      t.string :fecha
+      t.integer :vendedor
+      t.integer :ruta
+      t.string :fechadespacho
+      t.string :fecharecepcion
       t.integer :activo
       t.string :user
 

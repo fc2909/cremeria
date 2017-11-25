@@ -1,7 +1,7 @@
 class UsuariosController < ApplicationController
 	def index 
 		#get_data('usuario')
-		usuario = Usuario.select(:idUsuario, :usuario, :contrasenia, :tipo, :activo)
+		usuario = Usuario.select(:idUsuario, :usuario, :contrasenia, :pin, :tipo, :activo)
 		if params[:where].present?
 			params[:where].each do |campo, valor|
 				usuario = usuario.by_campo(campo, valor)
@@ -44,10 +44,10 @@ class UsuariosController < ApplicationController
 			Usuario.find(params[:id])
 		end
 		def create_params
-			params.permit(:usuario, :contrasenia, :tipo)
+			params.permit(:usuario, :contrasenia, :pin, :tipo)
 		end
 		def update_params
-			params.permit(:usuario, :tipo)
+			params.permit(:usuario, :contrasenia, :pin, :tipo)
 		end
 		def delete_model
 			params = ActionController::Parameters.new(activo: 0)

@@ -5,27 +5,90 @@
       <script type="text/javascript" src="/javascripts/menu.js"></script>
 
 <nav class="navbar fixed-top navbar-dark bg-dark menunav">
-        <div class="col-xs-2 col-md-2 ">
+        <div class=" col-md-2 ">
 
-        <a href="" class="btn btn-nav" onclick="click_regresar()"><h3>Salir</h3></a>
+        <a href="" class="btn btn-nav impre" onclick="click_regresar()"><h3>Salir</h3></a>
         </div>
-        <div class="col-xs-7 col-md-7 text-center tituloPantalla">
+        <div class="col-xs-8 col-md-8 text-center tituloPantalla">
            <h3> MENÚ </h3>
         </div>
         <div class="col-xs-1 col-md-1"></div>
         <div class="col-xs-1 col-md-1 ">
-          <a ><img class="user text-center" src="/images/user2.png" alt=""></a>   
+          <a ><img class="user text-center impre" src="/images/user2.png" alt=""></a>   
         </div>
 </nav>
   <br><br><br><br><br>
   
-		<div class="container" >
-      <div class="row" id="contenido">
+		<div class="container-fluid row">
+    
+     <div class="col-md-2 barraIzq " style="height: 100%"></div>
+      <div class=" col-md-10 " id="contenido">
         
-      </div>  
+      </div>
     </div>
+       <div class= "modal fade" tabindex ="-1" role="dialog" id="modalPin">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">PIN</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+              <div class="row">
+                
+                <div class="col-md-4">  
+                
+                <input type="text" class="form-control clear pin" onchange="document.getElementById('agregarp').focus();" placeholder="PIN">
+
+                </div>
+              
+
+                
+              </div>
 
 
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeModalPin(); click_ventas(); ">Cancelar</button>
+               <button type="button" class="btn btn-success " id="agregarp" onclick="agregarpin()">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+     <div class= "modal fade" tabindex ="-1" role="dialog" id="modalPin2">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">PIN</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+              <div class="row">
+                
+                <div class="col-md-4">  
+                
+                <input type="text" class="form-control clear pin" onchange="document.getElementById('agregarp2').focus();" placeholder="PIN">
+
+                </div>
+              
+
+                
+              </div>
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeModalPin2();  ">Cancelar</button>
+               <button type="button" class="btn btn-success agregarp" id="agregarp2" onclick="agregarpin2()">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
     <div class= "modal fade" tabindex ="-1" role="dialog" id="modalEfectivo">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -37,33 +100,56 @@
             </div>
             <div class="modal-body textModal">
               <div class="row">
-                <div class="col-md-4"> Ruta </div>
+              <div class="col-md-3"></div>
+              <div class="col-md-6 today_E text-center"></div>
+              <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-6"> <button class="btn btn-danger totala" onclick="modalDates()">Ingresar con otra fecha</button> </div>
+                <div class="col-md-3"></div>
+                
+                <div class="col-md-4"> <label for="">Ruta</label> </div>
  
                 <div class="col-md-4">  </div>
               
               
                 <div class="col-md-4">  </div>
-                <div class="col-md-4">  
+                <div class="col-md-8 selectCash">  
                 
-                <input type="text" class="form-control clear medidaInv"  placeholder="Ruta">
+              
 
                 </div>
-                <div class="col-md-4">
-                  <input type="text" class="form-control clear medidaInv" disabled placeholder="Vendedor">
-                </div>
+               
 
                 <div class="col-md-4">
-                  <input type="text" class="form-control clear medidaInv" placeholder="$">
-                </div>
-
-                
+                  <input type="text" class="form-control clear cash" placeholder="$">
+                </div><br>
+<div class="col-md-12"> <button class="btn btn-info totala" onclick="addEfectivo()">Guardar</button> </div><br>
+  
               </div>
 
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" onclick="closeModalInventario()">Cancelar</button>
-               <button type="button" class="btn btn-success agregarInventario" onclick="agregarCantidad()">Agregar</button>
+<div class="table-responsive tabla text-center">
+  <table class="table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras text-center">
+        <th class="letras">Ruta</th>
+        <th class="letras">Nombre</th>
+        <th class="letras"><strong>Efectivo</strong></th>
+      </tr>
+    </thead>
+    <tbody class="contCataModal ventascss" >
+     
+    </tbody>
+
+  </table>
+</div>
+
+
+
+
+              
             </div>
           </div>
         </div>
@@ -85,6 +171,25 @@
           </div>
         </div>
       </div>
+
+      <div class= "modal fade" tabindex ="-1" role="dialog" id="modalDateC">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+            <h2 class="modal-title">Ingresar nueva fecha</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal">
+                  <input type="date" class="dateVC form-control">
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-modals" onclick="addDateCash()">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
  <div class= "modal fade" tabindex ="-1" role="dialog" id="modalInventario">
         <div class="modal-dialog" role="document">

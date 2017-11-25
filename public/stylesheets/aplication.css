@@ -11,10 +11,21 @@
 
 
 }
+
+@media print {
+.impre {display:none}
+th {color: black;}
+}
+.rec{
+  width: 70px;
+}
+
 .fondo{
   background: rgba(0,0,0,.5);
   padding-top: 20px;
-
+}
+.totala{
+  width: 100%;
 }
 
 .user{
@@ -32,7 +43,7 @@
   }
   .fecha{
 
-      width: 85%;
+      width: 160px;
   }
 .btn-nav{
   
@@ -101,6 +112,15 @@ transform: scale(1.1);
   background: #74ceb7;
   width: 100%;
 }
+.btn-ventas{
+  background: #1ba5b8;
+  width: 100%;
+}
+.ventascss{
+  background: #031727;
+  width: 100%;
+}
+
 .insertar:hover{
   width: 100%;
   background: green;
@@ -124,10 +144,7 @@ transform: scale(1.1);
 .usuario1modal{
   background: #74ceb7;
 }
-.contCata{
-  background: #012d41;
 
-}
 .tusuarios{
   background: #74ceb7;
   
@@ -145,14 +162,66 @@ transform: scale(1.1);
 
 .seleccionar:hover{
 
-box-shadow: 0px 0px 10px green;
+box-shadow: 0px 0px 20px green;
 padding-top: 0px;
 
 
 
 }
-.seleccionar:active{
-color: green;
+.seleccionar:active:before{
 
+color: green;
+background: black;
 }
 
+ul {
+    list-style-type: none;
+    margin: 5px;
+    padding: 5px;
+    width: 200px;
+   
+}
+
+li a {
+    display: block;
+    color:white;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.v:hover{
+background-color: white;
+  color:#f0433a;
+
+}
+.d:hover{
+background-color: #820333;
+  color:white;
+}
+.d:active:before{
+background-color: red;
+  color:white;
+}
+.r:hover{
+background-color: #de5b49;
+  color:white;
+  
+}
+.v{
+background-color: #f0433a;
+  color:white;
+
+}
+.d{
+  color:white;
+}
+.r{
+
+  color:white;
+  
+}
+/* Change the link color on hover
+li a:hover {
+    background-color: #555;
+    color: white;
+} */

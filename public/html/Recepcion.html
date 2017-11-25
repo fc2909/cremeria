@@ -1,0 +1,67 @@
+<div class="col-md-12">
+<div class="totalVenta text-center"></div>
+
+    <div class="row col-md-12 fondo">
+        <div class="col-md-3 form-group">
+          <label class="letras" >ID</label>
+          <input type="text" id="idProducto" class="form-control clear idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="ID" onload="">
+        </div>
+        <div class="col-md-3 form-group">
+          <label class="letras">Descripción</label>
+          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="Descripción">
+        </div>
+        
+        <div class="col-md-3 form-group">
+          <label class="letras">Piezas</label>
+          <input type="text" id="piezas" class="form-control clear piezas" onchange="cambio(); " placeholder="#">
+        </div>
+       <div class="col-md-3 form-group pesos">
+          
+        </div>
+<div class="col-xs-3 col-md-3">
+      <button type="button" id="add" class="btn botoninv" onclick="addVenta()">Ingresar</button>
+  </div>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botoninv" onclick="limpiar()">Limpiar</button>
+  </div>
+  <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botoninv" onclick="upVenta()">Modificar</button>
+  </div>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botoninv" onclick="delVenta()">Eliminar</button>
+  </div>
+   
+  <br><br>
+  <br>
+ 
+  </div>
+
+<br>
+ <div class="row col-md-12 fondo">
+
+
+  <div class="table-responsive tabla">
+  <table class="table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras">
+        <th class="letras">Hora</th>
+        <th class="letras">Codigo</th>
+        <th class="letras">Descripcion</th>
+        <th class="letras">Piezas</th>
+        <th class="letras">Peso</th>
+        <th class="letras">Piezas R.</th>
+        <th class="letras">Peso R.</th>
+        <th class="letras">Precio Unitario</th>
+        <th class="letras">Valor Mercancia</th>      
+        <th class="letras">Venta Total</th>      
+      </tr>
+    </thead>
+    <tbody class="contCata ventascss" >
+     
+    </tbody>
+  </table>
+</div>
+`
+ 
+ </div>
+  </div>

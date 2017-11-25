@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idVentap: 1
+  fecha: MyString
+  ruta: 
+  nombre: MyString
+  credito_p: 1
+  bonificacion_p: MyString
+
+two:
+  idVentap: 1
+  fecha: MyString
+  ruta: 
+  nombre: MyString
+  credito_p: 1
+  bonificacion_p: MyString

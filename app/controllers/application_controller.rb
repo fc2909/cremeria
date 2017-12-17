@@ -242,7 +242,7 @@ class ApplicationController < ActionController::Base
 			hora = Time.new.strftime("%H:%M")
 			puts 'sesion'
 			puts session.as_json
-			log_params = {url: "#{params[:controller]}/#{params[:action]}", data: small_params, tipo: metodo, idUsuario: session[:idUsuario], fecha: fecha, hora: hora}
+			log_params = {url: "#{params[:controller]}/#{params[:action]}", data: small_params, tipo: metodo, idUsuario: session.to_json, fecha: fecha, hora: hora}
 			unless Log.create(log_params)
 				render :json => {'errmsg' => @control.errors.full_messages.to_sentence(:last_word_connector => ', ', :two_words_connector => ', '), 'errnum' => 9500, 'data' => nil, 'params' => control_params}
 				raise ActiveRecord::Rollback

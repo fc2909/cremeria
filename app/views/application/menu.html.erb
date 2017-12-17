@@ -9,7 +9,7 @@
 
         <a href="" class="btn btn-nav impre" onclick="click_regresar()"><h3>Salir</h3></a>
         </div>
-        <div class="col-xs-8 col-md-8 text-center tituloPantalla">
+        <div class="col-xs-8 col-md-8 text-center tituloPantalla impre">
            <h3> MENÚ </h3>
         </div>
         <div class="col-xs-1 col-md-1"></div>
@@ -17,7 +17,7 @@
           <a ><img class="user text-center impre" src="/images/user2.png" alt=""></a>   
         </div>
 </nav>
-  <br><br><br><br><br>
+  <br class="impre"><br  class="impre"><br  class="impre"><br  class="impre"><br  class="impre">
   
 		<div class="container-fluid row">
     
@@ -40,7 +40,7 @@
                 
                 <div class="col-md-4">  
                 
-                <input type="text" class="form-control clear pin" onchange="document.getElementById('agregarp').focus();" placeholder="PIN">
+                <input type="text" id="PINV" class="form-control clear pin" onchange="document.getElementById('agregarp').focus();" placeholder="PIN">
 
                 </div>
               
@@ -171,7 +171,23 @@
           </div>
         </div>
       </div>
-
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalCreditos">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title">Ingresar Crédito Inicial</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal">
+              <input type="text" class="creditos">
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-modals" onclick="agregarCredito()">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class= "modal fade" tabindex ="-1" role="dialog" id="modalDateC">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -189,7 +205,42 @@
           </div>
         </div>
       </div>
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalVDiaria">
+        <div class=" modal-dialog modal-lg" role="document">
+          <div class="modal-content modal-lg">
+            <div class="modal-header">
+            <h4 class="modal-title">Venta Diaria</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal">
+    <table class="table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras text-center">
+        <th class="letras">Producto</th>
+        <th class="letras">Lunes</th>
+        <th class="letras">Martes</th>
+        <th class="letras">Miércoles</th>
+        <th class="letras">Jueves</th>
+        <th class="letras">Viernes</th>
+        <th class="letras">Sábado</th>
+        <th class="letras">Total</th>
+        <th class="letras">Meta</th>
+      </tr>
+    </thead>
+    <tbody class="contCataModal ventascss" >
+     
+    </tbody>
 
+  </table>
+            </div>
+            <div class="modal-footer">
+
+               <button type="button" class="btn btn-modals" onclick="">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
  <div class= "modal fade" tabindex ="-1" role="dialog" id="modalInventario">
         <div class="modal-dialog" role="document">

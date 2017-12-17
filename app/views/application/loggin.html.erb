@@ -39,12 +39,12 @@
 
 
 
- <input  type="text" class="form-control name "  placeholder="Nombre"/>
+ <input  type="text" class="form-control name "  onchange="document.getElementById('password1').focus();" placeholder="Nombre"/>
          <br>
-             <i class="glyphicon glyphicon-ok-sign cust hidden-xs"></i><input  type="password" class="form-control pass "  placeholder="Contraseña"/>
+             <i class="glyphicon glyphicon-ok-sign cust hidden-xs"></i><input  type="password" class="form-control pass "  id="password1" onchange="document.getElementById('ingresar1').focus();" placeholder="Contraseña"/>
           <br>
            
-           <button type="button" class="btn btnlogin login" onclick="ingresar()">Iniciar sesión</button>
+           <button type="button" class="btn btnlogin login" id="ingresar1" onclick="ingresar()">Iniciar sesión</button>
 
            <br>
 

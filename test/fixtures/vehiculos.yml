@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  marca: MyString
+  noserie: MyString
+  placa: MyString
+  modelo: MyString
+  tipo: MyString
+  color: MyString
+  combustible: MyString
+  km: MyString
+  n1: MyString
+  n2: MyString
+  n3: MyString
+  activo: 1
+
+two:
+  marca: MyString
+  noserie: MyString
+  placa: MyString
+  modelo: MyString
+  tipo: MyString
+  color: MyString
+  combustible: MyString
+  km: MyString
+  n1: MyString
+  n2: MyString
+  n3: MyString
+  activo: 1

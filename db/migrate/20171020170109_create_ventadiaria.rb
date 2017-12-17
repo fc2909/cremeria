@@ -16,13 +16,18 @@ class CreateVentadiaria < ActiveRecord::Migration[5.0]
       t.string :horadespacho
       t.string :horarecepcion
       t.integer :empleado
-      t.integer :vendedor
+      t.string :vendedor
       t.integer :ruta
       t.string :fechadespacho
       t.string :fecharecepcion
       t.integer :activo
       t.string :user
-
+      t.string :dc
+      t.string :sc
+      t.string :dfc
+      t.string :sfc
+      t.string :fechadespachof
+      t.string :fecharecepcionf
       t.timestamps
     end
   end

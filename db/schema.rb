@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103174731) do
+ActiveRecord::Schema.define(version: 20171216165641) do
 
   create_table "empleados", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "idEmpleados"
@@ -62,12 +62,41 @@ ActiveRecord::Schema.define(version: 20171103174731) do
     t.datetime "updated_at",                           null: false
   end
 
+  create_table "rutavendedors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "nombre"
+    t.string   "descripcion"
+    t.string   "fecha"
+    t.string   "n1"
+    t.string   "n2"
+    t.string   "n3"
+    t.integer  "activo"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "usuarios", primary_key: "idUsuario", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "usuario",     limit: 20
     t.string  "contrasenia"
     t.string  "pin"
     t.integer "tipo"
     t.integer "activo",                 default: 1, null: false
+  end
+
+  create_table "vehiculos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "marca"
+    t.string   "noserie"
+    t.string   "placa"
+    t.string   "modelo"
+    t.string   "tipo"
+    t.string   "color"
+    t.string   "combustible"
+    t.string   "km"
+    t.string   "n1"
+    t.string   "n2"
+    t.string   "n3"
+    t.integer  "activo"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "ventadiaria", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -85,12 +114,18 @@ ActiveRecord::Schema.define(version: 20171103174731) do
     t.string   "horadespacho"
     t.string   "horarecepcion"
     t.integer  "empleado"
-    t.integer  "vendedor"
+    t.string   "vendedor"
     t.integer  "ruta"
     t.string   "fechadespacho"
     t.string   "fecharecepcion"
     t.integer  "activo"
     t.string   "user"
+    t.string   "dc"
+    t.string   "sc"
+    t.string   "dfc"
+    t.string   "sfc"
+    t.string   "fechadespachof"
+    t.string   "fecharecepcionf"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
@@ -116,6 +151,17 @@ ActiveRecord::Schema.define(version: 20171103174731) do
     t.string   "f_s_real"
     t.string   "user"
     t.string   "despachador"
+    t.string   "dsc"
+    t.string   "sc"
+    t.string   "dsd"
+    t.string   "sd"
+    t.string   "dsfc"
+    t.string   "sfc"
+    t.string   "n1"
+    t.string   "n2"
+    t.string   "n3"
+    t.string   "n4"
+    t.string   "fechaf"
     t.integer  "activo"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false

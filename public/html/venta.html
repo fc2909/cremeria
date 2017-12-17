@@ -11,7 +11,7 @@
           <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="Descripción">
         </div>
         
-        <div class="col-md-3 impre form-group">
+        <div class="col-md-3 impre form-group piezasventas">
           <label class="letras">Piezas</label>
           <input type="text" id="piezas" class="form-control clear piezas" onchange="cambio(); " placeholder="#">
         </div>
@@ -22,13 +22,14 @@
       <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('idProducto').focus();">Insertar</button>
   </div>
    <div class="col-xs-3 impre col-md-3">
-    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar()">Limpiar</button>
+    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">Limpiar</button>
   </div>
   <div class="col-xs-3 impre col-md-3">
-    <button type="button" class="btn btn-ventas btn-ventas modificar" onclick="upVenta()">Modificar</button>
+  <div class="upventa"></div>
+    
   </div>
    <div class="col-xs-3 impre col-md-3">
-    <button type="button" class="btn btn-ventas btn-ventas eliminar" onclick="delVenta()">Eliminar</button>
+    <div class="delventa"></div>
   </div>
    
   <br class="impre"><br class="impre">
@@ -37,32 +38,60 @@
   </div>
 
 <br class="impre">
- <div class=" fondo">
-  <div class="table-responsive tabla text-center">
-  <table class="table table-active table-hover table-bordered table-inverse  text-center">
-    <thead class="text-center">
-      <tr class="letras text-center">
+ <div class=" fondo ">
+  <div class="table-responsive tabla text-center impre">
+  <table class="impre table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center impre ">
+
+
+      <tr class="letras text-center impre">
         <p><th class="letras">Hora</th></p>
-        <th class="letras">Codigo</th>
-        <th class="letras">Descripcion</th>
-        <th class="letras"><strong>Piezas</strong></th>
+        <th class="letras">Código</th>
+        <th class="letras">Descripción </th>
+        <th class="letras">Piezas</th>
         <th class="letras">Peso</th>
         <th class="letras">Precio Unitario</th>
         <th class="letras">Valor Mercancia</th>      
       </tr>
     </thead>
-    <tbody class="contCata ventascss" >
+    <tbody class="contCata ventascss impre" >
      
     </tbody>
-     <tbody class="contCata2 ventascss" >
      
-    </tbody>
   </table>
 </div>
-<div class="totalVenta text-right"></div>
+<table id="oculto" class=" text-center table table-sm table-bordered" style="display:none;">
+    <thead  class="text-center ">
+        <tr class=" ">
+        <div class="nombreV"></div>
+        </tr>
+        <tr class="  ">
+        <th size=1 colspan="7"> PRODUCTO PARA VENTA </th>
+        </tr>
+        <tr class=" ">
+        <th colspan="3"> </th>
+        <th colspan="2">INVENTARIO INICIAL</th>
+        <th colspan="2"></th>
+        </tr>
+        <tr class=" text-center">
+        <th class="">Hora</th>
+        <th class="">Código </th>
+        <th class="">Descripción </th>
+        <th class="">Piezas</th>
+        <th class="">Peso</th>
+        <th class="">Precio Unitario</th>
+        <th class="">Valor Mercancia</th>      
+      </tr>
+    </thead>
+    <tbody class="contCatap ventascss " >
+     
+    </tbody>
+     
+  </table>
+<div class="totalVenta text-right impre"></div>
 <div class="pagare text-center"></div>
 </div>
-`
+
   
 
 

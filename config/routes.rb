@@ -9,8 +9,16 @@ Rails.application.routes.draw do
 
 
   resources :usuarios
+  resources :rutas
+  resources :bitacoras
+  resources :reportes
   resources :empleados
   resources :ventadiaria
+  resources :m_vehicular
+  resources :logistica
+  resources :reportes
+  resources :bitacoras
+  resources :logs
   resources :ventaspasada
   resources :historiales_inventarios
   resources :inventarios do

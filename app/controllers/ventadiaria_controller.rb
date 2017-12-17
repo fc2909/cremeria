@@ -20,9 +20,9 @@ class VentadiariaController < ApplicationController
 			Ventadiarium.find(params[:id]) 
 		end
 		def model_params
-			params.permit(:id, :idProducto, :descripcionventa, :piezas, :peso,  :medida, :piezasv, :pesov, :precioUnitario, :valorMercancia, :cantidadregresada, :venta, :horadespacho, :horarecepcion, :empleado, :vendedor, :ruta, :fechadespacho, :fecharecepcion, :user)
+			params.permit(:id, :idProducto, :descripcionventa, :piezas, :peso,  :medida, :piezasv, :pesov, :precioUnitario, :valorMercancia, :cantidadregresada, :venta, :horadespacho, :horarecepcion, :empleado, :vendedor, :ruta, :fechadespacho, :fecharecepcion, :user, :dc, :sc, :dfc, :sfc, :fechadespachof, :fecharecepcionf)
 
-
+ 
 
 		end
 		def delete_model

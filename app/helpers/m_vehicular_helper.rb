@@ -1,0 +1,2 @@
+module MVehicularHelper
+end

@@ -22,6 +22,18 @@ class CreateVentaspasadas < ActiveRecord::Migration[5.0]
       t.string :f_s_real
       t.string :user
       t.string :despachador
+      t.string :dsc
+      t.string :sc
+      t.string :dsd
+      t.string :sd
+      t.string :dsfc
+      t.string :sfc
+      t.string :n1
+      t.string :n2
+      t.string :n3
+      t.string :n4
+      t.string :fechaf
+
       t.integer :activo
 
       t.timestamps

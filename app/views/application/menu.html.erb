@@ -36,6 +36,19 @@
              
             </div>
             <div class="modal-body textModal">
+              
+              <div class="row ">
+                
+                <div class="col-md-12 despachador">  
+                
+                
+
+                </div>
+              
+
+                
+              </div>
+              <br>
               <div class="row">
                 
                 <div class="col-md-4">  
@@ -52,11 +65,399 @@
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-default" onclick="closeModalPin(); click_ventas(); ">Cancelar</button>
-               <button type="button" class="btn btn-success " id="agregarp" onclick="agregarpin()">Agregar</button>
+               <button type="button" class="btn btn-success " id="agregarp" onclick="agregarpin()">Ingresar</button>
             </div>
           </div>
         </div>
       </div>
+
+
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalDesp">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">DESPACHADOR</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+             
+              <div class="row ">
+                
+                <div class="col-md-12 despachador">  
+                
+                
+
+                </div>
+              
+
+                
+              </div>
+              <br>
+      
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeModalDesp(); click_Despacho(); ">Cancelar</button>
+               <button type="button" class="btn btn-success " id="agregarp" onclick="click_Salida2()">Ingresar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalVendedor">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title modaltitulo">VENDEDOR</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+             
+              <div class="row ">
+                 <div class="col-md-4 form-group ">
+          <label class="" >ID</label>
+          <input type="text" class="form-control clear idVendedor" placeholder="ID">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Nombre</label>
+          <input type="text" class="form-control clear nombre" placeholder="Nombre">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Apellido Paterno</label>
+          <input type="text" class="form-control clear a_paterno" placeholder="Apellido Paterno">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Apellido Materno</label>
+          <input type="text" class="form-control clear a_materno" placeholder="Apellido Materno">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">N. Seguro Social</label>
+          <input type="text" class="form-control clear n_seguro" placeholder="Seguro Social">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Curp</label>
+          <input type="text" class="form-control clear curp" placeholder="Curp">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Domicilio</label>
+          <input type="text" class="form-control clear domicilio" placeholder="Domicilio">
+        </div>
+        <div class=" col-md-4 form-group">
+             <label class="">RFC</label>
+             <input type="text" class="form-control clear rfc" placeholder="RFC">
+          </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">Tipo de contrato</label><input type="text" class="form-control clear f_licencia" placeholder="Tipo">
+        </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">Inicio del contrato</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
+        </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">Fin del contrato</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Tipo de Empleado</label>
+          <select class="form-control tipoempleado" disabled  onchange="tipoempleado(value)">
+            
+            <option value="4">Vendedor</option>
+            
+            </select>
+        </div>
+
+        <div class="col-md-4 form-group licencia">
+          <label class="">N. Licencia</label><input type="text" class="form-control clear n_licencia" placeholder="Licencia">
+        </div>
+            
+        <div class="col-md-4 form-group exp">
+          <label class="">Fecha de Expiración</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
+        </div>
+        <div class="col-md-4 form-group ">
+          <label class="">Ruta</label><select class="form-control clear rutavende" ><option value="1">C1</option><option value="2">C2</option><option value="3">C3</option><option value="4">C4</option><option value="5">C5</option><option value="6">C6</option><option value="7">C7</option><option value="8">C8</option> </select>
+        </div>
+        <div class="col-md-4 form-group tipovende">
+          <label class="">Tipo de Venta</label><select class="form-control clear tipoventa" ><option value="1">Detalle</option><option value="2">Mayoreo</option><option value="3">Detalle Foráneo</option><option value="4">Restaurantes</option></select>
+        </div>
+         <div class="col-md-4 form-group licencia">
+          <label class="">Limite de crédito</label><input type="text" class="form-control clear credito" placeholder="Crédito">
+        </div>
+         <div class="col-md-4 form-group licencia">
+          <label class="">Limite de bonificación</label><input type="text" class="form-control clear bonificacion" placeholder="Bonificación">
+        </div>
+         <div class="col-md-4 form-group licencia">
+          <label class="">Limite de Merma</label><input type="text" class="form-control clear merma" placeholder="Merma">
+        </div>
+         <div class="col-md-4 form-group licencia">
+          <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telefono" placeholder="TeléfonoP" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">Teléfono Local</label><input type="phone" class="form-control clear telefono" placeholder="TeléfonoL" >
+        </div>
+
+              
+
+                
+              </div>
+              <br>
+      
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeVendedor()">Cancelar</button>
+               <div class="addVendedor1"><button type="button" class="btn btn-success " id="agregarp" onclick="addVendedor()">Guardar</button></div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalAdministracion">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header ">
+            
+              <h2 class="modal-title ">ADMINISTRACIÓN</h2>
+            
+             
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+             
+              <div class="row ">
+                         <div class="col-md-4 form-group">
+          <label class="" >ID</label>
+          <input type="text" class="form-control clear idEmpleado" placeholder="ID">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Nombre</label>
+          <input type="text" class="form-control clear nombre" placeholder="Nombre">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Apellido Paterno</label>
+          <input type="text" class="form-control clear a_paterno" placeholder="Apellido Paterno">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Apellido Materno</label>
+          <input type="text" class="form-control clear a_materno" placeholder="Apellido Materno">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">N. Seguro Social</label>
+          <input type="text" class="form-control clear n_seguro" placeholder="Seguro Social">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Curp</label>
+          <input type="text" class="form-control clear curp" placeholder="Curp">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">Domicilio</label>
+          <input type="text" class="form-control clear domicilio" placeholder="Domicilio">
+        </div>
+        <div class=" col-md-4 form-group">
+             <label class="">RFC</label>
+             <input type="text" class="form-control clear rfc" placeholder="RFC">
+          </div>
+
+        <div class="col-md-4 form-group">
+          <label class="">Tipo de Empleado</label>
+          <select class="form-control clear tipoempleado" onchange="">
+            <option value="1">Ayudante General</option>
+           
+            <option value="3">Gerente de Ventas</option>
+            <option value="4">Gerente de Operaciones</option>
+            <option value="5">Supervisor</option>
+            <option value="6">Administrador</option>
+            <option value="7">Consejo</option>
+            </select>
+        </div>
+
+       <div class="col-md-4 form-group licencia">
+          <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telefono" placeholder="TeléfonoP" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">Teléfono Local</label><input type="phone" class="form-control clear telefono" placeholder="TeléfonoL" >
+        </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">Tipo de contrato</label><input type="text" class="form-control clear f_licencia" placeholder="Tipo">
+        </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">Inicio del contrato</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
+        </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">Fin del contrato</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
+        </div>
+
+                
+              </div>
+              <br>
+      
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeEmpleado()">Cancelar</button>
+               <div class="addEmpleado1"><button type="button" class="btn btn-success " id="agregarp" onclick="addEmpleado()">Guardar</button></div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class= "modal fade" tabindex ="-1" role="dialog" id="modalControlVehicular">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header ">
+            
+              <h2 class="modal-title ">NUEVO VEHICULO</h2>
+            
+             
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+             
+              <div class="row ">
+ 
+ <div class="col-xs-3 col-md-3 form-group ">
+
+    <label >Numero</label>
+    <input type="text" class="form-control  clear numero" placeholder="">
+  </div>      
+ <div class="col-xs-3 col-md-3 form-group ">
+
+    <label >Marca</label>
+    <input type="text" class="form-control  clear marca" placeholder="">
+  </div>
+     
+ 
+  <div class="col-xs-3 col-md-3 form-group ">
+  
+    <label >No. Serie</label>
+    <input type="text" class="form-control  clear noserie" placeholder="">
+  </div>
+  <div class="col-xs-3 col-md-3 form-group ">
+  
+    <label >Modelo</label>
+    <input type="text" class="form-control  clear modelo" placeholder="">
+  </div> 
+  <div class="col-xs-3 col-md-3 form-group ">
+  
+    <label >Tipo</label>
+    <input type="text" class="form-control  clear tipo" placeholder="">
+  </div>  
+  <div class="col-xs-3 col-md-3 form-group ">
+  
+    <label >Color</label>
+    <input type="text" class="form-control  clear color" placeholder="">
+  </div> 
+  <div class="col-xs-3 col-md-3 form-group ">
+  
+    <label >Combustible</label>
+    <select class="form-control clear combustible">
+            <option value="1">Gasolina - MAGNA</option>
+            <option value="2">Gasolina - PREMIUM</option>
+            <option value="3">Gasolina & Gas</option>
+            <option value="4">Gas</option>
+            <option value="5">Diesel</option>
+    </select>
+  
+  </div>  
+  
+  <div class="col-xs-3 col-md-3 form-group ">
+    <label >Km</label>
+    <input type="text" class="form-control  clear km" placeholder="">
+  </div>
+<div class="col-xs-3 col-md-3 form-group ">
+   <label >Placas</label>
+    <input type="text" class="form-control  clear placas" placeholder="">
+  </div>
+  <div class="col-xs-3 col-md-3 form-group ">
+   <label >Aseguradora</label>
+    <input type="text" class="form-control  clear aseguradora" placeholder="">
+  </div>
+  <div class="col-xs-3 col-md-3 form-group ">
+   <label >Poliza</label>
+    <input type="text" class="form-control  clear poliza" placeholder="">
+  </div>
+  <div class="col-xs-3 col-md-3 form-group ">
+   <label >Inicio de poliza</label>
+    <input type="text" class="form-control  clear polizainicio" placeholder="">
+  </div>
+  <div class="col-xs-3 col-md-3 form-group ">
+   <label >Fin de poliza</label>
+    <input type="text" class="form-control  clear polizafin" placeholder="">
+  </div>
+  <div class="col-xs-3 col-md-3 form-group ">
+   <label >Endoso</label>
+    <input type="text" class="form-control  clear endoso" placeholder="">
+  </div>
+  <div class="col-xs-3 col-md-3 form-group ">
+   <label >Inciso</label>
+    <input type="text" class="form-control  clear inciso" placeholder="">
+  </div>
+  <div class="col-xs-3 col-md-3 form-group ">
+   <label >Telefono</label>
+    <input type="text" class="form-control  clear tel" placeholder="">
+  </div>
+                
+              </div>
+         
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeControlVehicular()">Cancelar</button>
+               <div class="addControlVehicular1"><button type="button" class="btn btn-success " id="agregarp" onclick="addVehiculo()">Guardar</button></div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalDesp2">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">DESPACHADOR</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+              
+              <div class="row ">
+                
+                <div class="col-md-12 despachador">  
+                
+                
+
+                </div>
+              
+
+                
+              </div>
+              <br>
+      
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeModalDesp2(); click_Recepcion(); ">Cancelar</button>
+               <button type="button" class="btn btn-success " id="agregarp" onclick="click_Rec2()">Ingresar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
      <div class= "modal fade" tabindex ="-1" role="dialog" id="modalPin2">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -67,6 +468,17 @@
              
             </div>
             <div class="modal-body textModal">
+                <div class="row ">
+                
+                <div class="col-md-12 despachador">  
+                
+                
+
+                </div>
+              
+
+                
+              </div>
               <div class="row">
                 
                 <div class="col-md-4">  
@@ -157,7 +569,7 @@
 <div class= "modal fade" tabindex ="-1" role="dialog" id="modal">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header modalTitulo">
             <h4 class="modal-title">MENSAJE</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
               </button>

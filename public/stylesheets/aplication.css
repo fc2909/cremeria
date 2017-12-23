@@ -11,6 +11,75 @@
 
 
 }
+.nombreVendedor {
+  position: absolute;
+  width: 100%;
+   top: 15px;
+   left: 5%;
+   margin: 10px;
+ }
+ .fechaDespacho{
+  position: absolute;
+  width: 100%;
+   top: 15px;
+   left: 5%;
+   
+   margin: 10px;
+ }
+ .nombreCapturista {
+  position: absolute;
+  width: 100px;
+   top: 915px;
+   left: 5%;
+   margin: 10px;
+ }
+ .nombreDespachador{
+ position: absolute;
+  width: 100%;
+   top: 925px;
+   left: 5%;
+   margin: 10px;
+ }
+
+.tablaImprimir {
+  position: absolute;
+  width: 100%;
+   top: 25px;
+   left: 5%;
+   margin: 10px;
+ }
+ .fila{
+width: 550px;
+ }
+ .controlC{
+  position: absolute;
+  width: 100%;
+   top: 0px;
+   left: 5%;
+
+   
+ }
+.pagareD {
+  position: absolute;
+  width: 100%;
+   top: 840px;
+   left: 5%;
+   margin: 10px;
+}
+  #floating-panel {
+        position: absolute;
+        top: 30px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+}
 #map {
         width: 100%;
         height: 500px;

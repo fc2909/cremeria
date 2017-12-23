@@ -4,8 +4,8 @@ var arrGlobal, arrGlobalVF, arrGlobalRuta , fechacaptura, arrGlobalE, t_merc , v
  var modalCreditos1="F";
  var s_vent=0;
  var s_vent2=0;
- var n, w, noSemana, idVentas2;
- var upin, pin,arrGlobal41, dsc, sc, sfc1;
+ var n, w, despachador, noSemana, idVentas2;
+ var upin, pin,arrGlobal41, arrGlobalVehiculo, dsc, sc, sfc1;
  var t_v;
  var t_v2; 
  var piezasT, year2, month2, day2; 
@@ -15,7 +15,7 @@ var medidas = ['Kg.','Pzas.','L'];
 var t_rutas = ['C1','C2','C3','C4','C5','C6','C7','C8'];
 var t_ventas = ['Detalle','Mayoreo','Detalle Foraneo','Restaurantes'];
 var t_Empleado = ['Ayudante General','Vendedor','Gerente de Ventas','Gerente de Operaciones','Supervisor','Administrador','Consejo'];
-var dias = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
+var dias = ['LUNES',' MARTES ',' MIÉRCOLES ',' JUEVES ',' VIERNES ',' SÁBADO ',' DOMINGO '];
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
 
 
@@ -68,9 +68,7 @@ function makeArray() {
 for (i = 0; i<makeArray.arguments.length; i++)
 this[i + 1] = makeArray.arguments[i];
 }
-
-  var months = new makeArray('Enero','Febrero','Marzo','Abril','Mayo',
-'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
+  var months = new makeArray('ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE');
 var date = new Date();
 var today = date.getDay();
 var day = date.getDate();
@@ -101,21 +99,434 @@ document.write('Fecha: '+d.getDate(),'<br>Dia de la semana: '+d.getDay(),'<br>Me
 
 
 /*--------------------- otros ------------------------------*/
+function mod(dividendo , divisor)
+{
+  resDiv = dividendo / divisor ;  
+  parteEnt = Math.floor(resDiv);            // Obtiene la parte Entera de resDiv
+  parteFrac = resDiv - parteEnt ;      // Obtiene la parte Fraccionaria de la división
+  //modulo = parteFrac * divisor;  // Regresa la parte fraccionaria * la división (modulo)
+  modulo = Math.round(parteFrac * divisor)
+  return modulo;
+}
+// Fin de función mod
+ 
+// Función ObtenerParteEntDiv, regresa la parte entera de una división
+function ObtenerParteEntDiv(dividendo , divisor)
+{
+  resDiv = dividendo / divisor ;  
+  parteEntDiv = Math.floor(resDiv);
+  return parteEntDiv;
+}
+// Fin de función ObtenerParteEntDiv
+ 
+// function fraction_part, regresa la parte Fraccionaria de una cantidad
+function fraction_part(dividendo , divisor)
+{
+  resDiv = dividendo / divisor ;  
+  f_part = Math.floor(resDiv);
+  return f_part;
+}
+// Fin de función fraction_part
+ 
+// function string_literal conversion is the core of this program
+// converts numbers to spanish strings, handling the general special
+// cases in spanish language.
+function string_literal_conversion(number)
+{  
+   // first, divide your number in hundreds, tens and units, cascadig
+   // trough subsequent divisions, using the modulus of each division
+   // for the next.
+ 
+   centenas = ObtenerParteEntDiv(number, 100);
+   number = mod(number, 100);
+   decenas = ObtenerParteEntDiv(number, 10);
+   number = mod(number, 10);
+ 
+   unidades = ObtenerParteEntDiv(number, 1);
+   number = mod(number, 1);  
+   string_hundreds="";
+   string_tens="";
+   string_units="";
+   
+   // cascade trough hundreds. This will convert the hundreds part to
+   // their corresponding string in spanish.
+   if(centenas == 1){
+      string_hundreds = "ciento ";
+   }
+   if(centenas == 2){
+      string_hundreds = "doscientos ";
+   }
+   if(centenas == 3){
+      string_hundreds = "trescientos ";
+   }
+   if(centenas == 4){
+      string_hundreds = "cuatrocientos ";
+   }
+   if(centenas == 5){
+      string_hundreds = "quinientos ";
+   }
+   if(centenas == 6){
+      string_hundreds = "seiscientos ";
+   }
+   if(centenas == 7){
+      string_hundreds = "setecientos ";
+   }
+   if(centenas == 8){
+      string_hundreds = "ochocientos ";
+   }
+   if(centenas == 9){
+      string_hundreds = "novecientos ";
+   }
+ // end switch hundreds
+ 
+   // casgade trough tens. This will convert the tens part to corresponding
+   // strings in spanish. Note, however that the strings between 11 and 19
+   // are all special cases. Also 21-29 is a special case in spanish.
+   if(decenas == 1){
+           
+      //Special case, depends on units for each conversion
+      if(unidades == 1){
+         string_tens = "once";
+      }
+      if(unidades == 2){
+         string_tens = "doce";
+      }
+      if(unidades == 3){
+         string_tens = "trece";
+      }
+      if(unidades == 4){
+         string_tens = "catorce";
+      }
+      if(unidades == 5){
+         string_tens = "quince";
+      }
+      if(unidades == 6){
+         string_tens = "dieciseis";
+      }
+      if(unidades == 7){
+         string_tens = "diecisiete";
+      }
+      if(unidades == 8){
+         string_tens = "dieciocho";
+      }
+      if(unidades == 9){
+         string_tens = "diecinueve";
+      }
+   }
+   //alert("STRING_TENS ="+string_tens);
+   
+   if(decenas == 2){
+      string_tens = "veinti";
+   }
+   if(decenas == 3){
+      string_tens = "treinta";
+   }
+   if(decenas == 4){
+      string_tens = "cuarenta";
+   }
+   if(decenas == 5){
+      string_tens = "cincuenta";
+   }
+   if(decenas == 6){
+      string_tens = "sesenta";
+   }
+   if(decenas == 7){
+      string_tens = "setenta";
+   }
+   if(decenas == 8){
+      string_tens = "ochenta";
+   }
+   if(decenas == 9){
+      string_tens = "noventa";
+   }
+    // Fin of swicth decenas
+ 
+   // cascades trough units, This will convert the units part to corresponding
+   // strings in spanish. Note however that a check is being made to see wether
+   // the special cases 11-19 were used. In that case, the whole conversion of
+   // individual units is ignored since it was already made in the tens cascade.
+   if (decenas == 1)
+   {
+      string_units="";  
+          // empties the units check, since it has alredy been handled on the tens switch
+   }
+   else
+   {
+      if(unidades == 1){
+         string_units = "un";
+      }
+      if(unidades == 2){
+         string_units = "dos";
+      }
+      if(unidades == 3){
+         string_units = "tres";
+      }
+      if(unidades == 4){
+         string_units = "cuatro";
+      }
+      if(unidades == 5){
+         string_units = "cinco";
+      }
+      if(unidades == 6){
+         string_units = "seis";
+      }
+      if(unidades == 7){
+         string_units = "siete";
+      }
+      if(unidades == 8){
+         string_units = "ocho";
+      }
+      if(unidades == 9){
+         string_units = "nueve";
+      }
+       // end switch units
+   } // end if-then-else
+//final special cases. This conditions will handle the special cases which
+//are not as general as the ones in the cascades. Basically four:
+ 
+// when you've got 100, you dont' say 'ciento' you say 'cien'
+// 'ciento' is used only for [101 >= number > 199]
+if (centenas == 1 && decenas == 0 && unidades == 0)
+{
+   string_hundreds = "cien " ;
+}  
+// when you've got 10, you don't say any of the 11-19 special
+// cases.. just say 'diez'
+if (decenas == 1 && unidades ==0)
+{
+   string_tens = "diez " ;
+}
+// when you've got 20, you don't say 'veinti', which is used
+// only for [21 >= number > 29]
+if (decenas == 2 && unidades ==0)
+{
+  string_tens = "veinte " ;
+}
+// for numbers >= 30, you don't use a single word such as veintiuno
+// (twenty one), you must add 'y' (and), and use two words. v.gr 31
+// 'treinta y uno' (thirty and one)
+if (decenas >=3 && unidades >=1)
+{
+   string_tens = string_tens+" y ";
+}
+// this line gathers all the hundreds, tens and units into the final string
+// and returns it as the function value.
+final_string = string_hundreds+string_tens+string_units;
+return final_string ;
+}
+//end of function string_literal_conversion
+// handle some external special cases. Specially the millions, thousands
+// and hundreds descriptors. Since the same rules apply to all number triads
+// descriptions are handled outside the string conversion function, so it can
+// be re used for each triad.
 
-
+function convertirNumLetras(number)
+{
+  //number = number_format (number, 2);
+   number1=number.toString();
+   //settype (number, "integer");
+   cent = number1.split(".");  
+   centavos = cent[1];
+   //Mind Mod
+   number=cent[0];
+   if (centavos == 0 || centavos == undefined)
+   {
+        centavos = "00";
+   }
+   if (number == 0 || number == "")
+   { // if amount = 0, then forget all about conversions,
+      centenas_final_string=" cero "; // amount is zero (cero). handle it externally, to
+      // function breakdown
+  }
+   else
+   {
+     millions  = ObtenerParteEntDiv(number, 1000000); // first, send the millions to the string
+      number = mod(number, 1000000);           // conversion function
+     
+     if (millions != 0)
+      {                      
+      // This condition handles the plural case
+         if (millions == 1)
+         {              // if only 1, use 'millon' (million). if
+            descriptor= " millon ";  // > than 1, use 'millones' (millions) as
+            }
+         else
+         {                           // a descriptor for this triad.
+              descriptor = " millones ";
+            }
+      }
+      else
+      {    
+         descriptor = " ";                 // if 0 million then use no descriptor.
+      }
+      millions_final_string = string_literal_conversion(millions)+descriptor;
+      thousands = ObtenerParteEntDiv(number, 1000);  // now, send the thousands to the string
+        number = mod(number, 1000);            // conversion function.
+      //print "Th:".thousands;
+     if (thousands != 1)
+      {                   // This condition eliminates the descriptor
+         thousands_final_string =string_literal_conversion(thousands) + " mil ";
+       //  descriptor = " mil ";          // if there are no thousands on the amount
+      }
+      if (thousands == 1)
+      {
+         thousands_final_string = " mil ";
+     }
+      if (thousands < 1)
+      {
+         thousands_final_string = " ";
+      }
+      // this will handle numbers between 1 and 999 which
+      // need no descriptor whatsoever.
+     centenas  = number;                    
+      centenas_final_string = string_literal_conversion(centenas) ;
+   } //end if (number ==0)
+ 
+   /*if (ereg("un",centenas_final_string))
+   {
+     centenas_final_string = ereg_replace("","o",centenas_final_string);
+   }*/
+   //finally, print the output.
+ 
+   /* Concatena los millones, miles y cientos*/
+   cad = millions_final_string+thousands_final_string+centenas_final_string;
+   /* Convierte la cadena a Mayúsculas*/
+   cad = cad.toUpperCase();      
+   if (centavos.length>2)
+   {  
+      if(centavos.substring(2,3)>= 5){
+         centavos = centavos.substring(0,1)+(parseInt(centavos.substring(1,2))+1).toString();
+      }   else{
+         
+        centavos = centavos.substring(0,1);
+      }
+   }
+ 
+   /* Concatena a los centavos la cadena "/100" */
+   if (centavos.length==1)
+   {
+      centavos = centavos+"0";
+   }
+   centavos = centavos+ "/100";
+ 
+ 
+   /* Asigna el tipo de moneda, para 1 = PESO, para distinto de 1 = PESOS*/
+   if (number == 1)
+   {
+      moneda = " PESO ";  
+   }
+   else
+   {
+      moneda = " PESOS ";  
+   }
+   /* Regresa el número en cadena entre paréntesis y con tipo de moneda y la fase M.N.*/
+   //Mind Mod, si se deja MIL pesos y se utiliza esta función para imprimir documentos
+   //de caracter legal, dejar solo MIL es incorrecto, para evitar fraudes se debe de poner UM MIL pesos
+   if(cad == '  MIL ')
+   {
+        cad=' UN MIL ';
+   }
+    cantidadEnTexto=cad+moneda+centavos+" M.N.";
+  // alert( "FINAL="+cad+moneda+centavos+" M.N.");
+  //return cad+moneda+centavos+" M.N.";
+}
+function doSpanish(importe) {
+        document.getElementById('spn').innerHTML='( '+convertirNumLetras(importe)+ ' )';
+                return true;
+        }
+var cantidadEnTexto;
 function pagare(){
+  var usuario;
+ 
+ var dayD = today_v.substring(8,10);
+ var monthD = today_v.substring(5,7);
+ var yearD = today_v.substring(0,4);
+var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
+   var diaD=(diasemaD.getUTCDay());
+    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[monthD]+" DEL "+yearD+".";
+  convertirNumLetras(total_merc);
+  for(var h=0;h<upin.length; h++){
+      if(pin==upin[h].pin){
+        
+usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";
+        
+      }
+  }
   document.getElementById('oculto').style.display = 'block';
+  document.getElementById('oculto2').style.display = 'block';
+  document.getElementById('oculto3').style.display = 'block';
+  document.getElementById('oculto4').style.display = 'block';
+  document.getElementById('oculto5').style.display = 'block';
+  document.getElementById('oculto6').style.display = 'block';
+  document.getElementById('oculto7').style.display = 'block';
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
-
-  var pagare = '<font size=1 class="text-justify">YO '+ nombre_vend+' POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA '+today_v+' LA CANTIDAD DE $ '+total_merc+' ESTE PAGARE CAUSARA EL ____ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO</font><br><br><h6 class="text-center">___________________________________________</h6><font size=1>'+nombre_vend+'.</font>';
-  
-$('.pagare').html(pagare);
+var nombreVendedor = "RUTA _<u>"+rutas+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_";
+var despachadorV = "DESPACHADOR: "+despachador+"";
+var controlC = "CONTROL DE VENTAS Y COBRANZA";
+  var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaDespachoD+' </u>_ LA CANTIDAD DE _<u> $ '+total_merc+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
+  var fechaDespachoDD ='FECHA DE DESPACHO : '+fechaDespachoD;
+$('.pagareD').html(pagare);
+$('.controlC').html(controlC);
+$('.nombreVendedor').html(nombreVendedor);
+$('.nombreCapturista').html(usuario);
+$('.nombreDespachador').html(despachadorV);
+$('.fechaDespacho').html(fechaDespachoDD);
 window.print();
   document.getElementById('oculto').style.display = 'none';
-$('.pagare').html('');
+  document.getElementById('oculto2').style.display = 'none';
+  document.getElementById('oculto3').style.display = 'none';
+  document.getElementById('oculto4').style.display = 'none';
+  document.getElementById('oculto5').style.display = 'none';
+  document.getElementById('oculto6').style.display = 'none';
+  document.getElementById('oculto7').style.display = 'none';
 
 }
-function pagareoff(){
+function pagare2(){
+var usuario;
+ 
+ var dayD = today_v.substring(8,10);
+ var monthD = today_v.substring(5,7);
+ var yearD = today_v.substring(0,4);
+var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
+   var diaD=(diasemaD.getUTCDay());
+    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[monthD]+" DEL "+yearD+".";
+  //convertirNumLetras(total_merc);
+  for(var h=0;h<upin.length; h++){
+      if(pin==upin[h].pin){
+        
+usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";
+        
+      }
+  }
+
+  document.getElementById('oculto').style.display = 'block';
+  document.getElementById('oculto2').style.display = 'block';
+  document.getElementById('oculto3').style.display = 'block';
+  document.getElementById('oculto4').style.display = 'block';
+  document.getElementById('oculto5').style.display = 'block';
+  document.getElementById('oculto6').style.display = 'block';
+  document.getElementById('oculto7').style.display = 'block';
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
+var nombreVendedor = "RUTA _<u>"+rutas+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_";
+var despachadorV = "DESPACHADOR: "+despachador+"";
+var controlC = "CONTROL DE VENTAS Y COBRANZA";
+//  var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaDespachoD+' </u>_ LA CANTIDAD DE _<u> $ '+total_merc+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
+  var fechaDespachoDD ='FECHA DE DESPACHO : '+fechaDespachoD;
+$('.pagareD').html(pagare);
+$('.controlC').html(controlC);
+$('.nombreVendedor').html(nombreVendedor);
+$('.nombreCapturista').html(usuario);
+$('.nombreDespachador').html(despachadorV);
+$('.fechaDespacho').html(fechaDespachoDD);
+window.print();
+  document.getElementById('oculto').style.display = 'none';
+  document.getElementById('oculto2').style.display = 'none';
+  document.getElementById('oculto3').style.display = 'none';
+  document.getElementById('oculto4').style.display = 'none';
+  document.getElementById('oculto5').style.display = 'none';
+  document.getElementById('oculto6').style.display = 'none';
+  document.getElementById('oculto7').style.display = 'none';
+
 
 }
 function cambio(){
@@ -232,7 +643,7 @@ function loadInventarios(lista){
   var html = '';
   
   for(var h=0;h<lista.length; h++)
-    html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + '</td><td>' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td><td>' + lista[h].s_max + '</td></tr>';
+    html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td><td>' + lista[h].s_max + '</td></tr>';
   $('.contCata').html(html);
   arrGlobal = lista;
 }
@@ -246,7 +657,7 @@ function loadVendedores(lista){
   
   for(var h=0;h<lista.length; h++)
     if(lista[h].tipo==2){
-html+= '<tr SIZE=1  class="seleccionar" onclick="selectVendedores('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + lista[h].n_seguro + '</td><td>' + lista[h].curp + '</td><td>' + lista[h].domicilio  + '</td><td>' + lista[h].rfc + '</td><td>' +  lista[h].n_licencia + '</td><td>' + lista[h].f_exp + '</td><td>' + t_rutas[lista[h].ruta - 1] + '</td><td>' + t_ventas[lista[h].t_venta - 1] + '</td><td>' + lista[h].l_credito + '</td><td>' + lista[h].l_bon + '</td><td>' + lista[h].merma +'</td></tr>';
+html+= '<tr class="seleccionar"  data-id="'+ lista[h].id +'"><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + t_rutas[lista[h].ruta - 1] + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + t_ventas[lista[h].t_venta - 1] + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_credito + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_bon + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].merma +'</td><td onclick="selectVendedores2('+ lista[h].id +')">55-555-555</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upVendedor1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delVendedor('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
     }
      $('.contCata').html(html);
   arrGlobal = lista;
@@ -258,7 +669,8 @@ function loadAdministracion(lista){
   
   for(var h=0;h<lista.length; h++)
     if(lista[h].tipo != 2){
-html+= '<tr class="seleccionar" onclick="selectAdministracion('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idEmpleados + '</td><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + lista[h].n_seguro + '</td><td>' + lista[h].curp + '</td><td>' + lista[h].domicilio  + '</td><td>' + lista[h].rfc + '</td><td>' + t_Empleado[lista[h].tipo-1] + '</td></tr>';
+html+= '<tr class=" letras"  data-id="'+ lista[h].id +'"><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' +  t_Empleado[lista[h].tipo-1]  + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].domicilio+ '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].n_seguro + ' </td><td onclick="selectAdministracion2('+ lista[h].id +')">55-555-555</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upEmpleado1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delEmpleado('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
+
     }
      $('.contCata').html(html);
   arrGlobal = lista;
@@ -386,6 +798,7 @@ html += '';
 function loadVentas(lista){
   var html = '';
   var htmlp = '';
+  var no=1;
   total_merc =0;
   var imprimir = '<li role="presentation" class="impre" ><button class="btn btn-warning impre totala" value="Imprimir" onclick="pagare();"  >IMPRIMIR</button></li>';
  var num=0;
@@ -396,13 +809,13 @@ function loadVentas(lista){
   if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof){
 if( total_merc==0){
         
-var nombreV='<th colspan="7" class="nombreV">Nombre: '+lista[h].vendedor+'</th>'
+var nombreV='<th colspan="7" class="nombreV" style="font-size:8px;">Nombre: '+lista[h].vendedor+'</th>'
 $('nombreV').html(nombreV);
 }
 html+= '<tr class="seleccionar" id ="'+h+'" onclick="cambiarcolor(this); selectVentas('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" data-id="'+ lista[h].id +'"><td>' + lista[h].horadespacho + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
-htmlp+= '<tr class=" "><td>' + lista[h].horadespacho + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
+htmlp+= '<tr class=" fila" style="font-size:8px;"><td class="text-center">' + no + '</td><td class="text-center">' + lista[h].horadespacho + '</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-center">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td class="text-right">' +parseFloat(lista[h].peso).toFixed(3) + '</td><td class="text-right"> $ ' + parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
   total_merc =parseFloat(total_merc) + parseFloat(lista[h].valorMercancia);
-      
+      no++;
 if(total_merc!=0){
     historial=0;
       //alert("hay baro");
@@ -419,7 +832,7 @@ if(total_merc==0){
     historial=0;
       //alert("no hay baro");
     }
-htmlp+= '<tr class=" "><td colspan="5"></td><td> Total: </td><td> $ '+parseFloat(total_merc).toFixed(2)+'</td></tr>';
+htmlp+= '<tr class=" " style="font-size:10px;"><td colspan="6"></td><td class="text-right"> Total: </td><td class="text-right"> $ '+parseFloat(total_merc).toFixed(2)+'</td></tr>';
     
      $('.contCata').html(html);
      $('.contCatap').html(htmlp);
@@ -568,9 +981,11 @@ function loadVentasr(lista){
 var v=0;
 var v1=0;
   var html = '';
+  var htmlp = '';
   total_vent =0;
-  var imprimir = '<li role="presentation" class="impre" ><button class="btn btn-warning impre totala" value="Imprimir" onclick="window.print();"  >IMPRIMIR</button></li>';
+  var imprimir = '<li role="presentation" class="impre" ><button class="btn btn-warning impre totala" value="Imprimir" onclick="pagare2();"  >IMPRIMIR</button></li>';
   var cantidad=0;
+  var num=1;
   //alert(today_vv+" -------- "+fechacaptura);
   for(var h=0;h<lista.length; h++){
     //alert(rutas +"=="+ lista[h].ruta +"&&"+ today_v+" == "+lista[h].fecha);
@@ -580,10 +995,14 @@ var v1=0;
 
 if(parseFloat(lista[h].peso)==0){
 html+= '<tr class="" data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td></td><td> <input type="text"  class="form-control clear " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+')">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
+htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-center">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td ><td class="text-right">0.00</td><td class="text-right">'+lista[h].piezasv + '</td><td class="text-right">0.000</td><td>'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</td><td>0.000</td><td class="text-right"> $ ' + lista[h].precioUnitario + '</td><td class="text-right"> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td class="text-right"> $ '+lista[h].venta+'</td></tr>';
 //t_v.push(h);
+num++
 v++;
 }else{
 html+= '<tr class="" data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3)+ '</td><td> ' + '<input type="text" id="p'+h+'" class="form-control clear" placeholder="0.00" >' + '</td><td>  ' + '<input type="text"  class="form-control clear " id="rec'+h+'" placeholder="0.00" onchange="totalrec2('+h+', '+lista[h].peso+', '+lista[h].precioUnitario+','+v+')">'  + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td><div id="'+h+'"> $ 0.00</div></td></tr>';
+htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-center">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td  class="text-right">'+lista[h].peso+'</td><td class="text-right">'+lista[h].piezasv + '</td><td class="text-right">'+lista[h].pesov+'</td><td>'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</td><td>'+(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov))+'</td><td class="text-right"> $ ' + lista[h].precioUnitario + '</td><td class="text-right"> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td class="text-right"> $ '+lista[h].venta+'</td></tr>';
+num++
 //t_v.push(h);
 v++;
 }
@@ -609,6 +1028,7 @@ t_v2 = new Array(n);
  v=0;
    //alert(t_v2.length+" long vec");
      $('.contCata').html(html);
+     $('.contCatap').html(htmlp);
    
   arrGlobalT = lista;
 
@@ -669,6 +1089,7 @@ var efect;
 var t_venta_;
 var otr;
 var fsd;
+total_merc=lista[h].v_mercancia;
   $('.creditos').val(lista[h].creditos);
   $('.otros').val(lista[h].otros);
    $('.efectivo').html('');
@@ -869,6 +1290,9 @@ html+= '<tr class="seleccionar" onclick="selectVendedores('+ lista[h].id +')" da
      $('.contCata').html(html);
   arrGlobal = lista;
 }
+function loadEmpleados1(lista){
+  arrGlobal2 = lista;
+}
 function  loadRutas(lista){
   var html = '';
   
@@ -883,9 +1307,10 @@ function  loadMV(lista){
   var html = '';
   
   for(var h=0;h<lista.length; h++){
-    html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this);"><td>' + lista[h].id  + '</td><td>' + lista[h].marca+'</td><td>' + lista[h].noserie+'</td><td>' + lista[h].modelo+'</td><td>' + lista[h].tipo+'</td><td>' + lista[h].color+'</td><td>' + lista[h].combustible+'</td><td>' + lista[h].km+ '</td></tr>';
+    html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); "><td onClick="selectControlVehicular2('+lista[h].id+')" >' + lista[h].numero+'</td><td onClick="selectControlVehicular2('+lista[h].id+')">' + lista[h].marca+'</td><td onClick="selectControlVehicular2('+lista[h].id+')"> ' + lista[h].modelo+'</td><td onClick="selectControlVehicular2('+lista[h].id+')">' + lista[h].placa+'</td><td style="width:40px" ><div class="btn-group"  data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upControlVehicular1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delControlVehicular('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
   }
      $('.contCata').html(html);
+     arrGlobalVehiculo = lista;
 }
 
 
@@ -1007,25 +1432,28 @@ function addInventario(){
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
 }
-
+function addVendedormodal(){
+$('#modalVendedor').modal('show');
+}
 function addVendedor(){
-  var idEmpleados = $(".idVendedor").val();
-  var nombre_Emple = $(".nombre").val();
-  var paterno_Emple = $(".a_paterno").val();
-  var materno_Emple = $(".a_materno").val();
-  var n_seguro = $(".n_seguro").val();
-  var curp = $(".curp").val();
-  var domicilio = $(".domicilio").val();
-  var rfc = $(".rfc").val();
-  var tipo = $(".tipoempleado").val();
-  var n_licencia = $(".n_licencia").val();
-  var f_exp = $(".f_licencia").val();
-  var ruta = $(".rutavende").val();
-  var t_venta = $(".tipoventa").val();
-  var l_credito = $(".credito").val();
-  var l_bon = $(".bonificacion").val();
-  var merma = $(".merma").val();
+  var idEmpleados = $(" #modalVendedor .idVendedor").val();
+  var nombre_Emple = $("#modalVendedor .nombre").val();
+  var paterno_Emple = $("#modalVendedor .a_paterno").val();
+  var materno_Emple = $("#modalVendedor .a_materno").val();
+  var n_seguro = $("#modalVendedor .n_seguro").val();
+  var curp = $("#modalVendedor .curp").val();
+  var domicilio = $("#modalVendedor .domicilio").val();
+  var rfc = $("#modalVendedor .rfc").val();
+  var tipo = 2;
+  var n_licencia = $("#modalVendedor .n_licencia").val();
+  var f_exp = $("#modalVendedor .f_licencia").val();
+  var ruta = $("#modalVendedor .rutavende").val();
+  var t_venta = $("#modalVendedor .tipoventa").val();
+  var l_credito = $("#modalVendedor .credito").val();
+  var l_bon = $("#modalVendedor .bonificacion").val();
+  var merma = $("#modalVendedor .merma").val();
  
+$('#modalVendedor').modal('hide');
 
 
    
@@ -1042,21 +1470,60 @@ function addVendedor(){
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
 
 }
+function closeControlVehicular(){
+$('#modalControlVehicular').modal('hide');
+
+}
+function modalControlVehicular(){
+$('#modalControlVehicular').modal('show');
+}
+function addVehiculo(){
+$('#modalControlVehicular').modal('hide');
+
+  var marca = $("#modalControlVehicular .marca").val();
+  var noserie = $("#modalControlVehicular .noserie").val();
+  var modelo = $("#modalControlVehicular .modelo").val();
+  var tipo = $("#modalControlVehicular .tipo").val();
+  var color = $("#modalControlVehicular .color").val();
+  var combustible = $("#modalControlVehicular .combustible").val();
+  var km = $("#modalControlVehicular .km").val();
+  var placa = $("#modalControlVehicular .placas").val();
+    var json = {marca: marca, noserie: noserie, modelo: modelo, tipo: tipo, color: color, combustible: combustible, km: km, placa: placa};
+ 
+  if(marca != "" && noserie != "" && modelo != "" && tipo != "" && color != "" && combustible != "" && km != "" && placa != ""){
+
+    addRegistro(json, 'm_vehicular', loadMV);
+    $(".eliminam").html('');
+$(".guardam").html('');
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV);
+
+}
+
+function addModalEmpleado(){
+  $('#modalAdministracion').modal('show');
+}
 
 function addEmpleado(){
-  var idEmpleados = $(".idEmpleado").val();
-  var nombre_Emple = $(".nombre").val();
-  var paterno_Emple = $(".a_paterno").val();
-  var materno_Emple = $(".a_materno").val();
-  var n_seguro = $(".n_seguro").val();
-  var curp = $(".curp").val();
-  var domicilio = $(".domicilio").val();
-  var rfc = $(".rfc").val();
-  var tipo = $(".tipoempleado").val();
-  var n_licencia = $(".n_licencia").val();
-  var f_exp = $(".f_licencia").val();
-  var ruta = $(".rutavende").val();
-  var t_venta = $(".tipoventa").val();
+   $('#modalAdministracion').modal('hide');
+  var idEmpleados = $("#modalAdministracion .idEmpleado").val();
+  var nombre_Emple = $("#modalAdministracion .nombre").val();
+  var paterno_Emple = $("#modalAdministracion .a_paterno").val();
+  var materno_Emple = $("#modalAdministracion .a_materno").val();
+  var n_seguro = $("#modalAdministracion .n_seguro").val();
+  var curp = $("#modalAdministracion .curp").val();
+  var domicilio = $("#modalAdministracion .domicilio").val();
+  var rfc = $("#modalAdministracion .rfc").val();
+  var tipo = $("#modalAdministracion .tipoempleado").val();
+  var n_licencia = $("#modalAdministracion .n_licencia").val();
+  var f_exp = $("#modalAdministracion .f_licencia").val();
+  var ruta = $("#modalAdministracion .rutavende").val();
+  var t_venta = $("#modalAdministracion .tipoventa").val();
    
   if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
@@ -1399,66 +1866,37 @@ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar
 limpiar();
 }
 
-function delVendedor(){
-  var idEmpleados = $(".idVendedor").val();
-  var nombre_Emple = $(".nombre").val();
-  var paterno_Emple = $(".a_paterno").val();
-  var materno_Emple = $(".a_materno").val();
-  var n_seguro = $(".n_seguro").val();
-  var curp = $(".curp").val();
-  var domicilio = $(".domicilio").val();
-  var rfc = $(".rfc").val();
-  var tipo = $(".tipoempleado").val();
-  var n_licencia = $(".n_licencia").val();
-  var f_exp = $(".f_licencia").val();
-  var ruta = $(".rutavende").val();
-  var t_venta = $(".tipoventa").val();
-   
- 
-  
-
-  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+function delVendedor(idV){
 
 
-  delRegistro(idGlobal,'empleados', loadVendedores);
-}else {
-   $('#modal .textModal').html('Seleccione de la tabla el producto a eliminar.'); 
-      $('#modal').modal('show');
- 
-}
+
+  delRegistro(idV,'empleados', loadVendedores);
+
  getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
 
 limpiar();
 }
 
-function delEmpleado(){
-  var idEmpleados = $(".idEmpleado").val();
-  var nombre_Emple = $(".nombre").val();
-  var paterno_Emple = $(".a_paterno").val();
-  var materno_Emple = $(".a_materno").val();
-  var n_seguro = $(".n_seguro").val();
-  var curp = $(".curp").val();
-  var domicilio = $(".domicilio").val();
-  var rfc = $(".rfc").val();
-  var tipo = $(".tipoempleado").val();
+function delEmpleado(idA){
 
- 
+
   
+  delRegistro(idA,'empleados', loadAdministracion);
 
-  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
-
-
-  delRegistro(idGlobal,'empleados', loadAdministracion);
-}else {
-   $('#modal .textModal').html('Seleccione de la tabla el empleado a eliminar.'); 
-      $('#modal').modal('show');
- 
-}
  getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
 
 limpiar();
 }
 
+
+function delControlVehicular(idV){
+
+  delRegistro(idV,'m_vehicular', loadMV);
+  getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV);
+
+limpiar();
+
+}
 
 
 function delVenta(){
@@ -1529,24 +1967,35 @@ for(var j=0;j<arrGlobal4.length; j++){
 limpiar();
 }
 /*-------------------- actualizar registro ------------------------*/
+function upVendedor1(idV){
+  addVendedormodal();
+  selectVendedores(idV);
+
+  var upVendedor1='<button type="button" class="btn btn-info addVendedor1" id="agregarp" onclick="upVendedor()">Guardar</button>'
+$('#modalVendedor .addVendedor1').html(upVendedor1);
+
+}
+
 function upVendedor(){
-  var idEmpleados = $(".idVendedor").val();
-  var nombre_Emple = $(".nombre").val();
-  var paterno_Emple = $(".a_paterno").val();
-  var materno_Emple = $(".a_materno").val();
-  var n_seguro = $(".n_seguro").val();
-  var curp = $(".curp").val();
-  var domicilio = $(".domicilio").val();
-  var rfc = $(".rfc").val();
-  var tipo = $(".tipoempleado").val();
-  var n_licencia = $(".n_licencia").val();
-  var f_exp = $(".f_licencia").val();
-  var ruta = $(".rutavende").val();
-  var t_venta = $(".tipoventa").val();
-  var l_credito = $(".credito").val();
-  var l_bon = $(".bonificacion").val();
-  var merma = $(".merma").val();
-   
+$('#modalVendedor').modal('hide');
+
+    var idEmpleados = $(" #modalVendedor .idVendedor").val();
+  var nombre_Emple = $("#modalVendedor .nombre").val();
+  var paterno_Emple = $("#modalVendedor .a_paterno").val();
+  var materno_Emple = $("#modalVendedor .a_materno").val();
+  var n_seguro = $("#modalVendedor .n_seguro").val();
+  var curp = $("#modalVendedor .curp").val();
+  var domicilio = $("#modalVendedor .domicilio").val();
+  var rfc = $("#modalVendedor .rfc").val();
+  var tipo = 2;
+  var n_licencia = $("#modalVendedor .n_licencia").val();
+  var f_exp = $("#modalVendedor .f_licencia").val();
+  var ruta = $("#modalVendedor .rutavende").val();
+  var t_venta = $("#modalVendedor .tipoventa").val();
+  var l_credito = $("#modalVendedor .credito").val();
+  var l_bon = $("#modalVendedor .bonificacion").val();
+  var merma = $("#modalVendedor .merma").val();
+ 
     var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma};
 
 
@@ -1561,19 +2010,32 @@ function upVendedor(){
       $('#modal').modal('show');
   }
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+  var upVendedor1='<button type="button" class="btn btn-success " id="agregarp" onclick="addVendedor()">Ingresar</button>';
+limpiar()
+$('#modalVendedor .addVendedor1').html('');
+$('#modalVendedor .addVendedor1').html(upVendedor1);
+
+}
+function upEmpleado1(idV){
+  addModalEmpleado();
+  selectAdministracion12(idV);
+
+  var upEmpleado1='<button type="button" class="btn btn-info addEmpleado1" id="agregarp" onclick="upEmpleado()">Guardar</button>'
+$('#modalAdministracion .addEmpleado1').html(upEmpleado1);
 
 }
 
 function upEmpleado(){
-  var idEmpleados = $(".idEmpleado").val();
-  var nombre_Emple = $(".nombre").val();
-  var paterno_Emple = $(".a_paterno").val();
-  var materno_Emple = $(".a_materno").val();
-  var n_seguro = $(".n_seguro").val();
-  var curp = $(".curp").val();
-  var domicilio = $(".domicilio").val();
-  var rfc = $(".rfc").val();
-  var tipo = $(".tipoempleado").val();
+$('#modalAdministracion').modal('hide');
+  var idEmpleados = $("#modalAdministracion .idEmpleado").val();
+  var nombre_Emple = $("#modalAdministracion .nombre").val();
+  var paterno_Emple = $("#modalAdministracion .a_paterno").val();
+  var materno_Emple = $("#modalAdministracion .a_materno").val();
+  var n_seguro = $("#modalAdministracion .n_seguro").val();
+  var curp = $("#modalAdministracion .curp").val();
+  var domicilio = $("#modalAdministracion .domicilio").val();
+  var rfc = $("#modalAdministracion .rfc").val();
+  var tipo = $("#modalAdministracion .tipoempleado").val();
 
     var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo};
 
@@ -1581,6 +2043,7 @@ function upEmpleado(){
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
     upRegistro(idGlobal, json, 'empleados', loadAdministracion);
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
     
   }
   else{
@@ -1589,7 +2052,11 @@ function upEmpleado(){
       $('#modal').modal('show');
   }
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
+  var upVendedor1='<button type="button" class="btn btn-success " id="agregarp" onclick="addEmpleado()">Ingresar</button>';
 
+limpiar();
+$('#modalAdministracion .addVendedor1').html('');
+$('#modalAdministracion .addVendedor1').html(upEmpleado1);
 }
 function upUsuario(){
   var nombre = $(".nombre").val();
@@ -1610,6 +2077,55 @@ limpiar();
       $('#modal').modal('show');
   }
   getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
+
+}
+function upControlVehicular1(idV){
+  modalControlVehicular();
+  selectControlVehicular(idV);
+
+  var upControlVehicular1='<button type="button" class="btn btn-info addControlVehicular1" id="agregarp" onclick="upControlVehicular()">Guardar</button>'
+$('#modalControlVehicular .addControlVehicular1').html(upControlVehicular1);
+
+}
+function upControlVehicular(){
+
+$('#modalControlVehicular').modal('hide');
+
+
+  var marca = $("#modalControlVehicular .marca").val();
+  var noserie = $("#modalControlVehicular .noserie").val();
+  var modelo = $("#modalControlVehicular .modelo").val();
+  var tipo = $("#modalControlVehicular .tipo").val();
+  var color = $("#modalControlVehicular .color").val();
+  var combustible = $("#modalControlVehicular .combustible").val();
+  var km = $("#modalControlVehicular .km").val();
+  var placa = $("#modalControlVehicular .placas").val();
+  var json = {marca: marca, noserie: noserie, modelo: modelo, tipo: tipo, color: color, combustible: combustible, km: km, placa: placa};
+ 
+
+
+ if(marca != '' && noserie != ''){
+    //$('.contCata').html('');
+  upRegistro(idGlobal, json, 'm_vehicular', loadMV);
+  getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV);
+   
+limpiar();
+$(".eliminam").html('');
+$(".guardam").html('');
+  }else{
+     $('#modal .textModal').html('Seleccione de la tabla el registro a modificar.'); 
+      $('#modal').modal('show');
+  }
+  getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV);
+  
+  var upControlVehicular1='<button type="button" class="btn btn-success " id="agregarp" onclick="addVehiculo()">Ingresar</button>';
+
+limpiar();
+$('#modalControlVehicular .addControlVehicular1').html('');
+$('#modalControlVehicular .addControlVehicular1').html(upControlVehicular1);
+
+
+
 
 }
 function upRuta(){
@@ -2174,28 +2690,183 @@ function selectInventario(id){
   }
 }
 
+function selectControlVehicular (id){
+  idGlobal = id;
+ 
+  for(var a=0; a<arrGlobalVehiculo.length; a++){
+    if(arrGlobalVehiculo[a].id == id){
+      $("#modalControlVehicular .marca").val(arrGlobalVehiculo[a].marca);
+      $("#modalControlVehicular .noserie").val(arrGlobalVehiculo[a].noserie);
+      $("#modalControlVehicular .modelo").val(arrGlobalVehiculo[a].modelo);
+      $("#modalControlVehicular .tipo").val(arrGlobalVehiculo[a].tipo);
+      $("#modalControlVehicular .color").val(arrGlobalVehiculo[a].color);
+      $("#modalControlVehicular .combustible").val(arrGlobalVehiculo[a].combustible);
+      $("#modalControlVehicular .km").val(arrGlobalVehiculo[a].km);
+      $("#modalControlVehicular .placas").val(arrGlobalVehiculo[a].placa);
+  }
+  }
+}
+
 function selectVendedores(id){
   idGlobal = id;
   for(var a=0; a<arrGlobal.length; a++){
     if(arrGlobal[a].id == id){
-       $(".idVendedor").val(arrGlobal[a].idEmpleados);
-       $(".nombre").val(arrGlobal[a].nombre_Emple);
-       $(".a_paterno").val(arrGlobal[a].paterno_Emple);
-       $(".a_materno").val(arrGlobal[a].materno_Emple);
-       $(".n_seguro").val(arrGlobal[a].n_seguro);
-       $(".curp").val(arrGlobal[a].curp);
-       $(".domicilio").val(arrGlobal[a].domicilio);
-       $(".rfc").val(arrGlobal[a].rfc);
+       $("#modalVendedor .idVendedor").val(arrGlobal[a].idEmpleados);
+       $("#modalVendedor .nombre").val(arrGlobal[a].nombre_Emple);
+       $("#modalVendedor .a_paterno").val(arrGlobal[a].paterno_Emple);
+       $("#modalVendedor .a_materno").val(arrGlobal[a].materno_Emple);
+       $("#modalVendedor .n_seguro").val(arrGlobal[a].n_seguro);
+       $("#modalVendedor .curp").val(arrGlobal[a].curp);
+       $("#modalVendedor .domicilio").val(arrGlobal[a].domicilio);
+       $("#modalVendedor .rfc").val(arrGlobal[a].rfc);
    
-       $(".n_licencia").val(arrGlobal[a].n_licencia);
-       $(".f_licencia").val(arrGlobal[a].f_exp);
-       $(".rutavende").val(arrGlobal[a].ruta);
-       $(".tipoventa").val(arrGlobal[a].t_venta);
-       $(".credito").val(arrGlobal[a].l_credito);
-       $(".bonificacion").val(arrGlobal[a].l_bon);
-       $(".merma").val(arrGlobal[a].merma);
+       $("#modalVendedor .n_licencia").val(arrGlobal[a].n_licencia);
+       $("#modalVendedor .f_licencia").val(arrGlobal[a].f_exp);
+       $("#modalVendedor .rutavende").val(arrGlobal[a].ruta);
+       $("#modalVendedor .tipoventa").val(arrGlobal[a].t_venta);
+       $("#modalVendedor .credito").val(arrGlobal[a].l_credito);
+       $("#modalVendedor .bonificacion").val(arrGlobal[a].l_bon);
+       $("#modalVendedor .merma").val(arrGlobal[a].merma);
     }
   }
+}
+function selectVendedores2(id){
+  idGlobal = id;
+  var textmodal;
+  for(var a=0; a<arrGlobal.length; a++){
+    if(arrGlobal[a].id == id){
+      textmodal='<div class="row ">';
+      textmodal+='<div class="col-md-2 form-group ">';
+      textmodal+='<label class="" ><strong>ID:</strong>  '+arrGlobal[a].idEmpleados+'</label></div>';
+      textmodal+='<div class="col-md-10 form-group">';
+      textmodal+='<label class=""><strong>Nombre: </strong> '+arrGlobal[a].nombre_Emple+' '+arrGlobal[a].paterno_Emple+' '+arrGlobal[a].materno_Emple+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>N. Seguro Social:</strong>  '+arrGlobal[a].n_seguro+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>Curp:</strong>  '+arrGlobal[a].curp+'</label></div>';
+      textmodal+='<div class="col-md-12 form-group">';
+      textmodal+='<label class=""><strong>Domicilio:</strong>  '+arrGlobal[a].domicilio+'</label></div>';
+      textmodal+='<div class=" col-md-6 form-group">';
+      textmodal+='<label class=""><strong>RFC: </strong>  '+arrGlobal[a].rfc+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>Tipo de contrato: </strong>----</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>Inicio del contrato</strong>: ----</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>Fin del contrato: </strong>---</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>Tipo de Empleado: </strong>Vendedor</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>N. Licencia:</strong> '+arrGlobal[a].n_licencia+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>Fecha de Expiración:</strong>  '+arrGlobal[a].n_licencia+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group ">';
+      textmodal+='<label class=""><strong>Ruta: </strong>'+arrGlobal[a].ruta+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group tipovende">';
+      textmodal+='<label class=""><strong>Tipo de Venta:</strong>  '+t_ventas[arrGlobal[a].t_venta-1]+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Limite de crédito:  </strong>'+arrGlobal[a].l_credito+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Limite de bonificación:  </strong>'+arrGlobal[a].l_bon+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Limite de Merma:</strong>  '+arrGlobal[a].merma+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Teléfono Personal:  </strong>-----</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Teléfono Local:</strong>  ----</label></div></div>';
+ }
+
+  $('#modal .modalTitulo').html('<h2>INFORMACIÓN </h2>'); 
+  $('#modal .textModal').html(textmodal); 
+  }
+  $('#modal ').modal('show');
+
+}
+function selectAdministracion2(id){
+  idGlobal = id;
+  var textmodal;
+  for(var a=0; a<arrGlobal.length; a++){
+    if(arrGlobal[a].id == id){
+      textmodal='<div class="row ">';
+      textmodal+='<div class="col-md-2 form-group ">';
+      textmodal+='<label class="" ><strong>ID:</strong>  '+arrGlobal[a].idEmpleados+'</label></div>';
+      textmodal+='<div class="col-md-10 form-group">';
+      textmodal+='<label class=""><strong>Nombre: </strong> '+arrGlobal[a].nombre_Emple+' '+arrGlobal[a].paterno_Emple+' '+arrGlobal[a].materno_Emple+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>N. Seguro Social:</strong>  '+arrGlobal[a].n_seguro+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>Curp:</strong>  '+arrGlobal[a].curp+'</label></div>';
+      textmodal+='<div class="col-md-12 form-group">';
+      textmodal+='<label class=""><strong>Domicilio:</strong>  '+arrGlobal[a].domicilio+'</label></div>';
+      textmodal+='<div class=" col-md-6 form-group">';
+      textmodal+='<label class=""><strong>RFC: </strong>  '+arrGlobal[a].rfc+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>Tipo de contrato: </strong>----</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>Inicio del contrato</strong>: ----</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>Fin del contrato: </strong>---</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>Tipo de Empleado: </strong>Vendedor</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Tipo de Empleado:</strong> '+arrGlobal[a].tipo+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Teléfono Personal:  </strong>-----</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Teléfono Local:</strong>  ----</label></div></div>';
+ }
+
+  $('#modal .modalTitulo').html('<h2>INFORMACIÓN</h2>'); 
+  $('#modal .textModal').html(textmodal); 
+  }
+  $('#modal ').modal('show');
+
+}
+function selectControlVehicular2(id){
+  idGlobal = id;
+  var textmodal;
+  for(var a=0; a<arrGlobalVehiculo.length; a++){
+    if(arrGlobalVehiculo[a].id == id){
+      textmodal='<div class="row ">';
+      textmodal+='<div class="col-md-6 form-group ">';
+      textmodal+='<label class="" ><strong>NUMERO:</strong>  '+arrGlobalVehiculo[a].numero+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>Marca: </strong> '+arrGlobalVehiculo[a].marca+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>NO. SERIE</strong>  '+arrGlobalVehiculo[a].noserie+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>MODELO:</strong>  '+arrGlobalVehiculo[a].modelo+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>TIPO:</strong>  '+arrGlobalVehiculo[a].tipo+'</label></div>';
+      textmodal+='<div class=" col-md-6 form-group">';
+      textmodal+='<label class=""><strong>COLOR: </strong>  '+arrGlobalVehiculo[a].color+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>COMBUSTIBLE: </strong>'+arrGlobalVehiculo[a].combustible+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>KILOMETRAJE INICIAL:</strong>'+arrGlobalVehiculo[a].km+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group exp">';
+      textmodal+='<label class=""><strong>PLACAS: </strong>'+arrGlobalVehiculo[a].placa+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>ASEGURADORA: </strong>-------</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>POLIZA:</strong>-------</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>INICIO DE POLIZA:  </strong>-----</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>FIN DE POLIZA:</strong>  ----</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>ENDOSO:</strong>  ----</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>INCISO:</strong>  ----</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>TELEFONO:</strong>  ----</label></div> </div>';
+ }
+
+  $('#modal .modalTitulo').html('<h2>INFORMACIÓN</h2>'); 
+  $('#modal .textModal').html(textmodal); 
+  }
+  $('#modal ').modal('show');
+
 }
 function selectEV(id){
 
@@ -2233,20 +2904,20 @@ $("#modalEfectivo .selectCash").html(rutav);
   }
 }
 }
-function selectAdministracion(id){
+function selectAdministracion12(id){
   idGlobal = id;
 
   for(var a=0; a<arrGlobal.length; a++){
     if(arrGlobal[a].id == id){
-       $(".idEmpleado").val(arrGlobal[a].idEmpleados);
-       $(".nombre").val(arrGlobal[a].nombre_Emple);
-       $(".a_paterno").val(arrGlobal[a].paterno_Emple);
-       $(".a_materno").val(arrGlobal[a].materno_Emple);
-       $(".n_seguro").val(arrGlobal[a].n_seguro);
-       $(".curp").val(arrGlobal[a].curp);
-       $(".domicilio").val(arrGlobal[a].domicilio);
-       $(".rfc").val(arrGlobal[a].rfc);
-       $(".tipoempleado").val(arrGlobal[a].tipo);
+       $("#modalAdministracion .idEmpleado").val(arrGlobal[a].idEmpleados);
+       $("#modalAdministracion .nombre").val(arrGlobal[a].nombre_Emple);
+       $("#modalAdministracion .a_paterno").val(arrGlobal[a].paterno_Emple);
+       $("#modalAdministracion .a_materno").val(arrGlobal[a].materno_Emple);
+       $("#modalAdministracion .n_seguro").val(arrGlobal[a].n_seguro);
+       $("#modalAdministracion .curp").val(arrGlobal[a].curp);
+       $("#modalAdministracion .domicilio").val(arrGlobal[a].domicilio);
+       $("#modalAdministracion .rfc").val(arrGlobal[a].rfc);
+       $("#modalAdministracion .tipoempleado").val(arrGlobal[a].tipo);
      
     }
   }
@@ -2493,7 +3164,7 @@ function click_empleados(){
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/mEmpleados.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> EMPLEADOS </h3>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick=""> SIN ASIGNAR</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_vendedores()" role="tab">Ventas</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_administracion()">Administración</button></li><div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="ocultar()">Notas </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_vendedores()" role="tab">Ventas</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_administracion()">Administración</button></li><div class="imprimir"></div></ul> </div>');
  
  /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 */
@@ -2536,9 +3207,12 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 }
 
 }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados1);
+
 function click_Despacho1(){
+
       $('#modalPin').modal('show');
-       
+    
 }
 
 function click_Despacho(){
@@ -2716,6 +3390,10 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
  
 //  alert("rutas!");
 }
+function botones(){
+  var boton = '<input type="button" class="btn btn-success" value="Agregar cliente" onClick="addCliente();">';
+$('.addCliente1').html(boton);
+}
 
  function initMap() {
         var uluru = {lat: 24.033618, lng: -104.634402};
@@ -2727,12 +3405,204 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
           position: uluru,
           map: map
         });
+        map.addListener('click', function(e) {
+        placeMarkerAndPanTo(e.latLng, map);
+  });
+
+
+        // This event listener will call addMarker() when the map is clicked.
+        map.addListener('click', function(event) {
+          addMarker(event.latLng);
+        });
+
+        // Adds a marker at the center of the map.
+        addMarker(uluru)
+
+ var geocoder = new google.maps.Geocoder;
+  var infowindow = new google.maps.InfoWindow;
+
+  document.getElementById('submit').addEventListener('click', function() {
+    geocodeLatLng(geocoder, map, infowindow);
+  });
+
+
+
       }
+  function placeMarkerAndPanTo(latLng, map) {
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  map.panTo(latLng);
+
+
+   // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+
+      // Shows any markers currently in the array.
+      function showMarkers() {
+        setMapOnAll(map);
+      }
+
+      // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+      }
+}
+
+
+
+mapa = {
+ map : false, 
+ marker : false,
+
+ initMap : function() {
+ 
+ // Creamos un objeto mapa y especificamos el elemento DOM donde se va a mostrar.
+ 
+ mapa.map = new google.maps.Map(document.getElementById('map'), {
+   center: {lat: 24.033618, lng: -104.634402},
+   scrollwheel: false,
+   zoom: 14,
+   zoomControl: true,
+   rotateControl : false,
+   mapTypeControl: true,
+   streetViewControl: false,
+ });
+ 
+ // Creamos el marcador
+ mapa.marker = new google.maps.Marker({
+ position: {lat: 24.033618, lng: -104.634402},
+ draggable: true 
+ });
+ 
+ // Le asignamos el mapa a los marcadores.
+  mapa.marker.setMap(mapa.map);
+ 
+ },
+
+// función que se ejecuta al pulsar el botón buscar dirección
+getCoords : function()
+{
+  // Creamos el objeto geodecoder
+ var geocoder = new google.maps.Geocoder();
+ 
+ address = document.getElementById('search').value;
+ if(address!='')
+ {
+  // Llamamos a la función geodecode pasandole la dirección que hemos introducido en la caja de texto.
+ geocoder.geocode({ 'address': address}, function(results, status)  
+ {
+   if (status == 'OK')
+   {
+// Mostramos las coordenadas obtenidas en el p con id coordenadas
+var coordenada21 = "("+results[0].geometry.location.lat()+', '+results[0].geometry.location.lng()+")";
+alert(coordenada21+" ---- "+umarcador);
+
+addMarker(coordenada21);
+   document.getElementById("coordenadas").innerHTML='Coordenadas:   '+results[0].geometry.location.lat()+', '+results[0].geometry.location.lng();
+var marker = new google.maps.Marker({
+          position: {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()},
+          map: map
+
+        });
+// Posicionamos el marcador en las coordenadas obtenidas
+  // mapa.marker.setPosition(results[0].geometry.location);
+// Centramos el mapa en las coordenadas obtenidas
+  // mapa.map.setCenter(mapa.marker.getPosition());
+  // agendaForm.showMapaEventForm();
+   }
+  });
+ }
+ }
+}
+
+
+      // In the following example, markers appear when the user clicks on the map.
+      // The markers are stored in an array.
+      // The user can then click an option to hide, show or delete the markers.
+      var map;
+      var markers = [];
+      var umarcador;
+   
+
+      // Adds a marker to the map and push to the array.
+      function addMarker(location) {
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+        markers.push(marker);
+        umarcador=location; //ultima localicacion al clickear
+       // alert(umarcador);
+
+      }
+
+      // Sets the map on all markers in the array.
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+
+      // Shows any markers currently in the array.
+      function showMarkers() {
+        setMapOnAll(map);
+      }
+
+      // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+      }
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+
+function geocodeLatLng(geocoder, map, infowindow) {
+ // var input = document.getElementById('latlng').value;
+  //var input = umarcador;
+ // var latlngStr = input.split(',', 2);
+  var latlng = {
+     umarcador
+  };
+  alert( umarcador);
+  geocoder.geocode({
+    'location': umarcador
+  }, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+        map.setZoom(11);
+        var marker = new google.maps.Marker({
+          position: umarcador,
+          map: map
+        });
+        infowindow.setContent(results[1].place_id);
+        infowindow.open(map, marker);
+      } else {
+        window.alert('No hay resultados');
+      }
+    } else {
+      window.alert('Geocoder failed due to: ' + status);
+    }
+  });
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 function click_Mapa(){
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
- $('.seccion2').load('/html/mapa.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> MAPA </h3>');
+ $('.seccion2').load('/html/clientes.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3>');
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
  
  //7 alert("mapa!");
@@ -2743,11 +3613,20 @@ $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/mVehiculat.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> VEHICULOS  </h3>');
-  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">Vehiculos</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">Control Vehicular</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="">Mantenimiento</button></li><div class="imprimir"></div></ul> </div>');
+$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_mvehicular()">Notificaciones</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_CVehicular()" role="tab">Control Vehicular</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="">Mantenimiento</button></li><div class="imprimir"></div></ul> </div>');
+
+}
+function click_CVehicular(){
+$('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú </h3>');
+ $('.seccion2').load('/html/controlVehicular.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> CONTROL VEHICULAR  </h3>');
+ 
  
 getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV);
 
 }
+
 
 function click_logistica(){
 $('.btn-nav').removeClass('hidden');
@@ -2790,8 +3669,10 @@ function click_vendedores(){
 
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menu </h3>');
- $('#contenido').load('/html/vendedores.html');
+
+ $('.seccion2').load('/html/vendedores.html');
  $('.tituloPantalla').html('<h3 class="vendedor"> VENDEDORES  </h3>');
+// $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="ocultar()">Notas </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_vendedores()" role="tab">Ventas</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_administracion()">Administración</button></li><div class="imprimir"></div></ul> </div>');
 
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
 
@@ -2800,19 +3681,31 @@ function click_administracion(){
 
 
 
- $('#contenido').load('/html/administracion.html');
+ $('.seccion3').load('/html/administracion.html');
 
  $('.tituloPantalla').html('<h3 class="administracion">  ADMINISTRACIÓN   </h3>');
 
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
 
 }
+function modalDespachador(){
 
+      $('#modalDesp').modal('show');
+      var selectdes= '<select name="select" class="selectDespachador col-md-8 form-control"><option value="0"></option>'
+for(var h=0;h<arrGlobal2.length; h++)
+    if(arrGlobal2[h].tipo!=2){
+selectdes+= ' <option value="'+h+'">' +arrGlobal2[h].nombre_Emple + ' ' + arrGlobal2[h].paterno_Emple + ' ' + arrGlobal2[h].materno_Emple +'</option>';
+    }
+selectdes +='</select>';
+$('#modalDesp .despachador').html(selectdes);
+   
+
+
+}
 function click_Salida(id , h, ruta, tipo, credito, bonificaciones){
+modalDespachador();
   
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> Menú  </h3>');
- $('.seccion2').load('/html/venta.html');
+
  nombre_vend = arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
  id_vend=id;
  n_vend=h;
@@ -2821,19 +3714,50 @@ function click_Salida(id , h, ruta, tipo, credito, bonificaciones){
  cred=credito;
  boni=bonificaciones;
 
- $('.tituloPantalla').html('<h3 class="vendedor impre"> VENTA </h3> <p>( '+today_v+' ) - Nombre: '+arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple+'. Ruta: ' +t_rutas[ruta-1]+'. Tipo: '+t_ventas[tipo-1]+ '. Credito: ' +credito+'. Bonificacion: '+bonificaciones+'. </p>');
+
+}
+function closeModalDesp(){
+$('#modalDesp').modal('hide');
+}
+
+function click_Salida2(){
+ var despachadorV = $('#modalDesp .selectDespachador ').val();
+   despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
+if(despachadorV==0){
+click_Despacho();
+$('#modalDesp').modal('hide');
+
+}else{
+$('#modalDesp').modal('hide');
+   $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú  </h3>');
+ $('.seccion2').load('/html/venta.html');
+
+   $('.tituloPantalla').html('<h3 class="vendedor impre"> VENTA </h3> <p>( '+today_v+' ) - Nombre: '+nombre_vend+'. Ruta: ' +t_rutas[rutas-1]+'. Tipo: '+t_ventas[t_vende-1]+ '. Credito: ' +cred+'. Bonificacion: '+boni+'. </p>');
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
 
 }
 
+}
+function modalDespachador2(){
+
+      $('#modalDesp2').modal('show');
+      var selectdes= '<select name="select" class="selectDespachador col-md-8 form-control"><option value="0"></option>'
+for(var h=0;h<arrGlobal2.length; h++)
+    if(arrGlobal2[h].tipo!=2){
+selectdes+= ' <option value="'+h+'">' +arrGlobal2[h].nombre_Emple + ' ' + arrGlobal2[h].paterno_Emple + ' ' + arrGlobal2[h].materno_Emple +'</option>';
+    }
+selectdes +='</select>';
+$('#modalDesp2 .despachador').html(selectdes);
+   
+
+
+}
+
 function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc){
-  var vDiaria ='<li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA </button></li>';
-  
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> Menú  </h3>');
- $('.seccion3').load('/html/recep.html');
+modalDespachador2()
  nombre_vend = arrGlobal4[h].nombre;
  id_vend=id;
  n_vend=h;
@@ -2845,7 +3769,29 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
  dscv=dsc;
  scv=sc;
 
- $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - Nombre: '+nombre_vend+'. Ruta: ' +t_rutas[ruta-1]+'. Tipo: '+t_ventas[tipo-1]+ '. Credito: ' +credito+'. Bonificacion: '+bonificaciones+'. </p>');
+
+}
+function closeModalDesp2(){
+$('#modalDesp2').modal('hide');
+}
+function click_Rec2(){
+ var despachadorV = $('#modalDesp2 .selectDespachador ').val();
+   despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
+if(despachadorV==0){
+click_Recepcion();
+$('#modalDesp2').modal('hide');
+
+}else{
+$('#modalDesp2').modal('hide');
+
+
+
+    var vDiaria ='<li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA </button></li>';
+  
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú  </h3>');
+ $('.seccion3').load('/html/recep.html');
+ $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - Nombre: '+nombre_vend+'. Ruta: ' +t_rutas[rutas-1]+'. Tipo: '+t_ventas[t_vende-1]+ '. Credito: ' +cred+'. Bonificacion: '+boni+'. </p>');
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
@@ -2854,7 +3800,7 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 $('.ventaDiaria').html(vDiaria);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiaria);
-
+}
 }
 
 function click_V(id , h, ruta, tipo, credito, bonificacion){
@@ -3001,6 +3947,16 @@ function closeModalPin(){
       $('#modalPin').modal('hide')
 
 }
+function closeEmpleado(){
+
+      $('#modalAdministracion').modal('hide')
+
+}
+function closeVendedor(){
+
+      $('#modalVendedor').modal('hide')
+
+}
 function closeModalPin2(){
 
       $('#modalPin2').modal('hide')
@@ -3116,7 +4072,7 @@ function agregarpin(){
 
   var data =  $("#modalPin .pin").val();
   for(var h=0;h<upin.length; h++){
-      if(data==upin[h].pin){
+      if(data==upin[h].pin ){
         closeModalPin();
         pin=upin[h].pin;
 
@@ -3128,7 +4084,7 @@ function agregarpin(){
 
   if(data!=0){
     closeModalPin();
-    $('#modal .textModal').html('PIN incorrecto.'); 
+    $('#modal .textModal').html('PIN incorrecto y/o seleccione al Despachador'); 
     $('#modal').modal('show');
     click_ventas();
   }

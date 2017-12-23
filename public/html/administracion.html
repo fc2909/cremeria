@@ -1,102 +1,41 @@
 <div class="col-md-12">
     
  
-    <div class="row col-md-12 fondo">
+    <div class="row col-md-12">
     
 
-        <div class="col-md-1 form-group">
-          <label class="letras" >ID</label>
-          <input type="text" class="form-control clear idEmpleado" placeholder="ID">
-        </div>
-        <div class="col-md-2 form-group">
-          <label class="letras">Nombre</label>
-          <input type="text" class="form-control clear nombre" placeholder="Nombre">
-        </div>
-        <div class="col-md-2 form-group">
-          <label class="letras">Apellido Paterno</label>
-          <input type="text" class="form-control clear a_paterno" placeholder="Apellido Paterno">
-        </div>
-        <div class="col-md-2 form-group">
-          <label class="letras">Apellido Materno</label>
-          <input type="text" class="form-control clear a_materno" placeholder="Apellido Materno">
-        </div>
-        <div class="col-md-2 form-group">
-          <label class="letras">N. Seguro Social</label>
-          <input type="text" class="form-control clear n_seguro" placeholder="Seguro Social">
-        </div>
-        <div class="col-md-3 form-group">
-          <label class="letras">Curp</label>
-          <input type="text" class="form-control clear curp" placeholder="Curp">
-        </div>
-        <div class="col-md-4 form-group">
-          <label class="letras">Domicilio</label>
-          <input type="text" class="form-control clear domicilio" placeholder="Domicilio">
-        </div>
-        <div class=" col-md-2 form-group">
-             <label class="letras">RFC</label>
-             <input type="text" class="form-control clear rfc" placeholder="RFC">
-          </div>
-
-        <div class="col-md-2 form-group">
-          <label class="letras">Tipo de Empleado</label>
-          <select class="form-control clear tipoempleado" onchange="tipoempleado(value)">
-            <option value="1">Ayudante General</option>
-           
-            <option value="3">Gerente de Ventas</option>
-            <option value="4">Gerente de Operaciones</option>
-            <option value="5">Supervisor</option>
-            <option value="6">Administrador</option>
-            <option value="7">Consejo</option>
-            </select>
-        </div>
-
-      <div class="col-md-4">
-        </div>
-            
-
 <div class="col-xs-3 col-md-3">
-      <button type="button" class="btn botonempl insertar" onclick="addEmpleado()">Insertar</button>
+      <button type="button" class="btn btn-primary " onclick="addModalEmpleado()">Agregar nuevo personal</button>
   </div>
-  
-   <div class="col-xs-3 col-md-3">
-    <button type="button" class="btn botonempl modificar" onclick="upEmpleado()">Modificar</button>
-  </div>
-   <div class="col-xs-3 col-md-3">
-    <button type="button" class="btn botonempl limpiar" onclick="limpiar()">Limpiar</button>
-  </div>
-   <div class="col-xs-3 col-md-3">
-    <button type="button" class="btn botonempl eliminar" onclick="delEmpleado()">Eliminar</button>
-  </div>
-  <br><br>
+
 </div>
 
 
   <br>
 
 
- <div class="row col-md-12 fondo">
+ <div class="row  ">
 
 
-  <div class="table-responsive tabla">
-  <table class="table table-striped">
+ <div class="row impre  table-responsive tabla text-center">
+  <table class="table col-md-12 table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
       <tr class="letras">
-         <th class="letras">ID</th>
+         
         <th class="letras">Nombre</th>
-        <th class="letras">Apellido Paterno</th>
-        <th class="letras">Apellido Materno</th>
-        <th class="letras">S. Social</th>
-        <th class="letras">Curp</th>
-        <th class="letras">Domicilio</th>
-        <th class="letras">RFC</th>
         <th class="letras">Tipo de Empleado</th>
+        <th class="letras">Domicilio</th>
+        <th class="letras">N. seguro</th>
+        <th class="letras">Telefono</th>
+        <th class="letras"></th>
+        
         
         
         
       
       </tr>
     </thead>
-    <tbody class="contCata tinventarios" >
+    <tbody class="contCata ventascss" >
      
     </tbody>
   </table>

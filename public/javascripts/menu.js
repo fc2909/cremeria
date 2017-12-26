@@ -12,6 +12,14 @@ var arrGlobal, arrGlobalVF, arrGlobalRuta , fechacaptura, arrGlobalE, t_merc , v
 var user;
 var tipoUsuario = ['Director','Administrador','Contador','Despachador','Vendedor']
 var medidas = ['Kg.','Pzas.','L'];
+var combustibles = ['Gasolina - MAGNA','Gasolina - PREMIUM','Gasolina & Gas','Gas','Diesel'];
+
+
+     
+     
+
+
+
 var t_rutas = ['C1','C2','C3','C4','C5','C6','C7','C8'];
 var t_ventas = ['Detalle','Mayoreo','Detalle Foraneo','Restaurantes'];
 var t_Empleado = ['Ayudante General','Vendedor','Gerente de Ventas','Gerente de Operaciones','Supervisor','Administrador','Consejo'];
@@ -460,7 +468,7 @@ usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";
   document.getElementById('oculto6').style.display = 'block';
   document.getElementById('oculto7').style.display = 'block';
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
-var nombreVendedor = "RUTA _<u>"+rutas+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_";
+var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_";
 var despachadorV = "DESPACHADOR: "+despachador+"";
 var controlC = "CONTROL DE VENTAS Y COBRANZA";
   var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaDespachoD+' </u>_ LA CANTIDAD DE _<u> $ '+total_merc+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
@@ -651,13 +659,22 @@ function loadInventarios(lista){
 function loadInventarioVenta(lista){
   arrGlobal = lista;
 }
-
+var ruta3;
 function loadVendedores(lista){
   var html = '';
   
+
+
+
+
   for(var h=0;h<lista.length; h++)
     if(lista[h].tipo==2){
-html+= '<tr class="seleccionar"  data-id="'+ lista[h].id +'"><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + t_rutas[lista[h].ruta - 1] + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + t_ventas[lista[h].t_venta - 1] + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_credito + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_bon + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].merma +'</td><td onclick="selectVendedores2('+ lista[h].id +')">55-555-555</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upVendedor1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delVendedor('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
+        for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].id==lista[h].ruta){
+ruta3=arrGlobalRuta[i].nombre;
+}
+}
+html+= '<tr class="seleccionar"  data-id="'+ lista[h].id +'"><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectVendedores2('+  lista[h].id +')">' +ruta3  + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + t_ventas[lista[h].t_venta - 1] + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_credito + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_bon + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].merma +'</td><td onclick="selectVendedores2('+ lista[h].id +')">'+lista[h].telp+'</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upVendedor1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delVendedor('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
     }
      $('.contCata').html(html);
   arrGlobal = lista;
@@ -669,7 +686,7 @@ function loadAdministracion(lista){
   
   for(var h=0;h<lista.length; h++)
     if(lista[h].tipo != 2){
-html+= '<tr class=" letras"  data-id="'+ lista[h].id +'"><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' +  t_Empleado[lista[h].tipo-1]  + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].domicilio+ '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].n_seguro + ' </td><td onclick="selectAdministracion2('+ lista[h].id +')">55-555-555</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upEmpleado1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delEmpleado('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
+html+= '<tr class=" letras"  data-id="'+ lista[h].id +'"><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' +  t_Empleado[lista[h].tipo-1]  + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].domicilio+ '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].n_seguro + ' </td><td onclick="selectAdministracion2('+ lista[h].id +')">'+lista[h].telp+'</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upEmpleado1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delEmpleado('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
 
     }
      $('.contCata').html(html);
@@ -1302,6 +1319,11 @@ function  loadRutas(lista){
      $('.contCata').html(html);
      arrGlobalRuta=lista;
 }
+function  loadRutas1(lista){
+ 
+     arrGlobalRuta=lista;
+}
+
 
 function  loadMV(lista){
   var html = '';
@@ -1333,8 +1355,16 @@ function loadDays(lista){
 
   for(var h=0;h<lista.length; h++)
     if(lista[h].tipo==2){
+
+for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].id==lista[h].ruta){
+ruta3=arrGlobalRuta[i].nombre;
+}
+}
+
+
  
-html+= '<tr class="seleccionar text-center" onclick="click_Salida('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].t_venta+', '+lista[h].l_credito + ', ' + lista[h].l_bon +')" data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta - 1]  + '</td><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + t_ventas[lista[h].t_venta - 1] + '</td><td>' + lista[h].l_credito + '</td><td>' + lista[h].l_bon + '</td></tr>';
+html+= '<tr class="seleccionar text-center" onclick="click_Salida('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].t_venta+', '+lista[h].l_credito + ', ' + lista[h].l_bon +')" data-id="'+ lista[h].id +'"><td>' + ruta3  + '</td><td>' + lista[h].nombre_Emple + '</td><td>' + lista[h].paterno_Emple + '</td><td>' + lista[h].materno_Emple + '</td><td>' + t_ventas[lista[h].t_venta - 1] + '</td><td>' + lista[h].l_credito + '</td><td>' + lista[h].l_bon + '</td></tr>';
     }
      $('.contCata').html(html);
    
@@ -1432,8 +1462,21 @@ function addInventario(){
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
 }
+
 function addVendedormodal(){
+var rutas2 = '<select class="form-control clear rutavende" id:"rutavende" name="rutavende">';
+
 $('#modalVendedor').modal('show');
+for (var i=0; i < arrGlobalRuta.length; i++) {
+
+rutas2+='<option value="'+arrGlobalRuta[i].id+'">'+arrGlobalRuta[i].nombre+'</option>';  
+}
+
+rutas2+='</select>';  
+
+
+$('#modalVendedor .noruta').html(rutas2);
+
 }
 function addVendedor(){
   var idEmpleados = $(" #modalVendedor .idVendedor").val();
@@ -1447,11 +1490,20 @@ function addVendedor(){
   var tipo = 2;
   var n_licencia = $("#modalVendedor .n_licencia").val();
   var f_exp = $("#modalVendedor .f_licencia").val();
+  
+ // var ruta = document.getElementById('#modalVendedor rutavende');
+  //alert(ruta);
   var ruta = $("#modalVendedor .rutavende").val();
   var t_venta = $("#modalVendedor .tipoventa").val();
   var l_credito = $("#modalVendedor .credito").val();
   var l_bon = $("#modalVendedor .bonificacion").val();
   var merma = $("#modalVendedor .merma").val();
+  var tipocontrato = $("#modalVendedor .tipocontrato").val();
+  var iniciocontrato = $("#modalVendedor .iniciocontrato").val();
+  var fincontrato = $("#modalVendedor .fincontrato").val();
+  var telp = $("#modalVendedor .telp").val();
+  var tell = $("#modalVendedor .tell").val();
+  var fnacimiento = $("#modalVendedor .fnacimiento").val();
  
 $('#modalVendedor').modal('hide');
 
@@ -1459,7 +1511,7 @@ $('#modalVendedor').modal('hide');
    
   if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma};
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
     addRegistro(json, 'empleados', loadVendedores);
   }
   else{
@@ -1488,7 +1540,15 @@ $('#modalControlVehicular').modal('hide');
   var combustible = $("#modalControlVehicular .combustible").val();
   var km = $("#modalControlVehicular .km").val();
   var placa = $("#modalControlVehicular .placas").val();
-    var json = {marca: marca, noserie: noserie, modelo: modelo, tipo: tipo, color: color, combustible: combustible, km: km, placa: placa};
+  var numero = $("#modalControlVehicular .numero").val();
+  var aseguradora = $("#modalControlVehicular .aseguradora").val();
+  var poliza = $("#modalControlVehicular .poliza").val();
+  var iniciopoliza = $("#modalControlVehicular .iniciopoliza").val();
+  var finpoliza = $("#modalControlVehicular .finpoliza").val();
+  var endoso = $("#modalControlVehicular .endoso").val();
+  var inciso = $("#modalControlVehicular .inciso").val();
+  var tel = $("#modalControlVehicular .tel").val();
+    var json = {marca: marca, noserie: noserie, modelo: modelo, tipo: tipo, color: color, combustible: combustible, km: km, placa: placa, aseguradora: aseguradora, numero: numero, poliza: poliza, iniciopoliza: iniciopoliza, finpoliza: finpoliza, endoso: endoso, inciso: inciso, tel: tel};
  
   if(marca != "" && noserie != "" && modelo != "" && tipo != "" && color != "" && combustible != "" && km != "" && placa != ""){
 
@@ -1524,10 +1584,16 @@ function addEmpleado(){
   var f_exp = $("#modalAdministracion .f_licencia").val();
   var ruta = $("#modalAdministracion .rutavende").val();
   var t_venta = $("#modalAdministracion .tipoventa").val();
+  var tipocontrato = $("#modalAdministracion .tipocontrato").val();
+  var iniciocontrato = $("#modalAdministracion .iniciocontrato").val();
+  var fincontrato = $("#modalAdministracion .fincontrato").val();
+  var telp = $("#modalAdministracion .telp").val();
+  var tell = $("#modalAdministracion .tell").val();
+  var fnacimiento = $("#modalAdministracion .fnacimiento").val();
    
   if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta};
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
     addRegistro(json, 'empleados', loadAdministracion);
   }
   else{
@@ -1995,8 +2061,15 @@ $('#modalVendedor').modal('hide');
   var l_credito = $("#modalVendedor .credito").val();
   var l_bon = $("#modalVendedor .bonificacion").val();
   var merma = $("#modalVendedor .merma").val();
+  var tipocontrato = $("#modalVendedor .tipocontrato").val();
+  var iniciocontrato = $("#modalVendedor .iniciocontrato").val();
+  var fincontrato = $("#modalVendedor .fincontrato").val();
+  var telp = $("#modalVendedor .telp").val();
+  var tell = $("#modalVendedor .tell").val();
+  var fnacimiento = $("#modalVendedor .fnacimiento").val();
  
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma};
+ 
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
 
 
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
@@ -2036,8 +2109,15 @@ $('#modalAdministracion').modal('hide');
   var domicilio = $("#modalAdministracion .domicilio").val();
   var rfc = $("#modalAdministracion .rfc").val();
   var tipo = $("#modalAdministracion .tipoempleado").val();
+  var tipocontrato = $("#modalAdministracion .tipocontrato").val();
+  var iniciocontrato = $("#modalAdministracion .iniciocontrato").val();
+  var fincontrato = $("#modalAdministracion .fincontrato").val();
+  var telp = $("#modalAdministracion .telp").val();
+  var tell = $("#modalAdministracion .tell").val();
+  var fnacimiento = $("#modalAdministracion .fnacimiento").val();
+ 
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo};
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
 
 
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
@@ -2052,11 +2132,11 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
       $('#modal').modal('show');
   }
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
-  var upVendedor1='<button type="button" class="btn btn-success " id="agregarp" onclick="addEmpleado()">Ingresar</button>';
+  var upEmpleado1='<button type="button" class="btn btn-success " id="agregarp" onclick="addEmpleado()">Ingresar</button>';
 
 limpiar();
-$('#modalAdministracion .addVendedor1').html('');
-$('#modalAdministracion .addVendedor1').html(upEmpleado1);
+$('#modalAdministracion .addEmpleado1').html('');
+$('#modalAdministracion .addEmpleado1').html(upEmpleado1);
 }
 function upUsuario(){
   var nombre = $(".nombre").val();
@@ -2100,7 +2180,16 @@ $('#modalControlVehicular').modal('hide');
   var combustible = $("#modalControlVehicular .combustible").val();
   var km = $("#modalControlVehicular .km").val();
   var placa = $("#modalControlVehicular .placas").val();
-  var json = {marca: marca, noserie: noserie, modelo: modelo, tipo: tipo, color: color, combustible: combustible, km: km, placa: placa};
+  var numero = $("#modalControlVehicular .numero").val();
+  var aseguradora = $("#modalControlVehicular .aseguradora").val();
+  var poliza = $("#modalControlVehicular .poliza").val();
+  var iniciopoliza = $("#modalControlVehicular .iniciopoliza").val();
+  var finpoliza = $("#modalControlVehicular .finpoliza").val();
+  var endoso = $("#modalControlVehicular .endoso").val();
+  var inciso = $("#modalControlVehicular .inciso").val();
+  var tel = $("#modalControlVehicular .tel").val();
+    var json = {marca: marca, noserie: noserie, modelo: modelo, tipo: tipo, color: color, combustible: combustible, km: km, placa: placa, aseguradora: aseguradora, numero: numero, poliza: poliza, iniciopoliza: iniciopoliza, finpoliza: finpoliza, endoso: endoso, inciso: inciso, tel: tel};
+ 
  
 
 
@@ -2703,6 +2792,14 @@ function selectControlVehicular (id){
       $("#modalControlVehicular .combustible").val(arrGlobalVehiculo[a].combustible);
       $("#modalControlVehicular .km").val(arrGlobalVehiculo[a].km);
       $("#modalControlVehicular .placas").val(arrGlobalVehiculo[a].placa);
+      $("#modalControlVehicular .aseguradora").val(arrGlobalVehiculo[a].aseguradora);
+      $("#modalControlVehicular .numero").val(arrGlobalVehiculo[a].numero);
+      $("#modalControlVehicular .inciso").val(arrGlobalVehiculo[a].inciso);
+      $("#modalControlVehicular .endoso").val(arrGlobalVehiculo[a].endoso);
+      $("#modalControlVehicular .tel").val(arrGlobalVehiculo[a].tel);
+      $("#modalControlVehicular .iniciopoliza").val(arrGlobalVehiculo[a].iniciopoliza);
+      $("#modalControlVehicular .finpoliza").val(arrGlobalVehiculo[a].finpoliza);
+      $("#modalControlVehicular .poliza").val(arrGlobalVehiculo[a].poliza);
   }
   }
 }
@@ -2727,6 +2824,12 @@ function selectVendedores(id){
        $("#modalVendedor .credito").val(arrGlobal[a].l_credito);
        $("#modalVendedor .bonificacion").val(arrGlobal[a].l_bon);
        $("#modalVendedor .merma").val(arrGlobal[a].merma);
+       $("#modalVendedor .tipocontrato").val(arrGlobal[a].tipocontrato);
+       $("#modalVendedor .iniciocontrato").val(arrGlobal[a].iniciocontrato);
+       $("#modalVendedor .fincontrato").val(arrGlobal[a].fincontrato);
+       $("#modalVendedor .telp").val(arrGlobal[a].telp);
+       $("#modalVendedor .tell").val(arrGlobal[a].tell);
+       $("#modalVendedor .fnacimiento").val(arrGlobal[a].fnacimiento);
     }
   }
 }
@@ -2737,43 +2840,45 @@ function selectVendedores2(id){
     if(arrGlobal[a].id == id){
       textmodal='<div class="row ">';
       textmodal+='<div class="col-md-2 form-group ">';
-      textmodal+='<label class="" ><strong>ID:</strong>  '+arrGlobal[a].idEmpleados+'</label></div>';
+      textmodal+='<label class="" ><strong>ID: </strong>  '+arrGlobal[a].idEmpleados+'</label></div>';
       textmodal+='<div class="col-md-10 form-group">';
       textmodal+='<label class=""><strong>Nombre: </strong> '+arrGlobal[a].nombre_Emple+' '+arrGlobal[a].paterno_Emple+' '+arrGlobal[a].materno_Emple+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group">';
+      textmodal+='<label class=""><strong>Fecha de Nacimiento:  </strong>  '+arrGlobal[a].fnacimiento+'</label></div>'; 
       textmodal+='<div class="col-md-6 form-group">';
       textmodal+='<label class=""><strong>N. Seguro Social:</strong>  '+arrGlobal[a].n_seguro+'</label></div>';
       textmodal+='<div class="col-md-6 form-group">';
       textmodal+='<label class=""><strong>Curp:</strong>  '+arrGlobal[a].curp+'</label></div>';
       textmodal+='<div class="col-md-12 form-group">';
-      textmodal+='<label class=""><strong>Domicilio:</strong>  '+arrGlobal[a].domicilio+'</label></div>';
+      textmodal+='<label class=""><strong>Domicilio: </strong>  '+arrGlobal[a].domicilio+'</label></div>';
       textmodal+='<div class=" col-md-6 form-group">';
       textmodal+='<label class=""><strong>RFC: </strong>  '+arrGlobal[a].rfc+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
-      textmodal+='<label class=""><strong>Tipo de contrato: </strong>----</label></div>';
+      textmodal+='<label class=""><strong>Tipo de contrato: </strong>'+arrGlobal[a].tipocontrato+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
-      textmodal+='<label class=""><strong>Inicio del contrato</strong>: ----</label></div>';
+      textmodal+='<label class=""><strong>Inicio del contrato:  </strong> '+arrGlobal[a].iniciocontrato+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
-      textmodal+='<label class=""><strong>Fin del contrato: </strong>---</label></div>';
+      textmodal+='<label class=""><strong>Fin del contrato: </strong>'+arrGlobal[a].fincontrato+'</label></div>';
       textmodal+='<div class="col-md-6 form-group">';
       textmodal+='<label class=""><strong>Tipo de Empleado: </strong>Vendedor</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
       textmodal+='<label class=""><strong>N. Licencia:</strong> '+arrGlobal[a].n_licencia+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
-      textmodal+='<label class=""><strong>Fecha de Expiración:</strong>  '+arrGlobal[a].n_licencia+'</label></div>';
+      textmodal+='<label class=""><strong>Fecha de Expiración: </strong>  '+arrGlobal[a].f_exp+'</label></div>';
       textmodal+='<div class="col-md-6 form-group ">';
-      textmodal+='<label class=""><strong>Ruta: </strong>'+arrGlobal[a].ruta+'</label></div>';
+      textmodal+='<label class=""><strong>Ruta: </strong>'+ruta3+'</label></div>';
       textmodal+='<div class="col-md-6 form-group tipovende">';
-      textmodal+='<label class=""><strong>Tipo de Venta:</strong>  '+t_ventas[arrGlobal[a].t_venta-1]+'</label></div>';
+      textmodal+='<label class=""><strong>Tipo de Venta: </strong>  '+t_ventas[arrGlobal[a].t_venta-1]+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>Limite de crédito:  </strong>'+arrGlobal[a].l_credito+'</label></div>';
+      textmodal+='<label class=""><strong>Limite de crédito:  </strong> '+arrGlobal[a].l_credito+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>Limite de bonificación:  </strong>'+arrGlobal[a].l_bon+'</label></div>';
+      textmodal+='<label class=""><strong>Limite de bonificación:  </strong> '+arrGlobal[a].l_bon+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
       textmodal+='<label class=""><strong>Limite de Merma:</strong>  '+arrGlobal[a].merma+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>Teléfono Personal:  </strong>-----</label></div>';
+      textmodal+='<label class=""><strong>Teléfono Personal:  </strong> '+arrGlobal[a].telp+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>Teléfono Local:</strong>  ----</label></div></div>';
+      textmodal+='<label class=""><strong>Teléfono Local:  </strong> '+arrGlobal[a].tell+'</label></div></div>';
  }
 
   $('#modal .modalTitulo').html('<h2>INFORMACIÓN </h2>'); 
@@ -2801,19 +2906,19 @@ function selectAdministracion2(id){
       textmodal+='<div class=" col-md-6 form-group">';
       textmodal+='<label class=""><strong>RFC: </strong>  '+arrGlobal[a].rfc+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
-      textmodal+='<label class=""><strong>Tipo de contrato: </strong>----</label></div>';
+      textmodal+='<label class=""><strong>Tipo de contrato: </strong>'+arrGlobal[a].tipocontrato+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
-      textmodal+='<label class=""><strong>Inicio del contrato</strong>: ----</label></div>';
+      textmodal+='<label class=""><strong>Inicio del contrato:  </strong>'+arrGlobal[a].iniciocontrato+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
-      textmodal+='<label class=""><strong>Fin del contrato: </strong>---</label></div>';
+      textmodal+='<label class=""><strong>Fin del contrato: </strong>'+arrGlobal[a].fincontrato+'</label></div>';
       textmodal+='<div class="col-md-6 form-group">';
-      textmodal+='<label class=""><strong>Tipo de Empleado: </strong>Vendedor</label></div>';
+      textmodal+='<label class=""><strong>Fecha de nacimiento: </strong>'+arrGlobal[a].fnacimiento+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>Tipo de Empleado:</strong> '+arrGlobal[a].tipo+'</label></div>';
+      textmodal+='<label class=""><strong>Tipo de Empleado:</strong> '+t_Empleado[arrGlobal[a].tipo-1]+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>Teléfono Personal:  </strong>-----</label></div>';
+      textmodal+='<label class=""><strong>Teléfono Personal:  </strong>'+arrGlobal[a].telp+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>Teléfono Local:</strong>  ----</label></div></div>';
+      textmodal+='<label class=""><strong>Teléfono Local: </strong>'+arrGlobal[a].tell+'</label></div></div>';
  }
 
   $('#modal .modalTitulo').html('<h2>INFORMACIÓN</h2>'); 
@@ -2831,7 +2936,7 @@ function selectControlVehicular2(id){
       textmodal+='<div class="col-md-6 form-group ">';
       textmodal+='<label class="" ><strong>NUMERO:</strong>  '+arrGlobalVehiculo[a].numero+'</label></div>';
       textmodal+='<div class="col-md-6 form-group">';
-      textmodal+='<label class=""><strong>Marca: </strong> '+arrGlobalVehiculo[a].marca+'</label></div>';
+      textmodal+='<label class=""><strong>MARCA: </strong> '+arrGlobalVehiculo[a].marca+'</label></div>';
       textmodal+='<div class="col-md-6 form-group">';
       textmodal+='<label class=""><strong>NO. SERIE</strong>  '+arrGlobalVehiculo[a].noserie+'</label></div>';
       textmodal+='<div class="col-md-6 form-group">';
@@ -2841,25 +2946,25 @@ function selectControlVehicular2(id){
       textmodal+='<div class=" col-md-6 form-group">';
       textmodal+='<label class=""><strong>COLOR: </strong>  '+arrGlobalVehiculo[a].color+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
-      textmodal+='<label class=""><strong>COMBUSTIBLE: </strong>'+arrGlobalVehiculo[a].combustible+'</label></div>';
+      textmodal+='<label class=""><strong>COMBUSTIBLE: </strong>'+combustibles[arrGlobalVehiculo[a].combustible-1]+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
       textmodal+='<label class=""><strong>KILOMETRAJE INICIAL:</strong>'+arrGlobalVehiculo[a].km+'</label></div>';
       textmodal+='<div class="col-md-6 form-group exp">';
       textmodal+='<label class=""><strong>PLACAS: </strong>'+arrGlobalVehiculo[a].placa+'</label></div>';
       textmodal+='<div class="col-md-6 form-group">';
-      textmodal+='<label class=""><strong>ASEGURADORA: </strong>-------</label></div>';
+      textmodal+='<label class=""><strong>ASEGURADORA: </strong>'+arrGlobalVehiculo[a].aseguradora+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>POLIZA:</strong>-------</label></div>';
+      textmodal+='<label class=""><strong>POLIZA:</strong>'+arrGlobalVehiculo[a].poliza+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>INICIO DE POLIZA:  </strong>-----</label></div>';
+      textmodal+='<label class=""><strong>INICIO DE POLIZA:  </strong>'+arrGlobalVehiculo[a].iniciopoliza+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>FIN DE POLIZA:</strong>  ----</label></div>';
+      textmodal+='<label class=""><strong>FIN DE POLIZA: </strong>'+arrGlobalVehiculo[a].finpoliza+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>ENDOSO:</strong>  ----</label></div>';
+      textmodal+='<label class=""><strong>ENDOSO:</strong>  '+arrGlobalVehiculo[a].endoso+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>INCISO:</strong>  ----</label></div>';
+      textmodal+='<label class=""><strong>INCISO:</strong>  '+arrGlobalVehiculo[a].inciso+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>TELEFONO:</strong>  ----</label></div> </div>';
+      textmodal+='<label class=""><strong>TELEFONO:</strong>  '+arrGlobalVehiculo[a].tel+'</label></div> </div>';
  }
 
   $('#modal .modalTitulo').html('<h2>INFORMACIÓN</h2>'); 
@@ -2918,6 +3023,12 @@ function selectAdministracion12(id){
        $("#modalAdministracion .domicilio").val(arrGlobal[a].domicilio);
        $("#modalAdministracion .rfc").val(arrGlobal[a].rfc);
        $("#modalAdministracion .tipoempleado").val(arrGlobal[a].tipo);
+       $("#modalAdministracion .tipocontrato").val(arrGlobal[a].tipocontrato);
+       $("#modalAdministracion .iniciocontrato").val(arrGlobal[a].iniciocontrato);
+       $("#modalAdministracion .fincontrato").val(arrGlobal[a].fincontrato);
+       $("#modalAdministracion .telp").val(arrGlobal[a].telp);
+       $("#modalAdministracion .tell").val(arrGlobal[a].tell);
+       $("#modalAdministracion .fnacimiento").val(arrGlobal[a].fnacimiento);
      
     }
   }
@@ -3677,6 +3788,8 @@ $('.btn-nav').removeClass('hidden');
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
 
 }
+getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas1);
+
 function click_administracion(){
 
 
@@ -3713,7 +3826,11 @@ modalDespachador();
  t_vende=tipo;
  cred=credito;
  boni=bonificaciones;
-
+for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].id==ruta){
+ruta3=arrGlobalRuta[i].nombre;
+}
+}
 
 }
 function closeModalDesp(){
@@ -3733,7 +3850,7 @@ $('#modalDesp').modal('hide');
  $('.btn-nav').html('<h3> Menú  </h3>');
  $('.seccion2').load('/html/venta.html');
 
-   $('.tituloPantalla').html('<h3 class="vendedor impre"> VENTA </h3> <p>( '+today_v+' ) - Nombre: '+nombre_vend+'. Ruta: ' +t_rutas[rutas-1]+'. Tipo: '+t_ventas[t_vende-1]+ '. Credito: ' +cred+'. Bonificacion: '+boni+'. </p>');
+   $('.tituloPantalla').html('<h3 class="vendedor impre"> VENTA </h3> <p>( '+today_v+' ) - Nombre: '+nombre_vend+'. Ruta: ' +ruta3+'. Tipo: '+t_ventas[t_vende-1]+ '. Credito: ' +cred+'. Bonificacion: '+boni+'. </p>');
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);

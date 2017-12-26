@@ -24,14 +24,20 @@ ActiveRecord::Schema.define(version: 20171216165641) do
     t.integer  "tipo"
     t.string   "n_licencia"
     t.string   "f_exp"
-    t.integer  "ruta"
+    t.string   "ruta"
     t.integer  "t_venta"
     t.integer  "l_credito"
     t.integer  "l_bon"
     t.integer  "merma"
     t.integer  "activo"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "tipocontrato"
+    t.string   "iniciocontrato"
+    t.string   "fincontrato"
+    t.string   "telp"
+    t.string   "tell"
+    t.string   "fnacimiento"
   end
 
   create_table "inventarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -95,8 +101,16 @@ ActiveRecord::Schema.define(version: 20171216165641) do
     t.string   "n2"
     t.string   "n3"
     t.integer  "activo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "numero"
+    t.string   "aseguradora"
+    t.string   "poliza"
+    t.string   "iniciopoliza"
+    t.string   "finpoliza"
+    t.string   "endoso"
+    t.string   "inciso"
+    t.string   "tel"
   end
 
   create_table "ventadiaria", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

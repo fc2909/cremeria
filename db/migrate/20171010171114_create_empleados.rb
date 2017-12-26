@@ -13,12 +13,20 @@ class CreateEmpleados < ActiveRecord::Migration[5.0]
       t.integer :tipo
       t.string :n_licencia
       t.string :f_exp
-      t.integer :ruta
+      t.string :ruta
       t.integer :t_venta
       t.integer :l_credito
       t.integer :l_bon
       t.integer :merma
       t.integer :activo
+      t.string :tipocontrato
+      t.string :iniciocontrato
+      t.string :fincontrato
+      t.string :telp
+      t.string :tell
+      t.string :fnacimiento
+
+
 
       t.timestamps
     end

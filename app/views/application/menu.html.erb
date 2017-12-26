@@ -136,6 +136,10 @@
           <input type="text" class="form-control clear a_materno" placeholder="Apellido Materno">
         </div>
         <div class="col-md-4 form-group">
+          <label class="">Fecha de nacimiento</label>
+          <input type="date" class="form-control clear fnacimiento" placeholder="">
+        </div>
+        <div class="col-md-4 form-group">
           <label class="">N. Seguro Social</label>
           <input type="text" class="form-control clear n_seguro" placeholder="Seguro Social">
         </div>
@@ -152,13 +156,13 @@
              <input type="text" class="form-control clear rfc" placeholder="RFC">
           </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Tipo de contrato</label><input type="text" class="form-control clear f_licencia" placeholder="Tipo">
+          <label class="">Tipo de contrato</label><input type="text" class="form-control clear tipocontrato" placeholder="Tipo">
         </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Inicio del contrato</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
+          <label class="">Inicio del contrato</label><input type="date" class="form-control clear iniciocontrato" placeholder="Expiración">
         </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Fin del contrato</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
+          <label class="">Fin del contrato</label><input type="date" class="form-control clear fincontrato" placeholder="Expiración">
         </div>
         <div class="col-md-4 form-group">
           <label class="">Tipo de Empleado</label>
@@ -177,7 +181,8 @@
           <label class="">Fecha de Expiración</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
         </div>
         <div class="col-md-4 form-group ">
-          <label class="">Ruta</label><select class="form-control clear rutavende" ><option value="1">C1</option><option value="2">C2</option><option value="3">C3</option><option value="4">C4</option><option value="5">C5</option><option value="6">C6</option><option value="7">C7</option><option value="8">C8</option> </select>
+          <label class="">Ruta</label>
+          <div class="noruta"></div>
         </div>
         <div class="col-md-4 form-group tipovende">
           <label class="">Tipo de Venta</label><select class="form-control clear tipoventa" ><option value="1">Detalle</option><option value="2">Mayoreo</option><option value="3">Detalle Foráneo</option><option value="4">Restaurantes</option></select>
@@ -192,10 +197,10 @@
           <label class="">Limite de Merma</label><input type="text" class="form-control clear merma" placeholder="Merma">
         </div>
          <div class="col-md-4 form-group licencia">
-          <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telefono" placeholder="TeléfonoP" >
+          <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telp" placeholder="" >
         </div>
         <div class="col-md-4 form-group licencia">
-          <label class="">Teléfono Local</label><input type="phone" class="form-control clear telefono" placeholder="TeléfonoL" >
+          <label class="">Teléfono Local</label><input type="phone" class="form-control clear tell" placeholder="" >
         </div>
 
               
@@ -249,6 +254,10 @@
           <input type="text" class="form-control clear a_materno" placeholder="Apellido Materno">
         </div>
         <div class="col-md-4 form-group">
+          <label class="">Fecha de nacimiento</label>
+          <input type="date" class="form-control clear fnacimiento" placeholder="">
+        </div>
+        <div class="col-md-4 form-group">
           <label class="">N. Seguro Social</label>
           <input type="text" class="form-control clear n_seguro" placeholder="Seguro Social">
         </div>
@@ -264,7 +273,15 @@
              <label class="">RFC</label>
              <input type="text" class="form-control clear rfc" placeholder="RFC">
           </div>
-
+       <div class="col-md-4 form-group exp">
+          <label class="">Tipo de contrato</label><input type="text" class="form-control clear tipocontrato" placeholder="Tipo">
+        </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">Inicio del contrato</label><input type="date" class="form-control clear iniciocontrato" placeholder="Expiración">
+        </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">Fin del contrato</label><input type="date" class="form-control clear fincontrato" placeholder="Expiración">
+        </div>
         <div class="col-md-4 form-group">
           <label class="">Tipo de Empleado</label>
           <select class="form-control clear tipoempleado" onchange="">
@@ -279,20 +296,12 @@
         </div>
 
        <div class="col-md-4 form-group licencia">
-          <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telefono" placeholder="TeléfonoP" >
+          <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telp" placeholder="" >
         </div>
         <div class="col-md-4 form-group licencia">
-          <label class="">Teléfono Local</label><input type="phone" class="form-control clear telefono" placeholder="TeléfonoL" >
+          <label class="">Teléfono Local</label><input type="phone" class="form-control clear tell" placeholder="" >
         </div>
-        <div class="col-md-4 form-group exp">
-          <label class="">Tipo de contrato</label><input type="text" class="form-control clear f_licencia" placeholder="Tipo">
-        </div>
-        <div class="col-md-4 form-group exp">
-          <label class="">Inicio del contrato</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
-        </div>
-        <div class="col-md-4 form-group exp">
-          <label class="">Fin del contrato</label><input type="date" class="form-control clear f_licencia" placeholder="Expiración">
-        </div>
+   
 
                 
               </div>
@@ -390,11 +399,11 @@
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
    <label >Inicio de poliza</label>
-    <input type="text" class="form-control  clear polizainicio" placeholder="">
+    <input type="date" class="form-control  clear iniciopoliza" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
    <label >Fin de poliza</label>
-    <input type="text" class="form-control  clear polizafin" placeholder="">
+    <input type="date" class="form-control  clear finpoliza" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
    <label >Endoso</label>

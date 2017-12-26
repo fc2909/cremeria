@@ -20,7 +20,7 @@ def index
 			Vehiculo.find(params[:id])
 		end
 		def model_params
-			params.permit(:marca, :noserie, :modelo, :tipo, :color, :combustible, :km, :placa)
+			params.permit(:marca, :noserie, :modelo, :tipo, :color, :combustible, :km, :placa, :numero, :aseguradora, :poliza, :iniciopoliza, :finpoliza, :endoso, :inciso, :tel)
 
 
 

@@ -13,6 +13,15 @@ class CreateVehiculos < ActiveRecord::Migration[5.0]
       t.string :n2
       t.string :n3
       t.integer :activo
+      t.string :numero
+      t.string :aseguradora
+      t.string :poliza
+      t.string :iniciopoliza
+      t.string :finpoliza
+      t.string :endoso
+      t.string :inciso
+      t.string :tel
+
 
       t.timestamps
     end

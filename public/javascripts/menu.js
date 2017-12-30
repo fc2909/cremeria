@@ -11,6 +11,7 @@ var arrGlobal, arrGlobalVF, arrGlobalRuta , fechacaptura, arrGlobalE, t_merc , v
  var piezasT, year2, month2, day2; 
 var user;
 var tipoUsuario = ['Director','Administrador','Contador','Despachador','Vendedor']
+var tipoMantinimiento = ['Predictivo','Preventivo','Correctivo','Otros']
 var medidas = ['Kg.','Pzas.','L'];
 var combustibles = ['Gasolina - MAGNA','Gasolina - PREMIUM','Gasolina & Gas','Gas','Diesel'];
 
@@ -643,6 +644,28 @@ function loadUsuarios(lista){
   }
   arrGlobal = lista;
 
+}
+var arrGlobalEmpleados, arrGlobalNotas;
+function loadEmpleados2(lista){
+  var html = '';
+  for(var h=0;h<lista.length; h++){
+    html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); click_notas('+ lista[h].id +', '+h+')" data-id="'+ lista[h].idUsuario +'"><td>' +  lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple +'</td></tr>';
+  $('.contCata2').html(html);
+  }
+  arrGlobalEmpleados = lista;
+
+}
+function loadNotas(lista){
+  var html = '';
+  var v= 0;
+  for(var h=0;h<lista.length; h++){ 
+    if(lista[h].idnombre==id_vend){
+       v++;
+    html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectnotas('+ lista[h].id +')" ><td>'+v+'</td><td>' +  lista[h].descripcion +'</td></tr>';
+    }
+  }
+  arrGlobalNotas = lista;
+ $('.contCata3').html(html);
 }
 function loadUsuarios2(lista){
   upin = lista;
@@ -1334,6 +1357,21 @@ function  loadMV(lista){
      $('.contCata').html(html);
      arrGlobalVehiculo = lista;
 }
+function  loadMV2(lista){
+
+     arrGlobalVehiculo = lista;
+}
+function  loadMantenimiento(lista){
+  var html = '';
+  
+  for(var h=0;h<lista.length; h++){
+    html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectMantenimiento('+lista[h].id+')"><td >' +tipoMantinimiento[lista[h].jerarquia-1]+'</td><td >' + lista[h].vehiculo+'</td><td > ' + lista[h].descripcion+'</td></tr>';
+  }
+     $('.contCata3').html(html);
+     arrGlobalMantenimiento = lista;
+}
+var arrGlobalMantenimiento;
+
 
 
 function loadSalida(lista){
@@ -1437,6 +1475,28 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
 
 }
 
+function addMantenimiento(){
+  
+  var descripcion = $(".descripcion").val();
+  var fecha = $(".fecha").val();
+  var vehiculo2 = $(".vehiculo2").val();
+  var jerarquia = $(".jerarquia").val();
+  var servicio = $(".servicio").val();
+var vehiculo= arrGlobalVehiculo[vehiculo2].numero+' - '+ arrGlobalVehiculo[vehiculo2].marca+' ('+arrGlobalVehiculo[vehiculo2].placa+')';
+  if(descripcion!= "" && fecha!= ""&& jerarquia!= "" && vehiculo!= ""&&servicio!=""){
+    var json = {descripcion: descripcion, jerarquia: jerarquia, vehiculo: vehiculo, fecha: fecha, servicio: servicio};
+      
+    addRegistro(json, 'mantenimiento', loadMantenimiento);
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimiento);
+
+}
+
 function addInventario(){
   var idInventario = $(".idInventario").val();
   var descripcion = $(".descripcion").val();
@@ -1463,6 +1523,24 @@ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar
 
 }
 
+function addNota(){
+  var descripcion = $("#modalNotas .descripcion").val();
+ var idnombre =id_vend;
+  if(descripcion != ""){
+
+    var json = {idnombre: idnombre, descripcion: descripcion};
+    addRegistro(json, 'notase', loadNotas);
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('notase', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNotas);
+limpiar();
+$('eliminarN').html('');
+$('guardarN').html('');
+}
 function addVendedormodal(){
 var rutas2 = '<select class="form-control clear rutavende" id:"rutavende" name="rutavende">';
 
@@ -1901,12 +1979,27 @@ function delRuta(){
   if(nombre!= ""){
   delRegistro(idGlobal, 'rutas', loadRutas);
 }else {
-   $('#modal .textModal').html('Seleccione de la tabla el usuario a eliminar.'); 
+   $('#modal .textModal').html('Seleccione de la tabla la ruta a eliminar.'); 
       $('#modal').modal('show');
  
 }
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas);
 limpiar();
+}
+function delNota(){
+  
+var descripcion=$('#modalNotas .descripcion').val();  
+
+//alert(descripcion);
+if(descripcion!=""){
+  //alert("hey"+idGlobal);
+  delRegistro2(idGlobal,'notase',loadNotas);
+
+getFunction('notase', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNotas);
+
+}
+
+
 }
 function delInventario(){
   var idInventario = $(".idInventario").val();
@@ -2165,6 +2258,26 @@ function upControlVehicular1(idV){
 
   var upControlVehicular1='<button type="button" class="btn btn-info addControlVehicular1" id="agregarp" onclick="upControlVehicular()">Guardar</button>'
 $('#modalControlVehicular .addControlVehicular1').html(upControlVehicular1);
+
+}
+
+
+
+function upNota(){
+  var descripcion = $("#modalNotas .descripcion").val();
+ var idnombre =id_vend;
+
+  if(descripcion != ""){
+
+    var json = {idnombre: idnombre, descripcion: descripcion};
+    upRegistro(idGlobal,json, 'notase', loadNotas);
+  }
+  else{
+
+      $('#modal .textModal').html('Seleccione de la tabla la nota a modificar.'); 
+      $('#modal').modal('show');
+  }
+getFunction('notase', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNotas);
 
 }
 function upControlVehicular(){
@@ -2778,6 +2891,20 @@ function selectInventario(id){
     }
   }
 }
+function selectnotas(id){
+  idGlobal = id;
+  var eliminarN='<button type="button" class="btn usuario1 eliminar" onclick="delNota()">Eliminar</button>';
+  var guardarN='<button type="button" class="btn usuario1 modificar" onclick="upNota()">Guardar</button>';
+
+  for(var a=0; a<arrGlobalNotas.length; a++){
+    if(arrGlobalNotas[a].id == id){
+      $("#modalNotas .descripcion").val(arrGlobalNotas[a].descripcion);
+      
+      $(" .eliminarN").html(eliminarN);
+      $(" .guardarN").html(guardarN);
+    }
+  }
+}
 
 function selectControlVehicular (id){
   idGlobal = id;
@@ -3270,15 +3397,29 @@ function click_ventas(){
 
  
 }
+
+function click_notas(id,h){
+  $('#modalNotas').modal('show');
+  id_vend=id;
+   var nombre= '<h3>'+ arrGlobalEmpleados[h].nombre_Emple + ' ' + arrGlobalEmpleados[h].paterno_Emple + ' ' + arrGlobalEmpleados[h].materno_Emple+'</h3>';
+$('#modalNotas .nombreempleado').html(nombre);
+  $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú </h3>');
+
+getFunction('notase', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNotas);
+}
+function closeModalNota(){
+  $('#modalNotas').modal('hide');
+}
 function click_empleados(){
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/mEmpleados.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> EMPLEADOS </h3>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="ocultar()">Notas </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_vendedores()" role="tab">Ventas</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_administracion()">Administración</button></li><div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_empleados();">Notas </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_vendedores()" role="tab">Ventas</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_administracion()">Administración</button></li><div class="imprimir"></div></ul> </div>');
  
- /*getFunction('ventas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
-*/
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados2);
+
 
 
 }
@@ -3323,7 +3464,6 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 function click_Despacho1(){
 
       $('#modalPin').modal('show');
-    
 }
 
 function click_Despacho(){
@@ -3724,7 +3864,28 @@ $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/mVehiculat.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> VEHICULOS  </h3>');
-$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_mvehicular()">Notificaciones</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_CVehicular()" role="tab">Control Vehicular</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="">Mantenimiento</button></li><div class="imprimir"></div></ul> </div>');
+$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_mvehicular()">Notificaciones</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_CVehicular()" role="tab">Control Vehicular</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_MantenimientoV()">Mantenimiento</button></li><div class="imprimir"></div></ul> </div>');
+getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV2);
+
+}
+function vehiculo(){
+var vehiculo2 ='<label >Vehiculo</label><select class="form-control vehiculo2" id="vehiculo2">';
+for (var i = 0; i < arrGlobalVehiculo.length ; i++) {
+  vehiculo2 += '<option value="'+(i)+'" class="form-control">'+arrGlobalVehiculo[i].numero+' - '+ arrGlobalVehiculo[i].marca+' ('+arrGlobalVehiculo[i].placa+')</option>';
+}
+vehiculo2 +='</select>';
+$("#vehiculo7").html(vehiculo2);
+
+}
+function click_MantenimientoV(){
+$('.btn-nav').removeClass('hidden');
+$('.btn-nav').html('<h3> Menú </h3>');
+$('.seccion3').load('/html/mantenimientoV.html');
+$('.tituloPantalla').html('<h3 class="ventas impre"> MANTENIMIENTO  </h3>');
+
+
+getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimiento);
+
 
 }
 function click_CVehicular(){
@@ -3786,7 +3947,6 @@ $('.btn-nav').removeClass('hidden');
 // $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="ocultar()">Notas </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_vendedores()" role="tab">Ventas</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_administracion()">Administración</button></li><div class="imprimir"></div></ul> </div>');
 
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
-
 }
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas1);
 

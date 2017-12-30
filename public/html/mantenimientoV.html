@@ -1,0 +1,67 @@
+ <div class="row">
+ <div class="col-xs-3 col-md-3 form-group letras">
+
+    <label >Mantenimiento</label>
+<select class="form-control  clear jerarquia" onchange="vehiculo();">
+<option value="0"></option>
+<option value="1">Preventivo</option>
+<option value="2">Predictivo</option>
+<option value="3">Correctivo</option>
+<option value="4">Otros</option>
+</select>
+  </div>
+     
+ 
+  <div class="col-xs-9 col-md-9 form-group letras">
+
+ 
+    <label >Descripcion</label>
+    <input type="text" class="form-control  clear descripcion" placeholder="descripcion">
+  </div>  
+  
+<div class="col-xs-3 col-md-3 form-group">
+    <label class="letras">Fecha</label>
+    <input type="date" class="form-control  clear fecha" placeholder="">
+  </div>
+ <div class="col-xs-3 col-md-3 form-group">
+    <label class="letras">Estado</label>
+    <select class="form-control  clear servicio">
+<option value="1">Activo</option>
+<option value="2">Suspendido</option>
+</select>
+  </div>
+  <div class="col-md-6 form-group letras" >
+
+ 
+    
+
+    <div class="" id="vehiculo7"></div>
+  
+  </div> 
+  <div class="col-sm-3 col-md-3">
+      <button type="button" class="btn usuario1 insertar" onclick="addMantenimiento(); limpiar();">Insertar</button>
+  </div>
+   <div class="col-sm-3 col-md-3">
+    <button type="button" class="btn usuario1 limpiar" onclick="limpiar();u();">Limpiar</button>
+  </div>
+  <div class="col-sm-3 col-md-3 guardau">
+  </div>
+   <div class="col-sm-3 col-md-3 eliminau">
+    
+  </div >
+</div>
+<br>
+ <div class="table-responsive tabla">
+  <table class=" table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras">
+        <th class="letras">MANTENIMIENTO</th>
+        <th class="letras">NUMERO DEL VEHICULO</th>
+        <th class="letras">DESCRIPCION</th>
+      </tr>
+    </thead>
+    <tbody class="contCata3 ventascss" >
+     
+    </tbody>
+  </table>
+</div>

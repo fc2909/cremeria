@@ -1,0 +1,2 @@
+module NotaseHelper
+end

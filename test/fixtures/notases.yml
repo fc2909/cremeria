@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idnombre: MyString
+  notas: MyString
+  descripcion: MyString
+  activo: 1
+
+two:
+  idnombre: MyString
+  notas: MyString
+  descripcion: MyString
+  activo: 1

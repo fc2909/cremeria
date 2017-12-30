@@ -1371,8 +1371,17 @@ function  loadMantenimiento(lista){
      arrGlobalMantenimiento = lista;
 }
 var arrGlobalMantenimiento;
-
-
+function  loadMantenimientoTipo(lista){
+  var html = '';
+  
+  for(var h=0;h<lista.length; h++){
+    if (lista[h].servicio==1) {
+        html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); "><td >'  +lista[h].id+'</td><td>'+ lista[h].vehiculo +'</td><td > ' + lista[h].fecha+'</td><td > ' + tipoMantinimiento[lista[h].jerarquia-1]+'</td><td >'+ lista[h].descripcion+'</td></tr>';
+    }
+  }
+     $('.contCata3').html(html);
+     arrGlobalMantenimiento = lista;
+}
 
 function loadSalida(lista){
   var html = '';
@@ -1972,6 +1981,29 @@ function delUsuario(){
 getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
 limpiar();
 }
+
+function delMantenimiento1(){
+  
+  var descripcion = $(".descripcion").val();
+  var fecha = $(".fecha").val();
+  var vehiculo2 = $(".vehiculo2").val();
+  var jerarquia = $(".jerarquia").val();
+  var servicio = $(".servicio").val();
+  if(descripcion!= "" && fecha!= ""&& jerarquia!= "" && vehiculo!= ""&&servicio!=""){
+  delRegistro(idGlobal,'mantenimiento', loadMantenimiento);      
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimiento);
+
+}
+
+
+
+
 function delRuta(){
   var nombre = $(".nombre").val();
 
@@ -2134,6 +2166,27 @@ function upVendedor1(idV){
 $('#modalVendedor .addVendedor1').html(upVendedor1);
 
 }
+function upMantenimiento(){
+  
+  var descripcion = $(".descripcion").val();
+  var fecha = $(".fecha").val();
+  var vehiculo2 = $(".vehiculo2").val();
+  var jerarquia = $(".jerarquia").val();
+  var servicio = $(".servicio").val();
+  if(descripcion!= "" && fecha!= ""&& jerarquia!= "" && vehiculo!= ""&&servicio!=""){
+    var json = {descripcion: descripcion, jerarquia: jerarquia, fecha: fecha, servicio: servicio};
+      
+    upRegistro(idGlobal,json, 'mantenimiento', loadMantenimiento);
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimiento);
+
+}
+
 
 function upVendedor(){
 $('#modalVendedor').modal('hide');
@@ -3160,7 +3213,30 @@ function selectAdministracion12(id){
     }
   }
 }
+function selectMantenimiento(id){
+  
+}
 
+function selectMantenimiento(id){
+  idGlobal = id;
+
+ var upMantenimiento1='<button type="button" class="btn usuario1 modificar" onclick="upMantenimiento()">Guardar</button>';
+ var delMantenimiendo1 = '<button type="button" class="btn usuario1 eliminar" onclick="delMantenimiento1()">Eliminar</button>';
+  var vehiculo3='<label >Vehiculo</label><input type="text" id="peso" disabled class="form-control clear vehiculo2" placeholder="">';
+  for(var a=0; a< arrGlobalMantenimiento.length; a++){
+    if( arrGlobalMantenimiento[a].id == id){
+       $(".guardarM").html(upMantenimiento1);
+       $(".eliminarM").html(delMantenimiendo1);
+       $("#vehiculo7").html(vehiculo3);
+       $(".jerarquia").val( arrGlobalMantenimiento[a].jerarquia);
+       $(".descripcion").val( arrGlobalMantenimiento[a].descripcion);
+       $(".fecha").val( arrGlobalMantenimiento[a].fecha);
+       $(".servicio").val( arrGlobalMantenimiento[a].servicio); 
+       $(".vehiculo2").val( arrGlobalMantenimiento[a].vehiculo); 
+  }
+}
+       
+}
 function selectVentas(id, valorM,h){
   idGlobal = id;
   idVentas2=id;
@@ -3863,9 +3939,15 @@ function click_mvehicular(){
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/mVehiculat.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> VEHICULOS  </h3>');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> MANTENIMIENTOS PENDIENTES </h3>');
 $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_mvehicular()">Notificaciones</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_CVehicular()" role="tab">Control Vehicular</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_MantenimientoV()">Mantenimiento</button></li><div class="imprimir"></div></ul> </div>');
-getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV2);
+
+getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimientoTipo);
+ 
+
+
+//getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimiento);
+
 
 }
 function vehiculo(){

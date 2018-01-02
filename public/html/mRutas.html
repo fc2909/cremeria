@@ -1,4 +1,4 @@
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsQaNEovJe9Y4hlF_5vONId3XShTKeztU&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuO-L1XBadFhesEVXF13GeRHbU2W3r1vE&callback=initMap"
     async defer></script>
    
 <div role="tabpanel" class="row col-md-12 fondo" >
@@ -9,25 +9,27 @@
     <div class="row">
       
          <input type="text" class="col-md-6 form-control" id="search"> 
-         <input type="button" class="btn btn-info col-md-2" value="Buscar Dirección" onClick="mapa.getCoords(); botones();">
+         <input type="button" class="btn btn-info col-md-2" value="Buscar Dirección" onclick="mapa.getCoords(); botones();">
          <div class="addCliente1 col-md-2"></div>
       
- <div class="letras"><p id="coordenadas"></p></div>
+
 
  </div>
  <br>
- <div id="floating-panel">
-      <input onclick="clearMarkers();" type=button value="Ocultar Marcadores">
-      <input onclick="showMarkers();" type=button value="Mostrar Marcadores">
-      <input onclick="deleteMarkers();" type=button value="Eliminar Marcadores">
+<div class="row col-md-12"> 
+<input id="latlng" type="text" class="col-md-6 form-control" value="-34.653015, -58.674850">
+<button id="submit" type="button" class="col-md-6 form-control btn btn-info" value="Obtener Nombre">Obtener Nombre</button>
+</div>
+ 
+ <div id="" class="marcadores col-md-12 row">
+      <button class="btn btn-primary form-control col-md-4" onclick="clearMarkers();" type=button value="Ocultar Marcadores">Ocultar Marcadores</button>
+      <button class="btn btn-primary form-control col-md-4" onclick="showMarkers();" type=button value="Mostrar Marcadores">Mostrar Marcadore</button>
+      <button class="btn btn-primary form-control col-md-4" onclick="deleteMarkers();" type=button value="Eliminar Marcadores">Eliminar Marcadores</button>
     </div>
 
-<input id="latlng" type="text" value="-34.653015, -58.674850">
-<input id="submit" type="button" value="Obtenr Nombre">
-
-
-  <div class="row" id="map"></div>
- 
+   
+  <div class="row map" id="map"></div>
+  <div class="letras"><p id="coordenadas"></p></div>
   
         <!--
         <img class="imagenes" src="/images/salida.png" href="#seccion2" aria-controls="seccion2" data-toggle="tab" onclick="#desp"  role="tab">

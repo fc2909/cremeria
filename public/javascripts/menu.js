@@ -452,7 +452,7 @@ function pagare(){
  var yearD = today_v.substring(0,4);
 var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
    var diaD=(diasemaD.getUTCDay());
-    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[monthD]+" DEL "+yearD+".";
+    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[parseInt(monthD)]+" DEL "+yearD+".";
   convertirNumLetras(total_merc);
   for(var h=0;h<upin.length; h++){
       if(pin==upin[h].pin){

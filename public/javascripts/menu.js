@@ -4058,6 +4058,14 @@ $('#modalDesp .despachador').html(selectdes);
 
 }
 function click_Salida(id , h, ruta, tipo, credito, bonificaciones){
+   $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú  </h3>');
+ $('.seccion2').load('/html/venta.html');
+
+   $('.tituloPantalla').html('<h3 class="vendedor impre"> VENTA </h3> <p>( '+today_v+' ) - Nombre: '+nombre_vend+'. Ruta: ' +ruta3+'. Tipo: '+t_ventas[t_vende-1]+ '. Credito: ' +cred+'. Bonificacion: '+boni+'. </p>');
+
+
+
 modalDespachador();
   
 
@@ -4074,6 +4082,12 @@ ruta3=arrGlobalRuta[i].nombre;
 }
 }
 
+
+
+
+getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
+
 }
 function closeModalDesp(){
 $('#modalDesp').modal('hide');
@@ -4082,22 +4096,13 @@ $('#modalDesp').modal('hide');
 function click_Salida2(){
  var despachadorV = $('#modalDesp .selectDespachador ').val();
    despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
-if(despachadorV==0){
-click_Despacho();
+
+
 $('#modalDesp').modal('hide');
 
-}else{
-$('#modalDesp').modal('hide');
-   $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> Menú  </h3>');
- $('.seccion2').load('/html/venta.html');
 
-   $('.tituloPantalla').html('<h3 class="vendedor impre"> VENTA </h3> <p>( '+today_v+' ) - Nombre: '+nombre_vend+'. Ruta: ' +ruta3+'. Tipo: '+t_ventas[t_vende-1]+ '. Credito: ' +cred+'. Bonificacion: '+boni+'. </p>');
 
-getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
 
-}
 
 }
 function modalDespachador2(){

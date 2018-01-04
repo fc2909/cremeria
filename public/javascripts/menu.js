@@ -1723,13 +1723,12 @@ function addVenta(){
  // alert(today_v+" == "+today_vv);
   if(today_v!=today_vv){
     saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
-    //alert(noSemana);
+   // alert(noSemana);
     
      var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
     dfc=(diasema.getUTCDay());
-   // alert(dfc);
 if(noSemana==52&&dfc==6){
-    noSemana=52-1;
+    noSemana=0;
    }
 if(noSemana==52){
     noSemana=0;
@@ -1742,7 +1741,7 @@ if(noSemana==52){
     diasema= new Date((parseInt(month))+' '+parseInt(day)+' ,'+parseInt(year));
     dc=(diasema.getUTCDay());
 if(noSemana==52&&dc==6){
-    noSemana=52-1;
+    noSemana=0;
    }
    if(noSemana==52){
     noSemana=0;
@@ -1759,10 +1758,13 @@ if(noSemana==52&&dc==6){
 
   }else{
     saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
-  var diasema= new Date(parseInt(day2), (parseInt(month2)) ,parseInt(year2));
-   dc=(diasema.getUTCDay()-1);
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+ // var diasema= new Date(parseInt(day2), (parseInt(month2)) ,parseInt(year2));
+  // alert(day2+" - "+month2+" - "+year2);
+   dc=(diasema.getUTCDay());
   if(noSemana==52&&dc==6){
-    noSemana=52-1;
+    noSemana=0;
+    dc=6;
    }
    if(noSemana==52){
     noSemana=0;
@@ -1771,10 +1773,10 @@ if(noSemana==52&&dc==6){
    sc=noSemana+1;
    dfc=dc;
    sfc=sc;
-    //alert(noSemana+" no es igual");
+   // alert(sc+" no es igual"+dc);
   }
   dsfc=dfc;
-  //alert(dsfc+" - "+dfc);
+ // alert("dsfc: "+dsfc+". dfc: "+dfc+".  dc:"+dc+". sc:"+sc);
   
   //alert(day2+" - "+month2+" - "+year2+" - "+dc+" -- "+sc);
   for(var h=0;h<arrGlobal.length; h++){
@@ -2838,14 +2840,14 @@ function upVenta(){
     
   var id = id_vend;
   var idVentap = id_vend;
-  var fecha = today_v;
+  var fechaDespacho = today_v;
   var ruta = rutas;
   var nombre = nombre_vend;
   var tipo = t_vende;
   var credito_p = cred;
   var bonificacion_p = boni;
   var v_mercancia = total_mercancia-valor+valorMercancia;
-  var json2 = {id: id, idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia};
+  var json2 = {id: id, idVentap: idVentap, fechaDespacho: fechaDespacho, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia};
  
     getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
 for(var j=0;j<arrGlobal4.length; j++){
@@ -3465,7 +3467,7 @@ function click_ventas(){
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/ventas.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p>( '+dias[today -1]+', '+day+' de '+months[month]+' del '+year+' )</p>');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><input  type="text" class="form-control buscar text-rigth"  placeholder="BUSCAR"/><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="ocultar()">VENTAS </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Despacho1(); " role="tab">DESPACHO</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </button></li><div class="imprimir"></div></ul> </div>');
 
 
@@ -3525,7 +3527,7 @@ if( fecha == NaN || fecha == undefined || fecha == "" || fecha == today_v){
   
    getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDays);
    
-$('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p>( '+dias[today -1]+', '+day+' de '+months[month]+' del '+year+' )</p>');   
+$('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');   
 
 }else{
    today_v = fecha; 
@@ -3578,14 +3580,18 @@ if( fecha == NaN || fecha == undefined || fecha == "" || fecha == today_v){
  year2 = today_v.substring(0,4);
    getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDays);
    
-$('.tituloPantalla').html('<h3 class="ventas impre"> DESPACHO </h3><p>( '+dias[today -1]+', '+day+' de '+months[month]+' del '+year+' )</p>');   
+$('.tituloPantalla').html('<h3 class="ventas impre"> DESPACHO </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');   
 
 }else{
  today_v = fecha; 
  day2 = fecha.substring(8,10);
  month2 = fecha.substring(5,7);
  year2 = fecha.substring(0,4);
-$('.tituloPantalla').html('<h3 class="ventas impre"> DESPACHO </h3><p>( '+today_v+' )</p>');  
+ var diasemaD= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+   var diaD=(diasemaD.getUTCDay());
+$('.tituloPantalla').html('<h3 class="ventas impre"> DESPACHO </h3><p>( '+dias[diaD-1]+', '+day2+' DE '+months[parseInt(month2)]+' DEL '+year2+' )</p>');   
+
+//$('.tituloPantalla').html('<h3 class="ventas impre"> DESPACHO </h3><p>( '+today_v+' )</p>');  
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDays);
    
 }
@@ -3647,7 +3653,7 @@ if( fecha == NaN || fecha == undefined || fecha == "" || fecha == today_v){
   saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
   getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadas);
    
-$('.tituloPantalla').html('<h3 class="ventas impre"> RECEPCIÓN  </h3><p>( '+dias[today -1]+', '+day+' de '+months[month]+' del '+year+' )</p>');   
+$('.tituloPantalla').html('<h3 class="ventas impre"> RECEPCIÓN  </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');   
 
 }else{
    
@@ -3721,7 +3727,7 @@ function botones(){
   var boton = '<input type="button" class="btn btn-success" value="Agregar cliente" onClick="addCliente();">';
 $('.addCliente1').html(boton);
 }
-
+/*
  function initMap() {
         var uluru = {lat: 24.033618, lng: -104.634402};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -3826,8 +3832,8 @@ getCoords : function()
    if (status == 'OK')
    {
 // Mostramos las coordenadas obtenidas en el p con id coordenadas
-var coordenada21 = "("+results[0].geometry.location.lat()+', '+results[0].geometry.location.lng()+")";
-alert(coordenada21+" ---- "+umarcador);
+var coordenada21 = "lat: "+results[0].geometry.location.lat()+', lng: '+results[0].geometry.location.lng()+"";
+//alert(coordenada21+" ---- "+umarcador);
 
 addMarker(coordenada21);
    document.getElementById("coordenadas").innerHTML='Coordenadas:   '+results[0].geometry.location.lat()+', '+results[0].geometry.location.lng();
@@ -3924,7 +3930,22 @@ function geocodeLatLng(geocoder, map, infowindow) {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
+*/
+ function initMap() {
+        var uluru = {lat: 24.033618, lng: -104.634402};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
 
+
+
+
+      }
 function click_Mapa(){
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
@@ -4062,9 +4083,6 @@ function click_Salida(id , h, ruta, tipo, credito, bonificaciones){
  $('.btn-nav').html('<h3> Menú  </h3>');
  $('.seccion2').load('/html/venta.html');
 
-   $('.tituloPantalla').html('<h3 class="vendedor impre"> VENTA </h3> <p>( '+today_v+' ) - Nombre: '+nombre_vend+'. Ruta: ' +ruta3+'. Tipo: '+t_ventas[t_vende-1]+ '. Credito: ' +cred+'. Bonificacion: '+boni+'. </p>');
-
-
 
 modalDespachador();
   
@@ -4081,8 +4099,17 @@ if(arrGlobalRuta[i].id==ruta){
 ruta3=arrGlobalRuta[i].nombre;
 }
 }
+ var dayD = today_v.substring(8,10);
+ var monthD = today_v.substring(5,7);
+ var yearD = today_v.substring(0,4);
+var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
+   var diaD=(diasemaD.getUTCDay());
+    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[parseInt(monthD)]+" DEL "+yearD+".";
+ 
 
 
+
+   $('.tituloPantalla').html('<h3 class="vendedor impre"> VENTA </h3> <p>( '+fechaDespachoD+' ) - VENDEDOR: '+nombre_vend+'. RUTA: ' +ruta3+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN: '+boni+'. </p>');
 
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
@@ -4121,7 +4148,10 @@ $('#modalDesp2 .despachador').html(selectdes);
 }
 
 function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc){
-modalDespachador2()
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú  </h3>');
+ $('.seccion3').load('/html/recep.html');
+modalDespachador2();
  nombre_vend = arrGlobal4[h].nombre;
  id_vend=id;
  n_vend=h;
@@ -4132,30 +4162,10 @@ modalDespachador2()
  fechacaptura=arrGlobal4[h].fechaf;
  dscv=dsc;
  scv=sc;
-
-
-}
-function closeModalDesp2(){
-$('#modalDesp2').modal('hide');
-}
-function click_Rec2(){
  var despachadorV = $('#modalDesp2 .selectDespachador ').val();
    despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
-if(despachadorV==0){
-click_Recepcion();
-$('#modalDesp2').modal('hide');
-
-}else{
-$('#modalDesp2').modal('hide');
-
-
-
     var vDiaria ='<li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA </button></li>';
-  
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> Menú  </h3>');
- $('.seccion3').load('/html/recep.html');
- $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - Nombre: '+nombre_vend+'. Ruta: ' +t_rutas[rutas-1]+'. Tipo: '+t_ventas[t_vende-1]+ '. Credito: ' +cred+'. Bonificacion: '+boni+'. </p>');
+ $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - NOMBRE: '+nombre_vend+'. RUTA: ' +t_rutas[rutas-1]+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN : '+boni+'. </p>');
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
@@ -4164,7 +4174,14 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 $('.ventaDiaria').html(vDiaria);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiaria);
+
+
 }
+function closeModalDesp2(){
+$('#modalDesp2').modal('hide');
+}
+function click_Rec2(){
+
 }
 
 function click_V(id , h, ruta, tipo, credito, bonificacion){

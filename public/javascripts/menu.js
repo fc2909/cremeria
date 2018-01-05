@@ -1337,7 +1337,45 @@ function  loadRutas(lista){
   var html = '';
   
   for(var h=0;h<lista.length; h++){
+
     html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectRuta('+lista[h].id+');" data-id="'+ lista[h].id +'"><td>' + lista[h].nombre  + '</td><td>' + lista[h].descripcion+ '</td></tr>';
+  }
+     $('.contCata').html(html);
+     arrGlobalRuta=lista;
+}
+function  loadRutasUp(lista){
+ 
+     arrGlobalRuta=lista;
+}
+function  loadRutas3(lista){
+  var html = '';
+  var numeroclientes=0;
+  for(var h=0;h<lista.length; h++){
+if(n==lista[h].numero){
+
+     html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); " data-id="'+ lista[h].id +'"><td>' + lista[h].local  + '</td><td>' + lista[h].propietario+'</td><td>' + lista[h].direccion+'</td><td>' + lista[h].telefono + '</td><td style="width:40px" ><div class="btn-group"  data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upCliente1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delCliente('+ lista[h].id +');">Eliminar</button></div> </td></tr>';  
+ numeroclientes++; 
+   }}
+     $('.contCata').html(html);
+     arrGlobalClientes=lista;
+     if(numeroclientes>1){
+       n1 = numeroclientes;
+json={n1: n1}
+upRegistro2(id_vend,json,'rutas',loadRutasUp)
+     }
+    
+}
+
+function  loadRutas2(lista){
+  var html = '';
+  var num;
+  for(var h=0;h<lista.length; h++){
+if(lista[h].n1==null){
+num=0;
+}else{
+  num=lista[h].n1;
+}
+    html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); click_Clientes1('+lista[h].id+', '+h+');" data-id="'+ lista[h].id +'"><td>' + lista[h].nombre  + '</td><td>' + num+ '</td></tr>';
   }
      $('.contCata').html(html);
      arrGlobalRuta=lista;
@@ -1505,6 +1543,46 @@ var vehiculo= arrGlobalVehiculo[vehiculo2].numero+' - '+ arrGlobalVehiculo[vehic
 getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimiento);
 
 }
+function addModalCliente(){
+  $('#modalCliente').modal('show');
+$('#modalCliente .ruta').val(n);
+
+  
+}
+function closeCliente(){
+  $('#modalCliente').modal('hide');
+
+}
+function addCliente(){
+  var local = $("#modalCliente .local").val();
+  var propietario = $("#modalCliente .propietario").val();
+  var credito = $("#modalCliente .credito").val();
+  var bonificacion = $("#modalCliente .bonificacion").val();
+  var email = $("#modalCliente .email").val();
+  var direccion = $("#modalCliente .direccion").val();
+  var lng = $("#modalCliente .lng").val();
+  var lat = $("#modalCliente .lat").val();
+  var fechai = $("#modalCliente .fecha").val();
+  var telefono = $("#modalCliente .telefono").val();
+  var telefonop = $("#modalCliente .telefonop").val();
+  var descripcion = $("#modalCliente .descripcion").val();
+  var numero = $("#modalCliente .ruta").val();
+$('#modalCliente').modal('hide');
+  if(local != "" && propietario != "" &&  direccion != ""){
+
+    var json = {local: local, propietario: propietario, credito: credito, bonificacion: bonificacion, email: email, direccion: direccion, lng: lng, lat: lat, fechai: fechai, telefono: telefono, telefonop: telefonop, descripcion: descripcion, numero: numero};
+    addRegistro(json, 'clientes', loadRutas3);
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('clientes', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas3);
+
+}
+
+
 
 function addInventario(){
   var idInventario = $(".idInventario").val();
@@ -2090,6 +2168,14 @@ function delControlVehicular(idV){
 limpiar();
 
 }
+function delCliente(idc){
+
+  delRegistro(idc,'clientes', loadRutas3);
+  getFunction('clientes', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas3);
+
+limpiar();
+
+}
 
 
 function delVenta(){
@@ -2160,6 +2246,55 @@ for(var j=0;j<arrGlobal4.length; j++){
 limpiar();
 }
 /*-------------------- actualizar registro ------------------------*/
+
+function upCliente(){
+  var local = $("#modalCliente .local").val();
+  var propietario = $("#modalCliente .propietario").val();
+  var credito = $("#modalCliente .credito").val();
+  var bonificacion = $("#modalCliente .bonificacion").val();
+  var email = $("#modalCliente .email").val();
+  var direccion = $("#modalCliente .direccion").val();
+  var lng = $("#modalCliente .lng").val();
+  var lat = $("#modalCliente .lat").val();
+  var fechai = $("#modalCliente .fecha").val();
+  var telefono = $("#modalCliente .telefono").val();
+  var telefonop = $("#modalCliente .telefonop").val();
+  var descripcion = $("#modalCliente .descripcion").val();
+$('#modalCliente').modal('hide');
+  if(local != "" && propietario != "" &&  direccion != ""){
+
+    var json = {local: local, propietario: propietario, credito: credito, bonificacion: bonificacion, email: email, direccion: direccion, lng: lng, lat: lat, fechai: fechai, telefono: telefono, telefonop: telefonop, descripcion: descripcion};
+    upRegistro(idGlobal,json, 'clientes', loadRutas3);
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('clientes', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas3);
+ var upCliente1='<button type="button" class="btn btn-success " id="agregarp" onclick="addCliente()">Ingresar</button>';
+limpiar()
+$('#modalCliente .addCliente1').html('');
+$('#modalCliente .addCliente1').html(upCliente1);
+
+}
+
+function upCliente1(idC){
+  var ruta1='<label>Ruta</label><select>'
+  for(var i=0; i<arrGlobalRuta.length;i++){
+ruta1+='<option value="'+i+'">'+arrGlobalRuta[i].nombre+'</option>';
+  }
+  ruta1+='</select>';
+  addModalCliente();
+
+  selectCliente(idC);
+
+  var upCliente1='<button type="button" class="btn btn-info addVendedor1" id="agregarp" onclick="upCliente()">Guardar</button>'
+$('#modalCliente .addCliente1').html(upCliente1);
+
+}
+
+
 function upVendedor1(idV){
   addVendedormodal();
   selectVendedores(idV);
@@ -3012,6 +3147,27 @@ function selectVendedores(id){
        $("#modalVendedor .telp").val(arrGlobal[a].telp);
        $("#modalVendedor .tell").val(arrGlobal[a].tell);
        $("#modalVendedor .fnacimiento").val(arrGlobal[a].fnacimiento);
+    }
+  }
+}
+
+
+function selectCliente(id){
+  idGlobal = id;
+  for(var a=0; a<arrGlobalClientes.length; a++){
+    if(arrGlobalClientes[a].id == id){
+       $("#modalCliente .local").val(arrGlobalClientes[a].local);
+       $("#modalCliente .propietario").val(arrGlobalClientes[a].propietario);
+       $("#modalCliente .credito").val(arrGlobalClientes[a].credito);
+       $("#modalCliente .bonificacion").val(arrGlobalClientes[a].bonificacion);
+       $("#modalCliente .email").val(arrGlobalClientes[a].email);
+       $("#modalCliente .direccion").val(arrGlobalClientes[a].direccion);
+       $("#modalCliente .lng").val(arrGlobalClientes[a].lng);
+       $("#modalCliente .lat").val(arrGlobalClientes[a].lat);
+       $("#modalCliente .fecha").val(arrGlobalClientes[a].fechai);
+       $("#modalCliente .telefono").val(arrGlobalClientes[a].telefono);
+       $("#modalCliente .telefonop").val(arrGlobalClientes[a].telefonop);
+       $("#modalCliente .descripcion").val(arrGlobalClientes[a].descripcion);
     }
   }
 }
@@ -3952,17 +4108,34 @@ function click_Mapa(){
  $('.seccion2').load('/html/clientes.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3>');
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
+getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas2);
  
- //7 alert("mapa!");
 }
+ //7 alert("mapa!");
 
+
+
+
+
+
+  function click_Clientes1(id,h){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú </h3>');
+ $('.seccion2').load('/html/clientes1.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3><p>Ruta: '+arrGlobalRuta[h].nombre+'</p>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
+n=arrGlobalRuta[h].nombre;
+id_vend=id;
+
+getFunction('clientes', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas3);
+ 
+}
 function click_mvehicular(){
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/mVehiculat.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> MANTENIMIENTOS PENDIENTES </h3>');
 $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_mvehicular()">Notificaciones</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_CVehicular()" role="tab">Control Vehicular</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_MantenimientoV()">Mantenimiento</button></li><div class="imprimir"></div></ul> </div>');
-
 getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimientoTipo);
  
 
@@ -3971,6 +4144,9 @@ getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintent
 
 
 }
+
+
+
 function vehiculo(){
 var vehiculo2 ='<label >Vehiculo</label><select class="form-control vehiculo2" id="vehiculo2">';
 for (var i = 0; i < arrGlobalVehiculo.length ; i++) {

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :usuarios
   resources :rutas
   resources :notase
+  resources :clientes
   resources :mantenimiento
   resources :bitacoras
   resources :reportes

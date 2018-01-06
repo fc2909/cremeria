@@ -10,20 +10,13 @@ var arrGlobal, arrGlobalVF, arrGlobalRuta , fechacaptura, arrGlobalE, t_merc , v
  var t_v2; 
  var piezasT, year2, month2, day2; 
 var user;
-var tipoUsuario = ['Director','Administrador','Contador','Despachador','Vendedor']
-var tipoMantinimiento = ['Predictivo','Preventivo','Correctivo','Otros']
-var medidas = ['Kg.','Pzas.','L'];
-var combustibles = ['Gasolina - MAGNA','Gasolina - PREMIUM','Gasolina & Gas','Gas','Diesel'];
-
-
-     
-     
-
-
-
+var tipoUsuario = ['DIRECTOR','ADMINISTRADOR','CONTADOR','DESPACHADOR','VENTAS']
+var tipoMantinimiento = ['REDICTIVO','PREVENTICO','CORRECTIVO','OTROS']
+var medidas = ['KG.','PZAS.','L'];
+var combustibles = ['GASOLINA - MAGNA','GASOLINA - PREMIUM','GASOLINA & GAS','GAS','DIESEL'];
 var t_rutas = ['C1','C2','C3','C4','C5','C6','C7','C8'];
-var t_ventas = ['Detalle','Mayoreo','Detalle Foraneo','Restaurantes'];
-var t_Empleado = ['Ayudante General','Vendedor','Gerente de Ventas','Gerente de Operaciones','Supervisor','Administrador','Consejo'];
+var t_ventas = ['DETALLE','MAYOREO','DETALLE FORANEO','RESTAURANTES'];
+var t_Empleado = ['AYUDANTE GENERAL','VENTAS','GERENTE DE VENTAS','GERENTE DE OPERACIONES','SUPERVISOR','ADMINISTRADOR','CONSEJO'];
 var dias = ['LUNES',' MARTES ',' MIÉRCOLES ',' JUEVES ',' VIERNES ',' SÁBADO ',' DOMINGO '];
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
 
@@ -77,6 +70,7 @@ function makeArray() {
 for (i = 0; i<makeArray.arguments.length; i++)
 this[i + 1] = makeArray.arguments[i];
 }
+
   var months = new makeArray('ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE');
 var date = new Date();
 var today = date.getDay();
@@ -84,7 +78,9 @@ var day = date.getDate();
 var month = date.getMonth() + 1;
 var yy = date.getYear();
 var year = (yy < 1000) ? yy + 1900 : yy;
-var fecha =  day + " de " + months[month] + " del " + year;
+ var nomdia = new Date((parseInt(month))+' '+parseInt(day)+' ,'+parseInt(year));
+
+var fecha = dias[nomdia.getUTCDay()-1]+", "+ day + " DE " + months[month] + " DEL " + year;
 var d = new Date();
 var dias1, meses1;
 //alert(day<10);
@@ -665,7 +661,7 @@ function loadNotas(lista){
     }
   }
   arrGlobalNotas = lista;
- $('.contCata3').html(html);
+ $('#modalNotas .contCata3').html(html);
 }
 function loadUsuarios2(lista){
   upin = lista;
@@ -1103,7 +1099,7 @@ function loadVentasp2(lista){
   var html3 = '';
   arrGlobalE='';
   for(var h=0;h<lista.length; h++)
-    if(lista[h].fecha == today_vv && lista[h].efectivo != null){
+    if(lista[h].fechaf == today_vv && lista[h].efectivo != null){
 html3+= '<tr class="seleccionar" onclick="selectEV('+lista[h].id+');" data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
    
     }
@@ -1181,8 +1177,8 @@ function loadVentasp3(lista){
   arrGlobalE='';
 
   for(var h=0;h<lista.length; h++)
-    if(lista[h].fecha == dateCash2 && lista[h].efectivo != null){
-html+= '<tr class="remarca seleccionar"  onclick="selectEV('+lista[h].id+');"  data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
+    if(lista[h].fechaf == dateCash2 && lista[h].efectivo != null){
+html+= '<tr class=" seleccionar"  onclick="selectEV('+lista[h].id+');"  data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
 
     }
 
@@ -1358,7 +1354,7 @@ if(n==lista[h].numero){
    }}
      $('.contCata').html(html);
      arrGlobalClientes=lista;
-     if(numeroclientes>1){
+     if(numeroclientes>=1){
        n1 = numeroclientes;
 json={n1: n1}
 upRegistro2(id_vend,json,'rutas',loadRutasUp)
@@ -2102,15 +2098,15 @@ function delNota(){
   
 var descripcion=$('#modalNotas .descripcion').val();  
 
-//alert(descripcion);
 if(descripcion!=""){
-  //alert("hey"+idGlobal);
+
   delRegistro2(idGlobal,'notase',loadNotas);
 
 getFunction('notase', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNotas);
 
 }
 
+getFunction('notase', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNotas);
 
 }
 function delInventario(){
@@ -4391,19 +4387,13 @@ getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar
 function addEfectivo(){
 var efectivo = $("#modalEfectivo .cash").val();
 var rVendedor = $("#modalEfectivo .rv").val();
-var fechacash = $("#modalEfectivo .today_E").val();
+var fechacash = $("#modalDateC .dateVC").val();
 //alert(rVendedor+" - "+efectivo+" - "+dateCash2);
-
+if(fechacash==""){
+fechacash=dateCash2;
+}
 
 var f_s_dia;
- for(var m=0;m<arrGlobalE.length; m++){
-   //alert(today_v+" - "+lista[h].fecha);
-      //alert(lista[h].hora + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + lista[h].piezas + '</td><td>' + lista[h].peso + '</td><td>' + lista[h].precioUnitario + '</td><td>' + lista[h].valorMercancia +'</td></tr>');
-  
-//alert('<tr class="seleccionar" onclick="selectVentasp('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].ruta + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + lista[h].v_mercancia + '</td><td>'+lista[h].fecha +'</td></tr>');
-if (arrGlobalE[m].fecha==today_v&&arrGlobalE[m].ruta==rutas) {
-
-}}
 
 
 
@@ -4411,7 +4401,7 @@ if (arrGlobalE[m].fecha==today_v&&arrGlobalE[m].ruta==rutas) {
 for (var i = 0; i < arrGlobalE.length; i++) {
   
 
-  if (arrGlobalE[i].id==rVendedor && arrGlobalE[i].fecha==dateCash2 && arrGlobalE[i].fecha!=today_v){
+  if (arrGlobalE[i].id==rVendedor && arrGlobalE[i].fechaf==dateCash2 && arrGlobalE[i].fechaf!=today_v){
    
 
      if(arrGlobalE[i].otros==null || arrGlobalE[i].otros==undefined){
@@ -4432,7 +4422,7 @@ var json = {efectivo: efectivo, f_s_dia: f_s_dia};
 
 
   }
-  if (arrGlobalE[i].id==rVendedor && arrGlobalE[i].fecha==today_vv){
+  if (arrGlobalE[i].id==rVendedor && arrGlobalE[i].fechaf==today_vv){
      if(arrGlobalE[i].otros==null || arrGlobalE[i].otros==undefined){
 
       f_s_dia=efectivo; 
@@ -4471,7 +4461,16 @@ if(dateCash2=="" || dateCash2 == today_v){
   dateCash2=fecha;
 }
 //alert(dateCash2);
-$("#modalEfectivo .today_E").html(dateCash2);
+ daycambiomodalE = dateCash2.substring(8,10);
+ monthcambiomodalE = dateCash2.substring(5,7);
+ yearcambiomodalE = dateCash2.substring(0,4);
+ var nomdia2 = new Date((parseInt(monthcambiomodalE))+' '+parseInt(daycambiomodalE)+' ,'+parseInt(yearcambiomodalE));
+
+var fecha2E = dias[nomdia2.getUTCDay()-1]+", "+ daycambiomodalE + " DE " + months[parseInt(monthcambiomodalE)] + " DEL " + yearcambiomodalE;
+
+
+
+$("#modalEfectivo .today_E").html(fecha2E);
 
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp3);
 
@@ -4484,7 +4483,7 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 
 var rutav ='<select class="form-control rv clear" id="rv" name="select">';
 var conta=1;
-alert(today_vv);
+//alert(today_vv);
 for (var i = 0; i <  arrGlobalF.length; i++) {
    if(arrGlobalF[i].fecha==today_vv && arrGlobalF[i].efectivo==null ){
     rutav += '<option onclick="limpiar()" id="'+arrGlobalF[i].id+'" value="'+arrGlobalF[i].id+'" >'+t_rutas[arrGlobalF[i].ruta-1]+' - '+arrGlobalF[i].nombre+'</option>';

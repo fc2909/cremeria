@@ -849,28 +849,28 @@ function loadVDiaria(lista){
   for(var h=0;h<lista.length; h++){
 if(scv==lista[h].sfc&&year2==((lista[h].fechadespachof).substring(0,4))){
   if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
-  if(lista[h].dfc=="1"){
+  if(lista[h].dfc==1){
 l+=parseFloat(lista[h].piezas);
   }
-  if(lista[h].dfc=="2"){
+  if(lista[h].dfc==2){
 m+=parseFloat(lista[h].piezas);
   }
-  if(lista[h].dfc=="3"){
+  if(lista[h].dfc==3){
 x+=parseFloat(lista[h].piezas);
   }
-  if(lista[h].dfc=="4"){
+  if(lista[h].dfc==4){
 j+=parseFloat(lista[h].piezas);
   }
-  if(lista[h].dfc=="5"){
+  if(lista[h].dfc==5){
 v+=parseFloat(lista[h].piezas);
   }
-  if(lista[h].dfc=="6"){
+  if(lista[h].dfc==6){
 s+=parseFloat(lista[h].piezas);
   }
   }
 }
 if((lista.length-1)==h){
-  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  lista[h].descripcionventa +'</td><td>'+ l +'</td><td>'+m +'</td><td>'+x +'</td><td>'+j +'</td><td>'+v +'</td><td>'+s+'</td></tr>';
+  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[h].descripcion +'</td><td>'+ l +'</td><td>'+m +'</td><td>'+x +'</td><td>'+j +'</td><td>'+v +'</td><td>'+s+'</td></tr>';
 cambio =1;  
 }
 }

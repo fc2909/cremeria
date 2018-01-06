@@ -675,6 +675,15 @@ function loadInventarios(lista){
   arrGlobal = lista;
 }
 
+function loadInventario(lista){
+  var html = '';
+  
+  for(var h=0;h<lista.length; h++)
+    html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td><td>' + lista[h].s_max + '</td></tr>';
+  $('.contCata').html(html);
+  arrGlobalInventario = lista;
+}
+
 function loadInventarioVenta(lista){
   arrGlobal = lista;
 }
@@ -822,14 +831,53 @@ element=elemento;
 }
 function loadVDiaria(lista){
   var html = '';
+  var l=0;
+  var m=0;
+  var x=0;
+  var j=0;
+  var v=0;
+  var s=0;
+  var lp=0;
+  var mp=0;
+  var xp=0;
+  var jp=0;
+  var vp=0;
+  var sp=0;
+  var cambio=0;
+  alert(year2);
+  for(var hh=0;hh<arrGlobalInventario.length; hh++){
   for(var h=0;h<lista.length; h++){
-html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  lista[h].descripcionventa +'</td></tr>';
+if(scv==lista[h].sfc&&year2==((lista[h].fechadespachof).substring(0,4))){
+  if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+  if(lista[h].dfc=="1"){
+l+=parseFloat(lista[h].piezas);
+  }
+  if(lista[h].dfc=="2"){
+m+=parseFloat(lista[h].piezas);
+  }
+  if(lista[h].dfc=="3"){
+x+=parseFloat(lista[h].piezas);
+  }
+  if(lista[h].dfc=="4"){
+j+=parseFloat(lista[h].piezas);
+  }
+  if(lista[h].dfc=="5"){
+v+=parseFloat(lista[h].piezas);
+  }
+  if(lista[h].dfc=="6"){
+s+=parseFloat(lista[h].piezas);
+  }
+  }
+}
+if((lista.length-1)==h){
+  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  lista[h].descripcionventa +'</td><td>'+ l +'</td><td>'+m +'</td><td>'+x +'</td><td>'+j +'</td><td>'+v +'</td><td>'+s+'</td></tr>';
+cambio =1;  
+}
+}
+cambio =0;  
 
-html += '';
   }
      $('.contCataModal').html(html);
-
-  
 }
 function loadVentas(lista){
   var html = '';
@@ -1238,13 +1286,37 @@ var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2)
 //if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].cobrado==undefined)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
 if(dianum==6){
  if (lista[h].fechaf==today_v||lista[h].sfc==(noSemana)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
-  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
+var f=lista[h].fechaf;
+
+var datep = new Date();
+var todayp = date.getDay();
+var dayp = date.getDate();
+var monthp = date.getMonth() + 1;
+var yyp = date.getYear();
+var yearp = (yy < 1000) ? yy + 1900 : yy;
+ var nomdiap = new Date((parseInt(month))+' '+parseInt(day)+' ,'+parseInt(year));
+
+var fechap = dias[nomdiap.getUTCDay()-1];
+  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+lista[h].fechaf+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+fechap +'</td></tr>';
 }
 
 }else{
   
    if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].cobrado==undefined)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
-  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
+
+var f=lista[h].fechaf;
+
+var datep = new Date();
+var todayp = date.getDay();
+var dayp = date.getDate();
+var monthp = date.getMonth() + 1;
+var yyp = date.getYear();
+var yearp = (yy < 1000) ? yy + 1900 : yy;
+ var nomdiap = new Date((parseInt(month))+' '+parseInt(day)+' ,'+parseInt(year));
+
+var fechap = dias[nomdiap.getUTCDay()-1];
+
+  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+fechap +'</td></tr>';
   
   
 }
@@ -3701,7 +3773,7 @@ function click_Despacho(){
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('.seccion2').load('/html/salida_venta.html');
-$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><input  type="text" class="form-control buscar text-rigth"  placeholder="BUSCAR"/><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" disabled onclick="ocultar()">VENTAS </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Despacho()" role="tab">DESPACHO</button></li><li role="presentation" class="impre" ><button href="#seccion3" disabled aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Recepcion()">RECEPCIÓN </button></li><div class="imprimir"></div></ul> </div>');
+$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" disabled onclick="ocultar()">VENTAS </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Despacho()" role="tab">DESPACHO</button></li><li role="presentation" class="impre" ><button href="#seccion3" disabled aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Recepcion()">RECEPCIÓN </button></li><div class="imprimir"></div></ul> </div>');
   
 var fecha = $(".selectfecha").val(); 
 
@@ -4349,6 +4421,8 @@ getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar
 
 
 }
+getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventario);
+
 function closeModalDesp2(){
 $('#modalDesp2').modal('hide');
 }

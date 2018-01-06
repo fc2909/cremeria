@@ -870,7 +870,15 @@ s+=parseFloat(lista[h].piezas);
   }
 }
 if((lista.length-1)==h){
-  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[h].descripcion +'</td><td>'+ l +'</td><td>'+m +'</td><td>'+x +'</td><td>'+j +'</td><td>'+v +'</td><td>'+s+'</td></tr>';
+
+  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td>'+m +'</td><td>'+x +'</td><td>'+j +'</td><td>'+v +'</td><td>'+s+'</td></tr>';
+  l=0;
+  m=0;
+  x=0;
+  j=0;
+  v=0;
+  s=0;
+
 cambio =1;  
 }
 }

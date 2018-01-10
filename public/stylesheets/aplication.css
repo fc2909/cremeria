@@ -49,6 +49,37 @@
    left: 5%;
    margin: 10px;
  }
+ .tablaImprimir2 {
+  position: absolute;
+
+   top: 700px;
+   left: 5%;
+   margin: 10px;
+ }
+  .tablaImprimir3 {
+  position: absolute;
+
+   top: 700px;
+
+   left: 500px;
+   margin: 10px;
+ }
+  .tablaImprimir4 {
+  position: absolute;
+
+   top: 725px;
+
+   left: 500px;
+   margin: 10px;
+ }
+  .tablaImprimir5 {
+  position: absolute;
+
+   top: 775px;
+
+   left: 500px;
+   margin: 10px;
+ }
  .fila{
 width: 550px;
  }

@@ -448,6 +448,17 @@ var cantidadEnTexto;
 function pagare(){
   var usuario;
  
+
+
+for (var i=0; i < arrGlobalRuta.length; i++) {
+//alert(arrGlobalRuta[i].id)
+if(arrGlobalRuta[i].id==rutas){
+
+ ruta3=arrGlobalRuta[i].nombre;
+}
+}
+
+
  var dayD = today_v.substring(8,10);
  var monthD = today_v.substring(5,7);
  var yearD = today_v.substring(0,4);
@@ -494,6 +505,13 @@ window.print();
 function pagare2(){
 var usuario;
  
+for (var i=0; i < arrGlobalRuta.length; i++) {
+//alert(arrGlobalRuta[i].id)
+if(arrGlobalRuta[i].id==rutas){
+
+ ruta3=arrGlobalRuta[i].nombre;
+}
+}
  var dayD = today_v.substring(8,10);
  var monthD = today_v.substring(5,7);
  var yearD = today_v.substring(0,4);
@@ -516,8 +534,12 @@ usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";
   document.getElementById('oculto5').style.display = 'block';
   document.getElementById('oculto6').style.display = 'block';
   document.getElementById('oculto7').style.display = 'block';
+  document.getElementById('oculto88').style.display = 'block';
+  document.getElementById('oculto89').style.display = 'block';
+  document.getElementById('oculto90').style.display = 'block';
+  document.getElementById('oculto91').style.display = 'block';
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
-var nombreVendedor = "RUTA _<u>"+rutas+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_";
+var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_";
 var despachadorV = "DESPACHADOR: "+despachador+"";
 var controlC = "CONTROL DE VENTAS Y COBRANZA";
 //  var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaDespachoD+' </u>_ LA CANTIDAD DE _<u> $ '+total_merc+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
@@ -528,7 +550,7 @@ $('.nombreVendedor').html(nombreVendedor);
 $('.nombreCapturista').html(usuario);
 $('.nombreDespachador').html(despachadorV);
 $('.fechaDespacho').html(fechaDespachoDD);
-window.print();
+//window.print();
   document.getElementById('oculto').style.display = 'none';
   document.getElementById('oculto2').style.display = 'none';
   document.getElementById('oculto3').style.display = 'none';
@@ -536,6 +558,10 @@ window.print();
   document.getElementById('oculto5').style.display = 'none';
   document.getElementById('oculto6').style.display = 'none';
   document.getElementById('oculto7').style.display = 'none';
+  document.getElementById('oculto88').style.display = 'none';
+  document.getElementById('oculto89').style.display = 'none';
+  document.getElementById('oculto90').style.display = 'none';
+  document.getElementById('oculto91').style.display = 'none';
 
 
 }
@@ -779,7 +805,7 @@ $('#rec'+h+'').val(lista[h].piezasv);
   //suma2(valor, h);
   $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
 //alert(lista[h].piezasv);
-t_v2[num]=parseFloat(lista[h].venta);
+t_v2[num]=lista[h].venta;
 //alert("Venta: "+lista[h].venta);
 
 num++;
@@ -855,28 +881,94 @@ function loadVDiaria(lista){
 if(scv==lista[h].sfc&&year2==((lista[h].fechadespachof).substring(0,4))){
   if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
   if(lista[h].dfc==1){
-l+=parseFloat(lista[h].piezas);
+    if(lista[h].medida==1){
+l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+lp+=0;
+    }
+     if(lista[h].medida==3){
+l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+lp+=0;
+    }
   }
   if(lista[h].dfc==2){
-m+=parseFloat(lista[h].piezas);
+if(lista[h].medida==1){
+m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+mp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+mp+=0;
+    }
+     if(lista[h].medida==3){
+m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+mp+=0;
+    }
   }
   if(lista[h].dfc==3){
-x+=parseFloat(lista[h].piezas);
+if(lista[h].medida==1){
+x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+xp+=0;
+    }
+     if(lista[h].medida==3){
+x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+xp+=0;
+    }
   }
   if(lista[h].dfc==4){
-j+=parseFloat(lista[h].piezas);
+if(lista[h].medida==1){
+j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+jp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+jp+=0;
+    }
+     if(lista[h].medida==3){
+j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+jp+=0;
+    }
   }
   if(lista[h].dfc==5){
-v+=parseFloat(lista[h].piezas);
+if(lista[h].medida==1){
+v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+vp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+vp+=0;
+    }
+     if(lista[h].medida==3){
+v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+vp+=0;
+    }
   }
   if(lista[h].dfc==6){
-s+=parseFloat(lista[h].piezas);
+if(lista[h].medida==1){
+s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+sp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+sp+=0;
+    }
+     if(lista[h].medida==3){
+s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+sp+=0;
+    }
   }
   }
 }
 if((lista.length-1)==h){
 
-  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td>'+m +'</td><td>'+x +'</td><td>'+j +'</td><td>'+v +'</td><td>'+s+'</td></tr>';
+  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ parseFloat(l).toFixed(2) +' ('+parseFloat(lp).toFixed(3)+' KG.)</td><td>'+ parseFloat(m).toFixed(2) +' ('+parseFloat(mp).toFixed(3)+' KG.) </td><td>'+ parseFloat(x).toFixed(2) +' ('+parseFloat(xp).toFixed(3)+' KG.) </td><td>'+ parseFloat(j).toFixed(2) +' ('+parseFloat(jp).toFixed(3)+' KG.) </td><td>'+ parseFloat(v).toFixed(2) +' ('+parseFloat(vp).toFixed(3)+' KG.)</td><td>'+ parseFloat(s).toFixed(2) +' ('+parseFloat(sp).toFixed(3)+' KG.)</td></tr>';
   l=0;
   m=0;
   x=0;
@@ -1266,19 +1358,19 @@ var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2)
   var  dianum=(diasema.getUTCDay());
   for(var h=0;h<lista.length; h++){
    //alert(today_v+" - "+lista[h].fecha);
-      //alert(lista[h].hora + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + lista[h].piezas + '</td><td>' + lista[h].peso + '</td><td>' + lista[h].precioUnitario + '</td><td>' + lista[h].valorMercancia +'</td></tr>');
+   //alert(lista[h].hora + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + lista[h].piezas + '</td><td>' + lista[h].peso + '</td><td>' + lista[h].precioUnitario + '</td><td>' + lista[h].valorMercancia +'</td></tr>');
   
 //alert('<tr class="seleccionar" onclick="selectVentasp('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].ruta + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + lista[h].v_mercancia + '</td><td>'+lista[h].fecha +'</td></tr>');
 //if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].cobrado==undefined)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
 if(dianum==6){
  if (lista[h].fechaf==today_v||lista[h].sfc==(noSemana)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
-  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
+  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
 }
 
 }else{
   
    if (lista[h].fechaf==today_v||lista[h].sfc==(noSemana+1)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
-  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
+  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
   
   
 }
@@ -1297,6 +1389,8 @@ if(dianum==6){
 function loadVentaspasadas(lista){
   var html2 = '';
 //alert((noSemana+1));
+
+
 var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
   var  dianum=(diasema.getUTCDay());
   for(var h=0;h<lista.length; h++){
@@ -1317,8 +1411,14 @@ var dayp = f.substring(8,10);
  var nomdiap = new Date((parseInt(monthp))+' '+parseInt(dayp)+' ,'+parseInt(yearp));
 
 var fechap = dias[nomdiap.getUTCDay()-1];
+for (var i=0; i < arrGlobalRuta.length; i++) {
+//alert(arrGlobalRuta[i].id)
+if(arrGlobalRuta[i].id==lista[h].ruta){
 
-  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+fechap +'</td></tr>';
+ ruta3=arrGlobalRuta[i].nombre;
+}
+}
+  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+fechap +'</td></tr>';
   
   
 }
@@ -1335,6 +1435,7 @@ var fechap = dias[nomdiap.getUTCDay()-1];
 
 function loadVentaspasadasTF(lista){
   var html2 = '';
+  var htmlp = '';
 
  var dayVS = today_v.substring(8,10);
  var monthVS = today_v.substring(5,7);
@@ -1356,6 +1457,7 @@ var t_vendido = today;
 //alert('<tr class="seleccionar" onclick="selectVentasp('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].ruta + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + lista[h].v_mercancia + '</td><td>'+lista[h].fecha +'</td></tr>');
 if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].f_s_real!=undefined) {
   html2+= '<tr class="" onclick="cambiarcolor(this);click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+');" data-id="'+ lista[h].id +'"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + parseFloat(lista[h].creditos).toFixed(2) + '</td><td> $' + parseFloat(lista[h].f_s_dia).toFixed(2) + '</td><td> $ ' +parseFloat(lista[h].loquedeberiatraer).toFixed(2) + '</td><td> $ '+parseFloat(lista[h].f_s_real).toFixed(2) + '</td></tr>';
+  htmlp+= '<tr  style="font-size:7px; "><td class="text-center"> ' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $' + parseFloat(lista[h].creditos).toFixed(2) + '</td><td class="text-center"> $' + parseFloat(lista[h].f_s_dia).toFixed(2) + '</td><td class="text-center"> $ ' +parseFloat(lista[h].loquedeberiatraer).toFixed(2) + '</td><td class="text-center"> $ '+parseFloat(lista[h].f_s_real).toFixed(2) + '</td></tr>';
 //alert(lista[h].cobrado+" == "+(cobrado+1)+" && "+lista[h].ruta+" == "+rutas+" semana: "+today_v);
 }
 //if (lista[h].sfc==(noSemana+2)&&lista[h].ruta==rutas&&lista[h].f_s_real!=undefined&&lista[h].dsfc==6) {
@@ -1367,6 +1469,7 @@ if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].f_s_real!=undefin
     }
 
      $('.contCata2').html(html2);
+     $('.contCatapp').html(html2);
      html2='';
 //alert(cobrado);
   arrGlobal4 = lista;
@@ -2620,6 +2723,7 @@ function upRecepcion(){
 
 var idc, creditos, otros,temp;
 var piezasv, pesov, validar, dsd, sd, lo;
+
 var credito_manual=0;
    $(".totalVentas").html('');
 var fecharecepcion=today_vv;
@@ -4408,6 +4512,7 @@ $('#modalDesp2 .despachador').html(selectdes);
 
 
 }
+//getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutasUp);
 
 function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc){
  $('.btn-nav').removeClass('hidden');
@@ -4417,17 +4522,22 @@ modalDespachador2();
  nombre_vend = arrGlobal4[h].nombre;
  id_vend=id;
  n_vend=h;
- rutas=ruta;
+ rutas=arrGlobal4[h].ruta;
+
  t_vende=tipo;
  cred=credito;
  boni=bonificaciones;
  fechacaptura=arrGlobal4[h].fechaf;
  dscv=dsc;
  scv=sc;
+
+
+
+
  var despachadorV = $('#modalDesp2 .selectDespachador ').val();
    despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
     var vDiaria ='<li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA </button></li>';
- $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - NOMBRE: '+nombre_vend+'. RUTA: ' +t_rutas[rutas-1]+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN : '+boni+'. </p>');
+ $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - NOMBRE: '+nombre_vend+'. RUTA: ' +ruta3+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN : '+boni+'. </p>');
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);

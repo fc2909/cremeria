@@ -875,7 +875,7 @@ function loadVDiaria(lista){
   var vp=0;
   var sp=0;
   var cambio=0;
-  alert(rutas);
+ 
   for(var hh=0;hh<arrGlobalInventario.length; hh++){
   for(var h=0;h<lista.length; h++){
 if(rutas==lista[h].ruta&&scv==lista[h].sfc&&year2==((lista[h].fechadespachof).substring(0,4))){

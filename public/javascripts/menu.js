@@ -875,11 +875,13 @@ function loadVDiaria(lista){
   var vp=0;
   var sp=0;
   var cambio=0;
+  var pasa=0;
  
   for(var hh=0;hh<arrGlobalInventario.length; hh++){
   for(var h=0;h<lista.length; h++){
 if(rutas==lista[h].ruta&&scv==lista[h].sfc&&year2==((lista[h].fechadespachof).substring(0,4))){
-  if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa&&rutas==lista[h].ruta){
+  if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+    pasa=1;
   if(lista[h].dfc==1){
     if(lista[h].medida==1){
 l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
@@ -966,7 +968,7 @@ sp +=0;
   }
   }
 }
-if((lista.length-1)==h){
+if((lista.length-1)==h&&pasa==1){
 var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
 var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
   html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ parseFloat(l).toFixed(2) +' ('+parseFloat(lp).toFixed(3)+' KG.)</td><td>'+ parseFloat(m).toFixed(2) +' ('+parseFloat(mp).toFixed(3)+' KG.) </td><td>'+ parseFloat(x).toFixed(2) +' ('+parseFloat(xp).toFixed(3)+' KG.) </td><td>'+ parseFloat(j).toFixed(2) +' ('+parseFloat(jp).toFixed(3)+' KG.) </td><td>'+ parseFloat(v).toFixed(2) +' ('+parseFloat(vp).toFixed(3)+' KG.)</td><td>'+ parseFloat(s).toFixed(2) +' ('+parseFloat(sp).toFixed(3)+' KG.)</td><td style="background:green;">'+parseFloat(suma).toFixed(2)+' ('+parseFloat(suma2).toFixed(2)+' KG.)</td></tr>';
@@ -987,7 +989,7 @@ cambio =1;
 }
 }
 cambio =0;  
-
+pasa=0;
   }
      $('.contCataModal').html(html);
 }

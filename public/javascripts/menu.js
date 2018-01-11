@@ -11,7 +11,7 @@ var arrGlobal, arrGlobalVF, arrGlobalRuta , fechacaptura, arrGlobalE, t_merc , v
  var piezasT, year2, month2, day2; 
 var user;
 var tipoUsuario = ['DIRECTOR','ADMINISTRADOR','CONTADOR','DESPACHADOR','VENTAS']
-var tipoMantinimiento = ['REDICTIVO','PREVENTICO','CORRECTIVO','OTROS']
+var tipoMantinimiento = ['PREDICTIVO','PREVENTICO','CORRECTIVO','OTROS']
 var medidas = ['KG.','PZAS.','L'];
 var combustibles = ['GASOLINA - MAGNA','GASOLINA - PREMIUM','GASOLINA & GAS','GAS','DIESEL'];
 var t_rutas = ['C1','C2','C3','C4','C5','C6','C7','C8'];
@@ -879,7 +879,7 @@ function loadVDiaria(lista){
   for(var hh=0;hh<arrGlobalInventario.length; hh++){
   for(var h=0;h<lista.length; h++){
 if(rutas==lista[h].ruta&&scv==lista[h].sfc&&year2==((lista[h].fechadespachof).substring(0,4))){
-  if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+  if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa&&rutas==lista[h].ruta){
   if(lista[h].dfc==1){
     if(lista[h].medida==1){
 l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));

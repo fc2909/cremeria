@@ -875,10 +875,10 @@ function loadVDiaria(lista){
   var vp=0;
   var sp=0;
   var cambio=0;
-  //alert(year2);
+  alert(rutas);
   for(var hh=0;hh<arrGlobalInventario.length; hh++){
   for(var h=0;h<lista.length; h++){
-if(scv==lista[h].sfc&&year2==((lista[h].fechadespachof).substring(0,4))){
+if(rutas==lista[h].ruta&&scv==lista[h].sfc&&year2==((lista[h].fechadespachof).substring(0,4))){
   if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
   if(lista[h].dfc==1){
     if(lista[h].medida==1){
@@ -961,20 +961,27 @@ sp+=0;
     }
      if(lista[h].medida==3){
 s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
-sp+=0;
+sp +=0;
     }
   }
   }
 }
 if((lista.length-1)==h){
-
-  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ parseFloat(l).toFixed(2) +' ('+parseFloat(lp).toFixed(3)+' KG.)</td><td>'+ parseFloat(m).toFixed(2) +' ('+parseFloat(mp).toFixed(3)+' KG.) </td><td>'+ parseFloat(x).toFixed(2) +' ('+parseFloat(xp).toFixed(3)+' KG.) </td><td>'+ parseFloat(j).toFixed(2) +' ('+parseFloat(jp).toFixed(3)+' KG.) </td><td>'+ parseFloat(v).toFixed(2) +' ('+parseFloat(vp).toFixed(3)+' KG.)</td><td>'+ parseFloat(s).toFixed(2) +' ('+parseFloat(sp).toFixed(3)+' KG.)</td></tr>';
+var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ parseFloat(l).toFixed(2) +' ('+parseFloat(lp).toFixed(3)+' KG.)</td><td>'+ parseFloat(m).toFixed(2) +' ('+parseFloat(mp).toFixed(3)+' KG.) </td><td>'+ parseFloat(x).toFixed(2) +' ('+parseFloat(xp).toFixed(3)+' KG.) </td><td>'+ parseFloat(j).toFixed(2) +' ('+parseFloat(jp).toFixed(3)+' KG.) </td><td>'+ parseFloat(v).toFixed(2) +' ('+parseFloat(vp).toFixed(3)+' KG.)</td><td>'+ parseFloat(s).toFixed(2) +' ('+parseFloat(sp).toFixed(3)+' KG.)</td><td style="background:green;">'+parseFloat(suma).toFixed(2)+' ('+parseFloat(suma2).toFixed(2)+' KG.)</td></tr>';
   l=0;
   m=0;
   x=0;
   j=0;
   v=0;
   s=0;
+  lp=0;
+  mp=0;
+  xp=0;
+  jp=0;
+  vp=0;
+  sp= 0;
 
 cambio =1;  
 }
@@ -1964,7 +1971,11 @@ function addVenta(){
   var peso = $(".peso").val();
   var vendedor=nombre_vend;
 //alert(day2+" / "+month2+" / "+year2);
-  
+  if(peso==""||peso==NaN||peso==undefined){
+    peso=0.00;
+  }
+ var pesov=0.00;
+ var piezasv=0.00;
   var hora = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
   var horadespacho = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
   var empleado = id_vend;
@@ -2153,7 +2164,7 @@ if(noSemana==52&&dc==6){
     
       //alert(v_mercancia+" = "+total_mercancia+" + "+valorMercancia);                                                                 
   //alert(vendedor);
-  var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc};
+  var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc};
    addRegistro3(json, 'ventadiaria', loadVentas);
    var dsc= dc;
     //alert(dfc+" ---- "+sfc);
@@ -2740,6 +2751,9 @@ for (var i = 0; i < arrGlobalT.length; i++) {
 validar==1;
 if(parseFloat(arrGlobalT[i].peso)==0){
 piezasv= $('#rec'+i+'').val();
+if(piezasv==""){
+  piezasv=0;
+}
 pesov=0;
 //alert("("+parseInt(arrGlobalT[i].piezas)+"-"+piezasv+")*"+parseInt(arrGlobalT[i].precioUnitario));
 venta=(parseFloat(arrGlobalT[i].piezas)-parseFloat(piezasv))*parseFloat(arrGlobalT[i].precioUnitario);
@@ -2752,6 +2766,12 @@ s_vent+=t_v2[i];
 }else{
 pesov=$('#rec'+i+'').val();
 piezasv=$('#p'+i+'').val();
+if(piezasv==""){
+  piezasv=0;
+}
+if(pesov==""){
+  pesov=0;
+}
 //alert(piezasT[i]+"------");
 venta=(parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))*parseFloat(arrGlobalT[i].precioUnitario);
 

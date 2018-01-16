@@ -1270,12 +1270,18 @@ var html = '';
 function loadVentasp2(lista){
   var html3 = '';
   arrGlobalE='';
-  for(var h=0;h<lista.length; h++)
+  for(var h=0;h<lista.length; h++){
+    for (var ii=0; ii < arrGlobalRuta.length; ii++) {
+if(arrGlobalRuta[ii].id==lista[h].ruta){
+//alert(ruta3);
+ruta3=arrGlobalRuta[ii].nombre;
+}
+}
     if(lista[h].fechaf == today_vv && lista[h].efectivo != null){
-html3+= '<tr class="seleccionar" onclick="selectEV('+lista[h].id+');" data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
+html3+= '<tr class="seleccionar" onclick="selectEV('+lista[h].id+');" data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
    
     }
-
+}
      //$('#modalEfectivo .contCataModal').html('hide');
 
      $('#modalEfectivo .contCataModal').html(html3);
@@ -2850,7 +2856,7 @@ var diasema3= new Date((parseInt(month3))+' '+parseInt(day3)+' ,'+parseInt(year3
 
 if(dia31==1){
 
-//alert("Hoy es lunes xD")
+//alert("Hoy es lunes xD");
 
 //alert (cobrado);
 
@@ -2944,14 +2950,14 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
 
 }else{
  // alert("pasa");
-  if(arrGlobal41[hh].sfc==cobrado&&arrGlobal41[hh].ruta==rutas){
+  if(arrGlobal41[hh].sfc==(cobrado-1)&&arrGlobal41[hh].ruta==rutas){
     hhc=hh;
     
-   //alert("cobradooo: "+cobrado +" - dia: "+arrGlobal41[hh].dsfc+" dscv: "+dscv);
+  // alert("cobradooo: "+cobrado +" - dia: "+arrGlobal41[hh].dsfc+" dscv: "+dscv);
     
     
     for (var ii = dscv; ii <= dscv; ii--){
- //  alert(ii+" == "+arrGlobal41[hh].dsfc);
+  //alert(ii+" == "+arrGlobal41[hh].dsfc+" limite: "+dscv);
     if (ii==arrGlobal41[hh].dsfc&&ii!=dscv) {
 //alert("ultimo dia con carga: "+ii);
   hk=30;
@@ -4560,7 +4566,7 @@ modalDespachador2();
 
  var despachadorV = $('#modalDesp2 .selectDespachador ').val();
    despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
-    var vDiaria ='<li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA </button></li>';
+    var vDiaria ='<li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA </button></li><li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="">MERMA</button></li><li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="">RECARGA</button></li>';
  $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - NOMBRE: '+nombre_vend+'. RUTA: ' +ruta3+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN : '+boni+'. </p>');
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
@@ -4709,10 +4715,18 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 
 var rutav ='<select class="form-control rv clear" id="rv" name="select">';
 var conta=1;
+
+
 //alert(today_vv);
 for (var i = 0; i <  arrGlobalF.length; i++) {
    if(arrGlobalF[i].fecha==today_vv && arrGlobalF[i].efectivo==null ){
-    rutav += '<option onclick="limpiar()" id="'+arrGlobalF[i].id+'" value="'+arrGlobalF[i].id+'" >'+t_rutas[arrGlobalF[i].ruta-1]+' - '+arrGlobalF[i].nombre+'</option>';
+    for (var ii=0; ii < arrGlobalRuta.length; ii++) {
+if(arrGlobalRuta[ii].id==arrGlobalF[i].ruta){
+//alert(ruta3);
+ruta3=arrGlobalRuta[ii].nombre;
+}
+}
+    rutav += '<option onclick="limpiar()" id="'+arrGlobalF[i].id+'" value="'+arrGlobalF[i].id+'" >'+ruta3+' - '+arrGlobalF[i].nombre+'</option>';
    conta++;
    }
 }

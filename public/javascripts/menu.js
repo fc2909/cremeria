@@ -2858,7 +2858,7 @@ if(dia31==1){
 
 //alert("Hoy es lunes xD");
 
-//alert (cobrado);
+//alert (cobrado+" - "+scv);
 
 for(var h=0;h<arrGlobal4.length; h++){
    //alert(today_v+" - "+lista[h].fecha);
@@ -2868,11 +2868,11 @@ if (arrGlobal4[h].id==id_vend) {
 for(var hh=0;hh<arrGlobal4.length; hh++){
   //alert(arrGlobal4[hh].cobrado+" == "+(cobrado-1)+" && "+arrGlobal4[hh].ruta+" == "+rutas+" && "+6+" == "+arrGlobal4[hh].t_venta);
 
-if (arrGlobal4[hh].sc==(scv-1)&&arrGlobal4[hh].ruta==rutas&&6==arrGlobal4[hh].dsc) {
+if (arrGlobal4[hh].sfc==(scv-1)&&arrGlobal4[hh].ruta==rutas&&6==arrGlobal4[hh].dsc) {
 loquedeberiatraer=parseFloat(arrGlobal4[hh].creditos)-parseFloat(f_s_dia);
 f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  //alert(loquedeberiatraer+" - "+f_s_real);
- //alert(creditos+" entraaaaaaaa");
+ //alert(creditos+" entraaaaaaaa en semana:"+arrGlobal4[hh].sfc);
  credito_manual=1;
  //alert(arrGlobal4[hh].creditos+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);

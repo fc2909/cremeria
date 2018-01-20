@@ -7,7 +7,7 @@
 <br>
  
     <label >Nombre</label>
-    <input type="text" class="form-control  clear nombre" placeholder="Nombre">
+    <input type="text" class="form-control clear nombre" id="nombre" onchange="document.getElementById('password').focus();" placeholder="Nombre">
   </div>
      
  
@@ -15,19 +15,19 @@
   <br>
  
     <label >Contraseña</label>
-    <input type="text" class="form-control  clear contrasenia" placeholder="Contraseña">
+    <input type="text" class="form-control clear contrasenia" id="password" onchange="document.getElementById('pin').focus();" placeholder="Contraseña">
   </div>  
   <div class="col-xs-3 col-md-3 form-group letras">
   <br>
  
     <label >Pin</label>
-    <input type="text" class="form-control  clear pin" placeholder="Pin">
+    <input type="text" class="form-control  clear pin" id="pin" onchange="document.getElementById('tipo').focus();" placeholder="Pin">
   </div>  
 <div class="col-xs-3 col-md-3 form-group">
     <br><label class="letras">Tipo</label>
 
  
-    <select class="form-control  clear tipo">
+    <select class="form-control  clear tipo" id="tipo" onchange="document.getElementById('add').focus();">
 <option value="5">Vendedor</option>
 <option value="4">Despachador</option>
 <option value="3">Contador</option>
@@ -37,7 +37,7 @@
   </div>
  
   <div class="col-sm-3 col-md-3">
-      <button type="button" class="btn usuario1 insertar" onclick="addUsuario(); u(); limpiar();">Insertar</button>
+      <button type="button" class="btn usuario1 insertar" id="add" onchange="document.getElementById('nombre').focus();" onclick="addUsuario(); u(); limpiar();">Insertar</button>
   </div>
    <div class="col-sm-3 col-md-3">
     <button type="button" class="btn usuario1 limpiar" onclick="limpiar();u();">Limpiar</button>

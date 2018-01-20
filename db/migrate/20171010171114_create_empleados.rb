@@ -25,6 +25,28 @@ class CreateEmpleados < ActiveRecord::Migration[5.0]
       t.string :telp
       t.string :tell
       t.string :fnacimiento
+      t.string :estado
+      t.string :ingreso
+      t.string :vacaciones
+      t.string :renuncia
+      t.string :reingresos
+      t.string :razon
+      t.string :solicitud
+      t.string :ine2
+      t.string :curp2
+      t.string :rfc2
+      t.string :nss
+      t.string :acta
+      t.string :cdomicilio
+      t.string :foto
+      t.string :recomendaciones
+      t.string :licenciac
+      t.string :antecedentes
+      t.string :ineaval
+      t.string :predial
+      t.string :comprobanted
+      t.string :pagare
+
 
 
 

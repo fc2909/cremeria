@@ -58,8 +58,29 @@ ActiveRecord::Schema.define(version: 20180105165531) do
     t.string   "telp"
     t.string   "tell"
     t.string   "fnacimiento"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "estado"
+    t.string   "ingreso"
+    t.string   "vacaciones"
+    t.string   "renuncia"
+    t.string   "reingresos"
+    t.string   "razon"
+    t.string   "solicitud"
+    t.string   "ine2"
+    t.string   "curp2"
+    t.string   "rfc2"
+    t.string   "nss"
+    t.string   "acta"
+    t.string   "cdomicilio"
+    t.string   "foto"
+    t.string   "recomendaciones"
+    t.string   "licenciac"
+    t.string   "antecedentes"
+    t.string   "ineaval"
+    t.string   "predial"
+    t.string   "comprobanted"
+    t.string   "pagare"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "inventarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -97,11 +118,11 @@ ActiveRecord::Schema.define(version: 20180105165531) do
     t.string   "vehiculo"
     t.string   "jerarquia"
     t.integer  "activo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.string   "servicio"
     t.string   "n1"
     t.string   "n2"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "notases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

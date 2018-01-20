@@ -11,7 +11,7 @@ var arrGlobal, arrGlobalVF, arrGlobalRuta , fechacaptura, arrGlobalE, t_merc , v
  var piezasT, year2, month2, day2; 
 var user;
 var tipoUsuario = ['DIRECTOR','ADMINISTRADOR','CONTADOR','DESPACHADOR','VENTAS']
-var tipoMantinimiento = ['PREDICTIVO','PREVENTICO','CORRECTIVO','OTROS']
+var tipoMantinimiento = ['PREDICTIVO','PREVENTIVO','CORRECTIVO','OTROS']
 var medidas = ['KG.','PZAS.','L'];
 var combustibles = ['GASOLINA - MAGNA','GASOLINA - PREMIUM','GASOLINA & GAS','GAS','DIESEL'];
 var t_rutas = ['C1','C2','C3','C4','C5','C6','C7','C8'];
@@ -20,6 +20,7 @@ var t_Empleado = ['AYUDANTE GENERAL','VENTAS','GERENTE DE VENTAS','GERENTE DE OP
 var dias = ['LUNES',' MARTES ',' MIÉRCOLES ',' JUEVES ',' VIERNES ',' SÁBADO ',' DOMINGO '];
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
 
+getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV2);
 
 $(document).ready(function(){
   user = window.usuario.idUsuario;
@@ -1271,13 +1272,16 @@ function loadVentasp2(lista){
   var html3 = '';
   arrGlobalE='';
   for(var h=0;h<lista.length; h++){
-    for (var ii=0; ii < arrGlobalRuta.length; ii++) {
+
+    if(lista[h].fechaf == today_vv && lista[h].efectivo != null){
+
+          for (var ii=0; ii < arrGlobalRuta.length; ii++) {
 if(arrGlobalRuta[ii].id==lista[h].ruta){
 //alert(ruta3);
 ruta3=arrGlobalRuta[ii].nombre;
 }
 }
-    if(lista[h].fechaf == today_vv && lista[h].efectivo != null){
+     // alert(lista[h].fechaf+" == "+today_vv );
 html3+= '<tr class="seleccionar" onclick="selectEV('+lista[h].id+');" data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
    
     }
@@ -1354,9 +1358,45 @@ function loadVentasp3(lista){
   var html = '';
   arrGlobalE='';
 
+
+
+
+var rutav ='<select class="form-control rv clear" id="rv" name="select">';
+var conta=1;
+
+
+//alert(today_vv);
+for (var i = 0; i <  arrGlobalF.length; i++) {
+   if(arrGlobalF[i].fechaf==dateCash2 && arrGlobalF[i].efectivo==null ){
+    for (var ii=0; ii < arrGlobalRuta.length; ii++) {
+if(arrGlobalRuta[ii].id==arrGlobalF[i].ruta){
+//alert(ruta3);
+ruta3=arrGlobalRuta[ii].nombre;
+}
+}
+    rutav += '<option onclick="limpiar()" id="'+arrGlobalF[i].id+'" value="'+arrGlobalF[i].id+'" >'+ruta3+' - '+arrGlobalF[i].nombre+'</option>';
+   conta++;
+   }
+}
+rutav +='</select>';
+//alert(rutav);
+$("#modalEfectivo .selectCash").html(rutav);
+
+
+
+
+
+
   for(var h=0;h<lista.length; h++)
     if(lista[h].fechaf == dateCash2 && lista[h].efectivo != null){
-html+= '<tr class=" seleccionar"  onclick="selectEV('+lista[h].id+');"  data-id="'+ lista[h].id +'"><td>' + t_rutas[lista[h].ruta-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
+
+                for (var ii=0; ii < arrGlobalRuta.length; ii++) {
+if(arrGlobalRuta[ii].id==lista[h].ruta){
+//alert(ruta3);
+ruta3=arrGlobalRuta[ii].nombre;
+}
+}
+html+= '<tr class=" seleccionar"  onclick="selectEV('+lista[h].id+');"  data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
 
     }
 
@@ -1592,6 +1632,7 @@ function  loadMV(lista){
      arrGlobalVehiculo = lista;
 }
 function  loadMV2(lista){
+
 
      arrGlobalVehiculo = lista;
 }
@@ -1840,6 +1881,7 @@ $('#modalVendedor .noruta').html(rutas2);
 
 }
 function addVendedor(){
+
   var idEmpleados = $(" #modalVendedor .idVendedor").val();
   var nombre_Emple = $("#modalVendedor .nombre").val();
   var paterno_Emple = $("#modalVendedor .a_paterno").val();
@@ -1865,14 +1907,40 @@ function addVendedor(){
   var telp = $("#modalVendedor .telp").val();
   var tell = $("#modalVendedor .tell").val();
   var fnacimiento = $("#modalVendedor .fnacimiento").val();
- 
+
+  var estado = $(" #modalVendedor .estado").val();
+  var ingreso = $("#modalVendedor .fnacimiento").val();
+  var vacaciones = $("#modalVendedor .vacaciones").val();
+  var renuncia = $("#modalVendedor .renuncia").val();
+  var reingresos = $("#modalVendedor .reingresos").val();
+  var razon = $(" .razon").val();
+  var solicitud = $("#modalVendedor .solicitud:checked").val();
+  var ine2 = $("#modalVendedor .ine2:checked").val();
+  var curp2 = $("#modalVendedor .curp2:checked").val();
+  var rfc2 = $("#modalVendedor .rfc2:checked").val();
+  var nss = $("#modalVendedor .nss:checked").val();
+  var acta = $("#modalVendedor .acta:checked").val();
+  var cdomicilio = $("#modalVendedor .cdomicilio:checked").val();
+  var foto = $("#modalVendedor .foto:checked").val();
+  var recomendaciones = $("#modalVendedor .recomendaciones:checked").val();
+  var licenciac = $("#modalVendedor .licenciac:checked").val();
+  var antecedentes = $("#modalVendedor .antecedentes:checked").val();
+  var ineaval = $("#modalVendedor .ineaval:checked").val();
+  var predial = $("#modalVendedor .predial:checked").val();
+  var comprobanted = $("#modalVendedor .comprobanted:checked").val();
+  var pagare = $("#modalVendedor .pagare:checked").val();
+ //   var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare };
+
+  
+
+
 $('#modalVendedor').modal('hide');
 
 
    
   if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare };
     addRegistro(json, 'empleados', loadVendedores);
   }
   else{
@@ -1880,6 +1948,7 @@ $('#modalVendedor').modal('hide');
       $('#modal .textModal').html('Faltan Datos.'); 
       $('#modal').modal('show');
   }
+  limpiar();
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
 
 }
@@ -1951,11 +2020,35 @@ function addEmpleado(){
   var telp = $("#modalAdministracion .telp").val();
   var tell = $("#modalAdministracion .tell").val();
   var fnacimiento = $("#modalAdministracion .fnacimiento").val();
+
+   
+  var estado = $(" #modalAdministracion .estado").val();
+  var ingreso = $("#modalAdministracion .fnacimiento").val();
+  var vacaciones = $("#modalAdministracion .vacaciones").val();
+  var renuncia = $("#modalAdministracion .renuncia").val();
+  var reingresos = $("#modalAdministracion .reingresos").val();
+  var razon = $("#modalAdministracion .razon").val();
+
+  var solicitud = $("#modalAdministracion .solicitud:checked").val();
+  var ine2 = $("#modalAdministracion .ine2:checked").val();
+  var curp2 = $("#modalAdministracion .curp2:checked").val();
+  var rfc2 = $("#modalAdministracion .rfc2:checked").val();
+  var nss = $("#modalAdministracion .nss:checked").val();
+  var acta = $("#modalAdministracion .acta:checked").val();
+  var cdomicilio = $("#modalAdministracion .cdomicilio:checked").val();
+  var foto = $("#modalAdministracion .foto:checked").val();
+  var recomendaciones = $("#modalAdministracion .recomendaciones:checked").val();
+  var licenciac = $("#modalAdministracion .licenciac:checked").val();
+  var antecedentes = $("#modalAdministracion .antecedentes:checked").val();
+   // var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
+
    
   if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
-    addRegistro(json, 'empleados', loadAdministracion);
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
+    
+    //var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
+    addRegistro(json,'empleados', loadAdministracion);
   }
   else{
 
@@ -1963,10 +2056,9 @@ function addEmpleado(){
       $('#modal').modal('show');
   }
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
-
+limpiar();
 }
 function addfecha(){
-
 var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
 var dia = 
 $(".fecha_hoy").html(fecha);
@@ -2552,7 +2644,77 @@ $('#modalVendedor').modal('hide');
   var fnacimiento = $("#modalVendedor .fnacimiento").val();
  
  
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
+  var estado = $(" #modalVendedor .estado").val();
+  var ingreso = $("#modalVendedor .fnacimiento").val();
+  var vacaciones = $("#modalVendedor .vacaciones").val();
+  var renuncia = $("#modalVendedor .renuncia").val();
+  var reingresos = $("#modalVendedor .reingresos").val();
+  var razon = $(" .razon").val();
+
+  var solicitud = $("#modalVendedor .solicitud:checked").val();
+  var ine2 = $("#modalVendedor .ine2:checked").val();
+  var curp2 = $("#modalVendedor .curp2:checked").val();
+  var rfc2 = $("#modalVendedor .rfc2:checked").val();
+  var nss = $("#modalVendedor .nss:checked").val();
+  var acta = $("#modalVendedor .acta:checked").val();
+  var cdomicilio = $("#modalVendedor .cdomicilio:checked").val();
+  var foto = $("#modalVendedor .foto:checked").val();
+  var recomendaciones = $("#modalVendedor .recomendaciones:checked").val();
+  var licenciac = $("#modalVendedor .licenciac:checked").val();
+  var antecedentes = $("#modalVendedor .antecedentes:checked").val();
+  var ineaval = $("#modalVendedor .ineaval:checked").val();
+  var predial = $("#modalVendedor .predial:checked").val();
+  var comprobanted = $("#modalVendedor .comprobanted:checked").val();
+  var pagare = $("#modalVendedor .pagare:checked").val();
+
+if(solicitud==""||solicitud==undefined||solicitud==null){
+solicitud=0;
+}
+if(ine2==""||ine2==undefined||ine2==null){
+ine2=0;
+}
+if(curp2==""||curp2==undefined||curp2==null){
+curp2=0;
+}
+if(rfc2==""||rfc2==undefined||rfc2==null){
+rfc2=0;
+}
+if(nss==""||nss==undefined||nss==null){
+nss=0;
+}
+if(acta==""||acta==undefined||acta==null){
+acta=0;
+}
+if(cdomicilio==""||cdomicilio==undefined||cdomicilio==null){
+cdomicilio=0;
+}
+if(foto==""||foto==undefined||foto==null){
+foto=0;
+}
+if(recomendaciones==""||recomendaciones==undefined||recomendaciones==null){
+recomendaciones=0;
+}
+if(licenciac==""||licenciac==undefined||licenciac==null){
+licenciac=0;
+}
+if(antecedentes==""||antecedentes==undefined||antecedentes==null){
+antecedentes=0;
+}
+if(ineaval==""||ineaval==undefined||ineaval==null){
+ineaval=0;
+}
+if(predial==""||predial==undefined||predial==null){
+predial=0;
+}
+if(comprobanted==""||comprobanted==undefined||comprobanted==null){
+comprobanted=0;
+}
+if(pagare==""||pagare==undefined||pagare==null){
+pagare=0;
+}
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare };
+  
+  //  var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
 
 
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
@@ -2598,10 +2760,61 @@ $('#modalAdministracion').modal('hide');
   var telp = $("#modalAdministracion .telp").val();
   var tell = $("#modalAdministracion .tell").val();
   var fnacimiento = $("#modalAdministracion .fnacimiento").val();
- 
+   
+  var estado = $(" #modalAdministracion .estado").val();
+  var ingreso = $("#modalAdministracion .fnacimiento").val();
+  var vacaciones = $("#modalAdministracion .vacaciones").val();
+  var renuncia = $("#modalAdministracion .renuncia").val();
+  var reingresos = $("#modalAdministracion .reingresos").val();
+  var razon = $("#modalAdministracion .razon").val();
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
+  var solicitud = $("#modalAdministracion .solicitud:checked").val();
+  var ine2 = $("#modalAdministracion .ine2:checked").val();
+  var curp2 = $("#modalAdministracion .curp2:checked").val();
+  var rfc2 = $("#modalAdministracion .rfc2:checked").val();
+  var nss = $("#modalAdministracion .nss:checked").val();
+  var acta = $("#modalAdministracion .acta:checked").val();
+  var cdomicilio = $("#modalAdministracion .cdomicilio:checked").val();
+  var foto = $("#modalAdministracion .foto:checked").val();
+  var recomendaciones = $("#modalAdministracion .recomendaciones:checked").val();
+  var licenciac = $("#modalAdministracion .licenciac:checked").val();
+  var antecedentes = $("#modalAdministracion .antecedentes:checked").val();
+if(solicitud==""||solicitud==undefined||solicitud==null){
+solicitud=0;
+}
+if(ine2==""||ine2==undefined||ine2==null){
+ine2=0;
+}
+if(curp2==""||curp2==undefined||curp2==null){
+curp2=0;
+}
+if(rfc2==""||rfc2==undefined||rfc2==null){
+rfc2=0;
+}
+if(nss==""||nss==undefined||nss==null){
+nss=0;
+}
+if(acta==""||acta==undefined||acta==null){
+acta=0;
+}
+if(cdomicilio==""||cdomicilio==undefined||cdomicilio==null){
+cdomicilio=0;
+}
+if(foto==""||foto==undefined||foto==null){
+foto=0;
+}
+if(recomendaciones==""||recomendaciones==undefined||recomendaciones==null){
+recomendaciones=0;
+}
+if(licenciac==""||licenciac==undefined||licenciac==null){
+licenciac=0;
+}
+if(antecedentes==""||antecedentes==undefined||antecedentes==null){
+antecedentes=0;
+}
+alert(solicitud+ine2+curp2+rfc2+nss+acta+cdomicilio+foto+recomendaciones+licenciac+antecedentes+" test_line:2813");
 
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
 
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
@@ -2856,7 +3069,7 @@ var diasema3= new Date((parseInt(month3))+' '+parseInt(day3)+' ,'+parseInt(year3
 
 if(dia31==1){
 
-//alert("Hoy es lunes xD");
+alert("Hoy es lunes xD");
 
 //alert (cobrado+" - "+scv);
 
@@ -2874,7 +3087,7 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  //alert(loquedeberiatraer+" - "+f_s_real);
  //alert(creditos+" entraaaaaaaa en semana:"+arrGlobal4[hh].sfc);
  credito_manual=1;
- //alert("Creditos "+arrGlobal4[hh].creditos+" - "+f_s_dia+" = "+ loquedeberiatraer);
+ //alert(arrGlobal4[hh].creditos+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
 json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd}
 }
@@ -2905,7 +3118,7 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
 
 }else{
 
-//alert("otro dia de la semana..."); 
+alert("otro dia de la semana..."); 
 //alert (arrGlobal4.length+" medida");
 var med=arrGlobal4.length;
 var hk=20;
@@ -3367,6 +3580,58 @@ function selectVendedores(id){
        $("#modalVendedor .telp").val(arrGlobal[a].telp);
        $("#modalVendedor .tell").val(arrGlobal[a].tell);
        $("#modalVendedor .fnacimiento").val(arrGlobal[a].fnacimiento);
+       $("#modalVendedor .estado").val(arrGlobal[a].estado);
+       $("#modalVendedor .fnacimiento").val(arrGlobal[a].ingreso);
+       $("#modalVendedor .vacaciones").val(arrGlobal[a].vacaciones);
+       $("#modalVendedor .renuncia").val(arrGlobal[a].renuncia);
+       $("#modalVendedor .reingresos").val(arrGlobal[a].reingresos);
+       $("#modalVendedor .razon").val(arrGlobal[a].razon);
+if(arrGlobal[a].solicitud==1){
+  $("#modalVendedor .solicitud").attr('checked', true);
+}
+if(arrGlobal[a].ine2==1){
+$("#modalVendedor .ine2").attr('checked', true);
+}
+if(arrGlobal[a].curp2==1){
+$("#modalVendedor .curp2").attr('checked', true);
+}
+if(arrGlobal[a].rfc2==1){
+$("#modalVendedor .rfc2").attr('checked', true);
+}
+if(arrGlobal[a].nss==1){
+$("#modalVendedor .nss").attr('checked', true);
+}
+if(arrGlobal[a].acta==1){
+$("#modalVendedor .acta").attr('checked', true);
+}
+if(arrGlobal[a].cdomicilio==1){
+$("#modalVendedor .cdomicilio").attr('checked', true);
+}
+if(arrGlobal[a].foto==1){
+$("#modalVendedor .foto").attr('checked', true);
+}
+if(arrGlobal[a].recomendaciones==1){
+$("#modalVendedor .recomendaciones").attr('checked', true);
+}
+if(arrGlobal[a].licenciac==1){
+$("#modalVendedor .licenciac").attr('checked', true);
+}
+if(arrGlobal[a].antecedentes==1){
+$("#modalVendedor .antecedentes").attr('checked', true);
+}
+if(arrGlobal[a].ineaval==1){
+$("#modalVendedor .ineaval").attr('checked', true);
+}
+if(arrGlobal[a].predial==1){
+$("#modalVendedor .predial").attr('checked', true);
+}
+if(arrGlobal[a].comprobanted==1){
+$("#modalVendedor .comprobanted").attr('checked', true);
+}
+if(arrGlobal[a].pagare==1){
+$("#modalVendedor .pagare").attr('checked', true);
+}
+
     }
   }
 }
@@ -3392,6 +3657,7 @@ function selectCliente(id){
   }
 }
 function selectVendedores2(id){
+
   idGlobal = id;
   var textmodal;
   for(var a=0; a<arrGlobal.length; a++){
@@ -3436,7 +3702,167 @@ function selectVendedores2(id){
       textmodal+='<div class="col-md-6 form-group licencia">';
       textmodal+='<label class=""><strong>Teléfono Personal:  </strong> '+arrGlobal[a].telp+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>Teléfono Local:  </strong> '+arrGlobal[a].tell+'</label></div></div>';
+      textmodal+='<label class=""><strong>Teléfono Local:  </strong> '+arrGlobal[a].tell+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Fecha de nacimiento:  </strong> '+arrGlobal[a].fnacimiento+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Fecha de ingreso:  </strong> '+arrGlobal[a].ingreso+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Vacaciones próximas:  </strong> '+arrGlobal[a].vacaciones+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Fecha de renuncia:  </strong> '+arrGlobal[a].renuncia+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Reingresos:  </strong> '+arrGlobal[a].reingresos+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Razón de la renuncia:  </strong> '+arrGlobal[a].razon+'</label></div>';
+      textmodal+='<div class="col-md-12 form-group licencia">';
+      textmodal+='<label class=""><strong>Papelería:  </strong></label></div>';
+var jj=0;
+if(arrGlobal[a].solicitud==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Solicitud.</label></div>';
+}else{
+   jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Solicitud.</label></div>';
+}
+if(arrGlobal[a].ine2==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- INE.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- INE.</label></div>';
+}
+if(arrGlobal[a].curp2==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- CURP.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- CURP.</label></div>';
+}
+if(arrGlobal[a].rfc2==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- RFC.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- RFC.</label></div>';
+}
+if(arrGlobal[a].nss==1){
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" >'+jj+'.- NSS.</label></div>';
+}else{
+     jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- NSS.</label></div>';
+}
+if(arrGlobal[a].acta==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Acta de nacimiento</label></div>';
+}else{
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Acta de nacimiento</label></div>';
+}
+if(arrGlobal[a].cdomicilio==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Comprobante de domicilio.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Comprobante de domicilio.</label></div>';
+
+}
+if(arrGlobal[a].foto==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Fotografía.</label></div>';
+}else{
+      jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Fotografía.</label></div>';
+}
+if(arrGlobal[a].recomendaciones==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" >'+jj+'.- Recomendaciones personales.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Recomendaciones personales.</label></div>';
+
+}
+if(arrGlobal[a].licenciac==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Licencia de conducir.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Licencia de conducir.</label></div>';
+}
+if(arrGlobal[a].antecedentes==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Carta de no antecedentes penales.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Carta de no antecedentes penales.</label></div>';
+
+}
+if(arrGlobal[a].ineaval==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" >'+jj+'.- INE del aval.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- INE del aval.</label></div>';
+}
+if(arrGlobal[a].predial==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Predial.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Predial.</label></div>';
+}
+if(arrGlobal[a].comprobanted==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Comprobante de domicilio del aval.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Comprobante de domicilio del aval.</label></div>';
+
+}
+if(arrGlobal[a].pagare==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Pagaré firmado.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Pagaré firmado.</label></div>';
+}
+
+
+
+
+
+     textmodal+=' </div>';
  }
 
   $('#modal .modalTitulo').html('<h2>INFORMACIÓN </h2>'); 
@@ -3476,7 +3902,131 @@ function selectAdministracion2(id){
       textmodal+='<div class="col-md-6 form-group licencia">';
       textmodal+='<label class=""><strong>Teléfono Personal:  </strong>'+arrGlobal[a].telp+'</label></div>';
       textmodal+='<div class="col-md-6 form-group licencia">';
-      textmodal+='<label class=""><strong>Teléfono Local: </strong>'+arrGlobal[a].tell+'</label></div></div>';
+      textmodal+='<label class=""><strong>Teléfono Local: </strong>'+arrGlobal[a].tell+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Fecha de nacimiento:  </strong> '+arrGlobal[a].fnacimiento+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Fecha de ingreso:  </strong> '+arrGlobal[a].ingreso+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Vacaciones próximas:  </strong> '+arrGlobal[a].vacaciones+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Fecha de renuncia:  </strong> '+arrGlobal[a].renuncia+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Reingresos:  </strong> '+arrGlobal[a].reingresos+'</label></div>';
+      textmodal+='<div class="col-md-6 form-group licencia">';
+      textmodal+='<label class=""><strong>Razón de la renuncia:  </strong> '+arrGlobal[a].razon+'</label></div>';
+      textmodal+='<div class="col-md-12 form-group licencia">';
+      textmodal+='<label class=""><strong>Papelería:  </strong></label></div>';
+var jj=0;
+if(arrGlobal[a].solicitud==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Solicitud.</label></div>';
+}else{
+   jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Solicitud.</label></div>';
+}
+if(arrGlobal[a].ine2==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- INE.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- INE.</label></div>';
+}
+if(arrGlobal[a].curp2==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- CURP.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- CURP.</label></div>';
+}
+if(arrGlobal[a].rfc2==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- RFC.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- RFC.</label></div>';
+}
+if(arrGlobal[a].nss==1){
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" >'+jj+'.- NSS.</label></div>';
+}else{
+     jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- NSS.</label></div>';
+}
+if(arrGlobal[a].acta==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Acta de nacimiento</label></div>';
+}else{
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Acta de nacimiento</label></div>';
+}
+if(arrGlobal[a].cdomicilio==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Comprobante de domicilio.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Comprobante de domicilio.</label></div>';
+
+}
+if(arrGlobal[a].foto==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Fotografía.</label></div>';
+}else{
+      jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Fotografía.</label></div>';
+}
+if(arrGlobal[a].recomendaciones==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" >'+jj+'.- Recomendaciones personales.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Recomendaciones personales.</label></div>';
+
+}
+if(arrGlobal[a].licenciac==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Licencia de conducir.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Licencia de conducir.</label></div>';
+}
+if(arrGlobal[a].antecedentes==1){
+  jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="">'+jj+'.- Carta de no antecedentes penales.</label></div>';
+}else{
+    jj++;
+  textmodal+='<div class="col-md-6 form-group licencia">';
+  textmodal+='<label class="" style="color:red;">'+jj+'.- Carta de no antecedentes penales.</label></div>';
+
+}
+
+
+
+
+
+
+     textmodal+=' </div>';
  }
 
   $('#modal .modalTitulo').html('<h2>INFORMACIÓN</h2>'); 
@@ -3532,25 +4082,47 @@ function selectControlVehicular2(id){
 
 }
 function selectEV(id){
-
- for (var i = 0; i < arrGlobalE.length; i++) {
- //alert(arrGlobal4[i].id +" == "+id);
   var rutav ='<select class="form-control rv clear" id="rv" name="select">';
 var conta=1;
 var n_=0;
+ for (var i = 0; i < arrGlobalE.length; i++) {
+ //alert(arrGlobal4[i].id +" == "+id);
+
+for (var ii=0; ii < arrGlobalRuta.length; ii++) {
+if(arrGlobalRuta[ii].id==arrGlobalE[i].ruta){
+//alert(ruta3);
+ruta3=arrGlobalRuta[ii].nombre;
+}
+}
+
+
+
+
 
   if (arrGlobalE[i].id == id) { 
   var nombre = t_rutas[arrGlobalE[i].ruta]+' - '+arrGlobalE[i].nombre;
   //alert(nombre +" - "+arrGlobal4[i].efectivo);
       
-  rutav += '<option id="'+arrGlobalE[i].id+'" value="'+arrGlobalE[i].id+'" >'+t_rutas[arrGlobalE[i].ruta-1]+' - '+arrGlobalE[i].nombre+'</option>';
+  rutav += '<option id="'+arrGlobalE[i].id+'" value="'+arrGlobalE[i].id+'" >'+ruta3+' - '+arrGlobalE[i].nombre+'</option>';
 n++;
 
 for (var j = 0; j <  arrGlobalE.length; j++) {
-  //alert(arrGlobal4[j].fecha+" == "+today_vv +" && "+ arrGlobal4[j].efectivo +" == null"+arrGlobal4[i].nombre);
-   if(arrGlobalE[j].fecha==today_vv && arrGlobalE[j].efectivo==null ){
+ // alert(arrGlobal4[j].fecha+" == "+today_vv +" && "+ arrGlobal4[j].efectivo +" == null"+arrGlobal4[i].nombre);
+   if(arrGlobalE[j].fechaf==today_vv && arrGlobalE[j].efectivo==null ){
+
+
+
+
+for (var iii=0; iii < arrGlobalRuta.length; iii++) {
+if(arrGlobalRuta[iii].id== arrGlobalE[j].ruta){
+//alert(ruta3);
+ruta3=arrGlobalRuta[iii].nombre;
+}
+}
+
+
     
-  rutav += '<option id="'+arrGlobalE[j].id+'" value="'+arrGlobalE[j].id+'" >'+t_rutas[arrGlobalE[j].ruta-1]+' - '+arrGlobalE[j].nombre+'</option>';
+  rutav += '<option id="'+arrGlobalE[j].id+'" value="'+arrGlobalE[j].id+'" >'+ruta3+' - '+arrGlobalE[j].nombre+'</option>';
    conta++;
    }
 }
@@ -3587,7 +4159,52 @@ function selectAdministracion12(id){
        $("#modalAdministracion .telp").val(arrGlobal[a].telp);
        $("#modalAdministracion .tell").val(arrGlobal[a].tell);
        $("#modalAdministracion .fnacimiento").val(arrGlobal[a].fnacimiento);
-     
+       $("#modalAdministracion .tipocontrato").val(arrGlobal[a].tipocontrato);
+       $("#modalAdministracion .iniciocontrato").val(arrGlobal[a].iniciocontrato);
+       $("#modalAdministracion .fincontrato").val(arrGlobal[a].fincontrato);
+       $("#modalAdministracion .telp").val(arrGlobal[a].telp);
+       $("#modalAdministracion .tell").val(arrGlobal[a].tell);
+       $("#modalAdministracion .fnacimiento").val(arrGlobal[a].fnacimiento);
+       $("#modalAdministracion .estado").val(arrGlobal[a].estado);
+       $("#modalAdministracion .fnacimiento").val(arrGlobal[a].ingreso);
+       $("#modalAdministracion .vacaciones").val(arrGlobal[a].vacaciones);
+       $("#modalAdministracion .renuncia").val(arrGlobal[a].renuncia);
+       $("#modalAdministracion .reingresos").val(arrGlobal[a].reingresos);
+       $("#modalAdministracion .razon").val(arrGlobal[a].razon);
+if(arrGlobal[a].solicitud==1){
+  $("#modalAdministracion .solicitud").attr('checked', true);
+}
+if(arrGlobal[a].ine2==1){
+$("#modalAdministracion .ine2").attr('checked', true);
+}
+if(arrGlobal[a].curp2==1){
+$("#modalAdministracion .curp2").attr('checked', true);
+}
+if(arrGlobal[a].rfc2==1){
+$("#modalAdministracion .rfc2").attr('checked', true);
+}
+if(arrGlobal[a].nss==1){
+$("#modalAdministracion .nss").attr('checked', true);
+}
+if(arrGlobal[a].acta==1){
+$("#modalAdministracion .acta").attr('checked', true);
+}
+if(arrGlobal[a].cdomicilio==1){
+$("#modalAdministracion .cdomicilio").attr('checked', true);
+}
+if(arrGlobal[a].foto==1){
+$("#modalAdministracion .foto").attr('checked', true);
+}
+if(arrGlobal[a].recomendaciones==1){
+$("#modalAdministracion .recomendaciones").attr('checked', true);
+}
+if(arrGlobal[a].licenciac==1){
+$("#modalAdministracion .licenciac").attr('checked', true);
+}
+if(arrGlobal[a].antecedentes==1){
+$("#modalAdministracion .antecedentes").attr('checked', true);
+}
+
     }
   }
 }
@@ -4719,7 +5336,7 @@ var conta=1;
 
 //alert(today_vv);
 for (var i = 0; i <  arrGlobalF.length; i++) {
-   if(arrGlobalF[i].fecha==today_vv && arrGlobalF[i].efectivo==null ){
+   if(arrGlobalF[i].fechaf==today_vv && arrGlobalF[i].efectivo==null ){
     for (var ii=0; ii < arrGlobalRuta.length; ii++) {
 if(arrGlobalRuta[ii].id==arrGlobalF[i].ruta){
 //alert(ruta3);

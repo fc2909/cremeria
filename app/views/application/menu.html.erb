@@ -122,11 +122,11 @@
                 
                 <div class=" col-md-12 form-group">
     <label >Descripción  </label>
-    <input type="text" class="form-control  clear descripcion" placeholder="Descripción  ">
+    <input type="text" id="nota" onchange="document.getElementById('add').focus();" class="form-control  clear descripcion" placeholder="Descripción  ">
   </div>
 
   <div class="col-sm-3 col-md-3">
-      <button type="button" class="btn usuario1 insertar" onclick="addNota()">Insertar</button>
+      <button type="button" id="add" class="btn usuario1" onclick="addNota()" >Insertar</button>
   </div>
    <div class="col-sm-3 col-md-3">
     <button type="button" class="btn usuario1 limpiar" onclick="limpiar()">Limpiar</button>
@@ -267,9 +267,18 @@
             <div class="modal-body textModal">
              
               <div class="row ">
+               <div class="col-md-4 form-group exp">
+          <label class="">Estado</label>
+          <select class="form-control estado">
+            <option style="background: green; color: white;" value="1">Activo</option>
+            <option style="background: red; color: white;" value="2">Inactivo</option>
+            
+            </select>
+          
+        </div>
                  <div class="col-md-4 form-group ">
-          <label class="" >ID</label>
-          <input type="text" class="form-control clear idVendedor" placeholder="ID">
+          <label class="" >Id</label>
+          <input type="text" class="form-control clear idVendedor" placeholder="Id">
         </div>
         <div class="col-md-4 form-group">
           <label class="">Nombre</label>
@@ -304,7 +313,14 @@
              <input type="text" class="form-control clear rfc" placeholder="RFC">
           </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Tipo de contrato</label><input type="text" class="form-control clear tipocontrato" placeholder="Tipo">
+          <label class="">Tipo de contrato</label>
+          <select class="form-control tipocontrato">
+            <option value="1">Capacitación inicial</option>
+            <option value="2">Determinado</option>
+            <option value="3">Indeterminado o planta</option>
+            
+            </select>
+          
         </div>
         <div class="col-md-4 form-group exp">
           <label class="">Inicio del contrato</label><input type="date" class="form-control clear iniciocontrato" placeholder="Expiración">
@@ -350,13 +366,114 @@
         <div class="col-md-4 form-group licencia">
           <label class="">Teléfono Local</label><input type="phone" class="form-control clear tell" placeholder="" >
         </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">Fecha de Ingreso</label><input type="date" class="form-control clear ingreso" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">Vacaciones</label><input type="date" class="form-control clear vacaciones" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">Renuncia</label><input type="date" class="form-control clear renuncia" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">Reingresos</label><input type="text" class="form-control clear reingresos" placeholder="" >
+        </div>
+        <div class="col-md-12 form-group licencia">
+          <label class="">Razón de renuncia</label><input type="text" class="form-control clear razon" placeholder="" >
+          <br>
+         <label class="">Papelería</label>
+        </div>
+        <div class="col-md-6 form-group licencia">
+         
+
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input solicitud clear" name="solicitud" value="1" id="solicitud"> Solicitud
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input ine2 clear" value="1" name="ine2" id="ine2" > INE
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input curp2 clear" value="1" name="curp2" id="curp2" > CURP
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input rfc2 clear" value="1" name="rfc2" id="rfc2" > RFC
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input nss clear" value="1" name="nss" id="nss" > NSS
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input acta clear" value="1" name="acta" id="acta" > Acta De Nacimiento Nuevo Formato
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input cdomicilio clear" value="1" name="cdomicilio" id="cdomicilio" > Comprobante De Domicilio
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input foto clear" value="1" name="foto" id="foto" > Foto A Color
+  </label>
+</div>
+
+
+        </div>
+        <div class="col-md-6 form-group ">
+           <div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input recomendaciones clear" value="1" name="Recomendaciones" id="recomendaciones" > Dos recomendaciones Laborales
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input licenciac clear" value="1" name="licencia" id="licencia" > Licencia De Conducir
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input antecedentes clear" value="1" name="antecedentes" id="antecedentes" > Carta De No Antecedentes Penales
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input ineaval clear" value="1" name="ineaval" id="ineaval" > Copia INE Aval
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input predial clear" value="1" name="predial" id="predial" > Copia Predial Aval
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input comprobanted" value="1" name="comprobanted clear" id="comprobanted" > Comprobante De Domicilio Del Aval
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input pagare clear" active value="1" name="pagare" id="pagare" > Pagaré Firmado
+  </label>
+</div>
+        </div>
+
 
               
 
                 
               </div>
               <br>
-      
+
 
 
             </div>
@@ -449,6 +566,92 @@
         <div class="col-md-4 form-group licencia">
           <label class="">Teléfono Local</label><input type="phone" class="form-control clear tell" placeholder="" >
         </div>
+             <div class="col-md-4 form-group licencia">
+          <label class="">Fecha de Ingreso</label><input type="date" class="form-control clear ingreso" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">Vacaciones</label><input type="date" class="form-control clear vacaciones clear" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">Renuncia</label><input type="date" class="form-control clear renuncia clear" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">Reingresos</label><input type="text" class="form-control clear reingresos clear" placeholder="" >
+        </div>
+        <div class="col-md-12 form-group licencia">
+          <label class="">Razón de renuncia</label><input type="text" class="form-control clear razon clear" placeholder="" >
+          <br>
+         <label class="">Papelería</label>
+        </div>
+        <div class="col-md-6 form-group licencia">
+         
+
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input solicitud clear" name="solicitud" value="1" id="solicitud"> Solicitud
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input ine2 clear" value="1" name="ine2" id="ine2" > INE
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input curp2 clear" value="1" name="curp2" id="curp2" > CURP
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input rfc2" value="1" name="rfc2" id="rfc2 clear" > RFC
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input nss clear" value="1" name="nss" id="nss" > NSS
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input acta clear" value="1" name="acta" id="acta" > Acta De Nacimiento Nuevo Formato
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input cdomicilio clear" value="1" name="cdomicilio" id="cdomicilio" > Comprobante De Domicilio
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input foto clear" value="1" name="foto" id="foto" > Foto A Color
+  </label>
+</div>
+
+
+        </div>
+        <div class="col-md-6 form-group ">
+           <div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input recomendaciones" value="1" name="Recomendaciones" id="recomendaciones clear" > Dos recomendaciones Laborales
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input licenciac clear" value="1" name="licencia" id="licencia" > Licencia De Conducir
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input antecedentes clear" value="1" name="antecedentes" id="antecedentes" > Carta De No Antecedentes Penales
+  </label>
+</div>
+
+        </div>
+
+
+              
+
+              
    
 
                 

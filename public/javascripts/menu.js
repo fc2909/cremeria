@@ -530,6 +530,22 @@ window.print();
 function pagare2(){
 var usuario;
  
+if(gasolina!=""||gasolina!=undefined||gasolina!=NaN){
+ 
+}
+if(km!=""||km!=undefined||km!=NaN){
+ 
+}
+if(gas!=""||gas!=undefined||gas!=NaN){
+ 
+}
+if(diesel!=""||diesel!=undefined||diesel!=NaN){
+ 
+}
+
+
+
+
 for (var i=0; i < arrGlobalRuta.length; i++) {
 //alert(arrGlobalRuta[i].id)
 if(arrGlobalRuta[i].id==rutas){
@@ -563,12 +579,34 @@ usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";
   document.getElementById('oculto89').style.display = 'block';
   document.getElementById('oculto90').style.display = 'block';
   document.getElementById('oculto91').style.display = 'block';
+  document.getElementById('oculto9').style.display = 'block';
+  document.getElementById('oculto10').style.display = 'block';
+  document.getElementById('oculto11').style.display = 'block';
+  document.getElementById('oculto12').style.display = 'block';
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
 var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_  ";
 var despachadorV = "DESPACHADOR: "+despachador+"";
 var controlC = "CONTROL DE VENTAS Y COBRANZA";
   var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaDespachoD+' </u>_ LA CANTIDAD DE _<u> $ '+parseFloat(total_merc).toFixed(2)+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
   var fechaDespachoDD ='FECHA DE DESPACHO : '+fechaDespachoD;
+
+ 
+if(gasolina!=null){
+ $('.gasolina').html("GASOLINA: "+gasolina);
+}
+if(km!=null){
+ $('.km').html("KM: "+km);
+}
+if(gas!=null){
+ $('.gas').html("GAS: "+gas);
+}
+if(diesel!=null){
+ $('.diesel').html("DIESEL: "+diesel);
+}
+
+
+
+
 $('.pagareD').html(pagare);
 $('.controlC').html(controlC);
 $('.nombreVendedor').html(nombreVendedor);
@@ -587,6 +625,10 @@ window.print();
   document.getElementById('oculto89').style.display = 'none';
   document.getElementById('oculto90').style.display = 'none';
   document.getElementById('oculto91').style.display = 'none';
+  document.getElementById('oculto9').style.display = 'none';
+  document.getElementById('oculto10').style.display = 'none';
+  document.getElementById('oculto11').style.display = 'none';
+  document.getElementById('oculto12').style.display = 'none';
 
 
 }
@@ -3026,7 +3068,7 @@ km=kmT;
 }else{
 km=kmT;
 }
-if(gasT!=""||gasT!=undefined||gas!=NaN||gas!=""||gas!=undefined||gas!=NaN){
+if(gasT!=""||gasT!=undefined||gasT!=NaN||gas!=""||gas!=undefined||gas!=NaN){
 gas=gasT;
 }else{
 gas=gasT;

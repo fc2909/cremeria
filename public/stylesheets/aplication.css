@@ -11,6 +11,34 @@
 
 
 }
+.gasolina{
+  position: absolute;
+ 
+   top: 28px;
+   left: 6%;
+   margin: 10px;
+}
+.gas{
+  position: absolute;
+ 
+   top: 28px;
+   left: 15%;
+   margin: 10px;
+}
+.km{
+  position: absolute;
+ 
+   top: 28px;
+   left: 90%;
+   margin: 10px;
+}
+.diesel{
+  position: absolute;
+ 
+   top: 40px;
+   left: 6%;
+   margin: 10px;
+}
 
 .nombreVendedor {
   position: absolute;

@@ -13,8 +13,9 @@ class CreateInventarios < ActiveRecord::Migration[5.0]
       t.string :medida
       t.string :s_min
       t.string :s_max
+      t.string :tipoP
       t.integer :activo
-
+     
       t.timestamps
     end
   end

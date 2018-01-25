@@ -28,6 +28,8 @@ class CreateVentadiaria < ActiveRecord::Migration[5.0]
       t.string :sfc
       t.string :fechadespachof
       t.string :fecharecepcionf
+      t.string :merma
+      t.string :tipoP
       t.timestamps
     end
   end

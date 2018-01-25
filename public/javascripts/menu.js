@@ -6,10 +6,10 @@ var arrGlobal, arrGlobalVF, arrGlobalRuta , fechacaptura, arrGlobalE, t_merc , v
  var s_vent2=0;
  var n, w, despachador, noSemana, idVentas2;
  var upin, pin,arrGlobal41, arrGlobalVehiculo, dsc, sc, sfc1;
- var t_v;
+ var t_v, gas, gasolina, diesel, km;
  var t_v2; 
  var piezasT, year2, month2, day2; 
-var user;
+var user, vahiculoA, vahiculoA2;
 var tipoUsuario = ['DIRECTOR','ADMINISTRADOR','CONTADOR','DESPACHADOR','VENTAS']
 var tipoMantinimiento = ['PREDICTIVO','PREVENTIVO','CORRECTIVO','OTROS']
 var medidas = ['KG.','PZAS.','L'];
@@ -71,8 +71,30 @@ noSemana=semanas;
 //saberSemana(31,11,2017);
 //saberSemana(25,10,2017);
 
-function combustibleygas(){
- alert("Line: 74");
+function ninguno(){
+var combustible2='';
+
+ $('#modalDesp2 .combustible2').html(combustible2);
+}
+function gasolinaygas(){
+var combustible2=' <label for="">KMS:</label><input type="text" class="col-md-12 km1"><label for="">GASOLINA (L)</label><input type="text" class="col-md-12 gasolina1"><label for="">GAS (L)</label><input type="text" class="col-md-12 gas1">';
+
+ $('#modalDesp2 .combustible2').html(combustible2);
+}
+function gas2(){
+var combustible2=' <label for="">KMS:</label><input type="text" class="col-md-12 km1"><label for="">GAS (L)</label><input type="text" class="col-md-12 gas1">';
+
+ $('#modalDesp2 .combustible2').html(combustible2);
+}
+function gasolina2(){
+var combustible2=' <label for="">KMS:</label><input type="text" class="col-md-12 km1"><label for="">GASOLINA (L)</label><input type="text" class="col-md-12 gasolina1">';
+
+ $('#modalDesp2 .combustible2').html(combustible2);
+}
+function diesel2(){
+var combustible2=' <label for="">KMS:</label><input type="text" class="col-md-12 km1"><label for="">DIESEL (L)</label><input type="text" class="col-md-12 diesel1">';
+
+ $('#modalDesp2 .combustible2').html(combustible2);
 }
 function makeArray() {
 for (i = 0; i<makeArray.arguments.length; i++)
@@ -484,7 +506,7 @@ usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";
   document.getElementById('oculto6').style.display = 'block';
   document.getElementById('oculto7').style.display = 'block';
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
-var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_";
+var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_  VEHICULO: _<u> "+vehiculoA+". </u>_";
 var despachadorV = "DESPACHADOR: "+despachador+"";
 var controlC = "CONTROL DE VENTAS Y COBRANZA";
   var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaDespachoD+' </u>_ LA CANTIDAD DE _<u> $ '+total_merc+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
@@ -542,7 +564,7 @@ usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";
   document.getElementById('oculto90').style.display = 'block';
   document.getElementById('oculto91').style.display = 'block';
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
-var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_";
+var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_  ";
 var despachadorV = "DESPACHADOR: "+despachador+"";
 var controlC = "CONTROL DE VENTAS Y COBRANZA";
 //  var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaDespachoD+' </u>_ LA CANTIDAD DE _<u> $ '+total_merc+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
@@ -1458,7 +1480,7 @@ var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2)
 //if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].cobrado==undefined)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
 
   
-   if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].cobrado==undefined)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
+   if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].cobrado==undefined&&lista[h].estado==1)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
 
 var f=lista[h].fechaf;
 
@@ -1470,14 +1492,16 @@ var dayp = f.substring(8,10);
 var fechap = dias[nomdiap.getUTCDay()-1];
 for (var i=0; i < arrGlobalRuta.length; i++) {
 //alert(arrGlobalRuta[i].id)
-if(arrGlobalRuta[i].id==lista[h].ruta){
+if(arrGlobalRuta[i].id==lista[h].ruta ){
 
  ruta3=arrGlobalRuta[i].nombre;
 }
 }
-  html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + t_ventas[lista[h].tipo-1] + '</td><td> $ '+ parseFloat(lista[h].credito_p).toFixed(2) + '</td><td> $ ' + parseFloat(lista[h].bonificacion_p).toFixed(2) +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+fechap +'</td></tr>';
-  
-  
+html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + t_ventas[lista[h].tipo-1] + '</td><td> $ '+ parseFloat(lista[h].credito_p).toFixed(2) + '</td><td> $ ' + parseFloat(lista[h].bonificacion_p).toFixed(2) +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+fechap +'</td></tr>';
+km=lista[h].km;
+gas=lista[h].gas;
+diesel=lista[h].diesel;
+gasolina=lista[h].gasolina;
 }
 
 
@@ -1676,7 +1700,7 @@ function loadDays(lista){
   var html = '';
 
   for(var h=0;h<lista.length; h++)
-    if(lista[h].tipo==2){
+    if(lista[h].tipo==2&&lista[h].estado==1){
 
 for (var i=0; i < arrGlobalRuta.length; i++) {
 if(arrGlobalRuta[i].id==lista[h].ruta){
@@ -2257,7 +2281,8 @@ if(noSemana==52&&dc==6){
   var nombre = nombre_vend;
   var tipo = t_vende;
   var credito_p = cred;
-  
+  var vehiculo = vehiculoA2;
+  var despachador2=despachador22;
   var bonificacion_p = boni;
   var v_mercancia = parseFloat(total_mercancia) + parseFloat(valorMercancia);
   //alert(day2+" - "+month2+" - "+year2+(diasema.getUTCDay()-1));
@@ -2270,7 +2295,7 @@ if(noSemana==52&&dc==6){
    addRegistro3(json, 'ventadiaria', loadVentas);
    var dsc= dc;
     //alert(dfc+" ---- "+sfc);
-   var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc};
+   var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2};
    
 
    //alert("num = "+num+" num 2 = "+num2);
@@ -2833,6 +2858,37 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 limpiar();
 $('#modalAdministracion .addEmpleado1').html('');
 $('#modalAdministracion .addEmpleado1').html(upEmpleado1);
+
+
+  $("#modalVendedor .solicitud").attr('checked', false);
+$("#modalVendedor .ine2").attr('checked', false);
+
+$("#modalVendedor .curp2").attr('checked', false);
+
+$("#modalVendedor .rfc2").attr('checked', false);
+
+$("#modalVendedor .nss").attr('checked', false);
+
+$("#modalVendedor .acta").attr('checked', false);
+
+$("#modalVendedor .cdomicilio").attr('checked', false);
+
+$("#modalVendedor .foto").attr('checked', false);
+
+$("#modalVendedor .recomendaciones").attr('checked', false);
+
+//$("#modalVendedor .licenciac").attr('checked', false);
+
+//$("#modalVendedor .antecedentes").attr('checked', false);
+
+//$("#modalVendedor .ineaval").attr('checked', false);
+
+//$("#modalVendedor .predial").attr('checked', false);
+
+//$("#modalVendedor .comprobanted").attr('checked', false);
+
+//$("#modalVendedor .pagare").attr('checked', false);
+
 }
 function upUsuario(){
   var nombre = $(".nombre").val();
@@ -2954,6 +3010,36 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
 }
 var f_s_dia, fechaf;
 function upRecepcion(){
+  
+ var gasolinaT = $('#modalDesp2 .gasolina1').val();
+ var gasT = $('#modalDesp2 .gas1').val();
+ var dieselT = $('#modalDesp2 .diesel1').val();
+ var kmT = $('#modalDesp2 .km1').val();
+
+if(gasolinaT!=""||gasolinaT!=undefined||gasolinaT!=NaN||gasolina!=""||gasolina!=undefined||gasolina!=NaN){
+gasolina=gasolinaT;
+}else{
+gasolina=gasolinaT;
+}
+if(kmT!=""||kmT!=undefined||km!=NaN||km!=""||km!=undefined||km!=NaN){
+km=kmT;
+}else{
+km=kmT;
+}
+if(gasT!=""||gasT!=undefined||gas!=NaN||gas!=""||gas!=undefined||gas!=NaN){
+gas=gasT;
+}else{
+gas=gasT;
+}
+if(dieselT!=""||dieselT!=undefined||dieselT!=NaN||diesel!=""||diesel!=undefined||diesel!=NaN){
+diesel=dieselT;
+}else{
+  diesel=dieselT;
+}
+
+
+
+
 
 var idc, creditos, otros,temp;
 var piezasv, pesov, validar, dsd, sd, lo;
@@ -3069,7 +3155,7 @@ var diasema3= new Date((parseInt(month3))+' '+parseInt(day3)+' ,'+parseInt(year3
 
 if(dia31==1){
 
-alert("Hoy es lunes xD");
+//alert("Hoy es lunes xD");
 
 //alert (cobrado+" - "+scv);
 
@@ -3087,9 +3173,10 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  //alert(loquedeberiatraer+" - "+f_s_real);
  //alert(creditos+" entraaaaaaaa en semana:"+arrGlobal4[hh].sfc);
  credito_manual=1;
+
  //alert(arrGlobal4[hh].creditos+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel}
 }
 }
   }
@@ -3108,7 +3195,7 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  credito_manual=1;
 //alert(modalCreditos1+" - "+f_s_dia+" = "+ loquedeberiatraer);
 //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel}
 
 
 }
@@ -3118,7 +3205,7 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
 
 }else{
 
-alert("otro dia de la semana..."); 
+//alert("otro dia de la semana..."); 
 //alert (arrGlobal4.length+" medida");
 var med=arrGlobal4.length;
 var hk=20;
@@ -3149,7 +3236,7 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
 credito_manual=1;
   //alert("entra");
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel}
   break;
 }else{
   $('#modal .textModal').html('La carga anterior, no ha sido recibida o regrese a rutas '); 
@@ -3180,7 +3267,7 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
   //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
 modalCreditos1=1;
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel}
   
   }else{
      $('#modal .textModal').html('La carga anterior, no ha sido recibida.'); 
@@ -3228,7 +3315,7 @@ if(hk==20){
   //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
 modalCreditos1=1;
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel}
   
    
   }else{
@@ -3254,7 +3341,7 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  credito_manual=1;
 //alert(modalCreditos1+" - "+f_s_dia+" = "+ loquedeberiatraer);
 //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel}
 
 
 }
@@ -4604,6 +4691,7 @@ function click_Recepcion(){
  $('.btn-nav').html('<h3> Menú </h3>');
  $('.seccion3').load('/html/rec_venta.html');
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" disabled onclick="ocultar()">VENTAS </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" disabled id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Despacho1()" role="tab">DESPACHO</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Recepcion()">RECEPCIÓN </button></li><div class="imprimir"></div><div class="ventaDiaria"></div><div type="button" class="btn semanaRuta ventascss letras text-center" onclick="VentaspasadasRS()">Ruta Semanal</div><div type="button" class="btn semanaRuta ventascss letras text-center" onclick="">Unificar Recepción</div></ul> </div>');
+
 var fecha = $(".selectfecha").val(); 
 //$('.semanaRuta').html();
 var dia= ""+day+"";
@@ -4662,7 +4750,6 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 }
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadas);
 $('.imprimir').html('');
-
 }
 function VentaspasadasRS(){
   //$('.btn-nav').removeClass('hidden');
@@ -5081,11 +5168,24 @@ function modalDespachador(){
 
       $('#modalDesp').modal('show');
       var selectdes= '<select name="select" class="selectDespachador col-md-8 form-control"><option value="0"></option>'
+      var selectVe= '<select name="select" class="selectVehiculo col-md-8 form-control"><option value="0"></option>'
+
 for(var h=0;h<arrGlobal2.length; h++)
     if(arrGlobal2[h].tipo!=2){
 selectdes+= ' <option value="'+h+'">' +arrGlobal2[h].nombre_Emple + ' ' + arrGlobal2[h].paterno_Emple + ' ' + arrGlobal2[h].materno_Emple +'</option>';
     }
 selectdes +='</select>';
+
+
+ for(var hh=0;hh<arrGlobalVehiculo.length; hh++)
+    selectVe+= ' <option value="'+hh+'">' +arrGlobalVehiculo[hh].numero + ' (' + arrGlobalVehiculo[hh].placa + ' ).</option>';
+    
+
+selectVe +='</select>';
+
+
+
+$('#modalDesp .vehiculomodal').html(selectVe);
 $('#modalDesp .despachador').html(selectdes);
    
 
@@ -5132,12 +5232,14 @@ getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar
 function closeModalDesp(){
 $('#modalDesp').modal('hide');
 }
-
+var despachador22;
 function click_Salida2(){
  var despachadorV = $('#modalDesp .selectDespachador ').val();
+ var vehiculoV = $('#modalDesp .selectVehiculo ').val();
    despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
-
-
+   vehiculoA = '<u style="width:100px;">'+ arrGlobalVehiculo[vehiculoV].numero + ' (' + arrGlobalVehiculo[vehiculoV].placa + ') </u>';
+vehiculoA2=arrGlobalVehiculo[vehiculoV].numero + ' (' + arrGlobalVehiculo[vehiculoV].placa + ')';
+despachador22=arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple;
 $('#modalDesp').modal('hide');
 
 
@@ -5153,8 +5255,13 @@ for(var h=0;h<arrGlobal2.length; h++)
     if(arrGlobal2[h].tipo!=2){
 selectdes+= ' <option value="'+h+'">' +arrGlobal2[h].nombre_Emple + ' ' + arrGlobal2[h].paterno_Emple + ' ' + arrGlobal2[h].materno_Emple +'</option>';
     }
+
+   
 selectdes +='</select>';
+
+
 $('#modalDesp2 .despachador').html(selectdes);
+
    
 
 

@@ -81,11 +81,18 @@
               </button>
              
             </div>
-            <div class="modal-body textModal">
+            <div class="modal-body textModal ">
              
-              <div class="row ">
-                
+              <div class="row col-md-12">
+                <label for="">Despachador:</label>
                 <div class="col-md-12 despachador">  
+                
+               
+                
+
+                </div>
+                 <label for="">Vehiculo asignado:</label>
+                <div class="col-md-12 vehiculomodal">  
                 
                 
 
@@ -799,27 +806,28 @@
                 
                 </div>
                 <br>
- <div class="col-md-6">
- <label for="">KM</label>
-   <input type="text" class="col-md-12">
-   <label for="">LITROS</label>
-   <input type="text" class="col-md-12">
-   <label for="">PRECIO POR LITRO</label>
-   <input type="text" class="col-md-12">
+ <div class="">
+
+   
  </div> 
+ <div class="combustible2 col-md-6"></div>
   <div class="col-md-6">
  <label for="">COMBUSTIBLES</label>
   <div class="radio">
-  <label><input type="radio" name="optradio"> GASOLINA</label>
+  <label><input type="radio" name="optradio" onclick="gasolina2()"> GASOLINA</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="optradio"> GAS</label>
+  <label><input type="radio" name="optradio" onclick="gas2()"> GAS</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="optradio" onclick="combustibleygas()"> GASOLINA & GAS</label>
+  <label><input type="radio" name="optradio" onclick="gasolinaygas()"> GASOLINA & GAS</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="optradio"> DIESEL</label>
+  <label><input type="radio" name="optradio" onclick="diesel2()"> DIESEL</label>
+</div>
+<br>
+<div class="radio">
+  <label><input type="radio" name="optradio" onclick="ninguno()"> DESMARCAR SELECCION</label>
 </div>
  </div>             
 

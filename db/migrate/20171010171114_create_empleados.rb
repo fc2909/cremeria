@@ -46,6 +46,7 @@ class CreateEmpleados < ActiveRecord::Migration[5.0]
       t.string :predial
       t.string :comprobanted
       t.string :pagare
+      t.string :km
 
 
 

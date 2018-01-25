@@ -20,7 +20,7 @@ def index
 			Empleado.find(params[:id])
 		end
 		def model_params
-			params.permit(:id, :idEmpleados, :nombre_Emple, :paterno_Emple, :materno_Emple, :n_seguro, :curp, :domicilio, :rfc, :tipo, :n_licencia, :f_exp, :ruta, :t_venta, :l_credito, :l_bon, :merma, :tipocontrato, :iniciocontrato, :fincontrato, :telp , :tell, :fnacimiento, :estado, :ingreso, :vacaciones, :renuncia, :reingresos, :razon, :solicitud, :ine2, :curp2, :rfc2, :nss, :acta, :cdomicilio, :foto, :recomendaciones, :licenciac, :antecedentes, :ineaval, :predial, :comprobanted, :pagare)
+			params.permit(:id, :idEmpleados, :nombre_Emple, :paterno_Emple, :materno_Emple, :n_seguro, :curp, :domicilio, :rfc, :tipo, :n_licencia, :f_exp, :ruta, :t_venta, :l_credito, :l_bon, :merma, :tipocontrato, :iniciocontrato, :fincontrato, :telp , :tell, :fnacimiento, :estado, :ingreso, :vacaciones, :renuncia, :reingresos, :razon, :solicitud, :ine2, :curp2, :rfc2, :nss, :acta, :cdomicilio, :foto, :recomendaciones, :licenciac, :antecedentes, :ineaval, :predial, :comprobanted, :pagare, :km)
 
 
 		end

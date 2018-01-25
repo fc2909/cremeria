@@ -20,8 +20,8 @@ def index
 			Ventaspasada.find(params[:id]) 
 		end
 		def model_params
-			params.permit(:idVentap, :fecha, :ruta, :nombre, :tipo, :credito_p, :bonificacion_p, :v_mercancia, :t_venta,   :cobrado, :t_vendido, :creditos, :efectivo, :otros, :t_venta_merca, :f_s_dia, :loquedeberiatraer, :f_s_real, :dsc, :sc, :dsd, :sd, :dsfc, :sfc, :n1, :n2, :n3, :n4, :fechaf)
-
+			params.permit(:idVentap, :fecha, :ruta, :nombre, :tipo, :credito_p, :bonificacion_p, :v_mercancia, :t_venta,   :cobrado, :t_vendido, :creditos, :efectivo, :otros, :t_venta_merca, :f_s_dia, :loquedeberiatraer, :f_s_real, :dsc, :sc, :dsd, :sd, :dsfc, :sfc, :n1, :n2, :n3, :n4, :fechaf, :despachador2, :km, :gas, :gasolina, :diesel, :tipoCombustible, :fechaCarga, :vehiculo)
+      
     
 
 

@@ -33,6 +33,18 @@ class CreateVentaspasadas < ActiveRecord::Migration[5.0]
       t.string :n3
       t.string :n4
       t.string :fechaf
+      t.string :despachador2
+      t.string :km
+      t.string :gas
+      t.string :gasolina
+      t.string :diesel
+      t.string :tipoCombustible
+      t.string :fechaCarga
+      t.string :vehiculo
+
+
+
+
 
       t.integer :activo
 

@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20180105165531) do
     t.string   "predial"
     t.string   "comprobanted"
     t.string   "pagare"
+    t.string   "km"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -94,6 +95,7 @@ ActiveRecord::Schema.define(version: 20180105165531) do
     t.string   "medida"
     t.string   "s_min"
     t.string   "s_max"
+    t.string   "tipoP"
     t.integer  "activo"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -206,6 +208,8 @@ ActiveRecord::Schema.define(version: 20180105165531) do
     t.string   "sfc"
     t.string   "fechadespachof"
     t.string   "fecharecepcionf"
+    t.string   "merma"
+    t.string   "tipoP"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
@@ -242,6 +246,14 @@ ActiveRecord::Schema.define(version: 20180105165531) do
     t.string   "n3"
     t.string   "n4"
     t.string   "fechaf"
+    t.string   "despachador2"
+    t.string   "km"
+    t.string   "gas"
+    t.string   "gasolina"
+    t.string   "diesel"
+    t.string   "tipoCombustible"
+    t.string   "fechaCarga"
+    t.string   "vehiculo"
     t.integer  "activo"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false

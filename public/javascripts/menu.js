@@ -9,7 +9,7 @@ var arrGlobal, arrGlobalVF, arrGlobalRuta , fechacaptura, arrGlobalE, t_merc , v
  var t_v, gas, gasolina, diesel, km;
  var t_v2; 
  var piezasT, year2, month2, day2; 
-var user, vahiculoA, vahiculoA2;
+var user, vahiculoA, vahiculoA2, tipoCombustible;
 var tipoUsuario = ['DIRECTOR','ADMINISTRADOR','CONTADOR','DESPACHADOR','VENTAS']
 var tipoMantinimiento = ['PREDICTIVO','PREVENTIVO','CORRECTIVO','OTROS']
 var medidas = ['KG.','PZAS.','L'];
@@ -78,22 +78,22 @@ var combustible2='';
 }
 function gasolinaygas(){
 var combustible2=' <label for="">KMS:</label><input type="text" class="col-md-12 km1"><label for="">GASOLINA (L)</label><input type="text" class="col-md-12 gasolina1"><label for="">GAS (L)</label><input type="text" class="col-md-12 gas1">';
-
+tipoCombustible=3;
  $('#modalDesp2 .combustible2').html(combustible2);
 }
 function gas2(){
 var combustible2=' <label for="">KMS:</label><input type="text" class="col-md-12 km1"><label for="">GAS (L)</label><input type="text" class="col-md-12 gas1">';
-
+tipoCombustible=2
  $('#modalDesp2 .combustible2').html(combustible2);
 }
 function gasolina2(){
 var combustible2=' <label for="">KMS:</label><input type="text" class="col-md-12 km1"><label for="">GASOLINA (L)</label><input type="text" class="col-md-12 gasolina1">';
-
+tipoCombustible=1
  $('#modalDesp2 .combustible2').html(combustible2);
 }
 function diesel2(){
 var combustible2=' <label for="">KMS:</label><input type="text" class="col-md-12 km1"><label for="">DIESEL (L)</label><input type="text" class="col-md-12 diesel1">';
-
+tipoCombustible=4
  $('#modalDesp2 .combustible2').html(combustible2);
 }
 function makeArray() {
@@ -355,8 +355,7 @@ return final_string ;
 // descriptions are handled outside the string conversion function, so it can
 // be re used for each triad.
 
-function convertirNumLetras(number)
-{
+function convertirNumLetras(number){
   //number = number_format (number, 2);
    number1=number.toString();
    //settype (number, "integer");
@@ -558,8 +557,8 @@ if(arrGlobalRuta[i].id==rutas){
  var yearD = today_v.substring(0,4);
 var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
    var diaD=(diasemaD.getUTCDay());
-    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[monthD]+" DEL "+yearD+".";
-  //convertirNumLetras(total_merc);
+    var fechaRecepcionD = dias[diaD-1]+", "+dayD+" DE "+months[parseInt(monthD)]+" DEL "+yearD+".";
+  convertirNumLetras(total_merc);
   for(var h=0;h<upin.length; h++){
       if(pin==upin[h].pin){
         
@@ -587,21 +586,27 @@ usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";
 var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_  ";
 var despachadorV = "DESPACHADOR: "+despachador+"";
 var controlC = "CONTROL DE VENTAS Y COBRANZA";
-  var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaDespachoD+' </u>_ LA CANTIDAD DE _<u> $ '+parseFloat(total_merc).toFixed(2)+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
-  var fechaDespachoDD ='FECHA DE DESPACHO : '+fechaDespachoD;
+  var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaRecepcionD+' </u>_ LA CANTIDAD DE _<u> $ '+parseFloat(total_merc).toFixed(2)+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
+  var fechaRecepcionDD ='FECHA DE RECEPCIÓN: '+fechaRecepcionD;
 
  
-if(gasolina!=null){
- $('.gasolina').html("GASOLINA: "+gasolina);
-}
-if(km!=null){
+if(tipoCombustible==1){
+ $('.gasolina').html("GASOLINA: "+gasolina+" L.");
  $('.km').html("KM: "+km);
 }
-if(gas!=null){
- $('.gas').html("GAS: "+gas);
+if(tipoCombustible==2){
+ $('.gas').html("GAS: "+gas+" L.");
+ $('.km').html("KM: "+km);
 }
-if(diesel!=null){
- $('.diesel').html("DIESEL: "+diesel);
+
+if(tipoCombustible==3){
+ $('.gasolina').html("GASOLINA: "+gasolina+" L.");
+ $('.gas').html("GAS: "+gas+" L.");
+ $('.km').html("KM: "+km);
+}
+if(tipoCombustible==4){
+ $('.diesel').html("DIESEL: "+diesel+" L.");
+ $('.km').html("KM: "+km);
 }
 
 
@@ -612,7 +617,7 @@ $('.controlC').html(controlC);
 $('.nombreVendedor').html(nombreVendedor);
 $('.nombreCapturista').html(usuario);
 $('.nombreDespachador').html(despachadorV);
-$('.fechaDespacho').html(fechaDespachoDD);
+$('.fechaDespacho').html(fechaRecepcionDD);
 window.print();
   document.getElementById('oculto').style.display = 'none';
   document.getElementById('oculto2').style.display = 'none';
@@ -1252,6 +1257,7 @@ var v1=0;
   var cantidad=0;
   var num=1;
   var total_merc2=0;
+  var p=0;
   //alert(today_vv+" -------- "+fechacaptura);
   for(var h=0;h<lista.length; h++){
     //alert(rutas +"=="+ lista[h].ruta +"&&"+ today_v+" == "+lista[h].fecha);
@@ -1260,7 +1266,10 @@ var v1=0;
   if(rutas==lista[h].ruta&&lista[h].fechadespachof==fechacaptura){
 
 if(parseFloat(lista[h].peso)==0){
-html+= '<tr class="" data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td></td><td> <input type="text"  class="form-control clear " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+')">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
+p++;
+var p2=p+1;
+//alert(p);
+html+= '<tr class="" data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td></td><td> <input type="text"   class="p'+p+' form-control clear " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+'); $(".p'+p2+'").focus();">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
 htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-center">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td ><td class="text-right">0.000</td><td class="text-right">'+parseFloat(lista[h].piezasv).toFixed(2) + '</td><td class="text-right">0.000</td><td class="text-right">'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv)).toFixed(2)+'</td><td class="text-right">0.000</td><td class="text-right"> $ ' +parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td class="text-right"> $ '+parseFloat(lista[h].venta).toFixed(2)+'</td></tr>';
 //t_v.push(h);
 num++;
@@ -1268,7 +1277,9 @@ v++;
 total_merc2 += parseFloat(lista[h].valorMercancia);
 total_vent += parseFloat(lista[h].venta);
 }else{
-html+= '<tr class="" data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3)+ '</td><td> ' + '<input type="text" id="p'+h+'" class="form-control clear" placeholder="0.00" >' + '</td><td>  ' + '<input type="text"  class="form-control clear " id="rec'+h+'" placeholder="0.00" onchange="totalrec2('+h+', '+lista[h].peso+', '+lista[h].precioUnitario+','+v+')">'  + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td><div id="'+h+'"> $ 0.00</div></td></tr>';
+  p++;
+html+= '<tr class="" data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3)+ '</td><td> ' + '<input type="text" id="p'+h+'" class="p'+p+' form-control clear" placeholder="0.00" onchange=" $(".p'+(p+1)+'").focus();" >' + '</td><td>  ' + '<input type="text"  class="p'+(p+1)+' form-control clear " id="rec'+h+'" placeholder="0.00" onchange="totalrec2('+h+', '+lista[h].peso+', '+lista[h].precioUnitario+','+v+'); $(".p'+(p+1)+'").focus();">'  + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td><div id="'+h+'"> $ 0.00</div></td></tr>';
+p++;
 htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-center">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td  class="text-right">'+parseFloat(lista[h].peso).toFixed(3)+'</td><td class="text-right">'+ parseFloat(lista[h].piezasv).toFixed(2) + '</td><td class="text-right">'+parseFloat(lista[h].pesov).toFixed(3)+'</td><td class="text-right">'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv)).toFixed(2)+'</td><td class="text-right">'+(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov)).toFixed(3)+'</td><td class="text-right"> $ ' +parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td class="text-right"> $ '+parseFloat(lista[h].venta).toFixed(2)+'</td></tr>';
 num++
 //t_v.push(h);
@@ -1522,7 +1533,7 @@ var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2)
 //if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].cobrado==undefined)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
 
   
-   if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].cobrado==undefined&&lista[h].estado==1)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
+   if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
 
 var f=lista[h].fechaf;
 
@@ -1563,14 +1574,16 @@ function loadVentaspasadasTF(lista){
  var dayVS = today_v.substring(8,10);
  var monthVS = today_v.substring(5,7);
  var yearVS = today_v.substring(0,4);
-
+var cobrado=noSemana;
 
 var mes=month-1;
 var dia=day-1;
 cobrado = cobrado +1;
-//alert(mes);
+
+
+//alert(cobrado);
 saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
-var cobrado=noSemana;
+
 var t_vendido = today;
 //alert(dayVS+"-"+monthVS+" - "+yearVS+" Semana:     "+noSemana);
   for(var h=0;h<lista.length; h++){
@@ -3058,26 +3071,18 @@ function upRecepcion(){
  var dieselT = $('#modalDesp2 .diesel1').val();
  var kmT = $('#modalDesp2 .km1').val();
 
-if(gasolinaT!=""||gasolinaT!=undefined||gasolinaT!=NaN||gasolina!=""||gasolina!=undefined||gasolina!=NaN){
+//if(gasolinaT!=null||gasolinaT!=""||gasolinaT!=undefined||gasolinaT!=NaN||gasolina!=""||gasolina!=undefined||gasolina!=NaN){
 gasolina=gasolinaT;
-}else{
-gasolina=gasolinaT;
-}
-if(kmT!=""||kmT!=undefined||km!=NaN||km!=""||km!=undefined||km!=NaN){
+//}
+//if(kmT!=null||kmT!=""||kmT!=undefined||km!=NaN||km!=""||km!=undefined||km!=NaN){
 km=kmT;
-}else{
-km=kmT;
-}
-if(gasT!=""||gasT!=undefined||gasT!=NaN||gas!=""||gas!=undefined||gas!=NaN){
+//}
+//if(gasT!=null||gasT!=""||gasT!=undefined||gasT!=NaN||gas!=""||gas!=undefined||gas!=NaN){
 gas=gasT;
-}else{
-gas=gasT;
-}
-if(dieselT!=""||dieselT!=undefined||dieselT!=NaN||diesel!=""||diesel!=undefined||diesel!=NaN){
+//}
+//if(dieselT!=null||dieselT!=""||dieselT!=undefined||dieselT!=NaN||diesel!=""||diesel!=undefined||diesel!=NaN){
 diesel=dieselT;
-}else{
-  diesel=dieselT;
-}
+//}
 
 
 
@@ -3173,16 +3178,25 @@ var mes=month-1;
 var dia=day-1;
 //alert(dia+" - "+mes+" - "+anio);
 saberSemana(dia,mes,year);
-//alert("fechaf"+fechaf);
+alert("fechaf: "+dia+"/"+mes+"/"+year+" -- "+noSemana);
 var cobrado=noSemana;
 var t_vendido = today;
 dsd=today;
 sd=noSemana+1;
-//alert(f_s_dia+" -.-.-.-.-.-");
+var user;
+  for(var h=0;h<upin.length; h++){
+      if(pin==upin[h].pin){
+        
+user=upin[h].usuario;
+        
+      }
+  }
+//alert(user);
+var despachador = despachadorR;
 cobrado = cobrado +1;
 var temp=today;
 var loquedeberiatraer, f_s_real;
- 
+ var despachador=despachadorR;
  var day3 = fechaf.substring(8,10);
  var month3 = fechaf.substring(5,7);
  var year3 = fechaf.substring(0,4);
@@ -3218,7 +3232,7 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
 
  //alert(arrGlobal4[hh].creditos+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user }
 }
 }
   }
@@ -3237,7 +3251,7 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  credito_manual=1;
 //alert(modalCreditos1+" - "+f_s_dia+" = "+ loquedeberiatraer);
 //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
 
 
 }
@@ -3278,7 +3292,7 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
 credito_manual=1;
   //alert("entra");
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user}
   break;
 }else{
   $('#modal .textModal').html('La carga anterior, no ha sido recibida o regrese a rutas '); 
@@ -3291,11 +3305,12 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
  
 
 }else{
- // alert("pasa");
-  if(arrGlobal41[hh].sfc==(cobrado-1)&&arrGlobal41[hh].ruta==rutas){
+ // alert(arrGlobal41[hh].sfc+"==("+cobrado+")&&"+arrGlobal41[hh].ruta+"=="+rutas);
+
+  if(arrGlobal41[hh].sfc==(cobrado)&&arrGlobal41[hh].ruta==rutas){
     hhc=hh;
     
-  // alert("cobradooo: "+cobrado +" - dia: "+arrGlobal41[hh].dsfc+" dscv: "+dscv);
+ // alert("cobradooo: "+cobrado +" - dia: "+arrGlobal41[hh].dsfc+" dscv: "+dscv);
     
     
     for (var ii = dscv; ii <= dscv; ii--){
@@ -3309,7 +3324,7 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
   //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
 modalCreditos1=1;
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
   
   }else{
      $('#modal .textModal').html('La carga anterior, no ha sido recibida.'); 
@@ -3357,7 +3372,7 @@ if(hk==20){
   //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
 modalCreditos1=1;
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
   
    
   }else{
@@ -3383,7 +3398,7 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  credito_manual=1;
 //alert(modalCreditos1+" - "+f_s_dia+" = "+ loquedeberiatraer);
 //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
 
 
 }
@@ -5292,10 +5307,11 @@ $('#modalDesp').modal('hide');
 function modalDespachador2(){
 
       $('#modalDesp2').modal('show');
-      var selectdes= '<select name="select" class="selectDespachador col-md-8 form-control"><option value="0"></option>'
-for(var h=0;h<arrGlobal2.length; h++)
-    if(arrGlobal2[h].tipo!=2){
-selectdes+= ' <option value="'+h+'">' +arrGlobal2[h].nombre_Emple + ' ' + arrGlobal2[h].paterno_Emple + ' ' + arrGlobal2[h].materno_Emple +'</option>';
+      var selectdes= '<select name="select" class="selectDespachador col-md-8 form-control"><option value="0" class="primero"></option>'
+for(var hhh=0;hhh<arrGlobal2.length; hhh++)
+    if(arrGlobal2[hhh].tipo!=2){
+selectdes+= ' <option value="'+hhh+'">' +arrGlobal2[hhh].nombre_Emple + ' ' + arrGlobal2[hhh].paterno_Emple + ' ' + arrGlobal2[hhh].materno_Emple +'</option>';
+//alert(h);
     }
 
    
@@ -5309,7 +5325,7 @@ $('#modalDesp2 .despachador').html(selectdes);
 
 }
 //getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutasUp);
-
+var despachadorR;
 function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc){
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú  </h3>');
@@ -5330,16 +5346,37 @@ modalDespachador2();
 
 
 
- var despachadorV = $('#modalDesp2 .selectDespachador ').val();
-   despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
-    var vDiaria ='<li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA </button></li><li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="">MERMA</button></li><li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="">RECARGA</button></li>';
- $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - NOMBRE: '+nombre_vend+'. RUTA: ' +ruta3+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN : '+boni+'. </p>');
+if(arrGlobal4[h].despachador!=null){
+ // alert(arrGlobal4[h].despachador);
+ $('#modalDesp2 .selectDespachador').val(arrGlobal4[h].despachador);
+}
+if(arrGlobal4[h].tipoCombustible==1){
+gasolina2();
+}
+if(arrGlobal4[h].tipoCombustible==2){
+gas2();
+}
+if(arrGlobal4[h].tipoCombustible==3){
+gasolinaygas();
+}
+if(arrGlobal4[h].tipoCombustible==4){
+diesel2();
+}
+ $('#modalDesp2 .gasolina1').val(arrGlobal4[h].gasolina);
+ $('#modalDesp2 .gas1').val(arrGlobal4[h].gas);
+ $('#modalDesp2 .diesel1').val(arrGlobal4[h].diesel);
+ $('#modalDesp2 .km1').val(arrGlobal4[h].km);
+
+$('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - NOMBRE: '+nombre_vend+'. RUTA: ' +ruta3+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN : '+boni+'. </p>');
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasVF);
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
+  var vDiaria ='<li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA </button></li><li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="">MERMA</button></li><li role="presentation" class="impre" ><button href="" aria-controls="" class="btn btn-success impre totala" data-toggle="tab" role="tab" onclick="">RECARGA</button></li>';
+ 
+
 $('.ventaDiaria').html(vDiaria);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiaria);
 
@@ -5348,6 +5385,20 @@ getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventario);
 
 function closeModalDesp2(){
+
+
+
+
+var despachadorRR; 
+
+   var despachadorV = $('#modalDesp2 .selectDespachador ').val();
+   despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
+  //alert(despachadorV);
+
+
+ despachadorR = arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple;
+  
+
 $('#modalDesp2').modal('hide');
 }
 function click_Rec2(){

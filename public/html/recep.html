@@ -23,11 +23,11 @@
         -->
         <div class="col-md-2 impre form-group">
           <label class="letras">Crédito</label>
-          <input type="text" id="" class="form-control clear creditos" onchange=" " placeholder="$">
+          <input type="text" id="" class="form-control clear creditos" onchange="document.getElementById('bonificacionclt').focus();"  placeholder="$">
         </div>
         <div class="col-md-2 impre form-group">
           <label class="letras">Bonificación</label>
-          <input type="text" class="form-control clear otros" style="" onchange=" " placeholder="$">
+          <input type="text" id="bonificacionclt" class="form-control clear otros" style="" onchange="$('.p1').focus();" placeholder="$">
         </div>
         <div class="col-md-8"></div>
        <div class="col-md-3 form-group pesos">
@@ -179,8 +179,8 @@
   <table id="oculto89" class="tablaImprimir3 table-bordered " style="display:none; ">
     <thead  class="" style="font-size:7px; ">
       <tr class="text-center text-center">
-      <th class="text-center" style="width: 50px;">VENDIDO</th>
-      <th class="text-right t_venta_merca" style="width: 50px;"></th>     
+      <th class="text-center" style="width: 150px;">VENDIDO</th>
+      <th class="text-right t_venta_merca" style="width: 150px;"></th>     
       </tr>
     </thead>
   </table>
@@ -188,25 +188,25 @@
   <table id="oculto90" class="tablaImprimir4 table-bordered " style="display:none; ">
     <thead  class="" style="font-size:7px; ">
       <tr class="text-center text-center" >
-      <th class="text-center " style="width: 100px;">EFECTIVO</th>
-      <th class="text-right efectivo" style="width: 100px;"></th>     
+      <th class="text-center " style="width: 150px;">EFECTIVO</th>
+      <th class="text-right efectivo" style="width: 150px;"></th>     
       </tr>
       <tr class="text-center text-center">
-      <th class="text-center" style="width: 100px;">OTROS</th>
-      <th class="text-right otros1" style="width: 100px;"></th>     
+      <th class="text-center" style="width: 150px;">OTROS</th>
+      <th class="text-right otros1" style="width: 150px;"></th>     
       </tr>
       <tr class="text-center text-center">
-      <th class="text-center" style="width: 100px;">TOTAL</th>
-      <th class="text-right sumaefec" style="width: 100px;"></th>     
+      <th class="text-center" style="width: 150px;">TOTAL</th>
+      <th class="text-right sumaefec" style="width: 150px;"></th>     
       </tr>
       
     </thead>
   </table>
    <table id="oculto91" class="tablaImprimir5 table-bordered " style="display:none; ">
     <thead  class="" style="font-size:7px; ">
-      <tr class="text-center text-center" style="width: 50px;">
-      <th class="text-center" style="width: 50px;">DIFERENCIA</th>
-      <th class="text-right f_s_dia" style="width: 50px;"></th>     
+      <tr class="text-center text-center" style="width: 150px;">
+      <th class="text-center" style="width: 150px;">DIFERENCIA</th>
+      <th class="text-right f_s_dia" style="width: 150px;"></th>     
       </tr>
     </thead>
   </table>

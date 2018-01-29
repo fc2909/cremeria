@@ -113,6 +113,168 @@
           </div>
         </div>
       </div>
+
+  <div class= "modal fade" tabindex ="-1" role="dialog" id="modalMerma">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">MERMA</h2>
+             <div class=""></div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+             
+              <div class="row col-md-12 ">
+                 <div class="row">
+        <div class="col-md-3 impre form-group">
+          <label class="" >ID</label>
+          <input type="text" id="idProducto" class="form-control clear idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="#" onload="">
+        </div>
+        <div class="col-md-3 impre form-group">
+          <label class="">Descripción</label>
+          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedidaMerma(); " disabled placeholder="Descripción">
+        </div>
+        
+        <div class="col-md-3 impre form-group piezasventas">
+          <label class="">Piezas</label>
+          <input type="text" id="piezas" class="form-control clear piezas" onchange="cambio(); " placeholder="#">
+        </div>
+       <div class="col-md-3 form-group pesos">
+          
+        </div>
+<div class="col-xs-3 impre col-md-3">
+      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addMerma(); document.getElementById('idProducto').focus();">Insertar</button>
+  </div>
+   <div class="col-xs-3 impre col-md-3">
+    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">Limpiar</button>
+  </div>
+  <div class="col-xs-3 impre col-md-3">
+  <div class="upventa"></div>
+    
+  </div>
+   <div class="col-xs-3 impre col-md-3">
+    <div class="delventa"></div>
+  </div>
+   
+  <br class="impre"><br class="impre">
+  <br class="impre">
+ 
+  </div>
+                
+
+  
+  
+  
+<br>
+
+<br>
+
+ <div class="table-responsive tabla text-center impre">
+  <table class="impre table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center impre ">
+
+
+      <tr class="letras text-center impre">
+        <p><th class="letras">Día</th></p>
+        <th class="letras">Código</th>
+        <th class="letras">Descripción</th>
+        <th class="letras">Piezas</th>
+        <th class="letras">Peso</th>
+        <th class="letras">Precio Unitario</th>
+        <th class="letras">Valor Mercancia</th>      
+      </tr>
+    </thead>
+    <tbody class="contCataMerma ventascss impre" >
+     
+    </tbody>
+     
+  </table>
+</div>
+
+
+              
+
+                
+              </div>
+              <br>
+      
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-modals" onclick="closeModalMerma();">Cerrar</button>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div class= "modal fade" tabindex ="-1" role="dialog" id="modalRecarga">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">RECARGA</h2>
+             <div class=""></div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+             
+              <div class="row col-md-12 ">
+                 <div class="row">
+        <div class="col-md-3 impre form-group">
+          <label class="" >ID</label>
+          <input type="text" id="idProducto" class="form-control clear idProducto" onchange="updateListaRecarga();document.getElementById('piezas').focus();" placeholder="#" onload="">
+        </div>
+        <div class="col-md-3 impre form-group">
+          <label class="">Descripción</label>
+          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="Descripción">
+        </div>
+        
+        <div class="col-md-3 impre form-group piezasventas">
+          <label class="">Piezas</label>
+          <input type="text" id="piezas" class="form-control clear piezas" onchange="cambio(); " placeholder="#">
+        </div>
+       <div class="col-md-3 form-group pesos">
+          
+        </div>
+<div class="col-xs-3 impre col-md-3">
+      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addRecarga(); document.getElementById('idProducto').focus();">Insertar</button>
+  </div>
+   <div class="col-xs-3 impre col-md-3">
+    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">Limpiar</button>
+  </div>
+  <div class="col-xs-3 impre col-md-3">
+  <div class="upventa"></div>
+    
+  </div>
+   <div class="col-xs-3 impre col-md-3">
+    <div class="delventa"></div>
+  </div>
+
+ 
+  </div>
+                
+
+
+            
+              </div>
+     
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-modals" onclick="closeModalRecarga();">Cerrar</button>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+
+
   <div class= "modal fade" tabindex ="-1" role="dialog" id="modalNotas">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
@@ -920,9 +1082,9 @@
                
 
                 <div class="col-md-4">
-                  <input type="text" class="form-control clear cash" placeholder="$">
+                  <input type="text" class="form-control clear cash" placeholder="$" onchange="document.getElementById('addEfectivo').focus();">
                 </div>
-<div class="col-md-12"> <br><button class="btn btn-info totala" onclick="addEfectivo()">Guardar</button> </div><br>
+<div class="col-md-12"> <br><button class="btn btn-info totala" id="addEfectivo" onclick="addEfectivo()">Guardar</button> </div><br>
   
               </div>
 
@@ -1004,18 +1166,18 @@
           </div>
         </div>
       </div>
-<div class= "modal fade" tabindex ="-1" role="dialog" id="modalVDiaria">
-        <div class=" modal-dialog modal-lg" role="document">
-          <div class="modal-content modal-lg">
-            <div class="modal-header">
-            <h4 class="modal-title">Venta Diaria</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+<div class= "modal fade impre" tabindex ="-1" role="dialog" id="modalVDiaria">
+        <div class=" modal-dialog modal-lg impre impre" role="document">
+          <div class="modal-content modal-lg impre impre">
+            <div class="modal-header impre impre">
+            <h4 class="modal-title impre impre">VENTA DIARIA</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close impre impre"><span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body textModal">
-    <table class="table table-active table-hover table-bordered table-inverse  text-center">
-    <thead class="text-center">
-      <tr class="letras text-center">
+    <table class="table table-active table-hover table-bordered table-inverse  text-center impre impre">
+    <thead class="text-center impre">
+      <tr class="letras text-center impre">
         <th class="letras">Producto</th>
         <th class="letras">Lunes</th>
         <th class="letras">Martes</th>
@@ -1024,10 +1186,9 @@
         <th class="letras">Viernes</th>
         <th class="letras">Sábado</th>
         <th class="letras">Total</th>
-        <th class="letras">Meta</th>
       </tr>
     </thead>
-    <tbody class="contCataModal ventascss" >
+    <tbody class="contCataModal ventascss impre" >
      
     </tbody>
 
@@ -1035,7 +1196,8 @@
             </div>
             <div class="modal-footer">
 
-               <button type="button" class="btn btn-modals" onclick="">Cerrar</button>
+               <button type="button" class="btn btn-warning" onclick="imprimirVD()">IMPRIMIR</button>
+               <button type="button" class="btn btn-modals" onclick="closeVD()">CERRAR</button>
             </div>
           </div>
         </div>

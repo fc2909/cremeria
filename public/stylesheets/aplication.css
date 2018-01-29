@@ -69,10 +69,20 @@
    left: 5%;
    margin: 10px;
  }
+ .negro{
+  color: black;
+ }
 
 .tablaImprimir {
   position: absolute;
   width: 100%;
+   top: 25px;
+   left: 5%;
+   margin: 10px;
+ }
+ .tablaImprimirVD {
+  position: absolute;
+  width: 110%;
    top: 25px;
    left: 5%;
    margin: 10px;

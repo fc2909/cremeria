@@ -90,33 +90,31 @@
  .tablaImprimir2 {
   position: absolute;
 
-   top: 700px;
+   top: 740px;
    left: 5%;
    margin: 10px;
  }
   .tablaImprimir3 {
   position: absolute;
 
-   top: 700px;
+   top: 740px;
 
-   left: 500px;
-   margin: 10px;
+   left: 463px;
  }
   .tablaImprimir4 {
   position: absolute;
 
-   top: 725px;
+   top: 765px;
 
-   left: 500px;
-   margin: 10px;
+   left: 463px;
  }
   .tablaImprimir5 {
   position: absolute;
 
-   top: 775px;
+   top: 815px;
 
-   left: 500px;
-   margin: 10px;
+   left: 463px;
+
  }
  .fila{
 width: 550px;
@@ -236,6 +234,20 @@ body{
 .btn-modals{
   background: #012d41;
   color: white; 
+}
+.ImagenDurango{
+   position: absolute;
+   top: 200px;
+height: 500px;
+left: 15%;
+opacity:.25;
+}
+.ImagenPrueba{
+      position: absolute;
+   top: -35px;
+height:50px;
+left: 25%;
+
 }
 .imagenes{
   height: 200px;

@@ -582,6 +582,7 @@ usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";
   document.getElementById('oculto10').style.display = 'block';
   document.getElementById('oculto11').style.display = 'block';
   document.getElementById('oculto12').style.display = 'block';
+  document.getElementById('ocultoImagen').style.display = 'block';
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
 var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_  ";
 var despachadorV = "DESPACHADOR: "+despachador+"";
@@ -592,7 +593,7 @@ gasolina = $('#modalDesp2 .gasolina1').val();
 km = $('#modalDesp2 .km1').val();
 gas = $('#modalDesp2 .gas1').val();
 diesel = $('#modalDesp2 .diesel1').val();
- 
+  var imagenFondo='<img class="ImagenDurango" src="/images/logoD.png" onclick="">';
 if(tipoCombustible==1){
  $('.gasolina').html("GASOLINA: "+gasolina+" L.");
  $('.km').html("KM: "+km);
@@ -616,6 +617,7 @@ if(tipoCombustible==4){
 
 
 $('.pagareD').html(pagare);
+//$('.fondoImagen').html(imagenFondo);
 $('.controlC').html(controlC);
 $('.nombreVendedor').html(nombreVendedor);
 $('.nombreCapturista').html(usuario);
@@ -637,6 +639,7 @@ window.print();
   document.getElementById('oculto10').style.display = 'none';
   document.getElementById('oculto11').style.display = 'none';
   document.getElementById('oculto12').style.display = 'none';
+  document.getElementById('ocultoImagen').style.display = 'none';
 
 
 }
@@ -1176,7 +1179,7 @@ function loadMerma(lista){
   for(var h=0;h<lista.length; h++){
  if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
 
-htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMerma('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].sfc)+1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
+htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMerma('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
 
   }
 
@@ -2374,6 +2377,7 @@ if(noSemana==52&&dc==6){
   var vehiculo = vehiculoA2;
   var despachador2=despachador22;
   var bonificacion_p = boni;
+  var t_venta_merca = 0;
   var v_mercancia = parseFloat(total_mercancia) + parseFloat(valorMercancia);
   //alert(day2+" - "+month2+" - "+year2+(diasema.getUTCDay()-1));
     
@@ -2385,14 +2389,15 @@ if(noSemana==52&&dc==6){
    addRegistro3(json, 'ventadiaria', loadVentas);
    var dsc= dc;
     //alert(dfc+" ---- "+sfc);
-   var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2};
    
+   var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2};
 
    //alert("num = "+num+" num 2 = "+num2);
 
   if(num==0 && num2==0){
    //alert("registrar ruta: "+rutas);
    //alert("add "+sc+" == "+sfc+" && "+dsfc+" == "+dfc+" && "+fechadespacho+" == "+fechadespachof);
+   var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2, t_venta_merca: t_venta_merca};
 
    addRegistro2(json2, 'ventaspasada', loadVentasp);
 //click_Salida(id_vend , n_vend, ruta, tipo, credito_p, bonificacion_p)

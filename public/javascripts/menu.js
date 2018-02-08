@@ -648,6 +648,7 @@ function imprimirVD(){
  document.getElementById('oculto7').style.display = 'block';
  document.getElementById('ocultoVD').style.display = 'block';
  document.getElementById('ocultoVD2').style.display = 'block';
+  document.getElementById('ocultoImagen').style.display = 'block';
  
 var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_  ";
 var controlC = 'VENTA DIARIA (SEMANA: '+scv+')';
@@ -660,6 +661,7 @@ $('.controlC').html(controlC);
  document.getElementById('oculto7').style.display = 'none';
  document.getElementById('ocultoVD').style.display = 'none';
  document.getElementById('ocultoVD2').style.display = 'none';
+  document.getElementById('ocultoImagen').style.display = 'none';
 
 
 }
@@ -967,6 +969,161 @@ function cambiarcolor(elemento){
   
 element=elemento;
 }
+function loadVDiariaR(lista){
+  var html = '';
+  var htmlp = '';
+  var l=0;
+  var m=0;
+  var x=0;
+  var j=0;
+  var v=0;
+  var s=0;
+  var lp=0;
+  var mp=0;
+  var xp=0;
+  var jp=0;
+  var vp=0;
+  var sp=0;
+  var cambio=0;
+  var pasa=0;
+ //alert("rutas "+rutas+" scv: " +scv+" year: "+year );
+ 
+  for(var hh=0;hh<arrGlobalInventario.length; hh++){
+  for(var h=0;h<lista.length; h++){
+if(rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+ //alert("pasa 2" );
+  if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+    pasa=1;
+  if(lista[h].dfc==1){
+    if(lista[h].medida==1){
+l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+lp+=0;
+    }
+     if(lista[h].medida==3){
+l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+lp+=0;
+    }
+  }
+  if(lista[h].dfc==2){
+if(lista[h].medida==1){
+m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+mp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+mp+=0;
+    }
+     if(lista[h].medida==3){
+m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+mp+=0;
+    }
+  }
+  if(lista[h].dfc==3){
+if(lista[h].medida==1){
+x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+xp+=0;
+    }
+     if(lista[h].medida==3){
+x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+xp+=0;
+    }
+  }
+  if(lista[h].dfc==4){
+if(lista[h].medida==1){
+j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+jp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+jp+=0;
+    }
+     if(lista[h].medida==3){
+j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+jp+=0;
+    }
+  }
+  if(lista[h].dfc==5){
+if(lista[h].medida==1){
+v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+vp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+vp+=0;
+    }
+     if(lista[h].medida==3){
+v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+vp+=0;
+    }
+  }
+  if(lista[h].dfc==6){
+if(lista[h].medida==1){
+s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+sp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+sp+=0;
+    }
+     if(lista[h].medida==3){
+s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+sp +=0;
+    }
+  }
+  }
+}
+if((lista.length-1)==h&&pasa==1){
+  
+var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+  if(l==0){l="0"}else{l=parseFloat(l).toFixed(2)}
+  if(lp==0){lp=""}else{lp=" ("+parseFloat(lp).toFixed(3)+" KG)"}
+  if(m==0){m="0"}else{m=parseFloat(m).toFixed(2)}
+  if(mp==0){mp=""}else{mp=" ("+parseFloat(mp).toFixed(3)+" KG)"}
+  if(x==0){x="0"}else{x=parseFloat(x).toFixed(2)}
+  if(xp==0){xp=""}else{xp=" ("+parseFloat(xp).toFixed(3)+" KG)"}
+  if(j==0){j="0"}else{j=parseFloat(j).toFixed(2)}
+  if(jp==0){jp=""}else{jp=" ("+parseFloat(jp).toFixed(3)+" KG)"}
+  if(v==0){v="0"}else{v=parseFloat(v).toFixed(2)}
+  if(vp==0){vp=""}else{vp=" ("+parseFloat(vp).toFixed(3)+" KG)"}
+  if(s==0){s="0"}else{s=parseFloat(s).toFixed(2)}
+  if(sp==0){sp=""}else{sp=" ("+parseFloat(sp).toFixed(3)+" KG)"}
+  if(suma==0){suma="0"}else{suma=parseFloat(suma).toFixed(2)}
+  if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
+
+  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
+  htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
+  l=0;
+  m=0;
+  x=0;
+  j=0;
+  v=0;
+  s=0;
+  lp=0;
+  mp=0;
+  xp=0;
+  jp=0;
+  vp=0;
+  sp= 0;
+
+cambio =1;  
+}
+}
+cambio =0;  
+pasa=0;
+  }
+     $('.contCataModal').html(html);
+     $('.ventaDiariaSemanal').html(htmlp);
+}
+
 function loadVDiaria(lista){
   var html = '';
   var htmlp = '';
@@ -1094,12 +1251,6 @@ var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloa
   if(sp==0){sp=""}else{sp=" ("+parseFloat(sp).toFixed(3)+" KG)"}
   if(suma==0){suma="0"}else{suma=parseFloat(suma).toFixed(2)}
   if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
-
-
-
-
-
-
 
   html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
   htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
@@ -1788,6 +1939,66 @@ html+= '<tr class="seleccionar" onclick="click_Salida('+ lista[h].id +')" data-i
 function modal_Salida(){
 $('#modal_Salida').modal('show');
 //click_Salida('+ lista[h].id +')
+}
+function loadVentaDiariaR(lista){
+  var html = '';
+
+  for(var h=0;h<lista.length; h++)
+    if(lista[h].tipo==2&&lista[h].estado==1){
+for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].id==lista[h].ruta){
+ruta3=arrGlobalRuta[i].nombre;
+}
+}
+
+
+ 
+html+= '<tr class="seleccionar text-center" onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');"><td>' + ruta3  + '</td><td>' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td>'+t_ventas[lista[h].tipo]+'</tr>';
+    }
+     $('.contCataR').html(html);
+   
+  arrGlobal2 = lista;
+  $('.imprimir').html('');
+}
+function loadVentaDiariaRS(lista){
+  var html = '';
+
+  for(var h=0;h<lista.length; h++)
+    if(lista[h].tipo==2&&lista[h].estado==1){
+for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].id==lista[h].ruta){
+ruta3=arrGlobalRuta[i].nombre;
+}
+}
+
+
+ 
+html+= '<tr class="seleccionar text-center" onclick="ventaSemanal('+ lista[h].ruta+', '+h+');"><td>' + ruta3  + '</td><td>' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td>'+t_ventas[lista[h].tipo]+'</tr>';
+    }
+     $('.contCataR').html(html);
+   
+  arrGlobal2 = lista;
+  $('.imprimir').html('');
+}
+function loadVentaDiariaRM(lista){
+  var html = '';
+
+  for(var h=0;h<lista.length; h++)
+    if(lista[h].tipo==2&&lista[h].estado==1){
+for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].id==lista[h].ruta){
+ruta3=arrGlobalRuta[i].nombre;
+}
+}
+
+
+ 
+html+= '<tr class="seleccionar text-center"><td>' + ruta3  + '</td><td>' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td>'+t_ventas[lista[h].tipo]+'</tr>';
+    }
+     $('.contCataR').html(html);
+   
+  arrGlobal2 = lista;
+  $('.imprimir').html('');
 }
 function loadDays(lista){
   var html = '';
@@ -5709,9 +5920,52 @@ $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/mReportes.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> REPORTES </h3>');
-  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">Ventas</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">Movimientos</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="">Inventario</button><button href="#seccion4" aria-controls="seccion4" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">Clientes</button><button href="#seccion5" aria-controls="seccion5" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">M. Vehicular</button><button href="#seccion6" aria-controls="seccion6" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">Logística</button><button href="#seccion7" aria-controls="seccion7" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">Empleados</button><button href="#seccion8" aria-controls="seccion8" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">Usuarios</button></li><div class="imprimir"></div></ul> </div>');
+  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">Ventas</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class=" btn btn-dark totala impre" onclick="" role="tab">Movimientos</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-dark impre totala" data-toggle="tab" role="tab" onclick="">Inventario</button><button href="#seccion4" aria-controls="seccion4" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="" role="tab">Clientes</button><button href="#seccion5" aria-controls="seccion5" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="" role="tab">M. Vehicular</button><button href="#seccion6" aria-controls="seccion6" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="" role="tab">Logística</button><button href="#seccion7" aria-controls="seccion7" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="" role="tab">Empleados</button><button href="#seccion8" aria-controls="seccion8" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="" role="tab">Usuarios</button></li><div class="imprimir"></div></ul> </div>');
  
 
+}
+function ventaDiariaR(){
+  $('.tituloResp').html('<h3 class="text-center impre">VENTA DIARIA</h3>');
+  $('.contenidoR').load('/html/ventaDiariaR.html');
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR);
+
+
+//alert(day+month+year);
+}
+function rutasR(ruta, h){
+rutas=ruta;
+nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR);
+saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+scv=noSemana;
+//alert(ruta)
+}
+function ventaDiariaRS(){
+  $('.tituloResp').html('<h3 class="text-center">VENTA SEMANAL</h3>');
+
+  $('.contenidoR').load('/html/ventaDiariaR.html');
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaRS);
+
+}
+function ventaSemanal(){
+
+  rutas=ruta;
+nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
+  $('.tituloResp').html('<h3 class="text-center">'+nombre_vend+'</h3>');
+
+  $('.contenidoR').html('');
+
+}
+function ventaDiariaRM(){
+  $('.tituloResp').html('<h3 class="text-center">VENTA MENSUAL</h3>');
+
+  $('.contenidoR').load('/html/ventaDiariaR.html');
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaRM);
+
+}
+function ventaGeneral(){
+  $('.tituloResp').html('<h3 class="text-center">VENTA GENERAL</h3>');
+ $('.contenidoR').html('');
 }
 function click_bitacoras(){
 $('.btn-nav').removeClass('hidden');
@@ -5904,13 +6158,12 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" disabled onclick="ocultar()">VENTAS </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" disabled id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Despacho1()" role="tab">DESPACHO</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Recepcion()">RECEPCIÓN </button></li><div class="imprimir"></div><div class="ventaDiaria"></div></ul> </div>');
   
   var vDiaria ='<li role="presentation" class="impre" ><div href="" aria-controls="" type="button" class="btn btn-dark totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA </div></li><li role="presentation" class="impre" ><div href="" aria-controls="" type="button" class="btn btn-dark totala" data-toggle="tab" role="tab" onclick="modalMerma()">MERMA</div></li><li role="presentation" class="impre" ><button href="" aria-controls="" type="button" class="btn btn-dark totala" data-toggle="tab" role="tab" onclick="modalRecarga()">RECARGA</div></li>';
- 
+
 
 $('.ventaDiaria').html(vDiaria);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiaria);
-
-
 }
+
 function modalMerma(){
 $('#modalMerma').modal('show');
 }

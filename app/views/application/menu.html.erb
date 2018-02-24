@@ -6,7 +6,6 @@
 
 <nav class="navbar fixed-top navbar-dark bg-dark menunav">
         <div class=" col-md-2 ">
-
         <a href="" class="btn btn-nav impre" onclick="click_regresar()"><h3>Salir</h3></a>
         </div>
         <div class="col-xs-8 col-md-8 text-center tituloPantalla impre">
@@ -14,16 +13,13 @@
         </div>
         <div class="col-xs-1 col-md-1"></div>
         <div class="col-xs-1 col-md-1 ">
-          <a ><img class="user text-center impre" src="/images/user2.png" alt=""></a>   
+          <a ><img class="user text-center impre" src="/images/user2.png" alt=""></a>
         </div>
 </nav>
   <br class="impre"><br  class="impre"><br  class="impre"><br  class="impre"><br  class="impre">
-  
 		<div class="container-fluid row">
-    
      <div class="col-md-2 barraIzq " style="height: 100%"></div>
       <div class=" col-md-10 " id="contenido">
-        
       </div>
     </div>
        <div class= "modal fade" tabindex ="-1" role="dialog" id="modalPin">
@@ -33,65 +29,68 @@
              <h2 class="modal-title">PIN</h2>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
               </button>
-             
             </div>
             <div class="modal-body textModal">
-              
               <div class="row ">
-                
                 <div class="col-md-12 despachador">  
-                
-                
-
                 </div>
-              
-
-                
               </div>
               <br>
               <div class="row">
-                
                 <div class="col-md-4">  
                 
-                <input type="text" id="PINV" class="form-control clear pin" onchange="document.getElementById('agregarp').focus();" placeholder="PIN">
-
-                </div>
-              
-
+   <input type="password" id="PINV" class="form-control clear pin" autocomplete="off" onchange="document.getElementById('agregarp').focus();" placeholder="PIN">
+    
                 
+                </div>
               </div>
-
-
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" onclick="closeModalPin(); click_ventas(); ">Cancelar</button>
-               <button type="button" class="btn btn-success " id="agregarp" onclick="agregarpin()">Ingresar</button>
+               <button type="button" class="btn btn-dark" onclick="closeModalPin(); click_ventas(); ">Cancelar</button>
+               <button type="button" class="btn btn btn-modals " id="agregarp" onclick="agregarpin()">Ingresar</button>
             </div>
           </div>
         </div>
       </div>
-
-
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalProducto">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">LISTA DE PRODUCTOS</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal productom">
+            
+                           
+            </div>
+            <div class="modal-footer">
+            
+               <button type="button" class="btn btn btn-modals" id="agregarp" onclick="modalCloseP()">CERRAR</button>
+            </div>
+          </div>
+        </div>
+      </div>
 <div class= "modal fade" tabindex ="-1" role="dialog" id="modalDesp">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-             <h2 class="modal-title">DESPACHADOR</h2>
+             <h2 class="modal-title">DESPACHADOR & VEHICULO</h2>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
               </button>
              
             </div>
             <div class="modal-body textModal ">
              
-              <div class="row col-md-12">
-                <label for="">Despachador:</label>
+              <div class="row col-md-12 ">
+                <label class="despachadorl" for="" >Despachador:</label>
                 <div class="col-md-12 despachador">  
                 
                
                 
 
                 </div>
-                 <label for="">Vehiculo asignado:</label>
+                 <label class="vehiculol" for="">Vehiculo asignado:</label>
                 <div class="col-md-12 vehiculomodal">  
                 
                 
@@ -107,8 +106,13 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" onclick="closeModalDesp(); click_Despacho(); ">Cancelar</button>
-               <button type="button" class="btn btn-success " id="agregarp" onclick="click_Salida2()">Ingresar</button>
+            <div>
+               <button type="button" class="btn btn-dark" onclick="closeModalDesp(); click_Despacho(); ">Cancelar</button>
+            </div>
+              <div class="salida2">
+                <button type="button" class="btn btn-modals " id="agregarp" onclick="click_Salida2()">Guardar</button>
+              </div>
+               
             </div>
           </div>
         </div>
@@ -445,10 +449,7 @@
             </select>
           
         </div>
-                 <div class="col-md-4 form-group ">
-          <label class="" >Id</label>
-          <input type="text" class="form-control clear idVendedor" placeholder="Id">
-        </div>
+               
         <div class="col-md-4 form-group">
           <label class="">Nombre</label>
           <input type="text" class="form-control clear nombre" placeholder="Nombre">
@@ -671,10 +672,7 @@
             <div class="modal-body textModal">
              
               <div class="row ">
-                         <div class="col-md-4 form-group">
-          <label class="" >ID</label>
-          <input type="text" class="form-control clear idEmpleado" placeholder="ID">
-        </div>
+                        
         <div class="col-md-4 form-group">
           <label class="">Nombre</label>
           <input type="text" class="form-control clear nombre" placeholder="Nombre">
@@ -684,7 +682,7 @@
           <input type="text" class="form-control clear a_paterno" placeholder="Apellido Paterno">
         </div>
         <div class="col-md-4 form-group">
-          <label class="">Apellido Materno</label>
+          <label class="">Apellido Materno</la55bel>
           <input type="text" class="form-control clear a_materno" placeholder="Apellido Materno">
         </div>
         <div class="col-md-4 form-group">
@@ -962,8 +960,8 @@
             </div>
             <div class="modal-body textModal">
               
-              <div class="row ">
-                
+              <div class="row form-group ">
+                <div class="despachador819"></div>
                 <div class="col-md-12 despachador">  
                 
                 </div>
@@ -1001,8 +999,8 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" onclick="closeModalDesp2(); click_Recepcion(); ">Cancelar</button>
-               <button type="button" class="btn btn-success " id="agregarp" onclick="closeModalDesp2();">Ingresar</button>
+               <button type="button" class="btn btn-dark" onclick="closeModalDesp(); click_Recepcion(); ">Cancelar</button>
+               <button type="button" class="btn btn-modals " id="agregarp" onclick="ModalDesp2();">Guardar</button>
             </div>
           </div>
         </div>
@@ -1034,7 +1032,7 @@
                 
                 <div class="col-md-4">  
                 
-                <input type="text" class="form-control clear pin" onchange="document.getElementById('agregarp2').focus();" placeholder="PIN">
+                <input type="password" autocomplete="off" class="form-control clear pin" onchange="document.getElementById('agregarp2').focus();" placeholder="PIN">
 
                 </div>
               
@@ -1045,8 +1043,8 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" onclick="closeModalPin2();  ">Cancelar</button>
-               <button type="button" class="btn btn-success agregarp" id="agregarp2" onclick="agregarpin2()">Agregar</button>
+               <button type="button" class="btn btn-dark" onclick="closeModalPin2();  ">Cancelar</button>
+               <button type="button" class="btn btn-modals agregarp" id="agregarp2" onclick="agregarpin2()">Agregar</button>
             </div>
           </div>
         </div>
@@ -1193,10 +1191,11 @@
     </tbody>
 
   </table>
+
             </div>
             <div class="modal-footer">
 
-               <button type="button" class="btn btn-warning" onclick="imprimirVD()">IMPRIMIR</button>
+               
                <button type="button" class="btn btn-modals" onclick="closeVD()">CERRAR</button>
             </div>
           </div>

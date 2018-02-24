@@ -4,35 +4,35 @@
 
         <div class="col-md-2 form-group">
           <label class="letras" >ID</label>
-          <input type="text" class="form-control clear idInventario" placeholder="ID">
+          <input type="text" id="id" class="form-control clear idInventario" placeholder="ID" onchange="document.getElementById('descripcion').focus();">
         </div>
         <div class="col-md-3 form-group">
           <label class="letras">Descripción</label>
-          <input type="text" class="form-control clear descripcion" placeholder="Descripción">
+          <input type="text" id="descripcion" class="form-control clear descripcion" onchange="document.getElementById('detalle').focus();" placeholder="Descripción">
         </div>
         <div class="col-md-1 form-group">
           <label class="letras">Detalle</label>
-          <input type="text" class="form-control clear detalle" placeholder="$">
+          <input id="detalle" type="text" class="form-control clear detalle" onchange="document.getElementById('mayoreo').focus();" placeholder="$">
         </div>
         <div class="col-md-1 form-group">
           <label class="letras">Mayoreo</label>
-          <input type="text" class="form-control clear mayoreo" placeholder="$">
+          <input id="mayoreo" type="text" class="form-control clear mayoreo" onchange="document.getElementById('foraneo').focus();" placeholder="$">
         </div>
         <div class="col-md-1 form-group">
           <label class="letras">Foráneo</label>
-          <input type="text" class="form-control clear foraneo" placeholder="$">
+          <input id="foraneo" type="text" onchange="document.getElementById('restaurante').focus();" class="form-control clear foraneo" placeholder="$">
         </div>
         <div class="col-md-1 form-group">
           <label class="letras">Restaurante</label>
-          <input type="text" class="form-control clear restaurante" placeholder="$">
+          <input type="text" id="restaurante" class="form-control clear restaurante" onchange="document.getElementById('cantidad').focus();" placeholder="$">
         </div>
         <div class="col-md-1 form-group">
           <label class="letras">Cantidad</label>
-          <input type="text" class="form-control clear cantidad" placeholder="#">
+          <input type="text" id="cantidad" class="form-control clear cantidad" onchange="document.getElementById('medida').focus();" placeholder="#">
         </div>
         <div class="col-md-2 form-group">
           <label class="letras">Medida</label>
-          <select class="form-control clear medida">
+          <select class="form-control clear medida" id="medida" onchange="document.getElementById('minimo').focus();">
             <option value="1">Kg</option>
             <option value="2">Pzas.</option>
             <option value="3">L</option>
@@ -40,16 +40,17 @@
         </div>
         <div class=" col-md-2 form-group">
           <label class="letras">S. Minimo</label>
-          <input type="text" class="form-control clear s_min" placeholder="#">
+          <input type="text" id="minimo" onchange="document.getElementById('maximo').focus();" class="form-control clear s_min" placeholder="#">
         </div>
         <div class=" col-md-2 form-group">
           <label class="letras">S. Máximo</label>
-          <input type="text" class="form-control clear s_max" placeholder="#">
+          <input type="text" id="maximo" class="form-control clear s_max" placeholder="#" onchange="document.getElementById('add').focus();">
         </div>
-        <div class="col-md-8"></div>
+        <div class="col-md-6"></div>
+        <div class="col-md-2 guardari"></div>
      
 <div class="col-xs-3 col-md-3">
-      <button type="button" class="btn botoninv insertar" onclick="addInventario()">Insertar</button>
+      <button type="button" id="add" onchange="document.getElementById('id').focus();" class="btn botoninv insertar" onclick="addInventario()">Insertar</button>
   </div>
    <div class="col-xs-3 col-md-3">
     <button type="button" class="btn botoninv limpiar" onclick="inv(); limpiar(); ">Limpiar</button>

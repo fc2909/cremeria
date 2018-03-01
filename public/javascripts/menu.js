@@ -807,7 +807,7 @@ element=elemento;
 
 
 
-function loadVDiariaR2(lista){
+function loadVDiariaR3(lista){
   var html = '';
   var htmlp = '';
   var l=0;
@@ -828,7 +828,7 @@ function loadVDiariaR2(lista){
  
   for(var hh=0;hh<arrGlobalInventario.length; hh++){
   for(var h=0;h<lista.length; h++){
-if(rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+if((scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
  //alert("pasa 2" );
   if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
     pasa=1;
@@ -938,7 +938,7 @@ var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloa
   if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
 
   html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
-  htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
+  //htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
   l=0;
   m=0;
   x=0;
@@ -958,9 +958,9 @@ cambio =1;
 cambio =0;  
 pasa=0;
   }
-     $('.contCataModal').html(html);
+     $('.contCataR').html(html);
      $('.ventaDiariaSemanal').html(htmlp);
-     imprimirVD3();
+   //  imprimirVD3();
 }
 function loadVDiariaR(lista){
   var html = '';
@@ -1434,8 +1434,8 @@ function suma2(valor1, r){
     
 }
 function loadVentasr(lista){
-var v=0;
-var v1=0;
+  var v=0;
+  var v1=0;
   var html = '';
   var htmlp = '';
   total_vent =0;
@@ -1959,7 +1959,27 @@ ruta3=arrGlobalRuta[i].nombre;
 
 
  
-html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].tipo]+'</td><td onClick=""><button class="btn btn-warning" onclick="rutasRP('+ lista[h].ruta+', '+h+'); ">IMPRIMIR</button></td></tr>';
+html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td><td onClick=""><button class="btn btn-warning" onclick="rutasRP('+ lista[h].ruta+', '+h+'); ">IMPRIMIR</button></td></tr>';
+    }
+     $('.contCataR').html(html);
+   
+  arrGlobal2 = lista;
+  $('.imprimir').html('');
+}
+function loadVentaDiariaR2(lista){
+  var html = '';
+
+  for(var h=0;h<lista.length; h++)
+    if(lista[h].tipo==2&&lista[h].estado==1){
+for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].id==lista[h].ruta){
+ruta3=arrGlobalRuta[i].nombre;
+}
+}
+
+
+ 
+html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td><td onClick=""><button class="btn btn-warning" onclick="rutasRP2('+ lista[h].ruta+', '+h+'); ">IMPRIMIR</button></td></tr>';
     }
      $('.contCataR').html(html);
    
@@ -6041,6 +6061,13 @@ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
 scv=noSemana;
 //alert(ruta)
 }
+function rutasR2(ruta, h){
+rutas=ruta;
+nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR);
+
+//alert(ruta)
+}
 function rutasRP(ruta, h){
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
@@ -6051,11 +6078,40 @@ getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar
 
 //alert(ruta)
 }
+function rutasRP2(ruta, h){
+rutas=ruta;
+nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
+
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR2);
+
+
+//alert(ruta)
+}
 function ventaDiariaRS(){
-  $('.tituloResp').html('<h3 class="text-center">VENTA SEMANAL</h3><div class="col-md-4"><input class="form-control" type="week" value="" id=""></div><div class="col-md-4"><input class="form-control" type="week" value="" id=""></div> <div class="col-md-4"><button class="btn btn-dark">BUSCAR</button></div>  ');
+  $('.tituloResp').html('<h3 class="text-center impre">VENTA SEMANAL</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div>  ');
 
   $('.contenidoR').load('/html/ventaDiariaR.html');
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaRS);
+  $('.contenidoR').html('');
+
+
+}
+function click_buscarVD(){
+
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaRS);
+var semanaVS = $('.semanaVD').val();
+if(semanaVS!=""){
+
+
+year =  parseInt(semanaVS.substring(0,4));
+scv = parseInt(semanaVS.substring(6,8))-1;
+  $('.tituloResp').html('<h3 class="text-center impre">SEMANA: '+semanaVS.substring(6,8)+'</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div>  ');
+
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR2);
+}else{
+    $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+}
+//alert(semanaVS.substring(0,4)+" - "+semanaVS.substring(6,8));
 
 }
 function ventaSemanal(){
@@ -6076,7 +6132,11 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 }
 function ventaGeneral(){
   $('.tituloResp').html('<h3 class="text-center">VENTA GENERAL</h3>');
- $('.contenidoR').html('');
+  $('.contenidoR').load('/html/ventaGeneral.html');
+  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+scv=noSemana;
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR3);
+
 }
 function click_bitacoras(){
 $('.btn-nav').removeClass('hidden');

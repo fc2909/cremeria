@@ -805,7 +805,161 @@ function cambiarcolor(elemento){
 element=elemento;
 }
 
+function loadVDiariaR2(lista){
+  var html = '';
+  var htmlp = '';
+  var l=0;
+  var m=0;
+  var x=0;
+  var j=0;
+  var v=0;
+  var s=0;
+  var lp=0;
+  var mp=0;
+  var xp=0;
+  var jp=0;
+  var vp=0;
+  var sp=0;
+  var cambio=0;
+  var pasa=0;
+ //alert("rutas "+rutas+" scv: " +scv+" year: "+year );
+ 
+  for(var hh=0;hh<arrGlobalInventario.length; hh++){
+  for(var h=0;h<lista.length; h++){
+if(rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+ //alert("pasa 2" );
+  if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+    pasa=1;
+  if(lista[h].dfc==1){
+    if(lista[h].medida==1){
+l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+lp+=0;
+    }
+     if(lista[h].medida==3){
+l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+lp+=0;
+    }
+  }
+  if(lista[h].dfc==2){
+if(lista[h].medida==1){
+m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+mp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+mp+=0;
+    }
+     if(lista[h].medida==3){
+m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+mp+=0;
+    }
+  }
+  if(lista[h].dfc==3){
+if(lista[h].medida==1){
+x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+xp+=0;
+    }
+     if(lista[h].medida==3){
+x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+xp+=0;
+    }
+  }
+  if(lista[h].dfc==4){
+if(lista[h].medida==1){
+j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+jp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+jp+=0;
+    }
+     if(lista[h].medida==3){
+j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+jp+=0;
+    }
+  }
+  if(lista[h].dfc==5){
+if(lista[h].medida==1){
+v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+vp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+vp+=0;
+    }
+     if(lista[h].medida==3){
+v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+vp+=0;
+    }
+  }
+  if(lista[h].dfc==6){
+if(lista[h].medida==1){
+s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+sp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+    }
+    if(lista[h].medida==2){
+s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+sp+=0;
+    }
+     if(lista[h].medida==3){
+s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+sp +=0;
+    }
+  }
+  }
+}
+if((lista.length-1)==h&&pasa==1){
+  
+var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+  if(l==0){l="0"}else{l=parseFloat(l).toFixed(2)}
+  if(lp==0){lp=""}else{lp=" ("+parseFloat(lp).toFixed(3)+" KG)"}
+  if(m==0){m="0"}else{m=parseFloat(m).toFixed(2)}
+  if(mp==0){mp=""}else{mp=" ("+parseFloat(mp).toFixed(3)+" KG)"}
+  if(x==0){x="0"}else{x=parseFloat(x).toFixed(2)}
+  if(xp==0){xp=""}else{xp=" ("+parseFloat(xp).toFixed(3)+" KG)"}
+  if(j==0){j="0"}else{j=parseFloat(j).toFixed(2)}
+  if(jp==0){jp=""}else{jp=" ("+parseFloat(jp).toFixed(3)+" KG)"}
+  if(v==0){v="0"}else{v=parseFloat(v).toFixed(2)}
+  if(vp==0){vp=""}else{vp=" ("+parseFloat(vp).toFixed(3)+" KG)"}
+  if(s==0){s="0"}else{s=parseFloat(s).toFixed(2)}
+  if(sp==0){sp=""}else{sp=" ("+parseFloat(sp).toFixed(3)+" KG)"}
+  if(suma==0){suma="0"}else{suma=parseFloat(suma).toFixed(2)}
+  if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
 
+  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
+  htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
+  l=0;
+  m=0;
+  x=0;
+  j=0;
+  v=0;
+  s=0;
+  lp=0;
+  mp=0;
+  xp=0;
+  jp=0;
+  vp=0;
+  sp= 0;
+
+cambio =1;  
+}
+}
+cambio =0;  
+pasa=0;
+  }
+     //$('.contCataR').html(html);
+     $('.ventaDiariaSemanal').html(htmlp);
+     imprimirVD3();
+}
 
 function loadVDiariaR3(lista){
   var html = '';
@@ -965,6 +1119,7 @@ pasa=0;
 function loadVDiariaR(lista){
   var html = '';
   var htmlp = '';
+  var html2 = '';
   var l=0;
   var m=0;
   var x=0;
@@ -1113,6 +1268,147 @@ cambio =1;
 cambio =0;  
 pasa=0;
   }
+var l2=0;
+var m2=0;
+var x2=0;
+var j2=0;
+var v2=0;
+var s2=0;
+var l3=0;
+var m3=0;
+var x3=0;
+var j3=0;
+var v3=0;
+var s3= 0;
+var contador =0;
+var promedio =0;
+var ventaT =0;
+var bon =0;
+var bonT =0;
+ for(var h=0;h<arrGlobalF.length; h++){
+if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
+bon=arrGlobalF[h].otros;
+if(bon==undefined){
+  bon=0;
+}
+if(arrGlobalF[h].dsfc==1){
+l=arrGlobalF[h].creditos;
+lp=bon;
+l2=arrGlobalF[h].t_venta_merca;
+l3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+contador++;
+promedio += l3;
+ventaT += parseFloat(l2);
+bonT += parseFloat(lp);
+}
+if(arrGlobalF[h].dsfc==2){
+m=arrGlobalF[h].creditos;
+mp=bon;
+m2=arrGlobalF[h].t_venta_merca;
+m3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+contador++;
+promedio += m3;
+ventaT += parseFloat(m2);
+bonT += parseFloat(mp);
+}
+if(arrGlobalF[h].dsfc==3){
+x=arrGlobalF[h].creditos;
+xp=bon;
+x2=arrGlobalF[h].t_venta_merca;
+x3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+contador++;
+promedio += x3;
+ventaT += parseFloat(x2);
+bonT += parseFloat(xp);
+}
+if(arrGlobalF[h].dsfc==4){
+j=arrGlobalF[h].creditos;
+jp=bon;
+j2=arrGlobalF[h].t_venta_merca;
+j3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+contador++;
+promedio += j3;
+ventaT += parseFloat(j2);
+bonT += parseFloat(jp);
+}
+
+if(arrGlobalF[h].dsfc==5){
+v=arrGlobalF[h].creditos;
+vp=bon;
+v2=arrGlobalF[h].t_venta_merca;
+v3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+contador++;
+promedio += v3;
+ventaT += parseFloat(v2);
+bonT += parseFloat(vp);
+}
+
+if(arrGlobalF[h].dsfc==6){
+s=arrGlobalF[h].creditos;
+sp=bon;
+s2=arrGlobalF[h].t_venta_merca;
+s3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+
+contador++;
+promedio += s3;
+ventaT += parseFloat(s2);
+bonT += parseFloat(sp);
+}
+
+
+
+}}
+var p =promedio/contador;
+var lC="black;";
+var mC="black;";
+var xC="black;";
+var jC="black;";
+var vC="black;";
+var sC="black;";
+var tC="black;";
+if(l3<20){lC="green"}
+if(l3>=20&&l3<40){lC="blue"}
+if(l3>=40&&l3<60){lC="yellow; color:black;"}
+if(l3>=60&&l3<80){lC="orange"}
+if(l3>=80&&l3<100){lC="red"}
+if(m3<20){mC="green"}
+if(m3>=20&&m3<40){mC="blue"}
+if(m3>=40&&m3<60){mC="yellow; color:black;"}
+if(m3>=60&&m3<80){mC="orange"}
+if(m3>=80&&m3<100){mC="red"}
+if(x3<20){xC="green"}
+if(x3>=20&&x3<40){xC="blue"}
+if(x3>=40&&x3<60){xC="yellow; color:black;"}
+if(x3>=60&&x3<80){xC="orange"}
+if(x3>=80&&x3<100){xC="red"}
+  if(j3<20){jC="green"}
+if(j3>=20&&j3<40){jC="blue"}
+if(j3>=40&&j3<60){jC="yellow; color:black;"}
+if(j3>=60&&j3<80){jC="orange"}
+if(j3>=80&&j3<100){jC="red"}
+  if(v3<20){vC="green"}
+if(v3>=20&&v3<40){vC="blue"}
+if(v3>=40&&v3<60){vC="yellow; color:black;"}
+if(v3>=60&&v3<80){vC="orange"}
+if(v3>=80&&v3<100){vC="red"}
+  if(s3<20){sC="green"}
+if(s3>=20&&s3<40){sC="blue"}
+if(s3>=40&&s3<60){sC="yellow; color:black;"}
+if(s3>=60&&s3<80){sC="orange"}
+if(s3>=80&&s3<100){sC="red"}
+  if(ventaT<20){tC="green"}
+if(p>=20&&p<40){tC="blue"}
+if(p>=40&&p<60){tC="yellow; color:black;"}
+if(p>=60&&p<80){tC="orange"}
+if(p>=80&&p<100){tC="red"}
+if(p==NaN)p=0;
+  html2+= '<tr class="seleccionar"  ><td>CRÉDITOS</td><td>$ '+parseFloat(l).toFixed(2)+' </td><td>$ '+parseFloat(m).toFixed(2)+'</td><td>$ '+ parseFloat(x).toFixed(2) +' </td><td>$ '+ parseFloat(j).toFixed(2)+'  </td><td>$ '+ parseFloat(v).toFixed(2) +' </td><td>$ '+ parseFloat(s).toFixed(2) +' </td></tr>';
+  html2+= '<tr class="seleccionar"  ><td>BONIFICACIÓN</td><td> $ '+parseFloat(lp).toFixed(2)+' </td><td>$ '+parseFloat(mp).toFixed(2)+'</td><td>$ '+ parseFloat(xp).toFixed(2) +' </td><td>$ '+ parseFloat(jp).toFixed(2)+'  </td><td>$ '+ parseFloat(vp).toFixed(2) +' </td><td>$ '+ parseFloat(sp).toFixed(2) +' </td><td>$ '+ parseFloat(bonT).toFixed(2) +' </td></tr>';
+  html2+= '<tr class="seleccionar"  ><td>VENTA</td><td>$ '+parseFloat(l2).toFixed(2)+' </td><td>$ '+parseFloat(m2).toFixed(2)+'</td><td> $ '+ parseFloat(x2).toFixed(2) +' </td><td>$ '+ parseFloat(j2).toFixed(2)+'  </td><td>$ '+ parseFloat(v2).toFixed(2) +' </td><td> $ '+ parseFloat(s2).toFixed(2) +' </td><td> $ '+ parseFloat(ventaT).toFixed(2) +' </td></tr>';
+  html2+= '<tr class="seleccionar"  ><td>NO VENTA</td><td  id="lunes" style="background:'+lC+'"> % '+parseFloat(l3).toFixed(2)+' </td><td  id="martes" style="background:'+mC+'"> % '+parseFloat(m3).toFixed(2)+'</td><td  id="miercoles" style="background:'+xC+'"> % '+ parseFloat(x3).toFixed(2) +' </td><td  id="jueves" style="background:'+jC+'"> % '+ parseFloat(j3).toFixed(2) +'  </td><td  id="viernes" style="background:'+vC+'"> % '+ parseFloat(v3).toFixed(2) +' </td><td id="sabado" style="background:'+sC+'"> % '+ parseFloat(s3).toFixed(2) +' </td><td id="totalP" style="background:'+tC+'"> % '+  (p).toFixed(2) +' </td></tr>';
+
+
+     $('.contCataModalD').html(html2);
      $('.contCataModal').html(html);
      $('.ventaDiariaSemanal').html(htmlp);
 }
@@ -6131,7 +6427,7 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 
 }
 function ventaGeneral(){
-  $('.tituloResp').html('<h3 class="text-center">VENTA GENERAL</h3>');
+  $('.tituloResp').html('<h3 class="text-center impre">VENTA GENERAL</h3>');
   $('.contenidoR').load('/html/ventaGeneral.html');
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
 scv=noSemana;

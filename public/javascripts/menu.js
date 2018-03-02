@@ -1174,10 +1174,12 @@ mp+=0;
 if(lista[h].medida==1){
 x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
 xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+
     }
     if(lista[h].medida==2){
 x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
 xp+=0;
+alert(lista[h].id);
     }
      if(lista[h].medida==3){
 x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
@@ -1280,82 +1282,113 @@ var x3=0;
 var j3=0;
 var v3=0;
 var s3= 0;
+var l4 =0, m4=0, x4=0, j4=0, v4=0, s4=0;
+var l5=0, m5=0, x5=0, j5=0, v5=0, s5=0;
 var contador =0;
 var promedio =0;
 var ventaT =0;
 var bon =0;
 var bonT =0;
+var efecT =0;
+var mer =0;
+var efectivos =0;
  for(var h=0;h<arrGlobalF.length; h++){
 if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
 bon=arrGlobalF[h].otros;
-if(bon==undefined){
-  bon=0;
-}
+mer=arrGlobalF[h].v_mercancia;
+efectivos=arrGlobalF[h].efectivo;
+if(bon==undefined)bon=0;
+if(mer==""||mer==NaN||mer==undefined)mer=0;
+if(efectivos==""||efectivos==NaN||efectivos==undefined)efectivos=0;
+
 if(arrGlobalF[h].dsfc==1){
+  
 l=arrGlobalF[h].creditos;
 lp=bon;
 l2=arrGlobalF[h].t_venta_merca;
+l4=mer;
+l5=efectivos;
+
 l3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
 contador++;
 promedio += l3;
 ventaT += parseFloat(l2);
 bonT += parseFloat(lp);
+efecT += parseFloat(l5);
 }
 if(arrGlobalF[h].dsfc==2){
 m=arrGlobalF[h].creditos;
 mp=bon;
 m2=arrGlobalF[h].t_venta_merca;
+m4=mer;
+m5=efectivos;
+
 m3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
 contador++;
 promedio += m3;
 ventaT += parseFloat(m2);
 bonT += parseFloat(mp);
+efecT += parseFloat(m5);
 }
 if(arrGlobalF[h].dsfc==3){
 x=arrGlobalF[h].creditos;
 xp=bon;
 x2=arrGlobalF[h].t_venta_merca;
+x4=mer;
+x5=efectivos;
+
 x3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
 contador++;
 promedio += x3;
 ventaT += parseFloat(x2);
 bonT += parseFloat(xp);
+efecT += parseFloat(x5);
 }
 if(arrGlobalF[h].dsfc==4){
 j=arrGlobalF[h].creditos;
 jp=bon;
 j2=arrGlobalF[h].t_venta_merca;
+j4=mer;
+j5=efectivos;
+
 j3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
 contador++;
 promedio += j3;
 ventaT += parseFloat(j2);
 bonT += parseFloat(jp);
+efecT += parseFloat(j5);
 }
 
 if(arrGlobalF[h].dsfc==5){
 v=arrGlobalF[h].creditos;
 vp=bon;
 v2=arrGlobalF[h].t_venta_merca;
+v4=mer;
+v5=efectivos;
+
 v3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
 contador++;
 promedio += v3;
 ventaT += parseFloat(v2);
 bonT += parseFloat(vp);
+efecT += parseFloat(v5);
 }
 
 if(arrGlobalF[h].dsfc==6){
 s=arrGlobalF[h].creditos;
 sp=bon;
 s2=arrGlobalF[h].t_venta_merca;
+s4=mer;
+s5=efectivos;
+
 s3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
 
 contador++;
 promedio += s3;
 ventaT += parseFloat(s2);
 bonT += parseFloat(sp);
+efecT += parseFloat(s5);
 }
-
-
 
 }}
 var p =promedio/contador;
@@ -1396,15 +1429,18 @@ if(s3>=20&&s3<40){sC="blue"}
 if(s3>=40&&s3<60){sC="yellow; color:black;"}
 if(s3>=60&&s3<80){sC="orange"}
 if(s3>=80&&s3<100){sC="red"}
-  if(ventaT<20){tC="green"}
+  if(p <20){tC="green"}
 if(p>=20&&p<40){tC="blue"}
 if(p>=40&&p<60){tC="yellow; color:black;"}
 if(p>=60&&p<80){tC="orange"}
 if(p>=80&&p<100){tC="red"}
 if(p==NaN)p=0;
   html2+= '<tr class="seleccionar"  ><td>CRÉDITOS</td><td>$ '+parseFloat(l).toFixed(2)+' </td><td>$ '+parseFloat(m).toFixed(2)+'</td><td>$ '+ parseFloat(x).toFixed(2) +' </td><td>$ '+ parseFloat(j).toFixed(2)+'  </td><td>$ '+ parseFloat(v).toFixed(2) +' </td><td>$ '+ parseFloat(s).toFixed(2) +' </td></tr>';
-  html2+= '<tr class="seleccionar"  ><td>BONIFICACIÓN</td><td> $ '+parseFloat(lp).toFixed(2)+' </td><td>$ '+parseFloat(mp).toFixed(2)+'</td><td>$ '+ parseFloat(xp).toFixed(2) +' </td><td>$ '+ parseFloat(jp).toFixed(2)+'  </td><td>$ '+ parseFloat(vp).toFixed(2) +' </td><td>$ '+ parseFloat(sp).toFixed(2) +' </td><td>$ '+ parseFloat(bonT).toFixed(2) +' </td></tr>';
+  html2+= '<tr class="seleccionar"  ><td>BONIFICACIÓN</td><td> $ '+parseFloat(lp).toFixed(2)+' </td><td>$ '+parseFloat(mp).toFixed(2)+'</td><td>$ '+ parseFloat(xp).toFixed(2) +' </td><td>$ '+ parseFloat(jp).toFixed(2)+'  </td><td>$ '+ parseFloat(vp).toFixed(2) +' </td><td>$ '+ parseFloat(sp).toFixed(2) +' </td><td>$ '+ parseFloat(bonT).toFixed(2) +' </td></tr>';  
+  html2+= '<tr class="seleccionar"  ><td>MERCANCIA</td><td> $ '+parseFloat(l4).toFixed(2)+' </td><td>$ '+parseFloat(m4).toFixed(2)+'</td><td>$ '+ parseFloat(x4).toFixed(2) +' </td><td>$ '+ parseFloat(j4).toFixed(2)+'  </td><td>$ '+ parseFloat(v4).toFixed(2) +' </td><td>$ '+ parseFloat(s4).toFixed(2) +' </td></tr>';
   html2+= '<tr class="seleccionar"  ><td>VENTA</td><td>$ '+parseFloat(l2).toFixed(2)+' </td><td>$ '+parseFloat(m2).toFixed(2)+'</td><td> $ '+ parseFloat(x2).toFixed(2) +' </td><td>$ '+ parseFloat(j2).toFixed(2)+'  </td><td>$ '+ parseFloat(v2).toFixed(2) +' </td><td> $ '+ parseFloat(s2).toFixed(2) +' </td><td> $ '+ parseFloat(ventaT).toFixed(2) +' </td></tr>';
+  html2+= '<tr class="seleccionar"  ><td>EFECTIVO</td><td>$ '+parseFloat(l5).toFixed(2)+' </td><td>$ '+parseFloat(m5).toFixed(2)+'</td><td> $ '+ parseFloat(x5).toFixed(2) +' </td><td>$ '+ parseFloat(j5).toFixed(2)+'  </td><td>$ '+ parseFloat(v5).toFixed(2) +' </td><td> $ '+ parseFloat(s5).toFixed(2) +' </td><td> $ '+ parseFloat(efecT).toFixed(2) +' </td></tr>';
+
   html2+= '<tr class="seleccionar"  ><td>NO VENTA</td><td  id="lunes" style="background:'+lC+'"> % '+parseFloat(l3).toFixed(2)+' </td><td  id="martes" style="background:'+mC+'"> % '+parseFloat(m3).toFixed(2)+'</td><td  id="miercoles" style="background:'+xC+'"> % '+ parseFloat(x3).toFixed(2) +' </td><td  id="jueves" style="background:'+jC+'"> % '+ parseFloat(j3).toFixed(2) +'  </td><td  id="viernes" style="background:'+vC+'"> % '+ parseFloat(v3).toFixed(2) +' </td><td id="sabado" style="background:'+sC+'"> % '+ parseFloat(s3).toFixed(2) +' </td><td id="totalP" style="background:'+tC+'"> % '+  (p).toFixed(2) +' </td></tr>';
 
 

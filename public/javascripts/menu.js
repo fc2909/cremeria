@@ -1179,7 +1179,7 @@ xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
     if(lista[h].medida==2){
 x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
 xp+=0;
-alert(lista[h].id);
+
     }
      if(lista[h].medida==3){
 x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));

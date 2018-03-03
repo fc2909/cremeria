@@ -83,11 +83,20 @@
  .tablaImprimirVD {
   position: absolute;
   width: 110%;
+   top: 200px;
+   left: 5%;
+   margin: 10px;
+   color: black;
+ }
+  .tablaImprimirVD2 {
+  position: absolute;
+  
    top: 25px;
    left: 5%;
    margin: 10px;
    color: black;
  }
+
  .tablaImprimir2 {
   position: absolute;
 
@@ -98,23 +107,23 @@
   .tablaImprimir3 {
   position: absolute;
 
-   top: 740px;
+   top: 750px;
 
-   left: 463px;
+   left: 483px;
  }
   .tablaImprimir4 {
   position: absolute;
 
-   top: 765px;
+   top: 775px;
 
-   left: 463px;
+   left: 483px;
  }
   .tablaImprimir5 {
   position: absolute;
 
-   top: 815px;
+   top: 825px;
 
-   left: 463px;
+   left: 483px;
 
  }
  .fila{

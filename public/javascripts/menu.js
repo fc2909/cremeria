@@ -1323,7 +1323,7 @@ pasa=0;
      $('.ventaDiariaSemanal').html(htmlp);
    //  imprimirVD3();
 }
-function loadVDiariaR(lista){
+function loadVDiariaR(lista){//modal
   var html = '';
   var htmlp = '';
   var html2 = '';
@@ -1342,7 +1342,7 @@ function loadVDiariaR(lista){
   var cambio=0;
   var pasa=0;
  //alert("rutas "+rutas+" scv: " +scv+" year: "+year );
- alert("here");
+ 
   for(var hh=0;hh<arrGlobalInventario.length; hh++){
   for(var h=0;h<lista.length; h++){
 if(0==lista[h].merma&&rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){

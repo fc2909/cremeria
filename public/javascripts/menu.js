@@ -953,7 +953,7 @@ var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloa
 
   html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
   htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
-  l=0;
+   l=0;
   m=0;
   x=0;
   j=0;
@@ -1041,7 +1041,7 @@ m5=efectivos;
 m6=f_s_dia2;
 m7=f_s_real2;
 diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+m3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += m3;
 ventaT += parseFloat(m2);
@@ -1057,7 +1057,7 @@ x5=efectivos;
 x6=f_s_dia2;
 x7=f_s_real2;
 diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+x3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += x3;
 ventaT += parseFloat(x2);
@@ -1115,13 +1115,14 @@ ventaT += parseFloat(s2);
 bonT += parseFloat(sp);
 efecT += parseFloat(s5);
 }
-
 }}
 if(contador==0){
 p=0;
 }else{
- var p =(ventaT*100)/diferenciaT; 
+ var p =(ventaT*100)/(diferenciaT-bonT); 
 }
+ //alert(p+"=("+ventaT+"*100)/("+diferenciaT+"-"+bonT+")");
+
 
 
 
@@ -1436,7 +1437,7 @@ var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloa
 
 html+= '<tr class="seleccionar" id ="'+h+'" style="font-size:12px;   "><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
   htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
-  l=0;
+   l=0;
   m=0;
   x=0;
   j=0;
@@ -1524,7 +1525,7 @@ m5=efectivos;
 m6=f_s_dia2;
 m7=f_s_real2;
 diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+m3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += m3;
 ventaT += parseFloat(m2);
@@ -1540,7 +1541,7 @@ x5=efectivos;
 x6=f_s_dia2;
 x7=f_s_real2;
 diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+x3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += x3;
 ventaT += parseFloat(x2);
@@ -1598,13 +1599,14 @@ ventaT += parseFloat(s2);
 bonT += parseFloat(sp);
 efecT += parseFloat(s5);
 }
-
 }}
 if(contador==0){
 p=0;
 }else{
- var p =(ventaT*100)/diferenciaT; 
+ var p =(ventaT*100)/(diferenciaT-bonT); 
 }
+ alert(p+"=("+ventaT+"*100)/("+diferenciaT+"-"+bonT+")");
+
 
 var lC="black;";
 var mC="black;";
@@ -1978,8 +1980,8 @@ if(contador==0){
 p=0;
 }else{
  var p =(ventaT*100)/(diferenciaT-bonT); 
- alert(p+"=("+ventaT+"*100)/("+diferenciaT+"-"+bonT+")");
 }
+ //alert(p+"=("+ventaT+"*100)/("+diferenciaT+"-"+bonT+")");
 
 var lC="black;";
 var mC="black;";

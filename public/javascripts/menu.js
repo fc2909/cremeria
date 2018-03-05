@@ -532,12 +532,8 @@ function pagare2(){
         document.getElementById('oculto11').style.display = 'none';
         document.getElementById('oculto12').style.display = 'none';
         document.getElementById('ocultoImagen').style.display = 'none';
-
-
 }
-
 function imprimirVD3(){
- 
         document.getElementById('oculto2').style.display = 'block';
         document.getElementById('oculto7').style.display = 'block';
         document.getElementById('ocultoVD').style.display = 'block';
@@ -789,65 +785,41 @@ if(lista[h].piezasv==0&&lista[h].pesov==0){
                 if(parseFloat(lista[h].peso)==0){
                     $('#rec'+h+'').val(lista[h].piezasv);
                     valor=(lista[h].piezas-lista[h].piezasv)*lista[h].precioUnitario;
-                  //suma2(valor, h);
-                     $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
-//alert(lista[h].piezasv);
-t_v2[num]=lista[h].venta;
-//alert("Venta: "+lista[h].venta);
-
-num++;
-//alert(lista[h].valorMercancia);
-total = total+valor;
-  
-  
-}else{
- 
-      $('#p'+h+'').val(lista[h].piezasv);
-  $('#rec'+h+'').val(lista[h].pesov);
-//alert(lista[h].pesov);
-valor=(lista[h].peso-lista[h].pesov)*lista[h].precioUnitario;
-  //suma2(valor, h);
-  $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
-//alert("Venta: "+lista[h].venta);
-t_v2[num]=parseFloat(lista[h].venta);
-num++;
-//alert(lista[h].valorMercancia);
-
-total = total+valor;
-//alert(total+" - "+valor);
-
-  
-
-}}
-  }
-    }
-arrGlobalVF = lista;
-s_vent2=total;
-  totalV = ' <h3 class="letras">VENTA TOTAL: $ '+(total).toFixed(2)+'</h3>';
-   $(".totalVentas").html(totalV);
- 
-}
-var element;
+                    $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                    t_v2[num]=lista[h].venta;
+                    num++;
+                    total = total+valor;
+                    }else{
+                    $('#p'+h+'').val(lista[h].piezasv);
+                    $('#rec'+h+'').val(lista[h].pesov);
+                    valor=(lista[h].peso-lista[h].pesov)*lista[h].precioUnitario;
+                    $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                    t_v2[num]=parseFloat(lista[h].venta);
+                    num++;
+                    total = total+valor;
+                }
+              }
+            }
+          }
+                  arrGlobalVF = lista;
+                  s_vent2=total;
+                  totalV = ' <h3 class="letras">VENTA TOTAL: $ '+(total).toFixed(2)+'</h3>';
+                  $(".totalVentas").html(totalV);
+          }
+              var element;
 function cambiarcolor(elemento){
-  if(element!=undefined){
-
-    if(element.style.background=="gray"){
-    
-    element.style.background="#031727";
-    //alert("ya fue seleccionado");
-  }
-  }
-  if(elemento.style.background=="gray"){
-    
-    elemento.style.background="#031727";
-    //alert("ya fue seleccionado");
-  }else{
-    elemento.style.background="gray";
-  }
-  
-element=elemento;
+                  if(element!=undefined){
+                  if(element.style.background=="gray"){
+                    element.style.background="#031727";
+                    }
+                    }
+                  if(elemento.style.background=="gray"){
+                    elemento.style.background="#031727";
+                  }else{
+                    elemento.style.background="gray";
+                  }
+                    element=elemento;
 }
-
 function loadVDiariaR2(lista){ //imprime en reportes
   var html = '';
   var htmlp = '';
@@ -1027,6 +999,7 @@ var credits =0;
 var efectivos =0;
 var f_s_dia2 =0;
 var f_s_real2 =0;
+var diferenciaT =0;
  for(var h=0;h<arrGlobalF.length; h++){
 if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
 bon=arrGlobalF[h].otros;
@@ -1051,8 +1024,8 @@ l4=mer;
 l5=efectivos;
 l6=f_s_dia2;
 l7=f_s_real2;
-
-l3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += l3;
 ventaT += parseFloat(l2);
@@ -1067,7 +1040,8 @@ m4=mer;
 m5=efectivos;
 m6=f_s_dia2;
 m7=f_s_real2;
-m3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+m3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += m3;
 ventaT += parseFloat(m2);
@@ -1082,7 +1056,8 @@ x4=mer;
 x5=efectivos;
 x6=f_s_dia2;
 x7=f_s_real2;
-x3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+x3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += x3;
 ventaT += parseFloat(x2);
@@ -1097,7 +1072,8 @@ j4=mer;
 j5=efectivos;
 j6=f_s_dia2;
 j7=f_s_real2;
-j3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+j3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += j3;
 ventaT += parseFloat(j2);
@@ -1113,7 +1089,8 @@ v4=mer;
 v5=efectivos;
 v6=f_s_dia2;
 v7=f_s_real2;
-v3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+v3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += v3;
 ventaT += parseFloat(v2);
@@ -1129,7 +1106,8 @@ s4=mer;
 s5=efectivos;
 s6=f_s_dia2;
 s7=f_s_real2;
-s3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+s3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 
 contador++;
 promedio += s3;
@@ -1142,7 +1120,7 @@ efecT += parseFloat(s5);
 if(contador==0){
 p=0;
 }else{
- var p =promedio/contador; 
+ var p =(ventaT*100)/diferenciaT; 
 }
 
 
@@ -1458,26 +1436,7 @@ var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloa
 
 html+= '<tr class="seleccionar" id ="'+h+'" style="font-size:12px;   "><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
   htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
-  l=0;
-  m=0;
-  x=0;
-  j=0;
-  v=0;
-  s=0;
-  lp=0;
-  mp=0;
-  xp=0;
-  jp=0;
-  vp=0;
-  sp= 0;
-
-cambio =1;  
-}
-}
-cambio =0;  
-pasa=0;
-  }
-var l2=0;
+  var l2=0;
 var m2=0;
 var x2=0;
 var j2=0;
@@ -1504,6 +1463,7 @@ var credits =0;
 var efectivos =0;
 var f_s_dia2 =0;
 var f_s_real2 =0;
+var diferenciaT =0;
  for(var h=0;h<arrGlobalF.length; h++){
 if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
 bon=arrGlobalF[h].otros;
@@ -1528,8 +1488,8 @@ l4=mer;
 l5=efectivos;
 l6=f_s_dia2;
 l7=f_s_real2;
-
-l3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += l3;
 ventaT += parseFloat(l2);
@@ -1544,7 +1504,8 @@ m4=mer;
 m5=efectivos;
 m6=f_s_dia2;
 m7=f_s_real2;
-m3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+m3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += m3;
 ventaT += parseFloat(m2);
@@ -1559,7 +1520,8 @@ x4=mer;
 x5=efectivos;
 x6=f_s_dia2;
 x7=f_s_real2;
-x3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+x3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += x3;
 ventaT += parseFloat(x2);
@@ -1574,7 +1536,8 @@ j4=mer;
 j5=efectivos;
 j6=f_s_dia2;
 j7=f_s_real2;
-j3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+j3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += j3;
 ventaT += parseFloat(j2);
@@ -1590,7 +1553,8 @@ v4=mer;
 v5=efectivos;
 v6=f_s_dia2;
 v7=f_s_real2;
-v3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+v3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += v3;
 ventaT += parseFloat(v2);
@@ -1606,7 +1570,8 @@ s4=mer;
 s5=efectivos;
 s6=f_s_dia2;
 s7=f_s_real2;
-s3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+s3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 
 contador++;
 promedio += s3;
@@ -1619,7 +1584,7 @@ efecT += parseFloat(s5);
 if(contador==0){
 p=0;
 }else{
- var p =promedio/contador; 
+ var p =(ventaT*100)/diferenciaT; 
 }
 
 var lC="black;";
@@ -1827,26 +1792,7 @@ var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloa
 
   html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
   htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
-  l=0;
-  m=0;
-  x=0;
-  j=0;
-  v=0;
-  s=0;
-  lp=0;
-  mp=0;
-  xp=0;
-  jp=0;
-  vp=0;
-  sp= 0;
-
-cambio =1;  
-}
-}
-cambio =0;  
-pasa=0;
-  }
-  var l2=0;
+ var l2=0;
 var m2=0;
 var x2=0;
 var j2=0;
@@ -1873,6 +1819,7 @@ var credits =0;
 var efectivos =0;
 var f_s_dia2 =0;
 var f_s_real2 =0;
+var diferenciaT =0;
  for(var h=0;h<arrGlobalF.length; h++){
 if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
 bon=arrGlobalF[h].otros;
@@ -1897,8 +1844,8 @@ l4=mer;
 l5=efectivos;
 l6=f_s_dia2;
 l7=f_s_real2;
-
-l3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += l3;
 ventaT += parseFloat(l2);
@@ -1913,7 +1860,8 @@ m4=mer;
 m5=efectivos;
 m6=f_s_dia2;
 m7=f_s_real2;
-m3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+m3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += m3;
 ventaT += parseFloat(m2);
@@ -1928,7 +1876,8 @@ x4=mer;
 x5=efectivos;
 x6=f_s_dia2;
 x7=f_s_real2;
-x3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+x3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += x3;
 ventaT += parseFloat(x2);
@@ -1943,7 +1892,8 @@ j4=mer;
 j5=efectivos;
 j6=f_s_dia2;
 j7=f_s_real2;
-j3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+j3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += j3;
 ventaT += parseFloat(j2);
@@ -1959,7 +1909,8 @@ v4=mer;
 v5=efectivos;
 v6=f_s_dia2;
 v7=f_s_real2;
-v3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+v3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 contador++;
 promedio += v3;
 ventaT += parseFloat(v2);
@@ -1975,7 +1926,8 @@ s4=mer;
 s5=efectivos;
 s6=f_s_dia2;
 s7=f_s_real2;
-s3=100-((parseFloat(arrGlobalF[h].t_venta_merca)/parseFloat(arrGlobalF[h].v_mercancia))*100);
+diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+s3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
 
 contador++;
 promedio += s3;
@@ -1988,7 +1940,7 @@ efecT += parseFloat(s5);
 if(contador==0){
 p=0;
 }else{
- var p =promedio/contador; 
+ var p =(ventaT*100)/diferenciaT; 
 }
 
 var lC="black;";

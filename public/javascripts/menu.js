@@ -1973,12 +1973,11 @@ ventaT += parseFloat(s2);
 bonT += parseFloat(sp);
 efecT += parseFloat(s5);
 }
-
 }}
 if(contador==0){
 p=0;
 }else{
- var p =(ventaT*100)/diferenciaT; 
+ var p =(ventaT*100)/(diferenciaT-bonT); 
 }
 
 var lC="black;";

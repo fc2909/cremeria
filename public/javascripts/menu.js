@@ -1978,6 +1978,7 @@ if(contador==0){
 p=0;
 }else{
  var p =(ventaT*100)/(diferenciaT-bonT); 
+ alert(p+"=("+ventaT+"*100)/("+diferenciaT+"-"+bonT+")");
 }
 
 var lC="black;";

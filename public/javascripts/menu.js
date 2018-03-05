@@ -1603,9 +1603,9 @@ efecT += parseFloat(s5);
 if(contador==0){
 p=0;
 }else{
- var p =(ventaT*100)/(diferenciaT-bonT); 
+ var p =((ventaT-bonT)*100)/(diferenciaT); 
 }
- alert(p+"=("+ventaT+"*100)/("+diferenciaT+"-"+bonT+")");
+ alert(p+"=("+(ventaT-bonT)+"*100)/("+diferenciaT+"-"+bonT+")");
 
 
 var lC="black;";
@@ -1979,7 +1979,7 @@ efecT += parseFloat(s5);
 if(contador==0){
 p=0;
 }else{
- var p =(ventaT*100)/(diferenciaT-bonT); 
+ var p =((ventaT-bonT)*100)/(diferenciaT); 
 }
  //alert(p+"=("+ventaT+"*100)/("+diferenciaT+"-"+bonT+")");
 

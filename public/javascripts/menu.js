@@ -947,7 +947,7 @@ if((lista.length-1)==h&&pasa==1){
                 if(s==0){s="0"}else{s=parseFloat(s).toFixed(2)}
                 if(sp==0){sp="0"}else{sp=parseFloat(sp).toFixed(3)}
                 if(suma==0){suma="0.000"}else{suma="<strong> "+parseFloat(suma).toFixed(2)+"</strong>"}
-                if(suma2==0){suma2="0.000"}else{suma2="<strong> "+parseFloat(suma2).toFixed(3)+" KG</strong>"}
+                if(suma2==0){suma2="0.000"}else{suma2="<strong> "+parseFloat(suma2).toFixed(3)+"</strong>"}
                   //html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
                   htmlp+= '<tr class="negro" style="font-size:7px; "><td class="text-left"><strong>' +  arrGlobalInventario[hh].descripcion +'</strong></td><td class="text-center">'+ l+' </td><td class="text-center">'+lp+' </td><td class="text-center">'+m+'</td><td class="text-center">'+mp+' </td><td class="text-center">'+ x +'</td><td class="text-center">'+xp+' </td><td class="text-center">'+ j+' </td><td class="text-center">'+jp+' </td><td class="text-center">'+ v +' </td><td class="text-center">'+vp+' </td><td class="text-center">'+ s +'</td><td class="text-center">'+sp+' </td><td class="text-right">'+suma+'</td><td class="text-right">'+suma2+' </td></tr>';
                   l=0;

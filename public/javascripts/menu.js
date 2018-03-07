@@ -1034,11 +1034,11 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(l2);
                   bonT += parseFloat(lp);
                   efecT += parseFloat(l5);
-                   f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR=parseFloat(f_s_real2);
+                   
                    if(f_s_dia2!=0){
                     creditosFTemp=credits;
-              
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
 
                   if(pasa2==0){
                     creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
@@ -1063,11 +1063,11 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(m2);
                   bonT += parseFloat(mp);
                   efecT += parseFloat(m5);
-                   f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR=parseFloat(f_s_real2);
+                   
                   if(f_s_dia2!=0){
                     creditosFTemp=credits;
-              
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
 
                   if(pasa2==0){
                     creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
@@ -1090,11 +1090,11 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(x2);
                   bonT += parseFloat(xp);
                   efecT += parseFloat(x5);
-                   f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR=parseFloat(f_s_real2);
+                   
                  if(f_s_dia2!=0){
                     creditosFTemp=credits;
-              
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
 
                   if(pasa2==0){
                     creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
@@ -1117,11 +1117,11 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(j2);
                   bonT += parseFloat(jp);
                   efecT += parseFloat(j5);
-                   f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR=parseFloat(f_s_real2);
+                   
                   if(f_s_dia2!=0){
                     creditosFTemp=credits;
-              
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
 
                   if(pasa2==0){
                     creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
@@ -1144,11 +1144,11 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(v2);
                   bonT += parseFloat(vp);
                   efecT += parseFloat(v5);
-                   f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR=parseFloat(f_s_real2);
+                   
                   if(f_s_dia2!=0){
                     creditosFTemp=credits;
-              
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
 
                   if(pasa2==0){
                     creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
@@ -1171,11 +1171,11 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(s2);
                   bonT += parseFloat(sp);
                   efecT += parseFloat(s5);
-                  f_s_t+=parseFloat(f_s_dia2);
-                  f_s_tR=parseFloat(f_s_real2);
+                  
                   if(f_s_dia2!=0){
                     creditosFTemp=credits;
-              
+              f_s_t+=parseFloat(f_s_dia2);
+                  f_s_tR=parseFloat(f_s_real2);
 
                   if(pasa2==0){
                     creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);

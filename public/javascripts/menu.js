@@ -1470,7 +1470,7 @@ function loadVDiariaR(lista){//modal
                   l6=f_s_dia2;
                   l7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  l3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += l3;
                   ventaT += parseFloat(l2);
@@ -1486,7 +1486,7 @@ function loadVDiariaR(lista){//modal
                   m6=f_s_dia2;
                   m7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  m3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  m3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += m3;
                   ventaT += parseFloat(m2);
@@ -1502,7 +1502,7 @@ function loadVDiariaR(lista){//modal
                   x6=f_s_dia2;
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  x3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  x3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += x3;
                   ventaT += parseFloat(x2);
@@ -1518,7 +1518,7 @@ function loadVDiariaR(lista){//modal
                   j6=f_s_dia2;
                   j7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  j3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  j3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += j3;
                   ventaT += parseFloat(j2);
@@ -1534,7 +1534,7 @@ function loadVDiariaR(lista){//modal
                   v6=f_s_dia2;
                   v7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  v3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  v3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += v3;
                   ventaT += parseFloat(v2);
@@ -1550,7 +1550,7 @@ function loadVDiariaR(lista){//modal
                   s6=f_s_dia2;
                   s7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  s3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  s3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += s3;
                   ventaT += parseFloat(s2);
@@ -1564,7 +1564,7 @@ function loadVDiariaR(lista){//modal
               }else{
               var p =(diferenciaT*100)/(ventaT-bonT); 
             }
-                alert(p+"=("+diferenciaT+"-"+bonT+"*100)/("+(ventaT-bonT)+")");
+                alert(p+"=("+diferenciaT+"*100)/("+(ventaT-bonT)+")");
               var lC="black;";
               var mC="black;";
               var xC="black;";

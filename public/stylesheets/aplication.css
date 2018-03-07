@@ -88,6 +88,14 @@
    margin: 10px;
    color: black;
  }
+ .tablaImprimirVDC {
+  position: absolute;
+  width: 110%;
+   top: 150px;
+   left: 5%;
+   margin: 10px;
+   color: black;
+ }
   .tablaImprimirVD2 {
   position: absolute;
   

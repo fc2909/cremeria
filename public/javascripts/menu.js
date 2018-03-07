@@ -539,6 +539,7 @@ function imprimirVD3(){
         document.getElementById('ocultoVD').style.display = 'block';
         document.getElementById('ocultoVD2').style.display = 'block';
         document.getElementById('ocultoVD33').style.display = 'block';
+        document.getElementById('ocultoVD333').style.display = 'block';
         document.getElementById('ocultoImagen').style.display = 'block';
     var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_  ";
     var controlC = 'VENTA DIARIA (SEMANA: '+(scv+1)+' )';
@@ -550,6 +551,7 @@ function imprimirVD3(){
         document.getElementById('ocultoVD').style.display = 'none';
         document.getElementById('ocultoVD2').style.display = 'none';
         document.getElementById('ocultoVD33').style.display = 'none';
+        document.getElementById('ocultoVD333').style.display = 'none';
         document.getElementById('ocultoImagen').style.display = 'none';
 }
 function cambio(){
@@ -824,6 +826,7 @@ function loadVDiariaR2(lista){ //imprime en reportes
               var html = '';
               var htmlp = '';
               var html2 = '';
+              var htmlC = '';
               var l=0;
               var m=0;
               var x=0;
@@ -838,6 +841,7 @@ function loadVDiariaR2(lista){ //imprime en reportes
               var sp=0;
               var cambio=0;
               var pasa=0;
+              
           for(var hh=0;hh<arrGlobalInventario.length; hh++){
             for(var h=0;h<lista.length; h++){
               if(0==lista[h].merma&&rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
@@ -996,6 +1000,11 @@ if((lista.length-1)==h&&pasa==1){
               var f_s_dia2 =0;
               var f_s_real2 =0;
               var diferenciaT =0;
+              var pasa2=0;
+              var creditosFTemp=0;
+              var creditosITemp=0;
+              var f_s_t=0;
+              var f_s_tR=0;
               for(var h=0;h<arrGlobalF.length; h++){
                 if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
                   bon=arrGlobalF[h].otros;
@@ -1025,6 +1034,12 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(l2);
                   bonT += parseFloat(lp);
                   efecT += parseFloat(l5);
+                   f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR+=parseFloat(f_s_real2);
+                  creditosFTemp=credits
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                  }
                   }
                 if(arrGlobalF[h].dsfc==2){
                   m=credits;
@@ -1041,6 +1056,12 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(m2);
                   bonT += parseFloat(mp);
                   efecT += parseFloat(m5);
+                   f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR+=parseFloat(f_s_real2);
+                  creditosFTemp=credits
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                  }                
                 }
                 if(arrGlobalF[h].dsfc==3){
                   x=credits;
@@ -1057,6 +1078,12 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(x2);
                   bonT += parseFloat(xp);
                   efecT += parseFloat(x5);
+                   f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR+=parseFloat(f_s_real2);
+                  creditosFTemp=credits
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                  }
                 }
                 if(arrGlobalF[h].dsfc==4){
                   j=credits;
@@ -1073,6 +1100,12 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(j2);
                   bonT += parseFloat(jp);
                   efecT += parseFloat(j5);
+                   f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR+=parseFloat(f_s_real2);
+                  creditosFTemp=credits
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                  }
                 }
                 if(arrGlobalF[h].dsfc==5){
                   v=credits;
@@ -1089,6 +1122,12 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(v2);
                   bonT += parseFloat(vp);
                   efecT += parseFloat(v5);
+                   f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR+=parseFloat(f_s_real2);
+                  creditosFTemp=credits
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                  }
                 }
                 if(arrGlobalF[h].dsfc==6){
                   s=credits;
@@ -1105,6 +1144,12 @@ if((lista.length-1)==h&&pasa==1){
                   ventaT += parseFloat(s2);
                   bonT += parseFloat(sp);
                   efecT += parseFloat(s5);
+                  f_s_t+=parseFloat(f_s_dia2);
+                  f_s_tR+=parseFloat(f_s_real2);
+                  creditosFTemp=credits
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                  }
                 }
               }
             }
@@ -1119,10 +1164,12 @@ if((lista.length-1)==h&&pasa==1){
                   html2+= '<tr  class="text-right"  style="font-size:7px;   "><td class="text-left">NO VENTA</td><td><strong> % '+parseFloat(l3).toFixed(2)+'</strong> </td><td><strong> % '+parseFloat(m3).toFixed(2)+' </strong></td><td> <strong>% '+ parseFloat(x3).toFixed(2) +' </strong></td><td><strong> % '+ parseFloat(j3).toFixed(2) +'  </strong></td><td><strong> % '+ parseFloat(v3).toFixed(2) +'</strong> </td><td><strong> % '+ parseFloat(s3).toFixed(2) +' </strong></td><td><strong> % '+  (p).toFixed(2) +' </strong></td></tr>';
                   html2+= '<tr  class="text-right" style="font-size:7px;   "><td class="text-left">EFECTIVO</td><td>$ '+parseFloat(l5).toFixed(2)+' </td><td>$ '+parseFloat(m5).toFixed(2)+'</td><td> $ '+ parseFloat(x5).toFixed(2) +' </td><td>$ '+ parseFloat(j5).toFixed(2)+'  </td><td>$ '+ parseFloat(v5).toFixed(2) +' </td><td> $ '+ parseFloat(s5).toFixed(2) +' </td><td><strong> $ '+ parseFloat(efecT).toFixed(2) +'</strong> </td></tr>';
                   html2+= '<tr  class="text-right" style="font-size:7px;   "><td class="text-left">FALT/SOB DIA</td><td>$ '+parseFloat(l6).toFixed(2)+' </td><td >$ '+parseFloat(m6).toFixed(2)+'</td><td> $ '+ parseFloat(x6).toFixed(2) +' </td><td>$ '+ parseFloat(j6).toFixed(2)+'  </td><td>$ '+ parseFloat(v6).toFixed(2) +' </td><td> $ '+ parseFloat(s6).toFixed(2) +' </td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:7px;   "><td class="text-left">FALT/SOB REAL</td><td>$ '+parseFloat(l7).toFixed(2)+' </td><td>$ '+parseFloat(m7).toFixed(2)+'</td><td> $ '+ parseFloat(x7).toFixed(2) +' </td><td>$ '+ parseFloat(j7).toFixed(2)+'  </td><td>$ '+ parseFloat(v7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td><td><strong> $ '+ parseFloat(s7).toFixed(2) +'</strong> </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:7px;   "><td class="text-left">FALT/SOB REAL</td><td>$ '+parseFloat(l7).toFixed(2)+' </td><td>$ '+parseFloat(m7).toFixed(2)+'</td><td> $ '+ parseFloat(x7).toFixed(2) +' </td><td>$ '+ parseFloat(j7).toFixed(2)+'  </td><td>$ '+ parseFloat(v7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td><td><strong> $ '+ parseFloat(f_s_tR).toFixed(2) +'</strong> </td></tr>';
+                  htmlC+='<tr  class="text-right" style="font-size:7px;   "><td></td><td class="text-right"> $ '+parseFloat(creditosFTemp).toFixed(2)+'</td><td class="text-right"> $ - '+parseFloat(creditosITemp).toFixed(2)+'</td><td> $ '+(creditosFTemp-creditosITemp).toFixed(2) +'</td><td> $ '+(f_s_t).toFixed(2)+'</td><td><strong> $ '+((creditosFTemp-creditosITemp)+parseFloat(f_s_t)).toFixed(2)+' </strong></td></tr>'
                   
             }
 
+                  $('.contCataModalDC').html(htmlC);
                   $('.contCataModalDP').html(html2);
                   $('.ventaDiariaSemanal').html(htmlp);
                   imprimirVD3();
@@ -1402,7 +1449,7 @@ function loadVDiariaR(lista){//modal
                       if(suma==0){suma="0"}else{suma=parseFloat(suma).toFixed(2)}
                       if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
                         html+= '<tr class="seleccionar" id ="'+h+'" style="font-size:12px;   "><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
-                        htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
+                        //htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
                         l=0;
                         m=0;
                         x=0;
@@ -1565,6 +1612,11 @@ function loadVDiariaR(lista){//modal
                   p=0;
               }else{
               var p =(diferenciaT*100)/(ventaT-bonT); 
+            
+
+
+
+
             }
                 
               var lC="black;";
@@ -1748,22 +1800,28 @@ function loadVDiaria(lista){
               var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
               var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
                 if(l==0){l="0"}else{l=parseFloat(l).toFixed(2)}
-                if(lp==0){lp=""}else{lp=" ("+parseFloat(lp).toFixed(3)+" KG)"}
+                if(lp==0){lp="0"}else{lp=parseFloat(lp).toFixed(3)}
                 if(m==0){m="0"}else{m=parseFloat(m).toFixed(2)}
-                if(mp==0){mp=""}else{mp=" ("+parseFloat(mp).toFixed(3)+" KG)"}
+                if(mp==0){mp="0"}else{mp=parseFloat(mp).toFixed(3)}
                 if(x==0){x="0"}else{x=parseFloat(x).toFixed(2)}
-                if(xp==0){xp=""}else{xp=" ("+parseFloat(xp).toFixed(3)+" KG)"}
+                if(xp==0){xp="0"}else{xp=parseFloat(xp).toFixed(3)}
                 if(j==0){j="0"}else{j=parseFloat(j).toFixed(2)}
-                if(jp==0){jp=""}else{jp=" ("+parseFloat(jp).toFixed(3)+" KG)"}
+                if(jp==0){jp="0"}else{jp=parseFloat(jp).toFixed(3)}
                 if(v==0){v="0"}else{v=parseFloat(v).toFixed(2)}
-                if(vp==0){vp=""}else{vp=" ("+parseFloat(vp).toFixed(3)+" KG)"}
+                if(vp==0){vp="0"}else{vp=parseFloat(vp).toFixed(3)}
                 if(s==0){s="0"}else{s=parseFloat(s).toFixed(2)}
-                if(sp==0){sp=""}else{sp=" ("+parseFloat(sp).toFixed(3)+" KG)"}
-                if(suma==0){suma="0"}else{suma=parseFloat(suma).toFixed(2)}
-                if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
-                  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
-                  htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
-                 l=0;
+                if(sp==0){sp="0"}else{sp=parseFloat(sp).toFixed(3)}
+                if(suma==0){suma="0.000"}else{suma="<strong> "+parseFloat(suma).toFixed(2)+"</strong>"}
+                if(suma2==0){suma2="0.000"}else{suma2="<strong> "+parseFloat(suma2).toFixed(3)+"</strong>"}
+                  //html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
+                 
+              html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
+                  
+                  htmlp+= '<tr class="negro" style="font-size:7px; "><td class="text-left"><strong>' +  arrGlobalInventario[hh].descripcion +'</strong></td><td class="text-center">'+ l+' </td><td class="text-center">'+lp+' </td><td class="text-center">'+m+'</td><td class="text-center">'+mp+' </td><td class="text-center">'+ x +'</td><td class="text-center">'+xp+' </td><td class="text-center">'+ j+' </td><td class="text-center">'+jp+' </td><td class="text-center">'+ v +' </td><td class="text-center">'+vp+' </td><td class="text-center">'+ s +'</td><td class="text-center">'+sp+' </td><td class="text-right">'+suma+'</td><td class="text-right">'+suma2+' </td></tr>';
+
+
+                 // htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
+                l=0;
                         m=0;
                         x=0;
                         j=0;
@@ -1809,8 +1867,9 @@ function loadVDiaria(lista){
               var f_s_dia2 =0;
               var f_s_real2 =0;
               var diferenciaT =0;
-              for(var h=0;h<arrGlobalF.length; h++){
-                if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
+
+              for(var h=0;h<arrGlobal4.length; h++){
+                if(rutas==arrGlobal4[h].ruta&&(scv)==arrGlobal4[h].sfc&&year==((arrGlobal4[h].fechaf).substring(0,4))){
                   bon=arrGlobalF[h].otros;
                   mer=arrGlobalF[h].v_mercancia;
                   efectivos=arrGlobalF[h].efectivo;
@@ -1925,7 +1984,13 @@ function loadVDiaria(lista){
                   p=0;
               }else{
               var p =(diferenciaT*100)/(ventaT-bonT); 
+            
+
+
+
+
             }
+                
               var lC="black;";
               var mC="black;";
               var xC="black;";
@@ -1993,10 +2058,11 @@ function loadVDiaria(lista){
                   html2p+= '<tr  class="text-right" style="font-size:8px;   "><td 8ss="text-center">BONIFICACIÓN</td><td> $ '+parseFloat(lp).toFixed(2)+' </td><td>$ '+parseFloat(mp).toFixed(2)+'</td><td>$ '+ parseFloat(xp).toFixed(2) +' </td><td>$ '+ parseFloat(jp).toFixed(2)+'  </td><td>$ '+ parseFloat(vp).toFixed(2) +' </td><td>$ '+ parseFloat(sp).toFixed(2) +' </td><td><strong>$ '+ parseFloat(bonT).toFixed(2) +'</strong> </td></tr>';  
                   html2p+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-center">MERCANCIA</td><td> $ '+parseFloat(l4).toFixed(2)+' </td><td>$ '+parseFloat(m4).toFixed(2)+'</td><td>$ '+ parseFloat(x4).toFixed(2) +' </td><td>$ '+ parseFloat(j4).toFixed(2)+'  </td><td>$ '+ parseFloat(v4).toFixed(2) +' </td><td>$ '+ parseFloat(s4).toFixed(2) +' </td></tr>';
                   html2p+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-center">VENTA</td><td>$ '+parseFloat(l2).toFixed(2)+' </td><td>$ '+parseFloat(m2).toFixed(2)+'</td><td> $ '+ parseFloat(x2).toFixed(2) +' </td><td>$ '+ parseFloat(j2).toFixed(2)+'  </td><td>$ '+ parseFloat(v2).toFixed(2) +' </td><td> $ '+ parseFloat(s2).toFixed(2) +' </td><td><strong> $ '+ parseFloat(ventaT).toFixed(2) +'</strong> </td></tr>';
+                  html2p+= '<tr class="text-right"  style="font-size:8px;   "><td class="text-center">NO VENTA</td><td><strong> % '+parseFloat(l3).toFixed(2)+'</strong> </td><td><strong> % '+parseFloat(m3).toFixed(2)+' </strong></td><td> <strong>% '+ parseFloat(x3).toFixed(2) +' </strong></td><td><strong> % '+ parseFloat(j3).toFixed(2) +'  </strong></td><td><strong> % '+ parseFloat(v3).toFixed(2) +'</strong> </td><td><strong> % '+ parseFloat(s3).toFixed(2) +' </strong></td><td><strong> % '+  (p).toFixed(2) +' </strong></td></tr>';
+                  
                   html2p+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-center">EFECTIVO</td><td>$ '+parseFloat(l5).toFixed(2)+' </td><td>$ '+parseFloat(m5).toFixed(2)+'</td><td> $ '+ parseFloat(x5).toFixed(2) +' </td><td>$ '+ parseFloat(j5).toFixed(2)+'  </td><td>$ '+ parseFloat(v5).toFixed(2) +' </td><td> $ '+ parseFloat(s5).toFixed(2) +' </td><td><strong> $ '+ parseFloat(efecT).toFixed(2) +'</strong> </td></tr>';
                   html2p+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-center">FALT/SOB DIA</td><td>$ '+parseFloat(l6).toFixed(2)+' </td><td >$ '+parseFloat(m6).toFixed(2)+'</td><td> $ '+ parseFloat(x6).toFixed(2) +' </td><td>$ '+ parseFloat(j6).toFixed(2)+'  </td><td>$ '+ parseFloat(v6).toFixed(2) +' </td><td> $ '+ parseFloat(s6).toFixed(2) +' </td></tr>';
                   html2p+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-center">FALT/SOB REAL</td><td>$ '+parseFloat(l7).toFixed(2)+' </td><td>$ '+parseFloat(m7).toFixed(2)+'</td><td> $ '+ parseFloat(x7).toFixed(2) +' </td><td>$ '+ parseFloat(j7).toFixed(2)+'  </td><td>$ '+ parseFloat(v7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td><td><strong> $ '+ parseFloat(s7).toFixed(2) +'</strong> </td></tr>';
-                  html2p+= '<tr class="text-right"  style="font-size:8px;   "><td class="text-center">NO VENTA</td><td><strong> % '+parseFloat(l3).toFixed(2)+'</strong> </td><td><strong> % '+parseFloat(m3).toFixed(2)+' </strong></td><td> <strong>% '+ parseFloat(x3).toFixed(2) +' </strong></td><td><strong> % '+ parseFloat(j3).toFixed(2) +'  </strong></td><td><strong> % '+ parseFloat(v3).toFixed(2) +'</strong> </td><td><strong> % '+ parseFloat(s3).toFixed(2) +' </strong></td><td><strong> % '+  (p).toFixed(2) +' </strong></td></tr>';
                   $('.contCataModalDP').html(html2p);
                   $('.contCataModalD').html(html2);
                   $('.contCataModal').html(html);

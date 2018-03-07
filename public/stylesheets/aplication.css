@@ -83,7 +83,7 @@
  .tablaImprimirVD {
   position: absolute;
   width: 110%;
-   top: 200px;
+   top: 220px;
    left: 5%;
    margin: 10px;
    color: black;
@@ -91,7 +91,7 @@
  .tablaImprimirVDC {
   position: absolute;
   width: 110%;
-   top: 150px;
+   top: 175px;
    left: 5%;
    margin: 10px;
    color: black;

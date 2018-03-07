@@ -1036,9 +1036,9 @@ if((lista.length-1)==h&&pasa==1){
                   efecT += parseFloat(l5);
                    f_s_t+=parseFloat(f_s_dia2);
                    f_s_tR+=parseFloat(f_s_real2);
-                  creditosFTemp=credits
+                  creditosFTemp=credits;
                   if(pasa2==0){
-                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
                   }
                   }
                 if(arrGlobalF[h].dsfc==2){
@@ -1058,9 +1058,10 @@ if((lista.length-1)==h&&pasa==1){
                   efecT += parseFloat(m5);
                    f_s_t+=parseFloat(f_s_dia2);
                    f_s_tR+=parseFloat(f_s_real2);
-                  creditosFTemp=credits
+                  creditosFTemp=credits;
                   if(pasa2==0){
-                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                    
                   }                
                 }
                 if(arrGlobalF[h].dsfc==3){
@@ -1080,9 +1081,10 @@ if((lista.length-1)==h&&pasa==1){
                   efecT += parseFloat(x5);
                    f_s_t+=parseFloat(f_s_dia2);
                    f_s_tR+=parseFloat(f_s_real2);
-                  creditosFTemp=credits
+                  creditosFTemp=credits;
                   if(pasa2==0){
-                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                    
                   }
                 }
                 if(arrGlobalF[h].dsfc==4){
@@ -1102,9 +1104,10 @@ if((lista.length-1)==h&&pasa==1){
                   efecT += parseFloat(j5);
                    f_s_t+=parseFloat(f_s_dia2);
                    f_s_tR+=parseFloat(f_s_real2);
-                  creditosFTemp=credits
+                  creditosFTemp=credits;
                   if(pasa2==0){
-                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                    
                   }
                 }
                 if(arrGlobalF[h].dsfc==5){
@@ -1124,9 +1127,11 @@ if((lista.length-1)==h&&pasa==1){
                   efecT += parseFloat(v5);
                    f_s_t+=parseFloat(f_s_dia2);
                    f_s_tR+=parseFloat(f_s_real2);
-                  creditosFTemp=credits
+                  creditosFTemp=credits;
                   if(pasa2==0){
-                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                    
+                    
                   }
                 }
                 if(arrGlobalF[h].dsfc==6){
@@ -1146,9 +1151,10 @@ if((lista.length-1)==h&&pasa==1){
                   efecT += parseFloat(s5);
                   f_s_t+=parseFloat(f_s_dia2);
                   f_s_tR+=parseFloat(f_s_real2);
-                  creditosFTemp=credits
+                  creditosFTemp=credits;
                   if(pasa2==0){
-                    creditosITemp=parseFloat(f_s_dia2)+parseFloat(arrGlobalF[h].loquedeberiatraer);
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                    
                   }
                 }
               }

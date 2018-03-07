@@ -1035,7 +1035,7 @@ if((lista.length-1)==h&&pasa==1){
                   bonT += parseFloat(lp);
                   efecT += parseFloat(l5);
                    f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR+=parseFloat(f_s_real2);
+                   f_s_tR=parseFloat(f_s_real2);
                    if(f_s_dia2!=0){
                     creditosFTemp=credits;
               
@@ -1064,7 +1064,7 @@ if((lista.length-1)==h&&pasa==1){
                   bonT += parseFloat(mp);
                   efecT += parseFloat(m5);
                    f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR+=parseFloat(f_s_real2);
+                   f_s_tR=parseFloat(f_s_real2);
                   if(f_s_dia2!=0){
                     creditosFTemp=credits;
               
@@ -1091,7 +1091,7 @@ if((lista.length-1)==h&&pasa==1){
                   bonT += parseFloat(xp);
                   efecT += parseFloat(x5);
                    f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR+=parseFloat(f_s_real2);
+                   f_s_tR=parseFloat(f_s_real2);
                  if(f_s_dia2!=0){
                     creditosFTemp=credits;
               
@@ -1118,7 +1118,7 @@ if((lista.length-1)==h&&pasa==1){
                   bonT += parseFloat(jp);
                   efecT += parseFloat(j5);
                    f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR+=parseFloat(f_s_real2);
+                   f_s_tR=parseFloat(f_s_real2);
                   if(f_s_dia2!=0){
                     creditosFTemp=credits;
               
@@ -1145,7 +1145,7 @@ if((lista.length-1)==h&&pasa==1){
                   bonT += parseFloat(vp);
                   efecT += parseFloat(v5);
                    f_s_t+=parseFloat(f_s_dia2);
-                   f_s_tR+=parseFloat(f_s_real2);
+                   f_s_tR=parseFloat(f_s_real2);
                   if(f_s_dia2!=0){
                     creditosFTemp=credits;
               
@@ -1172,7 +1172,7 @@ if((lista.length-1)==h&&pasa==1){
                   bonT += parseFloat(sp);
                   efecT += parseFloat(s5);
                   f_s_t+=parseFloat(f_s_dia2);
-                  f_s_tR+=parseFloat(f_s_real2);
+                  f_s_tR=parseFloat(f_s_real2);
                   if(f_s_dia2!=0){
                     creditosFTemp=credits;
               
@@ -1195,7 +1195,7 @@ if((lista.length-1)==h&&pasa==1){
                   html2+= '<tr  class="text-right" style="font-size:7px;   "><td class="text-left">VENTA</td><td>$ '+parseFloat(l2).toFixed(2)+' </td><td>$ '+parseFloat(m2).toFixed(2)+'</td><td> $ '+ parseFloat(x2).toFixed(2) +' </td><td>$ '+ parseFloat(j2).toFixed(2)+'  </td><td>$ '+ parseFloat(v2).toFixed(2) +' </td><td> $ '+ parseFloat(s2).toFixed(2) +' </td><td><strong> $ '+ parseFloat(ventaT).toFixed(2) +'</strong> </td></tr>';
                   html2+= '<tr  class="text-right"  style="font-size:7px;   "><td class="text-left">NO VENTA</td><td><strong> % '+parseFloat(l3).toFixed(2)+'</strong> </td><td><strong> % '+parseFloat(m3).toFixed(2)+' </strong></td><td> <strong>% '+ parseFloat(x3).toFixed(2) +' </strong></td><td><strong> % '+ parseFloat(j3).toFixed(2) +'  </strong></td><td><strong> % '+ parseFloat(v3).toFixed(2) +'</strong> </td><td><strong> % '+ parseFloat(s3).toFixed(2) +' </strong></td><td><strong> % '+  (p).toFixed(2) +' </strong></td></tr>';
                   html2+= '<tr  class="text-right" style="font-size:7px;   "><td class="text-left">EFECTIVO</td><td>$ '+parseFloat(l5).toFixed(2)+' </td><td>$ '+parseFloat(m5).toFixed(2)+'</td><td> $ '+ parseFloat(x5).toFixed(2) +' </td><td>$ '+ parseFloat(j5).toFixed(2)+'  </td><td>$ '+ parseFloat(v5).toFixed(2) +' </td><td> $ '+ parseFloat(s5).toFixed(2) +' </td><td><strong> $ '+ parseFloat(efecT).toFixed(2) +'</strong> </td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:7px;   "><td class="text-left">FALT/SOB DIA</td><td>$ '+parseFloat(l6).toFixed(2)+' </td><td >$ '+parseFloat(m6).toFixed(2)+'</td><td> $ '+ parseFloat(x6).toFixed(2) +' </td><td>$ '+ parseFloat(j6).toFixed(2)+'  </td><td>$ '+ parseFloat(v6).toFixed(2) +' </td><td> $ '+ parseFloat(s6).toFixed(2) +' </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:7px;   "><td class="text-left">FALT/SOB DIA</td><td>$ '+parseFloat(l6).toFixed(2)+' </td><td >$ '+parseFloat(m6).toFixed(2)+'</td><td> $ '+ parseFloat(x6).toFixed(2) +' </td><td>$ '+ parseFloat(j6).toFixed(2)+'  </td><td>$ '+ parseFloat(v6).toFixed(2) +' </td><td> $ '+ parseFloat(s6).toFixed(2) +' </td><td> $ '+ parseFloat(f_s_t).toFixed(2) +' </td></tr>';
                   html2+= '<tr  class="text-right" style="font-size:7px;   "><td class="text-left">FALT/SOB REAL</td><td>$ '+parseFloat(l7).toFixed(2)+' </td><td>$ '+parseFloat(m7).toFixed(2)+'</td><td> $ '+ parseFloat(x7).toFixed(2) +' </td><td>$ '+ parseFloat(j7).toFixed(2)+'  </td><td>$ '+ parseFloat(v7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td><td><strong> $ '+ parseFloat(f_s_tR).toFixed(2) +'</strong> </td></tr>';
                   htmlC+='<tr  class="text-right" style="font-size:7px;   "><td></td><td class="text-right"> $ '+parseFloat(creditosFTemp).toFixed(2)+'</td><td class="text-right"> $ - '+parseFloat(creditosITemp).toFixed(2)+'</td><td> $ '+(creditosFTemp-creditosITemp).toFixed(2) +'</td><td> $ '+(f_s_t).toFixed(2)+'</td><td><strong> $ '+((creditosFTemp-creditosITemp)+parseFloat(f_s_t)).toFixed(2)+' </strong></td></tr>'
                   

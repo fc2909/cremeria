@@ -951,23 +951,23 @@ if((lista.length-1)==h&&pasa==1){
                   html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
                   htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
                   l=0;
-                  m=0;
-                  x=0;
-                  j=0;
-                  v=0;
-                  s=0;
-                  lp=0;
-                  mp=0;
-                  xp=0;
-                  jp=0;
-                  vp=0;
-                  sp= 0;
-                  cambio =1;  
+                        m=0;
+                        x=0;
+                        j=0;
+                        v=0;
+                        s=0;
+                        lp=0;
+                        mp=0;
+                        xp=0;
+                        jp=0;
+                        vp=0;
+                        sp= 0;
+                        cambio =1;  
+                      }
+                    }
+                    cambio =0;  
+                    pasa=0;
                   }
-                }
-                  cambio =0;  
-                  pasa=0;
-                }
               var l2=0;
               var m2=0;
               var x2=0;
@@ -1019,7 +1019,7 @@ if((lista.length-1)==h&&pasa==1){
                   l6=f_s_dia2;
                   l7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  l3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += l3;
                   ventaT += parseFloat(l2);
@@ -1035,13 +1035,13 @@ if((lista.length-1)==h&&pasa==1){
                   m6=f_s_dia2;
                   m7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  m3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  m3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += m3;
                   ventaT += parseFloat(m2);
                   bonT += parseFloat(mp);
                   efecT += parseFloat(m5);
-                  }
+                }
                 if(arrGlobalF[h].dsfc==3){
                   x=credits;
                   xp=bon;
@@ -1051,13 +1051,13 @@ if((lista.length-1)==h&&pasa==1){
                   x6=f_s_dia2;
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  x3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  x3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += x3;
                   ventaT += parseFloat(x2);
                   bonT += parseFloat(xp);
                   efecT += parseFloat(x5);
-                  }
+                }
                 if(arrGlobalF[h].dsfc==4){
                   j=credits;
                   jp=bon;
@@ -1067,13 +1067,13 @@ if((lista.length-1)==h&&pasa==1){
                   j6=f_s_dia2;
                   j7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  j3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  j3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += j3;
                   ventaT += parseFloat(j2);
                   bonT += parseFloat(jp);
                   efecT += parseFloat(j5);
-                  }
+                }
                 if(arrGlobalF[h].dsfc==5){
                   v=credits;
                   vp=bon;
@@ -1083,13 +1083,13 @@ if((lista.length-1)==h&&pasa==1){
                   v6=f_s_dia2;
                   v7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  v3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  v3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += v3;
                   ventaT += parseFloat(v2);
                   bonT += parseFloat(vp);
                   efecT += parseFloat(v5);
-                  }
+                }
                 if(arrGlobalF[h].dsfc==6){
                   s=credits;
                   sp=bon;
@@ -1099,20 +1099,20 @@ if((lista.length-1)==h&&pasa==1){
                   s6=f_s_dia2;
                   s7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  s3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  s3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += s3;
                   ventaT += parseFloat(s2);
                   bonT += parseFloat(sp);
                   efecT += parseFloat(s5);
-                  }
                 }
               }
-              if(contador==0){
-                p=0;
+            }
+            if(contador==0){
+                  p=0;
               }else{
-              var p =(ventaT*100)/(diferenciaT-bonT); 
-              }
+              var p =(diferenciaT*100)/(ventaT-bonT); 
+            }
                   html2+= '<tr  class="text-right" style="font-size:10px;   "><td class="text-center">CRÉDITOS</td><td>$ '+parseFloat(l).toFixed(2)+' </td><td>$ '+parseFloat(m).toFixed(2)+'</td><td>$ '+ parseFloat(x).toFixed(2) +' </td><td>$ '+ parseFloat(j).toFixed(2)+'  </td><td>$ '+ parseFloat(v).toFixed(2) +' </td><td>$ '+ parseFloat(s).toFixed(2) +' </td></tr>';
                   html2+= '<tr  class="text-right" style="font-size:10px;   "><td class="text-center">BONIFICACIÓN</td><td> $ '+parseFloat(lp).toFixed(2)+' </td><td>$ '+parseFloat(mp).toFixed(2)+'</td><td>$ '+ parseFloat(xp).toFixed(2) +' </td><td>$ '+ parseFloat(jp).toFixed(2)+'  </td><td>$ '+ parseFloat(vp).toFixed(2) +' </td><td>$ '+ parseFloat(sp).toFixed(2) +' </td><td><strong>$ '+ parseFloat(bonT).toFixed(2) +'</strong> </td></tr>';  
                   html2+= '<tr  class="text-right" style="font-size:10px;   "><td class="text-center">MERCANCIA</td><td> $ '+parseFloat(l4).toFixed(2)+' </td><td>$ '+parseFloat(m4).toFixed(2)+'</td><td>$ '+ parseFloat(x4).toFixed(2) +' </td><td>$ '+ parseFloat(j4).toFixed(2)+'  </td><td>$ '+ parseFloat(v4).toFixed(2) +' </td><td>$ '+ parseFloat(s4).toFixed(2) +' </td></tr>';
@@ -1564,7 +1564,7 @@ function loadVDiariaR(lista){//modal
               }else{
               var p =(diferenciaT*100)/(ventaT-bonT); 
             }
-                alert(p+"=("+diferenciaT+"*100)/("+(ventaT-bonT)+")");
+                
               var lC="black;";
               var mC="black;";
               var xC="black;";
@@ -1761,24 +1761,24 @@ function loadVDiaria(lista){
                 if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
                   html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
                   htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
-                  l=0;
-                  m=0;
-                  x=0;
-                  j=0;
-                  v=0;
-                  s=0;
-                  lp=0;
-                  mp=0;
-                  xp=0;
-                  jp=0;
-                  vp=0;
-                  sp=0;
-                  cambio =1;  
-                }
-              }
-                  cambio =0;  
-                  pasa=0;
-              }
+                 l=0;
+                        m=0;
+                        x=0;
+                        j=0;
+                        v=0;
+                        s=0;
+                        lp=0;
+                        mp=0;
+                        xp=0;
+                        jp=0;
+                        vp=0;
+                        sp= 0;
+                        cambio =1;  
+                      }
+                    }
+                    cambio =0;  
+                    pasa=0;
+                  }
               var l2=0;
               var m2=0;
               var x2=0;
@@ -1821,7 +1821,7 @@ function loadVDiaria(lista){
                 if(bon==undefined)bon=0;
                 if(mer==""||mer==NaN||mer==undefined)mer=0;
                 if(efectivos==""||efectivos==NaN||efectivos==undefined)efectivos=0;
-                if(arrGlobalF[h].dsfc==1){ 
+                if(arrGlobalF[h].dsfc==1){
                   l=credits;
                   lp=bon;
                   l2=arrGlobalF[h].t_venta_merca;
@@ -1830,13 +1830,13 @@ function loadVDiaria(lista){
                   l6=f_s_dia2;
                   l7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  l3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  l3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += l3;
                   ventaT += parseFloat(l2);
                   bonT += parseFloat(lp);
                   efecT += parseFloat(l5);
-                }
+                  }
                 if(arrGlobalF[h].dsfc==2){
                   m=credits;
                   mp=bon;
@@ -1846,7 +1846,7 @@ function loadVDiaria(lista){
                   m6=f_s_dia2;
                   m7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  m3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  m3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += m3;
                   ventaT += parseFloat(m2);
@@ -1862,7 +1862,7 @@ function loadVDiaria(lista){
                   x6=f_s_dia2;
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  x3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  x3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += x3;
                   ventaT += parseFloat(x2);
@@ -1878,7 +1878,7 @@ function loadVDiaria(lista){
                   j6=f_s_dia2;
                   j7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  j3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  j3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += j3;
                   ventaT += parseFloat(j2);
@@ -1894,7 +1894,7 @@ function loadVDiaria(lista){
                   v6=f_s_dia2;
                   v7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  v3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  v3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += v3;
                   ventaT += parseFloat(v2);
@@ -1910,7 +1910,7 @@ function loadVDiaria(lista){
                   s6=f_s_dia2;
                   s7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  s3=(parseFloat(arrGlobalF[h].t_venta_merca)*100)/diferenciaT;
+                  s3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += s3;
                   ventaT += parseFloat(s2);
@@ -1921,8 +1921,8 @@ function loadVDiaria(lista){
             }
             if(contador==0){
                   p=0;
-            }else{
-              var p =((ventaT-bonT)*100)/(diferenciaT); 
+              }else{
+              var p =(diferenciaT*100)/(ventaT-bonT); 
             }
               var lC="black;";
               var mC="black;";

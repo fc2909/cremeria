@@ -938,20 +938,20 @@ function loadVDiariaR2(lista){ //imprime en reportes
 if((lista.length-1)==h&&pasa==1){
               var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
               var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
-                if(l==0){l="0"}else{l=parseFloat(l).toFixed(2)}
-                if(lp==0){lp="0"}else{lp=parseFloat(lp).toFixed(3)}
-                if(m==0){m="0"}else{m=parseFloat(m).toFixed(2)}
-                if(mp==0){mp="0"}else{mp=parseFloat(mp).toFixed(3)}
-                if(x==0){x="0"}else{x=parseFloat(x).toFixed(2)}
-                if(xp==0){xp="0"}else{xp=parseFloat(xp).toFixed(3)}
-                if(j==0){j="0"}else{j=parseFloat(j).toFixed(2)}
-                if(jp==0){jp="0"}else{jp=parseFloat(jp).toFixed(3)}
-                if(v==0){v="0"}else{v=parseFloat(v).toFixed(2)}
-                if(vp==0){vp="0"}else{vp=parseFloat(vp).toFixed(3)}
-                if(s==0){s="0"}else{s=parseFloat(s).toFixed(2)}
-                if(sp==0){sp="0"}else{sp=parseFloat(sp).toFixed(3)}
-                if(suma==0){suma="0.000"}else{suma="<strong> "+parseFloat(suma).toFixed(2)+"</strong>"}
-                if(suma2==0){suma2="0.000"}else{suma2="<strong> "+parseFloat(suma2).toFixed(3)+"</strong>"}
+                if(l==0){l=""}else{l=parseFloat(l).toFixed(2)}
+                if(lp==0){lp=""}else{lp=parseFloat(lp).toFixed(3)}
+                if(m==0){m=""}else{m=parseFloat(m).toFixed(2)}
+                if(mp==0){mp=""}else{mp=parseFloat(mp).toFixed(3)}
+                if(x==0){x=""}else{x=parseFloat(x).toFixed(2)}
+                if(xp==0){xp=""}else{xp=parseFloat(xp).toFixed(3)}
+                if(j==0){j=""}else{j=parseFloat(j).toFixed(2)}
+                if(jp==0){jp=""}else{jp=parseFloat(jp).toFixed(3)}
+                if(v==0){v=""}else{v=parseFloat(v).toFixed(2)}
+                if(vp==0){vp=""}else{vp=parseFloat(vp).toFixed(3)}
+                if(s==0){s=""}else{s=parseFloat(s).toFixed(2)}
+                if(sp==0){sp=""}else{sp=parseFloat(sp).toFixed(3)}
+                if(suma==0){suma=""}else{suma="<strong> "+parseFloat(suma).toFixed(2)+"</strong>"}
+                if(suma2==0){suma2=""}else{suma2="<strong> "+parseFloat(suma2).toFixed(3)+"</strong>"}
                   //html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
                   htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-left"><strong>' +  arrGlobalInventario[hh].descripcion +'</strong></td><td class="text-center">'+ l+' </td><td class="text-center">'+lp+' </td><td class="text-center">'+m+'</td><td class="text-center">'+mp+' </td><td class="text-center">'+ x +'</td><td class="text-center">'+xp+' </td><td class="text-center">'+ j+' </td><td class="text-center">'+jp+' </td><td class="text-center">'+ v +' </td><td class="text-center">'+vp+' </td><td class="text-center">'+ s +'</td><td class="text-center">'+sp+' </td><td class="text-right">'+suma+'</td><td class="text-right">'+suma2+' </td></tr>';
                   l=0;

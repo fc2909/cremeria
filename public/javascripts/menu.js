@@ -1028,7 +1028,7 @@ if((lista.length-1)==h&&pasa==1){
                   l6=f_s_dia2;
                   l7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  l3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += l3;
                   ventaT += parseFloat(l2);
@@ -1057,7 +1057,7 @@ if((lista.length-1)==h&&pasa==1){
                   m6=f_s_dia2;
                   m7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  m3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += m3;
                   ventaT += parseFloat(m2);
@@ -1084,7 +1084,7 @@ if((lista.length-1)==h&&pasa==1){
                   x6=f_s_dia2;
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  x3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += x3;
                   ventaT += parseFloat(x2);
@@ -1111,7 +1111,7 @@ if((lista.length-1)==h&&pasa==1){
                   j6=f_s_dia2;
                   j7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  j3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += j3;
                   ventaT += parseFloat(j2);
@@ -1138,7 +1138,7 @@ if((lista.length-1)==h&&pasa==1){
                   v6=f_s_dia2;
                   v7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  v3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += v3;
                   ventaT += parseFloat(v2);
@@ -1165,7 +1165,7 @@ if((lista.length-1)==h&&pasa==1){
                   s6=f_s_dia2;
                   s7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  s3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += s3;
                   ventaT += parseFloat(s2);
@@ -1482,7 +1482,7 @@ function loadVDiariaR(lista){//modal
                       if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
                         html+= '<tr class="seleccionar" id ="'+h+'" style="font-size:12px;   "><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
                         //htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
-                        l=0;
+                       l=0;
                         m=0;
                         x=0;
                         j=0;
@@ -1528,6 +1528,11 @@ function loadVDiariaR(lista){//modal
               var f_s_dia2 =0;
               var f_s_real2 =0;
               var diferenciaT =0;
+              var pasa2=0;
+              var creditosFTemp=0;
+              var creditosITemp=0;
+              var f_s_t=0;
+              var f_s_tR=0;
               for(var h=0;h<arrGlobalF.length; h++){
                 if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
                   bon=arrGlobalF[h].otros;
@@ -1551,12 +1556,25 @@ function loadVDiariaR(lista){//modal
                   l6=f_s_dia2;
                   l7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  l3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += l3;
                   ventaT += parseFloat(l2);
                   bonT += parseFloat(lp);
                   efecT += parseFloat(l5);
+                   
+                   if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                  
+                   }
+                  
                   }
                 if(arrGlobalF[h].dsfc==2){
                   m=credits;
@@ -1567,12 +1585,23 @@ function loadVDiariaR(lista){//modal
                   m6=f_s_dia2;
                   m7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  m3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += m3;
                   ventaT += parseFloat(m2);
                   bonT += parseFloat(mp);
                   efecT += parseFloat(m5);
+                   
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }             
                 }
                 if(arrGlobalF[h].dsfc==3){
                   x=credits;
@@ -1583,12 +1612,23 @@ function loadVDiariaR(lista){//modal
                   x6=f_s_dia2;
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  x3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += x3;
                   ventaT += parseFloat(x2);
                   bonT += parseFloat(xp);
                   efecT += parseFloat(x5);
+                   
+                 if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }
                 }
                 if(arrGlobalF[h].dsfc==4){
                   j=credits;
@@ -1599,12 +1639,23 @@ function loadVDiariaR(lista){//modal
                   j6=f_s_dia2;
                   j7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  j3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += j3;
                   ventaT += parseFloat(j2);
                   bonT += parseFloat(jp);
                   efecT += parseFloat(j5);
+                   
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }
                 }
                 if(arrGlobalF[h].dsfc==5){
                   v=credits;
@@ -1615,12 +1666,23 @@ function loadVDiariaR(lista){//modal
                   v6=f_s_dia2;
                   v7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  v3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += v3;
                   ventaT += parseFloat(v2);
                   bonT += parseFloat(vp);
                   efecT += parseFloat(v5);
+                   
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                 pasa2=1
+                  }
+                   }
                 }
                 if(arrGlobalF[h].dsfc==6){
                   s=credits;
@@ -1631,12 +1693,23 @@ function loadVDiariaR(lista){//modal
                   s6=f_s_dia2;
                   s7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  s3=(diferenciaT*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
                   contador++;
                   promedio += s3;
                   ventaT += parseFloat(s2);
                   bonT += parseFloat(sp);
                   efecT += parseFloat(s5);
+                  
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                  f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }
                 }
               }
             }

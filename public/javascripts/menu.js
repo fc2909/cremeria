@@ -379,7 +379,7 @@ function formatNumber2(num) {
         cents = "0" + cents;
     for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3) ; i++)
         num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
-    cantidad = (((sign) ? '' : '-') + num + '.' + cents);
+    cantidad2 = (((sign) ? '' : '-') + num + '.' + cents);
 }
 //-------------------------------------------- Impresion -----------------------------------------------------------------// 
     var cantidadEnTexto;
@@ -1188,6 +1188,7 @@ if((lista.length-1)==h&&pasa==1){
             if(contador==0){
                   p=0;
               }else{
+                formatNumber2(l);l=cantidad;formatNumber2(lp);lp=cantidad;formatNumber2(l4);l4=cantidad;formatNumber2(l2);l2=cantidad;formatNumber2(l3);l3=cantidad;formatNumber2(l5);l5=cantidad;formatNumber2(l6);l6=cantidad;formatNumber2(l7);l7=cantidad;
               var p =(diferenciaT*100)/(ventaT-bonT); 
                   html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">CRÉDITOS</td><td>$ '+parseFloat(l).toFixed(2)+' </td><td>$ '+parseFloat(m).toFixed(2)+'</td><td>$ '+ parseFloat(x).toFixed(2) +' </td><td>$ '+ parseFloat(j).toFixed(2)+'  </td><td>$ '+ parseFloat(v).toFixed(2) +' </td><td>$ '+ parseFloat(s).toFixed(2) +' </td></tr>';
                   html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">BONIFICACIÓN</td><td> $ '+parseFloat(lp).toFixed(2)+' </td><td>$ '+parseFloat(mp).toFixed(2)+'</td><td>$ '+ parseFloat(xp).toFixed(2) +' </td><td>$ '+ parseFloat(jp).toFixed(2)+'  </td><td>$ '+ parseFloat(vp).toFixed(2) +' </td><td>$ '+ parseFloat(sp).toFixed(2) +' </td><td><strong>$ '+ parseFloat(bonT).toFixed(2) +'</strong> </td></tr>';  

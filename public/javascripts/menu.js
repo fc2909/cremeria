@@ -1207,7 +1207,7 @@ if((lista.length-1)==h&&pasa==1){
                   $('.ventaDiariaSemanal').html(htmlp);
                   imprimirVD3();
 }
-function loadVDiariaR3(lista){
+function loadVDiariaR3(lista){ //venta general
               var html = '';
               var htmlp = '';
               var l=0;
@@ -1333,6 +1333,155 @@ function loadVDiariaR3(lista){
                 if(suma==0){suma="0"}else{suma=parseFloat(suma).toFixed(2)}
                 if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
                   html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
+                  l=0;
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+                  cambio =1;  
+                  }
+                }
+                  cambio =0;  
+                  pasa=0;
+                }
+                  $('.contCataR').html(html);
+                  $('.ventaDiariaSemanal').html(htmlp);
+}
+
+function loadMermaG(lista){ //merma general
+              var html = '';
+              var htmlp = '';
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(1==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                    if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                      pasa=1;
+                      if(lista[h].dfc==1){
+                        if(lista[h].medida==1){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        }
+                        if(lista[h].medida==2){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                        }
+                        if(lista[h].medida==3){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==2){
+                          if(lista[h].medida==1){
+                            m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            mp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            mp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            mp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==3){
+                          if(lista[h].medida==1){
+                            x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            xp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            xp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==4){
+                          if(lista[h].medida==1){
+                            j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            jp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            jp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            jp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==5){
+                          if(lista[h].medida==1){
+                            v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            vp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            vp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            vp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==6){
+                          if(lista[h].medida==1){
+                            s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            sp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            sp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            sp +=0;
+                          }
+                        }
+                      }
+                    }
+              if((lista.length-1)==h&&pasa==1){
+              var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+              var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+                if(l==0){l="0"}else{l=parseFloat(l).toFixed(2)}
+                if(lp==0){lp=""}else{lp=" ("+parseFloat(lp).toFixed(3)+" KG)"}
+                if(m==0){m="0"}else{m=parseFloat(m).toFixed(2)}
+                if(mp==0){mp=""}else{mp=" ("+parseFloat(mp).toFixed(3)+" KG)"}
+                if(x==0){x="0"}else{x=parseFloat(x).toFixed(2)}
+                if(xp==0){xp=""}else{xp=" ("+parseFloat(xp).toFixed(3)+" KG)"}
+                if(j==0){j="0"}else{j=parseFloat(j).toFixed(2)}
+                if(jp==0){jp=""}else{jp=" ("+parseFloat(jp).toFixed(3)+" KG)"}
+                if(v==0){v="0"}else{v=parseFloat(v).toFixed(2)}
+                if(vp==0){vp=""}else{vp=" ("+parseFloat(vp).toFixed(3)+" KG)"}
+                if(s==0){s="0"}else{s=parseFloat(s).toFixed(2)}
+                if(sp==0){sp=""}else{sp=" ("+parseFloat(sp).toFixed(3)+" KG)"}
+                if(suma==0){suma="0"}else{suma=parseFloat(suma).toFixed(2)}
+                if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
+                  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:black;">'+suma+' '+suma2+' </td></tr>';
                   l=0;
                   m=0;
                   x=0;
@@ -1787,6 +1936,445 @@ function loadVDiariaR(lista){//modal
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>EFECTIVO</td><td>$ '+parseFloat(l5).toFixed(2)+' </td><td>$ '+parseFloat(m5).toFixed(2)+'</td><td> $ '+ parseFloat(x5).toFixed(2) +' </td><td>$ '+ parseFloat(j5).toFixed(2)+'  </td><td>$ '+ parseFloat(v5).toFixed(2) +' </td><td> $ '+ parseFloat(s5).toFixed(2) +' </td><td> $ '+ parseFloat(efecT).toFixed(2) +' </td></tr>';
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB DIA</td><td style="background:'+lC2+'">$ '+parseFloat(l6).toFixed(2)+' </td><td style="background:'+mC2+'">$ '+parseFloat(m6).toFixed(2)+'</td><td style="background:'+xC2+'"> $ '+ parseFloat(x6).toFixed(2) +' </td><td style="background:'+jC2+'">$ '+ parseFloat(j6).toFixed(2)+'  </td><td style="background:'+vC2+'">$ '+ parseFloat(v6).toFixed(2) +' </td><td style="background:'+sC2+'"> $ '+ parseFloat(s6).toFixed(2) +' </td></tr>';
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB REAL</td><td>$ '+parseFloat(l7).toFixed(2)+' </td><td>$ '+parseFloat(m7).toFixed(2)+'</td><td> $ '+ parseFloat(x7).toFixed(2) +' </td><td>$ '+ parseFloat(j7).toFixed(2)+'  </td><td>$ '+ parseFloat(v7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>NO VENTA</td><td  id="lunes" style="background:'+lC+'"> % '+parseFloat(l3).toFixed(2)+' </td><td  id="martes" style="background:'+mC+'"> % '+parseFloat(m3).toFixed(2)+'</td><td  id="miercoles" style="background:'+xC+'"> % '+ parseFloat(x3).toFixed(2) +' </td><td  id="jueves" style="background:'+jC+'"> % '+ parseFloat(j3).toFixed(2) +'  </td><td  id="viernes" style="background:'+vC+'"> % '+ parseFloat(v3).toFixed(2) +' </td><td id="sabado" style="background:'+sC+'"> % '+ parseFloat(s3).toFixed(2) +' </td><td id="totalP" style="background:'+tC+'"> % '+  (p).toFixed(2) +' </td></tr>';
+                  $('.contCataModalD').html(html2);
+                  $('.contCataModal').html(html);
+                  $('.ventaDiariaSemanal').html(htmlp);
+}
+function loadVDiariaR(lista){//modal Merma
+              var html = '';
+              var htmlp = '';
+              var html2 = '';
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+              
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(1==lista[h].merma&&rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                    if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                      pasa=1;
+                      if(lista[h].dfc==1){
+                        if(lista[h].medida==1){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        }
+                        if(lista[h].medida==2){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                        }
+                        if(lista[h].medida==3){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                        }
+                      }
+                      if(lista[h].dfc==2){
+                        if(lista[h].medida==1){
+                          m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          mp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        }
+                        if(lista[h].medida==2){
+                          m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          mp+=0;
+                        }
+                        if(lista[h].medida==3){
+                          m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          mp+=0;
+                        }
+                      }
+                      if(lista[h].dfc==3){
+                        if(lista[h].medida==1){
+                          x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+
+                        }
+                        if(lista[h].medida==2){
+                          x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          xp+=0;
+                        }
+                        if(lista[h].medida==3){
+                          x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          xp+=0;
+                        }
+                      }
+                      if(lista[h].dfc==4){
+                        if(lista[h].medida==1){
+                          j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          jp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        }
+                        if(lista[h].medida==2){
+                          j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          jp+=0;
+                        }
+                        if(lista[h].medida==3){
+                          j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          jp+=0;
+                        }
+                      }
+                      if(lista[h].dfc==5){
+                        if(lista[h].medida==1){
+                          v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          vp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        }
+                        if(lista[h].medida==2){
+                          v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          vp+=0;
+                        }
+                        if(lista[h].medida==3){
+                          v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          vp+=0;
+                        }
+                      }
+                      if(lista[h].dfc==6){
+                        if(lista[h].medida==1){
+                          s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          sp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        }
+                        if(lista[h].medida==2){
+                          s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          sp+=0;
+                        }
+                        if(lista[h].medida==3){
+                          s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          sp +=0;
+                        }
+                      }
+                    }
+                  }
+                  if((lista.length-1)==h&&pasa==1){
+              var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+              var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+                      if(l==0){l="0"}else{l=parseFloat(l).toFixed(2)}
+                      if(lp==0){lp=""}else{lp=" ("+parseFloat(lp).toFixed(3)+" KG)"}
+                      if(m==0){m="0"}else{m=parseFloat(m).toFixed(2)}
+                      if(mp==0){mp=""}else{mp=" ("+parseFloat(mp).toFixed(3)+" KG)"}
+                      if(x==0){x="0"}else{x=parseFloat(x).toFixed(2)}
+                      if(xp==0){xp=""}else{xp=" ("+parseFloat(xp).toFixed(3)+" KG)"}
+                      if(j==0){j="0"}else{j=parseFloat(j).toFixed(2)}
+                      if(jp==0){jp=""}else{jp=" ("+parseFloat(jp).toFixed(3)+" KG)"}
+                      if(v==0){v="0"}else{v=parseFloat(v).toFixed(2)}
+                      if(vp==0){vp=""}else{vp=" ("+parseFloat(vp).toFixed(3)+" KG)"}
+                      if(s==0){s="0"}else{s=parseFloat(s).toFixed(2)}
+                      if(sp==0){sp=""}else{sp=" ("+parseFloat(sp).toFixed(3)+" KG)"}
+                      if(suma==0){suma="0"}else{suma=parseFloat(suma).toFixed(2)}
+                      if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
+                        html+= '<tr class="seleccionar" id ="'+h+'" style="font-size:12px;   "><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
+                        //htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-center">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-center">'+ l+'  '+lp+'</td><td class="text-center">'+m+' '+mp+'</td><td class="text-center">'+ x +' '+xp+' </td><td class="text-center">'+ j+' '+jp+'  </td><td class="text-center">'+ v +' '+vp+' </td><td class="text-center">'+ s +' '+sp+' </td><td class="text-right">'+suma+' '+suma2+' </td></tr>';
+                       l=0;
+                        m=0;
+                        x=0;
+                        j=0;
+                        v=0;
+                        s=0;
+                        lp=0;
+                        mp=0;
+                        xp=0;
+                        jp=0;
+                        vp=0;
+                        sp= 0;
+                        cambio =1;  
+                      }
+                    }
+                    cambio =0;  
+                    pasa=0;
+                  }
+              var l2=0;
+              var m2=0;
+              var x2=0;
+              var j2=0;
+              var v2=0;
+              var s2=0;
+              var l3=0;
+              var m3=0;
+              var x3=0;
+              var j3=0;
+              var v3=0;
+              var s3= 0;
+              var l4 =0, m4=0, x4=0, j4=0, v4=0, s4=0;
+              var l5=0, m5=0, x5=0, j5=0, v5=0, s5=0;
+              var l6=0, m6=0, x6=0, j6=0, v6=0, s6=0;
+              var l7=0, m7=0, x7=0, j7=0, v7=0, s7=0;
+              var contador =0;
+              var promedio =0;
+              var ventaT =0;
+              var bon =0;
+              var bonT =0;
+              var efecT =0;
+              var mer =0;
+              var credits =0;
+              var efectivos =0;
+              var f_s_dia2 =0;
+              var f_s_real2 =0;
+              var diferenciaT =0;
+              var pasa2=0;
+              var creditosFTemp=0;
+              var creditosITemp=0;
+              var f_s_t=0;
+              var f_s_tR=0;
+              for(var h=0;h<arrGlobalF.length; h++){
+                if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
+                  bon=arrGlobalF[h].otros;
+                  mer=arrGlobalF[h].v_mercancia;
+                  efectivos=arrGlobalF[h].efectivo;
+                  credits =arrGlobalF[h].creditos;
+                  f_s_dia2 =arrGlobalF[h].f_s_dia;
+                  f_s_real2 =arrGlobalF[h].f_s_real;
+                if(f_s_real2==undefined)f_s_real2=0;
+                if(f_s_dia2==undefined)f_s_dia2=0;
+                if(credits==undefined)credits=0;
+                if(bon==undefined)bon=0;
+                if(mer==""||mer==NaN||mer==undefined)mer=0;
+                if(efectivos==""||efectivos==NaN||efectivos==undefined)efectivos=0;
+                if(arrGlobalF[h].dsfc==1){
+                  l=credits;
+                  lp=bon;
+                  l2=arrGlobalF[h].t_venta_merca;
+                  l4=mer;
+                  l5=efectivos;
+                  l6=f_s_dia2;
+                  l7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  contador++;
+                  promedio += l3;
+                  ventaT += parseFloat(l2);
+                  bonT += parseFloat(lp);
+                  efecT += parseFloat(l5);
+                   
+                   if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                  
+                   }
+                  
+                  }
+                if(arrGlobalF[h].dsfc==2){
+                  m=credits;
+                  mp=bon;
+                  m2=arrGlobalF[h].t_venta_merca;
+                  m4=mer;
+                  m5=efectivos;
+                  m6=f_s_dia2;
+                  m7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  contador++;
+                  promedio += m3;
+                  ventaT += parseFloat(m2);
+                  bonT += parseFloat(mp);
+                  efecT += parseFloat(m5);
+                   
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }             
+                }
+                if(arrGlobalF[h].dsfc==3){
+                  x=credits;
+                  xp=bon;
+                  x2=arrGlobalF[h].t_venta_merca;
+                  x4=mer;
+                  x5=efectivos;
+                  x6=f_s_dia2;
+                  x7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  contador++;
+                  promedio += x3;
+                  ventaT += parseFloat(x2);
+                  bonT += parseFloat(xp);
+                  efecT += parseFloat(x5);
+                   
+                 if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }
+                }
+                if(arrGlobalF[h].dsfc==4){
+                  j=credits;
+                  jp=bon;
+                  j2=arrGlobalF[h].t_venta_merca;
+                  j4=mer;
+                  j5=efectivos;
+                  j6=f_s_dia2;
+                  j7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  contador++;
+                  promedio += j3;
+                  ventaT += parseFloat(j2);
+                  bonT += parseFloat(jp);
+                  efecT += parseFloat(j5);
+                   
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }
+                }
+                if(arrGlobalF[h].dsfc==5){
+                  v=credits;
+                  vp=bon;
+                  v2=arrGlobalF[h].t_venta_merca;
+                  v4=mer;
+                  v5=efectivos;
+                  v6=f_s_dia2;
+                  v7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  contador++;
+                  promedio += v3;
+                  ventaT += parseFloat(v2);
+                  bonT += parseFloat(vp);
+                  efecT += parseFloat(v5);
+                   
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                 pasa2=1
+                  }
+                   }
+                }
+                if(arrGlobalF[h].dsfc==6){
+                  s=credits;
+                  sp=bon;
+                  s2=arrGlobalF[h].t_venta_merca;
+                  s4=mer;
+                  s5=efectivos;
+                  s6=f_s_dia2;
+                  s7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  contador++;
+                  promedio += s3;
+                  ventaT += parseFloat(s2);
+                  bonT += parseFloat(sp);
+                  efecT += parseFloat(s5);
+                  
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                  f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }
+                }
+              }
+            }
+            if(contador==0){
+                  p=0;
+              }else{
+              var p =(diferenciaT*100)/(ventaT-bonT); 
+            
+
+
+
+
+            }
+                
+              var lC="black;";
+              var mC="black;";
+              var xC="black;";
+              var jC="black;";
+              var vC="black;";
+              var sC="black;";
+              var tC="black;";
+              var lC2="black;";
+              var mC2="black;";
+              var xC2="black;";
+              var jC2="black;";
+              var vC2="black;";
+              var sC2="black;";
+              var tC2="black;";
+                if(l3<20){lC="green"}
+                if(l3>=20&&l3<40){lC="blue"}
+                if(l3>=40&&l3<60){lC="yellow; color:black;"}
+                if(l3>=60&&l3<80){lC="orange"}
+                if(l3>=80&&l3<100){lC="red"}
+                if(m3<20){mC="green"}
+                if(m3>=20&&m3<40){mC="blue"}
+                if(m3>=40&&m3<60){mC="yellow; color:black;"}
+                if(m3>=60&&m3<80){mC="orange"}
+                if(m3>=80&&m3<100){mC="red"}
+                if(x3<20){xC="green"}
+                if(x3>=20&&x3<40){xC="blue"}
+                if(x3>=40&&x3<60){xC="yellow; color:black;"}
+                if(x3>=60&&x3<80){xC="orange"}
+                if(x3>=80&&x3<100){xC="red"}
+                if(j3<20){jC="green"}
+                if(j3>=20&&j3<40){jC="blue"}
+                if(j3>=40&&j3<60){jC="yellow; color:black;"}
+                if(j3>=60&&j3<80){jC="orange"}
+                if(j3>=80&&j3<100){jC="red"}
+                if(v3<20){vC="green"}
+                if(v3>=20&&v3<40){vC="blue"}
+                if(v3>=40&&v3<60){vC="yellow; color:black;"}
+                if(v3>=60&&v3<80){vC="orange"}
+                if(v3>=80&&v3<100){vC="red"}
+                if(s3<20){sC="green"}
+                if(s3>=20&&s3<40){sC="blue"}
+                if(s3>=40&&s3<60){sC="yellow; color:black;"}
+                if(s3>=60&&s3<80){sC="orange"}
+                if(s3>=80&&s3<100){sC="red"}
+                if(p <20){tC="green"}
+                if(p>=20&&p<40){tC="blue"}
+                if(p>=40&&p<60){tC="yellow; color:black;"}
+                if(p>=60&&p<80){tC="orange"}
+                if(p>=80&&p<100){tC="red"}
+                if(l6>0){lC2="green"}else{lC2="red"}
+                if(m6>0){mC2="green"}else{mC2="red"}
+                if(x6>0){xC2="green"}else{xC2="red"}
+                if(j6>0){jC2="green"}else{jC2="red"}
+                if(v6>0){vC2="green"}else{vC2="red"}
+                if(s6>0){sC2="green"}else{sC2="red"}
+                 // html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>CRÉDITOS</td><td>$ '+parseFloat(l).toFixed(2)+' </td><td>$ '+parseFloat(m).toFixed(2)+'</td><td>$ '+ parseFloat(x).toFixed(2) +' </td><td>$ '+ parseFloat(j).toFixed(2)+'  </td><td>$ '+ parseFloat(v).toFixed(2) +' </td><td>$ '+ parseFloat(s).toFixed(2) +' </td></tr>';
+                 // html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>BONIFICACIÓN</td><td> $ '+parseFloat(lp).toFixed(2)+' </td><td>$ '+parseFloat(mp).toFixed(2)+'</td><td>$ '+ parseFloat(xp).toFixed(2) +' </td><td>$ '+ parseFloat(jp).toFixed(2)+'  </td><td>$ '+ parseFloat(vp).toFixed(2) +' </td><td>$ '+ parseFloat(sp).toFixed(2) +' </td><td>$ '+ parseFloat(bonT).toFixed(2) +' </td></tr>';  
+                 // html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>MERCANCIA</td><td> $ '+parseFloat(l4).toFixed(2)+' </td><td>$ '+parseFloat(m4).toFixed(2)+'</td><td>$ '+ parseFloat(x4).toFixed(2) +' </td><td>$ '+ parseFloat(j4).toFixed(2)+'  </td><td>$ '+ parseFloat(v4).toFixed(2) +' </td><td>$ '+ parseFloat(s4).toFixed(2) +' </td></tr>';
+                 // html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>VENTA</td><td>$ '+parseFloat(l2).toFixed(2)+' </td><td>$ '+parseFloat(m2).toFixed(2)+'</td><td> $ '+ parseFloat(x2).toFixed(2) +' </td><td>$ '+ parseFloat(j2).toFixed(2)+'  </td><td>$ '+ parseFloat(v2).toFixed(2) +' </td><td> $ '+ parseFloat(s2).toFixed(2) +' </td><td> $ '+ parseFloat(ventaT).toFixed(2) +' </td></tr>';
+                 // html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>EFECTIVO</td><td>$ '+parseFloat(l5).toFixed(2)+' </td><td>$ '+parseFloat(m5).toFixed(2)+'</td><td> $ '+ parseFloat(x5).toFixed(2) +' </td><td>$ '+ parseFloat(j5).toFixed(2)+'  </td><td>$ '+ parseFloat(v5).toFixed(2) +' </td><td> $ '+ parseFloat(s5).toFixed(2) +' </td><td> $ '+ parseFloat(efecT).toFixed(2) +' </td></tr>';
+                 // html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB DIA</td><td style="background:'+lC2+'">$ '+parseFloat(l6).toFixed(2)+' </td><td style="background:'+mC2+'">$ '+parseFloat(m6).toFixed(2)+'</td><td style="background:'+xC2+'"> $ '+ parseFloat(x6).toFixed(2) +' </td><td style="background:'+jC2+'">$ '+ parseFloat(j6).toFixed(2)+'  </td><td style="background:'+vC2+'">$ '+ parseFloat(v6).toFixed(2) +' </td><td style="background:'+sC2+'"> $ '+ parseFloat(s6).toFixed(2) +' </td></tr>';
+                 // html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB REAL</td><td>$ '+parseFloat(l7).toFixed(2)+' </td><td>$ '+parseFloat(m7).toFixed(2)+'</td><td> $ '+ parseFloat(x7).toFixed(2) +' </td><td>$ '+ parseFloat(j7).toFixed(2)+'  </td><td>$ '+ parseFloat(v7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td></tr>';
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>NO VENTA</td><td  id="lunes" style="background:'+lC+'"> % '+parseFloat(l3).toFixed(2)+' </td><td  id="martes" style="background:'+mC+'"> % '+parseFloat(m3).toFixed(2)+'</td><td  id="miercoles" style="background:'+xC+'"> % '+ parseFloat(x3).toFixed(2) +' </td><td  id="jueves" style="background:'+jC+'"> % '+ parseFloat(j3).toFixed(2) +'  </td><td  id="viernes" style="background:'+vC+'"> % '+ parseFloat(v3).toFixed(2) +' </td><td id="sabado" style="background:'+sC+'"> % '+ parseFloat(s3).toFixed(2) +' </td><td id="totalP" style="background:'+tC+'"> % '+  (p).toFixed(2) +' </td></tr>';
                   $('.contCataModalD').html(html2);
                   $('.contCataModal').html(html);
@@ -2688,6 +3276,37 @@ function loadVentaDiariaR2(lista){
               arrGlobal2 = lista;
               $('.imprimir').html('');
 }
+function loadVentaDiariaVG(lista){
+          var html = '';
+      for(var h=0;h<lista.length; h++)
+        if(lista[h].tipo==2&&lista[h].estado==1){
+          for(var i=0; i < arrGlobalRuta.length; i++) {
+            if(arrGlobalRuta[i].id==lista[h].ruta){
+              ruta3=arrGlobalRuta[i].nombre;
+            }
+          }
+              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td><td onClick=""><button class="btn btn-warning" onclick="rutasRP2('+ lista[h].ruta+', '+h+'); ">IMPRIMIR</button></td></tr>';
+        }
+              $('.contCataR').html(html);
+              arrGlobal2 = lista;
+              $('.imprimir').html('');
+}
+function loadMermaGV(lista){
+          var html = '';
+      for(var h=0;h<lista.length; h++)
+        if(lista[h].tipo==2&&lista[h].estado==1){
+          for(var i=0; i < arrGlobalRuta.length; i++) {
+            if(arrGlobalRuta[i].id==lista[h].ruta){
+              ruta3=arrGlobalRuta[i].nombre;
+            }
+          }
+              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasRM('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasRM('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasRM('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td></tr>';
+        }
+              $('.contCataR').html(html);
+              arrGlobal2 = lista;
+              $('.imprimir').html('');
+}
+
 function loadVentaDiariaRS(lista){
           var html = '';
       for(var h=0;h<lista.length; h++)
@@ -6733,6 +7352,13 @@ getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar
 
 //alert(ruta)
 }
+function rutasRM(ruta, h){
+rutas=ruta;
+nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR);
+
+//alert(ruta)
+}
 function rutasRP(ruta, h){
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
@@ -6760,7 +7386,7 @@ function ventaDiariaRS(){
 
 
 }
-function click_buscarVD(){
+function click_buscarVG(){
 
 //getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaRS);
 var semanaVS = $('.semanaVD').val();
@@ -6769,9 +7395,10 @@ if(semanaVS!=""){
 
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
-  $('.tituloResp').html('<h3 class="text-center impre">SEMANA: '+semanaVS.substring(6,8)+'</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div>  ');
+  $('.tituloResp').html('<h3 class="text-center impre">SEMANA: '+semanaVS.substring(6,8)+'</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button></div>  ');
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR3);
 
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR2);
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR2);
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 
       $('#modal').modal('show');
@@ -6796,11 +7423,80 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 
 }
 function ventaGeneral(){
-  $('.tituloResp').html('<h3 class="text-center impre">VENTA GENERAL</h3>');
-  $('.contenidoR').load('/html/ventaGeneral.html');
-  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
 scv=noSemana;
+  $('.tituloResp').html('<h3 class="text-center impre">VENTA GENERAL (SEMANA: '+(scv+1)+')</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button></div>  ');
+  //$('.contenidoR').html('');
+  $('.contenidoR').load('/html/ventaGeneral.html');
+ 
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR3);
+
+}
+function mermaV(){
+   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+scv=noSemana;
+  $('.tituloResp').html('<h3 class="text-center impre">MERMA GENERAL (SEMANA: '+(scv+1)+')</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="buscarMermaV()">BUSCAR</button></div>  ');
+  //$('.contenidoR').html('');
+  $('.contenidoR').load('/html/ventaDiariaR.html');
+ 
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaG);
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaGV);
+
+}
+function mermaD(){
+   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+scv=noSemana;
+  $('.tituloResp').html('<h3 class="text-center impre">MERMA GENERAL (SEMANA: '+(scv+1)+')</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="buscarMermaD()">BUSCAR</button></div>  ');
+  //$('.contenidoR').html('');
+  $('.contenidoR').load('/html/ventaGeneral.html');
+ 
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaG);
+
+}
+function buscarMermaD(){
+  var semanaVS = $('.semanaVD').val();
+if(semanaVS!=""){
+year =  parseInt(semanaVS.substring(0,4));
+scv = parseInt(semanaVS.substring(6,8))-1;
+  $('.tituloResp').html('<h3 class="text-center impre">MERMA GENERAL (SEMANA: '+semanaVS.substring(6,8)+')</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="buscarMermaD()">BUSCAR</button></div>  ');
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaG);
+
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaG);
+}else{
+    $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+}
+}
+function buscarMermaV(){
+  var semanaVS = $('.semanaVD').val();
+if(semanaVS!=""){
+year =  parseInt(semanaVS.substring(0,4));
+scv = parseInt(semanaVS.substring(6,8))-1;
+  $('.tituloResp').html('<h3 class="text-center impre">MERMA GENERAL (SEMANA: '+semanaVS.substring(6,8)+')</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="buscarMermaV()">BUSCAR</button></div>  ');
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaG);
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaGV);
+
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaG);
+}else{
+    $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+}
+}
+function click_buscarVD(){
+
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaRS);
+var semanaVS = $('.semanaVD').val();
+if(semanaVS!=""){
+year =  parseInt(semanaVS.substring(0,4));
+scv = parseInt(semanaVS.substring(6,8))-1;
+  $('.tituloResp').html('<h3 class="text-center impre">VENTA GENERAL (SEMANA: '+semanaVS.substring(6,8)+')</h3><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div>  ');
+
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaVG);
+}else{
+    $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+}
+//alert(semanaVS.substring(0,4)+" - "+semanaVS.substring(6,8));
 
 }
 function click_bitacoras(){
@@ -6810,7 +7506,7 @@ $('.btn-nav').removeClass('hidden');
  $('.tituloPantalla').html('<h3 class="ventas impre"> BITÁCORAS </h3>');
 $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">1</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">2</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="">3</button></li><div class="imprimir"></div></ul> </div>');
  
-getFunction('bitacoras', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadLogs);
+//getFunction('bitacoras', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadLogs);
 
 }
 function click_vendedores(){

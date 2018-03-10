@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :m_vehicular
   resources :logistica
   resources :reportes
+  resources :categorias
   resources :bitacoras
   resources :logs
   resources :ventaspasada

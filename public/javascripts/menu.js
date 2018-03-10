@@ -675,6 +675,15 @@ function loadInventario2(lista){
         
           arrGlobalInventario = lista;
 }
+function loadCategorias(lista){
+        var html = '';
+        for(var h=0;h<lista.length; h++)
+        
+          html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')"><td>' + lista[h].nombre + '</td><td>' + lista[h].descripcion + '</td></tr>';
+          $('.contCata').html(html);
+          
+}
+
 function loadInventario(lista){
         var html = '';
         for(var h=0;h<lista.length; h++)
@@ -6737,7 +6746,7 @@ function click_inventario(){
  $('#contenido').load('/html/mInventario.html');
  //$('.seccion1').html('/html/inventario.html');
  $('.tituloPantalla').html('<h3 class="inventario"> INVENTARIO </h3>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_inventario2()">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
 
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
@@ -6746,11 +6755,16 @@ function click_Categorias(){
   $('.btn-nav').removeClass('hidden');
   $('.btn-nav').html('<h3> Menú </h3>');
   $('.seccion2').load('/html/categoria.html');
-  $('.tituloPantalla').html('<h3 class="inventario">CATEGORÍAS</h3>');
+ // $('.tituloPantalla').html('<h3 class="inventario">CATEGORÍAS</h3>');
   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias);
 
  }
+function click_inventario2(){
+ //alert("hey");
+ //$('.tituloPantalla').html('<h3 class="inventario"> INVENTARIO </h3>');
 
+ }
 function click_ventas(){
   if(today==0)
     today=7;

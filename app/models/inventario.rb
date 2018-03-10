@@ -3,5 +3,5 @@ class Inventario < ApplicationRecord
 
 	# --------------------------- Scopes ------------------------------- #
 	default_scope { where(activo: 1) }
-	default_scope { order(:descripcion) }
+	default_scope { order(:idInventario) }
 end

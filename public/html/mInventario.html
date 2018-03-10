@@ -1,0 +1,126 @@
+<div role="tabpanel" class="row col-md-12 fondo" >
+   
+    <div class="tab-content col-md-12 row" >
+      <div role="tabpanel" class="col-md-12 seccion1 tab-pane active " id="seccion1">
+        
+
+    <div class="row">
+    
+
+        <div class="col-md-2 form-group">
+          <label class="letras" >ID</label>
+          <input type="text" id="id" class="form-control clear idInventario" placeholder="ID" onchange="document.getElementById('descripcion').focus();">
+        </div>
+        <div class="col-md-3 form-group">
+          <label class="letras">Descripción</label>
+          <input type="text" id="descripcion" class="form-control clear descripcion" onchange="document.getElementById('detalle').focus();" placeholder="Descripción">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Detalle</label>
+          <input id="detalle" type="text" class="form-control clear detalle" onchange="document.getElementById('mayoreo').focus();" placeholder="$">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Mayoreo</label>
+          <input id="mayoreo" type="text" class="form-control clear mayoreo" onchange="document.getElementById('foraneo').focus();" placeholder="$">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Foráneo</label>
+          <input id="foraneo" type="text" onchange="document.getElementById('restaurante').focus();" class="form-control clear foraneo" placeholder="$">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Restaurante</label>
+          <input type="text" id="restaurante" class="form-control clear restaurante" onchange="document.getElementById('cantidad').focus();" placeholder="$">
+        </div>
+        <div class="col-md-1 form-group">
+          <label class="letras">Cantidad</label>
+          <input type="text" id="cantidad" class="form-control clear cantidad" onchange="document.getElementById('medida').focus();" placeholder="#">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">Medida</label>
+          <select class="form-control clear medida" id="medida" onchange="document.getElementById('minimo').focus();">
+            <option value="1">Kg</option>
+            <option value="2">Pzas.</option>
+            <option value="3">L</option>
+            </select>
+        </div>
+        <div class=" col-md-2 form-group">
+          <label class="letras">S. Minimo</label>
+          <input type="text" id="minimo" onchange="document.getElementById('maximo').focus();" class="form-control clear s_min" placeholder="#">
+        </div>
+        <div class=" col-md-2 form-group">
+          <label class="letras">S. Máximo</label>
+          <input type="text" id="maximo" class="form-control clear s_max" placeholder="#" onchange="document.getElementById('add').focus();">
+        </div>
+        <div class=" col-md-2 form-group">
+          <label class="letras">Categoria</label>
+          <input type="text" id=" " class="form-control clear  " placeholder="#" >
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-2 guardari"></div>
+     
+<div class="col-xs-3 col-md-3">
+      <button type="button" id="add" onchange="document.getElementById('id').focus();" class="btn botoninv insertar" onclick="addInventario()">Insertar</button>
+  </div>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botoninv limpiar" onclick="inv(); limpiar(); ">Limpiar</button>
+  </div>
+   <div class="col-xs-3 col-md-3 eliminari">
+    
+  </div>
+   <div class="col-xs-3 col-md-3 agregari">
+    
+  </div>
+
+<br>
+<br>
+<br>
+  </div>
+  <br>
+
+
+ <div class="row">
+
+
+  <div class="table-responsive tabla text-center">
+  <table class="table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras">
+         <th class="letras">ID</th>
+        <th class="letras">Nombre</th>
+        <th class="letras">Precio Detalle</th>
+        <th class="letras">Precio Mayoreo</th>
+        <th class="letras">Precio Foraneo</th>
+        <th class="letras">Precio Restaurante</th>
+        <th class="letras">Cantidad</th>
+        <th class="letras">Stock Minimo</th>
+        <th class="letras">Stock Máximo</th>
+      
+      </tr>
+    </thead>
+    <tbody class="contCata ventascss" >
+     
+    </tbody>
+  </table>
+</div>
+
+ 
+ 
+  </div>
+
+
+
+
+      </div>
+      <div role="tabpanel" class="tab-pane seccion2 col-md-12" id="seccion2">
+
+
+
+      </div>
+      <div role="tabpanel" class="tab-pane seccion3 col-md-12" id="seccion3">
+      </div>
+       <div role="tabpanel" class="tab-pane seccion4 col-md-12" id="seccion4">
+      </div>
+    </div>
+    <br>
+    <br>
+</div>

@@ -1941,7 +1941,7 @@ function loadVDiariaR(lista){//modal
                   $('.contCataModal').html(html);
                   $('.ventaDiariaSemanal').html(htmlp);
 }
-function loadVDiariaR(lista){//modal Merma
+function loadMermaModal(lista){//modal Merma
               var html = '';
               var htmlp = '';
               var html2 = '';
@@ -3300,7 +3300,7 @@ function loadMermaGV(lista){
               ruta3=arrGlobalRuta[i].nombre;
             }
           }
-              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasRM('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasRM('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasRM('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td></tr>';
+              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasRM('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasRM('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasRM('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td>></tr>';
         }
               $('.contCataR').html(html);
               arrGlobal2 = lista;
@@ -6734,11 +6734,22 @@ function click_inventario(){
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  
- $('#contenido').load('/html/inventario.html');
+ $('#contenido').load('/html/mInventario.html');
+ //$('.seccion1').html('/html/inventario.html');
  $('.tituloPantalla').html('<h3 class="inventario"> INVENTARIO </h3>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
+
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
 }
+function click_Categorias(){
+  $('.btn-nav').removeClass('hidden');
+  $('.btn-nav').html('<h3> Menú </h3>');
+  $('.seccion2').load('/html/categoria.html');
+  $('.tituloPantalla').html('<h3 class="inventario">CATEGORÍAS</h3>');
+  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
+
+ }
 
 function click_ventas(){
   if(today==0)
@@ -7355,9 +7366,8 @@ getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar
 function rutasRM(ruta, h){
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR);
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaModal);
 
-//alert(ruta)
 }
 function rutasRP(ruta, h){
 rutas=ruta;

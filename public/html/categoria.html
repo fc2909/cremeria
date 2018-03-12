@@ -2,24 +2,23 @@
     <div class="row">
     <div class="col-md-3 impre form-group piezasventas">
           <label class="letras">Nombre</label>
-          <input type="text" class="form-control clear " >
+          <input type="text" class="form-control clear nombre" >
         </div>
-        <div class="col-md-3 impre form-group">
+        <div class="col-md-9 impre form-group">
           <label class="letras">Descripción</label>
-          <input type="text" class="form-control clear ">
+          <input type="text" class="form-control clear descripcion1">
         </div>
-        <div class="col-md-3 impre form-group">
-          <label class="letras">Unidades X Kg.</label>
-          <input type="text" class="form-control clear ">
-        </div>
-        <div class="col-md-3"></div>
+        
+        
       
   <div class="col-xs-3 impre col-md-3">
-      <button type="button" id="add" class="btn btn-ventas insertar add" >Insertar</button>
+      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addCategoria()" >Insertar</button>
   </div>
    <div class="col-xs-3 impre col-md-3">
     <button type="button" class="btn btn-ventas limpiar" onclick=" limpiar(); " >Limpiar</button>
   </div>
+  <div class="col-md-3 guardarC"></div>
+  <div class="col-md-3 eliminarC"></div>
   
    
    
@@ -40,7 +39,7 @@
         <th class="letras">Descripción</th>    
       </tr>
     </thead>
-    <tbody class="contCata ventascss impre" >
+    <tbody class="contCataC ventascss impre" >
      
     </tbody>
      

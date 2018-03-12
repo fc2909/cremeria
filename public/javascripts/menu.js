@@ -24,6 +24,7 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV2);
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas1);
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventario2);
+getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias2);
 
 //--------------------------------------------- cargar tipo de usuarios -----------------------------------------------//
 $(document).ready(function(){
@@ -666,22 +667,45 @@ function loadUsuarios2(lista){
 }
 function loadInventarios(lista){
         var html = '';
-        for(var h=0;h<lista.length; h++)
-          html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td><td>' + lista[h].s_max + '</td></tr>';
+        for(var h=0;h<lista.length; h++){
+          var categoria="sin asignar";
+          for(var j=0;j<arrGlobalCategoria.length; j++){
+            if(lista[h].tipoP==arrGlobalCategoria[j].id){
+
+             categoria=arrGlobalCategoria[j].nombre;
+
+            }
+          }
+          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td> <td>' + lista[h].s_max + '</td><td>' + categoria + '</td> </tr>';
+
+          }
           $('.contCata').html(html);
           arrGlobal = lista;
+          var selectCategoria= '<label class="letras">Categoria</label><select name="selectCat" id="selC" class="selectCategoria col-md-8 form-control"><option value="0"></option>'
+
+for(var h=0;h<arrGlobalCategoria.length; h++)
+selectCategoria+= ' <option value="'+arrGlobalCategoria[h].id+'">' +arrGlobalCategoria[h].nombre +'</option>';
+    
+selectCategoria +='</select>';
+
+$('.cate').html(selectCategoria);
+
 }
 function loadInventario2(lista){
         
           arrGlobalInventario = lista;
 }
+var arrGlobalCategoria;
 function loadCategorias(lista){
         var html = '';
         for(var h=0;h<lista.length; h++)
         
-          html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')"><td>' + lista[h].nombre + '</td><td>' + lista[h].descripcion + '</td></tr>';
-          $('.contCata').html(html);
-          
+          html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectCategoria('+ lista[h].id +')"><td>' + lista[h].nombre + '</td><td>' + lista[h].descripcion + '</td></tr>';
+          $('.contCataC').html(html);
+          arrGlobalCategoria=lista;
+}
+function loadCategorias2(lista){
+          arrGlobalCategoria=lista;
 }
 
 function loadInventario(lista){
@@ -3404,6 +3428,22 @@ function addRuta(){
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas);
 
 }
+function addCategoria(){
+          var nombre = $(".nombre").val();
+          var descripcion = $(".descripcion1").val();
+            if(nombre!= ""){
+              if(descripcion==""){
+                descripcion="-";
+              }
+          var json = {nombre: nombre, descripcion: descripcion};
+              addRegistro(json, 'categorias', loadCategorias);
+          }else{
+              $('#modal .textModal').html('Faltan Datos.'); 
+              $('#modal').modal('show');
+          }
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias);
+
+}
 
 function addMantenimiento(){
   
@@ -3478,10 +3518,11 @@ function addInventario(){
   var medida = $(".medida").val();
   var s_min = $(".s_min").val();
   var s_max = $(".s_max").val();
+  var tipoP = $(".selectCategoria").val();
 
-  if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""){
+  if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""&& tipoP != ""){
 
-    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max};
+    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP};
     addRegistro(json, 'inventarios', loadInventarios);
   }
   else{
@@ -4325,7 +4366,14 @@ function delCliente(idc){
 limpiar();
 
 }
+function delCategoria(){
 
+  delRegistro(idGlobal,'categorias', loadCategorias);
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias);
+
+limpiar();
+
+}
 
 function delVenta(){
   var idProducto = $(".idProducto").val();
@@ -4495,11 +4543,12 @@ function upInventario(){
   var medida = $(".medida").val();
   var s_min = $(".s_min").val();
   var s_max = $(".s_max").val();
+ var tipoP = $(".selectCategoria").val();
 
-  if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""){
+  if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""&& tipoP != ""){
 
-    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max};
-    upRegistro(idGlobal,json, 'inventarios', loadInventarios);
+    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP};
+     upRegistro(idGlobal,json, 'inventarios', loadInventarios);
   }
   else{
 
@@ -4939,6 +4988,23 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
 
 
 }
+function upCategoria(){
+          var nombre = $(".nombre").val();
+          var descripcion = $(".descripcion1").val();
+            if(nombre!= ""){
+              if(descripcion==""){
+                descripcion="-";
+              }
+          var json = {nombre: nombre, descripcion: descripcion};
+              upRegistro(idGlobal,json, 'categorias', loadCategorias);
+          }else{
+              $('#modal .textModal').html('Faltan Datos.'); 
+              $('#modal').modal('show');
+          }
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias);
+
+}
+
 var f_s_dia, fechaf;
 function upRecepcion(){
   
@@ -5738,9 +5804,25 @@ function selectInventario(id){
       $(".medida").val(arrGlobal[a].medida);
       $(".s_min").val(arrGlobal[a].s_min);
       $(".s_max").val(arrGlobal[a].s_max);
+      $(".selectCategoria").val(arrGlobal[a].tipoP);
       $(".eliminari").html(eliminari);
       $(".agregari").html(agregari);
       $(".guardari").html(guardari);
+    }
+  }
+}
+function selectCategoria(id){
+  idGlobal = id;
+  var eliminari='<button type="button" class="btn btn-ventas eliminar" onclick="delCategoria()">Eliminar</button>';
+  var guardari='<button type="button" class="btn btn-ventas modificar" onclick="upCategoria()">Guardar</button>';
+
+  for(var a=0; a<arrGlobalCategoria.length; a++){
+    if(arrGlobalCategoria[a].id == id){
+      $(".descripcion1").val(arrGlobalCategoria[a].descripcion);
+      $(".nombre").val(arrGlobalCategoria[a].nombre);
+ 
+      $(".eliminarC").html(eliminari);
+      $(".guardarC").html(guardari);
     }
   }
 }
@@ -6630,7 +6712,7 @@ function delRegistro(id, url, loadLista){
 
   }
   else{
-    alert("seleccione de la tabla un usuario");
+    
     $('#modal .textModal').html('Seleccionar un registro.'); 
       $('#modal').modal('show');
   }
@@ -6747,6 +6829,7 @@ function click_inventario(){
  //$('.seccion1').html('/html/inventario.html');
  $('.tituloPantalla').html('<h3 class="inventario"> INVENTARIO </h3>');
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_inventario2()">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
+          
 
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
@@ -6759,10 +6842,9 @@ function click_Categorias(){
   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
  getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias);
 
+
  }
 function click_inventario2(){
- //alert("hey");
- //$('.tituloPantalla').html('<h3 class="inventario"> INVENTARIO </h3>');
 
  }
 function click_ventas(){

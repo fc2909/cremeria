@@ -1,3 +1,4 @@
+
 <div role="tabpanel" class="row col-md-12 fondo" >
    
     <div class="tab-content col-md-12 row" >
@@ -5,7 +6,7 @@
         
 
     <div class="row">
-    
+
 
         <div class="col-md-2 form-group">
           <label class="letras" >ID</label>
@@ -49,13 +50,10 @@
         </div>
         <div class=" col-md-2 form-group">
           <label class="letras">S. Máximo</label>
-          <input type="text" id="maximo" class="form-control clear s_max" placeholder="#" onchange="document.getElementById('add').focus();">
+          <input type="text" id="maximo" class="form-control clear s_max" placeholder="#" onchange="document.getElementById('selC').focus();">
         </div>
-        <div class=" col-md-2 form-group">
-          <label class="letras">Categoria</label>
-          <input type="text" id=" " class="form-control clear  " placeholder="#" >
-        </div>
-        <div class="col-md-4"></div>
+          <div  class="cate col-md-3">s</div>
+        <div class="col-md-3"></div>
         <div class="col-md-2 guardari"></div>
      
 <div class="col-xs-3 col-md-3">
@@ -84,7 +82,7 @@
   <div class="table-responsive tabla text-center">
   <table class="table table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
-      <tr class="letras">
+      <tr class="letras" style="font-size:12px;">
          <th class="letras">ID</th>
         <th class="letras">Nombre</th>
         <th class="letras">Precio Detalle</th>
@@ -94,6 +92,7 @@
         <th class="letras">Cantidad</th>
         <th class="letras">Stock Minimo</th>
         <th class="letras">Stock Máximo</th>
+        <th class="letras">Categoria</th>
       
       </tr>
     </thead>

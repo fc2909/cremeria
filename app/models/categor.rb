@@ -3,5 +3,5 @@ class Categor < ApplicationRecord
 
 	# --------------------------- Scopes ------------------------------- #
 	default_scope { where(activo: 1) }
-	default_scope { order(:nombre) }
+	default_scope { order(:jerarquia) }
 end

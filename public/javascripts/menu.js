@@ -698,16 +698,23 @@ function loadInventario2(lista){
 var arrGlobalCategoria;
 function loadCategorias(lista){
         var html = '';
-        for(var h=0;h<lista.length; h++)
-        
-          html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectCategoria('+ lista[h].id +')"><td>' + lista[h].nombre + '</td><td>' + lista[h].descripcion + '</td></tr>';
+        var producto='';
+        for(var h=0;h<lista.length; h++){
+            
+            for(var i=0;i<arrGlobalInventario.length; i++){
+             if(arrGlobalInventario[i].tipoP==lista[h].id){
+             producto += arrGlobalInventario[i].descripcion+', ';
+
+             }
+            }
+          html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectCategoria('+ lista[h].id +')"><td>' + lista[h].jerarquia + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].descripcion + '</td><td>' + producto + '</td> </tr>';
+        }
           $('.contCataC').html(html);
           arrGlobalCategoria=lista;
 }
 function loadCategorias2(lista){
           arrGlobalCategoria=lista;
 }
-
 function loadInventario(lista){
         var html = '';
         for(var h=0;h<lista.length; h++)
@@ -3486,11 +3493,12 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
 function addCategoria(){
           var nombre = $(".nombre").val();
           var descripcion = $(".descripcion1").val();
+          var jerarquia = $(".jerarquia").val();
             if(nombre!= ""){
               if(descripcion==""){
                 descripcion="-";
               }
-          var json = {nombre: nombre, descripcion: descripcion};
+          var json = {nombre: nombre, descripcion: descripcion, jerarquia: jerarquia};
               addRegistro(json, 'categorias', loadCategorias);
           }else{
               $('#modal .textModal').html('Faltan Datos.'); 
@@ -5048,11 +5056,12 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
 function upCategoria(){
           var nombre = $(".nombre").val();
           var descripcion = $(".descripcion1").val();
+           var jerarquia = $(".jerarquia").val();
             if(nombre!= ""){
               if(descripcion==""){
                 descripcion="-";
               }
-          var json = {nombre: nombre, descripcion: descripcion};
+          var json = {nombre: nombre, descripcion: descripcion, jerarquia: jerarquia};
               upRegistro(idGlobal,json, 'categorias', loadCategorias);
           }else{
               $('#modal .textModal').html('Faltan Datos.'); 

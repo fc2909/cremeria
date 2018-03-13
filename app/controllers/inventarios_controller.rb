@@ -44,7 +44,7 @@ def index
 			Inventario.find(params[:id])
 		end
 		def model_params
-			params.permit(:id, :idInventario, :descripcion, :detalle, :mayoreo, :foraneo, :restaurante, :cantidad, :medida, :s_min, :s_max, :tipoP)
+			params.permit(:id, :idInventario, :descripcion, :detalle, :mayoreo, :foraneo, :restaurante, :cantidad, :medida, :s_min, :s_max, :tipoP, :proporcion)
 		end
 		def delete_model
 			params = ActionController::Parameters.new(activo: 0)

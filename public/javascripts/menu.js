@@ -676,7 +676,7 @@ function loadInventarios(lista){
 
             }
           }
-          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td> <td>' + lista[h].s_max + '</td><td>' + categoria + '</td> </tr>';
+          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td> <td>' + lista[h].s_max + '</td><td>' + categoria + '</td> <td>' + lista[h].proporcion + '</td> </tr>';
 
           }
           $('.contCata').html(html);
@@ -1387,7 +1387,62 @@ function loadVDiariaR3(lista){ //venta general
                   $('.contCataR').html(html);
                   $('.ventaDiariaSemanal').html(htmlp);
 }
+function loadVentaDiariaC(lista){ //por categoria
+          var html = '';
+          var identificacion;
+          var bonificacionT=0;
+          var t_venta_mercaT=0;
+          var mer;
+          var pNoVenta;
+          saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+scv=noSemana;
 
+      for(var h=0;h<lista.length; h++){
+        if(lista[h].t_venta==3&&lista[h].tipo==2&&lista[h].estado==1){
+          
+       for(var j=0;j<arrGlobalF.length; j++){
+
+        if(lista[h].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+          for (var i=0; i < arrGlobalRuta.length; i++) {
+            if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
+              ruta3=arrGlobalRuta[i].nombre;
+            }
+          }
+          mer=arrGlobalF[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          
+
+          //diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+          pNoVenta=((mer-arrGlobalF[j].t_venta_merca)*100)/parseFloat(arrGlobalF[j].t_venta_merca);
+          if(arrGlobalF[j].t_venta_merca==0)pNoVenta=100;
+          bonificacionT+=parseFloat(arrGlobalF[j].creditos);
+          t_venta_mercaT+=parseFloat(arrGlobalF[j].t_venta_merca);
+
+
+
+
+
+
+
+          
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >' + arrGlobalF[j].creditos + '</td> <td >' + bonificacionT + '</td>  <td > % ' + (pNoVenta).toFixed(2) + '</td> <td >' + t_venta_mercaT + '</td> </tr>';
+      
+        }
+        }
+        html+=identificacion;
+        bonificacionT=0;
+        t_venta_mercaT=0;
+       }
+
+     }
+             
+              if(html==""){}else{
+               
+              }
+               $('.contCataR').html(html); 
+              arrGlobal2 = lista;
+              $('.imprimir').html('');
+}
 function loadMermaG(lista){ //merma general
               var html = '';
               var htmlp = '';
@@ -3519,10 +3574,11 @@ function addInventario(){
   var s_min = $(".s_min").val();
   var s_max = $(".s_max").val();
   var tipoP = $(".selectCategoria").val();
-
+  var proporcion = $(".proporcion").val();
+if(proporcion=="")proporcion=1;
   if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""&& tipoP != ""){
 
-    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP};
+    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP, proporcion: proporcion};
     addRegistro(json, 'inventarios', loadInventarios);
   }
   else{
@@ -4544,10 +4600,11 @@ function upInventario(){
   var s_min = $(".s_min").val();
   var s_max = $(".s_max").val();
  var tipoP = $(".selectCategoria").val();
-
+  var proporcion = $(".proporcion").val();
+if(proporcion=="")proporcion=1;
   if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""&& tipoP != ""){
 
-    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP};
+    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP, proporcion: proporcion};
      upRegistro(idGlobal,json, 'inventarios', loadInventarios);
   }
   else{
@@ -5805,6 +5862,7 @@ function selectInventario(id){
       $(".s_min").val(arrGlobal[a].s_min);
       $(".s_max").val(arrGlobal[a].s_max);
       $(".selectCategoria").val(arrGlobal[a].tipoP);
+      $(".proporcion").val(arrGlobal[a].proporcion);
       $(".eliminari").html(eliminari);
       $(".agregari").html(agregari);
       $(".guardari").html(guardari);
@@ -7440,6 +7498,14 @@ function ventaDiariaR(){
   $('.tituloResp').html('<h3 class="text-center impre">VENTA DIARIA</h3>');
   $('.contenidoR').load('/html/ventaDiariaR.html');
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR);
+
+
+//alert(day+month+year);
+}
+function ventaDiariaC(){
+  $('.tituloResp').html('<h3 class="text-center impre">VENTA DIARIA</h3>');
+  $('.contenidoR').load('/html/ventaDiariaR.html');
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaC);
 
 
 //alert(day+month+year);

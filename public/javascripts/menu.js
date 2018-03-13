@@ -708,6 +708,7 @@ function loadCategorias(lista){
              }
             }
           html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectCategoria('+ lista[h].id +')"><td>' + lista[h].jerarquia + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].descripcion + '</td><td>' + producto + '</td> </tr>';
+        producto='';
         }
           $('.contCataC').html(html);
           arrGlobalCategoria=lista;

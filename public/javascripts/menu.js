@@ -559,13 +559,13 @@ function imprimirVD3(){
 function ventaDiariaCPrint(){
         document.getElementById('ocultoVDC').style.display = 'block';
         document.getElementById('ocultoVDCT').style.display = 'block';
-        document.getElementById('ocultoImagen').style.display = 'block';
+        document.getElementById('ocultoImagen2').style.display = 'block';
     var controlC = 'VENTA DIARIA (SEMANA: '+(scv+1)+')';
-        $('.controlC').html(controlC);
+        $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('ocultoVDC').style.display = 'none';
         document.getElementById('ocultoVDCT').style.display = 'none';
-        document.getElementById('ocultoImagen').style.display = 'none';
+        document.getElementById('ocultoImagen2').style.display = 'none';
 }
 
 function cambio(){

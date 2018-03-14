@@ -160,6 +160,12 @@ width: 550px;
 
    
  }
+ .controlCP{
+  position: absolute;
+   text-align: center;
+   top: 0px;
+   left: 40%;
+ }
 .pagareD {
   position: absolute;
   width: 100%;
@@ -268,6 +274,7 @@ body{
   background: #012d41;
   color: white; 
 }
+
 .ImagenDurango{
    position: absolute;
    top: 200px;
@@ -275,7 +282,13 @@ height: 500px;
 left: 15%;
 opacity:.1;
 }
-
+.ImagenDurango2{
+   position: absolute;
+   top: 200px;
+height: 500px;
+left: 30%;
+opacity:.1;
+}
 .imagenes{
   height: 200px;
   width: 160px;

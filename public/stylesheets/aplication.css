@@ -87,13 +87,29 @@
    margin: 10px;
    color: black;
  }
+ .tablaHorizontal{
+  writing-mode: tb-rl;
+height: 80%;
+margin: 10% 0%;
+ }
+ .tablaImprimirVDCT {
+  
+  position: absolute;
+  width: 110%;
+   top: 20px;
+   
+   margin: 10px;
+   color: black;
+ }
  .tablaImprimirVDC {
+
   position: absolute;
   width: 110%;
    top: 175px;
    left: 5%;
    margin: 10px;
    color: black;
+
  }
   .tablaImprimirVD2 {
   position: absolute;

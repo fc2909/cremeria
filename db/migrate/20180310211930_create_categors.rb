@@ -7,7 +7,7 @@ class CreateCategors < ActiveRecord::Migration[5.0]
       t.string :nombre
       t.string :descripcion
       t.string :unidades
-      t.string :jerarquia
+      t.integer :jerarquia
       t.integer :activo
       t.string :n1
       t.string :n2

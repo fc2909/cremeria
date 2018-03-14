@@ -1994,7 +1994,7 @@ html+='<tr style="background:black;"><td>TOTAL </td> <td>DETALLE</td><td></td><t
               }
               //arrGlobal2 = lista;
              // $('.imprimir').html('');
-alert(html);
+
 
 }
 function loadVentaDiariaForaneo(lista){ //por categoria
@@ -8359,7 +8359,6 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 function ventaDiariaC(){
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
-          alert(scv+" - "+year);
   $('.tituloResp').html('<div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVCategorias()">BUSCAR</button></div><h3 class="text-center impre">VENTA DIARIA</h3>');
   $('.contenidoR').load('/html/ventaDiariaC.html');
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaMayoreo);
@@ -8378,8 +8377,7 @@ if(semanaVS!=""){
 
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
-  alert(scv+" - "+year);
-  $('.tituloResp').html('<div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVCategorias()">BUSCAR</button></div><h3 class="text-center impre">VENTA DIARIA</h3>');
+  $('.tituloResp').html('<div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVCategorias()">BUSCAR</button></div><h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaMayoreo);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaForaneo);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaDetalle);

@@ -1402,7 +1402,7 @@ function loadVDiariaR3(lista){ //venta general
 }
 function loadVentaDiariaMayoreo(lista){ //por categoria
           var html = '';
-          var identificacion;
+           var identificacion='';
           var bonificacionT=0;
           var t_venta_mercaT=0;
           var mer;
@@ -1667,7 +1667,7 @@ var su=0;
          prodC=0;
          prod =0;
               
-         if(identificacion==''){html='';}else{
+         if(identificacion==''){html=html;}else{
           html+=identificacion+productosT+'</tr>';
           productoTotalS=productoTotal;
           
@@ -1700,7 +1700,7 @@ prodT=0;
 }
 function loadVentaDiariaDetalle(lista){ //por categoria
           var html = '';
-          var identificacion;
+          var identificacion='';
           var bonificacionT=0;
           var t_venta_mercaT=0;
           var mer;
@@ -1759,7 +1759,7 @@ identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><
 
         }
 ventasT+=t_venta_mercaT;
-
+//alert("ruta: "+rutas+" - "+identificacion);
                creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
      
@@ -1964,7 +1964,7 @@ var su=0;
          prodC=0;
          prod =0;
               
-         if(identificacion==''){html='';}else{
+         if(identificacion==''){html=html;}else{
           html+=identificacion+productosT+'</tr>';
           productoTotalS=productoTotal;
           
@@ -1999,7 +1999,7 @@ html+='<tr style="background:black;"><td>TOTAL </td> <td>DETALLE</td><td></td><t
 }
 function loadVentaDiariaForaneo(lista){ //por categoria
           var html = '';
-          var identificacion;
+           var identificacion='';
           var bonificacionT=0;
           var t_venta_mercaT=0;
           var mer;
@@ -2263,7 +2263,7 @@ var su=0;
          prodC=0;
          prod =0;
               
-         if(identificacion==''){html='';}else{
+         if(identificacion==''){html=html;}else{
           html+=identificacion+productosT+'</tr>';
           productoTotalS=productoTotal;
 

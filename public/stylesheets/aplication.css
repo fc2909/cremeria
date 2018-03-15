@@ -92,15 +92,17 @@
 height: 80%;
 margin: 10% 0%;
  }
+
  .tablaImprimirVDCT {
   
   position: absolute;
-  width: 110%;
+  
    top: 20px;
    
    margin: 10px;
    color: black;
  }
+
  .tablaImprimirVDC {
 
   position: absolute;

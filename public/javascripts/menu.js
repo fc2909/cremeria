@@ -351,6 +351,7 @@ function doSpanish(importe) {
       }
 var cantidad;
 var cantidad2;
+var cantidad3;
 function formatNumber(num) {
     if (!num || num == 'NaN') return '-';
     if (num == 'Infinity') return '&#x221e;';
@@ -382,6 +383,116 @@ function formatNumber2(num) {
     for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3) ; i++)
         num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
     cantidad2 = (((sign) ? '' : '-') + num + '.' + cents);
+}
+function formatNumber3(num) {
+    if (!num || num == 'NaN') return '-';
+    if (num == 'Infinity') return '&#x221e;';
+    num = num.toString().replace(/\$|\,/g, '');
+    if (isNaN(num))
+        num = "0";
+    sign = (num == (num = Math.abs(num)));
+    num = Math.floor(num * 100 + 0.50000000001);
+    cents = num % 100;
+    num = Math.floor(num / 100).toString();
+    if (cents < 10)
+        cents = "0" + cents;
+    for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3) ; i++)
+        num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+    cantidad3 = (((sign) ? '' : '-') + num + '.' + cents);
+}
+var formatoNumero = {
+ separador: ",", // separador para los miles
+ sepDecimal: '.', // separador para los decimales
+ formatear:function (num){
+ num +='';
+ var splitStr = num.split(',');
+ var splitLeft = splitStr[0];
+ var splitRight = splitStr.length > 1 ? this.sepDecimal + splitStr[1] : '';
+ var regx = /(\d+)(\d{3})/;
+ while (regx.test(splitLeft)) {
+ splitLeft = splitLeft.replace(regx, '$1' + this.separador + '$2');
+ }
+ return this.simbol + splitLeft +splitRight;
+ },
+ new:function(num, simbol){
+ this.simbol = simbol ||'';
+ return this.formatear(num);
+ }
+}
+
+function formatoMoneda1(number) {
+    var number1 = number.toString(), result = '', estado = true;
+    if (parseInt(number1) < 0) {
+        estado = false;
+        number1 = parseInt(number1) * -1;
+        number1 = number1.toString();
+    }
+    if (number1.indexOf('.') == -1) {
+        while (number1.length > 3) {
+            result = ',' + '' + number1.substr(number1.length - 3) + '' + result;
+            number1 = number1.substring(0, number1.length - 3);
+        }
+        result = number1 + result;
+        if (estado == false) {
+            result = '-' + result;
+        }
+    }
+    else {
+        var pos = number1.indexOf('.');
+        var numberInt = number1.substring(0, pos);
+        var numberDec = number1.substring(pos, number1.length);
+        while (numberInt.length > 3) {
+            result = ',' + '' + numberInt.substr(numberInt.length - 3) + '' + result;
+            numberInt = numberInt.substring(0, numberInt.length - 3);
+        }
+        result = numberInt + result + numberDec;
+        if (estado == false) {
+            result = '-' + result;
+        }
+    }
+    return result;
+}
+
+
+separadorDecimalesInicial="."; //Modifique este dato para poder obtener la nomenclatura que utilizamos en mi pais
+separadorDecimales="."; //Modifique este dato para poder obtener la nomenclatura que utilizamos en mi pais
+separadorMiles=","; //Modifique este dato para poder obtener la nomenclatura que utilizamos en mi pais
+
+function arreglar(numero)
+{ 
+var numeroo=""; 
+numero=""+numero; 
+partes=numero.split(separadorDecimalesInicial);
+entero=partes[0];
+if(partes.length>1)
+{ 
+decimal=partes[1]; 
+} 
+cifras=entero.length; 
+cifras2=cifras 
+for(a=0;a<cifras;a++)
+{
+cifras2-=1;
+numeroo+=entero.charAt(a);
+if(cifras2%3==0 &&cifras2!=0)
+{
+numeroo+=separadorMiles;
+}
+} 
+if(partes.length>1)
+{
+numeroo+=separadorDecimales+decimal;
+}
+return numeroo 
+}
+/*esta es la parte que cambie para poder crear la accion que necesitaba en mi formulario */
+
+function formatoMoneda(form)
+{
+var moneda;
+m= form.pepito.value;
+moneda=parseFloat(m);
+document.getElementById('pepe').value=arreglar(moneda);
 }
 //-------------------------------------------- Impresion -----------------------------------------------------------------// 
     var cantidadEnTexto;
@@ -483,7 +594,7 @@ function pagare2(){
     document.getElementById('oculto12').style.display = 'block';
     document.getElementById('ocultoImagen').style.display = 'block';
     //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
-    var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_  ";
+    var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_       VEHICULO: _<u>"+arrGlobalF[h].vehiculo+"</u>_.";
     var despachadorV = "DESPACHADOR: "+despachadorR+"";
     var controlC = "<strong>CONTROL DE VENTAS Y COBRANZA</strong>";
     var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaRecepcionD+' </u>_ LA CANTIDAD DE _<u> $ '+parseFloat(total_merc).toFixed(2)+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
@@ -3856,7 +3967,7 @@ function loadVentas(lista){
                   }else{
                         formatNumber(parseFloat(lista[h].valorMercancia));
                         html+= '<tr class="seleccionar" id ="'+h+'" onclick="cambiarcolor(this); selectVentas('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" data-id="'+ lista[h].id +'"><td>' + lista[h].horadespacho + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + cantidad +'</td></tr>';
-                        htmlp+= '<tr class=" fila" style="font-size:8px;"><td class="text-center">' + no + '</td><td class="text-center">' + lista[h].horadespacho + '</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-center">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td class="text-right">' +parseFloat(lista[h].peso).toFixed(3) + '</td><td class="text-right"> $ ' + parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"><strong> $ ' + cantidad +'<strong></td></tr>';
+                        htmlp+= '<tr class=" fila" style="font-size:8px;"><td class="text-center">' + no + '</td><td class="text-center">' + lista[h].horadespacho + '</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td class="text-right">' +parseFloat(lista[h].peso).toFixed(3) + '</td><td class="text-right"> $ ' + parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"><strong> $ ' + cantidad +'<strong></td></tr>';
                         total_merc =parseFloat(total_merc) + parseFloat(lista[h].valorMercancia);
                         no++;
                       }
@@ -3967,8 +4078,9 @@ function loadVentasr(lista){
                 var p2=p+1;
                     idConta[saltos]='rec'+h;
                     saltos++;
+  
                     html+= '<tr style="font-size:13px; " class=""  data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td></td><td> <input type="text"   class="p'+p+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+'); nextInput('+h+');">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
-                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-center">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td ><td class="text-right">0.000</td><td class="text-right">'+parseFloat(lista[h].piezasv).toFixed(2) + '</td><td class="text-right">0.000</td><td class="text-right">'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv)).toFixed(2)+'</td><td class="text-right">0.000</td><td class="text-right"> $ ' +parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td class="text-right"> $ '+parseFloat(lista[h].venta).toFixed(2)+'</td></tr>';
+                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td ><td class="text-right"></td><td class="text-right">'+parseFloat(lista[h].piezasv).toFixed(2) + '</td><td class="text-right"></td><td class="text-right">'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv)).toFixed(2)+'</td><td class="text-right"></td><td class="text-right"> $ ' +parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"> $ ' + formatoMoneda1(parseFloat(lista[h].valorMercancia).toFixed(2)) + '</td><td class="text-right"> $ '+  formatoMoneda1(parseFloat(lista[h].venta).toFixed(2))+'</td></tr>';
                     num++;
                     v++;
                     total_merc2 += parseFloat(lista[h].valorMercancia);
@@ -3981,7 +4093,9 @@ function loadVentasr(lista){
                     saltos++;
                     html+= '<tr class="" style="font-size:13px; " data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3)+ '</td><td> ' + '<input type="text" id="p'+h+'" class="p'+p+' form-control " placeholder="0.00" onchange="nextInput2('+h+');" >' + '</td><td>  ' + '<input type="text"  class="p'+(p+1)+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec2('+h+', '+lista[h].peso+', '+lista[h].precioUnitario+','+v+'); nextInput('+h+');">'  + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td><div id="'+h+'"> $ 0.00</div></td></tr>';
                     p++;
-                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-center">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td  class="text-right">'+parseFloat(lista[h].peso).toFixed(3)+'</td><td class="text-right">'+ parseFloat(lista[h].piezasv).toFixed(2) + '</td><td class="text-right">'+parseFloat(lista[h].pesov).toFixed(3)+'</td><td class="text-right">'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv)).toFixed(2)+'</td><td class="text-right">'+(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov)).toFixed(3)+'</td><td class="text-right"> $ ' +parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td class="text-right"> $ '+parseFloat(lista[h].venta).toFixed(2)+'</td></tr>';
+                    
+                    
+                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td  class="text-right">'+parseFloat(lista[h].peso).toFixed(3)+'</td><td class="text-right">'+ parseFloat(lista[h].piezasv).toFixed(2) + '</td><td class="text-right">'+parseFloat(lista[h].pesov).toFixed(3)+'</td><td class="text-right">'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv)).toFixed(2)+'</td><td class="text-right">'+(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov)).toFixed(3)+'</td><td class="text-right"> $ ' +parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"> $ ' + formatoMoneda1(parseFloat(lista[h].valorMercancia).toFixed(2)) + '</td><td class="text-right"> $ '+formatoMoneda1(parseFloat(lista[h].venta).toFixed(2))  +'</td></tr>';
                     num++;
                     v++;
                     total_merc2 += parseFloat(lista[h].valorMercancia);
@@ -3995,8 +4109,8 @@ function loadVentasr(lista){
                     piezasT = new Array(n);
                     v=0;
                 var noVenta =parseFloat(total_merc2)-parseFloat(total_vent);
-                    htmlp+= '<tr class=" " style="font-size:8px;"><td colspan="9"></td><td class="text-right"> Totales: </td><td class="text-right"> $ '+parseFloat(total_merc2).toFixed(2)+'</td><td class="text-right"> $ '+parseFloat(total_vent).toFixed(2)+'</td></tr>';
-                    htmlp+= '<tr class=" " style="font-size:8px;"><td colspan="9"></td><td class="text-right"> No venta: </td><td class="text-center" colspan="2"> $ '+parseFloat(noVenta).toFixed(2)+'</td></tr>';
+                    htmlp+= '<tr class=" " style="font-size:8px;"><td colspan="9"></td><td class="text-right"> Totales: </td><td class="text-right"> $ '+formatoMoneda1((total_merc2).toFixed(2))+'</td><td class="text-right"> $ '+ formatoMoneda1(parseFloat(total_vent).toFixed(2))+'</td></tr>';
+                    htmlp+= '<tr class=" " style="font-size:8px;"><td colspan="9"></td><td class="text-right"> No venta: </td><td class="text-center" colspan="2"> $ '+formatoMoneda1((noVenta).toFixed(2))+'</td></tr>';
                     total_vent=0;
                     $('.contCata').html(html);
                     $('.contCatap').html(htmlp);
@@ -4056,7 +4170,7 @@ function loadVentasp2(lista){
                   ruta3=arrGlobalRuta[ii].nombre;
                 }
               }
-                  html3+= '<tr class="seleccionar" onclick="selectEV('+lista[h].id+');" data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
+                  html3+= '<tr class="seleccionar" onclick="selectEV('+lista[h].id+');" data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + formatoMoneda1(parseFloat(lista[h].efectivo).toFixed(2)) +'</td></tr>';
             }
           }
                   $('#modalEfectivo .contCataModal').html(html3);
@@ -4098,11 +4212,11 @@ function loadVentaspasadasVF(lista){
                 efect=parseFloat(lista[h].efectivo).toFixed(2);
                 sumaefe=parseFloat(lista[h].efectivo)+parseFloat(lista[h].otros);
               }
-                $('.sumaefec').html('$ '+parseFloat(sumaefe).toFixed(2));
-                $('.efectivo').html('$ '+parseFloat(efect).toFixed(2));
-                $('.f_s_dia').html('$ '+parseFloat(fsd).toFixed(2));
-                $('.otros1').html('$ '+parseFloat(otr).toFixed(2));
-                $('.t_venta_merca').html(' $ '+parseFloat(t_venta_).toFixed(2));
+                $('.sumaefec').html('$ '+formatoMoneda1(parseFloat(sumaefe).toFixed(2)));
+                $('.efectivo').html('$ '+formatoMoneda1(parseFloat(efect).toFixed(2)));
+                $('.f_s_dia').html('$ '+formatoMoneda1(parseFloat(fsd).toFixed(2)));
+                $('.otros1').html('$ '+formatoMoneda1(parseFloat(otr).toFixed(2)));
+                $('.t_venta_merca').html(' $ '+formatoMoneda1(parseFloat(t_venta_).toFixed(2)));
             }
           } 
 }
@@ -4131,7 +4245,7 @@ function loadVentasp3(lista){
                 ruta3=arrGlobalRuta[ii].nombre;
               }
             }
-                html+= '<tr class=" seleccionar"  onclick="selectEV('+lista[h].id+');"  data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].efectivo +'</td></tr>';
+                html+= '<tr class=" seleccionar"  onclick="selectEV('+lista[h].id+');"  data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + formatoMoneda1(parseFloat(lista[h].efectivo).toFixed(2)) +'</td></tr>';
           }
                 $('#modalEfectivo .contCataModal').html(html);
                 arrGlobalE = lista;
@@ -4145,11 +4259,11 @@ function loadVentaspasadasRS(lista){
         for(var h=0;h<lista.length; h++){
           if(dianum==6){
             if(lista[h].fechaf==today_v||lista[h].sfc==(noSemana)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
-              html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
+              html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+formatoMoneda1(parseFloat(lista[h].credito_p).toFixed(2)) + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
             }
           }else{
             if(lista[h].fechaf==today_v||lista[h].sfc==(noSemana+1)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
-              html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>'; 
+              html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+formatoMoneda1(parseFloat(lista[h].credito_p).toFixed(2)) + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>'; 
           }
         }
       }
@@ -4198,7 +4312,7 @@ function loadVentaspasadasTF(lista){
       for(var h=0;h<lista.length; h++){
         if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].f_s_real!=undefined) {
               html2+= '<tr class="" onclick="cambiarcolor(this);click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+');" data-id="'+ lista[h].id +'"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + parseFloat(lista[h].creditos).toFixed(2) + '</td><td> $' + parseFloat(lista[h].f_s_dia).toFixed(2) + '</td><td> $ ' +parseFloat(lista[h].loquedeberiatraer).toFixed(2) + '</td><td> $ '+parseFloat(lista[h].f_s_real).toFixed(2) + '</td></tr>';
-              htmlp+= '<tr  style="font-size:7px; "><td class="text-center"> ' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $' + parseFloat(lista[h].creditos).toFixed(2) + '</td><td class="text-center"> $' + parseFloat(lista[h].f_s_dia).toFixed(2) + '</td><td class="text-center"> $ ' +parseFloat(lista[h].loquedeberiatraer).toFixed(2) + '</td><td class="text-center"> $ '+parseFloat(lista[h].f_s_real).toFixed(2) + '</td></tr>';
+              htmlp+= '<tr  style="font-size:7px; "><td class="text-center"> ------' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(parseFloat(lista[h].creditos).toFixed(2)) + '</td><td class="text-center"> $ ' + formatoMoneda1(parseFloat(lista[h].f_s_dia).toFixed(2)) + '</td><td class="text-center"> $ ' +formatoMoneda1(parseFloat(lista[h].loquedeberiatraer).toFixed(2)) + '</td><td class="text-center"> $ '+ formatoNumero.new(parseFloat(lista[h].f_s_real)) + '</td></tr>';
         }
       }
               $('.contCata2').html(html2);

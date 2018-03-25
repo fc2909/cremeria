@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20180313001956) do
     t.string   "nombre"
     t.string   "descripcion"
     t.string   "unidades"
-    t.string   "jerarquia"
+    t.integer  "jerarquia"
     t.integer  "activo"
     t.string   "n1"
     t.string   "n2"

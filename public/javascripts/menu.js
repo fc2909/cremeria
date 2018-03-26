@@ -8676,7 +8676,7 @@ $('.addCliente1').html(boton);
         map.addListener('click', function(e) {
         placeMarkerAndPanTo(e.latLng, map);
   });
-
+sdfvgerbgvrebvgebvgtgbreb
 
         // This event listener will call addMarker() when the map is clicked.
         map.addListener('click', function(event) {

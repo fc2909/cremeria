@@ -1611,7 +1611,7 @@ porcentajeTotal=0;
 
   encuentra=1; 
 identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
-identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
+identificacionP= '<tr style="font-size:6px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
       
         }
 
@@ -1859,10 +1859,10 @@ if(html!=""){
           boni+=parseFloat(bonificacionTotal);
           s_vent+=parseFloat(ventasT);
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+parseFloat(creditosT).toFixed(2)+'</td> <td> $ '+parseFloat(bonificacionTotal).toFixed(2)+'</td><td></td><td> $ '+parseFloat(ventasT).toFixed(2)+'</td> '+productoTotalS+'</tr>';
-htmlP+='<tr style="font-size:8px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-center" ><strong> $ '+parseFloat(creditosT).toFixed(2)+'</strong></td> <td class=" text-center" ><strong> $ '+parseFloat(bonificacionTotal).toFixed(2)+'</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(ventasT).toFixed(2)+'</strong></td> '+productoTotalSP+'</tr>';
+htmlP+='<tr style="font-size:6px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-center" ><strong> $ '+parseFloat(creditosT).toFixed(2)+'</strong></td> <td class=" text-center" ><strong> $ '+parseFloat(bonificacionTotal).toFixed(2)+'</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(ventasT).toFixed(2)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
 
-htmlP+='<tr class="obscuro"><td colspan="'+renglon+'" style="font-size:8px;" class=" text-center">.</td></tr>';
+htmlP+='<tr class="obscuro"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
 
 }
 
@@ -1947,7 +1947,7 @@ porcentajeTotal=0;
 }
          encuentra=1; 
 identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
-identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
+identificacionP= '<tr style="font-size:6px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
       
         }
 
@@ -2187,17 +2187,17 @@ var su=0;
              titulos=' <th class="letras">RUTA</th> <th class="letras">Tipo</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+titulos;
             
 
-             titulosP=' <th colspan="1" class=" text-center" style="width: 70px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">Tipo</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">CRÉDITOS</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">VENTA</th>'+titulosP;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 70px; font-size:8px;">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">Tipo</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">CRÉDITOS</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">VENTA</th>'+titulosP;
 
 if(html!=""){
   credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
           s_vent+=parseFloat(ventasT);
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>DETALLE</td><td></td><td>$ '+parseFloat(creditosT).toFixed(2)+'</td> <td> $ '+parseFloat(bonificacionTotal).toFixed(2)+'</td><td></td><td>$ '+parseFloat(ventasT).toFixed(2)+'</td> '+productoTotalS+'</tr>';
-htmlP+='<tr style="font-size:8px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>DETALLE</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(creditosT).toFixed(2)+'</strong></td> <td class=" text-center" ><strong>$ '+parseFloat(bonificacionTotal).toFixed(2)+'</strong></td><td></td><td class=" text-center" ><strong> $ '+parseFloat(ventasT).toFixed(2)+'</strong></td> '+productoTotalSP+'</tr>';
+htmlP+='<tr style="font-size:6px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>DETALLE</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(creditosT).toFixed(2)+'</strong></td> <td class=" text-center" ><strong>$ '+parseFloat(bonificacionTotal).toFixed(2)+'</strong></td><td></td><td class=" text-center" ><strong> $ '+parseFloat(ventasT).toFixed(2)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
 
-htmlP+='<tr ><td colspan="'+renglon+'" style="font-size:8px;" class=" text-center">.</td></tr>';
+htmlP+='<tr ><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
 
 }
 
@@ -2288,7 +2288,7 @@ porcentajeTotal=0;
 }
          encuentra=1; 
 identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
-identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
+identificacionP= '<tr style="font-size:6px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
       
         }
 
@@ -2535,10 +2535,10 @@ if(html!=""){
           boni+=parseFloat(bonificacionTotal);
           s_vent+=parseFloat(ventasT);
   html+='<tr  style="background:black; font-size:12px;"><td>TOTAL</td> <td>FORANEO</td><td></td><td>$ '+parseFloat(creditosT).toFixed(2)+'</td> <td>$ '+parseFloat(bonificacionTotal).toFixed(2)+'</td><td></td><td>$ '+parseFloat(ventasT).toFixed(2)+'</td> '+productoTotalS+'</tr>';
-htmlP+='<tr style="font-size:8px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>FORANEO</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(creditosT).toFixed(2)+'</strong></td> <td class=" text-center" ><strong>$ '+parseFloat(bonificacionTotal).toFixed(2)+'</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(ventasT).toFixed(2)+'</strong></td> '+productoTotalSP+'</tr>';
+htmlP+='<tr style="font-size:6px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>FORANEO</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(creditosT).toFixed(2)+'</strong></td> <td class=" text-center" ><strong>$ '+parseFloat(bonificacionTotal).toFixed(2)+'</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(ventasT).toFixed(2)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
 
-htmlP+='<tr ><td colspan="'+renglon+'" style="font-size:8px;" class=" text-center">.</td></tr>';
+htmlP+='<tr ><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
 
 }
 
@@ -2548,6 +2548,343 @@ htmlP+='<tr ><td colspan="'+renglon+'" style="font-size:8px;" class=" text-cente
                $('.titulo2P').html(titulosP); 
                $('.contCataForaneo').html(html); 
                $('.contCataForaneoP').html(htmlP); 
+              }
+              //arrGlobal2 = lista;
+             // $('.imprimir').html('');
+              for(var w=0;w<prodTotales.length; w++){
+     prodTotales[w]+=parseFloat(prodT[w]);
+}
+prodT=0;
+}
+function loadVentaDiariaRestaurante(lista){ //por categoria
+                   var html = '';
+          var htmlP = '';
+           var identificacion='';
+           var identificacionP='';
+          var bonificacionT=0;
+          var t_venta_mercaT=0;
+          var mer;
+          var pNoVenta;
+          var creditosT=0; 
+          var bonificacionTotal=0; 
+          var ventasT=0; 
+          var productoTotalS=""; 
+          var productoTotal=0; 
+          var productoTotalP=0; 
+          var prodT = new Array(arrGlobalCategoria.length);
+          var porcentajeTotal=0;
+          var credits=0;
+          var encuentra=0;
+          var diferenciaT=0;
+      for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+        if(arrGlobalEmpleados[hh2].t_venta==4&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
+          
+       for(var j=0;j<arrGlobalF.length; j++){
+
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+          for (var i=0; i < arrGlobalRuta.length; i++) {
+            if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
+              ruta3=arrGlobalRuta[i].nombre;
+              rutas=arrGlobalF[j].ruta;
+            }
+          }
+          mer=arrGlobalF[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          //diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+          pNoVenta=((mer-arrGlobalF[j].t_venta_merca)*100)/parseFloat(arrGlobalF[j].t_venta_merca);
+          diferenciaT+=( parseFloat(mer) - parseFloat(arrGlobalF[j].t_venta_merca));
+    
+          
+          if(arrGlobalF[j].t_venta_merca==0)pNoVenta=100;
+          if(arrGlobalF[j].t_venta_merca==0)diferenciaT=0;
+if(arrGlobalF[j].otros==null||arrGlobalF[j].otros==NaN||arrGlobalF[j].otros==undefined){
+  bonificacionT+=parseFloat(0);
+  
+}else{
+  bonificacionT+=parseFloat(arrGlobalF[j].otros);
+  
+}
+          //bonificacionT+=parseFloat(arrGlobalF[j].creditos);
+          t_venta_mercaT+=parseFloat(arrGlobalF[j].t_venta_merca);
+
+
+
+if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].creditos==undefined){
+  credits=0
+  
+}else{
+  credits=arrGlobalF[j].creditos;
+  
+}
+porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+if(diferenciaT==0){
+porcentajeTotal=0;
+}else{
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  
+}
+         encuentra=1; 
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
+identificacionP= '<tr style="font-size:6px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td >$ ' + parseFloat(credits).toFixed(2) + '</td> <td >$ ' + (bonificacionT).toFixed(2) + '</td>  <td > % ' + (porcentajeTotal).toFixed(2) + '</td> <td >$ ' + (t_venta_mercaT).toFixed(2) + '</td>';
+      
+        }
+
+        }
+ventasT+=t_venta_mercaT;
+creditosT+=parseFloat(credits);
+bonificacionTotal+=parseFloat(bonificacionT);
+        var productosT="";
+        var productosTP="";
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+              
+              var titulos=""; 
+              var titulosP=""; 
+              var prod = new Array(arrGlobalCategoria.length);
+              var prodN = new Array(arrGlobalCategoria.length);
+              var prodC = new Array(arrGlobalCategoria.length);
+              
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                   
+                    if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                      pasa=1;
+
+                      if(lista[h].dfc==1){
+                        if(lista[h].medida==1){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        }
+                        if(lista[h].medida==2){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                        }
+                        if(lista[h].medida==3){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==2){
+                          if(lista[h].medida==1){
+                            m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            mp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            mp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            mp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==3){
+                          if(lista[h].medida==1){
+                            x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            xp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            xp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==4){
+                          if(lista[h].medida==1){
+                            j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            jp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            jp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            jp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==5){
+                          if(lista[h].medida==1){
+                            v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            vp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            vp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            vp+=0;
+                          }
+                        }
+                        if(lista[h].dfc==6){
+                          if(lista[h].medida==1){
+                            s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            sp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          }
+                          if(lista[h].medida==2){
+                            s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            sp+=0;
+                          }
+                          if(lista[h].medida==3){
+                            s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            sp +=0;
+                          }
+                        }
+                      }
+                    }
+              if((lista.length-1)==h&&pasa==1){
+              var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+              var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+                
+               
+                  
+                  if(suma2==0){
+                    for(var y=0;y<arrGlobalCategoria.length; y++){
+                           if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
+                       
+                            
+                           suma=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma);
+                           if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0}
+                           prod[y]+= parseFloat(suma);
+                      
+                      
+
+
+                      
+
+
+
+                           prodN[y]=arrGlobalCategoria[y].nombre;
+                           prodC[y]=arrGlobalInventario[hh].tipoP;
+                           } 
+                    }
+                 
+                  }else{
+                     for(var y=0;y<arrGlobalCategoria.length; y++){
+                           if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
+                         
+                           suma2=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma2);
+                           if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0;}
+                           prod[y]+= parseFloat(suma2);
+                 
+
+
+
+                           prodN[y]=arrGlobalCategoria[y].nombre;
+                           prodC[y]=arrGlobalInventario[hh].tipoP;
+                           } 
+                    }
+                  }
+               
+                  l=0;
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+                  cambio =1;  
+                  }
+                }
+                  cambio =0;  
+                  pasa=0;
+                }
+cantidadproducto=0;
+var su=0;
+
+        for(var y=0;y<arrGlobalCategoria.length; y++){
+          titulos+='<th class="letras text-center">'+arrGlobalCategoria[y].nombre+'</th>';
+          titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
+          if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
+
+              if(prodC[y]==arrGlobalCategoria[y].id){
+                   // productoTotal+=parseFloat(prod[y]);
+                     productosT+= '<td >'+(prod[y]).toFixed(2)+' </td>';
+                     productosTP+= '<td >'+(prod[y]).toFixed(2)+' </td>';
+                      prodT[y]+=parseFloat(prod[y]);
+              }else{
+                     productosT+= '<td >  </td>';
+                     productosTP+= '<td >  </td>';
+              //productoTotal+=0;
+             prodT[y]+=0;
+              
+              }
+             
+          productoTotal+='<td  style="background:black;" >'+(prodT[y]).toFixed(2)+' </td>';
+          productoTotalP+='<td  class="text-center" ><strong>'+(prodT[y]).toFixed(2)+' </strong></td>';
+         
+        }
+        //alert("vendedor "+arrGlobalCategoria.length+" - "+prod.length);
+        
+        prodN=0;
+         prodC=0;
+         prod =0;
+              
+         if(identificacion==''){html=html;}else{
+          html+=identificacion+productosT+'</tr>';
+          htmlP+=identificacionP+productosTP+'</tr>';
+          productoTotalS=productoTotal;
+          productoTotalSP=productoTotalP;
+          
+         }
+        productoTotal='';
+        productoTotalP='';
+        productosT='';
+        productosTP='';
+        identificacion='';
+        identificacionP='';
+        //alert(prod.length+" - "+prodN.length);
+        bonificacionT=0;
+        credits=0;
+        t_venta_mercaT=0;
+       }
+
+     }
+             titulos=' <th class="letras">RUTA</th> <th class="letras">Tipo</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+titulos;
+
+
+             titulosP=' <th colspan="1" class=" text-center" style="width: 70px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">Tipo</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">CRÉDITOS</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">VENTA</th>'+titulosP;
+           
+if(html!=""){
+  credi+= parseFloat(creditosT);
+          boni+=parseFloat(bonificacionTotal);
+          s_vent+=parseFloat(ventasT);
+  html+='<tr  style="background:black; font-size:12px;"><td>TOTAL</td> <td>RESTAURANTE</td><td></td><td>$ '+parseFloat(creditosT).toFixed(2)+'</td> <td>$ '+parseFloat(bonificacionTotal).toFixed(2)+'</td><td></td><td>$ '+parseFloat(ventasT).toFixed(2)+'</td> '+productoTotalS+'</tr>';
+htmlP+='<tr style="font-size:6px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>RESTAURANTES</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(creditosT).toFixed(2)+'</strong></td> <td class=" text-center" ><strong>$ '+parseFloat(bonificacionTotal).toFixed(2)+'</strong></td><td></td><td class=" text-center" ><strong>$ '+parseFloat(ventasT).toFixed(2)+'</strong></td> '+productoTotalSP+'</tr>';
+var renglon = 7+parseInt(arrGlobalCategoria.length)
+
+htmlP+='<tr ><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
+
+}
+
+              if(html==undefined){html='';}else{
+
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataRestaurante').html(html); 
+               $('.contCataRestauranteP').html(htmlP); 
               }
               //arrGlobal2 = lista;
              // $('.imprimir').html('');
@@ -8675,7 +9012,7 @@ getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar
 }
 function totalesCategorias(){
 
-var html='<tr  style="font-size:8px;   " class=" text-center"> <td><strong>TOTALES</strong></td><td></td><td></td><td><strong>$ '+(credi).toFixed(2)+'</strong></td> <td><strong>$ '+(boni).toFixed(2)+'</strong></td><td></td><td><strong> $ '+(s_vent).toFixed(2)+'</strong></td>';
+var html='<tr  style="font-size:6px;   " class=" text-center"> <td><strong>TOTALES</strong></td><td></td><td></td><td><strong>$ '+(credi).toFixed(2)+'</strong></td> <td><strong>$ '+(boni).toFixed(2)+'</strong></td><td></td><td><strong> $ '+(s_vent).toFixed(2)+'</strong></td>';
 //alert(cred+' - '+boni);
   for(var h=0;h<prodTotales.length; h++){
     
@@ -8701,6 +9038,7 @@ scv = parseInt(semanaVS.substring(6,8))-1;
 
 
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaMayoreo);
+getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaRestaurante);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaForaneo);
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaDetalle);
 

@@ -98,7 +98,8 @@ margin: 10% 0%;
   position: absolute;
   
    top: 20px;
-   
+   left: -190px;
+   width: 750px;
    margin: 10px;
    color: black;
  }
@@ -286,9 +287,9 @@ opacity:.1;
 }
 .ImagenDurango2{
    position: absolute;
-   top: 200px;
+   top: 100px;
 height: 500px;
-left: 30%;
+left: 10%;
 opacity:.1;
 }
 .imagenes{

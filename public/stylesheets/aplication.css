@@ -105,6 +105,8 @@ margin: 10% 0%;
  z-index: 6;
  }
 
+  
+
  .tablaImprimirVDC {
 
   position: absolute;
@@ -168,7 +170,7 @@ width: 550px;
   position: absolute;
    text-align: center;
    top: 0px;
-   left: 40%;
+   left: 25%;
     z-index: 5;
  }
 .pagareD {
@@ -298,13 +300,14 @@ opacity:.1;
    top: 100px;
 height: 500px;
 left: 10%;
-opacity:.1;
+opacity:.3;
 z-index: 4;
 }
 .imagenes{
   height: 200px;
   width: 160px;
   
+
 
   display:block!important;
 -webkit-transition:-webkit-transform .1s ease-out;
@@ -569,4 +572,8 @@ z-index: 3;
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+td, th,tr 
+{
+    border: 1px solid black; /* tendrá un borde de 1 px */
 }

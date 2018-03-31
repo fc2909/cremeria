@@ -17,6 +17,7 @@
    top: 28px;
    left: 6%;
    margin: 10px;
+   z-index: 6;
 }
 .gas{
   position: absolute;
@@ -24,6 +25,7 @@
    top: 28px;
    left: 15%;
    margin: 10px;
+   z-index: 6;
 }
 .km{
   position: absolute;
@@ -31,6 +33,7 @@
    top: 28px;
    left: 80%;
    margin: 10px;
+   z-index: 6;
 }
 .diesel{
   position: absolute;
@@ -38,6 +41,7 @@
    top: 40px;
    left: 6%;
    margin: 10px;
+   z-index: 6;
 }
 
 .nombreVendedor {
@@ -46,6 +50,7 @@
    top: 15px;
    left: 5%;
    margin: 10px;
+   z-index: 6;
  }
  .fechaDespacho{
   position: absolute;
@@ -61,6 +66,7 @@
    top: 915px;
    left: 5%;
    margin: 10px;
+   z-index: 6;
  }
  .nombreDespachador{
  position: absolute;
@@ -68,6 +74,7 @@
    top: 925px;
    left: 5%;
    margin: 10px;
+   z-index: 6;
  }
  .negro{
   color: black;
@@ -78,6 +85,7 @@
    top: 25px;
    left: 5%;
    margin: 10px;
+    z-index: 6;
  }
  .tablaImprimirVD {
   position: absolute;
@@ -123,7 +131,8 @@ margin: 10% 0%;
    top: 25px;
    left: 5%;
    margin: 10px;
-   color: black;
+
+    z-index: 6;
  }
 
  .tablaImprimir2 {
@@ -132,6 +141,7 @@ margin: 10% 0%;
    top: 740px;
    left: 5%;
    margin: 10px;
+ z-index: 6;
  }
   .tablaImprimir3 {
   position: absolute;
@@ -139,6 +149,7 @@ margin: 10% 0%;
    top: 750px;
 
    left: 483px;
+ z-index: 6;
  }
   .tablaImprimir4 {
   position: absolute;
@@ -146,6 +157,7 @@ margin: 10% 0%;
    top: 775px;
 
    left: 483px;
+ z-index: 6;
  }
   .tablaImprimir5 {
   position: absolute;
@@ -154,6 +166,7 @@ margin: 10% 0%;
 
    left: 483px;
 
+ z-index: 6;
  }
  .fila{
 width: 550px;
@@ -179,6 +192,7 @@ width: 550px;
    top: 840px;
    left: 5%;
    margin: 10px;
+   z-index: 6;
 }
   #floating-panel {
         position: absolute;
@@ -294,6 +308,7 @@ body{
 height: 500px;
 left: 15%;
 opacity:.1;
+z-index: 4;
 }
 .ImagenDurango2{
    position: absolute;

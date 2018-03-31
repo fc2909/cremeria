@@ -420,8 +420,48 @@ var formatoNumero = {
  return this.formatear(num);
  }
 }
+function formatoMoneda2(number) {
+    var number1 = number.toString(), result = '', estado = true;
+    if (parseInt(number1) < 0) {
+        estado = false;
+        number1 = parseInt(number1) * -1;
+        number1 = number1.toString();
+    }
+    if (number1.indexOf('.') == -1) {
+        while (number1.length > 3) {
+            result = ',' + '' + number1.substr(number1.length - 3) + '' + result;
+            number1 = number1.substring(0, number1.length - 3);
+        }
+        result = number1 + result;
+        if (estado == false) {
+            result = '-' + result;
+        }
+    }
+    else {
+        var pos = number1.indexOf('.');
+        var numberInt = number1.substring(0, pos);
+        var numberDec = number1.substring(pos, number1.length);
+        while (numberInt.length > 3) {
+            result = ',' + '' + numberInt.substr(numberInt.length - 3) + '' + result;
+            numberInt = numberInt.substring(0, numberInt.length - 3);
+        }
+        result = numberInt + result + numberDec.substring(0,4);
+        if (estado == false) {
+            result = '-' + result;
+        }
+    }
+
+    return result;
+}
 
 function formatoMoneda1(number) {
+  
+  if(number==null){
+    var result=0;
+    return result;
+  }else{
+    
+
     var number1 = number.toString(), result = '', estado = true;
     if (parseInt(number1) < 0) {
         estado = false;
@@ -454,7 +494,7 @@ function formatoMoneda1(number) {
 
     return result;
 }
-
+  }
 
 separadorDecimalesInicial="."; //Modifique este dato para poder obtener la nomenclatura que utilizamos en mi pais
 separadorDecimales="."; //Modifique este dato para poder obtener la nomenclatura que utilizamos en mi pais
@@ -575,7 +615,7 @@ function pagare2(){
     convertirNumLetras(total_merc);
     for(var h=0;h<upin.length; h++){
     if(pin==upin[h].pin){
-        usuario="CAPTURISTA: <u> "+ upin[h].usuario+". </u>";    
+        usuario="CAPTURISTA: <strong>"+ upin[h].usuario+".</strong>";    
     }
     }
 
@@ -595,8 +635,10 @@ function pagare2(){
     document.getElementById('oculto11').style.display = 'block';
     document.getElementById('oculto12').style.display = 'block';
     document.getElementById('ocultoImagen').style.display = 'block';
+    document.getElementById('fondoBlanco').style.display = 'block';
+
     //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
-    var nombreVendedor = "RUTA _<u>"+ruta3+"</u>_ VENDEDOR: _<u> "+nombre_vend+". </u>_       VEHICULO: _<u>"+arrGlobalF[h].vehiculo+"</u>_.";
+    var nombreVendedor = "RUTA <strong> "+ruta3+".</strong>       VENDEDOR: <strong>"+nombre_vend+". </strong>      VEHICULO: <strong>"+arrGlobalF[h].vehiculo+".</strong>";
     var despachadorV = "DESPACHADOR: "+despachadorR+"";
     var controlC = "<strong>CONTROL DE VENTAS Y COBRANZA</strong>";
     var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaRecepcionD+' </u>_ LA CANTIDAD DE _<u> $ '+parseFloat(total_merc).toFixed(2)+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
@@ -619,12 +661,7 @@ function pagare2(){
         $('.gas').html("GAS: "+gas+" L.");
         $('.km').html("KM: "+km);
     }
-    if(tipoCombustible==4){
-        $('.diesel').html("DIESEL: "+diesel+" L.");
-        $('.km').html("KM: "+km);
-    }
-        $('.pagareD').html(pagare);
-      //$('.fondoImagen').html(imagenFondo);
+;
         $('.controlC').html(controlC);
         $('.nombreVendedor').html(nombreVendedor);
         $('.nombreCapturista').html(usuario);
@@ -647,6 +684,8 @@ function pagare2(){
         document.getElementById('oculto11').style.display = 'none';
         document.getElementById('oculto12').style.display = 'none';
         document.getElementById('ocultoImagen').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
 }
 function imprimirVD3(){
         document.getElementById('oculto2').style.display = 'block';
@@ -909,10 +948,10 @@ function loadVentasF(lista){
 
                   valor=(lista[h].piezas-lista[h].piezasv)*lista[h].precioUnitario;
                   //suma2(valor, h);
-                  $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                  $('#'+h+'').html('$ '+formatoMoneda1(valor));
                   //alert(lista[h].piezasv);
-                  t_v2[num]=parseFloat(lista[h].valorMercancia);
-                  //alert("Venta___: "+lista[h].valorMercancia);
+                  t_v2[num]=lista[h].valorMercancia;
+                  // ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
                   num++;
                   total = total+valor;
 
@@ -921,9 +960,9 @@ function loadVentasF(lista){
                     $('#rec'+h+'').val(lista[h].piezasv);
                   valor=(lista[h].piezas-lista[h].piezasv)*lista[h].precioUnitario;
                   //suma2(valor, h);
-                  $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                  $('#'+h+'').html('$ '+formatoMoneda1(valor));
                   //alert(lista[h].piezasv);
-                  t_v2[num]=parseFloat(lista[h].valorMercancia);
+                  t_v2[num]=lista[h].valorMercancia;
                   //alert("Venta___: "+lista[h].valorMercancia);
                   num++;
                   total = total+valor;
@@ -939,7 +978,7 @@ if(lista[h].piezasv==0&&lista[h].pesov==0){
                 //alert(lista[h].pesov);
                   valor=(lista[h].peso-lista[h].pesov)*lista[h].precioUnitario;
                 //suma2(valor, h);
-                  $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                  $('#'+h+'').html('$ '+formatoMoneda1(valor));
                 //alert("Venta____: "+lista[h].valorMercancia);
                   t_v2[num]=parseFloat(lista[h].valorMercancia);
                   num++;
@@ -954,7 +993,7 @@ if(lista[h].piezasv==0&&lista[h].pesov==0){
                 //alert(lista[h].pesov);
                   valor=(lista[h].peso-lista[h].pesov)*lista[h].precioUnitario;
                 //suma2(valor, h);
-                  $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                  $('#'+h+'').html('$ '+formatoMoneda1(valor));
                 //alert("Venta____: "+lista[h].valorMercancia);
                   t_v2[num]=parseFloat(lista[h].valorMercancia);
                   num++;
@@ -970,7 +1009,7 @@ if(lista[h].piezasv==0&&lista[h].pesov==0){
                 if(parseFloat(lista[h].peso)==0){
                     $('#rec'+h+'').val(lista[h].piezasv);
                     valor=(lista[h].piezas-lista[h].piezasv)*lista[h].precioUnitario;
-                    $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                    $('#'+h+'').html('$ '+formatoMoneda1(valor));
                     t_v2[num]=lista[h].venta;
                     num++;
                     total = total+valor;
@@ -978,7 +1017,7 @@ if(lista[h].piezasv==0&&lista[h].pesov==0){
                     $('#p'+h+'').val(lista[h].piezasv);
                     $('#rec'+h+'').val(lista[h].pesov);
                     valor=(lista[h].peso-lista[h].pesov)*lista[h].precioUnitario;
-                    $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                    $('#'+h+'').html('$ '+formatoMoneda1(valor));
                     t_v2[num]=parseFloat(lista[h].venta);
                     num++;
                     total = total+valor;
@@ -988,7 +1027,7 @@ if(lista[h].piezasv==0&&lista[h].pesov==0){
           }
                   arrGlobalVF = lista;
                   s_vent2=total;
-                  totalV = ' <h3 class="letras">VENTA TOTAL: $ '+(total).toFixed(2)+'</h3>';
+                  totalV = ' <h3 class="letras">VENTA TOTAL: $ '+formatoMoneda1(total)+'</h3>';
                   $(".totalVentas").html(totalV);
         document.getElementById('loader').style.display = 'none';
           
@@ -4368,7 +4407,7 @@ function totalrec(h,piezas,pUnitario,rec){
                 t_v[h]=parseFloat(piezas1).toFixed(2);
                 piezasT[h]=parseFloat(piezas1).toFixed(2) ;
                 suma(valor, h,rec);
-                $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                $('#'+h+'').html('$ '+formatoMoneda1(valor));
 }
 function totalrec2(h,peso,pUnitario,rec){
             var peso1 = $('#rec'+h+'').val();
@@ -4380,7 +4419,7 @@ function totalrec2(h,peso,pUnitario,rec){
                 t_v[h]=parseFloat(peso1).toFixed(2);
                 piezasT[h]=parseFloat(pieza1).toFixed(2);
                 suma(valor, h, rec);
-                $('#'+h+'').html('$ '+parseFloat(valor).toFixed(2));
+                $('#'+h+'').html('$ '+formatoMoneda1(valor));
 }
 function suma(valor, r, v1){
             var totales;
@@ -4393,7 +4432,7 @@ function suma(valor, r, v1){
                   s_vent += + parseFloat(t_v2[h]);
                 }
               }
-              totales = ' <h3 class="letras">VENTA TOTAL: $ '+(s_vent).toFixed(2)+'</h3>';
+              totales = ' <h3 class="letras">VENTA TOTAL: $ '+formatoMoneda1(s_vent)+'</h3>';
               s_vent2=s_vent;
               s_vent=0;
               $(".totalVentas").html(totales);
@@ -4436,8 +4475,8 @@ function loadVentasr(lista){
                     idConta[saltos]='rec'+h;
                     saltos++;
   
-                    html+= '<tr style="font-size:13px; " class=""  data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td></td><td> <input type="text"   class="p'+p+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+'); nextInput('+h+');">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
-                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td ><td class="text-right"></td><td class="text-right">'+parseFloat(lista[h].piezasv).toFixed(2) + '</td><td class="text-right"></td><td class="text-right">'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv)).toFixed(2)+'</td><td class="text-right"></td><td class="text-right"> $ ' +parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"> $ ' + formatoMoneda1(parseFloat(lista[h].valorMercancia).toFixed(2)) + '</td><td class="text-right"> $ '+  formatoMoneda1(parseFloat(lista[h].venta).toFixed(2))+'</td></tr>';
+                    html+= '<tr style="font-size:13px; " class=""  data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td></td><td> <input type="text"   class="p'+p+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+'); nextInput('+h+');">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
+                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td ><td class="text-right"></td><td class="text-right">'+formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right"></td><td class="text-right">'+formatoMoneda1(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</td><td class="text-right"></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+  formatoMoneda1(lista[h].venta)+'</td></tr>';
                     num++;
                     v++;
                     total_merc2 += parseFloat(lista[h].valorMercancia);
@@ -4448,11 +4487,11 @@ function loadVentasr(lista){
                     saltos++;
                     idConta[saltos]='rec'+h;
                     saltos++;
-                    html+= '<tr class="" style="font-size:13px; " data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3)+ '</td><td> ' + '<input type="text" id="p'+h+'" class="p'+p+' form-control " placeholder="0.00" onchange="nextInput2('+h+');" >' + '</td><td>  ' + '<input type="text"  class="p'+(p+1)+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec2('+h+', '+lista[h].peso+', '+lista[h].precioUnitario+','+v+'); nextInput('+h+');">'  + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) + '</td><td><div id="'+h+'"> $ 0.00</div></td></tr>';
+                    html+= '<tr class="" style="font-size:13px; " data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda2(lista[h].peso)+ '</td><td> ' + '<input type="text" id="p'+h+'" class="p'+p+' form-control " placeholder="0.00" onchange="nextInput2('+h+');" >' + '</td><td>  ' + '<input type="text"  class="p'+(p+1)+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec2('+h+', '+lista[h].peso+', '+lista[h].precioUnitario+','+v+'); nextInput('+h+');">'  + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td><div id="'+h+'"> $ 0.00</div></td></tr>';
                     p++;
                     
                     
-                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td  class="text-right">'+parseFloat(lista[h].peso).toFixed(3)+'</td><td class="text-right">'+ parseFloat(lista[h].piezasv).toFixed(2) + '</td><td class="text-right">'+parseFloat(lista[h].pesov).toFixed(3)+'</td><td class="text-right">'+(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv)).toFixed(2)+'</td><td class="text-right">'+(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov)).toFixed(3)+'</td><td class="text-right"> $ ' +parseFloat(lista[h].precioUnitario).toFixed(2) + '</td><td class="text-right"> $ ' + formatoMoneda1(parseFloat(lista[h].valorMercancia).toFixed(2)) + '</td><td class="text-right"> $ '+formatoMoneda1(parseFloat(lista[h].venta).toFixed(2))  +'</td></tr>';
+                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td  class="text-right">'+formatoMoneda1(lista[h].peso)+'</td><td class="text-right">'+ formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right">'+formatoMoneda2(lista[h].pesov)+'</td><td class="text-right">'+formatoMoneda2(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</td><td class="text-right">'+formatoMoneda2(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov))+'</td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].venta)  +'</td></tr>';
                     num++;
                     v++;
                     total_merc2 += parseFloat(lista[h].valorMercancia);
@@ -4466,8 +4505,8 @@ function loadVentasr(lista){
                     piezasT = new Array(n);
                     v=0;
                 var noVenta =parseFloat(total_merc2)-parseFloat(total_vent);
-                    htmlp+= '<tr class=" " style="font-size:8px;"><td colspan="9"></td><td class="text-right"> Totales: </td><td class="text-right"> $ '+formatoMoneda1((total_merc2).toFixed(2))+'</td><td class="text-right"> $ '+ formatoMoneda1(parseFloat(total_vent).toFixed(2))+'</td></tr>';
-                    htmlp+= '<tr class=" " style="font-size:8px;"><td colspan="9"></td><td class="text-right"> No venta: </td><td class="text-center" colspan="2"> $ '+formatoMoneda1((noVenta).toFixed(2))+'</td></tr>';
+                    htmlp+= '<tr class=" " style="font-size:8px;"><td colspan="9"></td><td class="text-right grisclaro"> TOTALES: </td><td class="text-right"> $ '+formatoMoneda1(total_merc2)+'</td><td class="text-right"> $ '+ formatoMoneda1(total_vent)+'</td></tr>';
+                    htmlp+= '<tr class=" " style="font-size:8px;"><td colspan="9"></td><td class="text-right grisclaro"> NO VENTA: </td><td class="text-center" colspan="2"> $ '+formatoMoneda1(noVenta)+'</td></tr>';
                     total_vent=0;
                     $('.contCata').html(html);
                     $('.contCatap').html(htmlp);
@@ -4571,11 +4610,11 @@ function loadVentaspasadasVF(lista){
                 efect=parseFloat(lista[h].efectivo).toFixed(2);
                 sumaefe=parseFloat(lista[h].efectivo)+parseFloat(lista[h].otros);
               }
-                $('.sumaefec').html('$ '+formatoMoneda1(parseFloat(sumaefe).toFixed(2)));
-                $('.efectivo').html('$ '+formatoMoneda1(parseFloat(efect).toFixed(2)));
-                $('.f_s_dia').html('$ '+formatoMoneda1(parseFloat(fsd).toFixed(2)));
-                $('.otros1').html('$ '+formatoMoneda1(parseFloat(otr).toFixed(2)));
-                $('.t_venta_merca').html(' $ '+formatoMoneda1(parseFloat(t_venta_).toFixed(2)));
+                $('.sumaefec').html('$ '+formatoMoneda1(sumaefe));
+                $('.efectivo').html('$ '+formatoMoneda1(efect));
+                $('.f_s_dia').html('$ '+formatoMoneda1(fsd));
+                $('.otros1').html('$ '+formatoMoneda1(otr));
+                $('.t_venta_merca').html(' $ '+formatoMoneda1(t_venta_));
             }
           } 
 }
@@ -4672,8 +4711,8 @@ function loadVentaspasadasTF(lista){
           var t_vendido = today;
       for(var h=0;h<lista.length; h++){
         if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].f_s_real!=undefined) {
-              html2+= '<tr class="" onclick="cambiarcolor(this);click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+');" data-id="'+ lista[h].id +'"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + parseFloat(lista[h].creditos).toFixed(2) + '</td><td> $' + parseFloat(lista[h].f_s_dia).toFixed(2) + '</td><td> $ ' +parseFloat(lista[h].loquedeberiatraer).toFixed(2) + '</td><td> $ '+parseFloat(lista[h].f_s_real).toFixed(2) + '</td></tr>';
-              htmlp+= '<tr  style="font-size:7px; "><td class="text-center">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(parseFloat(lista[h].creditos).toFixed(2)) + '</td><td class="text-center"> $ ' + formatoMoneda1(parseFloat(lista[h].f_s_dia).toFixed(2)) + '</td><td class="text-center"> $ ' +formatoMoneda1(parseFloat(lista[h].loquedeberiatraer).toFixed(2)) + '</td><td class="text-center"> $ '+ formatoNumero.new(parseFloat(lista[h].f_s_real)) + '</td></tr>';
+              html2+= '<tr class="" onclick="cambiarcolor(this);click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+');" data-id="'+ lista[h].id +'"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + formatoMoneda1(lista[h].creditos) + '</td><td> $' + formatoMoneda1(lista[h].f_s_dia) + '</td><td> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td> $ '+formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
+              htmlp+= '<tr  style="font-size:7px; "><td class="text-center grisclaro">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].creditos) + '</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].f_s_dia) + '</td><td class="text-center"> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td class="text-center"> $ '+ formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
         }
       }
               $('.contCata2').html(html2);
@@ -5483,7 +5522,17 @@ if(noSemana==52&&dc==6){
       //alert(v_mercancia+" = "+total_mercancia+" + "+valorMercancia);                                                                 
   //alert(vendedor);
   var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
-   addRegistro3(json, 'ventadiaria', loadVentas);
+   addRegistroA(json,jsonC, 'ventadiaria', loadVentas);
+    
+      //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+ 
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+
+
+
+
+
    var dsc= dc;
     //alert(dfc+" ---- "+sfc);
    
@@ -5498,6 +5547,7 @@ if(noSemana==52&&dc==6){
    var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2, t_venta_merca: t_venta_merca};
 
    addRegistro2(json2, 'ventaspasada', loadVentasp);
+     
 //click_Salida(id_vend , n_vend, ruta, tipo, credito_p, bonificacion_p)
    getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
 
@@ -5531,9 +5581,11 @@ for(var j=0;j<arrGlobal4.length; j++){
       $('#modal .textModal').html('Faltan Datos.'); 
       $('#modal').modal('show');
   }
+
+
  
- 
- getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
+
+ //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
   
 limpiar();
     
@@ -5541,7 +5593,7 @@ limpiar();
     
 
 }
-
+function loadVentasS(lista){}
 
 function addMerma(){   
   var idProducto = $("#modalMerma .idProducto").val();
@@ -5907,17 +5959,25 @@ function delVenta(){
   var descripcionventa = $(".descripcionventa").val();
   var piezas = $(".piezas").val();
   var peso = $(".peso").val();
-
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
+  
+var fechadespachof = today_v;
+var ruta = rutas;
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+  delRegistroA(idGlobal,jsonC,'ventadiaria', loadVentas);
+    
+      //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+ 
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
 
 
 
 
 
+  //delRegistro(idGlobal,'ventadiaria', loadVentas);
 
-  delRegistro(idGlobal,'ventadiaria', loadVentas);
-
-   getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
+   //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
 
 
 var id = id_vend;
@@ -5942,7 +6002,7 @@ for(var j=0;j<arrGlobal4.length; j++){
   idv= arrGlobal4[j].id;
    //alert("Eliminando registro: "+idv);
     delRegistro2(idv,'ventaspasada', loadVentasp);
-   getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
+   //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
 
   }
 
@@ -5965,7 +6025,7 @@ for(var j=0;j<arrGlobal4.length; j++){
       $('#modal').modal('show');
  
 }
-    getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
+    //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
 
 limpiar();
 }
@@ -6537,7 +6597,8 @@ function upCategoria(){
 var f_s_dia, fechaf;
 function upRecepcion(){
         document.getElementById('loader').style.display = 'block';
-  
+  var fechadespachof = fechacaptura;
+var ruta = rutas; 
  var gasolinaT = $('#modalDesp2 .gasolina1').val();
  var gasT = $('#modalDesp2 .gas1').val();
  var dieselT = $('#modalDesp2 .diesel1').val();
@@ -6598,7 +6659,13 @@ venta=(parseFloat(arrGlobalT[i].piezas)-parseFloat(piezasv))*parseFloat(arrGloba
 var json1={piezasv: piezasv, venta: venta, fecharecepcion: fecharecepcion};
 idc=arrGlobalT[i].id;
 //suma2(venta, i);
-upRegistro3(idc, json1, 'ventadiaria', loadVentasp);
+var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+
+upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasp);
+
+
+
+
 //alert( t_v[i] +" = "+t_v2[i]);
 s_vent+=t_v2[i];
 }else{
@@ -6618,8 +6685,11 @@ venta=(parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))*parseFloat(arrGlobalT[i
 var json1={piezasv: piezasv, pesov: pesov, venta: venta, fecharecepcion: fecharecepcion};
 idc=arrGlobalT[i].id;
 //suma2(venta, i);
+var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
 
-upRegistro3(idc, json1, 'ventadiaria', loadVentasp);
+upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasp);
+
+
 //alert( t_v[i] +" = "+t_v2[i]);
 s_vent+=t_v2[i];
 
@@ -6904,7 +6974,7 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 s_vent=0;
 s_vent2=0;
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
 
 modalCreditos1="F";
 }else{
@@ -6916,7 +6986,7 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 s_vent=0;
 s_vent2=0;
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
 
 credito_manual=0;
   }
@@ -6929,6 +6999,10 @@ credito_manual=0;
         document.getElementById('loader').style.display = 'none';
 
 }
+ var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
+ 
+
 t_venta_merca="";
 
 }
@@ -6955,6 +7029,7 @@ function upVenta(){
   var empleado = id_vend;
   var ruta = rutas;
   var fecha = today_v;
+  var fechadespachof = today_v;
   var precioUnitario, valorMercancia;
   var user ="YO";
   for(var h=0;h<arrGlobal.length; h++){
@@ -7032,8 +7107,12 @@ function upVenta(){
     var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, precioUnitario: precioUnitario, valorMercancia: valorMercancia, hora: hora, empleado: empleado, ruta:ruta, fecha: fecha, user: user };
 
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
-    upRegistro(idGlobal, json, 'ventadiaria', loadVentas);
- getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
+    
+var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+     upRegistroA(idGlobal, json,jsonC, 'ventadiaria', loadVentas);
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+
+
     
   var id = id_vend;
   var idVentap = id_vend;
@@ -7071,7 +7150,6 @@ for(var j=0;j<arrGlobal4.length; j++){
      $('#modal .textModal').html('Seleccione de la tabla el producto a modificar.'); 
       $('#modal').modal('show');
   }
- getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
 
 }
 
@@ -8209,7 +8287,17 @@ function addRegistro3(json, url, loadFuncion ){
 
     getFunction(url, "Ocurrio un error al actualizar el formulario, reintentar más tarde.", loadFuncion);
 }
+function addRegistroA(json,jsonC, url, loadFuncion ){
+    var mensajes = {success: "Registrado", error: "Ocurrio un error al insertar el registro", tipo: 'POST'};
+    
+  
+    executeFunction2(json, url, mensajes);
+    
+    executeFunctionDone(jsonC, url, "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFuncion);
+ 
 
+ //   getFunction(url, "Ocurrio un error al actualizar el formulario, reintentar más tarde.", loadFuncion);
+}
 function upRegistro(id, json, url, loadFuncion ){
 
   if(id!=null){
@@ -8224,6 +8312,33 @@ function upRegistro(id, json, url, loadFuncion ){
   }
 }
 
+function upRegistroA(id, json,jsonC, url, loadFuncion ){
+
+  if(id!=null){
+    var mensajes = {success: "Registro actualizado", error: "Ocurrio un error al actualizar el registro", tipo: 'PUT'};
+    executeFunction(json, url + "/" + id, mensajes);
+    executeFunctionDone(jsonC, url, "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFuncion);
+ 
+
+  }
+  else{
+    $('#modal .textModal').html('Seleccionar un registro.'); 
+      $('#modal').modal('show');
+  }
+}
+function upRegistroA2(id, json,jsonC, url, loadFuncion ){
+
+  if(id!=null){
+    var mensajes = {success: "", error: "Ocurrio un error al actualizar el registro", tipo: 'PUT'};
+    executeFunction2(json, url + "/" + id, mensajes);
+   
+
+  }
+  else{
+    $('#modal .textModal').html('Seleccionar un registro.'); 
+      $('#modal').modal('show');
+  }
+}
 function upRegistro3(id, json, url, loadFuncion ){
 
   if(id!=null){
@@ -8252,6 +8367,23 @@ function delRegistro(id, url, loadLista){
     executeFunction(null, url +"/" + id, mensajes);
   
     getFunction(url, "Ocurrio un error al actualizar el formulario, reintentar más tarde.", loadLista);
+
+  }
+  else{
+    
+    $('#modal .textModal').html('Seleccionar un registro.'); 
+      $('#modal').modal('show');
+  }
+}
+
+function delRegistroA(id,jsonC,url, loadLista){
+
+  if(id!= null){
+    var mensajes = {success: "Registro eliminado", error: "Ocurrio un error al eliminar el registro", tipo: 'DELETE'};
+    executeFunction(null, url +"/" + id, mensajes);
+      executeFunctionDone(jsonC, url, "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadLista);
+  
+  //  getFunction(url, "Ocurrio un error al actualizar el formulario, reintentar más tarde.", loadLista);
 
   }
   else{
@@ -9006,12 +9138,15 @@ function ventaDiariaC(){
 
 //  $('.tituloResp').html('<div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVCategorias()">BUSCAR</button></div><h3 class="text-center impre">VENTA DIARIA</h3>');
   $('.contenidoR').load('/html/ventaDiariaC.html');
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaMayoreo);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaForaneo);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaDetalle);
+var sfc = (scv+1)+"";
 
-
-//alert(day+month+year);
+  if(scv != ""){
+      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalle);
+  }
 }
 function totalesCategorias(){
 
@@ -9030,6 +9165,7 @@ credi=0;
 function click_buscarVCategorias(){
  var semanaVS = $('.semanaVD').val();
           
+        document.getElementById('loader').style.display = 'block';
 
 if(semanaVS!=""){
 
@@ -9038,15 +9174,15 @@ year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
   
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
+var sfc = (scv+1);
 
-
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaMayoreo);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaRestaurante);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaForaneo);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaDetalle);
-
-
-//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR2);
+  if(scv != ""){
+      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalle);
+  }
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 
       $('#modal').modal('show');
@@ -9089,8 +9225,6 @@ nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGl
 
 getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR2);
 
-
-//alert(ruta)
 }
 function ventaDiariaRS(){
         document.getElementById('loader').style.display = 'block';
@@ -9100,8 +9234,6 @@ function ventaDiariaRS(){
   $('.contenidoR').load('/html/ventaDiariaR.html');
   $('.contenidoR').html('');
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR);
-
-
 }
 function click_buscarVG(){
 
@@ -9113,7 +9245,14 @@ if(semanaVS!=""){
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
   $('.tituloResp').html('<div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button></div><h3 class="text-center impre">SEMANA: '+semanaVS.substring(6,8)+'</h3>  ');
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR3);
+var sfc = (scv+1);
+
+  if(scv != ""){
+      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR3);
+ }
+
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR3);
 
 //getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR2);
 }else{
@@ -9213,8 +9352,15 @@ if(semanaVS!=""){
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
   $('.tituloResp').html('   <div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div> <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+semanaVS.substring(6,8)+')</h3> ');
+var sfc = (scv+1);
 
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaVG);
+  if(scv != ""){
+      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaVG);
+ }
+
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaVG);
+
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 
       $('#modal').modal('show');
@@ -9331,7 +9477,17 @@ var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD
 
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
+
+var ruta= rutas;
+var fechadespachof=today_v;
+
+  if(ruta!= ""&&fechadespachof!= ""){
+      var json = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+ }
+
+
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
 
 
   for(var i=0;i<arrGlobal4.length; i++){
@@ -9480,6 +9636,15 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
  fechacaptura=arrGlobal4[h].fechaf;
  dscv=dsc;
  scv=sc;
+ var dayVS = today_v.substring(8,10);
+          var monthVS = today_v.substring(5,7);
+          var yearVS = today_v.substring(0,4);
+          var cobrado=noSemana;
+          var mes=month-1;
+          var dia=day-1;
+              cobrado = cobrado +1;
+              saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
+          var t_vendido = today;
  for (var i=0; i < arrGlobalRuta.length; i++) {
 if(arrGlobalRuta[i].id==ruta){
 ruta3=arrGlobalRuta[i].nombre;
@@ -9519,17 +9684,32 @@ diesel2();
  $('#modalDesp2 .km1').val(arrGlobal4[h].km);
 
 $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - NOMBRE: '+nombre_vend+'. RUTA: ' +ruta3+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN : '+boni+'. </p>');
+ var fechadespachof = fechacaptura;
+ var fechaf = fechacaptura;
+ var ruta = rutas;
+ var sfc = noSemana+1;
+ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 
-getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMerma);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasVF);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
+ var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMerma);
+ var jsonC = {where:{fechaf:fechaf, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasVF);
+ var jsonC = {where:{sfc:sfc, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
+ var jsonC = {where:{sfc:sfc, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiaria);
+
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMerma);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasVF);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
   //var vDiaria ='';
 //<button href="" aria-controls="" type="button" class="btn btn-dark totala" data-toggle="tab" role="tab" onclick="modalRecarga()">RECARGA</div>
 //$('.ventaDiaria').html(vDiaria);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiaria);
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiaria);
 if(arrGlobal4[h].despachador==undefined){
   $('.imprimir').html('');
 }
@@ -9597,7 +9777,19 @@ function click_Entrada(id , h, ruta, tipo, credito, bonificacion){
  n_vend=h;
  $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+today_v+' ) - Nombre: '+arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple+'. Ruta: ' +t_rutas[ruta-1]+'. Tipo: '+t_ventas[tipo-1]+ '. Credito: ' +credito+'. Bonificacion: '+bonificacion+'. </p>');
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDiaRec);
+
+
+var empleado= id_vend;
+var fecha=today_v;
+
+  if(fecha!= ""&&empleado!= ""){
+      var json = {where:{fecha:fecha, empleado:empleado}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadDiaRec);
+ }
+
+
+
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDiaRec);
 
 }
 
@@ -9969,6 +10161,17 @@ function agregarpin2(){
     $("#modalPin2 .pin").val('');
      
 }
+
+/*function updateGanadosDatos(){
+  // url:, data:{idGanado:1, ganado_detalle:{ folioFactura:'folio_factura', titulo:'titulo', fechaTitulo:'2017-04-16', numeroTb:'numero dictamen tb', fechaTb:'2017-04-16', fechaUpp:'2017-04-16', guia:1 }, proveedor:{ idMunicipio: 1, idLocalidad: 1 }, ganado:{idProveedor:1, fechaEntrada, color:'Ahumado', idJaula:1, peso:'55.2', sexo:'M'}, type:'POST'
+  var arete = areteG;
+  if(arete != ""){
+      var json = {where:{arete:arete}}
+      executeFunctionDone(json, 'ganados', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", updateGanadosDatos2);
+  }
+ }
+*/
+
 /*-------------------- Cerrar sesion --------------------*/
 function click_cerrarSesion(){
 

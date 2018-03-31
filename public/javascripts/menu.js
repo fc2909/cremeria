@@ -5522,7 +5522,7 @@ if(noSemana==52&&dc==6){
       //alert(v_mercancia+" = "+total_mercancia+" + "+valorMercancia);                                                                 
   //alert(vendedor);
   var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
-   addRegistroA(json,jsonC, 'ventadiaria', loadVentas);
+   addRegistroA(json,jsonC, 'ventadiaria', loadVentasp);
     
       //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
  

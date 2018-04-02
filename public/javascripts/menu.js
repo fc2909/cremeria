@@ -473,7 +473,7 @@ function formatoMoneda1(number) {
             result = ',' + '' + number1.substr(number1.length - 3) + '' + result;
             number1 = number1.substring(0, number1.length - 3);
         }
-        result = number1 + result;
+        result = number1 + result+'.00';
         if (estado == false) {
             result = '-' + result;
         }
@@ -481,12 +481,15 @@ function formatoMoneda1(number) {
     else {
         var pos = number1.indexOf('.');
         var numberInt = number1.substring(0, pos);
-        var numberDec = number1.substring(pos, number1.length);
+        var numberDec = number1.substring(pos, pos+3);
+       numberDec+='00';
+        
         while (numberInt.length > 3) {
             result = ',' + '' + numberInt.substr(numberInt.length - 3) + '' + result;
             numberInt = numberInt.substring(0, numberInt.length - 3);
         }
-        result = numberInt + result + numberDec.substring(0,3);
+        result = numberInt + result + numberDec.substring(0,3)+'';
+        result = result
         if (estado == false) {
             result = '-' + result;
         }
@@ -663,6 +666,7 @@ function pagare2(){
     }
 ;
         $('.controlC').html(controlC);
+        $('.pagareD').html(pagare);
         $('.nombreVendedor').html(nombreVendedor);
         $('.nombreCapturista').html(usuario);
         $('.nombreDespachador').html(despachadorV);

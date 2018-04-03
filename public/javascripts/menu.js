@@ -9213,8 +9213,12 @@ if(scv != ""){
 function rutasR2(ruta, h){
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR);
-
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR);
+var sfc = (scv+1);
+if(scv != ""){
+      var json = {where:{sfc:sfc, ruta:ruta}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR);
+  }
 //alert(ruta)
 }
 function rutasRM(ruta, h){

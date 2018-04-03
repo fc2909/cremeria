@@ -432,7 +432,7 @@ function formatoMoneda2(number) {
             result = ',' + '' + number1.substr(number1.length - 3) + '' + result;
             number1 = number1.substring(0, number1.length - 3);
         }
-        result = number1 + result;
+        result = number1 + result+'.000';
         if (estado == false) {
             result = '-' + result;
         }
@@ -441,9 +441,11 @@ function formatoMoneda2(number) {
         var pos = number1.indexOf('.');
         var numberInt = number1.substring(0, pos);
         var numberDec = number1.substring(pos, number1.length);
+        numberDec+='000';
         while (numberInt.length > 3) {
             result = ',' + '' + numberInt.substr(numberInt.length - 3) + '' + result;
             numberInt = numberInt.substring(0, numberInt.length - 3);
+
         }
         result = numberInt + result + numberDec.substring(0,4);
         if (estado == false) {
@@ -461,8 +463,12 @@ function formatoMoneda1(number) {
     return result;
   }else{
     
+number = parseFloat(number).toFixed(2);
 
     var number1 = number.toString(), result = '', estado = true;
+    var pos = number1.indexOf('.');
+    var numberDec = number1.substring(pos, number1.length);
+
     if (parseInt(number1) < 0) {
         estado = false;
         number1 = parseInt(number1) * -1;
@@ -473,7 +479,7 @@ function formatoMoneda1(number) {
             result = ',' + '' + number1.substr(number1.length - 3) + '' + result;
             number1 = number1.substring(0, number1.length - 3);
         }
-        result = number1 + result+'.00';
+        result = number1 + result+numberDec;
         if (estado == false) {
             result = '-' + result;
         }
@@ -481,14 +487,12 @@ function formatoMoneda1(number) {
     else {
         var pos = number1.indexOf('.');
         var numberInt = number1.substring(0, pos);
-        var numberDec = number1.substring(pos, pos+3);
-       numberDec+='00';
         
         while (numberInt.length > 3) {
             result = ',' + '' + numberInt.substr(numberInt.length - 3) + '' + result;
             numberInt = numberInt.substring(0, numberInt.length - 3);
         }
-        result = numberInt + result + numberDec.substring(0,3)+'';
+        result = numberInt + result + numberDec;
         result = result
         if (estado == false) {
             result = '-' + result;
@@ -641,10 +645,10 @@ function pagare2(){
     document.getElementById('fondoBlanco').style.display = 'block';
 
     //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
-    var nombreVendedor = "RUTA <strong> "+ruta3+".</strong>       VENDEDOR: <strong>"+nombre_vend+". </strong>      VEHICULO: <strong>"+arrGlobalF[h].vehiculo+".</strong>";
-    var despachadorV = "DESPACHADOR: "+despachadorR+"";
+    var nombreVendedor = "RUTA: <strong> "+ruta3+".</strong>       VENDEDOR: <strong>"+nombre_vend+". </strong>      VEHICULO: <strong>"+arrGlobalF[h].vehiculo+".</strong>";
+    var despachadorV = "DESPACHADOR:<strong> "+despachadorR+"</strong>";
     var controlC = "<strong>CONTROL DE VENTAS Y COBRANZA</strong>";
-    var pagare = '<p class="text-justify " >YO _<u> '+ nombre_vend+' </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> '+fechaRecepcionD+' </u>_ LA CANTIDAD DE _<u> $ '+parseFloat(total_merc).toFixed(2)+' ('+cantidadEnTexto+') </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center">'+nombre_vend+'.</p>';
+    var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombre_vend+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(total_merc)+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center"><strong>'+nombre_vend+'.</strong></p>';
     var fechaRecepcionDD ='FECHA DE RECEPCIÓN: '+fechaRecepcionD;
         gasolina = $('#modalDesp2 .gasolina1').val();
         km = $('#modalDesp2 .km1').val();
@@ -4480,7 +4484,7 @@ function loadVentasr(lista){
                     saltos++;
   
                     html+= '<tr style="font-size:13px; " class=""  data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td></td><td> <input type="text"   class="p'+p+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+'); nextInput('+h+');">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
-                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td ><td class="text-right"></td><td class="text-right">'+formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right"></td><td class="text-right">'+formatoMoneda1(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</td><td class="text-right"></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+  formatoMoneda1(lista[h].venta)+'</td></tr>';
+                    htmlp+= '<tr class="" style="font-size:7px; color:black; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td ><td class="text-right"></td><td class="text-right">'+formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right"></td><td class="text-right"><strong>'+formatoMoneda1(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</strong></td><td class="text-right"></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+  formatoMoneda1(lista[h].venta)+'</td></tr>';
                     num++;
                     v++;
                     total_merc2 += parseFloat(lista[h].valorMercancia);
@@ -4495,7 +4499,7 @@ function loadVentasr(lista){
                     p++;
                     
                     
-                    htmlp+= '<tr class="" style="font-size:7px; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td  class="text-right">'+formatoMoneda1(lista[h].peso)+'</td><td class="text-right">'+ formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right">'+formatoMoneda2(lista[h].pesov)+'</td><td class="text-right">'+formatoMoneda2(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</td><td class="text-right">'+formatoMoneda2(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov))+'</td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].venta)  +'</td></tr>';
+                    htmlp+= '<tr class="" style="font-size:7px;  color: black;"><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td  class="text-right">'+formatoMoneda2(lista[h].peso)+'</td><td class="text-right">'+ formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right">'+formatoMoneda2(lista[h].pesov)+'</td><td class="text-right"><strong>'+formatoMoneda2(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</strong></td><td class="text-right"><strong> '+formatoMoneda2(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov))+'</strong></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].venta)  +'</td></tr>';
                     num++;
                     v++;
                     total_merc2 += parseFloat(lista[h].valorMercancia);
@@ -4720,7 +4724,7 @@ function loadVentaspasadasTF(lista){
         }
       }
               $('.contCata2').html(html2);
-              $('.contCatapp').html(html2);
+              $('.contCatapp').html(htmlp);
               html2='';
               arrGlobal4 = lista;
               arrGlobal41 = lista;
@@ -9701,9 +9705,9 @@ $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+t
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMerma);
  var jsonC = {where:{fechaf:fechaf, ruta:ruta}}
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasVF);
- var jsonC = {where:{sfc:sfc, ruta:ruta}}
+ var jsonC = {where:{ruta:ruta}}
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
- var jsonC = {where:{sfc:sfc, ruta:ruta}}
+ var jsonC = {where:{ruta:ruta}}
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiaria);
 
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);

@@ -1550,21 +1550,21 @@ function loadVDiariaR3(lista){ //venta general
               if((lista.length-1)==h&&pasa==1){
               var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
               var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
-                if(l==0){l="0"}else{l=parseFloat(l).toFixed(2)}
-                if(lp==0){lp=""}else{lp=" ("+parseFloat(lp).toFixed(3)+" KG)"}
-                if(m==0){m="0"}else{m=parseFloat(m).toFixed(2)}
-                if(mp==0){mp=""}else{mp=" ("+parseFloat(mp).toFixed(3)+" KG)"}
-                if(x==0){x="0"}else{x=parseFloat(x).toFixed(2)}
-                if(xp==0){xp=""}else{xp=" ("+parseFloat(xp).toFixed(3)+" KG)"}
-                if(j==0){j="0"}else{j=parseFloat(j).toFixed(2)}
-                if(jp==0){jp=""}else{jp=" ("+parseFloat(jp).toFixed(3)+" KG)"}
-                if(v==0){v="0"}else{v=parseFloat(v).toFixed(2)}
-                if(vp==0){vp=""}else{vp=" ("+parseFloat(vp).toFixed(3)+" KG)"}
-                if(s==0){s="0"}else{s=parseFloat(s).toFixed(2)}
-                if(sp==0){sp=""}else{sp=" ("+parseFloat(sp).toFixed(3)+" KG)"}
-                if(suma==0){suma="0"}else{suma=parseFloat(suma).toFixed(2)}
-                if(suma2==0){suma2=""}else{suma2=" ("+parseFloat(suma2).toFixed(3)+" KG)"}
-                  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
+                if(l==0){l=""}else{l=formatoMoneda1(l)}
+                if(lp==0){lp=""}else{lp=formatoMoneda2(lp)}
+                if(m==0){m=""}else{m=formatoMoneda1(m)}
+                if(mp==0){mp=""}else{mp=formatoMoneda2(mp)}
+                if(x==0){x=""}else{x=formatoMoneda1(x)}
+                if(xp==0){xp=""}else{xp=formatoMoneda2(xp)}
+                if(j==0){j=""}else{j=formatoMoneda1(j)}
+                if(jp==0){jp=""}else{jp=formatoMoneda2(jp)}
+                if(v==0){v=""}else{v=formatoMoneda1(v)}
+                if(vp==0){vp=""}else{vp=formatoMoneda2(vp)}
+                if(s==0){s=""}else{s=formatoMoneda1(s)}
+                if(sp==0){sp=""}else{sp=formatoMoneda2(sp)}
+                if(suma==0){suma=""}else{suma=formatoMoneda1(suma)}
+                if(suma2==0){suma2=""}else{suma2=formatoMoneda2(suma2)}
+                  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td> '+lp+'</td><td>'+m+' </td><td>'+mp+'</td><td>'+ x +' </td><td>'+xp+' </td><td>'+ j+' </td><td>'+jp+'  </td><td>'+ v +' </td><td>'+vp+' </td><td>'+ s +'</td><td> '+sp+' </td><td style="background:green;">'+suma+'</td><td style="background:green;"> '+suma2+' </td></tr>';
                   l=0;
                   m=0;
                   x=0;
@@ -9200,9 +9200,14 @@ var sfc = (scv+1);
 function rutasR(ruta, h){
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR);
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR);
 saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
 scv=noSemana;
+var sfc = (scv+1);
+if(scv != ""){
+      var json = {where:{sfc:sfc, ruta:ruta}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR);
+  }
 //alert(ruta)
 }
 function rutasR2(ruta, h){
@@ -9295,8 +9300,14 @@ scv=noSemana;
   $('.tituloResp').html(' <div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button></div>  <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+(scv+1)+')</h3> ');
   //$('.contenidoR').html('');
   $('.contenidoR').load('/html/ventaGeneral.html');
- 
-getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR3);
+ var sfc = (scv+1);
+
+  if(scv != ""){
+      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR3);
+ }
+
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVDiariaR3);
 
 }
 function mermaV(){

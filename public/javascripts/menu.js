@@ -9208,7 +9208,7 @@ if(scv != ""){
       var json = {where:{sfc:sfc, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR);
   }
-//alert(ruta)
+
 }
 function rutasR2(ruta, h){
 rutas=ruta;
@@ -9372,14 +9372,9 @@ if(semanaVS!=""){
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
   $('.tituloResp').html('   <div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div> <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+semanaVS.substring(6,8)+')</h3> ');
-var sfc = (scv+1);
 
-  if(scv != ""){
-      var json = {where:{sfc:sfc}}
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaVG);
- }
 
-//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaVG);
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaVG);
 
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 

@@ -3,5 +3,5 @@ class Ventaspasada < ApplicationRecord
 
 	# --------------------------- Scopes ------------------------------- #
 	default_scope { where(activo: 1) }
-	default_scope { order(:ruta) }
+	default_scope { order(:dsfc) }
 end

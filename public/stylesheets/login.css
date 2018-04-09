@@ -1,33 +1,49 @@
 body{
-	background-image: url("/../images/fondo.jpg");
+	background-image: url("/../images/fondo1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 764px;
+    height: 100%;
 
 }
 .logo{
-width: 200px;
-height: 200px;
+
+    width: 100%;
+	text-align: center;
 }
 .btnlogin{
 	background: #ff7008;
 	color: white;
 	
 }
+.btnlogin:hover{
+	background: white;
+	color: black;
+	
+}
 .login{
-	width: 90%;
+	width: 100%;
 	text-align: center;
 }
 .footer{
+	position: fixed;
+	top: 90%;
 	background: rgba(0,0,0,.5);
 	color: white;
 
 
 }
+ .inp {
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #000000;
+        padding: 0 4px 0 4px;
+        height: 35px;
+     }
 .cont{
+ box-shadow: 0px 5px 10px black;
 
-width: 300px;
-height: 300px;
+
 background: rgba(0,0,0,.5);
 }
 
@@ -40,4 +56,12 @@ input[type="text"],input[type="password"]{
 .cust{
 	
 text-align:  center;
+}
+.transp{
+	color: white;
+	background: rgba(0,0,0,.8);
+}
+.btnModal{
+	background: #00007e;
+	color: white;
 }

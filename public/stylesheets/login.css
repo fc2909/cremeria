@@ -2,8 +2,13 @@ body{
 	background-image: url("/../images/fondo1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
-
+    width: 100%;
+     
+}
+footer{
+background: rgba(0,0,0,.8);
+    width:  100%;
+     
 }
 .logo{
 
@@ -11,7 +16,7 @@ body{
 	text-align: center;
 }
 .btnlogin{
-	background: #ff7008;
+	background: #FFB600;
 	color: white;
 	
 }
@@ -25,13 +30,24 @@ body{
 	text-align: center;
 }
 .footer{
-	position: fixed;
+	
 	top: 90%;
 	background: rgba(0,0,0,.5);
 	color: white;
 
-
 }
+.fondo1{
+	
+	width: 100%;
+	background: rgba(0,0,0,.8);
+}
+.direc{
+	width: 100%;
+}
+.imagenesL{
+	width: 100%;
+}
+
  .inp {
         -moz-border-radius: 10px;
         -webkit-border-radius: 10px;

@@ -5,6 +5,122 @@
   position: fixed;
   
 }
+.ventasList{
+  background: #333333;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+
+
+}
+.ventasList:hover{
+  background: red;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+}
+.despachoList{  
+  background: #333333;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+
+
+}
+.despachoList:hover{
+  background: #4BD247;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+}
+.recepcionList{  
+  background: #333333;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+
+
+}
+.recepcionList:hover{
+  background: blue;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+}
+.productosList{  
+  background: #333333;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+
+
+}
+.productosList:hover{
+  background: white;
+  color: black;
+  width: 100%;
+  line-height: 35px;
+}
+.dvList{  
+  background: #333333;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+
+
+}
+.dvList:hover{
+  background: blue;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+}
+
+.mermaList{  
+  background: #333333;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+
+
+}
+.mermaList:hover{
+  background: orange;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+}
+.dcList{  
+  background: #333333;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+
+
+}
+.dcList:hover{
+  background: blue;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+}
+
+
+.imprimirList{  
+  background: #333333;
+  color: white;
+  width: 100%;
+  line-height: 35px;
+
+
+}
+.imprimirList:hover{
+  background: yellow;
+  color: black;
+  width: 100%;
+  line-height: 35px;
+}
+
 .tabla{
   width: 100%;
   background: #333333
@@ -179,6 +295,9 @@ width: 550px;
  z-index: 5;
    
  }
+ .imagenFinal{
+  width: 100%;
+ }
  .controlCP{
   position: absolute;
    text-align: center;
@@ -259,14 +378,13 @@ th {color: black;}
 }
 
 .user{
-  height: 65px;
-  width: 65px;
+  height: 45px;
+  width: 45px;
   text-align: center;
   padding-top: 1px;
   }
   .user:hover{
-  height: 65px;
-  width: 65px;
+ 
   text-align: center;
   padding-top: 1px;
   border: 1px solid #ffffff;
@@ -275,12 +393,16 @@ th {color: black;}
 
       width: 160px;
   }
+  .dropleft{
+    left: -100%;
+  }
 .btn-nav{
   
   color: white;
-  vertical-align: middle;
+ height: 100%;
   padding-top: 1px;
 }
+
 .gris{
   background: gray;
 }
@@ -288,15 +410,23 @@ th {color: black;}
   background: #D8D8D8;
 }
 .btn-nav:hover {
-  color: #fff;
-  text-align: center;
-  padding-top: 1px;
-  border: 1px solid #ffffff;
+  color: black;
+  background: white;
 }
 body{
-  /*background: #313131;*/
+
   background: #012d41;
+
 }
+
+#carrucel{
+    
+
+}
+.iCarrucel{
+  height:500px;
+}
+
 .btn-modals{
   background: #012d41;
   color: white; 
@@ -309,6 +439,9 @@ height: 500px;
 left: 15%;
 opacity:.1;
 z-index: 4;
+}
+#carrucel{
+  background: 
 }
 .ImagenDurango2{
    position: absolute;

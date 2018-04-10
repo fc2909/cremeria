@@ -5,6 +5,7 @@
       <script type="text/javascript" src="/javascripts/menu.js"></script>
 <div id="loader" style="display:block;">
 <div class="loader" ></div>
+
 </div>
 <div id="fondoBlanco" style="display:none;"></div>
 <nav class="navbar fixed-top navbar-dark bg-dark menunav">
@@ -14,9 +15,21 @@
         <div class="col-xs-8 col-md-8 text-center tituloPantalla impre">
            <h3> MENÚ </h3>
         </div>
-        <div class="col-xs-1 col-md-1"></div>
-        <div class="col-xs-1 col-md-1 ">
-          <a ><img class="user text-center impre" src="/images/user2.png" alt=""></a>
+        <div class="col-xs-2 col-md-2 ">
+            
+<div class="dropdown">
+<img class="user text-center impre dropleft dropdown-toggle" src="/images/user2.png" data-toggle="dropdown">
+  
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="">FONDO  <form> <input type="color" name="favcolor" value="#ffff"></form></a>
+    <a class="dropdown-item" href="">CONFIGURACION</a>
+    <a class="dropdown-item" href="">PERFIL</a>
+  </div>
+</div>
+
+
+
+          
         </div>
 </nav>
   <br class="impre"><br  class="impre"><br  class="impre"><br  class="impre"><br  class="impre">
@@ -26,6 +39,7 @@
      <div class="col-md-2 barraIzq " style="height: 100%"></div>
       <div class=" col-md-10 " id="contenido">
       </div>
+
 
     </div>
        <div class= "modal fade" tabindex ="-1" role="dialog" id="modalPin">

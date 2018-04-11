@@ -125,6 +125,9 @@ function makeArray() {
 
 
 /*--------------------- otros ------------------------------*/
+function validar_campo(evento){
+ evento.value = evento.value.replace(/[^0-9]/g,"");
+}
 function mod(dividendo , divisor){
         resDiv = dividendo / divisor ;  
         parteEnt = Math.floor(resDiv);            // Obtiene la parte Entera de resDiv
@@ -1702,7 +1705,7 @@ bonificacionTotal+=parseFloat(bonificacionT);
                 for(var h=0;h<lista.length; h++){
                   if(arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                    
-                    if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                    if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
 
                       if(lista[h].dfc==1){
@@ -2038,7 +2041,7 @@ bonificacionTotal+=parseFloat(bonificacionT);
                 for(var h=0;h<lista.length; h++){
                   if(arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                    
-                    if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                    if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
 
                       if(lista[h].dfc==1){
@@ -2377,7 +2380,7 @@ bonificacionTotal+=parseFloat(bonificacionT);
                 for(var h=0;h<lista.length; h++){
                   if(arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                    
-                    if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                    if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
 
                       if(lista[h].dfc==1){
@@ -2714,7 +2717,7 @@ bonificacionTotal+=parseFloat(bonificacionT);
                 for(var h=0;h<lista.length; h++){
                   if(arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                    
-                    if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                    if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
 
                       if(lista[h].dfc==1){
@@ -10010,7 +10013,7 @@ function updateListaVenta(){
     var html ="";
      var add = "'add'";
     var encontrado = 0;
-    var peso = ' <label class="letras impre" >Peso</label><input type="text" id="peso" class="peso form-control clear peso impre" onchange="document.getElementById('+add+').focus();" placeholder="Kg.">';
+    var peso = ' <label class="letras impre" >Peso</label><input type="number" pattern="[0-9]{10}" id="peso" class="peso form-control clear peso impre" onchange="document.getElementById('+add+').focus();" placeholder="Kg.">';
    for (var f=0; f<arrGlobal.length;f++){
         if(arrGlobal[f].idInventario == tipo){   
           encontrado = 1;     

@@ -1103,7 +1103,7 @@
                
 
                 <div class="col-md-4">
-                  <input type="text" class="form-control clear cash" placeholder="$" onchange="document.getElementById('addEfectivo').focus();">
+                  <input type="number" pattern="[0-9]{10}"  class="form-control clear cash" placeholder="$" onchange="addEfectivo()">
                 </div>
 <div class="col-md-12"> <br><button class="btn btn-info totala" id="addEfectivo" onclick="addEfectivo()">Guardar</button> </div><br>
   

@@ -5,36 +5,36 @@
       <div role="tabpanel" class="col-md-12 seccion1 tab-pane active " id="seccion1">
         
 
-    <div class="row">
+    <div class="row col-md-12">
 
 
         <div class="col-md-2 form-group">
           <label class="letras" >ID</label>
-          <input type="text" id="id" class="form-control clear idInventario" placeholder="ID" onchange="document.getElementById('descripcion').focus();">
+          <input type="number" pattern="[0-9]{10}" id="id" class="form-control clear idInventario" placeholder="ID" onchange="document.getElementById('descripcion').focus();">
         </div>
-        <div class="col-md-3 form-group">
+        <div class="col-md-4 form-group">
           <label class="letras">Descripción</label>
           <input type="text" id="descripcion" class="form-control clear descripcion" onchange="document.getElementById('detalle').focus();" placeholder="Descripción">
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-2 form-group">
           <label class="letras">Detalle</label>
-          <input id="detalle" type="text" class="form-control clear detalle" onchange="document.getElementById('mayoreo').focus();" placeholder="$">
+          <input id="detalle" type="number" pattern="[0-9]{10}" class="form-control clear detalle" onchange="document.getElementById('mayoreo').focus();" placeholder="$">
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-2 form-group">
           <label class="letras">Mayoreo</label>
-          <input id="mayoreo" type="text" class="form-control clear mayoreo" onchange="document.getElementById('foraneo').focus();" placeholder="$">
+          <input id="mayoreo" type="number" pattern="[0-9]{10}" class="form-control clear mayoreo" onchange="document.getElementById('foraneo').focus();" placeholder="$">
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-2 form-group">
           <label class="letras">Foráneo</label>
-          <input id="foraneo" type="text" onchange="document.getElementById('restaurante').focus();" class="form-control clear foraneo" placeholder="$">
+          <input id="foraneo" type="number" pattern="[0-9]{10}" onchange="document.getElementById('restaurante').focus();" class="form-control clear foraneo" placeholder="$">
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-2 form-group">
           <label class="letras">Restaurante</label>
-          <input type="text" id="restaurante" class="form-control clear restaurante" onchange="document.getElementById('cantidad').focus();" placeholder="$">
+          <input type="number" pattern="[0-9]{10}" id="restaurante" class="form-control clear restaurante" onchange="document.getElementById('cantidad').focus();" placeholder="$">
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-2 form-group">
           <label class="letras">Cantidad</label>
-          <input type="text" id="cantidad" class="form-control clear cantidad" onchange="document.getElementById('medida').focus();" placeholder="#">
+          <input type="number" pattern="[0-9]{10}" id="cantidad" class="form-control clear cantidad" onchange="document.getElementById('medida').focus();" placeholder="#">
         </div>
         <div class="col-md-2 form-group">
           <label class="letras">Medida</label>
@@ -46,21 +46,26 @@
         </div>
         <div class=" col-md-2 form-group">
           <label class="letras">S. Minimo</label>
-          <input type="text" id="minimo" onchange="document.getElementById('maximo').focus();" class="form-control clear s_min" placeholder="#">
+          <input type="number" pattern="[0-9]{10}"" id="minimo" onchange="document.getElementById('maximo').focus();" class="form-control clear s_min" placeholder="#">
         </div>
         <div class=" col-md-2 form-group">
           <label class="letras">S. Máximo</label>
-          <input type="text" id="maximo" class="form-control clear s_max" placeholder="#" onchange="document.getElementById('selC').focus();">
+          <input type="number" pattern="[0-9]{10}" id="maximo" class="form-control clear s_max" placeholder="#" onchange="document.getElementById('selC').focus();">
         </div>
         
           <div class=" col-md-2 form-group">
           <label class="letras">Proporción</label>
-          <input type="text" id="proporcion" class="form-control clear proporcion" placeholder="#" onchange="document.getElementById('add').focus();">
+          <input type="number" pattern="[0-9]{10}" id="proporcion" class="form-control clear proporcion" placeholder="#" onchange="document.getElementById('add').focus();">
         </div>
-          <div  class="cate col-md-3">s</div>
-        <div class="col-md-1"></div>
-        <div class="col-md-2 guardari"></div>
-     
+        <div  class="cate col-md-3"> </div>
+        <div  class=" col-md-6"> </div>
+        <div class="col-md-1"> </div>
+        <div class="col-md-2 guardari"> </div>
+    
+      <br><br><br>
+      <br>
+      
+    
 <div class="col-xs-3 col-md-3">
       <button type="button" id="add" onchange="document.getElementById('id').focus();" class="btn botoninv insertar" onclick="addInventario()">Insertar</button>
   </div>
@@ -72,7 +77,7 @@
   </div>
    <div class="col-xs-3 col-md-3 agregari">
     
-  </div>
+
 
 <br>
 <br>
@@ -98,6 +103,7 @@
         <th class="letras">Stock Minimo</th>
         <th class="letras">Stock Máximo</th>
         <th class="letras">Categoria</th>
+        <th class="letras">Proporción</th>
       
       </tr>
     </thead>
@@ -114,6 +120,7 @@
 
 
 
+      </div>
       </div>
       <div role="tabpanel" class="tab-pane seccion2 col-md-12" id="seccion2">
 

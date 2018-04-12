@@ -30,15 +30,15 @@
   <table class="table table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
       <tr class="letras text-center">
-        <th class="letras">Codigo</th>
-        <th class="letras">Descripcion</th>
+        <th class="letras">CÓDIGO</th>
+        <th class="letras">DESCRIPCIÓN</th>
         <th class="letras"><strong>#</strong></th>
         <th class="letras">Kg.</th>
         <th class="letras"><strong>#</strong></th>
         <th class="letras">Kg.</th>
-        <th class="letras">Precio Unitario</th>
-        <th class="letras">Valor Mercancia</th>      
-        <th class="letras">Venta Total</th>      
+        <th class="letras">PRECIO UNITARIO</th>
+        <th class="letras">VALOR MERCANCÍA</th>      
+        <th class="letras">VENTA TOTAL</th>      
       </tr>
     </thead>
     <tbody class="contCata ventascss" >
@@ -52,19 +52,19 @@
   <br class="impre">
 <div class="form.form-group row">
        <div class="col-md-2 impre form-group">
-          <label class="letras">Crédito</label>
-          <input type="text" id=creditosRec" class="form-control clear creditos" onchange="document.getElementById('bonificacionclt').selectionStart = 0;document.getElementById('bonificacionclt').focus();  "  placeholder="$">
+          <label class="letras">CRÉDITOS</label>
+          <input type="text"  id="creditosRec" class="form-control clear creditos" onchange="document.getElementById('bonificacionclt').focus();  "  placeholder="$">
         </div>
         <div class="col-md-2 impre form-group">
-          <label class="letras">Bonificación</label>
-          <input type="text" id="bonificacionclt" class="form-control clear otros" style="" onchange="$('.add').focus();" placeholder="$">
+          <label class="letras">BONIFICACIÓN</label>
+          <input type="number" pattern="[0-9]{10}" id="bonificacionclt" class="form-control clear otros" style="" onchange="$('.add').focus();" placeholder="$">
         </div>
         <div class="col-md-5"></div>
        <div class="col-md-3 form-group pesos">
 
       
       
-        <button type="button" id="add" class="btn btn-ventas insertar add impre" onclick="upRecepcion()">Guardar</button>
+        <button type="button" id="add" class="btn btn-ventas insertar add impre" onclick="upRecepcion()">GUARDAR</button>
       
       <div class="imprimir impre">
        
@@ -82,25 +82,25 @@
   <div class="col-md-2" ></div> 
   <div class="col-md-2" ></div> 
   <div class="col-md-2" ></div> 
-  <div class="col-md-2 letras" >Vendido</div> 
+  <div class="col-md-2 letras" >VENDIDO: </div> 
   <div class="col-md-2  ventascss letras t_venta_merca" ></div> 
   <div class="col-md-4" ></div> 
   <div class="col-md-12" >.</div> 
   <div class="col-md-4" ></div> 
-  <div class="col-md-2 letras" >Efectivo</div> 
+  <div class="col-md-2 letras" >EFECTIVO: </div> 
   <div class="col-md-2 ventascss letras efectivo" ></div> 
   <div class="col-md-4" ></div> 
   <div class="col-md-4" ></div> 
-  <div class="col-md-2 letras" >Otros</div> 
+  <div class="col-md-2 letras" >OTROS: </div> 
   <div class="col-md-2 ventascss letras otros1" ></div> 
   <div class="col-md-4" ></div> 
   <div class="col-md-4" ></div> 
-  <div class="col-md-2 letras" >Total</div> 
+  <div class="col-md-2 letras" >TOTAL: </div> 
   <div class="col-md-2 letras sumaefec" ></div> 
   <div class="col-md-4" ></div> 
   <div class="col-md-12" >.</div> 
   <div class="col-md-4" ></div> 
-  <div class="col-md-2 letras" >Diferencia: </div> 
+  <div class="col-md-2 letras" >DIFERENCIA: </div> 
   <div class="col-md-2 ventascss f_s_dia letras" ></div> 
   <div class="col-md-4" ></div> 
   <div class="col-md-12" ></div> 
@@ -246,14 +246,14 @@
        <table id="ocultoVD33" class="tablaImprimirVD2 table-responsive " style="display:none;  ">
     <thead class="text-center ">
       <tr class=" text-center" style="font-size:10px; ">
-        <th  class="text-center" style="width: 90px ">Descripción </th>
-        <th class="text-center" style="width: 80px ">Lunes</th>
-        <th class="text-center" style="width: 80px ">Martes</th>
-        <th class="text-center" style="width: 80px ">Miércoles</th>
-        <th class="text-center" style="width: 80px ">Jueves</th>
-        <th class="text-center" style="width: 80px ">Viernes</th>
-        <th class="text-center" style="width: 80px ">Sábado</th>
-        <th class="text-center" style="width: 80px ">Total</th>
+        <th  class="text-center" style="width: 90px ">DESCRIPCIÓN</th>
+        <th class="text-center" style="width: 80px ">LUNES</th>
+        <th class="text-center" style="width: 80px ">MARTES</th>
+        <th class="text-center" style="width: 80px ">MIÉRCOLES</th>
+        <th class="text-center" style="width: 80px ">JUEVES</th>
+        <th class="text-center" style="width: 80px ">VIERNES</th>
+        <th class="text-center" style="width: 80px ">SÁBADO</th>
+        <th class="text-center" style="width: 80px ">TOTAL</th>
       </tr>
     </thead>
     <tbody class="contCataModalDP " >
@@ -265,7 +265,7 @@
       <table id="ocultoVD" class="tablaImprimirVD table-bordered " style="display:none;  width: 650px;">
     <thead class="text-center">
       <tr class="text-center " style="font-size:10px;   ">
-        <th Rowspan="2" class=" text-center" style="width: 130px; font-size:12px; ">Producto</th>
+        <th Rowspan="2" class=" text-center" style="width: 130px; font-size:12px; ">PRODUCTO</th>
         <th colspan="2" class=" text-center" style="width: 70px; ">Lunes</th>
         <th colspan="2" class=" text-center" style="width: 70px; ">Martes</th>
         <th colspan="2" class=" text-center" style="width: 70px;" >Miércoles</th>

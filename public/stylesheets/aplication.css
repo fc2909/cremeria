@@ -1,3 +1,16 @@
+tr:hover, li:hover, button:hover, img:hover {
+    cursor: pointer;
+
+}
+.move{
+
+  cursor: move;
+}
+
+.cursor-pointer{cursor: pointer;}
+.cursor-croshair{cursor: crosshair;}
+.cursor-eresize{cursor: e-resize;}
+.cursor-move{cursor: move;}
 .menunav{
   background: #012d42;
   color: white;

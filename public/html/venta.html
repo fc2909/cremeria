@@ -4,25 +4,25 @@
     <div class="row">
         <div class="col-md-3 impre form-group">
           <label class="letras" >ID</label>
-          <input  type="number" pattern="[0-9]{10}" id="idProducto" class="form-control clear  idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="#" onload="">
+          <input  type="number" pattern="[0-9]{10}" id="idProducto" class="form-control clear  idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="" onload="">
         </div>
         <div class="col-md-3 impre form-group">
-          <label class="letras">Descripción</label>
-          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="Descripción">
+          <label class="letras">DESCRIPCIÓN</label>
+          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="">
         </div>
         
         <div class="col-md-3 impre form-group piezasventas">
-          <label class="letras">Piezas</label>
-          <input type="number" pattern="[0-9]{10}" id="piezas"  class=" form-control clear piezas" onchange="cambio(); " placeholder="#">
+          <label class="letras">PIEZAS</label>
+          <input type="number" pattern="[0-9]{10}" id="piezas"  class=" form-control clear piezas" onchange="cambio(); " placeholder="">
         </div>
        <div class="col-md-3 form-group pesos">
           
         </div>
 <div class="col-xs-3 impre col-md-3">
-      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('idProducto').focus();">Insertar</button>
+      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('idProducto').focus();">INSERTAR</button>
   </div>
    <div class="col-xs-3 impre col-md-3">
-    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">Limpiar</button>
+    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">LIMPIAR</button>
   </div>
   <div class="col-xs-3 impre col-md-3">
   <div class="upventa"></div>

@@ -6917,7 +6917,7 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
     if (ii==arrGlobal41[hh].dsfc&&ii!=dscv) {
 //alert("ultimo dia con carga: "+ii);
   hk=30;
-  if(arrGlobal41[hh].loquedeberiatraer!=null&&arrGlobal41[hh].loquedeberiatraer!=undefined&&arrGlobal41[hh].loquedeberiatraer!=0&&arrGlobal41[hh].loquedeberiatraer!=NaN){
+  if(arrGlobal41[hh].loquedeberiatraer!=null){
     loquedeberiatraer=parseFloat(arrGlobal41[hh].loquedeberiatraer)-parseFloat(f_s_dia);
   f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
   //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);

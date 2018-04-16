@@ -1085,13 +1085,18 @@
             <div class="modal-body textModal">
               <div class="row">
               <div class="col-md-12 today_E text-center"></div>
+              <div class="col-md-12 row">
+<div class="col-md-6"><input type="date" class="dateVC form-control"></div>
+<div class="col-md-6"><button type="button" class="btn btn-modals totala" onclick="addDateCash()">ACTUALIZAR FECHA</button></div>
+               </div>
+              
                 <div class="col-md-3"></div>
-                <div class="col-md-6"> <button class="btn btn-danger totala" onclick="modalDates()">Cambiar fecha</button> </div>
+                <div class="col-md-6"><!-- <button class="btn btn-danger totala" onclick="modalDates()">CAMBIAR FECHA</button> --></div>
                 <div class="col-md-3"></div>
                 
-                <div class="col-md-8"> <label for="">Ruta</label> </div>
+                <div class="col-md-8"> <label for="">RUTA</label> </div>
  
-                <div class="col-md-4"> <label for="">Efectivo</label> </div>
+                <div class="col-md-4"> <label for="">EFECTIVO</label> </div>
               
               
                 
@@ -1105,8 +1110,30 @@
                 <div class="col-md-4">
                   <input type="number" pattern="[0-9]{10}"  class="form-control clear cash" placeholder="$" onchange="addEfectivo()">
                 </div>
-<div class="col-md-12"> <br><button class="btn btn-info totala" id="addEfectivo" onclick="addEfectivo()">Guardar</button> </div><br>
-  
+
+  <div class="col-md-12"><li style="color: blue;" src="" onclick="oAvanzadasE()"><u>Opciones Avanzadas</u></li>   </div>
+  <div id="oAvanzadasE" class="col-md-12 row" style="display: none">
+   <div class="col-md-12 text-center">
+   <label for="">IMPORTE DEL VENDEDOR</label>
+      <input type="number" pattern="[0-9]{10}"  class="form-control clear  text-center iV" placeholder="$"  onchange="">
+                </div>
+                <div class="col-md-12 text-center">
+   <label for="">FALTANTE O SOBRANTE DEL DIA</label>
+
+      <input type="number" pattern="[0-9]{10}"  class="form-control clear  text-center fSD" placeholder="$" disable onchange="">
+                </div>
+                <div class="col-md-12 text-center">
+   <label for="">LO QUE DEBERIA DE TRAER</label>
+
+      <input type="number" pattern="[0-9]{10}"  class="form-control clear lDT text-center" placeholder="$" disable onchange="">
+                </div>
+                <div class="col-md-12 text-center">
+   <label for="">FALTANTE O SOBRANTE REAL</label>
+
+      <input type="number" pattern="[0-9]{10}"  class="form-control clear fSR text-center" placeholder="$" disable onchange="">
+                </div>
+                </div>
+                <div class="col-md-12"> <br><button class="btn btn-info totala" id="addEfectivo" onclick="addEfectivo()">Guardar</button> </div><br>
               </div>
 
 
@@ -1116,9 +1143,9 @@
   <table class="table table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
       <tr class="letras text-center">
-        <th class="letras">Ruta</th>
-        <th class="letras">Nombre</th>
-        <th class="letras"><strong>Efectivo</strong></th>
+        <th class="letras">RUTA</th>
+        <th class="letras">NOMBRE</th>
+        <th class="letras"><strong>EFECTIVO</strong></th>
       </tr>
     </thead>
     <tbody class="contCataModal ventascss" >

@@ -8142,6 +8142,11 @@ $("#modalEfectivo .selectCash").html(rutav);
 
   //$("#modalEfectivo #rv").val(nombre);
   $("#modalEfectivo .cash").val(arrGlobalE[i].efectivo);
+  $("#modalEfectivo .iV").val(arrGlobalE[i].creditos);
+  $("#modalEfectivo .fSD").val(arrGlobalE[i].f_s_dia);
+  $("#modalEfectivo .lDT").val(arrGlobalE[i].loquedeberiatraer);
+  $("#modalEfectivo .fSR").val(arrGlobalE[i].f_s_real);
+
   }
 }
 }
@@ -9866,17 +9871,43 @@ var fecha=today_v;
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDiaRec);
 
 }
+function oAvanzadasE(){
+  if(historial==0){
+        document.getElementById('oAvanzadasE').style.display = 'block';
+        historial=1;
+  }else{
+        document.getElementById('oAvanzadasE').style.display = 'none';
+historial=0;
+  }
 
+}
 function addEfectivo(){
 var efectivo = $("#modalEfectivo .cash").val();
 var rVendedor = $("#modalEfectivo .rv").val();
 var fechacash = $("#modalDateC .dateVC").val();
+var creditos = $("#modalEfectivo .iV").val();
+var f_s_dia = $("#modalEfectivo .fSD").val();
+var loquedeberiatraer = $("#modalEfectivo .lDT").val();
+var f_s_real = $("#modalEfectivo .fSR").val();
 //alert(rVendedor+" - "+efectivo+" - "+dateCash2);
+
+if(f_s_dia==""){
+f_s_dia=0;
+}
+if(loquedeberiatraer==""){
+loquedeberiatraer=0;
+}
+if(f_s_real==""){
+f_s_real=0;
+}
+if(efectivo==""){
+efectivo=0;
+}
 if(fechacash==""){
 fechacash=dateCash2;
 }
 
-var f_s_dia;
+
 
 
 
@@ -9889,14 +9920,14 @@ for (var i = 0; i < arrGlobalE.length; i++) {
 
      if(arrGlobalE[i].otros==null || arrGlobalE[i].otros==undefined){
 //alert(f_s_dia +" null");
-      f_s_dia=efectivo; 
+      //f_s_dia=efectivo; 
 
   }else{
-      f_s_dia=parseFloat(efectivo).toFixed(2)+parseFloat(arrGlobalE[i].otros).toFixed(2)-parseFloat(arrGlobalE[i].t_venta_merca).toFixed(2); 
+      //f_s_dia=parseFloat(efectivo).toFixed(2)+parseFloat(arrGlobalE[i].otros).toFixed(2)-parseFloat(arrGlobalE[i].t_venta_merca).toFixed(2); 
 //alert(f_s_dia+" else ------- "+efectivo+" +  "+arrGlobalE[i].otros+" - "+arrGlobalE[i].t_venta_merca);
 
   }
-var json = {efectivo: efectivo, f_s_dia: f_s_dia};
+var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: f_s_real, loquedeberiatraer:loquedeberiatraer};
 
     //  alert("up: "+arrGlobalE[i].efectivo+" DateCompareTo: "+arrGlobalE[i].fecha+ " == "+dateCash2);
     upRegistro3(rVendedor, json, 'ventaspasada', loadVentasp3);
@@ -9908,13 +9939,13 @@ var json = {efectivo: efectivo, f_s_dia: f_s_dia};
   if (arrGlobalE[i].id==rVendedor && arrGlobalE[i].fechaf==today_vv){
      if(arrGlobalE[i].otros==null || arrGlobalE[i].otros==undefined){
 
-      f_s_dia=efectivo; 
+      //f_s_dia=efectivo; 
 
   }else{
-      f_s_dia=parseFloat(efectivo)+parseFloat(arrGlobalE[i].otros)-parseFloat(arrGlobalE[i].t_venta_merca); 
+      //f_s_dia=parseFloat(efectivo)+parseFloat(arrGlobalE[i].otros)-parseFloat(arrGlobalE[i].t_venta_merca); 
 
   }
-var json = {efectivo: efectivo, f_s_dia: f_s_dia};
+var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: f_s_real, loquedeberiatraer:loquedeberiatraer};
 
     //  alert("up: "+arrGlobalE[i].efectivo+" DateCompareTo: "+arrGlobalE[i].fecha+ " == "+dateCash2);
     upRegistro3(rVendedor, json, 'ventaspasada', loadVentasp2);
@@ -9939,7 +9970,7 @@ function modalDates(){
   $('#modalDateC').modal('show');
 }
 function addDateCash(){
-dateCash2 = $("#modalDateC .dateVC").val();
+dateCash2 = $("#modalEfectivo .dateVC").val();
 if(dateCash2=="" || dateCash2 == today_v){
   dateCash2=fecha;
 }
@@ -9949,7 +9980,7 @@ if(dateCash2=="" || dateCash2 == today_v){
  yearcambiomodalE = dateCash2.substring(0,4);
  var nomdia2 = new Date((parseInt(monthcambiomodalE))+' '+parseInt(daycambiomodalE)+' ,'+parseInt(yearcambiomodalE));
 
-var fecha2E = dias[nomdia2.getUTCDay()-1]+", "+ daycambiomodalE + " DE " + months[parseInt(monthcambiomodalE)] + " DEL " + yearcambiomodalE;
+var fecha2E = "<strong>"+dias[nomdia2.getUTCDay()-1]+", "+ daycambiomodalE + " DE " + months[parseInt(monthcambiomodalE)] + " DEL " + yearcambiomodalE+"</strong>";
 
 
 

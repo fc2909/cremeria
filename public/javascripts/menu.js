@@ -6662,10 +6662,10 @@ diesel=dieselT;
 
 
 
-if(modalCreditos1=="F"){
+
   creditos=$(".creditos").val();
 otros=$(".otros").val();
-}
+
 var idc, creditos, otros,temp;
 var piezasv, pesov, validar, dsd, sd, lo;
 

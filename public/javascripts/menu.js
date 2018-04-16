@@ -6662,7 +6662,10 @@ diesel=dieselT;
 
 
 
-
+if(modalCreditos1=="F"){
+  creditos=$(".creditos").val();
+otros=$(".otros").val();
+}
 var idc, creditos, otros,temp;
 var piezasv, pesov, validar, dsd, sd, lo;
 
@@ -6670,9 +6673,8 @@ var credito_manual=0;
    $(".totalVentas").html('');
 var fecharecepcion=today_vv;
 
-creditos=$(".creditos").val();
-otros=$(".otros").val();
     
+
     var excedenteC=0;
     var excedenteB=0;
     if(cred<creditos){
@@ -6915,7 +6917,7 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
     if (ii==arrGlobal41[hh].dsfc&&ii!=dscv) {
 //alert("ultimo dia con carga: "+ii);
   hk=30;
-  if(arrGlobal41[hh].loquedeberiatraer!=null){
+  if(arrGlobal41[hh].loquedeberiatraer!=null&&arrGlobal41[hh].loquedeberiatraer!=undefined&&arrGlobal41[hh].loquedeberiatraer!=0&&arrGlobal41[hh].loquedeberiatraer!=NaN){
     loquedeberiatraer=parseFloat(arrGlobal41[hh].loquedeberiatraer)-parseFloat(f_s_dia);
   f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
   //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
@@ -7042,7 +7044,7 @@ credito_manual=0;
 
 
 }else{
-  $('#modal .textModal').html('Faltan datos.'); 
+      $('#modal .textModal').html('Faltan datos.'); 
       $('#modal').modal('show');
         document.getElementById('loader').style.display = 'none';
 

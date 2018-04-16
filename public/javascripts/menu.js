@@ -7052,7 +7052,6 @@ credito_manual=0;
 
 
 t_venta_merca="";
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 
 }
 //alert(day+" / "+ month+ " / "+year);

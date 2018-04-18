@@ -1682,6 +1682,7 @@ ventasT+=t_venta_mercaT;
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
 bonificacionT=0;
+diferenciaT=0;
         var productosT="";
         var productosTP="";
               var l=0;
@@ -2019,6 +2020,8 @@ ventasT+=t_venta_mercaT;
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
 bonificacionT=0;
+diferenciaT=0;
+
         var productosT="";
         var productosTP="";
               var l=0;
@@ -2359,6 +2362,8 @@ ventasT+=t_venta_mercaT;
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
 bonificacionT=0;
+diferenciaT=0;
+
         var productosT="";
         var productosTP="";
               var l=0;
@@ -2697,6 +2702,8 @@ ventasT+=t_venta_mercaT;
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
 bonificacionT=0;
+diferenciaT=0;
+
         var productosT="";
         var productosTP="";
               var l=0;

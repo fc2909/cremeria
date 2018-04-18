@@ -314,6 +314,7 @@ width: 550px;
  .controlCP{
   position: absolute;
    text-align: center;
+   width: 50%;
    top: 0px;
    left: 25%;
     z-index: 5;
@@ -458,9 +459,9 @@ z-index: 4;
 }
 .ImagenDurango2{
    position: absolute;
-   top: 100px;
-height: 500px;
-left: 10%;
+   top: 50px;
+height: 700px;
+left: 22%;
 opacity:.3;
 z-index: 4;
 }

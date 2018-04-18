@@ -1681,6 +1681,7 @@ identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> 
 ventasT+=t_venta_mercaT;
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
         var productosT="";
         var productosTP="";
               var l=0;
@@ -2017,6 +2018,7 @@ identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> 
 ventasT+=t_venta_mercaT;
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
         var productosT="";
         var productosTP="";
               var l=0;
@@ -2356,6 +2358,7 @@ identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> 
 ventasT+=t_venta_mercaT;
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
         var productosT="";
         var productosTP="";
               var l=0;
@@ -2693,6 +2696,7 @@ identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> 
 ventasT+=t_venta_mercaT;
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
         var productosT="";
         var productosTP="";
               var l=0;

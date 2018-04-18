@@ -1666,7 +1666,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
   
 }
         //alert(porcentajeTotal+" - Bonificacion: "+bonificacionT+" - Diferencia: "+diferenciaT+" - ventatotal: "+t_venta_mercaT+" - ");
@@ -2007,7 +2007,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
   
 }
          encuentra=1; 
@@ -2345,11 +2345,11 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
   credits=arrGlobalF[j].creditos;
   
 }
-//porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
+porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
   
 }
          encuentra=1; 
@@ -2365,6 +2365,7 @@ bonificacionTotal+=parseFloat(bonificacionT);
 bonificacionT=0;
 diferenciaT=0;
 t_venta_mercaT=0;
+
         var productosT="";
         var productosTP="";
               var l=0;
@@ -2685,11 +2686,11 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
   credits=arrGlobalF[j].creditos;
   
 }
-porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
+porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
 if(diferenciaT==0){
 porcentajeTotal=100;
 }else{
-  porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
   //alert(""+porcentajeTotal+"=("+diferenciaT+"*100)/(parseFloat("+t_venta_mercaT+")-parseFloat("+bonificacionT+"));");
 }
          encuentra=1; 
@@ -2705,6 +2706,7 @@ bonificacionTotal+=parseFloat(bonificacionT);
 bonificacionT=0;
 diferenciaT=0;
 t_venta_mercaT=0;
+
         var productosT="";
         var productosTP="";
               var l=0;

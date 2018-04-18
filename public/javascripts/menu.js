@@ -1666,7 +1666,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
   
 }
         //alert(porcentajeTotal+" - Bonificacion: "+bonificacionT+" - Diferencia: "+diferenciaT+" - ventatotal: "+t_venta_mercaT+" - ");
@@ -2007,7 +2007,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
   
 }
          encuentra=1; 
@@ -2345,11 +2345,11 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
   credits=arrGlobalF[j].creditos;
   
 }
-porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+//porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
   
 }
          encuentra=1; 
@@ -2685,11 +2685,11 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
   credits=arrGlobalF[j].creditos;
   
 }
-porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
 if(diferenciaT==0){
 porcentajeTotal=100;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/parseFloat(t_venta_mercaT);
   //alert(""+porcentajeTotal+"=("+diferenciaT+"*100)/(parseFloat("+t_venta_mercaT+")-parseFloat("+bonificacionT+"));");
 }
          encuentra=1; 

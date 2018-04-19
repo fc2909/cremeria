@@ -402,17 +402,17 @@
         </div>
         <div class="col-md-12 form-group">
           <label class="">Domicilio</label>
-          <input type="text" class="form-control clear direccion" placeholder="Domicilio">
+          <input id="search" type="text" class="form-control clear direccion" onchange="mapa.getCoords(); document.getElementById('fechaCliente').focus();" placeholder="Domicilio">
         </div>
         <div class=" col-md-4 form-group">
              <label class="">Lng. (Opcional)</label>
              <input type="text" class="form-control clear lng" placeholder="Lng">
           </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Lat. (Opcional)</label><input type="text" class="form-control clear lat" placeholder="Lat">
+          <label class="">Lat. (Opcional)</label><input  type="text" class="form-control clear lat" placeholder="Lat">
         </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Fecha</label><input type="date" class="form-control clear fecha" placeholder="">
+          <label class="">Fecha</label><input id="fechaCliente" type="date" class="form-control clear fecha" placeholder="">
         </div>
          <div class="col-md-4 form-group licencia">
           <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telefonop" placeholder="" >

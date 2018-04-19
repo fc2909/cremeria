@@ -2686,7 +2686,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
   credits=arrGlobalF[j].creditos;
   
 }
-porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+//porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
 if(diferenciaT==0){
 porcentajeTotal=100;
 }else{
@@ -4822,6 +4822,10 @@ function  loadRutas3(lista){
               json={n1: n1}
               upRegistro2(id_vend,json,'rutas',loadRutasUp)
         }
+}
+function  loadClientes(lista){
+              arrGlobalClientes=lista;
+     
 }
 function  loadRutas2(lista){
           var html = '';
@@ -8853,6 +8857,7 @@ $('.btn-nav').removeClass('hidden');
 
 
 }
+getFunction('clientes', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadClientes);
 
 function click_Rutas(){
         document.getElementById('loader').style.display = 'block';
@@ -8870,8 +8875,9 @@ function botones(){
   var boton = '<input type="button" class="btn btn-success" value="Agregar cliente" onClick="addCliente();">';
 $('.addCliente1').html(boton);
 }
-/*
+
  function initMap() {
+
         var uluru = {lat: 24.033618, lng: -104.634402};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
@@ -8879,68 +8885,49 @@ $('.addCliente1').html(boton);
         });
         var marker = new google.maps.Marker({
           position: uluru,
-          map: map
-        });
-        map.addListener('click', function(e) {
-        placeMarkerAndPanTo(e.latLng, map);
-  });
-sdfvgerbgvrebvgebvgtgbreb
-
-        // This event listener will call addMarker() when the map is clicked.
-        map.addListener('click', function(event) {
-          addMarker(event.latLng);
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          map: map,
+          title: 'CREMERIA'
         });
 
-        // Adds a marker at the center of the map.
-        addMarker(uluru)
+      for(var h=0;h<arrGlobalClientes.length; h++){
+      var longitud = parseFloat(arrGlobalClientes[h].lng);
+      var latitud = parseFloat(arrGlobalClientes[h].lat);
+       
+       uluru = {lat: latitud, lng: longitud};
+     
+      var marker = new google.maps.Marker({
+      position: uluru,
+       map: map,
 
- var geocoder = new google.maps.Geocoder;
-  var infowindow = new google.maps.InfoWindow;
-
-  document.getElementById('submit').addEventListener('click', function() {
-    geocodeLatLng(geocoder, map, infowindow);
+       draggable: true,
+       animation: google.maps.Animation.DROP,
+       title: 'Ruta: '+arrGlobalClientes[h].numero+'. Local: '+arrGlobalClientes[h].local+'. Propietario: '+arrGlobalClientes[h].propietario+'. Domicilio: '+arrGlobalClientes[h].direccion
   });
+      
+
+      }
+       
+
+      
 
 
 
       }
-  function placeMarkerAndPanTo(latLng, map) {
-  var marker = new google.maps.Marker({
-    position: latLng,
-    map: map
-  });
-  map.panTo(latLng);
-
-
-   // Removes the markers from the map, but keeps them in the array.
-      function clearMarkers() {
-        setMapOnAll(null);
-      }
-
-      // Shows any markers currently in the array.
-      function showMarkers() {
-        setMapOnAll(map);
-      }
-
-      // Deletes all markers in the array by removing references to them.
-      function deleteMarkers() {
-        clearMarkers();
-        markers = [];
-      }
-}
 
 
 
 mapa = {
- map : false, 
+ map : false,
  marker : false,
 
  initMap : function() {
- 
+
  // Creamos un objeto mapa y especificamos el elemento DOM donde se va a mostrar.
- 
- mapa.map = new google.maps.Map(document.getElementById('map'), {
-   center: {lat: 24.033618, lng: -104.634402},
+
+ mapa.map = new google.maps.Map(document.getElementById('mapa'), {
+   center: {lat: 43.2686751, lng: -2.9340005},
    scrollwheel: false,
    zoom: 14,
    zoomControl: true,
@@ -8948,16 +8935,16 @@ mapa = {
    mapTypeControl: true,
    streetViewControl: false,
  });
- 
+
  // Creamos el marcador
  mapa.marker = new google.maps.Marker({
- position: {lat: 24.033618, lng: -104.634402},
- draggable: true 
+ position: {lat: 43.2686751, lng: -2.9340005},
+ draggable: true
  });
- 
+
  // Le asignamos el mapa a los marcadores.
   mapa.marker.setMap(mapa.map);
- 
+
  },
 
 // función que se ejecuta al pulsar el botón buscar dirección
@@ -8965,31 +8952,18 @@ getCoords : function()
 {
   // Creamos el objeto geodecoder
  var geocoder = new google.maps.Geocoder();
- 
+
  address = document.getElementById('search').value;
  if(address!='')
  {
   // Llamamos a la función geodecode pasandole la dirección que hemos introducido en la caja de texto.
- geocoder.geocode({ 'address': address}, function(results, status)  
+ geocoder.geocode({ 'address': address}, function(results, status)
  {
    if (status == 'OK')
    {
-// Mostramos las coordenadas obtenidas en el p con id coordenadas
-var coordenada21 = "lat: "+results[0].geometry.location.lat()+', lng: '+results[0].geometry.location.lng()+"";
-//alert(coordenada21+" ---- "+umarcador);
 
-addMarker(coordenada21);
-   document.getElementById("coordenadas").innerHTML='Coordenadas:   '+results[0].geometry.location.lat()+', '+results[0].geometry.location.lng();
-var marker = new google.maps.Marker({
-          position: {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()},
-          map: map
-
-        });
-// Posicionamos el marcador en las coordenadas obtenidas
-  // mapa.marker.setPosition(results[0].geometry.location);
-// Centramos el mapa en las coordenadas obtenidas
-  // mapa.map.setCenter(mapa.marker.getPosition());
-  // agendaForm.showMapaEventForm();
+$('#modalCliente .lat').val(results[0].geometry.location.lat());
+$('#modalCliente .lng').val(results[0].geometry.location.lng());
    }
   });
  }
@@ -8997,98 +8971,10 @@ var marker = new google.maps.Marker({
 }
 
 
-      // In the following example, markers appear when the user clicks on the map.
-      // The markers are stored in an array.
-      // The user can then click an option to hide, show or delete the markers.
-      var map;
-      var markers = [];
-      var umarcador;
-   
-
-      // Adds a marker to the map and push to the array.
-      function addMarker(location) {
-        var marker = new google.maps.Marker({
-          position: location,
-          map: map
-        });
-        markers.push(marker);
-        umarcador=location; //ultima localicacion al clickear
-       // alert(umarcador);
-
-      }
-
-      // Sets the map on all markers in the array.
-      function setMapOnAll(map) {
-        for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(map);
-        }
-      }
-
-      // Removes the markers from the map, but keeps them in the array.
-      function clearMarkers() {
-        setMapOnAll(null);
-      }
-
-      // Shows any markers currently in the array.
-      function showMarkers() {
-        setMapOnAll(map);
-      }
-
-      // Deletes all markers in the array by removing references to them.
-      function deleteMarkers() {
-        clearMarkers();
-        markers = [];
-      }
-//////////////////////////////////////////////////////////////////////////////////////
-
-
-
-function geocodeLatLng(geocoder, map, infowindow) {
- // var input = document.getElementById('latlng').value;
-  //var input = umarcador;
- // var latlngStr = input.split(',', 2);
-  var latlng = {
-     umarcador
-  };
-  alert( umarcador);
-  geocoder.geocode({
-    'location': umarcador
-  }, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      if (results[1]) {
-        map.setZoom(11);
-        var marker = new google.maps.Marker({
-          position: umarcador,
-          map: map
-        });
-        infowindow.setContent(results[1].place_id);
-        infowindow.open(map, marker);
-      } else {
-        window.alert('No hay resultados');
-      }
-    } else {
-      window.alert('Geocoder failed due to: ' + status);
-    }
-  });
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
-*/
- function initMap() {
-        var uluru = {lat: 24.033618, lng: -104.634402};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
 
 
 
 
-      }
 function click_Mapa(){
         document.getElementById('loader').style.display = 'block';
 

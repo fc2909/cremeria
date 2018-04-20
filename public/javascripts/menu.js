@@ -474,8 +474,8 @@ function formatoMoneda2(number) {
 
 function formatoMoneda1(number) {
   
-  if(number==null){
-    var result=0;
+  if(isNaN(parseInt(number))){
+    var result="0.00";
     return result;
   }else{
     
@@ -873,7 +873,7 @@ function loadUsuarios2(lista){
 function loadInventarios(lista){
         var html = '';
         for(var h=0;h<lista.length; h++){
-          var categoria="sin asignar";
+          var categoria="-----";
           for(var j=0;j<arrGlobalCategoria.length; j++){
             if(lista[h].tipoP==arrGlobalCategoria[j].id){
 
@@ -4721,7 +4721,7 @@ function loadVentaspasadasTF(lista){
               saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
           var t_vendido = today;
       for(var h=0;h<lista.length; h++){
-        if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].f_s_real!=undefined) {
+        if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined) {
               html2+= '<tr class="" onclick="cambiarcolor(this);click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+');" data-id="'+ lista[h].id +'"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + formatoMoneda1(lista[h].creditos) + '</td><td> $' + formatoMoneda1(lista[h].f_s_dia) + '</td><td> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td> $ '+formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
               htmlp+= '<tr  style="font-size:7px; "><td class="text-center grisclaro">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].creditos) + '</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].f_s_dia) + '</td><td class="text-center"> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td class="text-center"> $ '+ formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
         }
@@ -4732,7 +4732,9 @@ function loadVentaspasadasTF(lista){
             var t_venta_;
             var otr;
             var fsd;
+            var creditos;
                 total_merc=lista[h].v_mercancia;
+
                 $('.creditos').val(lista[h].creditos);
                 $('.otros').val(lista[h].otros);
                 $('.efectivo').html('');
@@ -4740,9 +4742,9 @@ function loadVentaspasadasTF(lista){
                 $('.otros1').html('');
                 $('.t_venta_merca').html('');
               if(lista[h].f_s_dia==null||lista[h].f_s_dia==undefined||lista[h].f_s_dia==NaN){
-                t_venta_=0.00;
-                otr=0.00;
-                fsd=0.00;
+                t_venta_=0;
+                otr=0;
+                fsd=0;
               }else{
                 t_venta_=parseFloat(lista[h].t_venta_merca).toFixed(2);
                 otr=parseFloat(lista[h].otros).toFixed(2);
@@ -4760,11 +4762,18 @@ function loadVentaspasadasTF(lista){
                 efect=parseFloat(lista[h].efectivo).toFixed(2);
                 sumaefe=parseFloat(lista[h].efectivo)+parseFloat(lista[h].otros);
               }
+              
+             
+                $('.otros1').html('$ '+formatoMoneda1(otr));
+
+              
+             
+                $('.t_venta_merca').html(' $ '+formatoMoneda1(t_venta_));
+
+              
                 $('.sumaefec').html('$ '+formatoMoneda1(sumaefe));
                 $('.efectivo').html('$ '+formatoMoneda1(efect));
                 $('.f_s_dia').html('$ '+formatoMoneda1(fsd));
-                $('.otros1').html('$ '+formatoMoneda1(otr));
-                $('.t_venta_merca').html(' $ '+formatoMoneda1(t_venta_));
             }
 
 
@@ -7527,8 +7536,8 @@ function selectCategoria(id){
 }
 function selectnotas(id){
   idGlobal = id;
-  var eliminarN='<button type="button" class="btn usuario1 eliminar" onclick="delNota()">Eliminar</button>';
-  var guardarN='<button type="button" class="btn usuario1 modificar" onclick="upNota()">Guardar</button>';
+  var eliminarN='<button type="button" class="btn usuario1 eliminar" onclick="delNota()">ELIMINAR</button>';
+  var guardarN='<button type="button" class="btn usuario1 modificar" onclick="upNota()">GUARDAR</button>';
 
   for(var a=0; a<arrGlobalNotas.length; a++){
     if(arrGlobalNotas[a].id == id){
@@ -8177,6 +8186,8 @@ $("#modalEfectivo .selectCash").html(rutav);
   $("#modalEfectivo .fSD").val(arrGlobalE[i].f_s_dia);
   $("#modalEfectivo .lDT").val(arrGlobalE[i].loquedeberiatraer);
   $("#modalEfectivo .fSR").val(arrGlobalE[i].f_s_real);
+  $("#modalEfectivo .cL").val(arrGlobalE[i].credito_p);
+  $("#modalEfectivo .bL").val(arrGlobalE[i].bonificacion_p);
 
   }
 }
@@ -9519,8 +9530,8 @@ for(var j=0;j<arrGlobal4.length; j++){
    vehiculoA = '<u style="width:100px;">'+arrGlobal4[j].vehiculo+ '</u>';
 vehiculoA2=arrGlobal4[j].vehiculo;
 despachador22=arrGlobal4[j].despachador2;
-$("#modalDesp .despachadorl").html("Despachador: "+despachador22);
-$("#modalDesp .vehiculol").html("Vehiculo: "+vehiculoA2);
+$("#modalDesp .despachadorl").html("<strong>DESPACHADOR:</strong> "+despachador22);
+$("#modalDesp .vehiculol").html("<strong>VEHICULO:</strong> "+vehiculoA2);
 
   }
 
@@ -9653,7 +9664,7 @@ ruta3=arrGlobalRuta[i].nombre;
 }else{
   despachadorR=arrGlobal4[h].despachador;
 
-$('#modalDesp2 .despachador819').html(despachadorR);
+$('#modalDesp2 .despachador819').html(' <strong> DESPACHADOR: </strong>'+despachadorR);
 //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" disabled onclick="ocultar()">VENTAS </button></li>  <li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Recepcion()">RECEPCIÓN </button></li> <li role="presentation" class="impre"> <div type="button" class="btn btn-dark impre totala" data-toggle="tab" role="tab" onclick="click_modalProducto()">PRODUCTOS</div> </li> <li role="presentation" class="impre" > <div href="" aria-controls="" type="button" class="btn btn-dark totala" data-toggle="tab" role="tab" onclick="modalMerma()">MERMA</div> </li> <li role="presentation" class="impre" > <div href="" aria-controls="" type="button" class="btn btn-dark totala" data-toggle="tab" role="tab" onclick="modalDespachador2();">D & C</div> </li> <li role="presentation" class="impre" >  <div href="" aria-controls="" type="button" class="btn btn-dark totala" data-toggle="tab" role="tab" onclick="modal_VDiaria()">VENTA DIARIA</div>  </li>     <li role="presentation" class="impre" >   <div href="" aria-controls="" type="button" class="btn btn-warning totala" data-toggle="tab" role="tab" onclick="imprimirVD3();">VENTA DIARIA</div>  </li></div></ul> </div>');
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre despachoList text-center" href="#seccion3" aria-controls="seccion3" id="desp" data-toggle="tab" onclick="click_Recepcion();" role="tab">RECEPCIÓN </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"> </span>  <li class="impre  text-center mermaList"  onclick="modalMerma()">MERMA </li>  <span class="border border-warning"> </span> <li class="impre  text-center dcList"  onclick="modalDespachador2();">D & C </li>  <span class="border border-info"> </span> <div class="imprimir"></div></ul> </div>');
   
@@ -9799,6 +9810,17 @@ historial=0;
   }
 
 }
+var historial2=0;
+function mAvanzadasE(){
+  if(historial2==0){
+        document.getElementById('mAvanzadasE').style.display = 'block';
+        historial2=1;
+  }else{
+        document.getElementById('mAvanzadasE').style.display = 'none';
+historial2=0;
+  }
+
+}
 function addEfectivo(){
 var efectivo = $("#modalEfectivo .cash").val();
 var rVendedor = $("#modalEfectivo .rv").val();
@@ -9807,19 +9829,30 @@ var creditos = $("#modalEfectivo .iV").val();
 var f_s_dia = $("#modalEfectivo .fSD").val();
 var loquedeberiatraer = $("#modalEfectivo .lDT").val();
 var f_s_real = $("#modalEfectivo .fSR").val();
+var credito_p = $("#modalEfectivo .cL").val();
+var bonificacion_p = $("#modalEfectivo .bL").val();
 //alert(rVendedor+" - "+efectivo+" - "+dateCash2);
 
+if(creditos==""){
+creditos=0;
+}
+if(credito_p==""){
+credito_p=100000;
+}
+if(bonificacion_p==""){
+bonificacion=100000;
+}
 if(f_s_dia==""){
 f_s_dia=0;
 }
 if(loquedeberiatraer==""){
-loquedeberiatraer=0;
+loquedeberiatraer= 0;
 }
 if(f_s_real==""){
-f_s_real=0;
+f_s_real= 0;
 }
 if(efectivo==""){
-efectivo=0;
+efectivo= 0;
 }
 if(fechacash==""){
 fechacash=dateCash2;
@@ -9845,7 +9878,7 @@ for (var i = 0; i < arrGlobalE.length; i++) {
 //alert(f_s_dia+" else ------- "+efectivo+" +  "+arrGlobalE[i].otros+" - "+arrGlobalE[i].t_venta_merca);
 
   }
-var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: f_s_real, loquedeberiatraer:loquedeberiatraer};
+var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: f_s_real, loquedeberiatraer:loquedeberiatraer, credito_p: credito_p, bonificacion_p:bonificacion_p};
 
     //  alert("up: "+arrGlobalE[i].efectivo+" DateCompareTo: "+arrGlobalE[i].fecha+ " == "+dateCash2);
     upRegistro3(rVendedor, json, 'ventaspasada', loadVentasp3);
@@ -9889,10 +9922,13 @@ function modalDates(){
 }
 function addDateCash(){
 dateCash2 = $("#modalEfectivo .dateVC").val();
+//dateCash2 = $("#modalEfectivo .dateVC").val();
+
+
 if(dateCash2=="" || dateCash2 == today_v){
-  dateCash2=fecha;
+  dateCash2=today_vv;
 }
-//alert(dateCash2);
+
  daycambiomodalE = dateCash2.substring(8,10);
  monthcambiomodalE = dateCash2.substring(5,7);
  yearcambiomodalE = dateCash2.substring(0,4);

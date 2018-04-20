@@ -103,14 +103,14 @@
             <div class="modal-body textModal ">
              
               <div class="row col-md-12 ">
-                <label class="despachadorl" for="" >Despachador:</label>
+                <label class="despachadorl" for="" ><strong>DESPACHADOR:</strong></label>
                 <div class="col-md-12 despachador">  
                 
                
                 
 
                 </div>
-                 <label class="vehiculol" for="">Vehiculo asignado:</label>
+                 <label class="vehiculol" for=""><strong>VEHICULO ASIGNADO:</strong></label>
                 <div class="col-md-12 vehiculomodal">  
                 
                 
@@ -127,10 +127,10 @@
             </div>
             <div class="modal-footer">
             <div>
-               <button type="button" class="btn btn-dark" onclick="closeModalDesp(); click_Despacho(); ">Cancelar</button>
+               <button type="button" class="btn btn-dark" onclick="closeModalDesp(); click_Despacho(); ">CANCELAR</button>
             </div>
               <div class="salida2">
-                <button type="button" class="btn btn-modals " id="agregarp" onclick="click_Salida2()">Guardar</button>
+                <button type="button" class="btn btn-modals " id="agregarp" onclick="click_Salida2()">GUARDAR</button>
               </div>
                
             </div>
@@ -266,10 +266,10 @@
           
         </div>
 <div class="col-xs-3 impre col-md-3">
-      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addRecarga(); document.getElementById('idProducto2').focus();">Insertar</button>
+      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addRecarga(); document.getElementById('idProducto2').focus();">INSERTAR</button>
   </div>
    <div class="col-xs-3 impre col-md-3">
-    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">Limpiar</button>
+    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">LIMPIAR</button>
   </div>
   <div class="col-xs-3 impre col-md-3">
   <div class="upventa"></div>
@@ -291,7 +291,7 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-modals" onclick="closeModalRecarga();">Cerrar</button>
+               <button type="button" class="btn btn-modals" onclick="closeModalRecarga();">CERRAR</button>
                
             </div>
           </div>
@@ -314,15 +314,15 @@
               <div class="row col-md-12 ">
                 
                 <div class=" col-md-12 form-group">
-    <label >Descripción  </label>
-    <input type="text" id="nota" onchange="document.getElementById('add').focus();" class="form-control  clear descripcion" placeholder="Descripción  ">
+    <label >DESCRIPCIÓN</label>
+    <input type="text" id="nota" onchange="document.getElementById('add').focus();" class="form-control  clear descripcion" placeholder="">
   </div>
 
   <div class="col-sm-3 col-md-3">
-      <button type="button" id="add" class="btn usuario1" onclick="addNota()" >Insertar</button>
+      <button type="button" id="add" class="btn usuario1" onclick="addNota()" >INSERTAR</button>
   </div>
    <div class="col-sm-3 col-md-3">
-    <button type="button" class="btn usuario1 limpiar" onclick="limpiar()">Limpiar</button>
+    <button type="button" class="btn usuario1 limpiar" onclick="limpiar()">LIMPIAR</button>
   </div>
   <div class="col-sm-3 col-md-3 guardarN">
   </div>
@@ -338,8 +338,8 @@
   <table class="table table-hover col-md-12 table-condensed text-center">
     <thead class="text-center">
       <tr class="letras text-center">
-        <th>Nota</th>
-        <th>Descripción</th>
+        <th class="text-center">NO. NOTA</th>
+        <th class="text-center">DESCRIPCIÓN</th>
       </tr>
     </thead>
     <tbody class="contCata3 ventascss" >
@@ -965,8 +965,8 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" onclick="closeControlVehicular()">Cancelar</button>
-               <div class="addControlVehicular1"><button type="button" class="btn btn-success " id="agregarp" onclick="addVehiculo()">Guardar</button></div>
+               <button type="button" class="btn btn-default" onclick="closeControlVehicular()">CANCELAR</button>
+               <div class="addControlVehicular1"><button type="button" class="btn btn-success " id="agregarp" onclick="addVehiculo()">GUARDAR</button></div>
                
             </div>
           </div>
@@ -984,7 +984,7 @@
             <div class="modal-body textModal">
               
               <div class="row form-group ">
-                <div class="despachador819"></div>
+                <label class="despachador819"></label>
                 <div class="col-md-12 despachador">  
                 
                 </div>
@@ -1022,8 +1022,8 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-dark" onclick="closeModalDesp(); click_Recepcion(); ">Cancelar</button>
-               <button type="button" class="btn btn-modals " id="agregarp" onclick="ModalDesp2();">Guardar</button>
+               <button type="button" class="btn btn-dark" onclick="closeModalDesp(); click_Recepcion(); ">CANCELAR</button>
+               <button type="button" class="btn btn-modals " id="agregarp" onclick="ModalDesp2();">GUARDAR</button>
             </div>
           </div>
         </div>
@@ -1066,8 +1066,8 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-dark" onclick="closeModalPin2();  ">Cancelar</button>
-               <button type="button" class="btn btn-modals agregarp" id="agregarp2" onclick="agregarpin2()">Agregar</button>
+               <button type="button" class="btn btn-dark" onclick="closeModalPin2();  ">CANCELAR</button>
+               <button type="button" class="btn btn-modals agregarp" id="agregarp2" onclick="agregarpin2()">AGREGAR</button>
             </div>
           </div>
         </div>
@@ -1132,7 +1132,23 @@
 
       <input type="number" pattern="[0-9]{10}"  class="form-control clear fSR text-center" placeholder="$" disable onchange="">
                 </div>
+                <div class="col-md-12"><li style="color: blue;" src="" onclick="mAvanzadasE()"><u>Más opciones sobre la carga del día. </u></li>   </div>
+                <div id="mAvanzadasE" class="col-md-12 row" style="display: none">
+   <div class="col-md-12 text-center">
+   <label for="">CRÉDITO LÍMITE.</label>
+      <input type="number" pattern="[0-9]{10}"  class="form-control clear  text-center cL" placeholder="$"  onchange="">
                 </div>
+                <div class="col-md-12 text-center">
+   <label for="">BONIFICACIÓN LÍMITE.</label>
+
+      <input type="number" pattern="[0-9]{10}"  class="form-control clear  text-center bL" placeholder="$" disable onchange="">
+                </div>
+                
+                </div>
+
+
+                </div>
+
                 <div class="col-md-12"> <br><button class="btn btn-info totala" id="addEfectivo" onclick="addEfectivo()">Guardar</button> </div><br>
               </div>
 
@@ -1172,10 +1188,10 @@
               </button>
             </div>
             <div class="modal-body textModal">
-              Datos incorrectos
+              DATOS INCORRECTOS
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-modals" onclick="closeModal()">Cerrar</button>
+               <button type="button" class="btn btn-modals" onclick="closeModal()">CERRAR</button>
             </div>
           </div>
         </div>
@@ -1184,7 +1200,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title">Ingresar importe anterior</h4>
+            <h4 class="modal-title">INGRESAR IMPORTE ANTERIOR</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -1192,7 +1208,7 @@
               <input type="text" class="creditos">
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-modals" onclick="agregarCredito()">Guardar</button>
+               <button type="button" class="btn btn-modals" onclick="agregarCredito()">GUARDAR</button>
             </div>
           </div>
         </div>
@@ -1201,7 +1217,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-            <h2 class="modal-title">Ingresar nueva fecha</h2>
+            <h2 class="modal-title">INGRESAR NUEVA FECHA</h2>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -1209,7 +1225,7 @@
                   <input type="date" class="dateVC form-control">
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-modals" onclick="addDateCash()">Cerrar</button>
+               <button type="button" class="btn btn-modals" onclick="addDateCash()">CERRAR</button>
             </div>
           </div>
         </div>

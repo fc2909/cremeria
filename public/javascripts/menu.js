@@ -126,6 +126,18 @@ function makeArray() {
 
 /*--------------------- otros ------------------------------*/
 
+
+
+
+function mayusU(e) {
+  e.value = e.value.split(" ").join("_");
+     e.value = e.value.toUpperCase();
+
+}
+function mayus(e) {
+     e.value = e.value.toUpperCase();
+
+}
 function validar_campo(evento){
  evento.value = evento.value.replace(/[^0-9]/g,"");
 }
@@ -7436,8 +7448,8 @@ function u(){
 }
 function selectUsuario(id){
   idGlobal = id;
-  var guardau=' <button type="button" class="btn usuario1 modificar" onclick="upUsuario()">Guardar</button>';
-  var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="delUsuario()">Eliminar</button>';
+  var guardau=' <button type="button" class="btn usuario1 modificar" onclick="upUsuario()">GUARDAR</button>';
+  var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="delUsuario()">ELIMINAR</button>';
     
 
 
@@ -8584,6 +8596,7 @@ function click_inventario(){
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
 }
+
 function click_Categorias(){
   document.getElementById('loader').style.display = 'block';
   $('.btn-nav').removeClass('hidden');
@@ -8905,7 +8918,7 @@ $('.addCliente1').html(boton);
        animation: google.maps.Animation.DROP,
        title: 'Ruta: '+arrGlobalClientes[h].numero+'. Local: '+arrGlobalClientes[h].local+'. Propietario: '+arrGlobalClientes[h].propietario+'. Domicilio: '+arrGlobalClientes[h].direccion
   });
-      
+
 
       }
        
@@ -9065,10 +9078,14 @@ $('.btn-nav').removeClass('hidden');
 
 function click_nomina(){
 
-
-$('#modal .textModal').html('Modulo en construcción.'); 
-      $('#modal').modal('show');
-
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú </h3>');
+ 
+ $('#contenido').load('/html/mNomina.html');
+ //$('.seccion1').html('/html/inventario.html');
+ $('.tituloPantalla').html('<h3 class="nomina"> NOMINA </h3>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_inventario2()">NOMINA</button></li><li role="presentation" class="impre"></li></div>');
+     
 }
 
 function click_reportes() {

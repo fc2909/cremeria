@@ -6,41 +6,41 @@
  <div class="col-xs-3 col-md-3 form-group letras">
 <br>
  
-    <label >Nombre</label>
-    <input type="text" class="form-control clear nombre" id="nombre" onchange="document.getElementById('password').focus();" placeholder="Nombre">
+    <label >NOMBRE</label>
+    <input type="text" class="form-control clear nombre" id="nombre" onkeyup="mayusU(this);" onchange="document.getElementById('password').focus();" placeholder="">
   </div>
      
  
   <div class="col-xs-3 col-md-3 form-group letras">
   <br>
  
-    <label >Contraseña</label>
-    <input type="text" class="form-control clear contrasenia" id="password" onchange="document.getElementById('pin').focus();" placeholder="Contraseña">
+    <label >CONTRASEÑA</label>
+    <input type="text" class="form-control clear contrasenia" onkeyup="mayusU(this);" id="password" onchange="document.getElementById('pin').focus();" placeholder="">
   </div>  
   <div class="col-xs-3 col-md-3 form-group letras">
   <br>
  
-    <label >Pin</label>
-    <input type="text" class="form-control  clear pin" id="pin" onchange="document.getElementById('tipo').focus();" placeholder="Pin">
+    <label >PIN</label>
+    <input type="number" pattern="[0-9]{10}" class="form-control  clear pin" id="pin" onchange="document.getElementById('tipo').focus();" placeholder="">
   </div>  
 <div class="col-xs-3 col-md-3 form-group">
-    <br><label class="letras">Tipo</label>
+    <br><label class="letras">TIPO</label>
 
  
     <select class="form-control  clear tipo" id="tipo" onchange="document.getElementById('add').focus();">
-<option value="5">Vendedor</option>
-<option value="4">Despachador</option>
-<option value="3">Contador</option>
-<option value="2">Administrador</option>
-<option value="1">Director</option>
+<option value="5">VENDEDOR</option>
+<option value="4">DESPACHADOR</option>
+<option value="3">CONTADOR</option>
+<option value="2">ADMINISTRADOR</option>
+<option value="1">DIRECTOR</option>
     </select>
   </div>
  
   <div class="col-sm-3 col-md-3">
-      <button type="button" class="btn usuario1 insertar" id="add" onchange="document.getElementById('nombre').focus();" onclick="addUsuario(); u(); limpiar();">Insertar</button>
+      <button type="button" class="btn usuario1 insertar" id="add" onchange="document.getElementById('nombre').focus();" onclick="addUsuario(); u(); limpiar();">INSERTAR</button>
   </div>
    <div class="col-sm-3 col-md-3">
-    <button type="button" class="btn usuario1 limpiar" onclick="limpiar();u();">Limpiar</button>
+    <button type="button" class="btn usuario1 limpiar" onclick="limpiar();u();">LIMPIAR</button>
   </div>
   <div class="col-sm-3 col-md-3 guardau">
   </div>
@@ -59,14 +59,14 @@
   <div class="row col-md-12 fondo">
   
   
-  <div class="table-responsive tabla">
-  <table class="table table-hover table-condensed text-center">
+  <div class="table-responsive tabla text-center">
+  <table class="table table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
       <tr class="letras text-center">
-        <th>Nombre</th>
-        <th>Contraseña</th>
-        <th>Pin</th>
-        <th>Tipo</th>
+        <th>NOMBRE</th>
+        <th>CONTRASEÑA</th>
+        <th>PIN</th>
+        <th>TIPO</th>
       </tr>
     </thead>
     <tbody class="contCata ventascss" >

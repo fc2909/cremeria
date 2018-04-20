@@ -38,9 +38,9 @@
   
 <br>
 
-         <input  type="text" class="form-control inp name transp"  onchange="document.getElementById('password1').focus();" placeholder="Nombre"/>
+         <input  type="text" onkeyup="mayusU(this);" class="form-control inp name transp"  onchange="document.getElementById('password1').focus();" placeholder="Nombre"/>
          <br>
-        <input  type="password" class="form-control inp pass transp"  id="password1" onchange=" ingresar()" placeholder="Contraseña"/>
+        <input  type="password" onkeyup="mayusU(this);" class="form-control inp pass transp"  id="password1" onchange=" ingresar()" placeholder="Contraseña"/>
           <br>
            
         <button type="button" class="btn btnlogin login inp" id="ingresar1" onclick="ingresar()">Iniciar sesión</button>
@@ -155,6 +155,11 @@
 </FOOTER>
 </HTML>
 <script type="text/javascript">
+function mayusU(e) {
+  e.value = e.value.split(" ").join("_");
+     e.value = e.value.toUpperCase();
+
+}
 
 function ingresar(){
 

@@ -9829,6 +9829,8 @@ var f_s_real = $("#modalEfectivo .fSR").val();
 var credito_p = $("#modalEfectivo .cL").val();
 var bonificacion_p = $("#modalEfectivo .bL").val();
 //alert(rVendedor+" - "+efectivo+" - "+dateCash2);
+//----------------------------------- Pendiente --------------------------
+        
 
 if(creditos==""){
 creditos=0;
@@ -9836,8 +9838,8 @@ creditos=0;
 if(credito_p==""){
 credito_p=100000;
 }
-if(bonificacion_p==""){
-bonificacion=100000;
+if( bonificacion_p ==""){
+bonificacion_p =100000;
 }
 if(f_s_dia==""){
 f_s_dia=0;

@@ -8177,9 +8177,6 @@ rutav +='</select>';
 //alert(rutav);
 $("#modalEfectivo .selectCash").html(rutav);
 
-
-
-
   //$("#modalEfectivo #rv").val(nombre);
   $("#modalEfectivo .cash").val(arrGlobalE[i].efectivo);
   $("#modalEfectivo .iV").val(arrGlobalE[i].creditos);
@@ -9896,7 +9893,8 @@ var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: 
       //f_s_dia=parseFloat(efectivo)+parseFloat(arrGlobalE[i].otros)-parseFloat(arrGlobalE[i].t_venta_merca); 
 
   }
-var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: f_s_real, loquedeberiatraer:loquedeberiatraer};
+//var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: f_s_real, loquedeberiatraer:loquedeberiatraer};
+var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: f_s_real, loquedeberiatraer:loquedeberiatraer, credito_p: credito_p, bonificacion_p:bonificacion_p};
 
     //  alert("up: "+arrGlobalE[i].efectivo+" DateCompareTo: "+arrGlobalE[i].fecha+ " == "+dateCash2);
     upRegistro3(rVendedor, json, 'ventaspasada', loadVentasp2);

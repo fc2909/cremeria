@@ -1818,7 +1818,7 @@ t_venta_mercaT=0;
                 
                
                   
-                  if(lista[h].medida==2){
+                   if(suma2==0){
                     for(var y=0;y<arrGlobalCategoria.length; y++){
                            if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
                        
@@ -2157,7 +2157,7 @@ t_venta_mercaT=0;
                 
                
                   
-                  if(lista[h].medida==2){
+                   if(suma2==0){
                     for(var y=0;y<arrGlobalCategoria.length; y++){
                            if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
                        
@@ -2500,7 +2500,7 @@ t_venta_mercaT=0;
                 
                
                   
-                  if(lista[h].medida==2){
+                   if(suma2==0){
                     for(var y=0;y<arrGlobalCategoria.length; y++){
                            if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
                        
@@ -2841,7 +2841,7 @@ t_venta_mercaT=0;
                 
                
                   
-                  if(lista[h].medida==2){
+                  if(suma2==0){
                     for(var y=0;y<arrGlobalCategoria.length; y++){
                            if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
                        

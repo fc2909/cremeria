@@ -886,7 +886,7 @@ function loadInventarios(lista){
           }
           $('.contCata').html(html);
           arrGlobal = lista;
-          var selectCategoria= '<label class="letras">Categoria</label><select name="selectCat" id="selC" class="selectCategoria col-md-8 form-control"><option value="0"></option>'
+          var selectCategoria= '<label class="letras">CATEGORÍA</label><select name="selectCat" id="selC" class="selectCategoria col-md-8 form-control"><option value="0"></option>'
 
 for(var h=0;h<arrGlobalCategoria.length; h++)
 selectCategoria+= ' <option value="'+arrGlobalCategoria[h].id+'">' +arrGlobalCategoria[h].nombre +'</option>';
@@ -1721,7 +1721,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -2060,7 +2060,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -2403,7 +2403,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -2744,7 +2744,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -4832,7 +4832,7 @@ function  loadRutas3(lista){
           var numeroclientes=0;
       for(var h=0;h<lista.length; h++){
         if(n==lista[h].numero){
-              html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); " data-id="'+ lista[h].id +'"><td>' + lista[h].local  + '</td><td>' + lista[h].propietario+'</td><td>' + lista[h].direccion+'</td><td>' + lista[h].telefono + '</td><td style="width:40px" ><div class="btn-group"  data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upCliente1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delCliente('+ lista[h].id +');">Eliminar</button></div> </td></tr>';  
+              html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); " data-id="'+ lista[h].id +'"><td>' + lista[h].local  + '</td><td>' + lista[h].propietario+'</td><td>' + lista[h].direccion+'</td><td>' + lista[h].telefono + '</td><td style="width:40px" ><div class="btn-group"  data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upCliente1('+ lista[h].id +');">EDITAR</button> <button type="button" class="btn btn-danger btn-sm" onclick="delCliente('+ lista[h].id +');">ELIMINAR</button></div> </td></tr>';  
               numeroclientes++; 
         }
       }
@@ -6183,7 +6183,7 @@ ruta1+='<option value="'+i+'">'+arrGlobalRuta[i].nombre+'</option>';
 
   selectCliente(idC);
 
-  var upCliente1='<button type="button" class="btn btn-info addVendedor1" id="agregarp" onclick="upCliente()">Guardar</button>'
+  var upCliente1='<button type="button" class="btn btn-info addVendedor1" id="agregarp" onclick="upCliente()">GUARDAR</button>'
 $('#modalCliente .addCliente1').html(upCliente1);
 
 }
@@ -7474,8 +7474,8 @@ function selectUsuario(id){
   }
 }
 function selectRuta(id){
-var guardau=' <button type="button" class="btn usuario1 modificar" onclick="upRuta()">Guargar</button>';
-var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="delRuta()">Eliminar</button>';
+var guardau=' <button type="button" class="btn usuario1 modificar" onclick="upRuta()">GUARDAR</button>';
+var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="delRuta()">ELIMINAR</button>';
      idGlobal=id;
     for(var a=0; a<arrGlobalRuta.length; a++){
      
@@ -7483,8 +7483,8 @@ var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="del
             $(".nombre").val(arrGlobalRuta[a].nombre);
       $(".descripcion").val(arrGlobalRuta[a].descripcion);
      
-    $('.guardar').html(guardau);
-    $('.eliminar').html(eliminau);
+    $('.guardarR').html(guardau);
+    $('.eliminarR').html(eliminau);
     }
   }
 }
@@ -7495,9 +7495,9 @@ $(".agregari").html('');
 }
 function selectInventario(id){
   idGlobal = id;
-  var eliminari='<button type="button" class="btn botoninv eliminar" onclick="delInventario()">Eliminar</button>';
-  var agregari='<button type="button" class="btn botoninv modificar" onclick="modalInventario()">Agregar inventario</button>';
-  var guardari='<button type="button" class="btn botoninv modificar" onclick="upInventario()">Guardar</button>';
+  var eliminari='<button type="button" class="btn botoninv eliminar" onclick="delInventario()">ELIMINAR</button>';
+  var agregari='<button type="button" class="btn botoninv modificar" onclick="modalInventario()">AGREGAR INVENTARIO</button>';
+  var guardari='<button type="button" class="btn botoninv modificar" onclick="upInventario()">GUARDAR</button>';
 
   for(var a=0; a<arrGlobal.length; a++){
     if(arrGlobal[a].id == id){
@@ -7521,13 +7521,14 @@ function selectInventario(id){
 }
 function selectCategoria(id){
   idGlobal = id;
-  var eliminari='<button type="button" class="btn btn-ventas eliminar" onclick="delCategoria()">Eliminar</button>';
-  var guardari='<button type="button" class="btn btn-ventas modificar" onclick="upCategoria()">Guardar</button>';
+  var eliminari='<button type="button" class="btn btn-ventas eliminar" onclick="delCategoria()">ELIMINAR</button>';
+  var guardari='<button type="button" class="btn btn-ventas modificar" onclick="upCategoria()">GUARDAR</button>';
 
   for(var a=0; a<arrGlobalCategoria.length; a++){
     if(arrGlobalCategoria[a].id == id){
       $(".descripcion1").val(arrGlobalCategoria[a].descripcion);
       $(".nombre").val(arrGlobalCategoria[a].nombre);
+      $(".jerarquia").val(arrGlobalCategoria[a].jerarquia);
  
       $(".eliminarC").html(eliminari);
       $(".guardarC").html(guardari);
@@ -9020,7 +9021,7 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('.seccion2').load('/html/clientes1.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3><p>Ruta: '+arrGlobalRuta[h].nombre+'</p>');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3><p>RUTA: '+arrGlobalRuta[h].nombre+'</p>');
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
 n=arrGlobalRuta[h].nombre;
 id_vend=id;

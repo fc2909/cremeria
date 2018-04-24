@@ -10,52 +10,52 @@
 
         <div class="col-md-2 form-group">
           <label class="letras" >ID</label>
-          <input type="number" pattern="[0-9]{10}" id="id" class="form-control clear idInventario" placeholder="ID" onchange="document.getElementById('descripcion').focus();">
+          <input type="number" pattern="[0-9]{10}" id="id" class="form-control clear idInventario" placeholder="" onchange="document.getElementById('descripcion').focus();">
         </div>
         <div class="col-md-4 form-group">
-          <label class="letras">Descripción</label>
-          <input type="text" onkeyup="mayus(this);" id="descripcion" class="form-control clear descripcion" onchange="document.getElementById('detalle').focus();" placeholder="Descripción">
+          <label class="letras">DESCRIPCIÓN</label>
+          <input type="text" onkeyup="mayus(this);" id="descripcion" class="form-control clear descripcion" onchange="document.getElementById('detalle').focus();" placeholder="">
         </div>
         <div class="col-md-2 form-group">
-          <label class="letras">Detalle</label>
-          <input id="detalle" type="number" pattern="[0-9]{10}" class="form-control clear detalle" onchange="document.getElementById('mayoreo').focus();" placeholder="$">
+          <label class="letras">DETALLE</label>
+          <input id="detalle" type="number" pattern="[0-9]{10}" class="form-control clear detalle" onchange="document.getElementById('mayoreo').focus();" placeholder="">
         </div>
         <div class="col-md-2 form-group">
-          <label class="letras">Mayoreo</label>
-          <input id="mayoreo" type="number" pattern="[0-9]{10}" class="form-control clear mayoreo" onchange="document.getElementById('foraneo').focus();" placeholder="$">
+          <label class="letras">MAYOREO</label>
+          <input id="mayoreo" type="number" pattern="[0-9]{10}" class="form-control clear mayoreo" onchange="document.getElementById('foraneo').focus();" placeholder="">
         </div>
         <div class="col-md-2 form-group">
-          <label class="letras">Foráneo</label>
-          <input id="foraneo" type="number" pattern="[0-9]{10}" onchange="document.getElementById('restaurante').focus();" class="form-control clear foraneo" placeholder="$">
+          <label class="letras">FORÁNEO </label>
+          <input id="foraneo" type="number" pattern="[0-9]{10}" onchange="document.getElementById('restaurante').focus();" class="form-control clear foraneo" placeholder="">
         </div>
         <div class="col-md-2 form-group">
-          <label class="letras">Restaurante</label>
-          <input type="number" pattern="[0-9]{10}" id="restaurante" class="form-control clear restaurante" onchange="document.getElementById('cantidad').focus();" placeholder="$">
+          <label class="letras">RESTAURANTE </label>
+          <input type="number" pattern="[0-9]{10}" id="restaurante" class="form-control clear restaurante" onchange="document.getElementById('cantidad').focus();" placeholder="">
         </div>
         <div class="col-md-2 form-group">
-          <label class="letras">Cantidad</label>
-          <input type="number" pattern="[0-9]{10}" id="cantidad" class="form-control clear cantidad" onchange="document.getElementById('medida').focus();" placeholder="#">
+          <label class="letras">CANTIDAD</label>
+          <input type="number" pattern="[0-9]{10}" id="cantidad" class="form-control clear cantidad" onchange="document.getElementById('medida').focus();" placeholder="">
         </div>
         <div class="col-md-2 form-group">
-          <label class="letras">Medida</label>
+          <label class="letras">MEDIDA</label>
           <select class="form-control clear medida" id="medida" onchange="document.getElementById('minimo').focus();">
-            <option value="1">Kg</option>
-            <option value="2">Pzas.</option>
+            <option value="1">KG</option>
+            <option value="2">PZAS.</option>
             <option value="3">L</option>
             </select>
         </div>
         <div class=" col-md-2 form-group">
-          <label class="letras">S. Minimo</label>
-          <input type="number" pattern="[0-9]{10}"" id="minimo" onchange="document.getElementById('maximo').focus();" class="form-control clear s_min" placeholder="#">
+          <label class="letras">S. MÍNIMO </label>
+          <input type="number" pattern="[0-9]{10}"" id="minimo" onchange="document.getElementById('maximo').focus();" class="form-control clear s_min" placeholder="">
         </div>
         <div class=" col-md-2 form-group">
-          <label class="letras">S. Máximo</label>
-          <input type="number" pattern="[0-9]{10}" id="maximo" class="form-control clear s_max" placeholder="#" onchange="document.getElementById('selC').focus();">
+          <label class="letras">S. MÁXIMO</label>
+          <input type="number" pattern="[0-9]{10}" id="maximo" class="form-control clear s_max" placeholder="" onchange="document.getElementById('selC').focus();">
         </div>
         
           <div class=" col-md-2 form-group">
-          <label class="letras">Proporción</label>
-          <input type="number" pattern="[0-9]{10}" id="proporcion" class="form-control clear proporcion" placeholder="#" onchange="document.getElementById('add').focus();">
+          <label class="letras">PROPORCIÓN</label>
+          <input type="number" pattern="[0-9]{10}" id="proporcion" class="form-control clear proporcion" placeholder="" onchange="document.getElementById('add').focus();">
         </div>
         <div  class="cate col-md-3"> </div>
         <div  class=" col-md-6"> </div>
@@ -67,26 +67,21 @@
       
     
 <div class="col-xs-3 col-md-3">
-      <button type="button" id="add" onchange="document.getElementById('id').focus();" class="btn botoninv insertar" onclick="addInventario()">Insertar</button>
+      <button type="button" id="add" onchange="document.getElementById('id').focus();" class="btn botoninv insertar" onclick="addInventario()">INSERTAR</button>
   </div>
    <div class="col-xs-3 col-md-3">
-    <button type="button" class="btn botoninv limpiar" onclick="inv(); limpiar(); ">Limpiar</button>
+    <button type="button" class="btn botoninv limpiar" onclick="inv(); limpiar(); ">LIMPIAR</button>
   </div>
    <div class="col-xs-3 col-md-3 eliminari">
     
   </div>
    <div class="col-xs-3 col-md-3 agregari">
-    
 
 
-<br>
-<br>
-<br>
   </div>
-  <br>
+  <div class="col-md-12"><br></div>
 
-
- <div class="row">
+ <div class="col-md-12">
 
 
   <div class="table-responsive tabla text-center">
@@ -94,16 +89,16 @@
     <thead class="text-center">
       <tr class="letras" style="font-size:12px;">
          <th class="letras">ID</th>
-        <th class="letras">Nombre</th>
-        <th class="letras">Precio Detalle</th>
-        <th class="letras">Precio Mayoreo</th>
-        <th class="letras">Precio Foraneo</th>
-        <th class="letras">Precio Restaurante</th>
-        <th class="letras">Cantidad</th>
-        <th class="letras">Stock Minimo</th>
-        <th class="letras">Stock Máximo</th>
-        <th class="letras">Categoria</th>
-        <th class="letras">Proporción</th>
+        <th class="letras">NOMBRE</th>
+        <th class="letras">PRECIO DETALLE</th>
+        <th class="letras">PRECIO MAYOREO</th>
+        <th class="letras">PRECIO FORÁNEO</th>
+        <th class="letras">PRECIO RESTAURANTE</th>
+        <th class="letras">CANTIDAD</th>
+        <th class="letras">STOCK MÍNIMO</th>
+        <th class="letras">STOCK MÁXIMO</th>
+        <th class="letras">CATEGORÍA</th>
+        <th class="letras">PROPORCIÓN</th>
       
       </tr>
     </thead>

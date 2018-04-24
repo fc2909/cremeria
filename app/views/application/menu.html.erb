@@ -381,50 +381,50 @@
               <div class="row ">
                  
         <div class="col-md-6 form-group">
-          <label class="">Nombre del Local</label>
-          <input type="text" class="form-control clear local" placeholder="Local">
+          <label class="">NOMBRE DEL LOCAL</label>
+          <input type="text"  onkeyup="mayus(this);"  onchange="mapa.getCoords(); document.getElementById('propietarioC').focus();" class="form-control clear local" placeholder="">
         </div>
         <div class="col-md-6 form-group">
-          <label class="">Propietario (Nombre Completo)</label>
-          <input type="text" class="form-control clear propietario" placeholder="Propietario">
+          <label class="">PROPIETARIO (NOMBRE COMPLETO)</label>
+          <input type="text" onkeyup="mayus(this);"  id="propietarioC" onchange="mapa.getCoords(); document.getElementById('creditoAC').focus();" class="form-control clear propietario" placeholder="">
         </div>
         
         <div class="col-md-3 form-group">
-          <label class="">Crédito autorizado </label>
-          <input type="text" class="form-control clear credito" placeholder="Crédito">
+          <label class="">CRÉDITO AUTORIZADO </label>
+          <input type="number" pattern="[0-9]{10}" id="creditoAC" onchange="mapa.getCoords(); document.getElementById('bonificacionAC').focus();" class="form-control clear credito" placeholder="">
         </div>
-        <div class="col-md-3 form-group">
-          <label class="">Bonificación Autorizada</label>
-          <input type="text" class="form-control clear bonificacion" placeholder="Bonificación">
+        <div class="col-md-4 form-group">
+          <label class="">BONIFICACIÓN AUTORIZADA</label>
+          <input type="number" pattern="[0-9]{10}" id="bonificacionAC" onchange="mapa.getCoords(); document.getElementById('correoC').focus();" class="form-control clear bonificacion" placeholder="">
         </div>
-        <div class="col-md-6 form-group licencia">
-          <label class="">Correo</label><input type="text" class="form-control clear email" placeholder="@">
+        <div class="col-md-5 form-group licencia">
+          <label class="">CORREO</label><input id="correoC" onchange="mapa.getCoords(); document.getElementById('search').focus();" type="text" class="form-control clear email" placeholder="">
         </div>
         <div class="col-md-12 form-group">
-          <label class="">Domicilio</label>
-          <input id="search" type="text" class="form-control clear direccion" onchange="mapa.getCoords(); document.getElementById('fechaCliente').focus();" placeholder="Domicilio">
+          <label class="">DOMICILIO</label>
+          <input id="search" onkeyup="mayus(this);"  type="text" class="form-control clear direccion" onchange="mapa.getCoords(); document.getElementById('fechaCliente').focus();" placeholder="">
         </div>
         <div class=" col-md-4 form-group">
-             <label class="">Lng. (Opcional)</label>
+             <label class="">LNG. (OPCIONAL)</label>
              <input type="text" class="form-control clear lng" placeholder="Lng">
           </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Lat. (Opcional)</label><input  type="text" class="form-control clear lat" placeholder="Lat">
+          <label class="">LAT. (OPCIONAL)</label><input  type="text" class="form-control clear lat" placeholder="Lat">
         </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Fecha</label><input id="fechaCliente" type="date" class="form-control clear fecha" placeholder="">
+          <label class="">FECHA</label><input id="fechaCliente" type="date" class="form-control clear fecha" onchange="mapa.getCoords(); document.getElementById('telPC').focus();" placeholder="">
         </div>
          <div class="col-md-4 form-group licencia">
-          <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telefonop" placeholder="" >
+          <label class="">TELÉFONO PERSONAL</label><input id="telPC" onchange="mapa.getCoords(); document.getElementById('telLC').focus();" type="phone" class="form-control clear telefonop" placeholder="" >
         </div>
         <div class="col-md-4 form-group licencia">
-          <label class="">Teléfono Local</label><input type="phone" class="form-control clear telefono" placeholder="" >
+          <label class="">TELÉFONO LOCAL</label><input id="telLC" onchange="mapa.getCoords(); document.getElementById('descripcionC').focus();"  type="phone" class="form-control clear telefono" placeholder="" >
         </div>
         <div class="col-md-4 form-group ruta1">
-          <label class="">Ruta asignada</label><input type="text" class="form-control  ruta" disabled placeholder="" >
+          <label class="">RUTA ASIGNADA</label><input id="rutaAC" type="text" class="form-control  ruta" disabled placeholder="" >
         </div>
         <div class="col-md-12 form-group licencia">
-          <label class="">Descripción y/o comentario</label><input type="text" class="form-control clear descripcion" placeholder="Descripción" >
+          <label class="">DESCRIPCIÓN Y/O COMENTARIO </label><input id="descripcionC" onkeyup="mayus(this);"  onchange="mapa.getCoords(); document.getElementById('addC').focus();" type="text" class="form-control clear descripcion" placeholder="" >
         </div>
 
               
@@ -437,8 +437,8 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" onclick="closeCliente()">Cancelar</button>
-               <div class="addCliente1"><button type="button" class="btn btn-success " id="agregarp" onclick="addCliente()">Guardar</button></div>
+               <button type="button" class="btn btn-default" onclick="closeCliente()">CANCELAR</button>
+               <div class="addCliente1"><button id="addC" type="button" class="btn btn-success " id="agregarp" onclick="addCliente()">GUARDAR</button></div>
                
             </div>
           </div>
@@ -1111,7 +1111,7 @@
                   <input type="number" pattern="[0-9]{10}"  class="form-control clear cash" placeholder="$" onchange="addEfectivo()">
                 </div>
 
-  <div id="opcionesAvanzadas" style="display: none" class="col-md-12"><li style="color: blue;" src="" onclick="oAvanzadasE()"><u>Opciones Avanzadas</u></li>   </div>
+  <div id="opcionesAvanzadas" style="display: none" class="col-md-12"><li style="color: blue;" src="" onclick="oAvanzadasE()"><u>OPCIONES AVANZADAS.</u></li>   </div>
   <div id="oAvanzadasE" class="col-md-12 row" style="display: none">
    <div class="col-md-12 text-center">
    <label for="">IMPORTE DEL VENDEDOR</label>
@@ -1132,7 +1132,7 @@
 
       <input type="number" pattern="[0-9]{10}"  class="form-control clear fSR text-center" placeholder="$" disable onchange="">
                 </div>
-                <div class="col-md-12"><li style="color: blue;" src="" onclick="mAvanzadasE()"><u>Más opciones sobre la carga del día. </u></li>   </div>
+                <div class="col-md-12"><li style="color: blue;" src="" onclick="mAvanzadasE()"><u>MÁS OPCIONES SOBRE LA CARGA DEL DÍA. </u></li>   </div>
                 <div id="mAvanzadasE" class="col-md-12 row" style="display: none">
    <div class="col-md-12 text-center">
    <label for="">CRÉDITO LÍMITE.</label>
@@ -1149,7 +1149,7 @@
 
                 </div>
 
-                <div class="col-md-12"> <br><button class="btn btn-info totala" id="addEfectivo" onclick="addEfectivo()">Guardar</button> </div><br>
+                <div class="col-md-12"> <br><button class="btn btn-info totala" id="addEfectivo" onclick="addEfectivo()">GUARDAR</button> </div><br>
               </div>
 
 

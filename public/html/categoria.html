@@ -5,32 +5,31 @@
 <div class="totalVenta text-left impre"></div>
     <div class="row">
     <div class="col-md-3 impre form-group piezasventas">
-          <label class="letras">Nombre</label>
-          <input type="text" class="form-control clear nombre" >
+          <label class="letras">NOMBRE</label>
+          <input onkeyup="mayus(this);" class="form-control clear nombre" >
         </div>
         <div class="col-md-9 impre form-group">
-          <label class="letras">Descripción</label>
-          <input type="text" class="form-control clear descripcion1">
+          <label class="letras">DESCRIPCIÓN</label>
+          <input onkeyup="mayus(this);"" class="form-control clear descripcion1">
         </div>
         <div class="col-md-2 impre form-group">
-          <label class="letras">Jerarquia</label>
+          <label class="letras">JERARQUÍA</label>
           <input type="number" pattern="[0-9]{10}" class="form-control clear  jerarquia">
         </div>
         
         
       <div class="col-md-10"></div>
   <div class="col-xs-3 impre col-md-3">
-      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addCategoria()" >Insertar</button>
+      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addCategoria()" >INSERTAR</button>
   </div>
    <div class="col-xs-3 impre col-md-3">
-    <button type="button" class="btn btn-ventas limpiar" onclick=" limpiar(); " >Limpiar</button>
+    <button type="button" class="btn btn-ventas limpiar" onclick=" limpiar(); " >LIMPIAR</button>
   </div>
   <div class="col-md-3 guardarC"></div>
   <div class="col-md-3 eliminarC"></div>
   
    
-   
-  <br class="impre"><br class="impre">
+ 
   <br class="impre">
  
   </div>
@@ -43,10 +42,10 @@
 
 
       <tr class="letras text-center impre">
-        <th class="letras">Num</th>
-        <th class="letras">Nombre</th>
-        <th class="letras">Descripción</th>    
-        <th class="letras">Producto</th>    
+        <th class="letras">NUM</th>
+        <th class="letras">NOMBRE</th>
+        <th class="letras">DESCRIPCIÓN </th>    
+        <th class="letras">PRODUCTO</th>    
       </tr>
     </thead>
     <tbody class="contCataC ventascss impre " >

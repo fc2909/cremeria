@@ -4869,7 +4869,7 @@ function  loadRutas1(lista){
 function  loadMV(lista){
           var html = '';
       for(var h=0;h<lista.length; h++){
-              html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); "><td onClick="selectControlVehicular2('+lista[h].id+')" >' + lista[h].numero+'</td><td onClick="selectControlVehicular2('+lista[h].id+')">' + lista[h].marca+'</td><td onClick="selectControlVehicular2('+lista[h].id+')"> ' + lista[h].modelo+'</td><td onClick="selectControlVehicular2('+lista[h].id+')">' + lista[h].placa+'</td><td style="width:40px" ><div class="btn-group"  data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upControlVehicular1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delControlVehicular('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
+              html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); "><td onClick="selectControlVehicular2('+lista[h].id+')" >' + lista[h].numero+'</td><td onClick="selectControlVehicular2('+lista[h].id+')">' + lista[h].marca+'</td><td onClick="selectControlVehicular2('+lista[h].id+')"> ' + lista[h].modelo+'</td><td onClick="selectControlVehicular2('+lista[h].id+')">' + lista[h].placa+'</td><td style="width:40px" ><div class="btn-group"  data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upControlVehicular1('+ lista[h].id +');">EDITAR</button> <button type="button" class="btn btn-danger btn-sm" onclick="delControlVehicular('+ lista[h].id +');">ELIMINAR</button></div> </td></tr>';
       }
               $('.contCata').html(html);
               arrGlobalVehiculo = lista;
@@ -6763,10 +6763,15 @@ if(pesov==""){
 }
 //alert(piezasT[i]+"------");
 venta=(parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))*parseFloat(arrGlobalT[i].precioUnitario);
+if((parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))==0){
+var piezas = piezasv;
+var json1={piezas: piezas, piezasv: piezasv, pesov: pesov, venta: venta, fecharecepcion: fecharecepcion};
 
-//venta=(arrGlobalT[i].peso-pesov)*arrGlobalT[i].precioUnitario;
-//alert(venta);
+
+}else{
 var json1={piezasv: piezasv, pesov: pesov, venta: venta, fecharecepcion: fecharecepcion};
+
+}
 idc=arrGlobalT[i].id;
 //suma2(venta, i);
 var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
@@ -8261,16 +8266,14 @@ $("#modalAdministracion .antecedentes").attr('checked', true);
     }
   }
 }
-function selectMantenimiento(id){
-  
-}
+
 
 function selectMantenimiento(id){
   idGlobal = id;
 
- var upMantenimiento1='<button type="button" class="btn usuario1 modificar" onclick="upMantenimiento()">Guardar</button>';
- var delMantenimiendo1 = '<button type="button" class="btn usuario1 eliminar" onclick="delMantenimiento1()">Eliminar</button>';
-  var vehiculo3='<label >Vehiculo</label><input type="text" id="peso" disabled class="form-control clear vehiculo2" placeholder="">';
+ var upMantenimiento1='<button type="button" class="btn usuario1 modificar" onclick="upMantenimiento()">GUARDAR</button>';
+ var delMantenimiendo1 = '<button type="button" class="btn usuario1 eliminar" onclick="delMantenimiento1()">ELIMINAR</button>';
+  var vehiculo3='<label >VEHICULO</label><input type="text" id="peso" disabled class="form-control clear vehiculo2" placeholder="">';
   for(var a=0; a< arrGlobalMantenimiento.length; a++){
     if( arrGlobalMantenimiento[a].id == id){
        $(".guardarM").html(upMantenimiento1);

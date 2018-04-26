@@ -154,25 +154,25 @@
                  <div class="row">
         <div class="col-md-3 impre form-group">
           <label class="" >ID</label>
-          <input type="text" id="idProducto" class="form-control clear idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="#" onload="">
+          <input type="text" id="idProductoM" class="form-control clear idProductoM" onchange="updateListaMerma();document.getElementById('piezasM').focus();" placeholder="" onload="">
         </div>
         <div class="col-md-3 impre form-group">
           <label class="">Descripción</label>
-          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedidaMerma(); " disabled placeholder="Descripción">
+          <input type="text" class="form-control clear descripcionM" style="color:green;" onchange="updateListaVentaMedidaMerma(); " disabled placeholder="">
         </div>
         
         <div class="col-md-3 impre form-group piezasventas">
-          <label class="">Piezas</label>
-          <input type="text" id="piezas" class="form-control clear piezas" onchange="cambio(); " placeholder="#">
+          <label class="">PIEZAS</label>
+          <input type="text" id="piezasM" class="form-control clear piezasM" onchange="cambioMerma(); " placeholder="">
         </div>
-       <div class="col-md-3 form-group pesos">
+       <div class="col-md-3 form-group pesosM">
           
         </div>
 <div class="col-xs-3 impre col-md-3">
-      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addMerma(); document.getElementById('idProducto').focus();">Insertar</button>
+      <button type="button" id="addM" class="btn btn-ventas insertar " onclick="addMerma(); document.getElementById('idProductoM').focus();">INSERTAR</button>
   </div>
    <div class="col-xs-3 impre col-md-3">
-    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">Limpiar</button>
+    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">LIMPIAR</button>
   </div>
   <div class="col-xs-3 impre col-md-3">
   <div class="upventa"></div>
@@ -866,7 +866,7 @@
           <div class="modal-content">
             <div class="modal-header ">
             
-              <h2 class="modal-title ">NUEVO VEHICULO</h2>
+              <h2 class="modal-title ">NUEVO VEHÍCULO </h2>
             
              
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -879,84 +879,84 @@
  
  <div class="col-xs-3 col-md-3 form-group ">
 
-    <label >Numero</label>
-    <input type="text" class="form-control  clear numero" placeholder="">
+    <label >NUMERO</label>
+    <input  type="number" onchange="document.getElementById('marcaV').focus();" pattern="[0-9]{10}" class="form-control  clear numero" placeholder="">
   </div>      
  <div class="col-xs-3 col-md-3 form-group ">
 
-    <label >Marca</label>
-    <input type="text" class="form-control  clear marca" placeholder="">
+    <label >MARCA</label>
+    <input type="text" id="marcaV" onchange="document.getElementById('serieV').focus();" onkeyup="mayus(this);" class="form-control  clear marca" placeholder="">
   </div>
      
  
   <div class="col-xs-3 col-md-3 form-group ">
   
-    <label >No. Serie</label>
-    <input type="text" class="form-control  clear noserie" placeholder="">
+    <label >NO. SERIE</label>
+    <input type="text" id="serieV" onchange="document.getElementById('modeloV').focus();" onkeyup="mayus(this);"  class="form-control  clear noserie" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
   
-    <label >Modelo</label>
-    <input type="text" class="form-control  clear modelo" placeholder="">
+    <label >MODELO</label>
+    <input   type="number" id="modeloV" onchange="document.getElementById('tipoV').focus();" pattern="[0-9]{10}" class="form-control  clear modelo" placeholder="">
   </div> 
   <div class="col-xs-3 col-md-3 form-group ">
   
-    <label >Tipo</label>
-    <input type="text" class="form-control  clear tipo" placeholder="">
+    <label >TIPO</label>
+    <input type="text" id="tipoV" onchange="document.getElementById('colorV').focus();" onkeyup="mayus(this);" class="form-control  clear tipo" placeholder="">
   </div>  
   <div class="col-xs-3 col-md-3 form-group ">
   
-    <label >Color</label>
-    <input type="text" class="form-control  clear color" placeholder="">
+    <label >COLOR</label>
+    <input type="text" id="colorV" onchange="document.getElementById('combustibleV').focus();" onkeyup="mayus(this);" class="form-control  clear color" placeholder="">
   </div> 
   <div class="col-xs-3 col-md-3 form-group ">
   
-    <label >Combustible</label>
-    <select class="form-control clear combustible">
-            <option value="1">Gasolina - MAGNA</option>
-            <option value="2">Gasolina - PREMIUM</option>
-            <option value="3">Gasolina & Gas</option>
-            <option value="4">Gas</option>
-            <option value="5">Diesel</option>
+    <label >COMBUSTIBLE </label>
+    <select id="combustibleV" onchange="document.getElementById('kmV').focus();" class="form-control clear combustible">
+            <option value="1">GASOLINA - MAGNA</option>
+            <option value="2">GASOLINA - PREMIUM</option>
+            <option value="3">GASOLINA & GAS</option>
+            <option value="4">GAS</option>
+            <option value="5">DIESEL</option>
     </select>
   
   </div>  
   
   <div class="col-xs-3 col-md-3 form-group ">
-    <label >Km</label>
-    <input type="text" class="form-control  clear km" placeholder="">
+    <label >KM</label>
+    <input  type="number" id="kmV" onchange="document.getElementById('placasV').focus();" pattern="[0-9]{10}" class="form-control  clear kmV" placeholder="">
   </div>
 <div class="col-xs-3 col-md-3 form-group ">
-   <label >Placas</label>
-    <input type="text" class="form-control  clear placas" placeholder="">
+   <label >PLACAS</label>
+    <input type="text" id="placasV" onchange="document.getElementById('aseguradoraV').focus();"  onkeyup="mayus(this);" class="form-control  clear placas" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
-   <label >Aseguradora</label>
-    <input type="text" class="form-control  clear aseguradora" placeholder="">
+   <label >ASEGURADORA</label>
+    <input type="text" id="aseguradoraV" onchange="document.getElementById('polizaV').focus();" onkeyup="mayus(this);" class="form-control  clear aseguradora" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
-   <label >Poliza</label>
-    <input type="text" class="form-control  clear poliza" placeholder="">
+   <label >PÓLIZA</label>
+    <input type="text" id="polizaV" onchange="document.getElementById('iniPolizaV').focus();" onkeyup="mayus(this);" class="form-control  clear poliza" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
-   <label >Inicio de poliza</label>
-    <input type="date" class="form-control  clear iniciopoliza" placeholder="">
+   <label >INICIO DE PÓLIZA</label>
+    <input type="date" id="iniPolizaV" onchange="document.getElementById('finPolizaV').focus();" class="form-control  clear iniciopoliza" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
-   <label >Fin de poliza</label>
-    <input type="date" class="form-control  clear finpoliza" placeholder="">
+   <label >FIN DE PÓLIZA</label>
+    <input type="date" id="finPolizaV" onchange="document.getElementById('endosoV').focus();" class="form-control  clear finpoliza" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
-   <label >Endoso</label>
-    <input type="text" class="form-control  clear endoso" placeholder="">
+   <label >ENDOSO</label>
+    <input type="text" id="endosoV" onchange="document.getElementById('incisoV').focus();" onkeyup="mayus(this);" class="form-control  clear endoso" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
-   <label >Inciso</label>
-    <input type="text" class="form-control  clear inciso" placeholder="">
+   <label >INCISO</label>
+    <input type="text" id="incisoV" onchange="document.getElementById('telefonoV').focus();" onkeyup="mayus(this);" class="form-control  clear inciso" placeholder="">
   </div>
   <div class="col-xs-3 col-md-3 form-group ">
-   <label >Telefono</label>
-    <input type="text" class="form-control  clear tel" placeholder="">
+   <label >TELÉFONO</label>
+    <input type="text" id="telefonoV" onchange="document.getElementById('agregarp').focus();" onkeyup="mayus(this);" class="form-control  clear tel" placeholder="">
   </div>
                 
               </div>
@@ -1205,10 +1205,10 @@
               </button>
             </div>
             <div class="modal-body textModal">
-              <input type="text" class="creditos">
+              <input  type="number" onchange="document.getElementById('guardarC').focus();" pattern="[0-9]{10}"  class="creditos">
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-modals" onclick="agregarCredito()">GUARDAR</button>
+               <button type="button" id="guardarC" class="btn btn-modals" onclick="agregarCredito()">GUARDAR</button>
             </div>
           </div>
         </div>

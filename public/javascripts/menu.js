@@ -7086,6 +7086,8 @@ function upRecepcion(){
         document.getElementById('loader').style.display = 'block';
   var fechadespachof = fechacaptura;
 var ruta = rutas; 
+              var imprimir = '  <li class="impre  text-center imprimirList"  onclick="pagare2();">IMPRIMIR</li>';
+
  var gasolinaT = $('#modalDesp2 .gasolina1').val();
  var gasT = $('#modalDesp2 .gas1').val();
  var dieselT = $('#modalDesp2 .diesel1').val();
@@ -7470,6 +7472,8 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 //alert(id_vend);
 s_vent=0;
 s_vent2=0;
+                    $('.imprimir').html(imprimir);
+
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
 
@@ -7483,6 +7487,8 @@ upRegistro3(id_vend, json2, 'ventaspasada', loadVentaspasadasTF);
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasVF);
 //alert(id_vend);
+                    $('.imprimir').html(imprimir);
+
 s_vent=0;
 s_vent2=0;
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);

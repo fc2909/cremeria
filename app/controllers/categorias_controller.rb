@@ -20,7 +20,7 @@ def index
 			Categor.find(params[:id]) 
 		end
 		def model_params
-			params.permit(:nombre, :descripcion, :unidades, :jerarquia, :n1, :n2,  :n3)
+			params.permit(:nombre, :descripcion, :unidades, :jerarquia, :n1, :n2,  :n3, :n4)
 
  
 

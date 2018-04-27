@@ -1,0 +1,63 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+        <!-- añadir jQuery-UI -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+     
+<div class="totalVenta text-left impre"></div>
+    <div class="row">
+    <div class="col-md-3 impre form-group piezasventas">
+          <label class="letras">CATEGORIA</label>
+          <input disabled class="form-control clear nombreC" >
+        </div>
+        <div class="col-md-3 impre form-group">
+          <label class="letras"> DETALLE  </label>
+          <input type="text" pattern="[0-9]{10}" class="form-control clear detalleC">
+        </div>
+        <div class="col-md-3 impre form-group">
+          <label class="letras"> MAYOREO  </label>
+          <input type="text" pattern="[0-9]{10}" class="form-control clear mayoreoC ">
+        </div>
+        <div class="col-md-3 impre form-group">
+          <label class="letras"> FORÁNEO  </label>
+          <input type="text" pattern="[0-9]{10}" class="form-control clear foraneoC ">
+        </div>
+        <div class="col-md-3 impre form-group">
+          <label class="letras"> RESTAURANTES   </label>
+          <input type="text" pattern="[0-9]{10}" class="form-control clear restauranteC">
+        </div>
+        
+      <div class="col-md-10"></div>
+  <div class="col-xs-3 impre col-md-3">
+      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="upComision()" >GUARDAR</button>
+  </div>
+   <div class="col-xs-3 impre col-md-3">
+    <button type="button" class="btn btn-ventas limpiar" onclick=" limpiar(); " >LIMPIAR</button>
+  </div>
+
+   
+ 
+  <br class="impre">
+ 
+  </div>
+
+<br class="impre">
+ <div class="">
+  <div class="table-responsive tabla text-center impre">
+  <table id="categoriasT" class="impre table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center impre ">
+
+
+      <tr class="letras text-center impre">
+        <th class="letras">NOMBRE</th>
+        <th class="letras text-center">DETALLE </th>    
+        <th class="letras text-center">MAYOREO </th>    
+        <th class="letras text-center"> FORÁNEO </th>    
+        <th class="letras text-center"> RESTAURANTES</th>    
+  
+      </tr>
+    </thead>
+    <tbody class="contCataC ventascss impre " >
+     
+    </tbody>
+     
+  </table>
+</div></div>

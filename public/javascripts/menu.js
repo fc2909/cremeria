@@ -93,6 +93,9 @@ function saberSemana(d,m,a){
 }
 
 //-------------------------------------------- tipos de combustible --------------------------------------------------//
+
+
+
 function ninguno(){
     var combustible2='';
         $('#modalDesp2 .combustible2').html(combustible2);
@@ -1079,7 +1082,7 @@ function loadVentasF(lista){
                   s_vent2=total;
                   totalV = ' <h3 class="letras">VENTA TOTAL: $ '+formatoMoneda1(total)+'</h3>';
                   $(".totalVentas").html(totalV);
-        document.getElementById('loader').style.display = 'none';
+        //document.getElementById('loader').style.display = 'none';
           
           }
               var element;
@@ -4727,6 +4730,7 @@ function loadVDiaria(lista){
                   $('.contCataModalDP').html(html2p);
                   $('.contCataModalD').html(html2);
                   $('.contCataModal').html(html);
+        document.getElementById('loader').style.display = 'none';
                   $('.ventaDiariaSemanal').html(htmlp);
 }
 function loadVentas(lista){
@@ -4950,7 +4954,14 @@ function nextInput2(num){
 function loadVentasp(lista){
                   arrGlobal4 = lista;
         document.getElementById('loader').style.display = 'none';
-
+        var idProducto = "'idProducto'";
+ $('.addV').html('<button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('+idProducto+').focus();">INSERTAR</button>');
+}
+function loadVentasPR(lista){
+                  arrGlobal4 = lista;
+        //document.getElementById('loader').style.display = 'none';
+        var idProducto = "'idProducto'";
+ $('.addV').html('<button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('+idProducto+').focus();">INSERTAR</button>');
 }
 function loadVentasp4(lista){
                   arrGlobalF = lista;
@@ -5145,6 +5156,7 @@ function loadVentaspasadasTF(lista){
               html2='';
               arrGlobal4 = lista;
               arrGlobal41 = lista;
+document.getElementById('loader').style.display = 'none';
 }
 function loadDiaRec(lista){
           var html = '';
@@ -5981,6 +5993,7 @@ if(noSemana==52&&dc==6){
   if(num==0 && num2==0){
    //alert("registrar ruta: "+rutas);
    //alert("add "+sc+" == "+sfc+" && "+dsfc+" == "+dfc+" && "+fechadespacho+" == "+fechadespachof);
+ $('.addV').html('');
     document.getElementById('loader').style.display = 'block';
    var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2, t_venta_merca: t_venta_merca};
 
@@ -7082,219 +7095,283 @@ var f_s_dia, fechaf;
 function aviso(excedente){
 
 }
-function upRecepcion(){
-        document.getElementById('loader').style.display = 'block';
+function upRecepcionProducto(){
+  document.getElementById('loader').style.display = 'block';
   var fechadespachof = fechacaptura;
-var ruta = rutas; 
-              var imprimir = '  <li class="impre  text-center imprimirList"  onclick="pagare2();">IMPRIMIR</li>';
-
- var gasolinaT = $('#modalDesp2 .gasolina1').val();
- var gasT = $('#modalDesp2 .gas1').val();
- var dieselT = $('#modalDesp2 .diesel1').val();
- var kmT = $('#modalDesp2 .km1').val();
-
-//if(gasolinaT!=null||gasolinaT!=""||gasolinaT!=undefined||gasolinaT!=NaN||gasolina!=""||gasolina!=undefined||gasolina!=NaN){
-gasolina=gasolinaT;
-//}
-//if(kmT!=null||kmT!=""||kmT!=undefined||km!=NaN||km!=""||km!=undefined||km!=NaN){
-km=kmT;
-//}
-//if(gasT!=null||gasT!=""||gasT!=undefined||gasT!=NaN||gas!=""||gas!=undefined||gas!=NaN){
-gas=gasT;
-//}
-//if(dieselT!=null||dieselT!=""||dieselT!=undefined||dieselT!=NaN||diesel!=""||diesel!=undefined||diesel!=NaN){
-diesel=dieselT;
-//}
-
-
-
-
-
-  creditos=$(".creditos").val();
-otros=$(".otros").val();
-
-var idc, creditos, otros,temp;
-var piezasv, pesov, validar, dsd, sd, lo;
-
-var credito_manual=0;
-   $(".totalVentas").html('');
-var fecharecepcion=today_vv;
-
-    
-
-    var excedenteC=0;
-    var excedenteB=0;
-    if(cred<creditos){
-      creditos = cred;
-}
-if(boni<otros){
-      otros=boni;
-}
-
-if(creditos!="" && otros !=""){
-
-
+  var ruta = rutas; 
+  var gasolinaT = $('#modalDesp2 .gasolina1').val();
+  var gasT = $('#modalDesp2 .gas1').val();
+  var dieselT = $('#modalDesp2 .diesel1').val();
+  var kmT = $('#modalDesp2 .km1').val();
+      gasolina=gasolinaT;
+      km=kmT;
+      gas=gasT;
+      diesel=dieselT;
+      creditos=$(".creditos").val();
+      otros=$(".otros").val();
+  var idc, creditos, otros,temp;
+  var piezasv, pesov, validar, dsd, sd, lo;
+  var credito_manual=0;
+      $(".totalVentas").html('');
+  var fecharecepcion=today_vv;
+  var excedenteC=0;
+  var excedenteB=0;
+   if(cred<creditos)creditos = cred;
+   if(boni<otros)otros=boni;
+   if(creditos!="" && otros !=""){
 for (var i = 0; i < arrGlobalT.length; i++) {
- if(rutas==arrGlobalT[i].ruta &&arrGlobalT[i].dfc==dscv&&arrGlobalT[i].sfc==scv&&arrGlobalT[i].merma!=1 ){
-//alert(dscv+"- semana= "+scv);
-validar==1;
-if(parseFloat(arrGlobalT[i].medida)==2){
-piezasv= $('#rec'+i+'').val();
-if(piezasv==""){
-  piezasv=0;
-}
-pesov=0;
-//alert("("+parseInt(arrGlobalT[i].piezas)+"-"+piezasv+")*"+parseInt(arrGlobalT[i].precioUnitario));
-venta=(parseFloat(arrGlobalT[i].piezas)-parseFloat(piezasv))*parseFloat(arrGlobalT[i].precioUnitario);
-var json1={piezasv: piezasv, venta: venta, fecharecepcion: fecharecepcion};
-idc=arrGlobalT[i].id;
-//suma2(venta, i);
-var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-
-upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasp);
-
- var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+   if(rutas==arrGlobalT[i].ruta &&arrGlobalT[i].dfc==dscv&&arrGlobalT[i].sfc==scv&&arrGlobalT[i].merma!=1 ){
+      validar==1;
+   if(parseFloat(arrGlobalT[i].medida)==2){
+      piezasv= $('#rec'+i+'').val();
+   if(piezasv==""){
+      piezasv=0;
+      }
+      pesov=0;
+      venta=(parseFloat(arrGlobalT[i].piezas)-parseFloat(piezasv))*parseFloat(arrGlobalT[i].precioUnitario);
+  var json1={piezasv: piezasv, venta: venta, fecharecepcion: fecharecepcion};
+      idc=arrGlobalT[i].id;
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasPR);
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
- 
+      var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+
+      s_vent+=t_v2[i];
+      }else{
+      pesov=$('#rec'+i+'').val();
+      piezasv=$('#p'+i+'').val();
+   if(piezasv==""){
+      piezasv=0;
+      }
+   if(pesov==""){
+      pesov=0;
+      }
+      venta=(parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))*parseFloat(arrGlobalT[i].precioUnitario);
+  if((parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))==0){
+  var piezas = piezasv;
+  var json1={piezas: piezas, piezasv: piezasv, pesov: pesov, venta: venta, fecharecepcion: fecharecepcion};
+      }else{
+  var json1={piezasv: piezasv, pesov: pesov, venta: venta, fecharecepcion: fecharecepcion};
+      }
+      idc=arrGlobalT[i].id;
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasPR);
 
 
-//alert( t_v[i] +" = "+t_v2[i]);
-s_vent+=t_v2[i];
-}else{
-pesov=$('#rec'+i+'').val();
-piezasv=$('#p'+i+'').val();
-if(piezasv==""){
-  piezasv=0;
-}
-if(pesov==""){
-  pesov=0;
-}
-//alert(piezasT[i]+"------");
-venta=(parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))*parseFloat(arrGlobalT[i].precioUnitario);
-if((parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))==0){
-var piezas = piezasv;
-var json1={piezas: piezas, piezasv: piezasv, pesov: pesov, venta: venta, fecharecepcion: fecharecepcion};
+      s_vent+=t_v2[i];
 
-
-}else{
-var json1={piezasv: piezasv, pesov: pesov, venta: venta, fecharecepcion: fecharecepcion};
-
-}
-idc=arrGlobalT[i].id;
-//suma2(venta, i);
-var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-
-upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasp);
- var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
- 
-
-//alert( t_v[i] +" = "+t_v2[i]);
-s_vent+=t_v2[i];
-
-}
-  }
- //alert(arrGlobalT[i].descripcionventa);
-}
-//alert(s_vent);
-//creditos=$(".creditos").val();
-//otros=$(".otros").val();
-var  t_venta_merca = s_vent2;
-//alert("modalc "+modalCreditos1);
-
- for(var m=0;m<arrGlobal4.length; m++){
-   //alert(today_v+" - "+lista[h].fecha);
-      //alert(lista[h].hora + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + lista[h].piezas + '</td><td>' + lista[h].peso + '</td><td>' + lista[h].precioUnitario + '</td><td>' + lista[h].valorMercancia +'</td></tr>');
-  
-//alert('<tr class="seleccionar" onclick="selectVentasp('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].ruta + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + lista[h].v_mercancia + '</td><td>'+lista[h].fecha +'</td></tr>');
-if (arrGlobal4[m].dsfc==dscv&&arrGlobal4[m].ruta==rutas&&arrGlobal4[m].sfc==scv) {
-  fechaf=arrGlobal4[m].fechaf;
-  if(arrGlobal4[m].efectivo==null || arrGlobal4[m].efectivo==undefined || arrGlobal4[m].efectivo== NaN ){
-//alert(scv);
-
-      f_s_dia=otros-t_venta_merca; 
-      $('.sumaefec').html('$ '+parseFloat(otros).toFixed(2));
-//alert(f_s_dia + " -------"+t_venta_merca);
-break;
-  }else{
-      f_s_dia=(parseFloat(arrGlobal4[m].efectivo)+parseFloat(otros))-parseFloat(t_venta_merca); 
-//alert("<<<<<>>>>>("+parseFloat(arrGlobal4[m].efectivo)+" + "+parseFloat(arrGlobal4[m].otros)+") - "+parseFloat(arrGlobal4[m].t_venta_merca)+" = "+f_s_dia);
-     var suma = parseFloat(arrGlobal4[m].efectivo)+parseFloat(otros);
-      $('.sumaefec').html('$ '+parseFloat(suma).toFixed(2));
-//alert(f_s_dia + " -------otro");
-break;
-  }
-}}
-var mes=month-1;
-var dia=day-1;
-//alert(dia+" - "+mes+" - "+anio);
-saberSemana(dia,mes,year);
-//alert("fechaf: "+dia+"/"+mes+"/"+year+" -- "+noSemana);
-var cobrado=noSemana;
-var t_vendido = today;
-dsd=today;
-sd=noSemana+1;
-var user;
-  for(var h=0;h<upin.length; h++){
-      if(pin==upin[h].pin){
-        
-user=upin[h].usuario;
-        
+      f_s_dia
       }
   }
-//alert(user);
-var despachador = despachadorR;
-cobrado = cobrado +1;
-var temp=today;
-var loquedeberiatraer, f_s_real;
- var despachador=despachadorR;
- var day3 = fechaf.substring(8,10);
- var month3 = fechaf.substring(5,7);
- var year3 = fechaf.substring(0,4);
+}
+
+ var  t_venta_merca = s_vent2;
+for(var m=0;m<arrGlobal4.length; m++){
+  if (arrGlobal4[m].dsfc==dscv&&arrGlobal4[m].ruta==rutas&&arrGlobal4[m].sfc==scv) {
+      fechaf=arrGlobal4[m].fechaf;
+   if(arrGlobal4[m].efectivo==null || arrGlobal4[m].efectivo==undefined || arrGlobal4[m].efectivo== NaN ){
+      f_s_dia=otros-t_venta_merca; 
+      $('.sumaefec').html('$ '+parseFloat(otros).toFixed(2));
+      break;
+      }else{
+      f_s_dia=(parseFloat(arrGlobal4[m].efectivo)+parseFloat(otros))-parseFloat(t_venta_merca); 
+  var suma = parseFloat(arrGlobal4[m].efectivo)+parseFloat(otros);
+      $('.sumaefec').html('$ '+parseFloat(suma).toFixed(2));
+
+      break;
+      }
+  }}
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
 
 
 
-var diasema3= new Date((parseInt(month3))+' '+parseInt(day3)+' ,'+parseInt(year3));
-   var dia31=(diasema3.getUTCDay());
-//alert("Hoy es: "+dia31+" -- "+fechaf);
-//alert("modalc "+modalCreditos1);
-
-
-if(dia31==1){
-
-//alert("Hoy es lunes xD");
-
-//alert (cobrado+" - "+scv);
-
-for(var h=0;h<arrGlobal4.length; h++){
-   //alert(today_v+" - "+lista[h].fecha);
-      //alert(lista[h].hora + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + lista[h].piezas + '</td><td>' + lista[h].peso + '</td><td>' + lista[h].precioUnitario + '</td><td>' + lista[h].valorMercancia +'</td></tr>'); 
-//alert('<tr class="seleccionar" onclick="selectVentasp('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].ruta + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + lista[h].v_mercancia + '</td><td>'+lista[h].fecha +'</td></tr>');
-if (arrGlobal4[h].id==id_vend) {
-for(var hh=0;hh<arrGlobal4.length; hh++){
-  //alert(arrGlobal4[hh].cobrado+" == "+(cobrado-1)+" && "+arrGlobal4[hh].ruta+" == "+rutas+" && "+6+" == "+arrGlobal4[hh].t_venta);
-
-if (arrGlobal4[hh].sfc==(scv-1)&&arrGlobal4[hh].ruta==rutas&&6==arrGlobal4[hh].dsfc) {
-loquedeberiatraer=parseFloat(arrGlobal4[hh].creditos)-parseFloat(f_s_dia);
-f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
- //alert(loquedeberiatraer+" - "+f_s_real);
- //alert(creditos+" entraaaaaaaa en semana:"+arrGlobal4[hh].sfc);
- credito_manual=1;
-
- //alert(arrGlobal4[hh].creditos+" - "+f_s_dia+" = "+ loquedeberiatraer);
- //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user }
+upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca);
+}else{
+  //alert("faltan datos");
 }
 }
+function upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca){
+/////////////////////////////// CALCULO DE FALTANTES ////////////////////////////////////////////////
+  var imprimir = '  <li class="impre  text-center imprimirList"  onclick="pagare2();">IMPRIMIR</li>';
+  var credito_manual=0;
+  var mes=month-1;
+  var dia=day-1;
+      saberSemana(dia,mes,year);
+  var cobrado=noSemana;
+  var t_vendido = today;
+      dsd=today;
+      sd=noSemana+1;
+  var user;
+  for(var h=0;h<upin.length; h++){
+   if(pin==upin[h].pin){
+      user=upin[h].usuario;  
+      }
   }
+  var despachador = despachadorR;
+      cobrado = cobrado +1;
+  var temp=today;
+  var loquedeberiatraer, f_s_real;
+  var despachador=despachadorR;
+  var day3 = fechaf.substring(8,10);
+  var month3 = fechaf.substring(5,7);
+  var year3 = fechaf.substring(0,4);
+  var diasema3= new Date((parseInt(month3))+' '+parseInt(day3)+' ,'+parseInt(year3));
+  var dia31=(diasema3.getUTCDay());
+
+   if(dia31==1){ ////////////////////// LUNES ////////////////////////////////////////
+for(var h=0;h<arrGlobal4.length; h++){ 
+  if (arrGlobal4[h].id==id_vend) {
+for(var hh=0;hh<arrGlobal4.length; hh++){
+  if (arrGlobal4[hh].sfc==(scv-1)&&arrGlobal4[hh].ruta==rutas&&6==arrGlobal4[hh].dsfc) {
+      loquedeberiatraer=parseFloat(arrGlobal4[hh].creditos)-parseFloat(f_s_dia);
+      f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
+      credito_manual=1;
+      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user }
+     alert("GUARDADO");
+      }
+    }
+  }
+}
+if(credito_manual==0){ ////////////// NO ENCUENTRA CREDITO DE LA SEMANA PASADA ////////////////////
+      modalCreditos2();
+   if(modalCreditos1!="F"){
+
+      loquedeberiatraer=parseFloat(modalCreditos1)-parseFloat(f_s_dia);
+      f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
+      credito_manual=1;
+      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
+     alert("GUARDADO");
+      }
+    }
+  }else{ ////////////////////////////////////// OTRO DIA DE LA SEMANA ////////////////////////////////
+  var med=arrGlobal4.length;
+  var hk=20;
+  var hhc=20;
+for(var h=0;h<arrGlobal4.length; h++){
+   if (arrGlobal4[h].id==id_vend) {///// PIVOTE CARGA PRINCIPAL /////////////
+     var SemanaPivote = arrGlobal4[h].sfc;
+     
+     var anioActual= arrGlobal4[h].fechaf.substring(0,4);
+for(var hh=0;hh<arrGlobal41.length; hh++){
+   if (arrGlobal4[h].fechaf.substring(0,4)==anioActual&&arrGlobal41[hh].sfc==SemanaPivote&&arrGlobal41[hh].ruta==ruta&&(dscv-1)==arrGlobal41[hh].dsfc) {
+  ////// ENCUENTRA LA CARGA DEL DIA ANTERIOR //////////////////  
+         alert("GUARDADO");
+      hk=80;
+      loquedeberiatraer=parseFloat(arrGlobal41[hh].loquedeberiatraer)-parseFloat(f_s_dia);
+      f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
+      modalCreditos1=1;
+      credito_manual=1;
+    if(arrGlobal4[hh].loquedeberiatraer!=null){
+      credito_manual=1;
+      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user}
+  break;
+}else{
+  $('#modal .textModal').html('La carga anterior, no ha sido recibida o regrese a rutas '); 
+      $('#modal').modal('show');
+
+  modalCreditos1="F";
+  break;
 
 }
-if(credito_manual==0){
-//Modal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! creditos
-modalCreditos2();
+ 
 
-if(modalCreditos1!="F"){
-//alert(modalCreditos1);
+}else{
+ // alert(arrGlobal41[hh].sfc+"==("+cobrado+")&&"+arrGlobal41[hh].ruta+"=="+rutas);
+
+  if(arrGlobal4[h].fechaf.substring(0,4)==anioActual&&arrGlobal41[hh].sfc==SemanaPivote&&arrGlobal41[hh].ruta==rutas){
+  // if (arrGlobal4[h].fechaf.substring(0,4)==anioActual&&arrGlobal41[hh].sfc==SemanaPivote&&arrGlobal41[hh].ruta==ruta&&(dscv-1)==arrGlobal41[hh].dsfc) {
+   
+
+
+    hhc=hh;
+    
+ // alert("cobradooo: "+cobrado +" - dia: "+arrGlobal41[hh].dsfc+" dscv: "+dscv);
+    
+    
+    for (var ii = dscv; ii <= dscv; ii--){
+  //alert(ii+" == "+arrGlobal41[hh].dsfc+" limite: "+dscv);
+    if (ii==arrGlobal41[hh].dsfc&&ii!=(dscv)) {
+//alert("ultimo dia con carga: "+ii);
+
+  hk=30;
+  if(arrGlobal41[hh].loquedeberiatraer!=null){
+    //alert("GUARDADO dia_anterior = false" + arrGlobal41[hh].loquedeberiatraer+" - "+arrGlobal41[hh].ruta);
+    loquedeberiatraer=parseFloat(arrGlobal41[hh].loquedeberiatraer)-parseFloat(f_s_dia);
+  f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
+  //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
+ //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
+modalCreditos1=1;
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
+  
+  }else{
+     $('#modal .textModal').html('La carga anterior, no ha sido recibida.'); 
+      $('#modal').modal('show');
+      modalCreditos1="F";
+  }
+  
+         
+  
+  break;
+
+
+  }
+  if(ii==0){
+    alert("GUARDADO");
+      break;
+
+  }
+  }  
+
+ 
+}
+
+}
+
+}
+
+
+
+
+  }}
+  //alert(f_s_dia+" here!!!");
+
+
+
+
+
+}
+
+if(hk==20){
+  for (var FF = 0; FF < arrGlobal4.length; FF++) {
+    if(arrGlobal4[FF].sfc==(scv-1)&&arrGlobal4[FF].ruta==rutas&&arrGlobal4[FF].dsfc==6){
+  //  alert("se tomara el valor del credito sabado");
+    hk=1;
+    loquedeberiatraer=parseFloat(arrGlobal41[FF].creditos)-parseFloat(f_s_dia);
+  f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
+  //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
+ //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
+modalCreditos1=1;
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
+  
+   
+  }else{
+   
+    lo=1;
+   // alert("lo "+lo);
+  }
+  }
+ // alert("entra hk= "+hk+" lo "+lo);
+  if(hk==20&&lo==1){
+  //alert("aun no ha sido cargado _ "+hk+" -- "+arrGlobal41[hhc].sfc+" -- "+scv+" -  "+arrGlobal41[hhc].dsfc);
+if(modalCreditos1=="F"){
+
+modalCreditos2();
+}else{
+         alert("GUARDADO");
+
 loquedeberiatraer=parseFloat(modalCreditos1)-parseFloat(f_s_dia);
 f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  //alert(loquedeberiatraer+" - "+f_s_real);
@@ -7302,48 +7379,235 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  credito_manual=1;
 //alert(modalCreditos1+" - "+f_s_dia+" = "+ loquedeberiatraer);
 //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
+json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
 
 
 }
+
+  }
+
+
+
 }
+//alert(modalCreditos1);
+  
+
+if(modalCreditos1!="F"){
+  var jsonC = {where:{ruta:ruta}}
+upRegistroA2(id_vend, json2, jsonC, 'ventaspasada', loadVentaspasadasVF);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 
 
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasVF);
 
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
+ 
+
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasVF);
+//alert(id_vend);
+s_vent=0;
+s_vent2=0;
+                    $('.imprimir').html(imprimir);
+
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
+//alert(modalCreditos1);
+modalCreditos1="F";
+recur =1;
 }else{
+  
+  if(credito_manual==1){
+   
+  var jsonC = {where:{ruta:ruta}}
+upRegistroA2(id_vend, json2, jsonC, 'ventaspasada', loadVentaspasadasVF);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 
-//alert("otro dia de la semana..."); 
-//alert (arrGlobal4.length+" medida");
-var med=arrGlobal4.length;
-var hk=20;
-var hhc=20;
-//alert(id_vend+" id_vend");
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasVF);
+
+
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
+ 1
+//upRegistro3(id_vend, json2, 'ventaspasada', loadVentaspasadasTF);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasVF);
+//alert(id_vend);
+                    $('.imprimir').html(imprimir);
+
+s_vent=0;
+s_vent2=0;
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
+
+credito_manual=0;
+  }
+}
+
+
+}
+
+function upRecepcion(){
+      document.getElementById('loader').style.display = 'block';
+  var fechadespachof = fechacaptura;
+  var ruta = rutas; 
+  var imprimir = '  <li class="impre  text-center imprimirList"  onclick="pagare2();">IMPRIMIR</li>';
+  var gasolinaT = $('#modalDesp2 .gasolina1').val();
+  var gasT = $('#modalDesp2 .gas1').val();
+  var dieselT = $('#modalDesp2 .diesel1').val();
+  var kmT = $('#modalDesp2 .km1').val();
+      gasolina=gasolinaT;
+      km=kmT;
+      gas=gasT;
+      diesel=dieselT;
+      creditos=$(".creditos").val();
+      otros=$(".otros").val();
+  var idc, creditos, otros,temp;
+  var piezasv, pesov, validar, dsd, sd, lo;
+  var credito_manual=0;
+      $(".totalVentas").html('');
+  var fecharecepcion=today_vv;
+  var excedenteC=0;
+  var excedenteB=0;
+   if(cred<creditos)creditos = cred;
+   if(boni<otros)otros=boni;
+   if(creditos!="" && otros !=""){
+for (var i = 0; i < arrGlobalT.length; i++) {
+   if(rutas==arrGlobalT[i].ruta &&arrGlobalT[i].dfc==dscv&&arrGlobalT[i].sfc==scv&&arrGlobalT[i].merma!=1 ){
+      validar==1;
+   if(parseFloat(arrGlobalT[i].medida)==2){
+      piezasv= $('#rec'+i+'').val();
+   if(piezasv==""){
+      piezasv=0;
+      }
+      pesov=0;
+      venta=(parseFloat(arrGlobalT[i].piezas)-parseFloat(piezasv))*parseFloat(arrGlobalT[i].precioUnitario);
+  var json1={piezasv: piezasv, venta: venta, fecharecepcion: fecharecepcion};
+      idc=arrGlobalT[i].id;
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasp);
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
+      s_vent+=t_v2[i];
+      }else{
+      pesov=$('#rec'+i+'').val();
+      piezasv=$('#p'+i+'').val();
+   if(piezasv==""){
+      piezasv=0;
+      }
+   if(pesov==""){
+      pesov=0;
+      }
+      venta=(parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))*parseFloat(arrGlobalT[i].precioUnitario);
+  if((parseFloat(arrGlobalT[i].peso)-parseFloat(pesov))==0){
+  var piezas = piezasv;
+  var json1={piezas: piezas, piezasv: piezasv, pesov: pesov, venta: venta, fecharecepcion: fecharecepcion};
+      }else{
+  var json1={piezasv: piezasv, pesov: pesov, venta: venta, fecharecepcion: fecharecepcion};
+      }
+      idc=arrGlobalT[i].id;
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasp);
+  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
+    var jsonC = {where:{ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasVF);
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
+ 
+
+      s_vent+=t_v2[i];
+      }
+  }
+}
+/////////////////////////////////////////DIFERENCIA//////////////////////////////////////////////////////////////////////////////////////////////////
+ var  t_venta_merca = s_vent2;
+for(var m=0;m<arrGlobal4.length; m++){
+  if (arrGlobal4[m].dsfc==dscv&&arrGlobal4[m].ruta==rutas&&arrGlobal4[m].sfc==scv) {
+      fechaf=arrGlobal4[m].fechaf;
+   if(arrGlobal4[m].efectivo==null || arrGlobal4[m].efectivo==undefined || arrGlobal4[m].efectivo== NaN ){
+      f_s_dia=otros-t_venta_merca; 
+      $('.sumaefec').html('$ '+parseFloat(otros).toFixed(2));
+      break;
+      }else{
+      f_s_dia=(parseFloat(arrGlobal4[m].efectivo)+parseFloat(otros))-parseFloat(t_venta_merca); 
+  var suma = parseFloat(arrGlobal4[m].efectivo)+parseFloat(otros);
+      $('.sumaefec').html('$ '+parseFloat(suma).toFixed(2));
+
+      break;
+      }
+  }}
+/////////////////////////////// CALCULO DE FALTANTES ////////////////////////////////////////////////
+  var mes=month-1;
+  var dia=day-1;
+      saberSemana(dia,mes,year);
+  var cobrado=noSemana;
+  var t_vendido = today;
+      dsd=today;
+      sd=noSemana+1;
+  var user;
+  for(var h=0;h<upin.length; h++){
+   if(pin==upin[h].pin){
+      user=upin[h].usuario;  
+      }
+  }
+  var despachador = despachadorR;
+      cobrado = cobrado +1;
+  var temp=today;
+  var loquedeberiatraer, f_s_real;
+  var despachador=despachadorR;
+  var day3 = fechaf.substring(8,10);
+  var month3 = fechaf.substring(5,7);
+  var year3 = fechaf.substring(0,4);
+  var diasema3= new Date((parseInt(month3))+' '+parseInt(day3)+' ,'+parseInt(year3));
+  var dia31=(diasema3.getUTCDay());
+
+   if(dia31==1){ ////////////////////// LUNES ////////////////////////////////////////
+for(var h=0;h<arrGlobal4.length; h++){ 
+  if (arrGlobal4[h].id==id_vend) {
+for(var hh=0;hh<arrGlobal4.length; hh++){
+  if (arrGlobal4[hh].sfc==(scv-1)&&arrGlobal4[hh].ruta==rutas&&6==arrGlobal4[hh].dsfc) {
+      alert("GUARDADO ");
+      loquedeberiatraer=parseFloat(arrGlobal4[hh].creditos)-parseFloat(f_s_dia);
+      f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
+      credito_manual=1;
+      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user }
+      }
+    }
+  }
+}
+if(credito_manual==0){ ////////////// NO ENCUENTRA CREDITO DE LA SEMANA PASADA ////////////////////
+      modalCreditos2();
+   if(modalCreditos1!="F"){
+    alert("GUARDADO ");
+      loquedeberiatraer=parseFloat(modalCreditos1)-parseFloat(f_s_dia);
+      f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
+      credito_manual=1;
+      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
+      }
+    }
+  }else{ ////////////////////////////////////// OTRO DIA DE LA SEMANA ////////////////////////////////
+  var med=arrGlobal4.length;
+
+  var hk=20;
+  var hhc=20;
 for(var h=0;h<arrGlobal4.length; h++){
-   //alert(today_v+" - "+lista[h].fecha);
-      //alert(lista[h].hora + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + lista[h].piezas + '</td><td>' + lista[h].peso + '</td><td>' + lista[h].precioUnitario + '</td><td>' + lista[h].valorMercancia +'</td></tr>'); 
-//alert('<tr class="seleccionar" onclick="selectVentasp('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].ruta + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+lista[h].credito_p + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + lista[h].v_mercancia + '</td><td>'+lista[h].fecha +'</td></tr>');
- // alert(arrGlobal4[h].id+" == "+id_vend);
-
-if (arrGlobal4[h].id==id_vend) {//<--------------------------------------------------------------------------------------- here!
- //alert(creditos+" - "+otros+ " - "+id_vend+" sem "+ cobrado);
+   if (arrGlobal4[h].id==id_vend) {///// PIVOTE CARGA PRINCIPAL /////////////
+     var SemanaPivote = arrGlobal4[h].sfc;
+         
+     var anioActual= arrGlobal4[h].fechaf.substring(0,4);
 for(var hh=0;hh<arrGlobal41.length; hh++){
-  //alert(arrGlobal4[hh].sc+" == "+cobrado+" && "+arrGlobal4[hh].ruta+" == "+rutas+" && "+(t_vendido-1)+" == "+arrGlobal4[hh].t_venta);
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////here change
- // alert(arrGlobal4[hh].sfc+" == "+cobrado+" && "+arrGlobal4[hh].ruta+" == "+rutas+" && "+(dscv-1)+" == "+arrGlobal4[hh].dsfc);
-
-if (arrGlobal41[hh].sfc==cobrado&&arrGlobal41[hh].ruta==rutas&&(dscv-1)==arrGlobal41[hh].dsfc) {
-  //alert(arrGlobal4[hh].sfc+" == "+cobrado+" && "+arrGlobal4[hh].ruta+" == "+rutas+" && "+(dscv-1)+" == "+arrGlobal4[hh].dsfc);
-hk=80;
-loquedeberiatraer=parseFloat(arrGlobal41[hh].loquedeberiatraer)-parseFloat(f_s_dia);
-f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
- //alert(loquedeberiatraer+" - "+f_s_real);
- //alert(arrGlobal4[hh].f_s_real);
- if(arrGlobal4[hh].loquedeberiatraer!=null){
-  //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
- //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
-credito_manual=1;
-  //alert("entra");
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user}
+   if (arrGlobal4[h].fechaf.substring(0,4)==anioActual&&arrGlobal41[hh].sfc==SemanaPivote&&arrGlobal41[hh].ruta==rutas&&(dscv-1)==arrGlobal41[hh].dsfc) {
+   
+  ////// ENCUENTRA LA CARGA DEL DIA ANTERIOR //////////////////
+     
+      
+      hk=80;
+      loquedeberiatraer=parseFloat(arrGlobal41[hh].loquedeberiatraer)-parseFloat(f_s_dia);
+      f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
+      modalCreditos1=1;
+      credito_manual=1;
+    if(arrGlobal4[hh].loquedeberiatraer!=null){
+      credito_manual=1;
+      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user}
   break;
 }else{
   $('#modal .textModal').html('La carga anterior, no ha sido recibida o regrese a rutas '); 
@@ -7434,14 +7698,11 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
   }
  // alert("entra hk= "+hk+" lo "+lo);
   if(hk==20&&lo==1){
-  
-
-   //alert("aun no ha sido cargado _ "+hk+" -- "+arrGlobal41[hhc].sfc+" -- "+scv+" -  "+arrGlobal41[hhc].dsfc);
+  //alert("aun no ha sido cargado _ "+hk+" -- "+arrGlobal41[hhc].sfc+" -- "+scv+" -  "+arrGlobal41[hhc].dsfc);
 if(modalCreditos1=="F"){
+
 modalCreditos2();
 }else{
-
-
 loquedeberiatraer=parseFloat(modalCreditos1)-parseFloat(f_s_dia);
 f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  //alert(loquedeberiatraer+" - "+f_s_real);
@@ -7456,9 +7717,6 @@ json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: 
 
   }
 
-if(hk==20&&lo==1){
-
-}
 
 
 }
@@ -7466,8 +7724,16 @@ if(hk==20&&lo==1){
   
 
 if(modalCreditos1!="F"){
-upRegistro3(id_vend, json2, 'ventaspasada', loadVentaspasadasTF);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
+  var jsonC = {where:{ruta:ruta}}
+upRegistroA2(id_vend, json2, jsonC, 'ventaspasada', loadVentaspasadasVF);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
+
+
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasVF);
+
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
+ 
+
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasVF);
 //alert(id_vend);
 s_vent=0;
@@ -7476,15 +7742,24 @@ s_vent2=0;
 
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasr);
 //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasF);
-
+//alert(modalCreditos1);
 modalCreditos1="F";
+recur =1;
 }else{
   
   if(credito_manual==1){
    
+  var jsonC = {where:{ruta:ruta}}
+upRegistroA2(id_vend, json2, jsonC, 'ventaspasada', loadVentaspasadasVF);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 
-upRegistro3(id_vend, json2, 'ventaspasada', loadVentaspasadasTF);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasVF);
+
+
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
+ 
+//upRegistro3(id_vend, json2, 'ventaspasada', loadVentaspasadasTF);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasVF);
 //alert(id_vend);
                     $('.imprimir').html(imprimir);
@@ -7510,12 +7785,14 @@ credito_manual=0;
 t_venta_merca="";
 
 }
+var recur=0;
 //alert(day+" / "+ month+ " / "+year);
 function agregarCredito(){
 modalCreditos1=  $('#modalCreditos .creditos').val();
 $('#modalCreditos').modal('hide');
 
-upRecepcion();
+upRecepcionProducto();
+
 }
 function modalCreditos2(){
   $('#modalCreditos').modal('show');
@@ -9547,6 +9824,11 @@ $('.btn-nav').removeClass('hidden');
 
 function click_nomina(){
 
+
+ // $('.tituloResp').html('<div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVCategorias()">BUSCAR</button></div><h3 class="text-center impre">VENTA DIARIA</h3>');
+//  $('.contenidoR').load('/html/ventaDiariaC.html');
+     
+   
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  
@@ -9554,12 +9836,17 @@ function click_nomina(){
  //$('.seccion1').html('/html/inventario.html');
  $('.tituloPantalla').html('<h3 class="nomina"> NOMINA </h3>');
  //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">NOMINA</li><li role="presentation" class="impre"></li></div>');
-   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">NOMINA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick=" ">--- </li>  <span class="border border-primary"></span><div class="imprimir"></div></ul> </div>');
+   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">NOMINA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick=" ">MERMA</li>  <span class="border border-primary"></span><div class="imprimir"></div></ul> </div>');
       //  document.getElementById('loader').style.display = 'block';
-  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
+           var tituloNominaS= '<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarNomina()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick=""  >IMPRIMIR</button></div><h3 class="text-center impre">NOMINA (SEMANA: '+(scv+1)+')</h3>';
+    
+      $('.tituloNominaS').html('<h3>HEYY</h3>');
 var sfc = (scv+1)+"";
   if(scv != ""){
+
+
       var json = {where:{sfc:sfc}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNomina);
 //      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteN);
@@ -9596,7 +9883,7 @@ function ventaDiariaC(){
 
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
-  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
+  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3>');
 
 
 //  $('.tituloResp').html('<div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVCategorias()">BUSCAR</button></div><h3 class="text-center impre">VENTA DIARIA</h3>');
@@ -9624,6 +9911,27 @@ $('.contCataTotalesP').html(html);
 credi=0;
           boni=0;
           s_vent=0;
+}
+function click_buscarNomina(){
+   var semanaVS = $('.semanaVD').val();
+     //   document.getElementById('loader').style.display = 'block';
+if(semanaVS!=""){
+
+
+year =  parseInt(semanaVS.substring(0,4));
+scv = parseInt(semanaVS.substring(6,8))-1;
+  
+  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarNomina()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
+var sfc = (scv+1);
+
+  if(scv != ""){
+      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNomina);
+ }
+}else{
+    $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+}
 }
 function click_buscarVCategorias(){
  var semanaVS = $('.semanaVD').val();

@@ -1,0 +1,104 @@
+
+<div class="totalMerma text-left impre"></div>
+
+    <div class="row">
+        <div class="col-md-3 impre form-group">
+          <label class="letras" >ID</label>
+          <input  type="number" pattern="[0-9]{10}" id="idProductoMP" class="form-control clear  idProductoMP" onchange="updateListaMermaP();document.getElementById('piezasMP').focus();" placeholder="" onload="">
+        </div>
+        <div class="col-md-3 impre form-group">
+          <label class="letras">DESCRIPCIÓN</label>
+          <input type="text" class="form-control clear descripcionMP" style="color:green;" onchange="updateListaVentaMedidaMP(); " disabled placeholder="">
+        </div>
+        
+        <div class="col-md-3 impre form-group piezasventas">
+          <label class="letras">PIEZAS</label>
+          <input type="number" pattern="[0-9]{10}" id="piezasMP"  class=" form-control clear piezasMP" onchange="cambioMP(); " placeholder="">
+        </div>
+       <div class="col-md-3 form-group pesosMP">
+          
+        </div>
+<div class="col-xs-3 impre addV col-md-3">
+      <button type="button" id="addMP" class="btn btn-ventas insertar addMP" onclick="addMermaP(); document.getElementById('idProductoMP').focus();">INSERTAR</button>
+  </div>
+   <div class="col-xs-3 impre col-md-3">
+    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); vP();">LIMPIAR</button>
+  </div>
+  <div class="col-xs-3 impre col-md-3">
+  <div class="upventaMP"></div>
+    
+  </div>
+   <div class="col-xs-3 impre col-md-3">
+    <div class="delventaMP"></div>
+  </div>
+   
+  <br class="impre"><br class="impre">
+  <br class="impre">
+ 
+  </div>
+
+<br class="impre">
+ <div class="">
+  <div class="table-responsive tabla text-center impre">
+  <table class="impre table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center impre ">
+
+
+      <tr class="letras text-center impre">
+        <p><th class="letras">Hora</th></p>
+        <th class="letras">Código</th>
+        <th class="letras">Descripción </th>
+        <th class="letras">Piezas</th>
+        <th class="letras">Peso</th>
+        <th class="letras">Precio Unitario</th>
+        <th class="letras">Valor Mercancia</th>      
+      </tr>
+    </thead>
+    <tbody class="contCata ventascss impre" >
+     
+    </tbody>
+     
+  </table>
+</div></div>
+<p id="oculto2" class="nombreVendedor" style="display:none; font-size:7px;"></p>
+
+<table id="oculto" class="tablaImprimir  " style="display:none; ">
+    <thead  class=" grisclaro" style="font-size:7px; ">
+        <tr class="  " style="">
+        <th class="text-center" colspan="9" style="width: 1000px"> PRODUCTOS PARA VENTA </th>
+        </tr>
+
+        <tr class=" ">
+        <th colspan="4"> </th>
+        <th colspan="2" class="text-center">INVENTARIO INICIAL</th>
+        <th colspan="2"></th>
+        </tr>
+        <tr class=" text-center">
+        <th class="text-center">NO</th>
+        <th class="text-center">HORA</th>
+        <th class="text-center">CÓDIGO  </th>
+        <th class="text-center">DESCRIPCIÓN  </th>
+        <th class="text-center">PIEZAS</th>
+        <th class="text-center">PESO</th>
+        <th class="text-center">PRECIO UNITARIO</th>
+        <th class="text-center">VALOR MERCANCIA</th>      
+      </tr>
+    </thead>
+    <tbody class="contCatap " >
+     
+    </tbody>
+     
+  </table>
+<div class="totalMerma text-right impre"></div>
+
+<p id="oculto3" class="nombreCapturista" style="display:none; font-size:7px;"></p>
+<div id="oculto4" style="font-size:7px; " class="nombreDespachador "></div>
+<div id="oculto5" style="font-size:7px; " class="fechaDespacho text-right"></div>
+<div id="oculto6" style="font-size:6px; " class="pagareD "></div>
+<div id="oculto7" style="font-size:20px; " class="controlC text-center"></div>
+
+
+<div id="ocultoImagen" style="display:none;" class="">
+  <img class="ImagenDurango" src="/images/logoD.png" onclick="">
+</div>
+

@@ -219,10 +219,11 @@ tr:hover, li:hover, button:hover, img:hover {
  .tablaImprimirVD {
   position: absolute;
   width: 110%;
-   top: 220px;
+   top: 230px;
    left: 5%;
    margin: 10px;
    color: black;
+     z-index: 6;
  }
  .tablaHorizontal{
   writing-mode: tb-rl;
@@ -232,26 +233,46 @@ margin: 10% 0%;
 
  .tablaImprimirVDCT {
   
-  position: absolute;
+  position: fixed;
   
-   top: 20px;
-   left: 0px;
-   width: 100%;
-   margin: 10px;
+   top: 30px;
+   left: 0%;
+   width: 50%;
+  
    color: black;
  z-index: 6;
  }
-
+.tablaImprimirVGTT {
+  
+  position: absolute;
+  
+   top: 30px;
+   left: 0%;
+   width: 100%;
+  
+   color: black;
+ z-index: 6;
+ }
   
 
  .tablaImprimirVDC {
 
   position: fixed;
+  width: 100%;
+   top: 175px;
+   left: 5%;
+   margin: 10px;
+   color: black;
+
+ }
+  .tablaImprimirVDC2 {
+  position: absolute;
   width: 110%;
    top: 175px;
    left: 5%;
    margin: 10px;
    color: black;
+    z-index: 6;
 
  }
   .tablaImprimirVD2 {
@@ -306,6 +327,14 @@ width: 550px;
    top: 0px;
    left: 30%;
  z-index: 5;
+   
+ }
+ .controlVGT{
+    position: absolute;
+   text-align: center;
+   top: 0px;
+   left: 30%;
+ z-index: 6;
    
  }
  .imagenFinal{

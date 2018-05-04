@@ -93,6 +93,103 @@
           </div>
         </div>
       </div>
+      <div class= "modal fade" tabindex ="-1" role="dialog" id="modalDesp">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">DESPACHADOR & VEHICULO</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal ">
+             
+              <div class="row col-md-12 ">
+                <label class="despachadorl" for="" ><strong>DESPACHADOR:</strong></label>
+                <div class="col-md-12 despachador">  
+                
+               
+                
+
+                </div>
+                 <label class="vehiculol" for=""><strong>VEHICULO ASIGNADO:</strong></label>
+                <div class="col-md-12 vehiculomodal">  
+                
+                
+
+                </div>
+              
+
+                
+              </div>
+              <br>
+      
+
+
+            </div>
+            <div class="modal-footer">
+            <div>
+               <button type="button" class="btn btn-dark" onclick="closeModalDesp(); click_Despacho(); ">CANCELAR</button>
+            </div>
+              <div class="salida2">
+                <button type="button" class="btn btn-modals " id="agregarp" onclick="click_Salida2()">GUARDAR</button>
+              </div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalNomina">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">NOMINA</h2><label id="nombreNomina" class=" text-center nombreNomina"  for="" ></label>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal ">
+             
+              <div class="row col-md-12 ">
+                <div id="" class=" col-md-12"> 
+                </div>
+                <div class="text-center">
+<label class=" text-center" for="" ><strong>RET/ML</strong></label>
+                 </div>
+                
+                <input type="number" id="ret/ml" class="form-control clear ret text-center" placeholder="0.00">
+                <label class=" text-center" for="" ><strong>FONDO DE AHORRO</strong></label>
+                <input type="number" id="ret/ml" class="form-control clear fA text-center" placeholder="0.00">
+                <label class=" text-center" for="" ><strong>INFONAVIT</strong></label>
+                <input type="number" id="ret/ml" class="form-control clear infonavit text-center" placeholder="0.00">
+                <input type="number" style="display: none;" id="" class="form-control clear idNominaF text-center" placeholder="0.00">
+                 
+              
+
+                
+              </div>
+              <br>
+      
+
+
+            </div>
+            <div class="modal-footer">
+            <div>
+               <button type="button" class="btn btn-dark" onclick="closeModalNom();">CANCELAR</button>
+            </div>
+              <div class="salida2">
+                <button type="button" class="btn btn-modals " id="agregarp" onclick="upNomina1()">GUARDAR</button>
+              </div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
 <div class= "modal fade" tabindex ="-1" role="dialog" id="modalDesp">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -556,6 +653,9 @@
         </div>
          <div class="col-md-4 form-group licencia">
           <label class="">Limite de Merma</label><input type="text" class="form-control clear merma" placeholder="Merma">
+        </div>
+        <div class="col-md-4 form-group f_ahorro">
+          <label class="">FONDO DE AHORRO</label><input type="number" class="form-control clear f_Ahorro" placeholder="" >
         </div>
          <div class="col-md-4 form-group licencia">
           <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telp" placeholder="" >

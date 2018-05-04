@@ -181,6 +181,15 @@ tr:hover, li:hover, button:hover, img:hover {
    margin: 10px;
    z-index: 6;
  }
+
+.nombreVendedorM {
+  position: absolute;
+  width: 100%;
+   top: 15px;
+   left: 0px;
+   margin: 10px;
+   z-index: 6;
+ }
  .fechaDespacho{
   position: absolute;
   width: 100%;
@@ -253,7 +262,17 @@ margin: 10% 0%;
    color: black;
  z-index: 6;
  }
+  .tablaImprimirVGTTM {
   
+  position: absolute;
+  
+   top: 35px;
+   left: 0%;
+   width: 100%;
+  
+   color: black;
+ z-index: 6;
+ }
 
  .tablaImprimirVDC {
 
@@ -329,6 +348,7 @@ width: 550px;
  z-index: 5;
    
  }
+
  .controlVGT{
     position: absolute;
    text-align: center;

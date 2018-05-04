@@ -800,6 +800,23 @@ function mermaGeneralPrint(){
         document.getElementById('fondoBlanco').style.display = 'none';
 
 }
+function imprimirNomina(){
+        document.getElementById('ocultoNominaO').style.display = 'none';
+        document.getElementById('ocultoNomina').style.display = 'block';
+        document.getElementById('ocultoNominaT').style.display = 'block';
+        document.getElementById('ocultoImagen2').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        
+    var controlC = 'NOMINA (SEMANA: '+(scv+1)+')';
+        $('.controlCP').html(controlC);
+        window.print(); 
+        document.getElementById('ocultoNominaO').style.display = 'block';
+        document.getElementById('ocultoNomina').style.display = 'none';
+        document.getElementById('ocultoNominaT').style.display = 'none';
+        document.getElementById('ocultoImagen2').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
 function cambio(){
     var peso = $(".peso").val();
     if(peso == ""){
@@ -1972,8 +1989,8 @@ var su=0;
                     comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
 
                    }
-                     productosT+= '<td >$ '+formatoMoneda1(comision)+' </td>';
-                     productosTP+= '<td >$ '+formatoMoneda1(comision)+' </td>';
+                     productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
+                     productosTP+= '<td > '+formatoMoneda1(comision)+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
                       pago+=parseFloat(comision);
               }else{
@@ -2004,8 +2021,8 @@ var su=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
 
          var totalNomina = parseFloat(pago)-parseFloat(f_Ahorro)-parseFloat(faltanteT)-parseFloat(ret)-parseFloat(infonavit);
-          html+=identificacion+'<td>$ '+formatoMoneda1( pago)+'</td>'+productosT+'<td>  $ '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  $ '+formatoMoneda1(f_Ahorro)+'</td> <td> $ '+formatoMoneda1(infonavit)+' </td> <td> $ '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
-          htmlP+=identificacionP+'<td>$ '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>  $ '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  $ '+formatoMoneda1(f_Ahorro)+'</td> <td> $ '+formatoMoneda1(infonavit)+' </td> <td> $ '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
+          html+=identificacion+'<td> '+formatoMoneda1( pago)+'</td>'+productosT+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
+          htmlP+=identificacionP+'<td> '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
           mermaT=0;
           faltanteT=0;
           pago=0;
@@ -2029,7 +2046,7 @@ var su=0;
      }
 
              titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 70px; ">__PAGO__</th>'+titulos+'<th class="letras" style="width: 70px; ">___MERMA___ </th> <th>RET/ML</th><th>FONDO DE AHORRO</th><th>INFONAVIT</th><th>FALTANTE</th><th>TOTAL</th>';
-             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th><th colspan="1" class=" text-center" style="width: 70px; ">__PAGO__</th>'+titulosP+'<th class="letras" style="width: 70px; ">___MERMA___</th>';
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th><th colspan="1" class=" text-center" style="width: 70px; ">___PAGO___</th>'+titulosP+'<th class="" style="width: 70px; ">___MERMA___</th><th  class="text-center">RET/ML</th>  <th class="text-center">FONDO DE AHORRO</th><th class="text-center">INFONAVIT</th><th class="text-center">FALTANTE</th><th>___TOTAL___</th> ';
          
 if(html!=""){
           credi+= parseFloat(creditosT);
@@ -2333,8 +2350,8 @@ var su=0;
                     comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
 
                    }
-                     productosT+= '<td >$ '+formatoMoneda1(comision)+' </td>';
-                     productosTP+= '<td >$ '+formatoMoneda1(comision)+' </td>';
+                     productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
+                     productosTP+= '<td > '+formatoMoneda1(comision)+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
                       pago+=parseFloat(comision);
               }else{
@@ -2364,8 +2381,8 @@ var su=0;
 if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
          var totalNomina = parseFloat(pago)-parseFloat(f_Ahorro)-parseFloat(faltanteT)-parseFloat(ret)-parseFloat(infonavit);
-          html+=identificacion+'<td>$ '+formatoMoneda1( pago)+'</td>'+productosT+'<td>  $ '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  $ '+formatoMoneda1(f_Ahorro)+'</td> <td> $ '+formatoMoneda1(infonavit)+' </td> <td> $ '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
-          htmlP+=identificacionP+'<td>$ '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>  $ '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  $ '+formatoMoneda1(f_Ahorro)+'</td> <td> $ '+formatoMoneda1(infonavit)+' </td> <td> $ '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
+          html+=identificacion+'<td> '+formatoMoneda1( pago)+'</td>'+productosT+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
+          htmlP+=identificacionP+'<td> '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
           mermaT=0;
           faltanteT=0;
           pago=0;
@@ -2389,7 +2406,7 @@ if(faltanteT>0)faltanteT=0;
      }
 
              titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 70px; ">__PAGO__</th>'+titulos+'<th class="letras" style="width: 70px; ">___MERMA___ </th> <th>RET/ML</th><th>FONDO DE AHORRO</th><th>INFONAVIT</th><th>FALTANTE</th><th>TOTAL</th>';
-             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th><th colspan="1" class=" text-center" style="width: 70px; ">__PAGO__</th>'+titulosP+'<th class="letras" style="width: 70px; ">___MERMA___</th>';
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th><th colspan="1" class=" text-center" style="width: 70px; ">___PAGO___</th>'+titulosP+'<th class="" style="width: 70px; ">___MERMA___</th><th  class="text-center">RET/ML</th>  <th class="text-center">FONDO DE AHORRO</th><th class="text-center">INFONAVIT</th><th class="text-center">FALTANTE</th><th>___TOTAL___</th> ';
          
 if(html!=""){
           credi+= parseFloat(creditosT);
@@ -2416,7 +2433,7 @@ for(var w=0;w<prodTotales.length; w++){
      prodTotales[w]+=parseFloat(prodT[w]);
 }
 prodT=0;
-
+document.getElementById('loader').style.display = 'none';
 }
   function loadVentaDiariaForaneoNomina(lista){ //por mayoreo
           prodTotales = new Array(arrGlobalCategoria.length);
@@ -2692,8 +2709,8 @@ var su=0;
                     comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
 
                    }
-                     productosT+= '<td >$ '+formatoMoneda1(comision)+' </td>';
-                     productosTP+= '<td >$ '+formatoMoneda1(comision)+' </td>';
+                     productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
+                     productosTP+= '<td > '+formatoMoneda1(comision)+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
                       pago+=parseFloat(comision);
               }else{
@@ -2723,8 +2740,8 @@ var su=0;
 if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
          var totalNomina = parseFloat(pago)-parseFloat(f_Ahorro)-parseFloat(faltanteT)-parseFloat(ret)-parseFloat(infonavit);
-          html+=identificacion+'<td>$ '+formatoMoneda1( pago)+'</td>'+productosT+'<td>  $ '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  $ '+formatoMoneda1(f_Ahorro)+'</td> <td> $ '+formatoMoneda1(infonavit)+' </td> <td> $ '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
-          htmlP+=identificacionP+'<td>$ '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>  $ '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  $ '+formatoMoneda1(f_Ahorro)+'</td> <td> $ '+formatoMoneda1(infonavit)+' </td> <td> $ '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
+          html+=identificacion+'<td> '+formatoMoneda1( pago)+'</td>'+productosT+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
+          htmlP+=identificacionP+'<td> '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
           mermaT=0;
           faltanteT=0;
           pago=0;
@@ -2748,7 +2765,7 @@ if(faltanteT>0)faltanteT=0;
      }
 
              titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 70px; ">__PAGO__</th>'+titulos+'<th class="letras" style="width: 70px; ">___MERMA___ </th> <th>RET/ML</th><th>FONDO DE AHORRO</th><th>INFONAVIT</th><th>FALTANTE</th><th>TOTAL</th>';
-             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th><th colspan="1" class=" text-center" style="width: 70px; ">__PAGO__</th>'+titulosP+'<th class="letras" style="width: 70px; ">___MERMA___</th>';
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th><th colspan="1" class=" text-center" style="width: 70px; ">___PAGO___</th>'+titulosP+'<th class="" style="width: 70px; ">___MERMA___</th><th  class="text-center">RET/ML</th>  <th class="text-center">FONDO DE AHORRO</th><th class="text-center">INFONAVIT</th><th class="text-center">FALTANTE</th><th>___TOTAL___</th> ';
          
 if(html!=""){
           credi+= parseFloat(creditosT);
@@ -3051,8 +3068,8 @@ var su=0;
                     comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
 
                    }
-                     productosT+= '<td >$ '+formatoMoneda1(comision)+' </td>';
-                     productosTP+= '<td >$ '+formatoMoneda1(comision)+' </td>';
+                     productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
+                     productosTP+= '<td > '+formatoMoneda1(comision)+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
                       pago+=parseFloat(comision);
               }else{
@@ -3083,8 +3100,8 @@ var su=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
          var totalNomina = parseFloat(pago)-parseFloat(f_Ahorro)-parseFloat(faltanteT)-parseFloat(ret)-parseFloat(infonavit);
          //alert(totalNomina +"  - "+pago+" - "+f_Ahorro+"  - "+ret+" - "+faltanteT+" - "+infonavit);
-          html+=identificacion+'<td>$ '+formatoMoneda1( pago)+'</td>'+productosT+'<td>  $ '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  $ '+formatoMoneda1(f_Ahorro)+'</td> <td> $ '+formatoMoneda1(infonavit)+' </td> <td> $ '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
-          htmlP+=identificacionP+'<td>$ '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>  $ '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  $ '+formatoMoneda1(f_Ahorro)+'</td> <td> $ '+formatoMoneda1(infonavit)+' </td> <td> $ '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
+          html+=identificacion+'<td> '+formatoMoneda1( pago)+'</td>'+productosT+'<td>  '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  '+formatoMoneda1(f_Ahorro)+'</td> <td> '+formatoMoneda1(infonavit)+' </td> <td> '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
+          htmlP+=identificacionP+'<td> '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>  '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>  '+formatoMoneda1(f_Ahorro)+'</td> <td> '+formatoMoneda1(infonavit)+' </td> <td> '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
           mermaT=0;
           faltanteT=0;
           pago=0;
@@ -3108,7 +3125,7 @@ var su=0;
      }
 
              titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 70px; ">__PAGO__</th>'+titulos+'<th class="letras" style="width: 70px; ">___MERMA___ </th> <th>RET/ML</th><th>FONDO DE AHORRO</th><th>INFONAVIT</th><th>FALTANTE</th><th>TOTAL</th>';
-             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th><th colspan="1" class=" text-center" style="width: 70px; ">__PAGO__</th>'+titulosP+'<th class="letras" style="width: 70px; ">___MERMA___</th>';
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th><th colspan="1" class=" text-center" style="width: 70px; ">___PAGO___</th>'+titulosP+'<th class="" style="width: 70px; ">___MERMA___</th><th  class="text-center">RET/ML</th>  <th class="text-center">FONDO DE AHORRO</th><th class="text-center">INFONAVIT</th><th class="text-center">FALTANTE</th><th>___TOTAL___</th> ';
          
 if(html!=""){
           credi+= parseFloat(creditosT);
@@ -12167,7 +12184,7 @@ function click_nomina(){
 // $('.tituloPantalla').html('<h3 class="nomina"> NOMINA </h3>');
  //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">NOMINA</li><li role="presentation" class="impre"></li></div>');
    $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">NOMINA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick=" ">MERMA</li>  <span class="border border-primary"></span><div class="imprimir"></div></ul> </div>');
-      //  document.getElementById('loader').style.display = 'block';
+        document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
     
@@ -12184,6 +12201,7 @@ $('.tituloPantalla').html('<h3 class="nomina"> NOMINA SEMANA: '+(scv+1)+'</h3>')
 //      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteN);
 //      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoN);
 //      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleN);
+  
   }
 
 }
@@ -12247,7 +12265,7 @@ credi=0;
 }
 function click_buscarNomina(){
    var semanaVS = $('.semanaNomina').val();
-     //   document.getElementById('loader').style.display = 'block';
+        document.getElementById('loader').style.display = 'block';
 if(semanaVS!=""){
 
 
@@ -12260,6 +12278,10 @@ var sfc = (scv+1);
   if(scv != ""){
       var json = {where:{sfc:sfc}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNomina);
+       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNomina);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNomina);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNomina);
+ 
  }
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 

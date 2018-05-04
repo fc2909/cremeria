@@ -5,7 +5,7 @@
            <div class=" impre col-md-12 form-group row">
             <input class="form-control col-md-3 semanaNomina" type="week" value="" id="">
             <button class="btn btn-dark form-control col-md-3" onclick="click_buscarNomina();">BUSCAR</button>
-            <div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ImprimirNomina();"  >IMPRIMIR</button></div>
+            <div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="imprimirNomina();"  >IMPRIMIR</button></div>
 
            <h3 class="text-center letras semanaNomina"></h3>
 
@@ -13,7 +13,7 @@
 
   
     <div class="row impretabla text-center">
-  <table class="table  table-hover table-bordered table-inverse table-responsive ">
+  <table id="ocultoNominaO" style="display:block;" class="table  table-hover table-bordered table-inverse table-responsive ">
     <thead class="text-center">
       <tr style="font-size:15px;" class="letras text-center tituloNomina">
        
@@ -40,10 +40,10 @@
 
 
             <div class=" negro ">
-            <div id="ocultoVDC" class="text-center controlCP" style="display:none; font-size:20px;   background: white; "></div>
+            <div id="ocultoNomina" class="text-center controlCP" style="display:none; font-size:20px;   background: white; "></div>
  
   
-      <table id="ocultoVDCT" class="tablaImprimirVDCT   " style="display:none;  width: 650px;   border-collapse: collapse; ">
+      <table id="ocultoNominaT" class="tablaImprimirVDCT   " style="display:none;  width: 650px;   border-collapse: collapse; ">
     <thead class="text-center">
       <tr class="text-center titulo2P grisclaro " style="font-size:7px;   ">
        
@@ -72,7 +72,7 @@
           
 
             <div id="ocultoImagen2" style="display:none;" class="">
-  <img class="ImagenDurango2" src="/images/logoD.png" onclick="">
+  <img class="ImagenDurango" src="/images/logoD.png" onclick="">
 </div>
   </div>
 </div>

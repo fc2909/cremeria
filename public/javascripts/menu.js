@@ -2344,10 +2344,10 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n2==undefined){
+                   if(arrGlobalCategoria[y].n1==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
+                    comision = parseFloat(arrGlobalCategoria[y].n1)*parseFloat(prod[y]);
 
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -2703,10 +2703,10 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n2==undefined){
+                   if(arrGlobalCategoria[y].n3==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
+                    comision = parseFloat(arrGlobalCategoria[y].n3)*parseFloat(prod[y]);
 
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -3062,11 +3062,11 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n2==undefined){
+                   if(arrGlobalCategoria[y].n4==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
-
+                    comision = parseFloat(arrGlobalCategoria[y].n4)*parseFloat(prod[y]);
+                      
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
                      productosTP+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -9823,9 +9823,8 @@ var json={n2:n2,n3:n3,n4:n4}
 upRegistroA2(idNominaT, json, json2,'ventaspasada',  loadVentasp4);
       executeFunctionDone(json2, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
       executeFunctionDone(json2, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
-
       executeFunctionDone(json2, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNomina);
- executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNomina);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNomina);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNomina);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNomina);
 

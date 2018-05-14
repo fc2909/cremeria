@@ -1716,6 +1716,96 @@ function loadVDiariaR3(lista){ //venta general
 
 }
   var prodTotales; 
+  
+function loadVentaDiariaMapa(lista){ //por mayoreo
+         
+                    var html = '';
+       var encuentraRuta=0;
+       var rutatemp=0;
+       var diaCarga=1;
+      for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+        if(arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
+          
+       for(var j=0;j<arrGlobalF.length; j++){
+
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+          for (var i=0; i < arrGlobalRuta.length; i++) {
+            if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
+              ruta3=arrGlobalRuta[i].nombre;
+              rutas=arrGlobalF[j].ruta;
+            }
+          }
+
+
+
+  
+
+if(encuentraRuta==0){
+  encuentraRuta=1; 
+  rutatemp=rutas;
+
+html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td> ';      
+
+ if(arrGlobalF[j].despachador!=undefined){
+html+='<td></td>';
+
+   }else{
+    html+='<td style="background:gray;"></td>';
+
+   }
+
+}else{
+  if(rutatemp==rutas){
+      if(arrGlobalF[j].despachador!=undefined){
+html+='<td></td>';
+
+   }else{
+    html+='<td style="background:gray;"></td>';
+
+   }
+  }else{
+
+    rutatemp=rutas;
+    encuentraRuta=1;
+html+= '</tr><tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';      
+ if(arrGlobalF[j].despachador!=undefined){
+html+='<td></td>';
+
+   }else{
+    html+='<td style="background:gray;"></td>';
+
+   }
+
+
+  }
+}  
+
+
+
+
+
+
+
+        }
+
+        }
+
+       
+       }
+
+     }
+         
+
+
+              if(html==undefined){html='';}else{
+               $('.contCataMapa').html(html); 
+              }
+
+   document.getElementById('loader').style.display = 'none';
+
+}
+
+
   function loadVentaDiariaMayoreoNomina(lista){ //por mayoreo
           prodTotales = new Array(arrGlobalCategoria.length);
           credi=0;
@@ -9175,6 +9265,9 @@ for(var m=0;m<arrGlobal4.length; m++){
 
 upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca);
 }else{
+   $('#modal .textModal').html('Faltan Datos.'); 
+              $('#modal').modal('show');
+  document.getElementById('loader').style.display = 'none';
   //alert("faltan datos");
 }
 }
@@ -11644,9 +11737,18 @@ function click_ventas(){
  $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </li>  <span class="border border-primary"></span><li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">MERMA </li>  <span class="border border-warning"></span><div class="imprimir"></div></ul> </div>');
 
+   document.getElementById('loader').style.display = 'block';
+ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+          scv=noSemana;
+    
+      
+var sfc = (scv+1)+"";
+  if(scv != ""){
+      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa);
+   
 
-
-
+}
  
 }
 

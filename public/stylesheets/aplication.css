@@ -1,4 +1,4 @@
-tr:hover, li:hover, button:hover, img:hover {
+li:hover, button:hover, img:hover {
     cursor: pointer;
 
 }
@@ -433,7 +433,12 @@ th {color: black;}
 }
 
 .fondo{
-  background: rgba(0,0,0,.5);
+   -moz-border-radius: 10px;
+        -webkit-border-radius: 1px;
+        border-radius: 10px;
+       
+       
+  background: rgba(0,0,0,.6);
   padding-top: 20px;
 }
 .totala{
@@ -476,11 +481,7 @@ th {color: black;}
   color: black;
   background: white;
 }
-body{
 
-  background: #012d41;
-
-}
 
 #carrucel{
     
@@ -515,6 +516,14 @@ opacity:.3;
 z-index: 4;
 }
 .imagenes{
+   -moz-border-radius: 10px;
+        -webkit-border-radius: 1px;
+        border-radius: 10px;
+       
+       
+      
+
+
   height: 200px;
   width: 160px;
   
@@ -528,7 +537,7 @@ z-index: 4;
 transition:transform .1s ease-out;
 }
 .imagenes:hover{
-  box-shadow: 0px 5px 20px black;
+  box-shadow: 0px 7px 10px black;
   padding-top: 0px;
 -moz-transform: scale(1.1);
 -webkit-transform: scale(1.1);
@@ -784,7 +793,23 @@ z-index: 3;
     transform: rotate(360deg);
   }
 }
-td, th,tr 
+td, th
 {
     border: 1px solid black; /* tendrá un borde de 1 px */
+
+}
+tr{
+ 
+}
+tr:hover{
+
+cursor: pointer;
+
+}
+
+body{
+
+  /*background: #012d41;
+*/
+background: #FEFFE8  ;
 }

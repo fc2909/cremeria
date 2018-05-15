@@ -1,49 +1,47 @@
 
 
-    <div class="row fondo col-md-12">
 
-<div class="col-md-12">
-    <div class="totalMerma text-left impre"></div>
-
-</div>
-      <div class="col-md-3 impre form-group">
+    <div class="row fondo">
+      <div class="totalVenta text-left impre row col-md-12"></div>
+        <div class="row col-md-12">
+        <div class="col-md-3 impre form-group">
           <label class="letras" >ID</label>
-          <input  type="number" pattern="[0-9]{10}" id="idProductoMP" class="form-control clear  idProductoMP" onchange="updateListaMermaP();document.getElementById('piezasMP').focus();" placeholder="" onload="">
+          <input  type="number" pattern="[0-9]{10}" id="idProducto" class="form-control clear  idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="" onload="">
         </div>
         <div class="col-md-3 impre form-group">
           <label class="letras">DESCRIPCIÓN</label>
-          <input type="text" class="form-control clear descripcionMP" style="color:green;" onchange="updateListaVentaMedidaMP(); " disabled placeholder="">
+          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="">
         </div>
         
         <div class="col-md-3 impre form-group piezasventas">
           <label class="letras">PIEZAS</label>
-          <input type="number" pattern="[0-9]{10}" id="piezasMP"  class=" form-control clear piezasMP" onchange="cambioMP(); " placeholder="">
+          <input type="number" pattern="[0-9]{10}" id="piezas"  class=" form-control clear piezas" onchange="cambio(); " placeholder="">
         </div>
-       <div class="col-md-3 form-group pesosMP">
+       <div class="col-md-3 form-group pesos">
           
         </div>
 <div class="col-xs-3 impre addV col-md-3">
-      <button type="button" id="addMP" class="btn btn-ventas insertar addMP" onclick="addMermaP(); document.getElementById('idProductoMP').focus();">INSERTAR</button>
+      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('idProducto').focus();">INSERTAR</button>
   </div>
    <div class="col-xs-3 impre col-md-3">
-    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); vP();">LIMPIAR</button>
+    <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">LIMPIAR</button>
   </div>
   <div class="col-xs-3 impre col-md-3">
-  <div class="upventaMP"></div>
+  <div class="upventa"></div>
     
   </div>
    <div class="col-xs-3 impre col-md-3">
-    <div class="delventaMP"></div>
+    <div class="delventa"></div>
   </div>
    
   <br class="impre"><br class="impre">
   <br class="impre">
  
   </div>
-
+</div>
 <br class="impre">
-
-  <div class="row fondo col-md-12 table-responsive tabla text-center impre">
+ <div class="fondo row">
+  <div class="table-responsive tabla impre">
   <table class="impre table table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center impre ">
 
@@ -63,10 +61,8 @@
     </tbody>
      
   </table>
-  
-  <div class="col-md-12">
-    <div class="totalMerma text-right impre"></div>
-  </div>
+</div>
+<div class="totalVenta text-right impre"></div>
 </div>
 <p id="oculto2" class="nombreVendedor" style="display:none; font-size:7px;"></p>
 

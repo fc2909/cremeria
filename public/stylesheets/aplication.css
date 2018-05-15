@@ -192,11 +192,12 @@ li:hover, button:hover, img:hover {
  }
  .fechaDespacho{
   position: absolute;
-  width: 100%;
+  width: 95%;
    top: 15px;
    left: 5%;
    
    margin: 10px;
+   z-index: 6;
  }
  .nombreCapturista {
   position: absolute;
@@ -219,7 +220,7 @@ li:hover, button:hover, img:hover {
  }
 .tablaImprimir {
   position: absolute;
-  width: 100%;
+  width: 95%;
    top: 25px;
    left: 5%;
    margin: 10px;
@@ -370,7 +371,7 @@ width: 550px;
  }
 .pagareD {
   position: absolute;
-  width: 100%;
+  width: 95%;
    top: 840px;
    left: 5%;
    margin: 10px;

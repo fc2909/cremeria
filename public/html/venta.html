@@ -1,7 +1,8 @@
 
-<div class="totalVenta text-left impre"></div>
 
-    <div class="row">
+
+    <div class="row fondo col-md-12">
+      <div class="totalVenta text-left impre col-md-12"></div>
         <div class="col-md-3 impre form-group">
           <label class="letras" >ID</label>
           <input  type="number" pattern="[0-9]{10}" id="idProducto" class="form-control clear  idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="" onload="">
@@ -38,9 +39,9 @@
   </div>
 
 <br class="impre">
- <div class="">
-  <div class="table-responsive tabla text-center impre">
-  <table class="impre table table-active table-hover table-bordered table-inverse  text-center">
+
+  <div class="text-center col-md-12 fondo row table-responsive tabla">
+  <table class="table table-active col-md-12 table-hover table-bordered table-inverse  text-center">
     <thead class="text-center impre ">
 
 
@@ -59,7 +60,11 @@
     </tbody>
      
   </table>
-</div></div>
+  <div class="col-md-12">
+    <div class="totalVenta text-right impre"></div>
+  </div>
+  
+</div>
 <p id="oculto2" class="nombreVendedor" style="display:none; font-size:7px;"></p>
 
 <table id="oculto" class="tablaImprimir  " style="display:none; ">
@@ -89,7 +94,7 @@
     </tbody>
      
   </table>
-<div class="totalVenta text-right impre"></div>
+
 
 <p id="oculto3" class="nombreCapturista" style="display:none; font-size:7px;"></p>
 <div id="oculto4" style="font-size:7px; " class="nombreDespachador "></div>

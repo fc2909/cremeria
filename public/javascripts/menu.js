@@ -609,7 +609,7 @@ function pagare(){
     var despachadorV = "DESPACHADOR:<strong> "+despachador+"</strong>";
     var controlC = '<strong class="text-center">CONTROL DE VENTAS Y COBRANZA</strong>';
     var pagare = '<p class="text-justify " >YO _<u> <strong>'+ nombre_vend+'</strong> </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u><strong> '+fechaDespachoD+' </strong></u>_ LA CANTIDAD DE _<u><strong> $ '+cantidad +' ('+cantidadEnTexto+') </strong></u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center"><strong>'+nombre_vend+'.</strong></p>';
-    var fechaDespachoDD ='FECHA DE DESPACHO : <strong>'+fechaDespachoD+'</strong>';
+    var fechaDespachoDD ='DESPACHO : <strong>'+fechaDespachoD+'</strong>';
         $('.pagareD').html(pagare);
         $('.controlC').html(controlC);
         $('.nombreVendedor').html(nombreVendedor);
@@ -682,7 +682,7 @@ function pagare2(){
     var despachadorV = "DESPACHADOR:<strong> "+despachadorR+"</strong>";
     var controlC = "<strong>CONTROL DE VENTAS Y COBRANZA</strong>";
     var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombre_vend+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(total_merc)+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center"><strong>'+nombre_vend+'.</strong></p>';
-    var fechaRecepcionDD ='FECHA DE RECEPCIÓN: '+fechaRecepcionD;
+    var fechaRecepcionDD ='RECEPCIÓN: '+fechaRecepcionD;
         gasolina = $('#modalDesp2 .gasolina1').val();
         km = $('#modalDesp2 .km1').val();
         gas = $('#modalDesp2 .gas1').val();
@@ -917,6 +917,7 @@ function loadUsuarios(lista){
 function loadEmpleados2(lista){
         var html = '';
         for(var h=0;h<lista.length; h++){
+        if(lista[h].km!=1)     
         html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); click_notas('+ lista[h].id +', '+h+')" data-id="'+ lista[h].idUsuario +'"><td>' +  lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple +'</td></tr>';
         $('.contCata2').html(html);
         }
@@ -932,7 +933,7 @@ function loadNotas(lista){
         var html = '';
         var v= 0;
         for(var h=0;h<lista.length; h++){ 
-          if(lista[h].idnombre==id_vend){
+          if(lista[h].idnombre==id_vend ){
             v++;
             html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectnotas('+ lista[h].id +')" ><td>'+v+'</td><td>' +  lista[h].descripcion +'</td></tr>';
           }
@@ -1027,6 +1028,7 @@ function loadInventario(lista){
 }
 function loadInventarioVenta(lista){
           arrGlobal = lista;
+          arrGlobalInventario = lista;
 }
           var ruta3;
 function loadVendedores(lista){
@@ -1034,7 +1036,7 @@ function loadVendedores(lista){
   $("#modalVendedor .f_Ahorro").val(100);
 
           for(var h=0;h<lista.length; h++)
-            if(lista[h].tipo==2){
+            if(lista[h].tipo==2 && lista[h].km!=1){
               for (var i=0; i < arrGlobalRuta.length; i++) {
                 if(arrGlobalRuta[i].id==lista[h].ruta){
                   ruta3=arrGlobalRuta[i].nombre;
@@ -1054,6 +1056,29 @@ function loadAdministracion(lista){
             }
             $('.contCata').html(html);
             arrGlobal = lista;
+}
+function loadEClientes(lista){
+          var html = '';
+          for(var h=0;h<lista.length; h++)
+            if(lista[h].km == 1 ){
+              html+= '<tr class=" letras"  ><td>'+lista[h].idEmpleados+'</td><td >' + lista[h].nombre_Emple + '</td><td><div class="btn-group" data-toggle="buttons"></button> <button type="button" class="btn btn-danger btn-sm" onclick="delECliente1('+ lista[h].id +');">ELIMINAR</button></div> </td></tr>';
+            }
+            $('.contCata').html(html);
+            arrGlobal = lista;
+}
+var pedidos;
+var arrGlobalPedidos;
+function loadPedidos(lista){
+          var html = '';
+          for(var h=0;h<lista.length; h++)
+            if(lista[h].km == 1 ){
+              html+= '<tr class=" letras" onclick="click_SPedidos('+lista[h].id +')" ><td>'+lista[h].idEmpleados+'</td><td >' + lista[h].nombre_Emple + '</td></tr>';
+           
+            }
+            $('.contCata').html(html);
+            arrGlobalPedidos = lista;
+        document.getElementById('loader').style.display = 'none';
+
 }
 function loadVentasF(lista){
               valor =0;
@@ -1155,7 +1180,7 @@ function loadVentasF(lista){
                   s_vent2=total;
                   totalV = ' <h3 class="letras">VENTA TOTAL: $ '+formatoMoneda1(total)+'</h3>';
                   $(".totalVentas").html(totalV);
-        //document.getElementById('loader').style.display = 'none';
+        document.getElementById('loader').style.display = 'none';
           
           }
               var element;
@@ -6667,7 +6692,7 @@ function loadVentasr(lista){
                     idConta[saltos]='rec'+h;
                     saltos++;
   
-                    html+= '<tr style="font-size:13px; " class=""  data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td></td><td> <input type="text"    class="p'+p+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+'); nextInput('+h+');">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
+                    html+= '<tr style="font-size:13px; " class=""  data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td></td><td> <input type="number" pattern="[0-9]{10}"    class="p'+p+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+'); nextInput('+h+');">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
                     htmlp+= '<tr class="" style="font-size:7px; color:black; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td ><td class="text-right"></td><td class="text-right">'+formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right"></td><td class="text-right"><strong>'+formatoMoneda1(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</strong></td><td class="text-right"></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+  formatoMoneda1(lista[h].venta)+'</td></tr>';
                     num++;
                     v++;
@@ -6679,7 +6704,7 @@ function loadVentasr(lista){
                     saltos++;
                     idConta[saltos]='rec'+h;
                     saltos++;
-                    html+= '<tr class="" style="font-size:13px; " data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda2(lista[h].peso)+ '</td><td> ' + '<input type="text"  id="p'+h+'" class="p'+p+' form-control " placeholder="0.00" onchange="nextInput2('+h+');" >' + '</td><td>  ' + '<input type="text"   class="p'+(p+1)+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec2('+h+', '+lista[h].peso+', '+lista[h].precioUnitario+','+v+'); nextInput('+h+');">'  + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td><div id="'+h+'"> $ 0.00</div></td></tr>';
+                    html+= '<tr class="" style="font-size:13px; " data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda2(lista[h].peso)+ '</td><td> ' + '<input type="number" pattern="[0-9]{10}"  id="p'+h+'" class="p'+p+' form-control " placeholder="0.00" onchange="nextInput2('+h+');" >' + '</td><td>  ' + '<input type="number" pattern="[0-9]{10}"   class="p'+(p+1)+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec2('+h+', '+lista[h].peso+', '+lista[h].precioUnitario+','+v+'); nextInput('+h+');">'  + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td><div id="'+h+'"> $ 0.00</div></td></tr>';
                     p++;
                     
                     
@@ -6715,10 +6740,10 @@ function nextInput(num){
               var j=h+1;
                 if(idConta[j]==undefined){
                   document.getElementById(idConta[h]).focus();
-                  document.getElementById(idConta[h]).selectionStart = 0;
+                  //document.getElementById(idConta[h]).selectionStart = 0;
                 }else{
                   document.getElementById(idConta[j]).focus();
-                  document.getElementById(idConta[j]).selectionStart = 0;
+                 // document.getElementById(idConta[j]).selectionStart = 0;
                 }
               }
             }
@@ -6728,7 +6753,7 @@ function nextInput2(num){
                if(idConta[h]==('rec'+num)){
               var j=h+1;
                   document.getElementById(idConta[h]).focus();
-                  document.getElementById(idConta[h]).selectionStart = 0;
+                 // document.getElementById(idConta[h]).selectionStart = 0;
                 }
               }
 }
@@ -6775,9 +6800,7 @@ function loadVentasp2(lista){
                   arrGlobalF = lista;    
 }
 function loadVentaspasadasVF(lista){
-          for(var h=0;h<lista.length; h++){
-           
-          } 
+     
 }
 function loadVentasp3(lista){
             var html = '';
@@ -6971,7 +6994,7 @@ function loadVentaspasadasTF(lista){
               html2='';
               arrGlobal4 = lista;
               arrGlobal41 = lista;
-document.getElementById('loader').style.display = 'none';
+//document.getElementById('loader').style.display = 'none';
 }
 function loadDiaRec(lista){
           var html = '';
@@ -7296,6 +7319,7 @@ function closeCliente(){
   $('#modalCliente').modal('hide');
 
 }
+
 function addCliente(){
   var local = $("#modalCliente .local").val();
   var propietario = $("#modalCliente .propietario").val();
@@ -7508,7 +7532,27 @@ getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar
 function addModalEmpleado(){
   $('#modalAdministracion').modal('show');
 }
+function addECliente(){
+  var nombre_Emple = $('#modalECliente .eCliente').val();
+var tipo = 2;
+var km = 1;
+var ruta = nombre_Emple;
+var idEmpleados = $('#modalECliente .idECliente').val();
+if(idEmpleados != "" && nombre_Emple != ""){
 
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, tipo:tipo, km:km, ruta: ruta };   
+    //var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
+    addRegistro(json,'empleados', loadEClientes);
+  }
+  else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEClientes);
+limpiar();
+$('#modalECliente').modal('hide');
+}
 function addEmpleado(){
    $('#modalAdministracion').modal('hide');
   var idEmpleados = $("#modalAdministracion .idEmpleado").val();
@@ -8414,7 +8458,13 @@ function delVendedor(idV){
 
 limpiar();
 }
+function delECliente1(idEC){
+delRegistro(idEC,'empleados', loadEClientes);
 
+ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEClientes);
+
+limpiar();
+}
 function delEmpleado(idA){
 
 
@@ -9473,7 +9523,6 @@ upRegistroA2(id_vend, json2, jsonC, 'ventaspasada', loadVentaspasadasVF);
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 
 
-      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasVF);
 
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
  
@@ -9499,7 +9548,6 @@ recur =1;
 upRegistroA2(id_vend, json2, jsonC, 'ventaspasada', loadVentaspasadasVF);
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 
-      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasVF);
 
 
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
@@ -9519,7 +9567,6 @@ s_vent2=0;
 credito_manual=0;
   }
 }
-
 
 }
 
@@ -9561,7 +9608,7 @@ for (var i = 0; i < arrGlobalT.length; i++) {
   var json1={piezasv: piezasv, venta: venta, fecharecepcion: fecharecepcion};
       idc=arrGlobalT[i].id;
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasp);
+      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasPR);
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
       s_vent+=t_v2[i];
@@ -9583,7 +9630,7 @@ for (var i = 0; i < arrGlobalT.length; i++) {
       }
       idc=arrGlobalT[i].id;
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasp);
+      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasPR);
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
@@ -11736,7 +11783,7 @@ function click_ventas(){
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/ventas.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </li>  <span class="border border-primary"></span><li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">MERMA </li>  <span class="border border-warning"></span>  <div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </li>  <span class="border border-primary"></span><li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">MERMA </li>  <span class="border border-warning"></span><li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos(); ">PEDIDOS  </li>  <span class="border border-white"></span>  <div class="imprimir"></div></ul> </div>');
 
    document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -11771,13 +11818,15 @@ function click_empleados(){
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/mEmpleados.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> EMPLEADOS </h3>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_empleados();">Notas </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_vendedores()" role="tab">Ventas</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_administracion()">Administración</button></li><div class="imprimir"></div></ul> </div>');
+ //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick=" click_empleados(); ">Notas </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick=" click_vendedores() " role="tab">Ventas</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick=" click_administracion() ">Administración</button></li><div class="imprimir"></div></ul> </div>');
+   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick=" click_empleados(); "> NOTAS </li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick=" click_vendedores(); " role="tab">VENTAS </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick=" click_administracion() ">ADMINISTRACIÓN </li>  <span class="border border-primary"></span><li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_EClientes();">CLIENTES</li>  <span class="border border-warning"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Fabrica(); ">FABRICA </li>  <span class="border border-white"></span> <div class="imprimir"></div></ul> </div>');
  
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados2);
 
 
 
 }
+
 function click_salidaventa(){
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
@@ -12696,6 +12745,80 @@ function click_administracion(){
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
 
 }
+function click_Pedidos(){
+
+
+ $('.seccion5').load('/html/pedidos.html');
+
+ $('.tituloPantalla').html('<h3 class="administracion">  PEDIDOS  </h3>');
+
+
+
+
+        document.getElementById('loader').style.display = 'block';
+ 
+
+
+var fecha = $(".selectfecha").val(); 
+
+
+//today_v = year+'-'+month+'-'+day;
+//alert(day2+" / "+month2+" / "+year2);
+
+
+
+var dia= ""+day+"";
+if(dia.length == 1){
+  dia = "0"+dia;
+  //alert(dia);
+}
+var mes= ""+month+"";
+if(mes.length == 1){
+  mes = "0"+mes;
+  //alert(dia);
+}
+  //alert(dia+"- "+dia.length);
+
+today_v = year+'-'+mes+'-'+dia;
+
+if( fecha == NaN || fecha == undefined || fecha == "" || fecha == today_v){
+  //alert(today_v+"hey");
+  day2 = today_v.substring(8,10);
+ month2 = today_v.substring(5,7);
+ year2 = today_v.substring(0,4);
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPedidos);
+ 
+
+$('.tituloPantalla').html('<h3 class="ventas impre"> PEDIDOS </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');   
+
+}else{
+ today_v = fecha; 
+ day2 = fecha.substring(8,10);
+ month2 = fecha.substring(5,7);
+ year2 = fecha.substring(0,4);
+ var diasemaD= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+   var diaD=(diasemaD.getUTCDay());
+$('.tituloPantalla').html('<h3 class="ventas impre"> DESPACHO </h3><p>( '+dias[diaD-1]+', '+day2+' DE '+months[parseInt(month2)]+' DEL '+year2+' )</p>');   
+
+//$('.tituloPantalla').html('<h3 class="ventas impre"> DESPACHO </h3><p>( '+today_v+' )</p>');  
+   getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPedidos);   
+}
+
+
+
+
+}
+function click_EClientes(){
+
+
+
+ $('.seccion4').load('/html/eClientes.html');
+
+ $('.tituloPantalla').html('<h3 class="administracion">  CLIENTES  </h3>');
+
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEClientes);
+
+}
 function modalDespachador(){
 
       $('#modalDesp').modal('show');
@@ -12735,6 +12858,112 @@ $('#modalProducto .productom').html(productos);
 $('#modalProducto').modal('show');
 }
 var f_Ahorro;
+function click_SPedidos(id){
+  var num = 0;
+  var num2 = 0;
+ 
+   $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú  </h3>');
+ $('.seccion5').load('/html/pedidosV.html');
+//$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" disabled onclick="ocultar()">VENTAS </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Despacho()" role="tab">DESPACHO</button></li><li role="presentation" class="impre" > <button  class="btn btn-dark impre totala" data-toggle="tab" role="tab" onclick="click_modalProducto()">PRODUCTOS</button> </li><div class="imprimir"></div></ul> </div>');
+// $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span><div class="imprimir"></div></ul> </div>');
+var pedidosNombre="";
+for(var p=0;p<arrGlobalPedidos.length;p++){
+  if(id==arrGlobalPedidos[p].id){
+pedidosNombre=arrGlobalPedidos[p].ruta;
+  }
+}
+
+
+ var dayD = today_v.substring(8,10);
+ var monthD = today_v.substring(5,7);
+ var yearD = today_v.substring(0,4);
+var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
+   var diaD=(diasemaD.getUTCDay());
+    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[parseInt(monthD)]+" DEL "+yearD+".";
+ 
+
+
+
+   $('.tituloPantalla').html('<h3 class="vendedor impre"> PEDIDOS </h3> <p>( '+fechaDespachoD+' ) - '+pedidosNombre+' </p>');
+
+
+getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
+
+var ruta= rutas;
+var fechadespachof=today_v;
+
+  if(ruta!= ""&&fechadespachof!= ""){
+      var json = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+ }
+
+
+//getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
+
+
+  for(var i=0;i<arrGlobalPedidos.length; i++){
+  for(var j=0;j<arrGlobal2.length; j++){
+ //alert(arrGlobal4[i].ruta+" == "+arrGlobal2[j].ruta);
+ if(arrGlobalPedidos[i].ruta==arrGlobal2[j].ruta){
+  
+ num=1; 
+        
+               
+       //        alert(arrGlobal4[i].ruta+" == "+rutas+" - "+arrGlobal4[i].fecha+"=="+today_v);
+
+        if(arrGlobalPedidos[i].ruta==rutas && arrGlobalPedidos[i].fechaf==today_v && num2 == 0 ){
+     
+     //          alert(arrGlobal4[i].ruta+" == "+rutas+" - "+arrGlobal4[i].fechaf+"=="+today_v);
+             num2=1;
+         }else{
+          //num2=0;
+          num=0;
+         }
+        }
+      }} 
+
+
+if(num==0 && num2==0){
+
+var totalI=0;
+//modalDespachador();
+
+num2=1;
+  }else{
+   getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
+
+for(var j=0;j<arrGlobalPedidos.length; j++){
+   
+  if(arrGlobalPedidos[j].ruta==rutas && arrGlobal4[j].fechaf==today_v){
+   
+//$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" disabled onclick="ocultar()">VENTAS </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Despacho()" role="tab">DESPACHO</button></li><li role="presentation" class="impre" > <button  class="btn btn-dark impre totala" data-toggle="tab" role="tab" onclick="click_modalProducto()">PRODUCTOS</button> </li><li role="presentation" class="impre" > <button  class="btn btn-dark impre totala" data-toggle="tab" role="tab" onclick=" click_modalVehiculo() ">D & V</button> </li> <div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span>  <li class="impre dvList text-center"  onclick="click_modalVehiculo() "> D & V </li>  <span class="border border-info"></span> <div class="imprimir"></div></ul> </div>');
+
+   despachador = '<u style="width:100px;">'+ arrGlobal4[j].despachador2+'. </u>';
+   vehiculoA = '<u style="width:100px;">'+arrGlobal4[j].vehiculo+ '</u>';
+vehiculoA2=arrGlobal4[j].vehiculo;
+despachador22=arrGlobal4[j].despachador2;
+$("#modalDesp .despachadorl").html("<strong>DESPACHADOR:</strong> "+despachador22);
+$("#modalDesp .vehiculol").html("<strong>VEHICULO:</strong> "+vehiculoA2);
+
+  }
+
+    }
+    
+     //alert("actualizar ruta: "+rutas+" id: "+id);
+             //alert("almacenar: "+arrGlobal2[i].id+", "+today_v+", "+rutas+", "+nombre_vend+", "+cred+ ", "+boni);
+  //upRegistro2(id, json2, 'ventaspasada', loadVentasp);
+   //addRegistro(json2, 'ventaspasada', loadVentasp);
+  
+  }
+   
+
+
+
+
+
+}
 function click_Salida(id , h, ruta, tipo, credito, bonificaciones,f_ahorro){
   var num = 0;
   var num2 = 0;
@@ -12882,11 +13111,17 @@ $("#modalDesp .vehiculol").html("Vehiculo: "+vehiculo);
 
 
 }
+function addModalECliente(){
+$('#modalECliente').modal('show');
+}
 function closeModalDesp(){
 $('#modalDesp').modal('hide');
 }
 function closeModalNom(){
 $('#modalNomina').modal('hide');
+}
+function closeModalECliente(){
+  $('#modalECliente').modal('hide');
 }
 var despachador22;
 function click_Salida2(){

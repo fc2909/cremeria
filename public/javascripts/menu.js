@@ -9207,9 +9207,9 @@ for (var i = 0; i < arrGlobalT.length; i++) {
   var json1={piezasv: piezasv, venta: venta, fecharecepcion: fecharecepcion};
       idc=arrGlobalT[i].id;
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasF);
+      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasPR);
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
     
 
       s_vent+=t_v2[i];
@@ -9231,10 +9231,9 @@ for (var i = 0; i < arrGlobalT.length; i++) {
       }
       idc=arrGlobalT[i].id;
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasF);
-      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
+      upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasPR);
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
     
-
       s_vent+=t_v2[i];
 
       f_s_dia
@@ -9258,7 +9257,6 @@ for(var m=0;m<arrGlobal4.length; m++){
       break;
       }
   }}
-  
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
@@ -9270,6 +9268,7 @@ upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca);
    $('#modal .textModal').html('Faltan Datos.'); 
               $('#modal').modal('show');
   document.getElementById('loader').style.display = 'none';
+
   //alert("faltan datos");
 }
 }
@@ -9504,7 +9503,7 @@ upRegistroA2(id_vend, json2, jsonC, 'ventaspasada', loadVentaspasadasVF);
 
 
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
- 1
+ 
 //upRegistro3(id_vend, json2, 'ventaspasada', loadVentaspasadasTF);
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasTF);
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasVF);

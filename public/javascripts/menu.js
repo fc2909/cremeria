@@ -1796,7 +1796,7 @@ if(encuentraRuta==0){
 html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td> ';      
 
  if(arrGlobalF[j].despachador!=undefined){
-html+='<td style="background:green; color:white;"><strong>'+fechap+'</strong> </td>';
+html+='<td style=" color:white;"><strong>'+fechap+'</strong> </td>';
 
    }else{
     html+='<td style="background:yellow; color:black;"><strong>'+fechap+'</strong></td>';
@@ -1806,7 +1806,7 @@ html+='<td style="background:green; color:white;"><strong>'+fechap+'</strong> </
 }else{
   if(rutatemp==rutas){
       if(arrGlobalF[j].despachador!=undefined){
-html+='<td style="background:green; color:white;">  <strong>'+fechap+'</strong> </td>';
+html+='<td style=" color:white;">  <strong>'+fechap+'</strong> </td>';
 
    }else{
     html+='<td style="background:yellow; color:black;">  <strong>'+fechap+'</strong> </td>';
@@ -1818,7 +1818,7 @@ html+='<td style="background:green; color:white;">  <strong>'+fechap+'</strong> 
     encuentraRuta=1;
 html+='</tr><tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';      
  if(arrGlobalF[j].despachador!=undefined){
-html+='<td style="background:green; color:white;">  <strong>'+fechap+'</strong>   </td>';
+html+='<td style=" color:white;">  <strong>'+fechap+'</strong>   </td>';
 
    }else{
     html+='<td style="background:yellow; color:black"> <strong>'+fechap+'</strong></td>';
@@ -12988,6 +12988,8 @@ var sfc = (scv+1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalle);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaOtros);
+
   }
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 

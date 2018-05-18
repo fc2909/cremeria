@@ -1423,6 +1423,8 @@ if((lista.length-1)==h&&pasa==1){
                   l7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(l3==Infinity){l3=100;}
+                  
                   contador++;
                   promedio += l3;
                   ventaT += parseFloat(l2);
@@ -1452,6 +1454,8 @@ if((lista.length-1)==h&&pasa==1){
                   m7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(m3==Infinity){m3=100;}
+                  
                   contador++;
                   promedio += m3;
                   ventaT += parseFloat(m2);
@@ -1479,6 +1483,8 @@ if((lista.length-1)==h&&pasa==1){
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(x3==Infinity){x3=100;}
+                  
                   contador++;
                   promedio += x3;
                   ventaT += parseFloat(x2);
@@ -1506,6 +1512,8 @@ if((lista.length-1)==h&&pasa==1){
                   j7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(j3==Infinity){j3=100;}
+                  
                   contador++;
                   promedio += j3;
                   ventaT += parseFloat(j2);
@@ -1533,6 +1541,8 @@ if((lista.length-1)==h&&pasa==1){
                   v7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(v3==Infinity){v3=100;}
+                  
                   contador++;
                   promedio += v3;
                   ventaT += parseFloat(v2);
@@ -1560,6 +1570,8 @@ if((lista.length-1)==h&&pasa==1){
                   s7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(s3==Infinity){s3=100;}
+                  
                   contador++;
                   promedio += s3;
                   ventaT += parseFloat(s2);
@@ -1584,15 +1596,19 @@ if((lista.length-1)==h&&pasa==1){
               }else{
                 //formatNumber2(parseFloat(l).toFixed(2));l=cantidad2;formatNumber2(parseFloat(lp).toFixed(2));lp=cantidad2;formatNumber2(parseFloat(l4).toFixed(2));l4=cantidad2;formatNumber2(parseFloat(l2).toFixed(2));l2=cantidad2;formatNumber2(parseFloat(l3).toFixed(2));l3=cantidad2;formatNumber2(parseFloat(l5).toFixed(2));l5=cantidad2;formatNumber2(parseFloat(l6).toFixed(2));l6=cantidad2;formatNumber2(parseFloat(l7).toFixed(2));l7=cantidad2;
               var p =(diferenciaT*100)/(ventaT-bonT); 
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">CRÉDITOS</td><td>$ '+parseFloat(l).toFixed(2)+' </td><td>$ '+parseFloat(m).toFixed(2)+'</td><td>$ '+ parseFloat(x).toFixed(2) +' </td><td>$ '+ parseFloat(j).toFixed(2)+'  </td><td>$ '+ parseFloat(v).toFixed(2) +' </td><td>$ '+ parseFloat(s).toFixed(2) +' </td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">BONIFICACIÓN</td><td> $ '+parseFloat(lp).toFixed(2)+' </td><td>$ '+parseFloat(mp).toFixed(2)+'</td><td>$ '+ parseFloat(xp).toFixed(2) +' </td><td>$ '+ parseFloat(jp).toFixed(2)+'  </td><td>$ '+ parseFloat(vp).toFixed(2) +' </td><td>$ '+ parseFloat(sp).toFixed(2) +' </td><td><strong>$ '+ parseFloat(bonT).toFixed(2) +'</strong> </td></tr>';  
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">MERCANCIA</td><td> $ '+parseFloat(l4).toFixed(2)+' </td><td>$ '+parseFloat(m4).toFixed(2)+'</td><td>$ '+ parseFloat(x4).toFixed(2) +' </td><td>$ '+ parseFloat(j4).toFixed(2)+'  </td><td>$ '+ parseFloat(v4).toFixed(2) +' </td><td>$ '+ parseFloat(s4).toFixed(2) +' </td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">VENTA</td><td>$ '+parseFloat(l2).toFixed(2)+' </td><td>$ '+parseFloat(m2).toFixed(2)+'</td><td> $ '+ parseFloat(x2).toFixed(2) +' </td><td>$ '+ parseFloat(j2).toFixed(2)+'  </td><td>$ '+ parseFloat(v2).toFixed(2) +' </td><td> $ '+ parseFloat(s2).toFixed(2) +' </td><td><strong> $ '+ parseFloat(ventaT).toFixed(2) +'</strong> </td></tr>';
-                  html2+= '<tr  class="text-right"  style="font-size:9px;   "><td class="text-left">NO VENTA</td><td><strong> % '+parseFloat(l3).toFixed(2)+'</strong> </td><td><strong> % '+parseFloat(m3).toFixed(2)+' </strong></td><td> <strong>% '+ parseFloat(x3).toFixed(2) +' </strong></td><td><strong> % '+ parseFloat(j3).toFixed(2) +'  </strong></td><td><strong> % '+ parseFloat(v3).toFixed(2) +'</strong> </td><td><strong> % '+ parseFloat(s3).toFixed(2) +' </strong></td><td><strong> % '+  (p).toFixed(2) +' </strong></td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">EFECTIVO</td><td>$ '+parseFloat(l5).toFixed(2)+' </td><td>$ '+parseFloat(m5).toFixed(2)+'</td><td> $ '+ parseFloat(x5).toFixed(2) +' </td><td>$ '+ parseFloat(j5).toFixed(2)+'  </td><td>$ '+ parseFloat(v5).toFixed(2) +' </td><td> $ '+ parseFloat(s5).toFixed(2) +' </td><td><strong> $ '+ parseFloat(efecT).toFixed(2) +'</strong> </td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">FALT/SOB DIA</td><td>$ '+parseFloat(l6).toFixed(2)+' </td><td >$ '+parseFloat(m6).toFixed(2)+'</td><td> $ '+ parseFloat(x6).toFixed(2) +' </td><td>$ '+ parseFloat(j6).toFixed(2)+'  </td><td>$ '+ parseFloat(v6).toFixed(2) +' </td><td> $ '+ parseFloat(s6).toFixed(2) +' </td><td> $ '+ parseFloat(f_s_t).toFixed(2) +' </td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">FALT/SOB REAL</td><td>$ '+parseFloat(l7).toFixed(2)+' </td><td>$ '+parseFloat(m7).toFixed(2)+'</td><td> $ '+ parseFloat(x7).toFixed(2) +' </td><td>$ '+ parseFloat(j7).toFixed(2)+'  </td><td>$ '+ parseFloat(v7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td><td><strong> $ '+ parseFloat(f_s_tR).toFixed(2) +'</strong> </td></tr>';
-                  htmlC+='<tr  class="text-right" style="font-size:9px;   "><td></td><td class="text-right"> $ '+parseFloat(creditosFTemp).toFixed(2)+'</td><td class="text-right"> $ - '+parseFloat(creditosITemp).toFixed(2)+'</td><td> $ '+(creditosFTemp-creditosITemp).toFixed(2) +'</td><td> $ '+(f_s_t).toFixed(2)+'</td><td><strong> $ '+((creditosFTemp-creditosITemp)+parseFloat(f_s_t)).toFixed(2)+' </strong></td></tr>'
+                  var controlInterno=parseFloat(efecT)-parseFloat(f_s_t);
+                
+                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">CRÉDITOS</td><td>$ '+formatoMoneda1(l)+' </td><td>$ '+formatoMoneda1(m)+'</td><td>$ '+ formatoMoneda1(x) +' </td><td>$ '+ formatoMoneda1(j)+'  </td><td>$ '+ formatoMoneda1(v) +' </td><td>$ '+ formatoMoneda1(s) +' </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">BONIFICACIÓN</td><td> $ '+formatoMoneda1(lp)+' </td><td>$ '+formatoMoneda1(mp)+'</td><td>$ '+ formatoMoneda1(xp) +' </td><td>$ '+ formatoMoneda1(jp)+'  </td><td>$ '+ formatoMoneda1(vp) +' </td><td>$ '+ formatoMoneda1(sp) +' </td><td><strong>$ '+ formatoMoneda1(bonT) +'</strong> </td></tr>';  
+                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">MERCANCIA</td><td> $ '+formatoMoneda1(l4)+' </td><td>$ '+formatoMoneda1(m4)+'</td><td>$ '+ formatoMoneda1(x4) +' </td><td>$ '+ formatoMoneda1(j4)+'  </td><td>$ '+ formatoMoneda1(v4) +' </td><td>$ '+ formatoMoneda1(s4) +' </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">VENTA</td><td>$ '+formatoMoneda1(l2)+' </td><td>$ '+formatoMoneda1(m2)+'</td><td> $ '+ formatoMoneda1(x2) +' </td><td>$ '+ formatoMoneda1(j2)+'  </td><td>$ '+ formatoMoneda1(v2) +' </td><td> $ '+ formatoMoneda1(s2) +' </td><td><strong> $ '+ formatoMoneda1(ventaT) +'</strong> </td></tr>';
+                  html2+= '<tr  class="text-right"  style="font-size:9px;   "><td class="text-left">NO VENTA</td><td><strong> % '+formatoMoneda1(l3)+'</strong> </td><td><strong> % '+formatoMoneda1(m3)+' </strong></td><td> <strong>% '+ formatoMoneda1(x3) +' </strong></td><td><strong> % '+ formatoMoneda1(j3)+'  </strong></td><td><strong> % '+ formatoMoneda1(v3) +'</strong> </td><td><strong> % '+ formatoMoneda1(s3) +' </strong></td><td><strong> % '+  formatoMoneda1(p) +' </strong></td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">EFECTIVO</td><td>$ '+formatoMoneda1(l5)+' </td><td>$ '+formatoMoneda1(m5)+'</td><td> $ '+ formatoMoneda1(x5) +' </td><td>$ '+ formatoMoneda1(j5)+'  </td><td>$ '+ formatoMoneda1(v5) +' </td><td> $ '+ formatoMoneda1(s5) +' </td><td><strong> $ '+ formatoMoneda1(efecT) +'</strong> </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">FALT/SOB DIA</td><td>$ '+formatoMoneda1(l6)+' </td><td >$ '+formatoMoneda1(m6)+'</td><td> $ '+ formatoMoneda1(x6) +' </td><td>$ '+ formatoMoneda1(j6)+'  </td><td>$ '+ formatoMoneda1(v6) +' </td><td> $ '+ formatoMoneda1(s6) +' </td><td> $ '+ formatoMoneda1(f_s_t) +' </td></tr>';
+                  html2+= '<tr class="text-right" style="font-size:9px;   "><td  class="text-left">CONTROL INTERNO</td><td></td><td ></td><td></td><td></td><td></td><td></td><td>'+formatoMoneda1(controlInterno)+'</td></tr>';
+                 
+                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">FALT/SOB REAL</td><td>$ '+formatoMoneda1(l7)+' </td><td>$ '+formatoMoneda1(m7)+'</td><td> $ '+ formatoMoneda1(x7) +' </td><td>$ '+ formatoMoneda1(j7)+'  </td><td>$ '+ formatoMoneda1(v7) +' </td><td> $ '+ formatoMoneda1(s7) +' </td><td><strong> $ '+ formatoMoneda1(f_s_tR) +'</strong> </td></tr>';
+                  htmlC+='<tr  class="text-right" style="font-size:9px;   "><td></td><td class="text-right"> $ '+formatoMoneda1(creditosFTemp)+'</td><td class="text-right"> $ - '+formatoMoneda1(creditosITemp)+'</td><td> $ '+formatoMoneda1(creditosFTemp-creditosITemp) +'</td><td> $ '+formatoMoneda1(f_s_t)+'</td><td><strong> $ '+formatoMoneda1((creditosFTemp-creditosITemp)+formatoMoneda1(f_s_t))+' </strong></td></tr>'
                   
             }
 
@@ -5276,6 +5292,8 @@ function loadVDiariaR(lista){//modal
                   l7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(l3==Infinity){l3=100;}
+                  
                   contador++;
                   promedio += l3;
                   ventaT += parseFloat(l2);
@@ -5305,6 +5323,8 @@ function loadVDiariaR(lista){//modal
                   m7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(m3==Infinity){m3=100;}
+                  
                   contador++;
                   promedio += m3;
                   ventaT += parseFloat(m2);
@@ -5332,6 +5352,8 @@ function loadVDiariaR(lista){//modal
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(x3==Infinity){x3=100;}
+                  
                   contador++;
                   promedio += x3;
                   ventaT += parseFloat(x2);
@@ -5359,6 +5381,8 @@ function loadVDiariaR(lista){//modal
                   j7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(j3==Infinity){j3=100;}
+                  
                   contador++;
                   promedio += j3;
                   ventaT += parseFloat(j2);
@@ -5386,6 +5410,8 @@ function loadVDiariaR(lista){//modal
                   v7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(v3==Infinity){v3=100;}
+                  
                   contador++;
                   promedio += v3;
                   ventaT += parseFloat(v2);
@@ -5413,6 +5439,8 @@ function loadVDiariaR(lista){//modal
                   s7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
                   s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(s3==Infinity){s3=100;}
+                  
                   contador++;
                   promedio += s3;
                   ventaT += parseFloat(s2);
@@ -5500,14 +5528,17 @@ function loadVDiariaR(lista){//modal
                 if(j6>0){jC2="green"}else{jC2="red"}
                 if(v6>0){vC2="green"}else{vC2="red"}
                 if(s6>0){sC2="green"}else{sC2="red"}
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>CRÉDITOS</td><td>$ '+parseFloat(l).toFixed(2)+' </td><td>$ '+parseFloat(m).toFixed(2)+'</td><td>$ '+ parseFloat(x).toFixed(2) +' </td><td>$ '+ parseFloat(j).toFixed(2)+'  </td><td>$ '+ parseFloat(v).toFixed(2) +' </td><td>$ '+ parseFloat(s).toFixed(2) +' </td></tr>';
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>BONIFICACIÓN</td><td> $ '+parseFloat(lp).toFixed(2)+' </td><td>$ '+parseFloat(mp).toFixed(2)+'</td><td>$ '+ parseFloat(xp).toFixed(2) +' </td><td>$ '+ parseFloat(jp).toFixed(2)+'  </td><td>$ '+ parseFloat(vp).toFixed(2) +' </td><td>$ '+ parseFloat(sp).toFixed(2) +' </td><td>$ '+ parseFloat(bonT).toFixed(2) +' </td></tr>';  
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>MERCANCIA</td><td> $ '+parseFloat(l4).toFixed(2)+' </td><td>$ '+parseFloat(m4).toFixed(2)+'</td><td>$ '+ parseFloat(x4).toFixed(2) +' </td><td>$ '+ parseFloat(j4).toFixed(2)+'  </td><td>$ '+ parseFloat(v4).toFixed(2) +' </td><td>$ '+ parseFloat(s4).toFixed(2) +' </td></tr>';
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>VENTA</td><td>$ '+parseFloat(l2).toFixed(2)+' </td><td>$ '+parseFloat(m2).toFixed(2)+'</td><td> $ '+ parseFloat(x2).toFixed(2) +' </td><td>$ '+ parseFloat(j2).toFixed(2)+'  </td><td>$ '+ parseFloat(v2).toFixed(2) +' </td><td> $ '+ parseFloat(s2).toFixed(2) +' </td><td> $ '+ parseFloat(ventaT).toFixed(2) +' </td></tr>';
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>EFECTIVO</td><td>$ '+parseFloat(l5).toFixed(2)+' </td><td>$ '+parseFloat(m5).toFixed(2)+'</td><td> $ '+ parseFloat(x5).toFixed(2) +' </td><td>$ '+ parseFloat(j5).toFixed(2)+'  </td><td>$ '+ parseFloat(v5).toFixed(2) +' </td><td> $ '+ parseFloat(s5).toFixed(2) +' </td><td> $ '+ parseFloat(efecT).toFixed(2) +' </td></tr>';
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB DIA</td><td style="background:'+lC2+'">$ '+parseFloat(l6).toFixed(2)+' </td><td style="background:'+mC2+'">$ '+parseFloat(m6).toFixed(2)+'</td><td style="background:'+xC2+'"> $ '+ parseFloat(x6).toFixed(2) +' </td><td style="background:'+jC2+'">$ '+ parseFloat(j6).toFixed(2)+'  </td><td style="background:'+vC2+'">$ '+ parseFloat(v6).toFixed(2) +' </td><td style="background:'+sC2+'"> $ '+ parseFloat(s6).toFixed(2) +' </td></tr>';
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB REAL</td><td>$ '+parseFloat(l7).toFixed(2)+' </td><td>$ '+parseFloat(m7).toFixed(2)+'</td><td> $ '+ parseFloat(x7).toFixed(2) +' </td><td>$ '+ parseFloat(j7).toFixed(2)+'  </td><td>$ '+ parseFloat(v7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td><td> $ '+ parseFloat(s7).toFixed(2) +' </td></tr>';
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>NO VENTA</td><td  id="lunes" style="background:'+lC+'"> % '+parseFloat(l3).toFixed(2)+' </td><td  id="martes" style="background:'+mC+'"> % '+parseFloat(m3).toFixed(2)+'</td><td  id="miercoles" style="background:'+xC+'"> % '+ parseFloat(x3).toFixed(2) +' </td><td  id="jueves" style="background:'+jC+'"> % '+ parseFloat(j3).toFixed(2) +'  </td><td  id="viernes" style="background:'+vC+'"> % '+ parseFloat(v3).toFixed(2) +' </td><td id="sabado" style="background:'+sC+'"> % '+ parseFloat(s3).toFixed(2) +' </td><td id="totalP" style="background:'+tC+'"> % '+  (p).toFixed(2) +' </td></tr>';
+                  var controlInterno=parseFloat(efecT)-parseFloat(f_s_t);
+                
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>CRÉDITOS</td><td>$ '+formatoMoneda1(l)+' </td><td>$ '+formatoMoneda1(m)+'</td><td>$ '+ formatoMoneda1(x) +' </td><td>$ '+formatoMoneda1(j)+'  </td><td>$ '+ formatoMoneda1(v) +' </td><td>$ '+ formatoMoneda1(s)+' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>BONIFICACIÓN</td><td> $ '+formatoMoneda1(lp)+' </td><td>$ '+formatoMoneda1(mp)+'</td><td>$ '+ formatoMoneda1(xp) +' </td><td>$ '+ formatoMoneda1(jp)+'  </td><td>$ '+ formatoMoneda1(vp) +' </td><td>$ '+ formatoMoneda1(sp) +' </td><td>$ '+ formatoMoneda1(bonT) +' </td></tr>';  
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>MERCANCIA</td><td> $ '+formatoMoneda1(l4)+' </td><td>$ '+formatoMoneda1(m4)+'</td><td>$ '+ formatoMoneda1(x4) +' </td><td>$ '+ formatoMoneda1(j4)+'  </td><td>$ '+ formatoMoneda1(v4) +' </td><td>$ '+ formatoMoneda1(s4) +' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>VENTA</td><td>$ '+formatoMoneda1(l2)+' </td><td>$ '+formatoMoneda1(m2)+'</td><td> $ '+ formatoMoneda1(x2) +' </td><td>$ '+ formatoMoneda1(j2)+'  </td><td>$ '+ formatoMoneda1(v2) +' </td><td> $ '+formatoMoneda1(s2) +' </td><td> $ '+ formatoMoneda1(ventaT) +' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>EFECTIVO</td><td>$ '+formatoMoneda1(l5)+' </td><td>$ '+formatoMoneda1(m5)+'</td><td> $ '+ formatoMoneda1(x5) +' </td><td>$ '+ formatoMoneda1(j5)+'  </td><td>$ '+ formatoMoneda1(v5) +' </td><td> $ '+formatoMoneda1(s5) +' </td><td> $ '+ formatoMoneda1(efecT) +' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB DIA</td><td style="background:'+lC2+'">$ '+formatoMoneda1(l6)+' </td><td style="background:'+mC2+'">$ '+formatoMoneda1(m6)+'</td><td style="background:'+xC2+'"> $ '+ formatoMoneda1(x6) +' </td><td style="background:'+jC2+'">$ '+ formatoMoneda1(j6)+'  </td><td style="background:'+vC2+'">$ '+ formatoMoneda1(v6) +' </td><td style="background:'+sC2+'"> $ '+ formatoMoneda1(s6) +' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>CONTROL INTERNO</td><td></td><td ></td><td></td><td></td><td></td><td></td><td>'+formatoMoneda1(controlInterno)+'</td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB REAL</td><td>$ '+formatoMoneda1(l7)+' </td><td>$ '+formatoMoneda1(m7)+'</td><td> $ '+ formatoMoneda1(x7) +' </td><td>$ '+ formatoMoneda1(j7)+'  </td><td>$ '+ formatoMoneda1(v7) +' </td><td> $ '+formatoMoneda1(s7) +' </td><td> $ '+ formatoMoneda1(s7) +' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>NO VENTA</td><td  id="lunes" style="background:'+lC+'"> % '+formatoMoneda1(l3)+' </td><td  id="martes" style="background:'+mC+'"> % '+formatoMoneda1(m3)+'</td><td  id="miercoles" style="background:'+xC+'"> % '+ formatoMoneda1(x3) +' </td><td  id="jueves" style="background:'+jC+'"> % '+ formatoMoneda1(j3) +'  </td><td  id="viernes" style="background:'+vC+'"> % '+ formatoMoneda1(v3) +' </td><td id="sabado" style="background:'+sC+'"> % '+ formatoMoneda1(s3) +' </td><td id="totalP" style="background:'+tC+'"> % '+  formatoMoneda1(p) +' </td></tr>';
                  
                   $('.contCataModalD').html(html2);
                   $('.contCataModal').html(html);
@@ -8327,7 +8358,7 @@ if(noSemana==52&&dc==6){
    // alert(sc+" no es igual"+dc);
   }
   dsfc=dfc;
-  if(idProducto != "" && descripcionventa != "" && piezas != "" && valorMercancia != "" && peso == 0){
+  if(idProducto != "" && descripcionventa != "" && piezas != "" && valorMercancia != ""){
  
   var id = rutas;
   var idVentap = id_vend;

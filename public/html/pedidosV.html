@@ -1,46 +1,49 @@
 
 
 
-    <div class="row fondo">
+    <div class="row fondo col-md-12">
       <div class="totalVenta text-left impre row col-md-12"></div>
-        <div class="row col-md-12">
-        <div class="col-md-3 impre form-group">
+   
+        <div class="col-md-2 impre form-group">
           <label class="letras" >ID</label>
-          <input  type="number" pattern="[0-9]{10}" id="idProducto" class="form-control clear  idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="" onload="">
+          <input  type="number" pattern="[0-9]{10}" id="idProductoP" class="form-control clear  idProductoP" onchange="updateListaPedidos();document.getElementById('piezasP').focus();" placeholder="" onload="">
         </div>
-        <div class="col-md-3 impre form-group">
+        <div class="col-md-4 impre form-group">
           <label class="letras">DESCRIPCIÓN</label>
-          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="">
+          <input type="text" class="form-control clear descripcionP" style="color:green;" onchange="updateListaVentaMedidaPedidos(); " disabled placeholder="">
         </div>
         
-        <div class="col-md-3 impre form-group piezasventas">
+        <div class="col-md-2 impre form-group piezasventas">
           <label class="letras">PIEZAS</label>
-          <input type="number" pattern="[0-9]{10}" id="piezas"  class=" form-control clear piezas" onchange="cambio(); " placeholder="">
+          <input type="number" pattern="[0-9]{10}" id="piezasP"  class=" form-control clear piezasP" onchange="cambioP(); " placeholder="">
         </div>
-       <div class="col-md-3 form-group pesos">
+       <div class="col-md-2 form-group pesosP">
           
         </div>
+        <div class="col-md-2 impre form-group">
+          <label class="letras">IMPORTE</label>
+          <input type="number" pattern="[0-9]{10}" id="addP"  class=" form-control clear importeP addP" onchange="addPedido(); document.getElementById('idProductoP').focus(); " placeholder="">
+        </div>
 <div class="col-xs-3 impre addV col-md-3">
-      <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('idProducto').focus();">INSERTAR</button>
+      <button type="button" id="" class="btn btn-ventas insertar addP" onclick="addPedido(); ">INSERTAR</button>
   </div>
    <div class="col-xs-3 impre col-md-3">
     <button type="button" class="btn btn-ventas btn-ventas limpiar" onclick="limpiar(); v();">LIMPIAR</button>
   </div>
   <div class="col-xs-3 impre col-md-3">
-  <div class="upventa"></div>
+  <div class="upventaP"></div>
     
   </div>
    <div class="col-xs-3 impre col-md-3">
-    <div class="delventa"></div>
+    <div class="delventaP"></div>
   </div>
    
   <br class="impre"><br class="impre">
   <br class="impre">
- 
-  </div>
+
 </div>
 <br class="impre">
- <div class="fondo row">
+ <div class="fondo row col-md-12">
   <div class="table-responsive tabla impre">
   <table class="impre table table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center impre ">
@@ -49,10 +52,10 @@
       <tr class="letras text-center impre">
         <p><th class="letras">Hora</th></p>
         <th class="letras">Código</th>
-        <th class="letras">Descripción </th>
+        <th class="letras">Descripción</th>
         <th class="letras">Piezas</th>
         <th class="letras">Peso</th>
-        <th class="letras">Precio Unitario</th>
+        
         <th class="letras">Valor Mercancia</th>      
       </tr>
     </thead>

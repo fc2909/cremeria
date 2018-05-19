@@ -6975,6 +6975,57 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 
  totalMerma=0; 
 }
+
+function loadMermaP2(lista){
+              var htmlm = '';
+              var totalMerma =0 ;
+              for(var h=0;h<lista.length; h++){
+                if(0==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
+                  htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMermaP('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
+                totalMerma += parseFloat(lista[h].valorMercancia);
+                }
+              }
+            
+                  $(' .contCata').html(htmlm);
+                  $(' .totalMerma').html('<h3 class="letras">$ '+formatoMoneda1(totalMerma)+'</h3>');
+                 arrGlobalMerma=lista;
+                
+var n1 = totalMerma;
+var ruta = rutas;
+var json2 = {n1:n1};
+var jsonC = {where:{ruta:ruta}}
+upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasSV);
+       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasSV);
+
+
+ totalMerma=0; 
+}
+function loadMermaP3(lista){
+              var htmlm = '';
+              var totalMerma =0 ;
+              for(var h=0;h<lista.length; h++){
+                if(0==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
+                  htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMermaP3('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
+                totalMerma += parseFloat(lista[h].valorMercancia);
+                }
+              }
+            
+                  $(' .contCata').html(htmlm);
+                  $(' .totalMerma').html('<h3 class="letras">$ '+formatoMoneda1(totalMerma)+'</h3>');
+                 arrGlobalMerma=lista;
+                
+var n1 = totalMerma;
+var ruta = rutas;
+var json2 = {n1:n1};
+var jsonC = {where:{ruta:ruta}}
+//7upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasSV);
+  //     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasSV);
+
+
+ totalMerma=0; 
+}
 var arrGlobalMerma;
 function totalrec(h,piezas,pUnitario,rec){
               var piezas1 = $('#rec'+h+'').val();
@@ -7245,7 +7296,7 @@ function loadVentaspasadas(lista){
 function loadVentaspasadasMerma(lista){
           var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
           var dianum=(diasema.getUTCDay());
-          var html2 = '<tr class="seleccionar"  ><td>  </td><td>CUARTO FRIÓ </td><td></td><td> </td><td></td><td> </td><td></td></tr>';
+          var html2 = '<tr class="seleccionar" onclick="click_mer2();" ><td>  </td><td>CUARTO FRIÓ </td><td></td><td> </td><td></td><td> </td><td></td></tr>';
 
       for(var h=0;h<lista.length; h++){
         if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)){
@@ -7277,7 +7328,6 @@ function loadVentaspasadasSV(lista){}
 function loadVentaspasadasSV2(lista){
 
 }
-
 function loadVentaspasadasTF(lista){
           var html2 = '';
           var htmlp = '';
@@ -8836,6 +8886,157 @@ limpiar();
 }
 
 
+function addMermaP2(){   
+  var idProducto = $(".idProductoMP").val();
+  var descripcionventa = $(".descripcionMP").val();
+  var piezas = $(".piezasMP").val();
+  var peso = $(".pesoMP").val();
+  var vendedor=nombre_vend;
+//alert(day2+" / "+month2+" / "+year2);
+  if(peso==""||peso==NaN||peso==undefined){
+    peso=0;
+  }
+ var pesov=0;
+ var piezasv=0;
+  var hora = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
+  var horadespacho = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
+  var empleado = id_vend;
+  var fecha = today_v;
+  var sc,dc,dsfc,sfc;
+
+
+  var num = 0;
+  var num2 = 0;
+  var dfc,sfc;
+  var t_venta=today;
+  var precioUnitario, valorMercancia,medida, bonificacion, credito;
+ // alert(today_v+" == "+today_vv);
+  if(today_v!=today_vv){
+    saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+   // alert(noSemana);
+    
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+    dfc=(diasema.getUTCDay());
+if(noSemana==52&&dfc==6){
+    noSemana=0;
+   }
+if(noSemana==52){
+    noSemana=0;
+   } 
+     
+   
+     sfc=noSemana+1;
+    saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+    //alert(noSemana);
+    diasema= new Date((parseInt(month))+' '+parseInt(day)+' ,'+parseInt(year));
+    dc=(diasema.getUTCDay());
+if(noSemana==52&&dc==6){
+    noSemana=0;
+   }
+   if(noSemana==52){
+    noSemana=0;
+   }
+
+    
+     sc=noSemana+1;
+    
+  
+    
+   
+   //sd=noSemana;
+    //alert(sd);
+
+  }else{
+    saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+ // var diasema= new Date(parseInt(day2), (parseInt(month2)) ,parseInt(year2));
+  // alert(day2+" - "+month2+" - "+year2);
+   dc=(diasema.getUTCDay());
+  if(noSemana==52&&dc==6){
+    noSemana=0;
+    dc=6;
+   }
+   if(noSemana==52){
+    noSemana=0;
+   } 
+   
+   sc=noSemana+1;
+   dfc=dc;
+   sfc=sc;
+   // alert(sc+" no es igual"+dc);
+  }
+  dsfc=dfc;
+ // alert("dsfc: "+dsfc+". dfc: "+dfc+".  dc:"+dc+". sc:"+sc);
+ // alert(t_vende);
+  //alert(day2+" - "+month2+" - "+year2+" - "+dc+" -- "+sc);
+  for(var h=0;h<arrGlobalInventario.length; h++){
+
+    if(arrGlobalInventario[h].idInventario==idProducto){
+     
+         if(arrGlobalInventario[h].medida==2 || arrGlobalInventario[h].medida==3){//si es pieza y litros
+             medida=arrGlobalInventario[h].medida;
+            
+                 precioUnitario=arrGlobalInventario[h].detalle;
+                 valorMercancia=precioUnitario*piezas;
+                 peso=0;
+                 
+                
+              
+              
+
+         }else{//si es kg
+              medida=arrGlobalInventario[h].medida;
+            
+                 precioUnitario=arrGlobalInventario[h].detalle;
+                 valorMercancia=precioUnitario*peso;
+              
+
+                 //alert(arrGlobal2[n_vend].t_venta+" Detalle: "+p_unitario+" Precio total"+v_mercancia);
+             
+             }
+    }}
+
+ 
+  if(idProducto != "" && descripcionventa != "" && piezas != ""){
+   //alert("modifico: "+num+" tipo: "+t_vende);
+  var id = rutas;
+  var idVentap = id_vend;
+  var fecha = today_vv;
+  var fechaf = today_v;
+  var fechadespacho = today_vv;
+  var fechadespachof = today_v;
+  var ruta = rutas;
+  var nombre = nombre_vend;
+  var tipo = t_vende;
+  var credito_p = cred;
+  var merma = 1;
+  var despachador2=despachador22;
+  var bonificacion_p = boni;
+  var v_mercancia = parseFloat(total_mercancia) + parseFloat(valorMercancia);
+ 
+  var jsonC = {where:{ruta:ruta, fechadespachof: fechadespachof, merma: merma}}
+  var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+  addRegistroA(json,jsonC, 'ventadiaria', loadMermaP3);
+ 
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaP3);
+
+  }else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+ 
+ 
+// getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
+  
+limpiar();
+    
+ //  getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
+    
+
+}
+
+
 
 
 
@@ -9156,7 +9357,7 @@ function delMermaP(){
   var peso = $(".pesoMP").val();
  var merma =1;
  var ruta = rutas;
-var fechadespachof = fechacaptura;
+var fechadespachof = today_v;
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
 
 
@@ -9170,6 +9371,47 @@ var fechadespachof = fechacaptura;
       //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
  
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaP);
+
+
+
+
+
+  //delRegistro(idGlobal,'ventadiaria', loadMerma);
+
+   //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMerma);
+
+
+
+}else {
+   $('#modal .textModal').html('Seleccione de la tabla el producto a eliminar.'); 
+      $('#modal').modal('show');
+ 
+}
+
+limpiar();
+}
+
+function delMermaP2(){
+  var idProducto = $(".idProductoMP").val();
+  var descripcionventa = $(".descripcionventaMP").val();
+  var piezas = $(".piezasMP").val();
+  var peso = $(".pesoMP").val();
+ var merma =1;
+ var ruta = rutas;
+var fechadespachof = today_v;
+  if(idProducto != "" && descripcionventa != "" && piezas != ""){
+
+
+  var jsonC = {where:{ruta:ruta, fechadespachof: fechadespachof, merma: merma}};
+  //var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+
+  //var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+   //upRegistroA2(idGlobal,json,jsonC, 'ventadiaria', loadMerma);
+    delRegistroA2(idGlobal,jsonC,'ventadiaria', loadMermaP3);
+
+      //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+ 
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaP3);
 
 
 
@@ -12039,6 +12281,35 @@ valor=valorM;
 }
        
 }
+function selectMermaP3(id, valorM,h){
+  idGlobal = id;
+  idVentas2=id;
+  var peso = ' <label class=" impre letras " >PESO</label><input type="text" id="pesoMP" class=" impre form-control clear pesoMP" onchange="document.getElementById("addMP").focus();" placeholder="">';
+ //var upventas1='<button type="button" class="btn btn-ventas btn-ventas modificar" onclick="upMermaP()">GUARDAR</button>';
+ var delventas1 = '<button type="button" class="btn btn-ventas btn-ventas eliminar" onclick="delMermaP2()">ELIMINAR</button>';
+  var seleccionado;
+  for(var a=0; a<arrGlobalMerma.length; a++){
+    if(arrGlobalMerma[a].id == id){
+       $(".upventaMP").html(delventas1);
+       $(".idProductoMP").val(arrGlobalMerma[a].idProducto);
+       $(".descripcionMP").val(arrGlobalMerma[a].descripcionventa);
+       $(".piezasMP").val(arrGlobalMerma[a].piezas);
+       if(arrGlobalMerma[a].medida == "1"){
+            $(".pesosMP").html(peso);
+            $(".pesoMP").val(arrGlobalMerma[a].peso);
+            //valor=arrGlobal3[a].peso;
+       }else{
+        $('.pesosMP').removeClass('hidden');
+            $('.pesosMP').html('');
+            //valor=arrGlobal3[a].piezas;
+       }
+valor=valorM;
+ 
+      
+  }
+}
+       
+}
 function v2(){
   $(".upventa").html('')
   $(".delventa").html('')
@@ -13855,9 +14126,10 @@ ruta3=arrGlobalRuta[i].nombre;
 
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma(); ">MERMA </li>  <span class="border border-warning"></span><div class="imprimir"></div></ul> </div>');
 $('.tituloPantalla').html('<h3 class="vendedor impre"> MERMA </h3> <p>( '+today_v+' ) - NOMBRE: '+nombre_vend+'. RUTA: ' +ruta3+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN : '+boni+'. </p>');
- var fechadespachof = fechacaptura;
+ var fechadespachof = today_v;
  var fechaf = fechacaptura;
  var ruta = rutas;
+
  var sfc = noSemana+1;
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 
@@ -13866,6 +14138,45 @@ $('.tituloPantalla').html('<h3 class="vendedor impre"> MERMA </h3> <p>( '+today_
 
 
 }
+
+function click_mer2(){
+ 
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú  </h3>');
+ $('.seccion4').load('/html/merma2.html');
+
+ nombre_vend = "CUARTO FRIO";
+ id_vend=1;
+ n_vend=1;
+ n_vend1=1;
+ rutas="CUARTO FRIO";
+
+ var dayVS = today_v.substring(8,10);
+          var monthVS = today_v.substring(5,7);
+          var yearVS = today_v.substring(0,4);
+          var cobrado=noSemana;
+          var mes=month-1;
+          var dia=day-1;
+              cobrado = cobrado +1;
+              saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
+          var t_vendido = today;
+
+
+
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma(); ">MERMA </li>  <span class="border border-warning"></span><div class="imprimir"></div></ul> </div>');
+$('.tituloPantalla').html('<h3 class="vendedor impre"> MERMA CUARTO FRIÓ </h3><p>( '+today_v+' )  </p>');
+ var fechadespachof = today_v;
+ var fechaf = fechacaptura;
+ var ruta = rutas;
+ var sfc = noSemana+1;
+ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
+
+ var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaP3);
+
+
+}
+
 
 function modalMerma(){
 $('#modalMerma').modal('show');

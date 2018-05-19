@@ -1608,7 +1608,7 @@ if((lista.length-1)==h&&pasa==1){
                   html2+= '<tr class="text-right" style="font-size:9px;   "><td  class="text-left">CONTROL INTERNO</td><td></td><td ></td><td></td><td></td><td></td><td></td><td>'+formatoMoneda1(controlInterno)+'</td></tr>';
                  
                   html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">FALT/SOB REAL</td><td>$ '+formatoMoneda1(l7)+' </td><td>$ '+formatoMoneda1(m7)+'</td><td> $ '+ formatoMoneda1(x7) +' </td><td>$ '+ formatoMoneda1(j7)+'  </td><td>$ '+ formatoMoneda1(v7) +' </td><td> $ '+ formatoMoneda1(s7) +' </td><td><strong> $ '+ formatoMoneda1(f_s_tR) +'</strong> </td></tr>';
-                  htmlC+='<tr  class="text-right" style="font-size:9px;   "><td></td><td class="text-right"> $ '+formatoMoneda1(creditosFTemp)+'</td><td class="text-right"> $ - '+formatoMoneda1(creditosITemp)+'</td><td> $ '+formatoMoneda1(creditosFTemp-creditosITemp) +'</td><td> $ '+formatoMoneda1(f_s_t)+'</td><td><strong> $ '+formatoMoneda1((creditosFTemp-creditosITemp)+formatoMoneda1(f_s_t))+' </strong></td></tr>'
+                  htmlC+='<tr  class="text-right" style="font-size:9px;   "><td></td><td class="text-right"> $ '+formatoMoneda1(creditosFTemp)+'</td><td class="text-right"> $ - '+formatoMoneda1(creditosITemp)+'</td><td> $ '+formatoMoneda1(creditosFTemp-creditosITemp) +'</td><td> $ '+formatoMoneda1(f_s_t)+'</td><td><strong> $ '+formatoMoneda1((creditosFTemp-creditosITemp)+parseFloat(f_s_t))+' </strong></td></tr>'
                   
             }
 
@@ -14596,7 +14596,11 @@ var sfc = (scv+1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalle);
+
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaOtros);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMerma);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacion);
+  
 
   }
 }else{

@@ -94,7 +94,7 @@ function saberSemana(d,m,a){
 
 //-------------------------------------------- tipos de combustible --------------------------------------------------//
 
-var timer = setInterval("cerrarSesion()", 3.6e+6);
+var timer = setInterval("cerrarSesion()", 900000);
 function cerrarSesion(){
 click_cerrarSesion();
 }
@@ -102,7 +102,7 @@ function actualizarPagina(){
 location.reload();
 }
 function newTimer(){
-   timer = setInterval("actualizarPagina()", 1800000);
+   timer = setInterval("actualizarPagina()", 300000);
   
 }
 function ninguno(){
@@ -4935,7 +4935,530 @@ prodT=0;
 
 }
 
+function loadVentaDiariaMerma(lista){ //por categoria
+          var html = '';
+          var htmlP = '';
+          var identificacion='';
+          var identificacionP='';
+          var bonificacionT=0;
+          var t_venta_mercaT=0;
+          var mer;
+          var pNoVenta;
+          var creditosT=0; 
+          var bonificacionTotal=0; 
+          var ventasT=0; 
+          var productoTotalS=""; 
+          var productoTotal=0; 
+          var productoTotalP=0; 
+          var prodT = new Array(arrGlobalCategoria.length);
+          var porcentajeTotal=0;
+          var credits=0;
+          var encuentra=0;
+          var diferenciaT=0;
+    for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+     if(arrGlobalEmpleados[hh2].km==1){
+       for(var j=0;j<arrGlobalF.length; j++){
+        
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >MERMA</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td><td ></td> <td ></td>  <td ></td> <td ></td>';
+identificacionP= '<tr style="font-size:8px; " class="text-center" ><td></td><td >PEDIDOS</td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td class="text-right"></td> <td class="text-right"></td>  <td class="text-right"></td> <td class="text-right"></td>';
+        
+        
 
+        }
+ventasT+=t_venta_mercaT;
+creditosT+=parseFloat(credits);
+bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
+diferenciaT=0;
+t_venta_mercaT=0;
+        var productosT="";
+        var productosTP="";
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+              
+              var titulos=""; 
+              var titulosP=""; 
+              var prod = new Array(arrGlobalCategoria.length);
+              var prodN = new Array(arrGlobalCategoria.length);
+              var prodC = new Array(arrGlobalCategoria.length);
+              
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(arrGlobalEmpleados[hh2].id==lista[h].vendedor&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                   
+                    if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
+                      pasa=1;
+
+                      if(lista[h].dfc==1){
+                        if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==2){
+                         if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==3){
+                         if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==4){
+                         if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==5){
+                          if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==6){
+                         if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                      }
+                    }
+              if((lista.length-1)==h&&pasa==1){
+              var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+              var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+                
+               
+                  
+                   if(suma2==0){
+                    for(var y=0;y<arrGlobalCategoria.length; y++){
+                           if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
+                       
+                            
+                           suma=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma);
+                           if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0}
+                           prod[y]+= parseFloat(suma);
+                      
+                      
+
+
+                      
+
+
+
+                           prodN[y]=arrGlobalCategoria[y].nombre;
+                           prodC[y]=arrGlobalInventario[hh].tipoP;
+                           } 
+                    }
+                 
+                  }else{
+                     for(var y=0;y<arrGlobalCategoria.length; y++){
+                           if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
+                         
+                           suma2=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma2);
+                           if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0;}
+                           prod[y]+= parseFloat(suma2);
+                 
+
+
+
+                           prodN[y]=arrGlobalCategoria[y].nombre;
+                           prodC[y]=arrGlobalInventario[hh].tipoP;
+                           } 
+                    }
+                  }
+               
+                  l=0;
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+                  cambio =1;  
+                  }
+                }
+                  cambio =0;  
+                  pasa=0;
+                }
+cantidadproducto=0;
+var su=0;
+
+        for(var y=0;y<arrGlobalCategoria.length; y++){
+          titulos+='<th class="letras text-center">'+arrGlobalCategoria[y].nombre+'</th>';
+          titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
+          if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
+
+              if(prodC[y]==arrGlobalCategoria[y].id){
+                   // productoTotal+=parseFloat(prod[y]);
+                     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
+                     productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
+                      prodT[y]+=parseFloat(prod[y]);
+              }else{
+                     productosT+= '<td >  </td>';
+                     productosTP+= '<td >  </td>';
+              //productoTotal+=0;
+             prodT[y]+=0;
+              
+              }
+             
+          productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
+          productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
+          
+        }
+        //alert("vendedor "+arrGlobalCategoria.length+" - "+prod.length);
+        
+        prodN=0;
+         prodC=0;
+         prod =0;
+              
+         if(identificacion==''){html=html;}else{
+          html+=identificacion+productosT+'</tr>';
+          htmlP+=identificacionP+productosTP+'</tr>';
+          productoTotalS=productoTotal;
+          productoTotalSP=productoTotalP;
+          
+         }
+        productoTotal='';
+        productoTotalP='';
+        productosT='';
+        productosTP='';
+        identificacion='';
+        identificacionP='';
+        //alert(prod.length+" - "+prodN.length);
+        bonificacionT=0;
+        credits=0;
+        t_venta_mercaT=0;
+       }
+     }
+             titulos=' <th class="letras text-center ">_RUTA_</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">_____CRÉDITOS_____</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">_____VENTA_____</th>'+titulos;
+             titulosP=' <th   class=" text-center" style="width: 50px; font-size:8px;">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">______VENTA______</th>'+titulosP;
+if(html!=""){
+          credi+= parseFloat(creditosT);
+          boni+=parseFloat(bonificacionTotal);
+          s_vent+=parseFloat(ventasT);
+          html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>PEDIDOS</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
+          htmlP+='<tr class="grisclaro" style="font-size:8px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong> $ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
+      var renglon = 7+parseInt(arrGlobalCategoria.length)
+          htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
+
+}
+
+              if(html==undefined){html='';}else{
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataOtros').html(html); 
+               $('.contCataOtrosP').html(htmlP); 
+              }
+           for(var w=0;w<prodTotales.length; w++){
+     prodTotales[w]+=parseFloat(prodT[w]);
+}
+             totalesCategorias();
+
+prodT=0;
+        document.getElementById('loader').style.display = 'none';
+
+}
+function loadVentaDiariaDegustacion(lista){ //por categoria
+          var html = '';
+          var htmlP = '';
+          var identificacion='';
+          var identificacionP='';
+          var bonificacionT=0;
+          var t_venta_mercaT=0;
+          var mer;
+          var pNoVenta;
+          var creditosT=0; 
+          var bonificacionTotal=0; 
+          var ventasT=0; 
+          var productoTotalS=""; 
+          var productoTotal=0; 
+          var productoTotalP=0; 
+          var prodT = new Array(arrGlobalCategoria.length);
+          var porcentajeTotal=0;
+          var credits=0;
+          var encuentra=0;
+          var diferenciaT=0;
+    for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+     if(arrGlobalEmpleados[hh2].km==1){
+       for(var j=0;j<arrGlobalF.length; j++){
+        
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >PEDIDOS</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td><td ></td> <td ></td>  <td ></td> <td ></td>';
+identificacionP= '<tr style="font-size:8px; " class="text-center" ><td></td><td >PEDIDOS</td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td class="text-right"></td> <td class="text-right"></td>  <td class="text-right"></td> <td class="text-right"></td>';
+        
+        
+
+        }
+ventasT+=t_venta_mercaT;
+creditosT+=parseFloat(credits);
+bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
+diferenciaT=0;
+t_venta_mercaT=0;
+        var productosT="";
+        var productosTP="";
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+              
+              var titulos=""; 
+              var titulosP=""; 
+              var prod = new Array(arrGlobalCategoria.length);
+              var prodN = new Array(arrGlobalCategoria.length);
+              var prodC = new Array(arrGlobalCategoria.length);
+              
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(arrGlobalEmpleados[hh2].id==lista[h].vendedor&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                   
+                    if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
+                      pasa=1;
+
+                      if(lista[h].dfc==1){
+                        if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==2){
+                         if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==3){
+                         if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==4){
+                         if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==5){
+                          if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                        if(lista[h].dfc==6){
+                         if(lista[h].peso!=0){
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=parseFloat(lista[h].peso);
+                        }else{
+                          l+=parseFloat(lista[h].piezas);
+                          lp+=0;
+                        }
+                        }
+                      }
+                    }
+              if((lista.length-1)==h&&pasa==1){
+              var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+              var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+                
+               
+                  
+                   if(suma2==0){
+                    for(var y=0;y<arrGlobalCategoria.length; y++){
+                           if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
+                       
+                            
+                           suma=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma);
+                           if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0}
+                           prod[y]+= parseFloat(suma);
+                      
+                      
+
+
+                      
+
+
+
+                           prodN[y]=arrGlobalCategoria[y].nombre;
+                           prodC[y]=arrGlobalInventario[hh].tipoP;
+                           } 
+                    }
+                 
+                  }else{
+                     for(var y=0;y<arrGlobalCategoria.length; y++){
+                           if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
+                         
+                           suma2=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma2);
+                           if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0;}
+                           prod[y]+= parseFloat(suma2);
+                 
+
+
+
+                           prodN[y]=arrGlobalCategoria[y].nombre;
+                           prodC[y]=arrGlobalInventario[hh].tipoP;
+                           } 
+                    }
+                  }
+               
+                  l=0;
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+                  cambio =1;  
+                  }
+                }
+                  cambio =0;  
+                  pasa=0;
+                }
+cantidadproducto=0;
+var su=0;
+
+        for(var y=0;y<arrGlobalCategoria.length; y++){
+          titulos+='<th class="letras text-center">'+arrGlobalCategoria[y].nombre+'</th>';
+          titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
+          if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
+
+              if(prodC[y]==arrGlobalCategoria[y].id){
+                   // productoTotal+=parseFloat(prod[y]);
+                     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
+                     productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
+                      prodT[y]+=parseFloat(prod[y]);
+              }else{
+                     productosT+= '<td >  </td>';
+                     productosTP+= '<td >  </td>';
+              //productoTotal+=0;
+             prodT[y]+=0;
+              
+              }
+             
+          productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
+          productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
+          
+        }
+        //alert("vendedor "+arrGlobalCategoria.length+" - "+prod.length);
+        
+        prodN=0;
+         prodC=0;
+         prod =0;
+              
+         if(identificacion==''){html=html;}else{
+          html+=identificacion+productosT+'</tr>';
+          htmlP+=identificacionP+productosTP+'</tr>';
+          productoTotalS=productoTotal;
+          productoTotalSP=productoTotalP;
+          
+         }
+        productoTotal='';
+        productoTotalP='';
+        productosT='';
+        productosTP='';
+        identificacion='';
+        identificacionP='';
+        //alert(prod.length+" - "+prodN.length);
+        bonificacionT=0;
+        credits=0;
+        t_venta_mercaT=0;
+       }
+     }
+             titulos=' <th class="letras text-center ">_RUTA_</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">_____CRÉDITOS_____</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">_____VENTA_____</th>'+titulos;
+             titulosP=' <th   class=" text-center" style="width: 50px; font-size:8px;">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">______VENTA______</th>'+titulosP;
+if(html!=""){
+          credi+= parseFloat(creditosT);
+          boni+=parseFloat(bonificacionTotal);
+          s_vent+=parseFloat(ventasT);
+          html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>PEDIDOS</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
+          htmlP+='<tr class="grisclaro" style="font-size:8px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong> $ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
+      var renglon = 7+parseInt(arrGlobalCategoria.length)
+          htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
+
+}
+
+              if(html==undefined){html='';}else{
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataOtros').html(html); 
+               $('.contCataOtrosP').html(htmlP); 
+              }
+           for(var w=0;w<prodTotales.length; w++){
+     prodTotales[w]+=parseFloat(prodT[w]);
+}
+             totalesCategorias();
+
+prodT=0;
+        document.getElementById('loader').style.display = 'none';
+
+}
 
 function loadMermaG(lista){ //merma general
               var html = '';
@@ -6950,6 +7473,36 @@ upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
 
  totalMerma=0; 
 }
+
+
+function loadDeg(lista){
+              var htmlm = '';
+              var totalMerma =0 ;
+              for(var h=0;h<lista.length; h++){
+                if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].horarecepcion==1){
+                  htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectDeg('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
+                totalMerma += parseFloat(lista[h].valorMercancia);
+                }
+              }
+            
+                  $(' .contCataDeg').html(htmlm);
+                  $(' .totalMerma').html('<h3 class="letras">$ '+formatoMoneda1(totalMerma)+'</h3>');
+                 arrGlobalMerma=lista;
+                
+var n1 = totalMerma;
+var ruta = rutas;
+var json2 = {n1:n1};
+var jsonC = {where:{ruta:ruta}}
+//upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
+//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasSV);
+  //     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasSV);
+
+
+ totalMerma=0; 
+}
+
+
+
 function loadMermaP(lista){
               var htmlm = '';
               var totalMerma =0 ;
@@ -6975,6 +7528,7 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 
  totalMerma=0; 
 }
+
 
 function loadMermaP2(lista){
               var htmlm = '';
@@ -7026,6 +7580,33 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 
  totalMerma=0; 
 }
+
+function loadDeg2(lista){
+              var htmlm = '';
+              var totalMerma =0 ;
+              for(var h=0;h<lista.length; h++){
+                if(1==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
+                  htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectDeg2('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
+                totalMerma += parseFloat(lista[h].valorMercancia);
+                }
+              }
+            
+                  $(' .contCataDeg').html(htmlm);
+                  $(' .totalMerma').html('<h3 class="letras">$ '+formatoMoneda1(totalMerma)+'</h3>');
+                 arrGlobalMerma=lista;
+                
+var n1 = totalMerma;
+var ruta = rutas;
+var json2 = {n1:n1};
+var jsonC = {where:{ruta:ruta}}
+//7upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasSV);
+  //     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasSV);
+
+
+ totalMerma=0; 
+}
+
 var arrGlobalMerma;
 function totalrec(h,piezas,pUnitario,rec){
               var piezas1 = $('#rec'+h+'').val();
@@ -7312,6 +7893,36 @@ function loadVentaspasadasMerma(lista){
             }
           }
               html2+= '<tr class="seleccionar" onclick="click_Mer('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + t_ventas[lista[h].tipo-1] + '</td><td> $ '+ formatoMoneda1(lista[h].credito_p) + '</td><td> $ ' + formatoMoneda1(lista[h].bonificacion_p) +  '</td><td> $ ' + formatoMoneda1(lista[h].n1) + '</td><td>'+fechap +'</td></tr>';
+              km=lista[h].km;
+              gas=lista[h].gas;
+              diesel=lista[h].diesel;
+              gasolina=lista[h].gasolina;
+          }
+        }
+              $('.contCata').html(html2);
+              arrGlobal4 = lista;
+        document.getElementById('loader').style.display = 'none';
+
+}
+function loadVentaspasadasDeg(lista){
+          var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+          var dianum=(diasema.getUTCDay());
+          var html2 = '<tr class="seleccionar" onclick="click_Deg2();" ><td>  </td><td>PROMOTORIA </td><td></td><td> </td><td></td><td> </td><td></td></tr>';
+
+      for(var h=0;h<lista.length; h++){
+        if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)){
+          var f=lista[h].fechaf;
+          var dayp = f.substring(8,10);
+          var monthp = f.substring(5,7);
+          var yearp = f.substring(0,4);
+          var nomdiap = new Date((parseInt(monthp))+' '+parseInt(dayp)+' ,'+parseInt(yearp));
+          var fechap = dias[nomdiap.getUTCDay()-1];
+      for(var i=0; i < arrGlobalRuta.length; i++) {
+        if(arrGlobalRuta[i].id==lista[h].ruta ){
+              ruta3=arrGlobalRuta[i].nombre;
+            }
+          }
+              html2+= '<tr class="seleccionar" onclick="click_Deg('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + ruta3 + '</td><td>' + lista[h].nombre + '</td><td>' + t_ventas[lista[h].tipo-1] + '</td><td> $ '+ formatoMoneda1(lista[h].credito_p) + '</td><td> $ ' + formatoMoneda1(lista[h].bonificacion_p) +  '</td><td> $ ' + formatoMoneda1(lista[h].n1) + '</td><td>'+fechap +'</td></tr>';
               km=lista[h].km;
               gas=lista[h].gas;
               diesel=lista[h].diesel;
@@ -8886,6 +9497,227 @@ limpiar();
 }
 
 
+
+function addDeg(){   
+  var idProducto = $(".idProductoMP").val();
+  var descripcionventa = $(".descripcionMP").val();
+  var piezas = $(".piezasMP").val();
+  var peso = $(".pesoMP").val();
+  var vendedor=nombre_vend;
+//alert(day2+" / "+month2+" / "+year2);
+  if(peso==""||peso==NaN||peso==undefined){
+    peso=0;
+  }
+ var pesov=0;
+ var piezasv=0;
+  var hora = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
+  var horadespacho = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
+  var empleado = id_vend;
+  var fecha = today_v;
+  var sc,dc,dsfc,sfc;
+
+
+  var num = 0;
+  var num2 = 0;
+  var dfc,sfc;
+  var t_venta=today;
+  var precioUnitario, valorMercancia,medida, bonificacion, credito;
+ // alert(today_v+" == "+today_vv);
+  if(today_v!=today_vv){
+    saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+   // alert(noSemana);
+    
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+    dfc=(diasema.getUTCDay());
+if(noSemana==52&&dfc==6){
+    noSemana=0;
+   }
+if(noSemana==52){
+    noSemana=0;
+   } 
+     
+   
+     sfc=noSemana+1;
+    saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+    //alert(noSemana);
+    diasema= new Date((parseInt(month))+' '+parseInt(day)+' ,'+parseInt(year));
+    dc=(diasema.getUTCDay());
+if(noSemana==52&&dc==6){
+    noSemana=0;
+   }
+   if(noSemana==52){
+    noSemana=0;
+   }
+
+    
+     sc=noSemana+1;
+    
+  
+    
+   
+   //sd=noSemana;
+    //alert(sd);
+
+  }else{
+    saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+ // var diasema= new Date(parseInt(day2), (parseInt(month2)) ,parseInt(year2));
+  // alert(day2+" - "+month2+" - "+year2);
+   dc=(diasema.getUTCDay());
+  if(noSemana==52&&dc==6){
+    noSemana=0;
+    dc=6;
+   }
+   if(noSemana==52){
+    noSemana=0;
+   } 
+   
+   sc=noSemana+1;
+   dfc=dc;
+   sfc=sc;
+   // alert(sc+" no es igual"+dc);
+  }
+  dsfc=dfc;
+ // alert("dsfc: "+dsfc+". dfc: "+dfc+".  dc:"+dc+". sc:"+sc);
+ // alert(t_vende);
+  //alert(day2+" - "+month2+" - "+year2+" - "+dc+" -- "+sc);
+  for(var h=0;h<arrGlobalInventario.length; h++){
+
+    if(arrGlobalInventario[h].idInventario==idProducto){
+     
+         if(arrGlobalInventario[h].medida==2 || arrGlobalInventario[h].medida==3){//si es pieza y litros
+             medida=arrGlobalInventario[h].medida;
+                // alert(arrGlobalMerma[n_vend].t_venta+" Detalle: "+p_unitario+" Precio total"+v_mercancia);
+           //  alert(arrGlobalMerma[n_vend1].tipo);
+            //  alert(n_vend+" -- "+id_vend);
+              if(t_vende==1){
+                 precioUnitario=arrGlobalInventario[h].detalle;
+                 valorMercancia=precioUnitario*piezas;
+                 peso=0;
+                 
+                 //alert(arrGlobal2[n_vend].t_venta+" Detalle: "+p_unitario+" Precio total"+v_mercancia);
+              }
+              if(t_vende==2){
+                precioUnitario=arrGlobalInventario[h].mayoreo;
+                 valorMercancia=precioUnitario*piezas;
+                 peso=0;
+                
+
+                 //alert(arrGlobal2[n_vend].t_venta+" Mayoreo: "+p_unitario+" Precio total"+v_mercancia);
+              }
+              if(t_vende==3){
+                precioUnitario=arrGlobalInventario[h].foraneo;
+                 valorMercancia=precioUnitario*piezas;
+                 peso=0;
+            
+
+                 //alert(arrGlobal2[n_vend].t_venta+" foraneo: "+p_unitario+" Precio total"+v_mercancia);
+              }
+              if(t_vende==4){
+                precioUnitario=arrGlobalInventario[h].restaurante;
+                 valorMercancia=precioUnitario*piezas;
+                 peso=0;
+             
+
+                //  alert(arrGlobal2[n_vend].t_venta+" restaurantes: "+p_unitario+" Precio total"+v_mercancia);
+              }
+
+         }else{//si es kg
+              medida=arrGlobalInventario[h].medida;
+               if(t_vende==1){
+                 precioUnitario=arrGlobalInventario[h].detalle;
+                 valorMercancia=precioUnitario*peso;
+              
+
+                 //alert(arrGlobal2[n_vend].t_venta+" Detalle: "+p_unitario+" Precio total"+v_mercancia);
+              }
+              if(t_vende==2){
+                precioUnitario=arrGlobalInventario[h].mayoreo;
+                 valorMercancia=precioUnitario*peso;//
+         
+
+                 // alert(arrGlobal2[n_vend].t_venta+" Mayoreo: "+p_unitario+" Precio total"+v_mercancia);
+              }
+              if(t_vende==3){
+                precioUnitario=arrGlobalInventario[h].foraneo;
+                 valorMercancia=precioUnitario*peso;
+                
+
+                //alert(arrGlobal2[n_vend].t_venta+" foraneo: "+p_unitario+" Precio total"+v_mercancia);
+              }
+              if(t_vende==4){
+                precioUnitario=arrGlobalInventario[h].restaurante;
+                 valorMercancia=precioUnitario*peso;
+                
+
+                 //alert(arrGlobal2[n_vend].t_venta+" restaurantes: "+p_unitario+" Precio total"+v_mercancia);
+              }
+             }
+    }}
+
+
+  if(idProducto != "" && descripcionventa != "" && piezas != ""){
+   //alert("modifico: "+num+" tipo: "+t_vende);
+  var id = rutas;
+  var idVentap = id_vend;
+  var fecha = today_vv;
+  var fechaf = today_v;
+  var fechadespacho = today_vv;
+  var fechadespachof = today_v;
+  var ruta = rutas;
+  var nombre = nombre_vend;
+  var tipo = t_vende;
+  var credito_p = cred;
+  var merma = 1;
+  var despachador2=despachador22;
+  var bonificacion_p = boni;
+  var v_mercancia = parseFloat(total_mercancia) + parseFloat(valorMercancia);
+  //alert(day2+" - "+month2+" - "+year2+(diasema.getUTCDay()-1));
+    
+  //alert(day2+" - "+month2+" - "+year2+" - "+dc+" -- "+sc);
+    
+      //alert(v_mercancia+" = "+total_mercancia+" + "+valorMercancia);                                                                 
+  //alert(vendedor);
+  //var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+  // addRegistro3(json, 'ventadiaria', loadMerma);
+  
+//getFunction('ventadiaria','error al agregar registro',loadMerma );
+  
+  var horarecepcion = 1;
+ var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta, horarecepcion:horarecepcion}}
+  
+  var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma, horarecepcion: horarecepcion};
+
+  //var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+   addRegistroA(json,jsonC, 'ventadiaria', loadDeg);
+    
+      //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+ 
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadDeg);
+
+
+
+
+
+  }else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+ 
+ 
+// getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
+  
+limpiar();
+    
+ //  getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
+    
+
+}
+
+
+
+
 function addMermaP2(){   
   var idProducto = $(".idProductoMP").val();
   var descripcionventa = $(".descripcionMP").val();
@@ -9035,6 +9867,160 @@ limpiar();
     
 
 }
+
+function addDeg2(){   
+  var idProducto = $(".idProductoMP").val();
+  var descripcionventa = $(".descripcionMP").val();
+  var piezas = $(".piezasMP").val();
+  var peso = $(".pesoMP").val();
+  var vendedor=nombre_vend;
+//alert(day2+" / "+month2+" / "+year2);
+  if(peso==""||peso==NaN||peso==undefined){
+    peso=0;
+  }
+ var pesov=0;
+ var piezasv=0;
+  var hora = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
+  var horadespacho = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
+  var empleado = id_vend;
+  var fecha = today_v;
+  var sc,dc,dsfc,sfc;
+
+
+  var num = 0;
+  var num2 = 0;
+  var dfc,sfc;
+  var t_venta=today;
+  var precioUnitario, valorMercancia,medida, bonificacion, credito;
+ // alert(today_v+" == "+today_vv);
+  if(today_v!=today_vv){
+    saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+   // alert(noSemana);
+    
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+    dfc=(diasema.getUTCDay());
+if(noSemana==52&&dfc==6){
+    noSemana=0;
+   }
+if(noSemana==52){
+    noSemana=0;
+   } 
+     
+   
+     sfc=noSemana+1;
+    saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+    //alert(noSemana);
+    diasema= new Date((parseInt(month))+' '+parseInt(day)+' ,'+parseInt(year));
+    dc=(diasema.getUTCDay());
+if(noSemana==52&&dc==6){
+    noSemana=0;
+   }
+   if(noSemana==52){
+    noSemana=0;
+   }
+
+    
+     sc=noSemana+1;
+    
+  
+    
+   
+   //sd=noSemana;
+    //alert(sd);
+
+  }else{
+    saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+ // var diasema= new Date(parseInt(day2), (parseInt(month2)) ,parseInt(year2));
+  // alert(day2+" - "+month2+" - "+year2);
+   dc=(diasema.getUTCDay());
+  if(noSemana==52&&dc==6){
+    noSemana=0;
+    dc=6;
+   }
+   if(noSemana==52){
+    noSemana=0;
+   } 
+   
+   sc=noSemana+1;
+   dfc=dc;
+   sfc=sc;
+   // alert(sc+" no es igual"+dc);
+  }
+  dsfc=dfc;
+ // alert("dsfc: "+dsfc+". dfc: "+dfc+".  dc:"+dc+". sc:"+sc);
+ // alert(t_vende);
+  //alert(day2+" - "+month2+" - "+year2+" - "+dc+" -- "+sc);
+  for(var h=0;h<arrGlobalInventario.length; h++){
+
+    if(arrGlobalInventario[h].idInventario==idProducto){
+     
+         if(arrGlobalInventario[h].medida==2 || arrGlobalInventario[h].medida==3){//si es pieza y litros
+             medida=arrGlobalInventario[h].medida;
+            
+                 precioUnitario=arrGlobalInventario[h].detalle;
+                 valorMercancia=precioUnitario*piezas;
+                 peso=0;
+                 
+                
+              
+              
+
+         }else{//si es kg
+              medida=arrGlobalInventario[h].medida;
+            
+                 precioUnitario=arrGlobalInventario[h].detalle;
+                 valorMercancia=precioUnitario*peso;
+              
+
+                 //alert(arrGlobal2[n_vend].t_venta+" Detalle: "+p_unitario+" Precio total"+v_mercancia);
+             
+             }
+    }}
+
+ 
+  if(idProducto != "" && descripcionventa != "" && piezas != ""){
+   //alert("modifico: "+num+" tipo: "+t_vende);
+  var id = rutas;
+  var idVentap = id_vend;
+  var fecha = today_vv;
+  var fechaf = today_v;
+  var fechadespacho = today_vv;
+  var fechadespachof = today_v;
+  var ruta = 1;
+  var nombre = nombre_vend;
+  var tipo = t_vende;
+  var credito_p = cred;
+  var merma = 1;
+  var horarecepcion = 1;
+  var despachador2=despachador22;
+  var bonificacion_p = boni;
+  var v_mercancia = parseFloat(total_mercancia) + parseFloat(valorMercancia);
+ 
+  var jsonC = {where:{fechadespachof: fechadespachof, horarecepcion: horarecepcion}}
+  var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, horarecepcion: horarecepcion, merma: merma};
+  addRegistroA(json,jsonC, 'ventadiaria', loadDeg2);
+ 
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadDeg2);
+
+  }else{
+
+      $('#modal .textModal').html('Faltan Datos.'); 
+      $('#modal').modal('show');
+  }
+ 
+ 
+// getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentas);
+  
+limpiar();
+    
+ //  getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
+    
+
+}
+
+
+
 
 
 
@@ -9391,6 +10377,49 @@ var fechadespachof = today_v;
 limpiar();
 }
 
+function delDeg(){
+  var idProducto = $(".idProductoMP").val();
+  var descripcionventa = $(".descripcionventaMP").val();
+  var piezas = $(".piezasMP").val();
+  var peso = $(".pesoMP").val();
+ var merma =1;
+ var ruta = rutas;
+var fechadespachof = today_v;
+var horarecepcion =1;
+  if(idProducto != "" && descripcionventa != "" && piezas != ""){
+
+
+  var jsonC = {where:{ruta:ruta, fechadespachof: fechadespachof, horarecepcion: horarecepcion}};
+  //var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+
+  //var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+   //upRegistroA2(idGlobal,json,jsonC, 'ventadiaria', loadMerma);
+    delRegistroA2(idGlobal,jsonC,'ventadiaria', loadDeg);
+
+      //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+ 
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadDeg);
+
+
+
+
+
+  //delRegistro(idGlobal,'ventadiaria', loadMerma);
+
+   //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMerma);
+
+
+
+}else {
+   $('#modal .textModal').html('Seleccione de la tabla el producto a eliminar.'); 
+      $('#modal').modal('show');
+ 
+}
+
+limpiar();
+}
+
+
 function delMermaP2(){
   var idProducto = $(".idProductoMP").val();
   var descripcionventa = $(".descripcionventaMP").val();
@@ -9412,6 +10441,47 @@ var fechadespachof = today_v;
       //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
  
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaP3);
+
+
+
+
+
+  //delRegistro(idGlobal,'ventadiaria', loadMerma);
+
+   //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMerma);
+
+
+
+}else {
+   $('#modal .textModal').html('Seleccione de la tabla el producto a eliminar.'); 
+      $('#modal').modal('show');
+ 
+}
+
+limpiar();
+}
+function delDeg2(){
+  var idProducto = $(".idProductoMP").val();
+  var descripcionventa = $(".descripcionventaMP").val();
+  var piezas = $(".piezasMP").val();
+  var peso = $(".pesoMP").val();
+ var merma =1;
+ var ruta = 1;
+ var horarecepcion = 1;
+var fechadespachof = today_v;
+  if(idProducto != "" && descripcionventa != "" && piezas != ""){
+
+
+  var jsonC = {where:{horarecepcion:horarecepcion, fechadespachof: fechadespachof, merma: merma}};
+  //var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+
+  //var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+   //upRegistroA2(idGlobal,json,jsonC, 'ventadiaria', loadMerma);
+    delRegistroA2(idGlobal,jsonC,'ventadiaria', loadDeg2);
+
+      //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentas);
+ 
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadDeg2);
 
 
 
@@ -12281,12 +13351,71 @@ valor=valorM;
 }
        
 }
+function selectDeg(id, valorM,h){
+  idGlobal = id;
+  idVentas2=id;
+  var peso = ' <label class=" impre letras " >PESO</label><input type="text" id="pesoMP" class=" impre form-control clear pesoMP" onchange="document.getElementById("addMP").focus();" placeholder="">';
+ //var upventas1='<button type="button" class="btn btn-ventas btn-ventas modificar" onclick="upMermaP()">GUARDAR</button>';
+ var delventas1 = '<button type="button" class="btn btn-ventas btn-ventas eliminar" onclick="delDeg()">ELIMINAR</button>';
+  var seleccionado;
+  for(var a=0; a<arrGlobalMerma.length; a++){
+    if(arrGlobalMerma[a].id == id){
+       //$(".upventaMP").html(upventas1);
+       $(".upventaMP").html(delventas1);
+       $(".idProductoMP").val(arrGlobalMerma[a].idProducto);
+       $(".descripcionMP").val(arrGlobalMerma[a].descripcionventa);
+       $(".piezasMP").val(arrGlobalMerma[a].piezas);
+       if(arrGlobalMerma[a].medida == "1"){
+            $(".pesosMP").html(peso);
+            $(".pesoMP").val(arrGlobalMerma[a].peso);
+            //valor=arrGlobal3[a].peso;
+       }else{
+        $('.pesosMP').removeClass('hidden');
+            $('.pesosMP').html('');
+            //valor=arrGlobal3[a].piezas;
+       }
+valor=valorM;
+ 
+      
+  }
+}
+       
+}
 function selectMermaP3(id, valorM,h){
   idGlobal = id;
   idVentas2=id;
   var peso = ' <label class=" impre letras " >PESO</label><input type="text" id="pesoMP" class=" impre form-control clear pesoMP" onchange="document.getElementById("addMP").focus();" placeholder="">';
  //var upventas1='<button type="button" class="btn btn-ventas btn-ventas modificar" onclick="upMermaP()">GUARDAR</button>';
  var delventas1 = '<button type="button" class="btn btn-ventas btn-ventas eliminar" onclick="delMermaP2()">ELIMINAR</button>';
+  var seleccionado;
+  for(var a=0; a<arrGlobalMerma.length; a++){
+    if(arrGlobalMerma[a].id == id){
+       $(".upventaMP").html(delventas1);
+       $(".idProductoMP").val(arrGlobalMerma[a].idProducto);
+       $(".descripcionMP").val(arrGlobalMerma[a].descripcionventa);
+       $(".piezasMP").val(arrGlobalMerma[a].piezas);
+       if(arrGlobalMerma[a].medida == "1"){
+            $(".pesosMP").html(peso);
+            $(".pesoMP").val(arrGlobalMerma[a].peso);
+            //valor=arrGlobal3[a].peso;
+       }else{
+        $('.pesosMP').removeClass('hidden');
+            $('.pesosMP').html('');
+            //valor=arrGlobal3[a].piezas;
+       }
+valor=valorM;
+ 
+      
+  }
+}
+       
+}
+function selectDeg2(id, valorM,h){
+  idGlobal = id;
+  idVentas2=id;
+  var peso = ' <label class=" impre letras " >PESO</label><input type="text" id="pesoMP" class=" impre form-control clear pesoMP" onchange="document.getElementById("addMP").focus();" placeholder="">';
+ //var upventas1='<button type="button" class="btn btn-ventas btn-ventas modificar" onclick="upMermaP()">GUARDAR</button>';
+ var delventas1 = '<button type="button" class="btn btn-ventas btn-ventas eliminar" onclick="delDeg2()">ELIMINAR</button>';
   var seleccionado;
   for(var a=0; a<arrGlobalMerma.length; a++){
     if(arrGlobalMerma[a].id == id){
@@ -12616,7 +13745,7 @@ function click_ventas(){
  $('.btn-nav').html('<h3> Menú </h3>');
  $('#contenido').load('/html/ventas.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </li>  <span class="border border-primary"></span><li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">MERMA </li>  <span class="border border-warning"></span><li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">PEDIDOS  </li>  <span class="border border-white"></span>  <div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">PEDIDOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">MERMA </li>  <span class="border border-warning"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_Degustaciones1(); "> DEGUSTACIONES</li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
 
    document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -12772,6 +13901,9 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 function click_Merma1(){
 $('#modalPin3').modal('show');
 }
+function click_Degustaciones1(){
+$('#modalPin4').modal('show');
+}
 function modal_VDiaria(){
   $('#modalVDiaria').modal('show');
 }
@@ -12843,6 +13975,77 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
    
 }
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasMerma);
+$('.imprimir').html('');
+}
+
+function click_Degustaciones(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú </h3>');
+ $('.seccion6').load('/html/rec_venta.html');
+ //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" disabled onclick="ocultar()">VENTAS </button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" disabled id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Despacho1()" role="tab">DESPACHO</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Recepcion()">RECEPCIÓN </button></li><div class="imprimir"></div><div class="ventaDiaria"></div><div type="button" class="btn btn-dark totala text-center" onclick="VentaspasadasRS()">RUTA SEMANAL</div><div type="button" class="btn btn-dark totala text-center" onclick="">U. RECEPCIÓN</div></ul> </div>');
+   //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar()">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion3" aria-controls="seccion3" id="desp" data-toggle="tab" onclick="click_Recepcion1()" role="tab">RECEPCIÓN </li> <span class="border border-success"></span> <s<div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_Degustaciones(); ">DEGUSTACIONES </li>  <span class="border border-warning"></span><div class="imprimir"></div></ul> </div>');
+      
+
+        document.getElementById('loader').style.display = 'block';
+
+var fecha = $(".selectfecha").val(); 
+//$('.semanaRuta').html();
+var dia= ""+day+"";
+if(dia.length == 1){
+  dia = "0"+dia;
+  //alert(dia);
+}
+var mes= ""+month+"";
+if(mes.length == 1){
+  mes = "0"+mes;
+  //alert(dia);
+}
+today_v = year+'-'+mes+'-'+dia;
+/*
+if(fecha!=undefined){
+ 
+var dd = fecha.substring(8,10);
+var mm = fecha.substring(5,7);
+var yy = fecha.substring(0,4);
+//alert(dd+" / "+mm+" / "+yy);
+
+}else{
+ today_v = fecha; 
+ day2 = fecha.substring(8,10);
+ month2 = fecha.substring(5,7);
+ year2 = fecha.substring(0,4);
+  
+}
+*/
+  //alert(dia+"- "+dia.length);
+
+
+
+if( fecha == NaN || fecha == undefined || fecha == "" || fecha == today_v){
+  //alert(fecha+"hey");
+  //alert(today_v+"hey");
+  day2 = today_v.substring(8,10);
+  month2 = today_v.substring(5,7);
+  year2 = today_v.substring(0,4);
+  saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+  getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasDeg);
+   
+$('.tituloPantalla').html('<h3 class="ventas impre"> DEGUSTACIONES  </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');   
+
+}else{
+   
+ today_v = fecha; 
+ day2 = fecha.substring(8,10);
+ month2 = fecha.substring(5,7);
+ year2 = fecha.substring(0,4);
+ saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+ //alert(today_v+"hey");
+$('.tituloPantalla').html('<h3 class="ventas impre"> DEGUSTACIONES  </h3><p>( '+today_v+' )</p>');  
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasDeg);
+   
+}
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasDeg);
 $('.imprimir').html('');
 }
 function click_Recepcion(){
@@ -14089,6 +15292,57 @@ if(arrGlobal4[h].despachador==undefined){
   $('.imprimir').html('');
 }
 }
+
+function click_Deg(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc){
+ 
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú  </h3>');
+ $('.seccion6').load('/html/degustacion.html');
+
+ nombre_vend = arrGlobal4[h].nombre;
+ id_vend=id;
+ n_vend=h;
+ n_vend1=h;
+ rutas=arrGlobal4[h].ruta;
+
+ t_vende=tipo;
+ cred=credito;
+ boni=bonificaciones;
+ fechacaptura=arrGlobal4[h].fechaf;
+ dscv=dsc;
+ scv=sc;
+  for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].id==ruta){
+ruta3=arrGlobalRuta[i].nombre;
+}
+}
+ var dayVS = today_v.substring(8,10);
+          var monthVS = today_v.substring(5,7);
+          var yearVS = today_v.substring(0,4);
+          var cobrado=noSemana;
+          var mes=month-1;
+          var dia=day-1;
+              cobrado = cobrado +1;
+              saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
+          var t_vendido = today;
+
+
+
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_Degustaciones(); ">DEGUSTACIONES </li>  <span class="border border-warning"></span><div class="imprimir"></div></ul> </div>');
+$('.tituloPantalla').html('<h3 class="vendedor impre"> DEGUSTACIONES </h3> <p>( '+today_v+' ) - NOMBRE: '+nombre_vend+'. RUTA: ' +ruta3+'. TIPO: '+t_ventas[t_vende-1]+ '. CRÉDITO: ' +cred+'. BONIFICACIÓN : '+boni+'. </p>');
+ var fechadespachof = today_v;
+ var fechaf = fechacaptura;
+ var ruta = rutas;
+
+ var sfc = noSemana+1;
+ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
+var horarecepcion = 1;
+ var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta, horarecepcion:horarecepcion}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadDeg);
+
+
+}
+
 function click_Mer(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc){
  
  $('.btn-nav').removeClass('hidden');
@@ -14173,6 +15427,44 @@ $('.tituloPantalla').html('<h3 class="vendedor impre"> MERMA CUARTO FRIÓ </h3><
 
  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaP3);
+
+
+}
+
+function click_Deg2(){
+ 
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> Menú  </h3>');
+ $('.seccion6').load('/html/degustacion2.html');
+
+ nombre_vend = "DEGUSTACION";
+ id_vend=1;
+ n_vend=1;
+ n_vend1=1;
+ rutas="DEGUSTACION";
+
+ var dayVS = today_v.substring(8,10);
+          var monthVS = today_v.substring(5,7);
+          var yearVS = today_v.substring(0,4);
+          var cobrado=noSemana;
+          var mes=month-1;
+          var dia=day-1;
+              cobrado = cobrado +1;
+              saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
+          var t_vendido = today;
+
+
+
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_Degustaciones(); ">DEGUSTACIONES </li>  <span class="border border-warning"></span><div class="imprimir"></div></ul> </div>');
+$('.tituloPantalla').html('<h3 class="vendedor impre"> PROMOTORIA </h3><p>( '+today_v+' )  </p>');
+ var fechadespachof = today_v;
+ var fechaf = fechacaptura;
+ var ruta = 1;
+ var sfc = noSemana+1;
+ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
+var horarecepcion=1;
+ var jsonC = {where:{fechadespachof:fechadespachof, horarecepcion: horarecepcion}}
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadDeg2);
 
 
 }
@@ -14501,6 +15793,12 @@ function modalCloseP(){
 function closeModalPin3(){
 
       $('#modalPin3').modal('hide');
+
+
+}
+function closeModalPin4(){
+
+      $('#modalPin4').modal('hide');
 
 
 }
@@ -14854,6 +16152,38 @@ function agregarpin3(){
      click_ventas();
   }
     $("#modalPin3 .pin").val('');
+     
+}
+/*function updateGanadosDatos(){
+  // url:, data:{idGanado:1, ganado_detalle:{ folioFactura:'folio_factura', titulo:'titulo', fechaTitulo:'2017-04-16', numeroTb:'numero dictamen tb', fechaTb:'2017-04-16', fechaUpp:'2017-04-16', guia:1 }, proveedor:{ idMunicipio: 1, idLocalidad: 1 }, ganado:{idProveedor:1, fechaEntrada, color:'Ahumado', idJaula:1, peso:'55.2', sexo:'M'}, type:'POST'
+  var arete = areteG;
+  if(arete != ""){
+      var json = {where:{arete:arete}}
+      executeFunctionDone(json, 'ganados', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", updateGanadosDatos2);
+  }
+ }
+*/
+
+function agregarpin4(){
+
+  var data =  $("#modalPin4 .pin").val();
+  for(var h=0;h<upin.length; h++){
+      if(data==upin[h].pin){
+        closeModalPin4();
+        click_Degustaciones();
+        pin=upin[h].pin;
+        data=0;
+
+      }
+  }
+
+  if(data!=0){
+    closeModalPin4();
+    $('#modal .textModal').html('PIN INCORRECTO.'); 
+    $('#modal').modal('show');
+     click_ventas();
+  }
+    $("#modalPin4 .pin").val('');
      
 }
 /*function updateGanadosDatos(){

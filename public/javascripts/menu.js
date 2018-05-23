@@ -1917,8 +1917,8 @@ function loadVentaDiariaMayoreoNominaFaltante(lista){ //por mayoreo
           if(arrGlobalF[j].n4!=(undefined||NaN||"")){
            infonavit = arrGlobalF[j].n4;
           }
-          if(arrGlobalF[j].f_s_real!=(undefined||NaN||"")){
-           faltanteT = arrGlobalF[j].f_s_real;
+          if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
+           faltanteT = arrGlobalF[j].cobrado;
           }
           if(arrGlobalF[j].n1!=(undefined||NaN||"")){
 mermaT += parseFloat(arrGlobalF[j].n1);
@@ -1929,7 +1929,7 @@ mermaT += 0;
 if(f_Ahorro=="F"){f_Ahorro=100;}
   encuentra=1; 
 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+', '+faltanteT+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
       
         }
@@ -1955,7 +1955,7 @@ t_venta_mercaT=0;
          if(infonavit==0){infonavit=0;}
          if(ret==0){ret=0;}
          if(faltanteT==undefined)faltanteT=0;
-         if(faltanteT>0)faltanteT=0;
+         //if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
 
           html+=identificacion+'</td>'+productosT+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
@@ -2066,8 +2066,8 @@ function loadVentaDiariaRestauranteNominaFaltante(lista){ //por mayoreo
           if(arrGlobalF[j].n4!=(undefined||NaN||"")){
            infonavit = arrGlobalF[j].n4;
           }
-          if(arrGlobalF[j].f_s_real!=(undefined||NaN||"")){
-           faltanteT = arrGlobalF[j].f_s_real;
+          if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
+           faltanteT = arrGlobalF[j].cobrado;
           }
           if(arrGlobalF[j].n1!=(undefined||NaN||"")){
 mermaT += parseFloat(arrGlobalF[j].n1);
@@ -2078,7 +2078,7 @@ mermaT += 0;
 if(f_Ahorro=="F"){f_Ahorro=100;}
   encuentra=1; 
 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+', '+faltanteT+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
       
         }
@@ -2104,7 +2104,7 @@ t_venta_mercaT=0;
          if(infonavit==0){infonavit=0;}
          if(ret==0){ret=0;}
          if(faltanteT==undefined)faltanteT=0;
-         if(faltanteT>0)faltanteT=0;
+         //if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
 
           html+=identificacion+'</td>'+productosT+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
@@ -2215,8 +2215,8 @@ function loadVentaDiariaForaneoNominaFaltante(lista){ //por mayoreo
           if(arrGlobalF[j].n4!=(undefined||NaN||"")){
            infonavit = arrGlobalF[j].n4;
           }
-          if(arrGlobalF[j].f_s_real!=(undefined||NaN||"")){
-           faltanteT = arrGlobalF[j].f_s_real;
+          if(arrGlobalF[j].cobrado!=(undefined||NaN||"")){
+           faltanteT = arrGlobalF[j].cobrado;
           }
           if(arrGlobalF[j].n1!=(undefined||NaN||"")){
 mermaT += parseFloat(arrGlobalF[j].n1);
@@ -2227,7 +2227,7 @@ mermaT += 0;
 if(f_Ahorro=="F"){f_Ahorro=100;}
   encuentra=1; 
 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+', '+faltanteT+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
       
         }
@@ -2253,7 +2253,7 @@ t_venta_mercaT=0;
          if(infonavit==0){infonavit=0;}
          if(ret==0){ret=0;}
          if(faltanteT==undefined)faltanteT=0;
-         if(faltanteT>0)faltanteT=0;
+         //if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
 
           html+=identificacion+'</td>'+productosT+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
@@ -2365,8 +2365,9 @@ function loadVentaDiariaDetalleNominaFaltante(lista){ //por mayoreo
           if(arrGlobalF[j].n4!=(undefined||NaN||"")){
            infonavit = arrGlobalF[j].n4;
           }
-          if(arrGlobalF[j].f_s_real!=(undefined||NaN||"")){
-           faltanteT = arrGlobalF[j].f_s_real;
+          if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
+           faltanteT = arrGlobalF[j].cobrado;
+          
           }
           if(arrGlobalF[j].n1!=(undefined||NaN||"")){
 mermaT += parseFloat(arrGlobalF[j].n1);
@@ -2377,7 +2378,7 @@ mermaT += 0;
 if(f_Ahorro=="F"){f_Ahorro=100;}
   encuentra=1; 
 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+', '+faltanteT+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
       
         }
@@ -2403,7 +2404,7 @@ t_venta_mercaT=0;
          if(infonavit==0){infonavit=0;}
          if(ret==0){ret=0;}
          if(faltanteT==undefined)faltanteT=0;
-         if(faltanteT>0)faltanteT=0;
+         //if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
 
           html+=identificacion+'</td>'+productosT+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
@@ -2517,8 +2518,8 @@ prodT=0;
           if(arrGlobalF[j].n4!=undefined){
            infonavit = arrGlobalF[j].n4;
           }
-          if(arrGlobalF[j].f_s_real!=undefined){
-           faltanteT = arrGlobalF[j].f_s_real;
+          if(arrGlobalF[j].cobrado!=undefined){
+           faltanteT = arrGlobalF[j].cobrado;
           }
           if(arrGlobalF[j].n1!=undefined){
 mermaT += parseFloat(arrGlobalF[j].n1);
@@ -2878,8 +2879,8 @@ prodT=0;
           if(arrGlobalF[j].n4!=undefined){
            infonavit = arrGlobalF[j].n4;
           }
-          if(arrGlobalF[j].f_s_real!=undefined){
-           faltanteT = arrGlobalF[j].f_s_real;
+          if(arrGlobalF[j].cobrado!=undefined){
+           faltanteT = arrGlobalF[j].cobrado;
           }
           if(arrGlobalF[j].n1!=undefined){
 mermaT += parseFloat(arrGlobalF[j].n1);
@@ -3237,8 +3238,8 @@ document.getElementById('loader').style.display = 'none';
           if(arrGlobalF[j].n4!=undefined){
            infonavit = arrGlobalF[j].n4;
           }
-          if(arrGlobalF[j].f_s_real!=undefined){
-           faltanteT = arrGlobalF[j].f_s_real;
+          if(arrGlobalF[j].cobrado!=undefined){
+           faltanteT = arrGlobalF[j].cobrado;
           }
           if(arrGlobalF[j].n1!=undefined){
 mermaT += parseFloat(arrGlobalF[j].n1);
@@ -3596,8 +3597,8 @@ prodT=0;
           if(arrGlobalF[j].n4!=undefined){
            infonavit = arrGlobalF[j].n4;
           }
-          if(arrGlobalF[j].f_s_real!=undefined){
-           faltanteT = arrGlobalF[j].f_s_real;
+          if(arrGlobalF[j].cobrado!=undefined){
+           faltanteT = arrGlobalF[j].cobrado;
           }
           if(arrGlobalF[j].n1!=undefined){
 mermaT += parseFloat(arrGlobalF[j].n1);
@@ -11865,7 +11866,7 @@ function upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca){
   var mes=month-1;
   var dia=day-1;
       saberSemana(dia,mes,year);
-  var cobrado=noSemana;
+  var cobrado=0;
   var t_vendido = today;
       dsd=today;
       sd=noSemana+1;
@@ -11876,7 +11877,6 @@ function upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca){
       }
   }
   var despachador = despachadorR;
-      cobrado = cobrado +1;
   var temp=today;
   var loquedeberiatraer, f_s_real;
   var despachador=despachadorR;
@@ -11894,6 +11894,7 @@ for(var hh=0;hh<arrGlobal4.length; hh++){
       loquedeberiatraer=parseFloat(arrGlobal4[hh].creditos)-parseFloat(f_s_dia);
       f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
       credito_manual=1;
+      cobrado=f_s_real;
       json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user }
      
       }
@@ -11907,6 +11908,8 @@ if(credito_manual==0){ ////////////// NO ENCUENTRA CREDITO DE LA SEMANA PASADA /
       loquedeberiatraer=parseFloat(modalCreditos1)-parseFloat(f_s_dia);
       f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
       credito_manual=1;
+      cobrado=f_s_real;
+
       json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
       }
     }
@@ -11929,6 +11932,8 @@ for(var hh=0;hh<arrGlobal41.length; hh++){
       credito_manual=1;
     if(arrGlobal4[hh].loquedeberiatraer!=null){
       credito_manual=1;
+      cobrado=f_s_real;
+
       json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user}
   break;
 }else{
@@ -11967,6 +11972,8 @@ for(var hh=0;hh<arrGlobal41.length; hh++){
   //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
 modalCreditos1=1;
+      cobrado=f_s_real;
+
 json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
   
   }else{
@@ -12016,6 +12023,8 @@ if(hk==20){
   //alert(arrGlobal4[hh].loquedeberiatraer+" - "+f_s_dia+" = "+ loquedeberiatraer);
  //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
 modalCreditos1=1;
+      cobrado=f_s_real;
+
 json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
   
    
@@ -12040,6 +12049,8 @@ f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  credito_manual=1;
 //alert(modalCreditos1+" - "+f_s_dia+" = "+ loquedeberiatraer);
 //alert(creditos+" - "+loquedeberiatraer+" = "+f_s_real);
+      cobrado=f_s_real;
+
 json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user}
 
 
@@ -12461,7 +12472,7 @@ function modalCreditos2(){
 
  
 }
-function upNomina(ret, fA, infonavit, id){
+function upNomina(ret, fA, infonavit, id,fOS){
 var nombreNomina="";
 
        for(var j=0;j<arrGlobalF.length; j++){
@@ -12477,6 +12488,7 @@ $('#modalNomina .ret').val(ret);
 $('#modalNomina .fA').val(fA);
 $('#modalNomina .infonavit').val(infonavit);
 $('#modalNomina .idNominaF').val(id);
+$('#modalNomina .faltanteOSobrante').val(fOS);
 
 }
 function upNomina1(){
@@ -12486,9 +12498,11 @@ var idNominaT = $('#modalNomina .idNominaF').val();
 var n3 =$('#modalNomina .ret').val();
 var n2 =$('#modalNomina .fA').val();
 var n4 =$('#modalNomina .infonavit').val();
+var cobrado = $('#modalNomina .faltanteOSobrante').val();
 if(n2=="")n2=0;
 if(n3=="")n3=0;
 if(n4=="")n4=0;
+if(cobrado=="")n4=0;
 closeModalNom();
 limpiar();
 
@@ -12507,7 +12521,7 @@ scv = parseInt(semanaVS1.substring(6,8))-1;
 
      var sfc = (scv+1)+"";
              
-var json={n2:n2,n3:n3,n4:n4}
+var json={n2:n2,n3:n3,n4:n4, cobrado:cobrado}
       var json2 = {where:{sfc:sfc}}
 
 //alert(n2+"  - "+n3+' + '+n4+' + + '+idNominaT);
@@ -12524,6 +12538,12 @@ var sfc = (scv+1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
  
+   executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
+ 
+
  }
 
 

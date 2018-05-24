@@ -745,8 +745,17 @@
         <div class="col-md-4 form-group licencia">
           <label class="">Renuncia</label><input type="date" class="form-control clear renuncia" placeholder="" >
         </div>
-        <div class="col-md-4 form-group licencia">
-          <label class="">Reingresos</label><input type="text" class="form-control clear reingresos" placeholder="" >
+      
+        <div class="col-md-4 form-group ">
+          <label class="">PAGO</label>
+          <select class="form-control tipoPago clear" onchange="pago(value)">
+            <option value="1">COMISION</option>
+            <option value="2" >FIJO</option>            
+            </select>
+        </div>
+        <div id="cantidadPago" style="display: none;" class="col-md-4 form-group">
+          <label class="">CANTIDAD</label>
+          <input type="text" class="form-control clear cantidadPago1" placeholder="" >
         </div>
         <div class="col-md-12 form-group licencia">
           <label class="">Razón de renuncia</label><input type="text" class="form-control clear razon" placeholder="" >

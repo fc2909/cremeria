@@ -1908,8 +1908,8 @@ function loadVentaDiariaMayoreoNominaFaltante(lista){ //por mayoreo
        if(arrGlobalF[j].id!=(undefined||NaN||"")){
           idNomina = arrGlobalF[j].id;
           }
-        if(arrGlobalF[j].n2!=(undefined||NaN||"")){
-          f_Ahorro = arrGlobalF[j].n2;
+        if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
           }
        if(arrGlobalF[j].n3!=(undefined||NaN||"")){
           ret = arrGlobalF[j].n3;
@@ -1929,12 +1929,27 @@ mermaT += 0;
 if(f_Ahorro=="F"){f_Ahorro=100;}
   encuentra=1; 
 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+', '+faltanteT+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalF[j].id+', '+faltanteT+');" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
       
         }
-
+        
         }
+
+
+
+
+        if(encuentra==0){
+          
+if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
+          }
+           encuentra=1; 
+          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNomina2();" ><td >' + ruta3  + '</td><td >'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+          identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+    
+        }
+encuentra =0;
 ventasT+=t_venta_mercaT;
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
@@ -2057,8 +2072,8 @@ function loadVentaDiariaRestauranteNominaFaltante(lista){ //por mayoreo
        if(arrGlobalF[j].id!=(undefined||NaN||"")){
           idNomina = arrGlobalF[j].id;
           }
-        if(arrGlobalF[j].n2!=(undefined||NaN||"")){
-          f_Ahorro = arrGlobalF[j].n2;
+         if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
           }
        if(arrGlobalF[j].n3!=(undefined||NaN||"")){
           ret = arrGlobalF[j].n3;
@@ -2206,8 +2221,8 @@ function loadVentaDiariaForaneoNominaFaltante(lista){ //por mayoreo
        if(arrGlobalF[j].id!=(undefined||NaN||"")){
           idNomina = arrGlobalF[j].id;
           }
-        if(arrGlobalF[j].n2!=(undefined||NaN||"")){
-          f_Ahorro = arrGlobalF[j].n2;
+         if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
           }
        if(arrGlobalF[j].n3!=(undefined||NaN||"")){
           ret = arrGlobalF[j].n3;
@@ -2356,8 +2371,8 @@ function loadVentaDiariaDetalleNominaFaltante(lista){ //por mayoreo
        if(arrGlobalF[j].id!=(undefined||NaN||"")){
           idNomina = arrGlobalF[j].id;
           }
-        if(arrGlobalF[j].n2!=(undefined||NaN||"")){
-          f_Ahorro = arrGlobalF[j].n2;
+         if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
           }
        if(arrGlobalF[j].n3!=(undefined||NaN||"")){
           ret = arrGlobalF[j].n3;
@@ -2509,8 +2524,8 @@ prodT=0;
           if(arrGlobalF[j].id!=undefined){
            idNomina = arrGlobalF[j].id;
           }
-          if(arrGlobalF[j].n2!=undefined){
-           f_Ahorro = arrGlobalF[j].n2;
+           if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
           }
           if(arrGlobalF[j].n3!=undefined){
            ret = arrGlobalF[j].n3;
@@ -2869,8 +2884,8 @@ prodT=0;
           if(arrGlobalF[j].id!=undefined){
            idNomina = arrGlobalF[j].id;
           }
-          if(arrGlobalF[j].n2!=undefined){
-           f_Ahorro = arrGlobalF[j].n2;
+           if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
           }
           if(arrGlobalF[j].n3!=undefined){
            ret = arrGlobalF[j].n3;
@@ -3228,8 +3243,8 @@ document.getElementById('loader').style.display = 'none';
           if(arrGlobalF[j].id!=undefined){
            idNomina = arrGlobalF[j].id;
           }
-          if(arrGlobalF[j].n2!=undefined){
-           f_Ahorro = arrGlobalF[j].n2;
+          if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
           }
           if(arrGlobalF[j].n3!=undefined){
            ret = arrGlobalF[j].n3;
@@ -3587,8 +3602,8 @@ prodT=0;
           if(arrGlobalF[j].id!=undefined){
            idNomina = arrGlobalF[j].id;
           }
-          if(arrGlobalF[j].n2!=undefined){
-           f_Ahorro = arrGlobalF[j].n2;
+           if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
           }
           if(arrGlobalF[j].n3!=undefined){
            ret = arrGlobalF[j].n3;
@@ -3951,8 +3966,8 @@ function loadVentaDiariaPagoFijoNomina(lista){ //
           if(arrGlobalF[j].id!=undefined){
            idNomina = arrGlobalF[j].id;
           }
-          if(arrGlobalF[j].n2!=undefined){
-           f_Ahorro = arrGlobalF[j].n2;
+           if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
           }
           if(arrGlobalF[j].n3!=undefined){
            ret = arrGlobalF[j].n3;
@@ -3976,6 +3991,9 @@ identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> 
       
         }else{
           encuentra=1; 
+           if(arrGlobalEmpleados[hh2].km!=(undefined||NaN||"")){
+          f_Ahorro = arrGlobalEmpleados[hh2].km;
+          }
           identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td ></td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong></strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
 
@@ -4064,12 +4082,15 @@ var su=0;
           htmlP+=identificacionP+'<td> '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
           mermaT=0;
           faltanteT=0;
+          
           pago=0;
           f_Ahorro="F";
           productoTotalS=productoTotal;
           productoTotalSP=productoTotalP;
           totalNomina=0;
          }
+         infonavit=0;
+          ret=0;
         productoTotal='';
         productoTotalP='';
         productosT='';
@@ -12708,6 +12729,9 @@ function modalCreditos2(){
   $('#modalCreditos .creditos').val('');
 
  
+}
+function upNomina2(){
+  alert("EN CONSTRUCCIÓN ");
 }
 function upNomina(ret, fA, infonavit, id,fOS){
 var nombreNomina="";

@@ -12731,7 +12731,7 @@ function modalCreditos2(){
  
 }
 function upNomina2(){
-  alert("EN CONSTRUCCIÓN ");
+//  alert("EN CONSTRUCCIÓN ");
 }
 function upNomina(ret, fA, infonavit, id,fOS){
 var nombreNomina="";

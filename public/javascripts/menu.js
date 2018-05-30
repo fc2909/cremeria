@@ -4543,7 +4543,7 @@ var su=0;
      }
 
              titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+titulos;
-             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____VENTA_____</th>'+titulosP;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">______VENTA______</th>'+titulosP;
          
 if(html!=""){
           credi+= parseFloat(creditosT);
@@ -4881,7 +4881,7 @@ var su=0;
              titulos=' <th class="letras text-center ">_RUTA_</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">_____CRÉDITOS_____</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">_____VENTA_____</th>'+titulos;
             
 
-             titulosP=' <th   class=" text-center" style="width: 50px; font-size:8px;">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">______VENTA______</th>'+titulosP;
+             titulosP=' <th   class=" text-center" style="width: 50px; font-size:8px;">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">_______VENTA_______</th>'+titulosP;
 
 if(html!=""){
   credi+= parseFloat(creditosT);
@@ -5224,7 +5224,7 @@ var su=0;
              titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+titulos;
 
 
-             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____VENTA_____</th>'+titulosP;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">______VENTA______</th>'+titulosP;
            
 if(html!=""){
   credi+= parseFloat(creditosT);
@@ -5565,7 +5565,7 @@ var su=0;
              titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+titulos;
 
 
-             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____VENTA_____</th>'+titulosP;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">______VENTA______</th>'+titulosP;
            
 if(html!=""){
   credi+= parseFloat(creditosT);
@@ -15701,7 +15701,7 @@ var sfc = (scv+1)+"";
 }
 function totalesCategorias(){
 
-var html='<tr class="grisclaro text-center"  style="font-size:8px;   " > <td><strong>TOTALES</strong></td><td></td><td></td><td class="text-right"><strong>$ '+formatoMoneda1(credi)+'</strong></td> <td class="text-right"><strong>$ '+formatoMoneda1(boni)+'</strong></td><td></td><td class="text-right"><strong> $ '+formatoMoneda1(s_vent)+'</strong></td>';
+var html='<tr class="text-center"  style="font-size:9px;   " > <td><strong>TOTALES</strong></td><td></td><td></td><td class="text-right"><strong>$ '+formatoMoneda1(credi)+'</strong></td> <td class="text-right"><strong>$ '+formatoMoneda1(boni)+'</strong></td><td></td><td class="text-right"><strong> $ '+formatoMoneda1(s_vent)+'</strong></td>';
 var html2='<tr class=" text-center"  style="font-size:12px; background:black;  " > <td><strong>TOTALES</strong></td><td></td><td></td><td class=""><strong>$ '+formatoMoneda1(credi)+'</strong></td> <td class=""><strong>$ '+formatoMoneda1(boni)+'</strong></td><td></td><td class=""><strong> $ '+formatoMoneda1(s_vent)+'</strong></td>';
 //alert(cred+' - '+boni);
   for(var h=0;h<prodTotales.length; h++){

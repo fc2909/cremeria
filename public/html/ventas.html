@@ -3,8 +3,11 @@
     <div class="tab-content  " >
       <div role="tabpanel" class=" tab-pane active " id="seccion1">
         <div class="col-md-12 fondo row">
-          <div>
-            <button class="btn btn-info fecha" onclick="addfecha()">INGRESAR FECHA</button>
+          <div class="row col-md-12 form-group">
+            <input type="date" class="form-control clear fecha selectfecha" >
+            <button class="btn btn-modals fecha" onclick="addfecha()">ESTABLECER FECHA</button>
+            <br>
+            <br>
         
         <div class="fecha_hoy text-center">
         </div></div>
@@ -17,7 +20,9 @@
 
 
 <div class="col-md-12 fondo row impre  table-responsive tabla text-center">
-  <div class="col-md-12"><h3 class="letras text-center">MAPA SEMANAL DE RUTAS</h3></div>
+  <div class="col-md-12"><h3 class="letras text-center">MAPA SEMANAL DE RUTAS</h3>
+<div class="semanaMapa"></div>
+  </div>
   <div class="col-md-12 row">
     <div class="col-md-3 letras"><strong>DESPACHO:</strong></div>
     <div class="col-md-1" style="background: yellow"></div>

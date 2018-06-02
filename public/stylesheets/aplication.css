@@ -137,8 +137,6 @@ li:hover, button:hover, img:hover {
 .tabla{
   width: 100%;
   background: #333333
-
-
 }
 .gasolina{
   position: absolute;
@@ -202,7 +200,7 @@ li:hover, button:hover, img:hover {
  .nombreCapturista {
   position: absolute;
   width: 100px;
-   top: 915px;
+   top: 1000px;
    left: 5%;
    margin: 10px;
    z-index: 6;
@@ -210,7 +208,7 @@ li:hover, button:hover, img:hover {
  .nombreDespachador{
  position: absolute;
   width: 100%;
-   top: 925px;
+   top: 1010px;
    left: 5%;
    margin: 10px;
    z-index: 6;
@@ -308,7 +306,7 @@ margin: 10% 0%;
  .tablaImprimir2 {
   position: absolute;
 
-   top: 740px;
+   top: 875px;
    left: 5%;
    margin: 10px;
  z-index: 6;
@@ -316,26 +314,42 @@ margin: 10% 0%;
   .tablaImprimir3 {
   position: absolute;
 
-   top: 750px;
+   top: 882px;
 
-   left: 483px;
+   left: 472px;
  z-index: 6;
+ }
+   .tablaImprimir7 {
+  position: absolute;
+
+   top: 800px;
+
+   left: 600px;
+ z-index: 7;
  }
   .tablaImprimir4 {
   position: absolute;
 
-   top: 775px;
+   top: 925px;
 
-   left: 483px;
+   left: 472px;
  z-index: 6;
  }
   .tablaImprimir5 {
   position: absolute;
 
-   top: 825px;
+   top: 970px;
 
-   left: 483px;
+   left: 472px;
 
+ z-index: 6;
+ }
+  .tablaImprimir6 {
+  position: absolute;
+
+   top: 905px;
+
+   left: 585px;
  z-index: 6;
  }
  .fila{
@@ -372,7 +386,23 @@ width: 550px;
 .pagareD {
   position: absolute;
   width: 95%;
-   top: 840px;
+   top: 980px;
+   left: 5%;
+   margin: 10px;
+   z-index: 6;
+}
+.linea {
+  position: absolute;
+  width: 95%;
+   top: 1000px;
+   left: 5%;
+   margin: 10px;
+   z-index: 6;
+}
+.vendedorFirma {
+  position: absolute;
+  width: 95%;
+   top: 1010px;
    left: 5%;
    margin: 10px;
    z-index: 6;

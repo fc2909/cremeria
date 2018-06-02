@@ -679,44 +679,60 @@ function pagare2(){
     document.getElementById('oculto89').style.display = 'block';
     document.getElementById('oculto90').style.display = 'block';
     document.getElementById('oculto91').style.display = 'block';
+    //document.getElementById('oculto92').style.display = 'block';
+   // document.getElementById('oculto93').style.display = 'block';
     document.getElementById('oculto9').style.display = 'block';
     document.getElementById('oculto10').style.display = 'block';
     document.getElementById('oculto11').style.display = 'block';
     document.getElementById('oculto12').style.display = 'block';
+    document.getElementById('oculto13').style.display = 'block';
+    document.getElementById('oculto14').style.display = 'block';
     document.getElementById('ocultoImagen').style.display = 'block';
     document.getElementById('fondoBlanco').style.display = 'block';
 
     //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
-    var nombreVendedor = "RUTA: <strong> "+ruta3+".</strong>       VENDEDOR: <strong>"+nombre_vend+". </strong>      VEHICULO: <strong>"+arrGlobalF[h].vehiculo+".</strong>";
+    var nombreVendedor = "RUTA: <strong> "+ruta3+".</strong>       VENDEDOR: <strong>"+nombre_vend+". </strong>";
     var despachadorV = "DESPACHADOR:<strong> "+despachadorR+"</strong>";
     var controlC = "<strong>CONTROL DE VENTAS Y COBRANZA</strong>";
-    var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombre_vend+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(total_merc)+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center"><strong>'+nombre_vend+'.</strong></p>';
+    var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombre_vend+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(total_merc)+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p> ';
     var fechaRecepcionDD ='RECEPCIÓN: '+fechaRecepcionD;
+    var linea =' <p class="text-center">___________________________________________</p>';
+    var vendedorFirma ='<p class="text-center"><strong>'+nombre_vend+'.</strong> </p> ';
         gasolina = $('#modalDesp2 .gasolina1').val();
         km = $('#modalDesp2 .km1').val();
         gas = $('#modalDesp2 .gas1').val();
         diesel = $('#modalDesp2 .diesel1').val();
     var imagenFondo='<img class="ImagenDurango" src="/images/logoD.png" onclick="">';
     if(tipoCombustible==1){
-        $('.gasolina').html("GASOLINA: "+gasolina+" L.");
-        $('.km').html("KM: "+km);
+        $('.gasolina2').html(gasolina+" L.");
+        $('.km2').html(km);
     }
     if(tipoCombustible==2){
-        $('.gas').html("GAS: "+gas+" L.");
-        $('.km').html("KM: "+km);
+        $('.gas2').html(gas+" L.");
+        $('.km2').html(km);
     }
     if(tipoCombustible==3){
-        $('.gasolina').html("GASOLINA: "+gasolina+" L.");
-        $('.gas').html("GAS: "+gas+" L.");
-        $('.km').html("KM: "+km);
+        $('.gasolina2').html(gasolina+" L.");
+        $('.gas2').html(gas+" L.");
+        $('.km2').html(km);
     }
-;
+        if(tipoCombustible==4){
+        $('.diesel2').html(gas+" L.");
+        $('.km2').html(km);
+    }
+var vehiculoRec = vehiculoRec2;
+var mermaRec = '$ '+formatoMoneda1(mermaRec2);
+
+        $('.merma2').html(mermaRec);
+        $('.vehiculo2').html(vehiculoRec);
         $('.controlC').html(controlC);
         $('.pagareD').html(pagare);
         $('.nombreVendedor').html(nombreVendedor);
         $('.nombreCapturista').html(usuario);
         $('.nombreDespachador').html(despachadorV);
         $('.fechaDespacho').html(fechaRecepcionDD);
+        $('.linea').html(linea);
+        $('.vendedorFirma').html(vendedorFirma);
         window.print();
         document.getElementById('oculto').style.display = 'none';
         document.getElementById('oculto2').style.display = 'none';
@@ -729,10 +745,14 @@ function pagare2(){
         document.getElementById('oculto89').style.display = 'none';
         document.getElementById('oculto90').style.display = 'none';
         document.getElementById('oculto91').style.display = 'none';
+        //document.getElementById('oculto92').style.display = 'none';
+       // document.getElementById('oculto93').style.display = 'none';
         document.getElementById('oculto9').style.display = 'none';
         document.getElementById('oculto10').style.display = 'none';
         document.getElementById('oculto11').style.display = 'none';
         document.getElementById('oculto12').style.display = 'none';
+        document.getElementById('oculto13').style.display = 'none';
+        document.getElementById('oculto14').style.display = 'none';
         document.getElementById('ocultoImagen').style.display = 'none';
         document.getElementById('fondoBlanco').style.display = 'none';
 
@@ -8721,7 +8741,7 @@ function loadVentasr(lista){
                     p++;
                     
                     
-                    htmlp+= '<tr class="" style="font-size:7px;  color: black;"><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td  class="text-right">'+formatoMoneda2(lista[h].peso)+'</td><td class="text-right">'+ formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right">'+formatoMoneda2(lista[h].pesov)+'</td><td class="text-right"><strong>'+formatoMoneda2(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</strong></td><td class="text-right"><strong> '+formatoMoneda2(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov))+'</strong></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].venta)  +'</td></tr>';
+                    htmlp+= '<tr class="" style="font-size:7px;  color: black;"><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td  class="text-right">'+formatoMoneda2(lista[h].peso)+'</td><td class="text-right">'+ formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right">'+formatoMoneda2(lista[h].pesov)+'</td><td class="text-right"><strong>'+formatoMoneda1(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</strong></td><td class="text-right"><strong> '+formatoMoneda2(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov))+'</strong></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].venta)  +'</td></tr>';
                     num++;
                     v++;
                     total_merc2 += parseFloat(lista[h].valorMercancia);
@@ -15763,7 +15783,7 @@ var sfc = (scv+1);
 }
 function click_buscarNomina1(){
    var semanaVS1 = $('.semanaNomina1').val();
-       // document.getElementById('loader').style.display = 'block';
+        document.getElementById('loader').style.display = 'block';
 if(semanaVS1!=""){
 
 
@@ -16511,14 +16531,15 @@ $('#modalDesp2 .despachador').html(selectdes);
 
 }
 //getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutasUp);
-var despachadorR,  n_vend1;
+var despachadorR,  n_vend1, vehiculoRec2, mermaRec2;
 function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc){
         document.getElementById('loader').style.display = 'block';
  
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú  </h3>');
  $('.seccion3').load('/html/recep.html');
-
+mermaRec2 = arrGlobal4[h].n1;
+vehiculoRec2 = arrGlobal4[h].vehiculo;
  nombre_vend = arrGlobal4[h].nombre;
  id_vend=id;
  n_vend=h;
@@ -16562,7 +16583,7 @@ $('#modalDesp2 .despachador819').html(' <strong> DESPACHADOR: </strong>'+despach
 }
 
 if(arrGlobal4[h].despachador!=null){
- // alert(arrGlobal4[h].despachador);
+
  $('#modalDesp2 .selectDespachador').val(arrGlobal4[h].despachador);
 }
 if(arrGlobal4[h].tipoCombustible==1){
@@ -16810,14 +16831,10 @@ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar
 
 function ModalDesp2(){
 
-
-
-
 var despachadorRR; 
 
    var despachadorV = $('#modalDesp2 .selectDespachador ').val();
    despachador = '<u style="width:100px;">'+ arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple+'. </u>';
-  //alert(despachadorV);
 
 
  despachadorR = arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple;

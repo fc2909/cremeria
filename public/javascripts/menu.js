@@ -613,12 +613,21 @@ function pagare(){
         document.getElementById('oculto6').style.display = 'block';
         document.getElementById('oculto7').style.display = 'block';
         document.getElementById('ocultoImagen').style.display = 'block';
+        document.getElementById('oculto13').style.display = 'block';
+        document.getElementById('oculto14').style.display = 'block';
             
     var nombreVendedor = "RUTA _<u><strong>"+ruta3+". </strong></u>_ VENDEDOR: _<u><strong> "+nombre_vend+". </strong></u>_  VEHICULO: _<u><strong> "+vehiculoA+". </strong></u>_";
     var despachadorV = "DESPACHADOR:<strong> "+despachador+"</strong>";
     var controlC = '<strong class="text-center">CONTROL DE VENTAS Y COBRANZA</strong>';
-    var pagare = '<p class="text-justify " >YO _<u> <strong>'+ nombre_vend+'</strong> </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u><strong> '+fechaDespachoD+' </strong></u>_ LA CANTIDAD DE _<u><strong> $ '+cantidad +' ('+cantidadEnTexto+') </strong></u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p><p class="text-center">___________________________________________</p><p class="text-center"><strong>'+nombre_vend+'.</strong></p>';
+    var pagare = '<p class="text-justify " >YO _<u> <strong>'+ nombre_vend+'</strong> </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u><strong> '+fechaDespachoD+' </strong></u>_ LA CANTIDAD DE _<u><strong> $ '+cantidad +' ('+cantidadEnTexto+') </strong></u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p>';
     var fechaDespachoDD ='DESPACHO : <strong>'+fechaDespachoD+'</strong>';
+     var linea =' <p class="text-center">___________________________________________</p>';
+    var vendedorFirma ='<p class="text-center"><strong>'+nombre_vend+'.</strong> </p> ';
+    
+
+         $('.linea').html(linea);
+        $('.vendedorFirma').html(vendedorFirma);
+       
         $('.pagareD').html(pagare);
         $('.controlC').html(controlC);
         $('.nombreVendedor').html(nombreVendedor);
@@ -637,7 +646,9 @@ function pagare(){
         document.getElementById('oculto5').style.display = 'none';
         document.getElementById('oculto6').style.display = 'none';
         document.getElementById('oculto7').style.display = 'none';
-      
+        document.getElementById('oculto13').style.display = 'none';
+        document.getElementById('oculto14').style.display = 'none';
+        
 }
 function pagare2(){
     var usuario;
@@ -669,7 +680,7 @@ function pagare2(){
     }
 
     document.getElementById('oculto').style.display = 'block';
-    document.getElementById('oculto2').style.display = 'block';
+    //document.getElementById('oculto2').style.display = 'block';
     document.getElementById('oculto3').style.display = 'block';
     document.getElementById('oculto4').style.display = 'block';
     document.getElementById('oculto5').style.display = 'block';
@@ -679,7 +690,7 @@ function pagare2(){
     document.getElementById('oculto89').style.display = 'block';
     document.getElementById('oculto90').style.display = 'block';
     document.getElementById('oculto91').style.display = 'block';
-    //document.getElementById('oculto92').style.display = 'block';
+    document.getElementById('oculto22').style.display = 'block';
    // document.getElementById('oculto93').style.display = 'block';
     document.getElementById('oculto9').style.display = 'block';
     document.getElementById('oculto10').style.display = 'block';
@@ -735,7 +746,7 @@ var mermaRec = '$ '+formatoMoneda1(mermaRec2);
         $('.vendedorFirma').html(vendedorFirma);
         window.print();
         document.getElementById('oculto').style.display = 'none';
-        document.getElementById('oculto2').style.display = 'none';
+     //   document.getElementById('oculto2').style.display = 'none';
         document.getElementById('oculto3').style.display = 'none';
         document.getElementById('oculto4').style.display = 'none';
         document.getElementById('oculto5').style.display = 'none';
@@ -745,7 +756,7 @@ var mermaRec = '$ '+formatoMoneda1(mermaRec2);
         document.getElementById('oculto89').style.display = 'none';
         document.getElementById('oculto90').style.display = 'none';
         document.getElementById('oculto91').style.display = 'none';
-        //document.getElementById('oculto92').style.display = 'none';
+        document.getElementById('oculto22').style.display = 'none';
        // document.getElementById('oculto93').style.display = 'none';
         document.getElementById('oculto9').style.display = 'none';
         document.getElementById('oculto10').style.display = 'none';
@@ -8422,6 +8433,17 @@ function loadVentas(lista){
                       }
                     }
                   }
+                if(no>59){
+        document.getElementById('oculto4').style.top = '2060px';
+        document.getElementById('oculto3').style.top = '2050px';
+        document.getElementById('oculto6').style.top = '2000px';
+        document.getElementById('oculto13').style.top = '2060px';
+        document.getElementById('oculto14').style.top = '2050px';
+        //document.getElementById('oculto89').style.top = '1950px';
+        //document.getElementById('oculto88').style.top = '1941px';
+
+ //               alert("next page");
+              }
                   total_mercancia=total_merc;
                   if(total_merc==0){
                     historial=0;
@@ -8748,6 +8770,17 @@ function loadVentasr(lista){
                     total_vent += parseFloat(lista[h].venta);
                   }
                 }
+              }
+              if(num>58){
+        document.getElementById('oculto14').style.top = '2110px';
+        document.getElementById('oculto13').style.top = '2100px';
+        document.getElementById('oculto6').style.top = '2050px';
+        document.getElementById('oculto4').style.top = '2110px';
+        document.getElementById('oculto3').style.top = '2100px';
+        document.getElementById('oculto89').style.top = '1950px';
+        document.getElementById('oculto88').style.top = '1941px';
+
+ //               alert("next page");
               }
                     n=v;
                     t_v2 = new Array(n);

@@ -4092,6 +4092,7 @@ function loadVentaDiariaPagoFijoNomina(lista){ //
 
         
         if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+   
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -4110,6 +4111,9 @@ function loadVentaDiariaPagoFijoNomina(lista){ //
           if(arrGlobalEmpleados[hh2].infonavit!=(undefined||NaN||"")){
            infonavit = arrGlobalEmpleados[hh2].infonavit;
           }else{infonavit=0;}
+          if(arrGlobalF[j].cobrado !=(undefined||NaN||""||null)){
+           faltanteT = arrGlobalF[j].cobrado;
+          }else{faltanteT=0;}
           
           if(arrGlobalF[j].n1!=undefined){
 mermaT += parseFloat(arrGlobalF[j].n1);
@@ -4135,11 +4139,9 @@ identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong>
            infonavit = arrGlobalEmpleados[hh2].infonavit;
           }else{infonavit=0;}
           
-if(arrGlobalF[j].cobrado !=(undefined||NaN||""||null)){
-           faltanteT = arrGlobalF[j].cobrado;
-          }else{faltanteT=0;}
 
-          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td ></td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td ></td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
 identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong></strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
 
         }
@@ -4222,8 +4224,7 @@ var su=0;
          if(faltanteT==undefined)faltanteT=0;
          if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
-
-         var totalNomina = parseFloat(pago)-parseFloat(f_Ahorro)-parseFloat(faltanteT)-parseFloat(ret)-parseFloat(infonavit);
+         var totalNomina = parseFloat(pago)-parseFloat(mermaT)-parseFloat(f_Ahorro)-parseFloat(faltanteT)-parseFloat(ret)-parseFloat(infonavit);
           html+=identificacion+'<td> '+formatoMoneda1( pago)+'</td>'+productosT+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
           htmlP+=identificacionP+'<td> '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
           mermaT=0;

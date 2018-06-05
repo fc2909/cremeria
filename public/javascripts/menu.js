@@ -8458,7 +8458,7 @@ function loadVentas(lista){
                         htmlp+= '<tr class=" " style="font-size:8px;"><td class="text-center">' + no + '</td><td class="text-center">' + lista[h].horadespacho + '</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td class="text-right">' +formatoMoneda1(lista[h].peso) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"><strong> $ ' + formatoMoneda1(lista[h].valorMercancia) +'<strong></td></tr>';
                         total_merc =parseFloat(total_merc) + parseFloat(lista[h].valorMercancia);
                         no++;
-   document.getElementById("idProducto").disabled = false;
+ //  document.getElementById("idProducto").disabled = false;
 
                       }
                     }
@@ -16597,13 +16597,13 @@ function click_Salida2(){
 vehiculoA2=arrGlobalVehiculo[vehiculoV].numero + ' (' + arrGlobalVehiculo[vehiculoV].placa + ')';
 despachador22=arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple;
 $('#modalDesp').modal('hide');
-if(despachadorV==0||vehiculoV==0||(despachadorV==0&&vehiculoV==0)){
- document.getElementById("idProducto").disabled = true;
+//if(despachadorV==0||vehiculoV==0||(despachadorV==0&&vehiculoV==0)){
+ //document.getElementById("idProducto").disabled = true;
   
-}else{
- document.getElementById("idProducto").disabled = false;
+//}else{
+// document.getElementById("idProducto").disabled = false;
 
-}
+//}
    
 
 

@@ -8458,6 +8458,8 @@ function loadVentas(lista){
                         htmlp+= '<tr class=" " style="font-size:8px;"><td class="text-center">' + no + '</td><td class="text-center">' + lista[h].horadespacho + '</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td class="text-right">' +formatoMoneda1(lista[h].peso) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"><strong> $ ' + formatoMoneda1(lista[h].valorMercancia) +'<strong></td></tr>';
                         total_merc =parseFloat(total_merc) + parseFloat(lista[h].valorMercancia);
                         no++;
+   document.getElementById("idProducto").disabled = false;
+
                       }
                     }
                   }
@@ -8855,7 +8857,9 @@ function loadVentasp(lista){
                   arrGlobal4 = lista;
         document.getElementById('loader').style.display = 'none';
         var idProducto = "'idProducto'";
+
  $('.addV').html('<button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('+idProducto+').focus();">INSERTAR</button>');
+ 
 }
 function loadVentasPR(lista){
                   arrGlobal4 = lista;
@@ -9350,6 +9354,7 @@ function loadDays(lista){
               $('.contCata').html(html);
               arrGlobal2 = lista;
               $('.imprimir').html('');
+
 }
 function ocultar(){
               $('.imprimir').html('');
@@ -15199,7 +15204,7 @@ function click_Pedidos1(){
 
 function click_Despacho(){
         document.getElementById('loader').style.display = 'block';
- 
+
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> Menú </h3>');
  $('.seccion2').load('/html/salida_venta.html');
@@ -16497,6 +16502,7 @@ modalDespachador();
 
 num2=1;
   }else{
+ 
    getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
 
 for(var j=0;j<arrGlobal4.length; j++){
@@ -16512,6 +16518,7 @@ vehiculoA2=arrGlobal4[j].vehiculo;
 despachador22=arrGlobal4[j].despachador2;
 $("#modalDesp .despachadorl").html("<strong>DESPACHADOR:</strong> "+despachador22);
 $("#modalDesp .vehiculol").html("<strong>VEHICULO:</strong> "+vehiculoA2);
+
 
   }
 
@@ -16529,6 +16536,10 @@ $("#modalDesp .vehiculol").html("<strong>VEHICULO:</strong> "+vehiculoA2);
 
 
 
+}
+function activeVenta(){
+   document.getElementById('despachoV').style.display = 'block';
+ 
 }
 function click_modalVehiculo(){
 var upDV = '<button type="button" class="btn btn-modals salida2" id="agregarp" onclick="add_Salida2()">Guardar</button>';
@@ -16586,7 +16597,14 @@ function click_Salida2(){
 vehiculoA2=arrGlobalVehiculo[vehiculoV].numero + ' (' + arrGlobalVehiculo[vehiculoV].placa + ')';
 despachador22=arrGlobal2[despachadorV].nombre_Emple + ' ' + arrGlobal2[despachadorV].paterno_Emple + ' ' + arrGlobal2[despachadorV].materno_Emple;
 $('#modalDesp').modal('hide');
+if(despachadorV==0||vehiculoV==0||(despachadorV==0&&vehiculoV==0)){
+ document.getElementById("idProducto").disabled = true;
+  
+}else{
+ document.getElementById("idProducto").disabled = false;
 
+}
+   
 
 
 
@@ -16608,7 +16626,7 @@ selectdes +='</select>';
 
 $('#modalDesp2 .despachador').html(selectdes);
 
-   
+       
 
 
 }
@@ -16656,6 +16674,7 @@ ruta3=arrGlobalRuta[i].nombre;
 
   
 }else{
+
   despachadorR=arrGlobal4[h].despachador;
 
 $('#modalDesp2 .despachador819').html(' <strong> DESPACHADOR: </strong>'+despachadorR);

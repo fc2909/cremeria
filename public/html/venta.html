@@ -1,11 +1,11 @@
 
 
-
-    <div class="row fondo col-md-12">
+<div>
+    <div  class="row fondo col-md-12" >
       <div class="totalVenta text-left impre col-md-12"></div>
         <div class="col-md-3 impre form-group">
           <label class="letras" >ID</label>
-          <input  type="number" pattern="[0-9]{10}" id="idProducto" class="form-control clear  idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="" onload="">
+          <input  type="number" pattern="[0-9]{10}" id="idProducto" disabled class="form-control clear  idProducto" onchange="updateListaVenta();document.getElementById('piezas').focus();" placeholder="" onload="">
         </div>
         <div class="col-md-3 impre form-group">
           <label class="letras">DESCRIPCIÓN</label>
@@ -19,7 +19,7 @@
        <div class="col-md-3 form-group pesos">
           
         </div>
-<div class="col-xs-3 impre addV col-md-3">
+<div class="col-xs-3 impre addV col-md-3"  >
       <button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('idProducto').focus();">INSERTAR</button>
   </div>
    <div class="col-xs-3 impre col-md-3">
@@ -40,7 +40,7 @@
 
 <br class="impre">
 
-  <div class="text-center col-md-12 fondo row table-responsive tabla">
+  <div class="text-center col-md-12 fondo row table-responsive tabla" >
   <table class="table table-active col-md-12 table-hover table-bordered table-inverse  text-center">
     <thead class="text-center impre ">
 
@@ -108,3 +108,4 @@
   <img class="ImagenDurango" src="/images/logoD.png" onclick="">
 </div>
 
+</div>

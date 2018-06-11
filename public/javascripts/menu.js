@@ -5005,7 +5005,10 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
                $('.contCataDetalleP').html(htmlP); 
               }
            for(var w=0;w<prodTotales.length; w++){
+    var anter =prodTotales[w];
      prodTotales[w]+=parseFloat(prodT[w]);
+     alert(anter +' += '+prodT[w]+' = '+prodTotales[w]);
+
 }
            //  totalesCategorias();
 
@@ -5980,7 +5983,7 @@ if(html!=""){
            for(var w=0;w<prodTotales.length; w++){
 var anter =prodTotales[w];
      prodTotales[w]+=parseFloat(prodT[w]);
-     alert(anter +' += '+prodT[w]+' = '+prodTotales[w]);
+    // alert(anter +' += '+prodT[w]+' = '+prodTotales[w]);
 }
              totalesCategorias();
 

@@ -4669,7 +4669,7 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
              // $('.imprimir').html('');
 for(var w=0;w<prodTotales.length; w++){
    var anter =prodT[w];
-         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+         if(anter==(undefined||NaN||null||"")){anter=prodT[w];}else{
 anter=0;
          }
      prodTotales[w]+=parseFloat(anter);
@@ -5011,7 +5011,7 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
               }
            for(var w=0;w<prodTotales.length; w++){
      var anter =prodT[w];
-         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+         if(anter==(undefined||NaN||null||"")){anter=prodT[w];}else{
 anter=0;
          }
      prodTotales[w]+=parseFloat(anter);
@@ -5362,7 +5362,7 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
              // $('.imprimir').html('');
               for(var w=0;w<prodTotales.length; w++){
            var anter =prodT[w];
-         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+         if(anter==(undefined||NaN||null||"")){anter=prodT[w];}else{
 anter=0;
          }
      prodTotales[w]+=parseFloat(anter);
@@ -5709,12 +5709,12 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
              // $('.imprimir').html('');
               for(var w=0;w<prodTotales.length; w++){
          var anter =prodT[w];
-         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+         if(anter==(undefined||NaN||null||"")){anter=prodT[w];}else{
 anter=0;
          }
      prodTotales[w]+=parseFloat(anter);
    
-   
+
 
 }
 prodT=0;
@@ -6003,7 +6003,7 @@ if(html!=""){
               }
            for(var w=0;w<prodTotales.length; w++){
         var anter =prodT[w];
-         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+         if(anter==(undefined||NaN||null||"")){anter=prodT[w];}else{
 anter=0;
          }
      prodTotales[w]+=parseFloat(anter);

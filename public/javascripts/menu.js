@@ -5978,7 +5978,9 @@ if(html!=""){
                $('.contCataOtrosP').html(htmlP); 
               }
            for(var w=0;w<prodTotales.length; w++){
+var anter =prodTotales[w];
      prodTotales[w]+=parseFloat(prodT[w]);
+     alert(anter +' += '+prodT[w]+' = '+prodTotales[w]);
 }
              totalesCategorias();
 

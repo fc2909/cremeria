@@ -5698,10 +5698,12 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
               //arrGlobal2 = lista;
              // $('.imprimir').html('');
               for(var w=0;w<prodTotales.length; w++){
-         var anter =prodTotales[w];
-         if(prodT[w]==(undefined||NaN||null||"")){prodT[w]=0;}
-     prodTotales[w]+=parseFloat(prodT[w]);
-    alert(anter +' += F '+prodT[w]+' = '+prodTotales[w]);
+         var anter =prodT[w];
+         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+anter=0;
+         }
+     prodTotales[w]+=parseFloat(anter);
+    alert(anter);
 
 }
 prodT=0;

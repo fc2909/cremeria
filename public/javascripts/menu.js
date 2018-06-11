@@ -4668,9 +4668,13 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
               //arrGlobal2 = lista;
              // $('.imprimir').html('');
 for(var w=0;w<prodTotales.length; w++){
-
-     prodTotales[w]+=parseFloat(prodT[w]);
-}
+   var anter =prodT[w];
+         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+anter=0;
+         }
+     prodTotales[w]+=parseFloat(anter);
+   
+   }
 prodT=0;
 }
 function loadVentaDiariaDetalle(lista){ //por categoria
@@ -5006,10 +5010,13 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
                $('.contCataDetalleP').html(htmlP); 
               }
            for(var w=0;w<prodTotales.length; w++){
-    var anter =prodTotales[w];
-     prodTotales[w]+=parseFloat(prodT[w]);
-   //  alert(anter +' += '+prodT[w]+' = '+prodTotales[w]);
-
+     var anter =prodT[w];
+         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+anter=0;
+         }
+     prodTotales[w]+=parseFloat(anter);
+   
+   
 }
            //  totalesCategorias();
 
@@ -5354,10 +5361,13 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
               //arrGlobal2 = lista;
              // $('.imprimir').html('');
               for(var w=0;w<prodTotales.length; w++){
-         var anter =prodTotales[w];
-     prodTotales[w]+=parseFloat(prodT[w]);
-     //alert(anter +' += F '+prodT[w]+' = '+prodTotales[w]);
-
+           var anter =prodT[w];
+         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+anter=0;
+         }
+     prodTotales[w]+=parseFloat(anter);
+   
+   
 }
 prodT=0;
 }
@@ -5703,7 +5713,8 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
 anter=0;
          }
      prodTotales[w]+=parseFloat(anter);
-    alert(anter);
+   
+   
 
 }
 prodT=0;
@@ -5991,9 +6002,13 @@ if(html!=""){
                $('.contCataOtrosP').html(htmlP); 
               }
            for(var w=0;w<prodTotales.length; w++){
-var anter =prodTotales[w];
-     prodTotales[w]+=parseFloat(prodT[w]);
-    // alert(anter +' += '+prodT[w]+' = '+prodTotales[w]);
+        var anter =prodT[w];
+         if(anter==(undefined||NaN||null||"")){prodT[w]=0;}else{
+anter=0;
+         }
+     prodTotales[w]+=parseFloat(anter);
+   
+   
 }
              totalesCategorias();
 

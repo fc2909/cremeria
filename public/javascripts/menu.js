@@ -5701,7 +5701,7 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
          var anter =prodTotales[w];
          if(prodT[w]==(undefined||NaN||null||"")){prodT[w]=0;}
      prodTotales[w]+=parseFloat(prodT[w]);
-   //  alert(anter +' += F '+prodT[w]+' = '+prodTotales[w]);
+    alert(anter +' += F '+prodT[w]+' = '+prodTotales[w]);
 
 }
 prodT=0;

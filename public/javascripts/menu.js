@@ -5355,7 +5355,7 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
               for(var w=0;w<prodTotales.length; w++){
          var anter =prodTotales[w];
      prodTotales[w]+=parseFloat(prodT[w]);
-     alert(anter +' += F '+prodT[w]+' = '+prodTotales[w]);
+     //alert(anter +' += F '+prodT[w]+' = '+prodTotales[w]);
 
 }
 prodT=0;
@@ -5697,7 +5697,10 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
               //arrGlobal2 = lista;
              // $('.imprimir').html('');
               for(var w=0;w<prodTotales.length; w++){
+         var anter =prodTotales[w];
      prodTotales[w]+=parseFloat(prodT[w]);
+     alert(anter +' += F '+prodT[w]+' = '+prodTotales[w]);
+
 }
 prodT=0;
 }

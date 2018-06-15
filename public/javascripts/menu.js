@@ -12170,10 +12170,10 @@ s_vent2=0;
 credito_manual=0;
   }
 }
-
+$('.guardarR').html('');
 }
 
-function upRecepcion(){
+function upRecepcion55(){
       document.getElementById('loader').style.display = 'block';
   var fechadespachof = fechacaptura;
   var ruta = rutas; 

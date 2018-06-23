@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idTaller: MyString
+  nombre: MyString
+  direccion: MyString
+  n1: MyString
+  n2: MyString
+  n3: MyString
+
+two:
+  idTaller: MyString
+  nombre: MyString
+  direccion: MyString
+  n1: MyString
+  n2: MyString
+  n3: MyString

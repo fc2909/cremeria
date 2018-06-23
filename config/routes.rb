@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :categorias
   resources :bitacoras
   resources :logs
+  resources :talleres
   resources :ventaspasada
   resources :historiales_inventarios
   resources :inventarios do

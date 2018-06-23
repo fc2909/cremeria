@@ -12,7 +12,8 @@ var arrGlobalEmpleados, arrGlobalNotas;
 var piezasT, year2, month2, day2; 
 var user, vahiculoA, vahiculoA2, tipoCombustible;
 var tipoUsuario = ['DIRECTOR','ADMINISTRADOR','CONTADOR','DESPACHADOR','VENTAS','VEHÍCULAR']
-var tipoMantinimiento = ['PREDICTIVO','PREVENTIVO','CORRECTIVO','OTROS']
+var tipoMantinimiento = ['PREDICTIVO','PREVENTIVO','CORRECTIVO','NINGUNO'];
+var tipoEstado = ['SUSPENDIDO','RUTA'];
 var medidas = ['KG.','PZAS.','L'];
 var combustibles = ['GASOLINA - MAGNA','GASOLINA - PREMIUM','GASOLINA & GAS','GAS','DIESEL'];
 var t_rutas = ['C1','C2','C3','C4','C5','C6','C7','C8'];
@@ -27,6 +28,7 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventario2);
 getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias2);
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
+getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
 
 //--------------------------------------------- cargar tipo de usuarios -----------------------------------------------//
 $(document).ready(function(){
@@ -852,6 +854,75 @@ function imprimirNomina(){
         document.getElementById('ocultoNomina').style.display = 'none';
         document.getElementById('ocultoNominaT').style.display = 'none';
         document.getElementById('ocultoImagen2').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
+
+function imprimirRCreditos(){
+        document.getElementById('creditosReporte').style.display = 'none';
+        document.getElementById('ocultoCreditos').style.display = 'block';
+        document.getElementById('ocultoCreditosT').style.display = 'block';
+       // document.getElementById('ocultoImagen2').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        
+    var controlC = 'CREDITOS (SEMANAS: '+scv+' A '+scv+')';
+        $('.controlCP').html(controlC);
+        window.print(); 
+        document.getElementById('creditosReporte').style.display = 'block';
+        document.getElementById('ocultoCreditos').style.display = 'none';
+        document.getElementById('ocultoCreditosT').style.display = 'none';
+        //document.getElementById('ocultoImagen2').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
+function imprimirRBonificacion(){
+        document.getElementById('creditosReporte').style.display = 'none';
+        document.getElementById('ocultoCreditos').style.display = 'block';
+        document.getElementById('ocultoCreditosT').style.display = 'block';
+       // document.getElementById('ocultoImagen2').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        
+    var controlC = 'BONIFICACIÓN (SEMANAS: '+scv+' A '+scv+')';
+        $('.controlCP').html(controlC);
+        window.print(); 
+        document.getElementById('creditosReporte').style.display = 'block';
+        document.getElementById('ocultoCreditos').style.display = 'none';
+        document.getElementById('ocultoCreditosT').style.display = 'none';
+        //document.getElementById('ocultoImagen2').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
+function imprimirRVenta(){
+        document.getElementById('creditosReporte').style.display = 'none';
+        document.getElementById('ocultoCreditos').style.display = 'block';
+        document.getElementById('ocultoCreditosT').style.display = 'block';
+       // document.getElementById('ocultoImagen2').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        
+    var controlC = 'VENTA (SEMANAS: '+scv+' A '+scv+')';
+        $('.controlCP').html(controlC);
+        window.print(); 
+        document.getElementById('creditosReporte').style.display = 'block';
+        document.getElementById('ocultoCreditos').style.display = 'none';
+        document.getElementById('ocultoCreditosT').style.display = 'none';
+        //document.getElementById('ocultoImagen2').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
+function imprimirRMerma(){
+        document.getElementById('creditosReporte').style.display = 'none';
+        document.getElementById('ocultoCreditos').style.display = 'block';
+        document.getElementById('ocultoCreditosT').style.display = 'block';
+       // document.getElementById('ocultoImagen2').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        
+    var controlC = 'MERMA (SEMANAS: '+scv+' A '+scv+')';
+        $('.controlCP').html(controlC);
+        window.print(); 
+        document.getElementById('creditosReporte').style.display = 'block';
+        document.getElementById('ocultoCreditos').style.display = 'none';
+        document.getElementById('ocultoCreditosT').style.display = 'none';
+        //document.getElementById('ocultoImagen2').style.display = 'none';
         document.getElementById('fondoBlanco').style.display = 'none';
 
 }
@@ -1875,6 +1946,537 @@ html+='<td style=" color:white;">  <strong>'+fechap+'</strong>   </td>';
 
 }
 
+function loadCreditos(lista){ //por mayoreo
+          prodTotales = new Array(arrGlobalCategoria.length);
+          credi=0;
+          boni=0;
+          s_vent=0;
+      var html = '';
+      var htmlP = '';
+      var identificacion='';
+      var identificacionP='';
+      var bonificacionT=0;
+      var t_venta_mercaT=0;
+      var mer;
+      var pNoVenta;
+      var creditosT=0; 
+      var bonificacionTotal=0; 
+      var ventasT=0; 
+      var productoTotalS=""; 
+      var productoTotal=0; 
+      var productoTotalP=0; 
+      var prodT = new Array(arrGlobalCategoria.length);
+      var porcentajeTotal=0;
+      var credits=0;
+      var mermaT=0;
+      var encuentra=0;
+      var diferenciaT=0;
+      var faltanteT;
+      var f_Ahorro="F";
+      var ret=0;
+      var idMerma="F";
+      var infonavit=0;
+      var productosT="";
+        var productosTP="";
+          
+              
+              var titulos=""; 
+              var titulosP=""; 
+       
+      var idNomina;
+  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+       if(arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
+  for(var j=0;j<lista.length; j++){
+       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
+  for(var i=0; i < arrGlobalRuta.length; i++) {
+       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
+          ruta3=arrGlobalRuta[i].nombre;
+          rutas=arrGlobalEmpleados[hh2].ruta;
+          }
+         }
+
+  encuentra=1; 
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+      
+        }
+        
+        }
+titulos='';
+titulosP='';
+productoTotalS='';
+productoTotalSP='';
+
+var enc=0;
+var longi =  parseInt(scv)-parseInt(scv);
+      for(var jj=scv;jj>=scv2; jj--){
+        for(var j=0;j<lista.length; j++){
+          enc=0;
+if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
+ 
+if(lista[j].creditos !=(undefined||NaN||""||null)){
+           creditosT = lista[j].creditos;
+          }
+productoTotal = '<td>'+formatoMoneda1(creditosT)+'</td>';
+enc=1;
+
+        }
+        if(enc==0){productoTotal = '<td>'+formatoMoneda1(creditosT)+'</td>'; 
+
+      }
+        
+        }
+
+titulos+='<th class="text-center">SEMANA: '+jj+'</th>'
+titulosP+='<th class="text-center">SEMANA: '+jj+'</th>'
+productoTotalS += productoTotal;
+productoTotalSP += productoTotal;
+enc=0;
+creditosT=0;
+productoTotal='';
+}
+
+
+encuentra =0;
+
+
+
+        
+
+              
+         if(identificacion==''){html=html;}else{
+
+          html+=identificacion+'</td>'+productoTotalS+' </tr>';
+          htmlP+=identificacionP+'</td>'+productoTotalSP+' </tr>';
+          
+         }
+        productoTotal='';
+        productoTotalP='';
+       
+       }
+
+     }
+
+             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>'+titulos;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th>'+titulosP;
+         
+
+
+              if(html==undefined){html='';}else{
+               $('.titulo2PF').html(titulos); 
+               $('.tituloP').html(titulosP); 
+               $('.contCataCreditos').html(html); 
+               $('.contCataCreditosP').html(htmlP); 
+               //$('.contCataMayoreoPF').html(htmlP); 
+        document.getElementById('imprimirCreditos').style.display = 'block';
+        document.getElementById('loader').style.display = 'none';
+            
+              }
+for(var w=0;w<prodTotales.length; w++){
+     prodTotales[w]+=parseFloat(prodT[w]);
+}
+prodT=0;
+
+}
+
+
+function loadBonificacion(lista){ //por mayoreo
+          prodTotales = new Array(arrGlobalCategoria.length);
+          credi=0;
+          boni=0;
+          s_vent=0;
+      var html = '';
+      var htmlP = '';
+      var identificacion='';
+      var identificacionP='';
+      var bonificacionT=0;
+      var t_venta_mercaT=0;
+      var mer;
+      var pNoVenta;
+      var creditosT=0; 
+      var bonificacionTotal=0; 
+      var ventasT=0; 
+      var productoTotalS=""; 
+      var productoTotal=0; 
+      var productoTotalP=0; 
+      var prodT = new Array(arrGlobalCategoria.length);
+      var porcentajeTotal=0;
+      var credits=0;
+      var mermaT=0;
+      var encuentra=0;
+      var diferenciaT=0;
+      var faltanteT;
+      var f_Ahorro="F";
+      var ret=0;
+      var idMerma="F";
+      var infonavit=0;
+      var productosT="";
+        var productosTP="";
+          
+              
+              var titulos=""; 
+              var titulosP=""; 
+       
+      var idNomina;
+  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+       if(arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
+  for(var j=0;j<lista.length; j++){
+       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
+  for(var i=0; i < arrGlobalRuta.length; i++) {
+       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
+          ruta3=arrGlobalRuta[i].nombre;
+          rutas=arrGlobalEmpleados[hh2].ruta;
+          }
+         }
+
+  encuentra=1; 
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+      
+        }
+        
+        }
+titulos='';
+titulosP='';
+productoTotalS='';
+productoTotalSP='';
+
+var enc=0;
+var longi =  parseInt(scv)-parseInt(scv);
+      for(var jj=scv;jj>=scv2; jj--){
+        for(var j=0;j<lista.length; j++){
+          enc=0;
+if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
+ 
+if(lista[j].otros !=(undefined||NaN||""||null)){
+           bonificacionT += parseFloat(lista[j].otros);
+          }
+productoTotal = '<td>'+formatoMoneda1(bonificacionT)+'</td>';
+enc=1;
+
+        }
+        if(enc==0){productoTotal = '<td>'+formatoMoneda1(bonificacionT)+'</td>'; 
+
+      }
+        
+        }
+
+titulos+='<th class="text-center">SEMANA: '+jj+'</th>'
+titulosP+='<th class="text-center">SEMANA: '+jj+'</th>'
+productoTotalS += productoTotal;
+productoTotalSP += productoTotal;
+enc=0;
+bonificacionT=0;
+productoTotal='';
+}
+
+
+encuentra =0;
+
+
+
+        
+
+              
+         if(identificacion==''){html=html;}else{
+
+          html+=identificacion+'</td>'+productoTotalS+' </tr>';
+          htmlP+=identificacionP+'</td>'+productoTotalSP+' </tr>';
+          
+         }
+        productoTotal='';
+        productoTotalP='';
+       
+       }
+
+     }
+
+             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>'+titulos;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th>'+titulosP;
+         
+
+
+              if(html==undefined){html='';}else{
+               $('.titulo2PF').html(titulos); 
+               $('.tituloP').html(titulosP); 
+               $('.contCataBonificacion').html(html); 
+               $('.contCataBonificacionP').html(htmlP); 
+               //$('.contCataMayoreoPF').html(htmlP); 
+        document.getElementById('imprimirBonificacionTotal').style.display = 'block';
+        document.getElementById('loader').style.display = 'none';
+            
+              }
+for(var w=0;w<prodTotales.length; w++){
+     prodTotales[w]+=parseFloat(prodT[w]);
+}
+prodT=0;
+
+}
+
+function loadVentaNomina(lista){ //por mayoreo
+          prodTotales = new Array(arrGlobalCategoria.length);
+          credi=0;
+          boni=0;
+          s_vent=0;
+      var html = '';
+      var htmlP = '';
+      var identificacion='';
+      var identificacionP='';
+      var bonificacionT=0;
+      var t_venta_mercaT=0;
+      var mer;
+      var pNoVenta;
+      var creditosT=0; 
+      var bonificacionTotal=0; 
+      var ventasT=0; 
+      var productoTotalS=""; 
+      var productoTotal=0; 
+      var productoTotalP=0; 
+      var prodT = new Array(arrGlobalCategoria.length);
+      var porcentajeTotal=0;
+      var credits=0;
+      var mermaT=0;
+      var encuentra=0;
+      var diferenciaT=0;
+      var faltanteT;
+      var f_Ahorro="F";
+      var ret=0;
+      var idMerma="F";
+      var infonavit=0;
+      var productosT="";
+        var productosTP="";
+          
+              
+              var titulos=""; 
+              var titulosP=""; 
+       
+      var idNomina;
+  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+       if(arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
+  for(var j=0;j<lista.length; j++){
+       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
+  for(var i=0; i < arrGlobalRuta.length; i++) {
+       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
+          ruta3=arrGlobalRuta[i].nombre;
+          rutas=arrGlobalEmpleados[hh2].ruta;
+          }
+         }
+
+  encuentra=1; 
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+      
+        }
+        
+        }
+titulos='';
+titulosP='';
+productoTotalS='';
+productoTotalSP='';
+
+var enc=0;
+var longi =  parseInt(scv)-parseInt(scv);
+      for(var jj=scv;jj>=scv2; jj--){
+        for(var j=0;j<lista.length; j++){
+          enc=0;
+if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
+ 
+if(lista[j].t_venta_merca !=(undefined||NaN||""||null)){
+           bonificacionT += parseFloat(lista[j].t_venta_merca);
+          }
+productoTotal = '<td>'+formatoMoneda1(bonificacionT)+'</td>';
+enc=1;
+
+        }
+        if(enc==0){productoTotal = '<td>'+formatoMoneda1(bonificacionT)+'</td>'; 
+
+      }
+        
+        }
+
+titulos+='<th class="text-center">SEMANA: '+jj+'</th>'
+titulosP+='<th class="text-center">SEMANA: '+jj+'</th>'
+productoTotalS += productoTotal;
+productoTotalSP += productoTotal;
+enc=0;
+bonificacionT=0;
+productoTotal='';
+}
+
+
+encuentra =0;
+
+
+
+        
+
+              
+         if(identificacion==''){html=html;}else{
+
+          html+=identificacion+'</td>'+productoTotalS+' </tr>';
+          htmlP+=identificacionP+'</td>'+productoTotalSP+' </tr>';
+          
+         }
+        productoTotal='';
+        productoTotalP='';
+       
+       }
+
+     }
+
+             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>'+titulos;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th>'+titulosP;
+         
+
+
+              if(html==undefined){html='';}else{
+               $('.titulo2PF').html(titulos); 
+               $('.tituloP').html(titulosP); 
+               $('.contCataBonificacion').html(html); 
+               $('.contCataBonificacionP').html(htmlP); 
+               //$('.contCataMayoreoPF').html(htmlP); 
+        document.getElementById('imprimirVentaTotal').style.display = 'block';
+        document.getElementById('loader').style.display = 'none';
+            
+              }
+for(var w=0;w<prodTotales.length; w++){
+     prodTotales[w]+=parseFloat(prodT[w]);
+}
+prodT=0;
+
+}
+function loadMermaNomina(lista){ //por mayoreo
+          prodTotales = new Array(arrGlobalCategoria.length);
+          credi=0;
+          boni=0;
+          s_vent=0;
+      var html = '';
+      var htmlP = '';
+      var identificacion='';
+      var identificacionP='';
+      var bonificacionT=0;
+      var t_venta_mercaT=0;
+      var mer;
+      var pNoVenta;
+      var creditosT=0; 
+      var bonificacionTotal=0; 
+      var ventasT=0; 
+      var productoTotalS=""; 
+      var productoTotal=0; 
+      var productoTotalP=0; 
+      var prodT = new Array(arrGlobalCategoria.length);
+      var porcentajeTotal=0;
+      var credits=0;
+      var mermaT=0;
+      var encuentra=0;
+      var diferenciaT=0;
+      var faltanteT;
+      var f_Ahorro="F";
+      var ret=0;
+      var idMerma="F";
+      var infonavit=0;
+      var productosT="";
+        var productosTP="";
+          
+              
+              var titulos=""; 
+              var titulosP=""; 
+       
+      var idNomina;
+  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+       if(arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
+  for(var j=0;j<lista.length; j++){
+       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
+  for(var i=0; i < arrGlobalRuta.length; i++) {
+       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
+          ruta3=arrGlobalRuta[i].nombre;
+          rutas=arrGlobalEmpleados[hh2].ruta;
+          }
+         }
+
+  encuentra=1; 
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+      
+        }
+        
+        }
+titulos='';
+titulosP='';
+productoTotalS='';
+productoTotalSP='';
+
+var enc=0;
+var longi =  parseInt(scv)-parseInt(scv);
+      for(var jj=scv;jj>=scv2; jj--){
+        for(var j=0;j<lista.length; j++){
+          enc=0;
+if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
+ 
+if(lista[j].n1 !=(undefined||NaN||""||null)){
+           bonificacionT += parseFloat(lista[j].n1);
+          }
+productoTotal = '<td>'+formatoMoneda1(bonificacionT)+'</td>';
+enc=1;
+
+        }
+        if(enc==0){productoTotal = '<td>'+formatoMoneda1(bonificacionT)+'</td>'; 
+
+      }
+        
+        }
+
+titulos+='<th class="text-center">SEMANA: '+jj+'</th>'
+titulosP+='<th class="text-center">SEMANA: '+jj+'</th>'
+productoTotalS += productoTotal;
+productoTotalSP += productoTotal;
+enc=0;
+bonificacionT=0;
+productoTotal='';
+}
+
+
+encuentra =0;
+
+
+
+        
+
+              
+         if(identificacion==''){html=html;}else{
+
+          html+=identificacion+'</td>'+productoTotalS+' </tr>';
+          htmlP+=identificacionP+'</td>'+productoTotalSP+' </tr>';
+          
+         }
+        productoTotal='';
+        productoTotalP='';
+       
+       }
+
+     }
+
+             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>'+titulos;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th>'+titulosP;
+         
+
+
+              if(html==undefined){html='';}else{
+               $('.titulo2PF').html(titulos); 
+               $('.tituloP').html(titulosP); 
+               $('.contCataBonificacion').html(html); 
+               $('.contCataBonificacionP').html(htmlP); 
+               //$('.contCataMayoreoPF').html(htmlP); 
+        document.getElementById('imprimirMermaTotal').style.display = 'block';
+        document.getElementById('loader').style.display = 'none';
+            
+              }
+for(var w=0;w<prodTotales.length; w++){
+     prodTotales[w]+=parseFloat(prodT[w]);
+}
+prodT=0;
+
+}
 
 function loadVentaDiariaMayoreoNominaFaltante(lista){ //por mayoreo
           prodTotales = new Array(arrGlobalCategoria.length);
@@ -9120,6 +9722,18 @@ function  loadRutas3(lista){
               upRegistro2(id_vend,json,'rutas',loadRutasUp)
         }
 }
+
+function  loadTalleres(lista){
+          var html = '';
+      for(var h=0;h<lista.length; h++){
+        
+              html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectTaller('+lista[h].id+') "><td>' + lista[h].id  + '</td><td>' + lista[h].nombre+'</td><td>' + lista[h].direccion+'</td></tr>';  
+        
+      }
+              $('.contCataTalleres').html(html);
+      arrGlobalTalleres=lista;
+}
+var arrGlobalTalleres;
 function  loadClientes(lista){
               arrGlobalClientes=lista;
      
@@ -9155,20 +9769,86 @@ function  loadMV2(lista){
 }
 function  loadMantenimiento(lista){
           var html = '';
+          var taller1 = '';
+      var encuentra=0;
       for(var h=0;h<lista.length; h++){
-              html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectMantenimiento('+lista[h].id+')"><td >' +tipoMantinimiento[lista[h].jerarquia-1]+'</td><td >' + lista[h].vehiculo+'</td><td > ' + lista[h].descripcion+'</td></tr>';
+ for(var ab=0; ab< arrGlobalTalleres.length; ab++){
+    if( lista[h].fecha == arrGlobalTalleres[ab].id){
+encuentra = 1;
+       taller1= arrGlobalTalleres[ab].nombre;
+
+    }}
+    if(encuentra==0){
+taller1='NINGUNO';
+
+    }
+
+
+
+
+              html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectMantenimiento('+lista[h].id+')"><td >' +tipoEstado[lista[h].servicio-1]+'</td> <td >' +tipoMantinimiento[lista[h].jerarquia-1]+'</td> <td >' + lista[h].vehiculo+'</td><td > ' + lista[h].descripcion+'</td><td > ' + taller1+'</td></tr>';
+      encuentra=0;
       }
               $('.contCata3').html(html);
               arrGlobalMantenimiento = lista;
+     taller();
+getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
       }
           var arrGlobalMantenimiento;
 function  loadMantenimientoTipo(lista){
           var html = '';
-      for(var h=0;h<lista.length; h++)
-          if (lista[h].servicio==1) {
-              html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); "><td >'  +lista[h].id+'</td><td>'+ lista[h].vehiculo +'</td><td > ' + lista[h].fecha+'</td><td > ' + tipoMantinimiento[lista[h].jerarquia-1]+'</td><td >'+ lista[h].descripcion+'</td></tr>';
+          var talleres2 ='<th class="letras text-center">VEHÍCULO</th><th class="letras text-center">RUTA</th>';
+        var renglon1= '';
+          for(var hh=0;hh<arrGlobalTalleres.length; hh++){
+            talleres2+= '<th>' + arrGlobalTalleres[hh].nombre  + '</th>';
+            
             }
+            talleres2+='<th>DESCONOCIDO</th> </tr>';
+              $('.talleres').html(talleres2);
+var entra=0;
+var entra1=0;
+      for(var h=0;h<lista.length; h++){
+        
+          
+          if(lista[h].fecha==0&&entra==0){
+           entra=1;
+           entra1=1;
+            renglon1= '<td style="background: yellow; color:black">RUTA</td>';
+          }else{
+            entra=1;
+           
+            renglon1= '<td ></td>';
+          }
+         
+        for(var j=0;j<arrGlobalTalleres.length; j++){
+          
+          if(arrGlobalTalleres[j].id==lista[h].fecha){
+            renglon1+= '<td style="background: yellow; color:black">' + arrGlobalTalleres[j].nombre  + '</td>';
+            entra1=1;
+
+          }else{
+            renglon1+= '<td></td>';
+            
+
+          }
+            
+            
+            
+            }
+            if(entra1==0){
+renglon1+= '<td style="background: yellow; color:black">TALLER ELIMINADO</td>';
+            }else{
+              renglon1+= '<td></td>';
+              entra1=0;
+            }
+        html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); "><td>'+ lista[h].vehiculo +'</td>'+renglon1+'</tr>';
+      renglon1= '';
+      entra=0;
+      entra1=0;
+      }
+          
               $('.contCata3').html(html);
+
               arrGlobalMantenimiento = lista;
 }
 function loadSalida(lista){
@@ -9363,11 +10043,20 @@ limpiar();
 function addMantenimiento(){
   
   var descripcion = $(".descripcion").val();
-  var fecha = $(".fecha").val();
+  var fecha = $(".talleresS").val();
   var vehiculo2 = $(".vehiculo2").val();
   var jerarquia = $(".jerarquia").val();
-  var servicio = $(".servicio").val();
-var vehiculo= arrGlobalVehiculo[vehiculo2].numero+' - '+ arrGlobalVehiculo[vehiculo2].marca+' ('+arrGlobalVehiculo[vehiculo2].placa+')';
+  var servicio = $(".servicio").val();//
+ var vehiculo  = parseInt(vehiculo2) 
+if(isNaN(vehiculo)){
+ vehiculo  = vehiculo2;
+   
+  
+  }else{
+   
+ vehiculo = arrGlobalVehiculo[vehiculo2].numero+' - '+ arrGlobalVehiculo[vehiculo2].marca+' ('+arrGlobalVehiculo[vehiculo2].placa+')';
+
+  }
   if(descripcion!= "" && fecha!= ""&& jerarquia!= "" && vehiculo!= ""&&servicio!=""){
     var json = {descripcion: descripcion, jerarquia: jerarquia, vehiculo: vehiculo, fecha: fecha, servicio: servicio};
       
@@ -9448,6 +10137,22 @@ if(proporcion=="")proporcion=1;
       $('#modal').modal('show');
   }
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+limpiar();
+}
+function addTaller(){
+  var nombre = $(".nombreTaller").val();
+  var direccion = $(".direccionTaller").val();
+ 
+  if(nombre != "" && direccion != ""){
+
+    var json = {nombre: nombre, direccion: direccion};
+    addRegistro(json, 'talleres', loadTalleres);
+  }  else{
+
+      $('#modal .textModal').html('FALTAN DATOS. '); 
+      $('#modal').modal('show');
+  }
+getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
 limpiar();
 }
 
@@ -11029,6 +11734,21 @@ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar
 limpiar();
 }
 
+function delTaller(){
+nombre = $('.nombreTaller').val();
+
+  if(idGlobal != "" && nombre!=""){
+
+  delRegistro(idGlobal,'talleres', loadTalleres);
+}else {
+   $('#modal .textModal').html('Seleccione de la tabla el producto a eliminar.'); 
+      $('#modal').modal('show');
+ 
+}
+getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
+limpiar();
+}
+
 function delVendedor(idV){
 
 
@@ -11429,10 +12149,30 @@ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar
 limpiar();
 
 }
+
+
+function upTaller(){
+  var nombre = $(".nombreTaller").val();
+  var direccion = $(".direccionTaller").val();
+ 
+  if(nombre != "" && direccion != ""){
+    var json = {nombre: nombre, direccion: direccion};
+     upRegistro(idGlobal,json, 'talleres', loadTalleres);
+  }
+  else{
+
+      $('#modal .textModal').html('FALTAN DATOS. '); 
+      $('#modal').modal('show');
+  }
+getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
+limpiar();
+
+}
+
 function upMantenimiento(){
   
   var descripcion = $(".descripcion").val();
-  var fecha = $(".fecha").val();
+  var fecha = $(".talleresS").val();
   var vehiculo2 = $(".vehiculo2").val();
   var jerarquia = $(".jerarquia").val();
   var servicio = $(".servicio").val();
@@ -12143,6 +12883,7 @@ if(modalCreditos1!="F"){
 upRegistroA2(id_vend, json2, jsonC, 'ventaspasada', loadVentaspasadasVF);
 
 
+                    $('.guardarR').html('');
 
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
  
@@ -13254,6 +13995,22 @@ function selectInventario(id){
     }
   }
 }
+
+function selectTaller(id){
+  idGlobal = id;
+  var eliminari='<button type="button" class="btn botoninv eliminar" onclick="delTaller()">ELIMINAR</button>';
+  var guardari='<button type="button" class="btn botoninv modificar" onclick="upTaller()">GUARDAR</button>';
+
+  for(var a=0; a<arrGlobalTalleres.length; a++){
+    if(arrGlobalTalleres[a].id == id){
+      $(".nombreTaller").val(arrGlobalTalleres[a].nombre);
+      $(".direccionTaller").val(arrGlobalTalleres[a].direccion);
+    
+      $(".eliminarT").html(eliminari);
+      $(".guardarT").html(guardari);
+    }
+  }
+}
 function selectCategoria(id){
   idGlobal = id;
   var eliminari='<button type="button" class="btn btn-ventas eliminar" onclick="delCategoria()">ELIMINAR</button>';
@@ -14021,6 +14778,7 @@ function selectMantenimiento(id){
  var upMantenimiento1='<button type="button" class="btn usuario1 modificar" onclick="upMantenimiento()">GUARDAR</button>';
  var delMantenimiendo1 = '<button type="button" class="btn usuario1 eliminar" onclick="delMantenimiento1()">ELIMINAR</button>';
   var vehiculo3='<label >VEHICULO</label><input type="text" id="peso" disabled class="form-control clear vehiculo2" placeholder="">';
+var encuentra =0;
   for(var a=0; a< arrGlobalMantenimiento.length; a++){
     if( arrGlobalMantenimiento[a].id == id){
        $(".guardarM").html(upMantenimiento1);
@@ -14028,7 +14786,16 @@ function selectMantenimiento(id){
        $("#vehiculo7").html(vehiculo3);
        $(".jerarquia").val( arrGlobalMantenimiento[a].jerarquia);
        $(".descripcion").val( arrGlobalMantenimiento[a].descripcion);
-       $(".fecha").val( arrGlobalMantenimiento[a].fecha);
+       for(var ab=0; ab< arrGlobalTalleres.length; ab++){
+    if( arrGlobalMantenimiento[a].fecha == arrGlobalTalleres[ab].id){
+encuentra = 1;
+       $(".talleresS").val( arrGlobalMantenimiento[a].fecha);
+
+    }}
+    if(encuentra==0){
+       $(".talleresS").val("DESCONOCIDO");
+
+    }
        $(".servicio").val( arrGlobalMantenimiento[a].servicio); 
        $(".vehiculo2").val( arrGlobalMantenimiento[a].vehiculo); 
   }
@@ -14858,7 +15625,7 @@ $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mRutas.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
+  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_clientes();">MAPA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Mapa(); " role="tab">CLIENTES  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Rutas() ">RUTAS</li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
 
 
 }
@@ -14871,7 +15638,9 @@ function click_Rutas(){
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion3').load('/html/rutas.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> RUTAS </h3>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
+  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_clientes();">MAPA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Mapa(); " role="tab">CLIENTES  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Rutas() ">RUTAS</li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
+
+ //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas);
  
 }
@@ -14980,7 +15749,8 @@ function click_Mapa(){
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion2').load('/html/clientes.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
+  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_clientes();">MAPA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Mapa(); " role="tab">CLIENTES  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Rutas() ">RUTAS</li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
+
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas2);
  
 }
@@ -15001,12 +15771,26 @@ id_vend=id;
 getFunction('clientes', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas3);
  
 }
+function click_talleres(){
+   $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion2').load('/html/talleres.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> TALLERES </h3>');
+getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
+ 
+}
+function click_vehiculos(){
+$('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+click_CVehicular();
+}
 function click_mvehicular(){
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mVehiculat.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> MANTENIMIENTOS PENDIENTES </h3>');
-$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_mvehicular()">Notificaciones</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_CVehicular()" role="tab">Control Vehicular</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_MantenimientoV()">Mantenimiento</button></li><div class="imprimir"></div></ul> </div>');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> MAPA VEHICULAR </h3>');
+ //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_mvehicular()">Notificaciones</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_CVehicular()" role="tab">Control Vehicular</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_MantenimientoV()">Mantenimiento</button></li><div class="imprimir"></div></ul> </div>');
+   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_mvehicular()">MAPA </li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_talleres();" role="tab">TALLERES</li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_MantenimientoV() ">ACTIVIDADES </li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
 getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimientoTipo);
  
 
@@ -15014,6 +15798,7 @@ getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintent
 
 
 }
+
 
 
 
@@ -15026,11 +15811,25 @@ vehiculo2 +='</select>';
 $("#vehiculo7").html(vehiculo2);
 
 }
+function taller(){
+var selectT = '<label class="letras">TALLER</label><select class="form-control  clear talleresS" onchange=""><option value="0" class="form-control">NINGUNO</option>';
+for (var i = 0; i < arrGlobalTalleres.length ; i++) {
+   selectT += '<option value="'+arrGlobalTalleres[i].id+'" class="form-control">'+arrGlobalTalleres[i].nombre+'</option>';
+}
+ selectT+= '</select>'
+$(".talleresM").html( selectT);
+}
+function taller0(){
+var selectT = '<label class="letras">TALLER</label><select class="form-control  clear talleresS" onchange=""><option value="0" class="form-control">NINGUNO</option>';
+
+ selectT+= '</select>'
+$(".talleresM").html( selectT);
+}
 function click_MantenimientoV(){
 $('.btn-nav').removeClass('hidden');
 $('.btn-nav').html('<h3> MENÚ  </h3>');
 $('.seccion3').load('/html/mantenimientoV.html');
-$('.tituloPantalla').html('<h3 class="ventas impre"> MANTENIMIENTO  </h3>');
+$('.tituloPantalla').html('<h3 class="ventas impre"> ACTIVIDADES  </h3>');
 
 
 getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimiento);
@@ -15040,9 +15839,8 @@ getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintent
 function click_CVehicular(){
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ </h3>');
- $('.seccion2').load('/html/controlVehicular.html');
+ $('#contenido').load('/html/controlVehicular.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CONTROL VEHICULAR  </h3>');
- 
  
 getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV);
 
@@ -15085,7 +15883,9 @@ function click_nomina(){
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  
  $('#contenido').load('/html/mNomina.html');
-   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">TOTALES</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span><div class="imprimir"></div></ul> </div>');
+   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">TOTALES</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
+   //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">PEDIDOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">MERMA </li>  <span class="border border-warning"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_Degustaciones1(); "> DEGUSTACIONES</li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
+     
         document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
@@ -15115,6 +15915,256 @@ function click_Comision(){
  $('.tituloPantalla').html('<h3 class="ventas impre"> COMISIÓN  </h3>');
  getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
 
+}
+function click_creditos(){
+     // document.getElementById('loader').style.display = 'block';
+
+  $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion4').load('/html/creditos.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3>');
+ //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
+
+}
+function click_bonificacion(){
+     // document.getElementById('loader').style.display = 'block';
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion5').load('/html/bonificacion.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> BONIFICACIÓN  </h3>');
+ //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
+
+}
+function click_ventaN(){
+     // document.getElementById('loader').style.display = 'block';
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion6').load('/html/ventaNomina.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> VENTA  </h3>');
+ //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
+
+}
+function click_noVenta(){
+     // document.getElementById('loader').style.display = 'block';
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion7').load('/html/noVenta.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> % NO VENTA  </h3>');
+ //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
+
+}
+function click_nMerma(){
+     // document.getElementById('loader').style.display = 'block';
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion8').load('/html/nMerma.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> MERMA  </h3>');
+ //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
+
+}
+var scv2;
+function click_buscarCreditos1(){
+ semana1 = $('.semanac1').val();
+ semana2 = $('.semanac2').val();
+  var mes=month-1;
+  var dia=day-1;
+ if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
+
+
+ var yearD = today_vv.substring(0,4);
+      saberSemana(dia,mes,yearD);
+      semana1=noSemana+1;
+       scv = noSemana+1
+ }else{
+  var year =  parseInt(semana1.substring(0,4));
+ scv = parseInt(semana1.substring(6,8));
+ }
+  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
+var year2=year;
+
+      semana2=scv-5;
+scv2 = semana2;
+ }else{
+     var year2 =  parseInt(semana2.substring(0,4));
+ scv2 = parseInt(semana2.substring(6,8));
+ }
+ if(scv2>scv){
+  scv2=scv-5;
+ }
+
+sfc=scv;
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion4').load('/html/creditos.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCreditos);
+        document.getElementById('loader').style.display = 'block';
+   
+}
+function click_buscarBonificacion1(){
+ semana1 = $('.semanac1').val();
+ semana2 = $('.semanac2').val();
+  var mes=month-1;
+  var dia=day-1;
+ if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
+
+
+ var yearD = today_vv.substring(0,4);
+      saberSemana(dia,mes,yearD);
+      semana1=noSemana+1;
+       scv = noSemana+1
+ }else{
+  var year =  parseInt(semana1.substring(0,4));
+ scv = parseInt(semana1.substring(6,8));
+ }
+  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
+var year2=year;
+
+      semana2=scv-5;
+scv2 = semana2;
+ }else{
+     var year2 =  parseInt(semana2.substring(0,4));
+ scv2 = parseInt(semana2.substring(6,8));
+ }
+ if(scv2>scv){
+  scv2=scv-5;
+ }
+
+sfc=scv;
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion5').load('/html/bonificacion.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> BONIFICACIÓN   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadBonificacion);
+        document.getElementById('loader').style.display = 'block';
+   
+}
+function click_buscarVenta1(){
+ semana1 = $('.semanac1').val();
+ semana2 = $('.semanac2').val();
+  var mes=month-1;
+  var dia=day-1;
+ if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
+
+
+ var yearD = today_vv.substring(0,4);
+      saberSemana(dia,mes,yearD);
+      semana1=noSemana+1;
+       scv = noSemana+1
+ }else{
+  var year =  parseInt(semana1.substring(0,4));
+ scv = parseInt(semana1.substring(6,8));
+ }
+  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
+var year2=year;
+
+      semana2=scv-5;
+scv2 = semana2;
+ }else{
+     var year2 =  parseInt(semana2.substring(0,4));
+ scv2 = parseInt(semana2.substring(6,8));
+ }
+ if(scv2>scv){
+  scv2=scv-5;
+ }
+
+sfc=scv;
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion6').load('/html/ventaNomina.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> VENTA   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaNomina);
+        document.getElementById('loader').style.display = 'block';
+   
+}
+
+function click_buscaMerma1(){
+ semana1 = $('.semanac1').val();
+ semana2 = $('.semanac2').val();
+  var mes=month-1;
+  var dia=day-1;
+ if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
+
+
+ var yearD = today_vv.substring(0,4);
+      saberSemana(dia,mes,yearD);
+      semana1=noSemana+1;
+       scv = noSemana+1
+ }else{
+  var year =  parseInt(semana1.substring(0,4));
+ scv = parseInt(semana1.substring(6,8));
+ }
+  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
+var year2=year;
+
+      semana2=scv-5;
+scv2 = semana2;
+ }else{
+     var year2 =  parseInt(semana2.substring(0,4));
+ scv2 = parseInt(semana2.substring(6,8));
+ }
+ if(scv2>scv){
+  scv2=scv-5;
+ }
+
+sfc=scv;
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion8').load('/html/nMerma.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> MERMA   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaNomina);
+        document.getElementById('loader').style.display = 'block';
+   
+}
+function click_buscarnoVenta1(){
+  /*
+ semana1 = $('.semanac1').val();
+ semana2 = $('.semanac2').val();
+  var mes=month-1;
+  var dia=day-1;
+ if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
+
+
+ var yearD = today_vv.substring(0,4);
+      saberSemana(dia,mes,yearD);
+      semana1=noSemana+1;
+       scv = noSemana+1
+ }else{
+  var year =  parseInt(semana1.substring(0,4));
+ scv = parseInt(semana1.substring(6,8));
+ }
+  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
+var year2=year;
+
+      semana2=scv-5;
+scv2 = semana2;
+ }else{
+     var year2 =  parseInt(semana2.substring(0,4));
+ scv2 = parseInt(semana2.substring(6,8));
+ }
+ if(scv2>scv){
+  scv2=scv-5;
+ }
+
+sfc=scv;
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('.seccion8').load('/html/nMerma.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> MERMA   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaNomina);
+        document.getElementById('loader').style.display = 'block';
+   */
+   $('#modal .textModal').html('SUB-MODULO EN CONSTRUCCIÓN'); 
+      $('#modal').modal('show');
 }
 function click_reportes() {
 $('.btn-nav').removeClass('hidden');

@@ -1,0 +1,59 @@
+
+    <div class="row  ">
+    
+
+        
+        <div class="col-md-4 form-group">
+          <label class="letras">NOMBRE</label>
+          <input type="text" onkeyup="mayus(this);" id="nombreTaller" class="form-control clear nombreTaller" onchange="document.getElementById('direccionTaller').focus();" placeholder="">
+        </div>
+        <div class="col-md-8 form-group">
+          <label class="letras">DIRECCIÓN</label>
+          <input id="direccionTaller" type="text" onkeyup="mayus(this);" class="form-control clear direccionTaller" onchange="document.getElementById('btnIns').focus();" placeholder="">
+        </div>
+     
+<div class="col-xs-3 col-md-3">
+      <button type="button" id="btnIns" onchange="document.getElementById('idTaller').focus();" class="btn botoninv insertar" onclick="addTaller()">INSERTAR</button>
+  </div>
+   <div class="col-xs-3 col-md-3">
+    <button type="button" class="btn botoninv limpiar" onclick="inv(); limpiar(); ">LIMPIAR</button>
+  </div>
+<div class="col-xs-3 col-md-3 guardarT">
+    
+  </div>
+   <div class="col-xs-3 col-md-3 eliminarT">
+    
+  </div>
+   
+
+<br>
+<br>
+<br>
+  </div>
+  <br>
+
+
+ <div class="row ">
+
+
+  <div class="table-responsive tabla text-center">
+  <table class="table table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras">
+         <th class="letras">ID</th>
+        <th class="letras">NOMBRE</th>
+        <th class="letras">DIRECCIÓN</th>
+        
+      
+      </tr>
+    </thead>
+    <tbody class="contCataTalleres ventascss" >
+     
+    </tbody>
+  </table>
+</div>
+
+ '
+ 
+  </div>
+

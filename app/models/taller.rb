@@ -1,7 +1,7 @@
-class Mantenimiento < ApplicationRecord
+class Taller < ApplicationRecord
 	self.primary_key = :id
 
 	# --------------------------- Scopes ------------------------------- #
 	default_scope { where(activo: 1) }
-	default_scope { reorder(:vehiculo ) }
+	default_scope { reorder(:nombre) }
 end

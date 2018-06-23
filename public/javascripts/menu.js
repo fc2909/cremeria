@@ -2282,7 +2282,7 @@ var longi =  parseInt(scv)-parseInt(scv);
 if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
  
 if(lista[j].t_venta_merca !=(undefined||NaN||""||null)){
-           bonificacionT += parseFloat(lista[j].t_venta_merca);
+           bonificacionT += (parseFloat(lista[j].t_venta_merca)-parseFloat(lista[j].otros));
           }
 productoTotal = '<td>'+formatoMoneda1(bonificacionT)+'</td>';
 enc=1;

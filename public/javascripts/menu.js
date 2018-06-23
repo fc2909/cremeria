@@ -10057,7 +10057,8 @@ if(isNaN(vehiculo)){
  vehiculo = arrGlobalVehiculo[vehiculo2].numero+' - '+ arrGlobalVehiculo[vehiculo2].marca+' ('+arrGlobalVehiculo[vehiculo2].placa+')';
 
   }
-  if(descripcion!= "" && fecha!= ""&& jerarquia!= "" && vehiculo!= ""&&servicio!=""){
+  if( fecha!= ""&& jerarquia!= "" && vehiculo!= ""&&servicio!=""){
+    if(descripcion== "")descripcion='-';
     var json = {descripcion: descripcion, jerarquia: jerarquia, vehiculo: vehiculo, fecha: fecha, servicio: servicio};
       
     addRegistro(json, 'mantenimiento', loadMantenimiento);

@@ -865,7 +865,7 @@ function imprimirRCreditos(){
        // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'CREDITOS (SEMANAS: '+scv+' A '+scv+')';
+    var controlC = 'CREDITOS (SEMANAS: '+scv+' - '+scv2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte').style.display = 'block';
@@ -882,7 +882,7 @@ function imprimirRBonificacion(){
        // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'BONIFICACIÓN (SEMANAS: '+scv+' A '+scv+')';
+    var controlC = 'BONIFICACIÓN (SEMANAS: '+scv+' - '+scv2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte').style.display = 'block';
@@ -899,7 +899,7 @@ function imprimirRVenta(){
        // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'VENTA (SEMANAS: '+scv+' A '+scv+')';
+    var controlC = 'VENTA (SEMANAS: '+scv+' - '+scv2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte').style.display = 'block';
@@ -916,7 +916,7 @@ function imprimirRMerma(){
        // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'MERMA (SEMANAS: '+scv+' A '+scv+')';
+    var controlC = 'MERMA (SEMANAS: '+scv+' - '+scv2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte').style.display = 'block';

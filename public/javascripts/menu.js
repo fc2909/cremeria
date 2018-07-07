@@ -9021,8 +9021,8 @@ if(html!=""){
              titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">________VENTA________</th>'+titulos22;
          
 
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
+  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>RESTAURANTE</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
+htmlP+='<tr class="grisclaro" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>RESTAURANTE</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
 var renglon = 7+parseInt(productoTotal2.length)
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -9372,8 +9372,8 @@ if(html!=""){
          
 
 
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
+  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>FORANEO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
+htmlP+='<tr class="grisclaro" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>FORANEO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
 var renglon = 7+parseInt(productoTotal2.length)
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -9722,8 +9722,8 @@ if(html!=""){
          
 
 
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
+  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>DETALLE</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
+htmlP+='<tr class="grisclaro" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>DETALLE</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
 var renglon = 7+parseInt(productoTotal2.length)
   document.getElementById('loader').style.display = 'none';
 

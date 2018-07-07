@@ -8695,6 +8695,7 @@ anter=0;
    }
 prodT=0;
   document.getElementById('loader').style.display = 'none';
+executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariarRestauranteProductos);
 }
 
 function loadVentaDiariaRestauranteProductos(lista){ //por mayoreo
@@ -21208,7 +21209,7 @@ var sfc = (scv+1)+"";
 }
 
 function ventaDiariaP(){
-  //document.getElementById('loader').style.display = 'block';
+  document.getElementById('loader').style.display = 'block';
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVProductos()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA POR PRODUCTO (SEMANA: '+(scv+1)+')</h3>');

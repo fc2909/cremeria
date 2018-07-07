@@ -8694,7 +8694,7 @@ anter=0;
    
    }
 prodT=0;
-  document.getElementById('loader').style.display = 'block';
+  document.getElementById('loader').style.display = 'none';
 
 }
 

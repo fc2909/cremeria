@@ -8378,7 +8378,7 @@ function loadVentaDiariaMayoreoProductos(lista){ //por mayoreo
           var titulos23='';
           var arrGlobalEmpleados2= arrGlobalEmpleados;
       for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
-        if(arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
+        if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
           
        for(var j=0;j<arrGlobalF.length; j++){
 
@@ -8518,7 +8518,7 @@ t_venta_mercaT=0;
 
 ////////////////////////////////////Titulos////////////////////////////////////////////
 for(var hh3=0;hh3<arrGlobalEmpleados2.length; hh3++){
-        if(arrGlobalEmpleados2[hh3].tipo==2&&arrGlobalEmpleados2[hh3].estado==1){
+        if(arrGlobalEmpleados2[hh3].t_venta==2&&arrGlobalEmpleados2[hh3].tipo==2&&arrGlobalEmpleados2[hh3].estado==1){
 
 for(var h2=0;h2<lista2.length; h2++){
      if(lista2[h2].ruta==arrGlobalEmpleados2[hh3].ruta&&pasa2==1&&lista2[h2].fecharecepcion!=null&&0==lista2[h2].merma&&(scv+1)==lista2[h2].sfc&&year==((lista2[h2].fechadespachof).substring(0,4))){
@@ -8695,7 +8695,6 @@ anter=0;
    }
 prodT=0;
   document.getElementById('loader').style.display = 'none';
-
 }
 
 function loadVentaDiariaRestauranteProductos(lista){ //por mayoreo
@@ -21209,7 +21208,7 @@ var sfc = (scv+1)+"";
 }
 
 function ventaDiariaP(){
-  document.getElementById('loader').style.display = 'block';
+  //document.getElementById('loader').style.display = 'block';
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVProductos()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA POR PRODUCTO (SEMANA: '+(scv+1)+')</h3>');

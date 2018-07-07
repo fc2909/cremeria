@@ -650,6 +650,258 @@ function pagare(){
         document.getElementById('oculto14').style.display = 'none';
         
 }
+function imprimirDegustaciones(){
+    var usuario;
+    for (var i=0; i < arrGlobalRuta.length; i++) {
+    if(arrGlobalRuta[i].id==rutas){
+      ruta3=arrGlobalRuta[i].nombre;
+    }
+    }
+    var dayD = today_v.substring(8,10);
+    var monthD = today_v.substring(5,7);
+    var yearD = today_v.substring(0,4);
+    var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
+    var diaD=(diasemaD.getUTCDay());
+    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[parseInt(monthD)]+" DEL "+yearD+".";
+      convertirNumLetras(total_merc);
+    for(var h=0;h<upin.length; h++){
+      if(pin==upin[h].pin){
+        usuario="CAPTURISTA: <u> <strong>"+ upin[h].usuario+". </strong></u>";
+      }
+  }
+        formatNumber(parseFloat(total_merc));
+        document.getElementById('fondoBlanco').style.display = 'block';
+
+        document.getElementById('oculto').style.display = 'block';
+        document.getElementById('oculto2').style.display = 'block';
+        document.getElementById('oculto3').style.display = 'block';
+        document.getElementById('oculto4').style.display = 'block';
+        document.getElementById('oculto5').style.display = 'block';
+        document.getElementById('oculto6').style.display = 'block';
+        document.getElementById('oculto7').style.display = 'block';
+        document.getElementById('ocultoImagen').style.display = 'block';
+       // document.getElementById('oculto13').style.display = 'block';
+        //document.getElementById('oculto14').style.display = 'block';
+            
+    var nombreVendedor = "RUTA _<u><strong>"+ruta3+". </strong></u>_ VENDEDOR: _<u><strong> "+nombre_vend+". </strong></u>_  ";
+    var despachadorV = "DESPACHADOR:<strong> "+despachador+"</strong>";
+    var controlC = '<strong class="text-center">CONTROL DE DEGUSTACIONES</strong>';
+  //  var pagare = '<p class="text-justify " >YO _<u> <strong>'+ nombre_vend+'</strong> </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u><strong> '+fechaDespachoD+' </strong></u>_ LA CANTIDAD DE _<u><strong> $ '+cantidad +' ('+cantidadEnTexto+') </strong></u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p>';
+    var fechaDespachoDD ='DESPACHO : <strong>'+fechaDespachoD+'</strong>';
+     var linea =' <p class="text-center">___________________________________________</p>';
+    var vendedorFirma ='<p class="text-center"><strong>'+nombre_vend+'.</strong> </p> ';
+    
+
+         $('.linea').html(linea);
+        $('.vendedorFirma').html(vendedorFirma);
+       
+        //$('.pagareD').html(pagare);
+        $('.controlC').html(controlC);
+        $('.nombreVendedor').html(nombreVendedor);
+        $('.nombreCapturista').html(usuario);
+        $('.nombreDespachador').html(despachadorV);
+        $('.fechaDespacho').html(fechaDespachoDD);
+        window.print();
+        document.getElementById('fondoBlanco').style.display = 'none';
+  
+        document.getElementById('ocultoImagen').style.display = 'none';
+        
+        document.getElementById('oculto').style.display = 'none';
+        document.getElementById('oculto2').style.display = 'none';
+        document.getElementById('oculto3').style.display = 'none';
+        document.getElementById('oculto4').style.display = 'none';
+        document.getElementById('oculto5').style.display = 'none';
+        document.getElementById('oculto6').style.display = 'none';
+        document.getElementById('oculto7').style.display = 'none';
+     //   document.getElementById('oculto13').style.display = 'none';
+      //  document.getElementById('oculto14').style.display = 'none';
+        
+}
+function pagare2(){
+    var usuario;
+    if(gasolina!=""||gasolina!=undefined||gasolina!=NaN){ 
+    }
+    if(km!=""||km!=undefined||km!=NaN){
+    }
+    if(gas!=""||gas!=undefined||gas!=NaN){
+    }
+    if(diesel!=""||diesel!=undefined||diesel!=NaN){
+    }
+    for (var i=0; i < arrGlobalRuta.length; i++) {
+    //alert(arrGlobalRuta[i].id)
+    if(arrGlobalRuta[i].id==rutas){
+    ruta3=arrGlobalRuta[i].nombre;
+    }
+    }
+    var dayD = today_v.substring(8,10);
+    var monthD = today_v.substring(5,7);
+    var yearD = today_v.substring(0,4);
+    var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
+    var diaD=(diasemaD.getUTCDay());
+    var fechaRecepcionD = dias[diaD-1]+", "+dayD+" DE "+months[parseInt(monthD)]+" DEL "+yearD+".";
+    convertirNumLetras(total_merc);
+    for(var h=0;h<upin.length; h++){
+    if(pin==upin[h].pin){
+        usuario="CAPTURISTA: <strong>"+ upin[h].usuario+".</strong>";    
+    }
+    }
+
+    document.getElementById('oculto').style.display = 'block';
+    //document.getElementById('oculto2').style.display = 'block';
+    document.getElementById('oculto3').style.display = 'block';
+    document.getElementById('oculto4').style.display = 'block';
+    document.getElementById('oculto5').style.display = 'block';
+    document.getElementById('oculto6').style.display = 'block';
+    document.getElementById('oculto7').style.display = 'block';
+    document.getElementById('oculto88').style.display = 'block';
+    document.getElementById('oculto89').style.display = 'block';
+    document.getElementById('oculto90').style.display = 'block';
+    document.getElementById('oculto91').style.display = 'block';
+    document.getElementById('oculto22').style.display = 'block';
+   // document.getElementById('oculto93').style.display = 'block';
+    document.getElementById('oculto9').style.display = 'block';
+    document.getElementById('oculto10').style.display = 'block';
+    document.getElementById('oculto11').style.display = 'block';
+    document.getElementById('oculto12').style.display = 'block';
+    document.getElementById('oculto13').style.display = 'block';
+    document.getElementById('oculto14').style.display = 'block';
+    document.getElementById('ocultoImagen').style.display = 'block';
+    document.getElementById('fondoBlanco').style.display = 'block';
+
+    //getFunction('ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasPrint);
+    var nombreVendedor = "RUTA: <strong> "+ruta3+".</strong>       VENDEDOR: <strong>"+nombre_vend+". </strong>";
+    var despachadorV = "DESPACHADOR:<strong> "+despachadorR+"</strong>";
+    var controlC = "<strong>CONTROL DE VENTAS Y COBRANZA</strong>";
+    var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombre_vend+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(total_merc)+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p> ';
+    var fechaRecepcionDD ='RECEPCIÓN: '+fechaRecepcionD;
+    var linea =' <p class="text-center">___________________________________________</p>';
+    var vendedorFirma ='<p class="text-center"><strong>'+nombre_vend+'.</strong> </p> ';
+        gasolina = $('#modalDesp2 .gasolina1').val();
+        km = $('#modalDesp2 .km1').val();
+        gas = $('#modalDesp2 .gas1').val();
+        diesel = $('#modalDesp2 .diesel1').val();
+    var imagenFondo='<img class="ImagenDurango" src="/images/logoD.png" onclick="">';
+    if(tipoCombustible==1){
+        $('.gasolina2').html(gasolina+" L.");
+        $('.km2').html(km);
+    }
+    if(tipoCombustible==2){
+        $('.gas2').html(gas+" L.");
+        $('.km2').html(km);
+    }
+    if(tipoCombustible==3){
+        $('.gasolina2').html(gasolina+" L.");
+        $('.gas2').html(gas+" L.");
+        $('.km2').html(km);
+    }
+        if(tipoCombustible==4){
+        $('.diesel2').html(gas+" L.");
+        $('.km2').html(km);
+    }
+var vehiculoRec = vehiculoRec2;
+var mermaRec = '$ '+formatoMoneda1(mermaRec2);
+
+        $('.merma2').html(mermaRec);
+        $('.vehiculo2').html(vehiculoRec);
+        $('.controlC').html(controlC);
+        $('.pagareD').html(pagare);
+        $('.nombreVendedor').html(nombreVendedor);
+        $('.nombreCapturista').html(usuario);
+        $('.nombreDespachador').html(despachadorV);
+        $('.fechaDespacho').html(fechaRecepcionDD);
+        $('.linea').html(linea);
+        $('.vendedorFirma').html(vendedorFirma);
+        window.print();
+        document.getElementById('oculto').style.display = 'none';
+     //   document.getElementById('oculto2').style.display = 'none';
+        document.getElementById('oculto3').style.display = 'none';
+        document.getElementById('oculto4').style.display = 'none';
+        document.getElementById('oculto5').style.display = 'none';
+        document.getElementById('oculto6').style.display = 'none';
+        document.getElementById('oculto7').style.display = 'none';
+        document.getElementById('oculto88').style.display = 'none';
+        document.getElementById('oculto89').style.display = 'none';
+        document.getElementById('oculto90').style.display = 'none';
+        document.getElementById('oculto91').style.display = 'none';
+        document.getElementById('oculto22').style.display = 'none';
+       // document.getElementById('oculto93').style.display = 'none';
+        document.getElementById('oculto9').style.display = 'none';
+        document.getElementById('oculto10').style.display = 'none';
+        document.getElementById('oculto11').style.display = 'none';
+        document.getElementById('oculto12').style.display = 'none';
+        document.getElementById('oculto13').style.display = 'none';
+        document.getElementById('oculto14').style.display = 'none';
+        document.getElementById('ocultoImagen').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
+function imprimirDegustaciones2(){
+    var usuario;
+    for (var i=0; i < arrGlobalRuta.length; i++) {
+    if(arrGlobalRuta[i].id==rutas){
+      ruta3=arrGlobalRuta[i].nombre;
+    }
+    }
+    var dayD = today_v.substring(8,10);
+    var monthD = today_v.substring(5,7);
+    var yearD = today_v.substring(0,4);
+    var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
+    var diaD=(diasemaD.getUTCDay());
+    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[parseInt(monthD)]+" DEL "+yearD+".";
+      convertirNumLetras(total_merc);
+    for(var h=0;h<upin.length; h++){
+      if(pin==upin[h].pin){
+        usuario="CAPTURISTA: <u> <strong>"+ upin[h].usuario+". </strong></u>";
+      }
+  }
+        formatNumber(parseFloat(total_merc));
+        document.getElementById('fondoBlanco').style.display = 'block';
+
+        document.getElementById('oculto').style.display = 'block';
+        document.getElementById('oculto2').style.display = 'block';
+        document.getElementById('oculto3').style.display = 'block';
+        document.getElementById('oculto4').style.display = 'block';
+        document.getElementById('oculto5').style.display = 'block';
+        document.getElementById('oculto6').style.display = 'block';
+        document.getElementById('oculto7').style.display = 'block';
+        document.getElementById('ocultoImagen').style.display = 'block';
+       // document.getElementById('oculto13').style.display = 'block';
+        //document.getElementById('oculto14').style.display = 'block';
+            
+    var nombreVendedor = "PROMOTORIA";
+    var despachadorV = "DESPACHADOR:<strong> "+despachador+"</strong>";
+    var controlC = '<strong class="text-center">CONTROL DE DEGUSTACIONES</strong>';
+  //  var pagare = '<p class="text-justify " >YO _<u> <strong>'+ nombre_vend+'</strong> </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RUBI ALEIDE ORTIZ TORRES EN ESTA CIUDAD EL DIA _<u><strong> '+fechaDespachoD+' </strong></u>_ LA CANTIDAD DE _<u><strong> $ '+cantidad +' ('+cantidadEnTexto+') </strong></u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p>';
+    var fechaDespachoDD ='DESPACHO : <strong>'+fechaDespachoD+'</strong>';
+     var linea =' <p class="text-center">___________________________________________</p>';
+    var vendedorFirma ='<p class="text-center"><strong>'+nombre_vend+'.</strong> </p> ';
+    
+
+         $('.linea').html(linea);
+        $('.vendedorFirma').html(vendedorFirma);
+       
+        //$('.pagareD').html(pagare);
+        $('.controlC').html(controlC);
+        $('.nombreVendedor').html(nombreVendedor);
+        $('.nombreCapturista').html(usuario);
+        $('.nombreDespachador').html(despachadorV);
+        $('.fechaDespacho').html(fechaDespachoDD);
+        window.print();
+        document.getElementById('fondoBlanco').style.display = 'none';
+  
+        document.getElementById('ocultoImagen').style.display = 'none';
+        
+        document.getElementById('oculto').style.display = 'none';
+        document.getElementById('oculto2').style.display = 'none';
+        document.getElementById('oculto3').style.display = 'none';
+        document.getElementById('oculto4').style.display = 'none';
+        document.getElementById('oculto5').style.display = 'none';
+        document.getElementById('oculto6').style.display = 'none';
+        document.getElementById('oculto7').style.display = 'none';
+     //   document.getElementById('oculto13').style.display = 'none';
+      //  document.getElementById('oculto14').style.display = 'none';
+        
+}
 function pagare2(){
     var usuario;
     if(gasolina!=""||gasolina!=undefined||gasolina!=NaN){ 
@@ -1185,7 +1437,7 @@ function loadVendedores(lista){
 function loadAdministracion(lista){
           var html = '';
           for(var h=0;h<lista.length; h++)
-            if(lista[h].tipo != 2&&lista[h].tipo != 100){
+            if(lista[h].tipo != 2&&lista[h].tipo != 100&&lista[h].km != "F"){
               html+= '<tr class=" letras"  data-id="'+ lista[h].id +'"><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' +  t_Empleado[lista[h].tipo-1]  + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].domicilio+ '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].n_seguro + ' </td><td onclick="selectAdministracion2('+ lista[h].id +')">'+lista[h].telp+'</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upEmpleado1('+ lista[h].id +');">EDITAR</button> <button type="button" class="btn btn-danger btn-sm" onclick="delEmpleado('+ lista[h].id +');">ELIMINAR</button></div> </td></tr>';
             }
             $('.contCata').html(html);
@@ -11583,7 +11835,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(1==lista[h].merma&& (scv+1)==lista[h].sfc&&lista[h].horarecepcion!=1&& year==((lista[h].fechadespachof).substring(0,4))){
+                  if("F"!=lista[h].vendedor&&1==lista[h].merma&& (scv+1)==lista[h].sfc&&lista[h].horarecepcion!=1&& year==((lista[h].fechadespachof).substring(0,4))){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -12131,7 +12383,7 @@ function loadMermaG(lista){ //merma general
 
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if("0"==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if("F"!=lista[h].vendedor&&"0"==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                     if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
                      pasa=1;
 
@@ -12343,7 +12595,7 @@ function loadMermaGVendedores(lista){ //merma general
 
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(lista[h].ruta!=0 &&lista[h].horarecepcion!=1&&1==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if("F"!=lista[h].vendedor&&lista[h].ruta!=0 &&lista[h].horarecepcion!=1&&1==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                     if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
                       pasa=1;
                       if(lista[h].dfc==1){
@@ -14400,7 +14652,7 @@ function loadMerma(lista){
               var totalMerma =0 ;
         
               for(var h=0;h<lista.length; h++){
-                if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1&&lista[h].horarecepcion!=1){
+                if("F"!=lista[h].vendedor&&rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1&&lista[h].horarecepcion!=1){
 
                   htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMerma('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
                 totalMerma += parseFloat(lista[h].valorMercancia);
@@ -14427,16 +14679,29 @@ upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
 
 function loadDeg(lista){
               var htmlm = '';
+              var htmlmp = '';
+              var imprimir = '<li class="impre imprimirList text-center"  onclick="imprimirDegustaciones(); ">IMPRIMIR </li>  ';
+               var no=1;
+                  total_merc =0;
               var totalMerma =0 ;
               for(var h=0;h<lista.length; h++){
                 if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].horarecepcion==1){
-                  htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectDeg('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
-                totalMerma += parseFloat(lista[h].valorMercancia);
+                    htmlm+= '<tr class="seleccionar" id ="'+h+'" onclick="cambiarcolor(this); selectVentas('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" data-id="'+ lista[h].id +'"><td>' + lista[h].horadespacho + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda1(lista[h].peso) + '</td><td> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) +'</td></tr>';
+                        htmlmp+= '<tr class=" " style="font-size:8px;"><td class="text-center">' + no + '</td><td class="text-center">' + lista[h].horadespacho + '</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td class="text-right">' +formatoMoneda1(lista[h].peso) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"><strong> $ ' + formatoMoneda1(lista[h].valorMercancia) +'<strong></td></tr>';
+                        total_merc =parseFloat(total_merc) + parseFloat(lista[h].valorMercancia);
+                        no++;
+                        totalMerma += parseFloat(lista[h].valorMercancia);
                 }
               }
+                  htmlmp+= '<tr class=" grisclaro " style="font-size:8px;"><td colspan="6"></td><td class="text-right"><strong> Total: </strong></td><td class="text-right"><strong> $ '+formatoMoneda1(total_merc)+'</strong></td></tr>';
             
                   $(' .contCataDeg').html(htmlm);
+                  $(' .contCataDegp').html(htmlmp);
+                  
                   $(' .totalMerma').html('<h3 class="letras">$ '+formatoMoneda1(totalMerma)+'</h3>');
+                total_merc=totalMerma;
+                 if(htmlmp!=''){
+                  $(' .imprimir').html(imprimir);}
                  arrGlobalMerma=lista;
                 
 var n1 = totalMerma;
@@ -14454,7 +14719,7 @@ function loadMermaP(lista){
               var htmlm = '';
               var totalMerma =0 ;
               for(var h=0;h<lista.length; h++){
-                if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1&&lista[h].horarecepcion!=1){
+                if("F"!=lista[h].vendedor&&rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1&&lista[h].horarecepcion!=1){
                   htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMermaP('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
                 totalMerma += parseFloat(lista[h].valorMercancia);
                 }
@@ -14483,7 +14748,7 @@ function loadMermaP2(lista){
               var htmlm = '';
               var totalMerma =0 ;
               for(var h=0;h<lista.length; h++){
-                if(0==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
+                if("F"!=lista[h].vendedor&&0==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
                   htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMermaP('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
                 totalMerma += parseFloat(lista[h].valorMercancia);
                 }
@@ -14508,7 +14773,7 @@ function loadMermaP3(lista){
               var htmlm = '';
               var totalMerma =0 ;
               for(var h=0;h<lista.length; h++){
-                if(0==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
+                if("F"!=lista[h].vendedor&&0==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
                   htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMermaP3('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
                 totalMerma += parseFloat(lista[h].valorMercancia);
                 }
@@ -14531,15 +14796,29 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 function loadDeg2(lista){
               var htmlm = '';
               var totalMerma =0 ;
+               var htmlmp = '';
+              var imprimir = '<li class="impre imprimirList text-center"  onclick="imprimirDegustaciones2(); ">IMPRIMIR </li>  ';
+               var no=1;
+                  total_merc =0;
+              var totalMerma =0 ;
               for(var h=0;h<lista.length; h++){
                 if(1==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
-                  htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectDeg2('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
-                totalMerma += parseFloat(lista[h].valorMercancia);
+                   htmlm+= '<tr class="seleccionar" id ="'+h+'" onclick="cambiarcolor(this); selectVentas('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" data-id="'+ lista[h].id +'"><td>' + lista[h].horadespacho + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda1(lista[h].peso) + '</td><td> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) +'</td></tr>';
+                        htmlmp+= '<tr class=" " style="font-size:8px;"><td class="text-center">' + no + '</td><td class="text-center">' + lista[h].horadespacho + '</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td class="text-right">' +formatoMoneda1(lista[h].peso) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"><strong> $ ' + formatoMoneda1(lista[h].valorMercancia) +'<strong></td></tr>';
+                        total_merc =parseFloat(total_merc) + parseFloat(lista[h].valorMercancia);
+                        no++;
+                        totalMerma += parseFloat(lista[h].valorMercancia);
                 }
               }
+                  htmlmp+= '<tr class=" grisclaro " style="font-size:8px;"><td colspan="6"></td><td class="text-right"><strong> Total: </strong></td><td class="text-right"><strong> $ '+formatoMoneda1(total_merc)+'</strong></td></tr>';
             
                   $(' .contCataDeg').html(htmlm);
+                  $(' .contCataDegp').html(htmlmp);
                   $(' .totalMerma').html('<h3 class="letras">$ '+formatoMoneda1(totalMerma)+'</h3>');
+                total_merc=totalMerma;
+ if(htmlmp!=''){
+                  $(' .imprimir').html(imprimir);}
+                
                  arrGlobalMerma=lista;
                 
 var n1 = totalMerma;
@@ -15310,6 +15589,7 @@ var sfc=scv;
 var ruta="F";
     var jsonC = {where:{sfc:sfc, ruta:ruta, credito_p:credito_p}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas2);
+    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas2);
   
 }
 function loadFacturas1(lista){
@@ -15371,6 +15651,7 @@ function capturarTotal(id, idVentap, t_venta_merca){
  var ruta="F";
  var jsonC = {where:{fechaf:fechaf, ruta:ruta}}
 
+       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
        executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
        executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
       
@@ -15666,6 +15947,8 @@ function addFacturas1(){
   var fechadespacho = today_vv;
   var fechadespachof = today_v;
   var ruta = "F";
+  var vendedor = "F";
+  var empleado = "F";
   var credito_p = today_v.substring(0,4);
 var t_venta="F"
   var bonificacion_p = "F";
@@ -15684,8 +15967,8 @@ $('#modalFacturas').modal('hide');
    addRegistroA(json2,jsonC, 'ventaspasada', loadFF);
     
 var fechadespachof = fechaf;
-
-      var jsonC = {where:{fechadespachof:fechadespachof}}
+var vendedor = 'F'
+      var jsonC = {where:{fechadespachof:fechadespachof,vendedor:vendedor}}
        executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
       
  //addRegistro2(json2, 'ventaspasada', loadVentasp);
@@ -16614,7 +16897,7 @@ if(noSemana==52&&dc==6){
    
   }else{
 
-      $('#modal .textModal').html('FALTAN DATOS. '); 
+     // $('#modal .textModal').html('FALTAN DATOS. '); 
       $('#modal').modal('show');
   }
 
@@ -17430,6 +17713,8 @@ if(noSemana==52&&dc==6){
   var fechadespacho = today_vv;
   var fechadespachof = today_v;
   var ruta = "F";
+  var empleado = "F";
+  var vendedor = "F";
   var nombre = nombre_vend;
   var tipo = t_vende;
   var credito_p = cred;
@@ -17439,9 +17724,9 @@ if(noSemana==52&&dc==6){
   var v_mercancia = parseFloat(total_mercancia) + parseFloat(valorMercancia);
 
 
-     var jsonC = {where:{fechadespachof:fechadespachof}}
+     var jsonC = {where:{fechadespachof:fechadespachof, vendedor:vendedor}}
   //var jsonC = {where:{merma: merma}}
-  var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+  var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma, vendedor: vendedor, empleado:empleado};
 //alert(merma);
   addRegistroA(json,jsonC, 'ventadiaria', loadProductoF);
      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
@@ -17801,8 +18086,8 @@ var fechaf=today_v;
        executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
 
 var fechadespachof = fechaf;
-
-      var jsonC = {where:{fechadespachof:fechadespachof}}
+var vendedor ="F";
+      var jsonC = {where:{fechadespachof:fechadespachof, vendedor:vendedor}}
        executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
       
  }else{
@@ -17818,8 +18103,8 @@ var ruta="F";
 var fechadespachof=today_v;
  var sfc=scv;
  fechaf=today_v;
-
-  var jsonC = {where:{fechadespachof:fechadespachof}}
+var vendedor ="F";
+  var jsonC = {where:{fechadespachof:fechadespachof,vendedor:vendedor}}
    delRegistroA(idc,jsonC,'ventadiaria', loadProductoF);
  executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
  executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
@@ -19565,6 +19850,7 @@ var json2 = {n5:n5};
 var jsonC = {where:{ruta:ruta}}
 upRegistroA2(idNominaT,json2,jsonC,  'ventaspasada', loadVentasp4);
     executeFunctionDone(json2, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
+    executeFunctionDone(json2, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
 
 
 n1=n11;
@@ -19582,11 +19868,13 @@ var json={cobrado:cobrado}
 
 upRegistroA2(idNominaT, json, json2,'ventaspasada',  loadVentasp4);
     executeFunctionDone(json2, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
+    executeFunctionDone(json2, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
    
 var sfc = (scv+1);
 
   if(scv != ""){
   var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
@@ -19650,6 +19938,7 @@ var sfc = (scv+1);
 
   if(scv != ""){
       var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
@@ -21232,8 +21521,8 @@ function selectMerma(id, valorM,h){
   idGlobal = id;
   idVentas2=id;
   var peso = ' <label class=" impre " >Peso</label><input type="text" id="pesoM" class=" impre form-control clear pesoM" onchange="document.getElementById("addM").focus();" placeholder="">';
- var upventas1='<button type="button" class="btn btn-ventas btn-ventas modificar" onclick="upMerma()">Guardar</button>';
- var delventas1 = '<button type="button" class="btn btn-ventas btn-ventas eliminar" onclick="delMerma()">Eliminar</button>';
+ var upventas1='<button type="button" class="btn btn-ventas btn-ventas modificar" onclick="upMerma()">GUARDAR</button>';
+ var delventas1 = '<button type="button" class="btn btn-ventas btn-ventas eliminar" onclick="delMerma()">ELIMINAR</button>';
   var seleccionado;
   for(var a=0; a<arrGlobalMerma.length; a++){
     if(arrGlobalMerma[a].id == id){
@@ -22150,7 +22439,7 @@ getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar m�
 function click_vehiculos(){
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
-click_CVehicular();
+click_CVehicular()
 }
 function click_mvehicular(){
 $('.btn-nav').removeClass('hidden');
@@ -22290,6 +22579,117 @@ $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>'
 
   }
 
+}
+function click_manuales(){
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ 
+ $('#contenido').load('/html/mManuales.html');
+   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="manualVentas()">VENTAS</li> <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="manualMovimientos(); " role="tab">MOVIMIENTOS  </li> <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="manualInventario() ">INVENTARIO</li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="manualClientes(); ">CLIENTES  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="manualVehiculos();">VEHÍCULOS   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="manualLogistica();">LOGÍSTICA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="manualNomina()">NOMINA  </li>  <span class="border border-white"></span>  <li role="presentation" class="impre productosList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="manualEmpleados()">EMPLEADOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion9" aria-controls="seccion9" data-toggle="tab" role="tab" onclick="manualUsuarios()">USUARIOS  </li>  <span class="border border-white"></span><li role="presentation" class="impre productosList text-center" href="#seccion10" aria-controls="seccion10" data-toggle="tab" role="tab" onclick="manualReportes()">REPORTES  </li>  <span class="border border-white"></span><li role="presentation" class="impre productosList text-center" href="#seccion11" aria-controls="seccion11" data-toggle="tab" role="tab" onclick="manualBitacoras()">BITÁCORAS   </li>  <span class="border border-white"></span><div class="imprimir"></div></ul> </div>');
+     
+//        document.getElementById('loader').style.display = 'block';
+ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+          scv=noSemana;
+    
+      
+var sfc = (scv+1)+"";
+  if(scv != ""){
+
+$('.tituloPantalla').html('<h3 class="nomina"> MANUALES </h3>');
+      var json = {where:{sfc:sfc}}
+     
+
+  }
+
+}
+function manualVentas(){
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ 
+ $('#contenido').load('/html/manualVentas.html');
+     
+
+
+
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL VENTAS </h3>');
+
+
+}
+function manualMovimientos(){
+
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ 
+ $('#contenido').load('/html/manualMovimientos.html');
+     
+
+
+
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL MOVIMIENTOS </h3>');
+
+
+}
+function manualInventario(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/manualInventario.html');
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL INVENTARIO </h3>');
+}
+function manualClientes(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/manualClientes.html');
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL CLIENTES </h3>');
+}
+function manualVehiculos(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/manualVehiculos.html');
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL VEHICULOS </h3>');
+}
+function manualLogistica(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/manualLogistica.html');
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL LOGÍSTICA </h3>');
+}
+function manualNomina(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/manualNomina.html');
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL NOMINA </h3>');
+}
+function manualEmpleados(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/manualEmpleados.html');
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL EMPLEADOS </h3>');
+}
+function manualUsuarios(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/manualUsuarios.html');
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL USUARIOS </h3>');
+}
+function manualReportes(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/manualReportes.html');
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL REPORTES </h3>');
+}
+function manualBitacoras(){
+ $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/manualBitacoras.html');
+$('.tituloPantalla').html('<h3 class="nomina"> MANUAL BITÁCORAS </h3>');
+}
+function abremodal(){ 
+  $("body").append('<div id="modal"> <video> <source src="video.ogg" type="video/ogg"\><source src="video.mp4" type="video/mp4">Tu navegador no implementa el elemento</video><div id="close"> Cerrar </div></div>')
+$( "#close" ).click(function() {
+  $("#modal").remove() ;
+});
 }
 function click_Comision(){
       document.getElementById('loader').style.display = 'block';
@@ -22970,9 +23370,10 @@ function click_bitacoras(){
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mBitacoras.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> BITÁCORAS </h3>');
-$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">1</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">2</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="">3</button></li><div class="imprimir"></div></ul> </div>');
- 
+$('.tituloPantalla').html('<h3 class="ventas impre"> BITÁCORAS </h3>');
+//$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">1</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="" role="tab">2</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="">3</button></li><div class="imprimir"></div></ul> </div>');
+  $('#modal .textModal').html('MODULO EN CONSTRUCCION'); 
+      $('#modal').modal('show');
 
 }
 function click_vendedores(){
@@ -23076,7 +23477,7 @@ function modalDespachador(){
       var selectVe= '<select name="select" class="selectVehiculo col-md-8 form-control"><option value="0"></option>'
 
 for(var h=0;h<arrGlobal2.length; h++)
-    if(arrGlobal2[h].tipo!=2){
+    if(arrGlobal2[h].tipo!=2&&arrGlobal2[h].tipo!=44){
 selectdes+= ' <option value="'+h+'">' +arrGlobal2[h].nombre_Emple + ' ' + arrGlobal2[h].paterno_Emple + ' ' + arrGlobal2[h].materno_Emple +'</option>';
     }
 selectdes +='</select>';
@@ -23237,13 +23638,14 @@ var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 
 var ruta= "F";
+var vendedor= "F";
 var fechaf=today_v;
 var sfc = scv;
 var credito_p=yearD;
   if(ruta!= ""&&fechaf!= ""){
 var fechadespachof = fechaf;
 
-      var jsonC = {where:{fechadespachof:fechadespachof}}
+      var jsonC = {where:{fechadespachof:fechadespachof,vendedor:vendedor}}
        executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
       
     // var jsonC = {where:{fechaf:fechaf, ruta:ruta}}
@@ -23376,7 +23778,7 @@ function activeVenta(){
  
 }
 function click_modalVehiculo(){
-var upDV = '<button type="button" class="btn btn-modals salida2" id="agregarp" onclick="add_Salida2()">Guardar</button>';
+var upDV = '<button type="button" class="btn btn-modals salida2" id="agregarp" onclick="add_Salida2()">GUARDAR</button>';
  
   $("#modalDesp .salida2").html(upDV);
   modalDespachador();
@@ -23464,7 +23866,7 @@ function modalDespachador2(){
       $('#modalDesp2').modal('show');
       var selectdes= '<select name="select" class="selectDespachador col-md-8 form-control"><option value="0" class="primero"></option>'
 for(var hhh=0;hhh<arrGlobal2.length; hhh++)
-    if(arrGlobal2[hhh].tipo!=2){
+    if(arrGlobal2[hhh].tipo!=2&&arrGlobal2[hhh].tipo!=44){
 selectdes+= ' <option value="'+hhh+'">' +arrGlobal2[hhh].nombre_Emple + ' ' + arrGlobal2[hhh].paterno_Emple + ' ' + arrGlobal2[hhh].materno_Emple +'</option>';
     }
 
@@ -23885,7 +24287,17 @@ var json = {efectivo: efectivo};
     upRegistro3(rVendedor, json, 'ventaspasada', loadVentasp3);
     
     getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp3);
+for (var j = 0; j < arrGlobalEmpleados.length; j++) {
+if(arrGlobalE[i].ruta==arrGlobalEmpleados[j].ruta){
+var id= arrGlobalEmpleados[j].id;
+var l_credito = credito_p;
+var l_bon = bonificacion_p;
+var json2 = {l_credito: l_credito, l_bon: l_bon};
+  upRegistro3(id,json2,'empleados',loadEmpleados3)
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 
+}
+}
 
   }
   if (arrGlobalE[i].id==rVendedor && arrGlobalE[i].fechaf==today_vv){
@@ -23900,7 +24312,17 @@ var json = {efectivo: efectivo};
     upRegistro3(rVendedor, json, 'ventaspasada', loadVentasp2);
     
     getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp2);
+for (var j = 0; j < arrGlobalEmpleados.length; j++) {
+if(arrGlobalE[i].ruta==arrGlobalEmpleados[j].ruta){
+var id= arrGlobalEmpleados[j].id;
+var l_credito = credito_p;
+var l_bon = bonificacion_p;
+var json2 = {l_credito: l_credito, l_bon: l_bon};
+  upRegistro3(id,json2,'empleados',loadEmpleados3)
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 
+}
+}
 
   }
   
@@ -23929,7 +24351,17 @@ var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: 
     
     getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp3);
 
+for (var j = 0; j < arrGlobalEmpleados.length; j++) {
+if(arrGlobalE[i].ruta==arrGlobalEmpleados[j].ruta){
+var id= arrGlobalEmpleados[j].id;
+var l_credito = credito_p;
+var l_bon = bonificacion_p;
+var json2 = {l_credito: l_credito, l_bon: l_bon};
+  upRegistro3(id,json2,'empleados',loadEmpleados3)
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 
+}
+}
   }
   if (arrGlobalE[i].id==rVendedor && arrGlobalE[i].fechaf==today_vv){
      if(arrGlobalE[i].otros==null || arrGlobalE[i].otros==undefined){
@@ -23943,7 +24375,17 @@ var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: 
     upRegistro3(rVendedor, json, 'ventaspasada', loadVentasp2);
     
     getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp2);
+for (var j = 0; j < arrGlobalEmpleados.length; j++) {
+if(arrGlobalE[i].ruta==arrGlobalEmpleados[j].ruta){
+var id= arrGlobalEmpleados[j].id;
+var l_credito = credito_p;
+var l_bon = bonificacion_p;
+var json2 = {l_credito: l_credito, l_bon: l_bon};
+  upRegistro3(id,json2,'empleados',loadEmpleados3)
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 
+}
+}
 
   }
   
@@ -23955,6 +24397,7 @@ var json = {creditos: creditos, efectivo: efectivo, f_s_dia: f_s_dia, f_s_real: 
 
 
      limpiar();
+
 
      
 }
@@ -24065,6 +24508,9 @@ function closeModaladdusuario(){
 function closeModal(){
   $('#modal').modal('hide');
 }
+function closeModal2(){
+  $('#modal2').modal('hide');
+}
 function modalInventario(){
 
 
@@ -24073,6 +24519,134 @@ function modalInventario(){
 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
+}
+function modalVentas1(){
+var titulo = 'MAPA'
+var video=' <video controls style="width:100%;" ><source src="videos/video.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalVentas2(){
+var titulo = 'DESPACHO'
+var video=' <video controls style="width:100%;" ><source src="videos/video2.mp4" type="video/mp4">TU NAVEGADOR NO SOPORTA EL VIDEO</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalVentas3(){
+var titulo = 'RECEPCIÓN '
+var video=' <video controls style="width:100%;" ><source src="videos/video3.mp4" type="video/mp4">TU NAVEGADOR NO SOPORTA EL VIDEO</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalVentas4(){
+var titulo = 'PEDIDOS '
+var video=' <video controls style="width:100%;" ><source src="videos/video4.mp4" type="video/mp4">TU NAVEGADOR NO SOPORTA EL VIDEO</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalVentas5(){
+var titulo = 'MERMA '
+var video=' <video controls style="width:100%;" ><source src="videos/video5.mp4" type="video/mp4">TU NAVEGADOR NO SOPORTA EL VIDEO</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalVentas6(){
+var titulo = 'DEGUSTACIONES '
+var video=' <video controls style="width:100%;" ><source src="videos/video6.mp4" type="video/mp4">TU NAVEGADOR NO SOPORTA EL VIDEO</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalMovimientos(){
+var titulo = 'MOVIMIENTOS'
+var video=' <video controls style="width:100%;" ><source src="videos/video7.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalInventarios(){
+var titulo = 'INVENTARIO'
+var video=' <video controls style="width:100%;" ><source src="videos/video8.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalClientes(){
+var titulo = 'CLIENTES'
+var video=' <video controls style="width:100%;" ><source src="videos/video9.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalVehiculos(){
+var titulo = 'VEHICULOS'
+var video=' <video controls style="width:100%;" ><source src="videos/video10.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalLogistica(){
+var titulo = 'LOGÍSTICA'
+var video=' <video controls style="width:100%;" ><source src="videos/video11.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalNomina(){
+var titulo = 'NOMINA'
+var video=' <video controls style="width:100%;" ><source src="videos/video12.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalEmpleados(){
+var titulo = 'EMPLEADOS'
+var video=' <video controls style="width:100%;" ><source src="videos/video13.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalUsuarios(){
+var titulo = 'REPORTES'
+var video=' <video controls style="width:100%;" ><source src="videos/video14.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalReportes(){
+var titulo = 'REPORTES'
+var video=' <video controls style="width:100%;" ><source src="videos/video15.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
+}
+function modalBitacoras(){
+var titulo = 'BITACORAS'
+var video=' <video controls style="width:100%;" ><source src="videos/video16.mp4" type="video/mp4">Tu navegador no soporta el video</video>';
+      $('#modal2 .titleModal').html(titulo);
+      $('#modal2 .textModal').html(video);
+      $('#modal2').modal('show');
+  
 }
 function updateListaModal(){
     var tipo = $("#modalInventario .tipo").val();

@@ -546,7 +546,7 @@
                 
                 <div class=" col-md-12 form-group">
     <label >DESCRIPCIÓN</label>
-    <input type="text" id="nota" onchange="document.getElementById('add').focus();" class="form-control  clear descripcion" placeholder="">
+    <input type="text" onkeyup="mayus(this);" id="nota" onchange="document.getElementById('add').focus();" class="form-control  clear descripcion" placeholder="">
   </div>
 
   <div class="col-sm-3 col-md-3">
@@ -893,7 +893,7 @@
 </div>
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input comprobanted" value="1" name="comprobanted clear" id="comprobanted" > COMPROBANTE DE DOMICILIO DEL AVAL
+    <input type="checkbox" class="form-check-input comprobanted clear" value="1" name="comprobanted" id="comprobanted" > COMPROBANTE DE DOMICILIO DEL AVAL
   </label>
 </div>
 <div class="form-check">
@@ -922,7 +922,6 @@
         </div>
       </div>
 
-
 <div class= "modal fade" tabindex ="-1" role="dialog" id="modalAdministracion">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
@@ -940,81 +939,81 @@
               <div class="row ">
                         
         <div class="col-md-4 form-group">
-          <label class="">Nombre</label>
-          <input type="text" class="form-control clear nombre" placeholder="Nombre">
+          <label class="">NOMBRE</label>
+          <input type="text" class="form-control clear nombre" placeholder="">
         </div>
         <div class="col-md-4 form-group">
-          <label class="">Apellido Paterno</label>
-          <input type="text" class="form-control clear a_paterno" placeholder="Apellido Paterno">
+          <label class="">APELLIDO PATERNO</label>
+          <input type="text" class="form-control clear a_paterno" placeholder="">
         </div>
         <div class="col-md-4 form-group">
-          <label class="">Apellido Materno</la55bel>
-          <input type="text" class="form-control clear a_materno" placeholder="Apellido Materno">
+          <label class="">APELLIDO MATERNO</la55bel>
+          <input type="text" class="form-control clear a_materno" placeholder="">
         </div>
         <div class="col-md-4 form-group">
-          <label class="">Fecha de nacimiento</label>
+          <label class="">FECHA DE NACIMIENTO</label>
           <input type="date" class="form-control clear fnacimiento" placeholder="">
         </div>
         <div class="col-md-4 form-group">
-          <label class="">N. Seguro Social</label>
-          <input type="text" class="form-control clear n_seguro" placeholder="Seguro Social">
+          <label class="">N. SEGURO SOCIAL </label>
+          <input type="text" class="form-control clear n_seguro" placeholder="">
         </div>
         <div class="col-md-4 form-group">
-          <label class="">Curp</label>
-          <input type="text" class="form-control clear curp" placeholder="Curp">
+          <label class="">CURP</label>
+          <input type="text" class="form-control clear curp" placeholder="">
         </div>
         <div class="col-md-4 form-group">
-          <label class="">Domicilio</label>
-          <input type="text" class="form-control clear domicilio" placeholder="Domicilio">
+          <label class="">DOMICILIO</label>
+          <input type="text" class="form-control clear domicilio" placeholder="">
         </div>
         <div class=" col-md-4 form-group">
              <label class="">RFC</label>
-             <input type="text" class="form-control clear rfc" placeholder="RFC">
+             <input type="text" class="form-control clear rfc" placeholder="">
           </div>
        <div class="col-md-4 form-group exp">
-          <label class="">Tipo de contrato</label><input type="text" class="form-control clear tipocontrato" placeholder="Tipo">
+          <label class="">TIPO DE CONTRATO</label><input type="text" class="form-control clear tipocontrato" placeholder="">
         </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Inicio del contrato</label><input type="date" class="form-control clear iniciocontrato" placeholder="Expiración">
+          <label class="">INICIO DE CONTRATO</label><input type="date" class="form-control clear iniciocontrato" placeholder="">
         </div>
         <div class="col-md-4 form-group exp">
-          <label class="">Fin del contrato</label><input type="date" class="form-control clear fincontrato" placeholder="Expiración">
+          <label class="">FIN DE CONTRATO</label><input type="date" class="form-control clear fincontrato" placeholder="">
         </div>
         <div class="col-md-4 form-group">
-          <label class="">Tipo de Empleado</label>
+          <label class="">TIPO DE EMPLEADO</label>
           <select class="form-control clear tipoempleado" onchange="">
-            <option value="1">Ayudante General</option>
+            <option value="1">AYUDANTE GENERAL</option>
            
-            <option value="3">Gerente de Ventas</option>
-            <option value="4">Gerente de Operaciones</option>
-            <option value="5">Supervisor</option>
-            <option value="6">Administrador</option>
-            <option value="7">Consejo</option>
+            <option value="3">GERENTE DE VENTAS</option>
+            <option value="4">GERENTE DE OPERACIONES</option>
+            <option value="5">SUPERVISOR</option>
+            <option value="6">ADMINISTRADOR</option>
+            <option value="7">CONSEJO</option>
             </select>
         </div>
 
        <div class="col-md-4 form-group licencia">
-          <label class="">Teléfono Personal</label><input type="phone" class="form-control clear telp" placeholder="" >
+          <label class="">TELÉFONO PERSONAL </label><input type="phone" class="form-control clear telp" placeholder="" >
         </div>
         <div class="col-md-4 form-group licencia">
-          <label class="">Teléfono Local</label><input type="phone" class="form-control clear tell" placeholder="" >
+          <label class="">TELÉFONO LOCAL</label><input type="phone" class="form-control clear tell" placeholder="" >
         </div>
              <div class="col-md-4 form-group licencia">
-          <label class="">Fecha de Ingreso</label><input type="date" class="form-control clear ingreso" placeholder="" >
+          <label class="">FECHA DE INGRESO</label><input type="date" class="form-control clear ingreso" placeholder="" >
         </div>
         <div class="col-md-4 form-group licencia">
-          <label class="">Vacaciones</label><input type="date" class="form-control clear vacaciones clear" placeholder="" >
+          <label class="">VACACIONES</label><input type="date" class="form-control clear vacaciones clear" placeholder="" >
         </div>
         <div class="col-md-4 form-group licencia">
-          <label class="">Renuncia</label><input type="date" class="form-control clear renuncia clear" placeholder="" >
+          <label class="">RENUNCIA</label><input type="date" class="form-control clear renuncia clear" placeholder="" >
         </div>
         <div class="col-md-4 form-group licencia">
-          <label class="">Reingresos</label><input type="text" class="form-control clear reingresos clear" placeholder="" >
+          <label class="">REINGRESOS</label><input type="text" class="form-control clear reingresos clear" placeholder="" >
         </div>
         <div class="col-md-12 form-group licencia">
-          <label class="">Razón de renuncia</label><input type="text" class="form-control clear razon clear" placeholder="" >
+          <label class="">RAZÓN DE RENUNCIA </label><input type="text" class="form-control clear razon clear" placeholder="" >
           <br>
-         <label class="">Papelería</label>
+         <label class="">PAPELERÍA </label>
         </div>
         <div class="col-md-6 form-group licencia">
          
@@ -1036,7 +1035,7 @@
 </div>
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input rfc2" value="1" name="rfc2" id="rfc2 clear" > RFC
+    <input type="checkbox" class="form-check-input rfc2 clear" value="1" name="rfc2" id="rfc2 " > RFC
   </label>
 </div>
 <div class="form-check">
@@ -1065,7 +1064,7 @@
         <div class="col-md-6 form-group ">
            <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input recomendaciones" value="1" name="Recomendaciones" id="recomendaciones clear" > Dos recomendaciones Laborales
+    <input type="checkbox" class="clear form-check-input recomendaciones" value="1" name="Recomendaciones" id="recomendaciones " > Dos recomendaciones Laborales
   </label>
 </div>
 <div class="form-check">
@@ -1095,8 +1094,178 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" onclick="closeEmpleado()">Cancelar</button>
-               <div class="addEmpleado1"><button type="button" class="btn btn-success " id="agregarp" onclick="addEmpleado()">Guardar</button></div>
+               <button type="button" class="btn btn-default" onclick="closeEmpleado()">CANCELAR</button>
+               <div class="addEmpleado1"><button type="button" class="btn btn-success " id="agregarp" onclick="addEmpleado()">GUARDAR</button></div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalFabrica">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header ">
+            
+              <h2 class="modal-title ">FABRICA</h2>
+            
+             
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+             
+              <div class="row ">
+                        
+        <div class="col-md-4 form-group">
+          <label class="">NOMBRE</label>
+          <input type="text" class="form-control clear nombre" placeholder="">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">APELLIDO PATERNO</label>
+          <input type="text" class="form-control clear a_paterno" placeholder="">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">APELLIDO MATERNO</la55bel>
+          <input type="text" class="form-control clear a_materno" placeholder="">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">FECHA DE NACIMIENTO</label>
+          <input type="date" class="form-control clear fnacimiento" placeholder="">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">N. SEGURO SOCIAL </label>
+          <input type="text" class="form-control clear n_seguro" placeholder="">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">CURP</label>
+          <input type="text" class="form-control clear curp" placeholder="">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="">DOMICILIO</label>
+          <input type="text" class="form-control clear domicilio" placeholder="">
+        </div>
+        <div class=" col-md-4 form-group">
+             <label class="">RFC</label>
+             <input type="text" class="form-control clear rfc" placeholder="">
+          </div>
+       <div class="col-md-4 form-group exp">
+          <label class="">TIPO DE CONTRATO</label><input type="text" class="form-control clear tipocontrato" placeholder="">
+        </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">INICIO DE CONTRATO</label><input type="date" class="form-control clear iniciocontrato" placeholder="">
+        </div>
+        <div class="col-md-4 form-group exp">
+          <label class="">FIN DE CONTRATO</label><input type="date" class="form-control clear fincontrato" placeholder="">
+        </div>
+        
+
+       <div class="col-md-4 form-group licencia">
+          <label class="">TELÉFONO PERSONAL </label><input type="phone" class="form-control clear telp" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">TELÉFONO LOCAL</label><input type="phone" class="form-control clear tell" placeholder="" >
+        </div>
+             <div class="col-md-4 form-group licencia">
+          <label class="">FECHA DE INGRESO</label><input type="date" class="form-control clear ingreso" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">VACACIONES</label><input type="date" class="form-control clear vacaciones clear" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">RENUNCIA</label><input type="date" class="form-control clear renuncia clear" placeholder="" >
+        </div>
+        <div class="col-md-4 form-group licencia">
+          <label class="">REINGRESOS</label><input type="text" class="form-control clear reingresos clear" placeholder="" >
+        </div>
+        <div class="col-md-12 form-group licencia">
+          <label class="">RAZÓN DE RENUNCIA </label><input type="text" class="form-control clear razon clear" placeholder="" >
+          <br>
+         <label class="">PAPELERÍA </label>
+        </div>
+        <div class="col-md-6 form-group licencia">
+         
+
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input solicitud clear" name="solicitud" value="1" id="solicitud"> Solicitud
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input ine2 clear" value="1" name="ine2" id="ine2" > INE
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input curp2 clear" value="1" name="curp2" id="curp2" > CURP
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input rfc2 clear" value="1" name="rfc2" id="rfc2" > RFC
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input nss clear" value="1" name="nss" id="nss" > NSS
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input acta clear" value="1" name="acta" id="acta" > Acta De Nacimiento Nuevo Formato
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input cdomicilio clear" value="1" name="cdomicilio" id="cdomicilio" > Comprobante De Domicilio
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input foto clear" value="1" name="foto" id="foto" > Foto A Color
+  </label>
+</div>
+
+
+        </div>
+        <div class="col-md-6 form-group ">
+           <div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input recomendaciones clear" value="1" name="Recomendaciones" id="recomendaciones" > Dos recomendaciones Laborales
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input licenciac clear" value="1" name="licencia" id="licencia" > Licencia De Conducir
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input antecedentes clear" value="1" name="antecedentes" id="antecedentes" > Carta De No Antecedentes Penales
+  </label>
+</div>
+
+        </div>
+
+
+              
+
+              
+   
+
+                
+              </div>
+              <br>
+      
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="closeFabrica()">CANCELAR</button>
+               <div class="addEmpleado1"><button type="button" class="btn btn-success " id="agregarp" onclick="addFabrica()">GUARDAR</button></div>
                
             </div>
           </div>

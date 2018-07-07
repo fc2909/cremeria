@@ -1176,7 +1176,7 @@ function loadVendedores(lista){
                   ruta3=arrGlobalRuta[i].nombre;
                 }
               }
-              html+= '<tr class="seleccionar"  data-id="'+ lista[h].id +'"> <td onclick="selectVendedores2('+  lista[h].id +')">' +lista[h].idEmpleados  + '</td> <td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onclick="selectVendedores2('+  lista[h].id +')">' +ruta3  + '</td> <td onclick="selectVendedores2('+ lista[h].id +')">' + t_ventas[lista[h].t_venta - 1] + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_credito + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_bon + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].merma +'</td><td onclick="selectVendedores2('+ lista[h].id +')">'+lista[h].telp+'</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upVendedor1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delVendedor('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
+              html+= '<tr class="seleccionar"  data-id="'+ lista[h].id +'"> <td onclick="selectVendedores2('+  lista[h].id +')">' +lista[h].idEmpleados  + '</td> <td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onclick="selectVendedores2('+  lista[h].id +')">' +ruta3  + '</td> <td onclick="selectVendedores2('+ lista[h].id +')">' + t_ventas[lista[h].t_venta - 1] + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_credito + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_bon + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].merma +'</td><td onclick="selectVendedores2('+ lista[h].id +')">'+lista[h].telp+'</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upVendedor1('+ lista[h].id +');">EDITAR</button> <button type="button" class="btn btn-danger btn-sm" onclick="delVendedor('+ lista[h].id +', '+lista[h].ruta+');">ELIMINAR</button></div> </td></tr>';
             
             }
             $('.contCata').html(html);
@@ -1185,8 +1185,17 @@ function loadVendedores(lista){
 function loadAdministracion(lista){
           var html = '';
           for(var h=0;h<lista.length; h++)
-            if(lista[h].tipo != 2){
-              html+= '<tr class=" letras"  data-id="'+ lista[h].id +'"><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' +  t_Empleado[lista[h].tipo-1]  + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].domicilio+ '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].n_seguro + ' </td><td onclick="selectAdministracion2('+ lista[h].id +')">'+lista[h].telp+'</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upEmpleado1('+ lista[h].id +');">Editar</button> <button type="button" class="btn btn-danger btn-sm" onclick="delEmpleado('+ lista[h].id +');">Eliminar</button></div> </td></tr>';
+            if(lista[h].tipo != 2&&lista[h].tipo != 100){
+              html+= '<tr class=" letras"  data-id="'+ lista[h].id +'"><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' +  t_Empleado[lista[h].tipo-1]  + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].domicilio+ '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].n_seguro + ' </td><td onclick="selectAdministracion2('+ lista[h].id +')">'+lista[h].telp+'</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upEmpleado1('+ lista[h].id +');">EDITAR</button> <button type="button" class="btn btn-danger btn-sm" onclick="delEmpleado('+ lista[h].id +');">ELIMINAR</button></div> </td></tr>';
+            }
+            $('.contCata').html(html);
+            arrGlobal = lista;
+}
+function loadFabrica(lista){
+          var html = '';
+          for(var h=0;h<lista.length; h++)
+            if(lista[h].tipo == 100){
+              html+= '<tr class=" letras"  data-id="'+ lista[h].id +'"><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].domicilio+ '</td><td onclick="selectAdministracion2('+ lista[h].id +')">' + lista[h].n_seguro + ' </td><td onclick="selectAdministracion2('+ lista[h].id +')">'+lista[h].telp+'</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upFabrica1('+ lista[h].id +');">EDITAR</button> <button type="button" class="btn btn-danger btn-sm" onclick="delFabrica('+ lista[h].id +');">ELIMINAR</button></div> </td></tr>';
             }
             $('.contCata').html(html);
             arrGlobal = lista;
@@ -8249,6 +8258,1498 @@ anter=0;
    }
 prodT=0;
 }
+
+
+function loadVDiariaProductos(lista){ //venta general
+              var html = '';
+              var htmlp = '';
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  
+                  
+                    if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                    
+                      pasa=1;
+                      
+                        if(lista[h].medida==1){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        }
+                        if(lista[h].medida==2){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                        }
+                        if(lista[h].medida==3){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                          }
+                        
+                      
+                       
+                      }
+                    }
+              if((lista.length-1)==h&&pasa==1){
+              var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+              var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+                if(l==0){l=""}else{l=formatoMoneda1(l)}
+                if(lp==0){lp=""}else{lp=formatoMoneda2(lp)}
+                if(m==0){m=""}else{m=formatoMoneda1(m)}
+                if(mp==0){mp=""}else{mp=formatoMoneda2(mp)}
+                if(x==0){x=""}else{x=formatoMoneda1(x)}
+                if(xp==0){xp=""}else{xp=formatoMoneda2(xp)}
+                if(j==0){j=""}else{j=formatoMoneda1(j)}
+                if(jp==0){jp=""}else{jp=formatoMoneda2(jp)}
+                if(v==0){v=""}else{v=formatoMoneda1(v)}
+                if(vp==0){vp=""}else{vp=formatoMoneda2(vp)}
+                if(s==0){s=""}else{s=formatoMoneda1(s)}
+                if(sp==0){sp=""}else{sp=formatoMoneda2(sp)}
+                if(suma==0){suma=""}else{suma=formatoMoneda1(suma)}
+                if(suma2==0){suma2=""}else{suma2=formatoMoneda2(suma2)}
+                  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td> '+lp+'</td><td>'+m+' </td><td>'+mp+'</td><td>'+ x +' </td><td>'+xp+' </td><td>'+ j+' </td><td>'+jp+'  </td><td>'+ v +' </td><td>'+vp+' </td><td>'+ s +'</td><td> '+sp+' </td><td style="background:green;">'+suma+'</td><td style="background:green;"> '+suma2+' </td></tr>';
+                  htmlp+= '<tr style="font-size:8px;" ><td class="grisclaro">' +  arrGlobalInventario[hh].descripcion +'</td><td class="text-right">'+ l +'</td><td class="text-right">'+lp+'</td><td class="text-right">'+m+'</td><td class="text-right">'+mp+'</td><td class="text-right">'+x +'</td><td class="text-right">'+xp+'</td><td class="text-right">'+j+'</td><td class="text-right">'+jp+'</td><td class="text-right">'+v+'</td><td class="text-right">'+vp+'</td><td class="text-right">'+ s+'</td><td class="text-right">'+sp+'</td><td class="text-right">'+suma+'</td><td class="text-right">'+suma2+' </td></tr>';
+                  l=0;
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+                  cambio =1;  
+                  }
+                }
+                  cambio =0;  
+                  pasa=0;
+                }
+                  $('.contCataR').html(html);
+                  $('.ventaDiariaSemanal').html(htmlp);
+        document.getElementById('loader').style.display = 'none';
+
+}
+
+function loadVentaDiariaMayoreoProductos(lista){ //por mayoreo
+          prodTotales = new Array(100);
+          credi=0;
+          boni=0;
+          s_vent=0;
+          var lista2=lista;
+                    var html = '';
+          var htmlP = '';
+           var identificacion='';
+           var identificacionP='';
+          var bonificacionT=0;
+          var t_venta_mercaT=0;
+          var mer;
+          var pNoVenta;
+          var creditosT=0; 
+          var bonificacionTotal=0; 
+          var ventasT=0; 
+          var productoTotalS=""; 
+          var productoTotal=0; 
+          var productoTotal2=0; 
+          var productoTotalP=0; 
+          var prodT = new Array(100);
+          var porcentajeTotal=0;
+          var credits=0;
+          var encuentra=0;
+          var diferenciaT=0;
+          var pasa2=0;
+          var rut;
+          var titulos22='';
+          var titulos23='';
+          var arrGlobalEmpleados2= arrGlobalEmpleados;
+      for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+        if(arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
+          
+       for(var j=0;j<arrGlobalF.length; j++){
+
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+          for (var i=0; i < arrGlobalRuta.length; i++) {
+            if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
+              ruta3=arrGlobalRuta[i].nombre;
+              rutas=arrGlobalF[j].ruta;
+            }
+          }
+          mer=arrGlobalF[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          pNoVenta=((mer-arrGlobalF[j].t_venta_merca)*100)/parseFloat(arrGlobalF[j].t_venta_merca);
+          diferenciaT+=( parseFloat(mer) - parseFloat(arrGlobalF[j].t_venta_merca));
+    
+          
+          if(arrGlobalF[j].t_venta_merca==0)pNoVenta=100;
+          if(arrGlobalF[j].t_venta_merca==0)diferenciaT=0;
+if(arrGlobalF[j].otros==null||arrGlobalF[j].otros==NaN||arrGlobalF[j].otros==undefined){
+  bonificacionT+=parseFloat(0);
+  
+}else{
+  bonificacionT+=parseFloat(arrGlobalF[j].otros);
+  
+}
+          t_venta_mercaT+=parseFloat(arrGlobalF[j].t_venta_merca);
+
+
+
+if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].creditos==undefined){
+  credits=0
+  
+}else{
+  credits=arrGlobalF[j].creditos;
+  
+}
+if(diferenciaT==0){
+porcentajeTotal=0;
+}else{
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  
+}
+pasa2=1;
+  encuentra=1; 
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >$ ' + formatoMoneda1(credits)+ '</td> <td >$ ' + formatoMoneda1(bonificacionT)+ '</td>  <td > % ' + formatoMoneda1(porcentajeTotal) + '</td> <td >$ ' + formatoMoneda1(t_venta_mercaT)+ '</td>';
+identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td class="text-right">$ ' + formatoMoneda1(credits) + '</td> <td class="text-right">$ ' + formatoMoneda1(bonificacionT) + '</td>  <td class="text-right"> % ' + formatoMoneda1(porcentajeTotal) + '</td> <td class="text-right">$ ' + formatoMoneda1(t_venta_mercaT) + '</td>';
+      
+        }
+
+        }
+ventasT+=t_venta_mercaT;
+creditosT+=parseFloat(credits);
+bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
+diferenciaT=0;
+t_venta_mercaT=0;
+        var productosT="";
+        var productosTP="";
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+              var nombre='';
+              var bor='';
+              var titulos=""; 
+              var titulosP=""; 
+              var prod = new Array(0);
+              var prodN = new Array(0);
+              var prodC = new Array(0);
+              var prodNum = new Array(0);
+              var prodNum2 = new Array(0);
+              var prodNumFinal; 
+              var prodNumFinal2;
+              var productoTotal3='';
+
+              ////////////////////////////////////////////////////////////////
+
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(lista[h].ruta==arrGlobalEmpleados[hh2].ruta&&pasa2==1&&lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  cambio=lista[h].idProducto;
+                  nombre=lista[h].descripcionventa;
+                for(var p=0;p< prod.length; p++){
+                  if(prod[p]==cambio){
+                  sp=1;
+                  }
+//                  
+                  }
+                  
+                    if(sp==0){
+                      prod.push(cambio);
+                      prodN.push(0);
+                      prodC.push(nombre);
+                 for(var p=0;p< prod.length; p++){
+                  if(prod[p]==cambio){
+                    for(var r=0;r< lista2.length; r++){
+                 
+                  if(lista2[r].ruta==arrGlobalEmpleados[hh2].ruta&&prod[p]==lista2[r].idProducto&&(scv+1)==lista2[r].sfc&&lista2[r].fecharecepcion!=null&&year==((lista2[r].fechadespachof).substring(0,4))){
+                  
+                        if(lista2[r].medida==1){
+                          //l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+
+                          l+=(parseFloat(lista2[r].peso)-parseFloat(lista2[r].pesov));
+                       // alert(prod[p]+' - '+lista2[r].sfc+' - '+lista2[r].ruta+' - '+lista2[r].descripcionventa+' = '+l);
+                        }
+                        if(lista2[r].medida==2){
+                          l+=(parseFloat(lista2[r].piezas)-parseFloat(lista2[r].piezasv));
+                          //lp+=0;
+                        }
+                        if(lista2[r].medida==3){
+                          l+=(parseFloat(lista2[r].piezas)-parseFloat(lista2[r].piezasv));
+                          //lp+=0;
+                          }
+                             pasa=1;
+                  }
+//                  
+                  }
+                  prodN[p]+=parseFloat(l);
+                  
+                l=0;
+                      }
+                    }
+
+                    }
+                      
+                      sp=0;
+
+////////////////////////////////////Titulos////////////////////////////////////////////
+for(var hh3=0;hh3<arrGlobalEmpleados2.length; hh3++){
+        if(arrGlobalEmpleados2[hh3].tipo==2&&arrGlobalEmpleados2[hh3].estado==1){
+
+for(var h2=0;h2<lista2.length; h2++){
+     if(lista2[h2].ruta==arrGlobalEmpleados2[hh3].ruta&&pasa2==1&&lista2[h2].fecharecepcion!=null&&0==lista2[h2].merma&&(scv+1)==lista2[h2].sfc&&year==((lista2[h2].fechadespachof).substring(0,4))){
+                  cambio=lista2[h2].idProducto;
+                  nombre=lista2[h2].descripcionventa;
+                for(var p=0;p< prodNum.length; p++){
+                  if(prodNum[p]==cambio){
+                  sp=1;
+                  }
+//                  
+                  }
+                  
+                    if(sp==0){
+                      prodNum.push(cambio);
+                      prodNum2.push(nombre);
+                 
+                    }                
+                      sp=0;                     
+                    }          
+                  cambio =1;    
+                }}}
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+                     
+                       
+                      
+                    }
+          
+                
+                  cambio =1;  
+                  
+                }
+                  cambio =0;  
+                  pasa=0;
+
+                }
+                 pasa2=0;
+              ////////////////////////////////////////////////////////////////
+              
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+cantidadproducto=0;
+var su=0;
+if(titulos22==''){
+if(prod.length>0){
+   for(var p=0;p< prodNum2.length; p++){
+              
+                  titulos22+='<th class="text-center">'+prodNum2[p]+'</th>';
+//              
+                  }
+}
+
+productoTotal2 = new Array(prodNum.length);
+}
+
+
+
+
+
+
+
+prodNumFinal = new Array(prodNum.length);
+prodNumFinal2 = new Array(prodNum.length);
+
+
+var bor2='';
+if(prodNum.length>0){
+ for(var p=0;p< prodNum.length; p++){
+  if(prodNumFinal[p]==NaN||prodNumFinal[p]==null||prodNumFinal[p]==undefined||prodNumFinal[p]==""){
+         prodNumFinal[p]=0;
+       }
+ for(var p3=0;p3< prod.length; p3++){
+       if(prodNum[p]==prod[p3]){
+         prodNumFinal[p]=prodN[p3];
+
+        
+       }
+
+       }  
+
+       if(productoTotal2[p]==NaN||productoTotal2[p]==null||productoTotal2[p]==undefined||productoTotal2[p]==""){
+         productoTotal2[p]=0;
+       }
+  
+       productoTotal2[p]+=parseFloat(prodNumFinal[p]);
+       
+                 bor+='<td class="text-center">'+ formatoMoneda1(prodNumFinal[p])+'</td>';
+                 productoTotal3+='<td class="text-center">'+ formatoMoneda1(productoTotal2[p])+'</td>';
+                 bor2+='<td class="text-center">'+ formatoMoneda1(prodNumFinal[p])+'</td>';
+
+//bor2+=' - '+ prodNum[p]+' - '+prodNum2[p];        
+                  }
+
+   //alert(bor2);
+
+                }
+               
+           
+       
+        prodN=0;
+         prodC=0;
+         prod =0;
+              
+         if(identificacion==''){html=html;}else{
+
+
+
+ 
+                  
+//            
+
+
+          html+=identificacion+bor+'</tr>';
+          htmlP+=identificacionP+bor+'</tr>';
+          productoTotalS=productoTotal3;
+          productoTotalSP=productoTotalP;
+          
+         }
+
+        productosT='';
+        productosTP='';
+        identificacion='';
+        identificacionP='';
+        bonificacionT=0;
+        credits=0;
+        t_venta_mercaT=0;
+       }
+
+     }
+
+
+
+             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">___CRÉDITOS___</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">________VENTA________</th>'+titulos22;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">________VENTA________</th>'+titulos22;
+         
+if(html!=""){
+          credi+= parseFloat(creditosT);
+          boni+=parseFloat(bonificacionTotal);
+          s_vent+=parseFloat(ventasT);
+
+
+
+  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
+htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
+var renglon = 7+parseInt(arrGlobalCategoria.length)
+
+htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
+
+}
+
+              if(html==undefined){html='';}else{
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataMayoreo').html(html); 
+               $('.contCataMayoreoP').html(htmlP); 
+              }
+for(var w=0;w<prodTotales.length; w++){
+   var anter =prodT[w];
+         if(anter!=(undefined||NaN||""||null)){anter=prodT[w];}else{
+anter=0;
+         }
+     prodTotales[w]+=parseFloat(anter);
+   
+   }
+prodT=0;
+  document.getElementById('loader').style.display = 'block';
+
+}
+
+function loadVentaDiariaRestauranteProductos(lista){ //por mayoreo
+          prodTotales = new Array(100);
+          credi=0;
+          boni=0;
+          s_vent=0;
+          var lista2=lista;
+                    var html = '';
+          var htmlP = '';
+           var identificacion='';
+           var identificacionP='';
+          var bonificacionT=0;
+          var t_venta_mercaT=0;
+          var mer;
+          var pNoVenta;
+          var creditosT=0; 
+          var bonificacionTotal=0; 
+          var ventasT=0; 
+          var productoTotalS=""; 
+          var productoTotal=0; 
+          var productoTotal2=0; 
+          var productoTotalP=0; 
+          var prodT = new Array(100);
+          var porcentajeTotal=0;
+          var credits=0;
+          var encuentra=0;
+          var diferenciaT=0;
+          var pasa2=0;
+          var rut;
+          var titulos22='';
+          var titulos23='';
+          var arrGlobalEmpleados2= arrGlobalEmpleados;
+      for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+        if(arrGlobalEmpleados[hh2].t_venta==4&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
+          
+       for(var j=0;j<arrGlobalF.length; j++){
+
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+          for (var i=0; i < arrGlobalRuta.length; i++) {
+            if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
+              ruta3=arrGlobalRuta[i].nombre;
+              rutas=arrGlobalF[j].ruta;
+            }
+          }
+          mer=arrGlobalF[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          pNoVenta=((mer-arrGlobalF[j].t_venta_merca)*100)/parseFloat(arrGlobalF[j].t_venta_merca);
+          diferenciaT+=( parseFloat(mer) - parseFloat(arrGlobalF[j].t_venta_merca));
+    
+          
+          if(arrGlobalF[j].t_venta_merca==0)pNoVenta=100;
+          if(arrGlobalF[j].t_venta_merca==0)diferenciaT=0;
+if(arrGlobalF[j].otros==null||arrGlobalF[j].otros==NaN||arrGlobalF[j].otros==undefined){
+  bonificacionT+=parseFloat(0);
+  
+}else{
+  bonificacionT+=parseFloat(arrGlobalF[j].otros);
+  
+}
+          t_venta_mercaT+=parseFloat(arrGlobalF[j].t_venta_merca);
+
+
+
+if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].creditos==undefined){
+  credits=0
+  
+}else{
+  credits=arrGlobalF[j].creditos;
+  
+}
+if(diferenciaT==0){
+porcentajeTotal=0;
+}else{
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  
+}
+pasa2=1;
+  encuentra=1; 
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >$ ' + formatoMoneda1(credits)+ '</td> <td >$ ' + formatoMoneda1(bonificacionT)+ '</td>  <td > % ' + formatoMoneda1(porcentajeTotal) + '</td> <td >$ ' + formatoMoneda1(t_venta_mercaT)+ '</td>';
+identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td class="text-right">$ ' + formatoMoneda1(credits) + '</td> <td class="text-right">$ ' + formatoMoneda1(bonificacionT) + '</td>  <td class="text-right"> % ' + formatoMoneda1(porcentajeTotal) + '</td> <td class="text-right">$ ' + formatoMoneda1(t_venta_mercaT) + '</td>';
+      
+        }
+
+        }
+ventasT+=t_venta_mercaT;
+creditosT+=parseFloat(credits);
+bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
+diferenciaT=0;
+t_venta_mercaT=0;
+        var productosT="";
+        var productosTP="";
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+              var nombre='';
+              var bor='';
+              var titulos=""; 
+              var titulosP=""; 
+              var prod = new Array(0);
+              var prodN = new Array(0);
+              var prodC = new Array(0);
+              var prodNum = new Array(0);
+              var prodNum2 = new Array(0);
+              var prodNumFinal; 
+              var prodNumFinal2;
+              var productoTotal3='';
+
+              ////////////////////////////////////////////////////////////////
+
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(lista[h].ruta==arrGlobalEmpleados[hh2].ruta&&pasa2==1&&lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  cambio=lista[h].idProducto;
+                  nombre=lista[h].descripcionventa;
+                for(var p=0;p< prod.length; p++){
+                  if(prod[p]==cambio){
+                  sp=1;
+                  }
+//                  
+                  }
+                  
+                    if(sp==0){
+                      prod.push(cambio);
+                      prodN.push(0);
+                      prodC.push(nombre);
+                 for(var p=0;p< prod.length; p++){
+                  if(prod[p]==cambio){
+                    for(var r=0;r< lista2.length; r++){
+                 
+                  if(lista2[r].ruta==arrGlobalEmpleados[hh2].ruta&&prod[p]==lista2[r].idProducto&&(scv+1)==lista2[r].sfc&&lista2[r].fecharecepcion!=null&&year==((lista2[r].fechadespachof).substring(0,4))){
+                  
+                        if(lista2[r].medida==1){
+                          //l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+
+                          l+=(parseFloat(lista2[r].peso)-parseFloat(lista2[r].pesov));
+                       // alert(prod[p]+' - '+lista2[r].sfc+' - '+lista2[r].ruta+' - '+lista2[r].descripcionventa+' = '+l);
+                        }
+                        if(lista2[r].medida==2){
+                          l+=(parseFloat(lista2[r].piezas)-parseFloat(lista2[r].piezasv));
+                          //lp+=0;
+                        }
+                        if(lista2[r].medida==3){
+                          l+=(parseFloat(lista2[r].piezas)-parseFloat(lista2[r].piezasv));
+                          //lp+=0;
+                          }
+                             pasa=1;
+                  }
+//                  
+                  }
+                  prodN[p]+=parseFloat(l);
+                  
+                l=0;
+                      }
+                    }
+
+                    }
+                      
+                      sp=0;
+
+////////////////////////////////////Titulos////////////////////////////////////////////
+for(var hh3=0;hh3<arrGlobalEmpleados2.length; hh3++){
+        if(arrGlobalEmpleados2[hh3].t_venta==4&&arrGlobalEmpleados2[hh3].tipo==2&&arrGlobalEmpleados2[hh3].estado==1){
+
+for(var h2=0;h2<lista2.length; h2++){
+     if(lista2[h2].ruta==arrGlobalEmpleados2[hh3].ruta&&pasa2==1&&lista2[h2].fecharecepcion!=null&&0==lista2[h2].merma&&(scv+1)==lista2[h2].sfc&&year==((lista2[h2].fechadespachof).substring(0,4))){
+                  cambio=lista2[h2].idProducto;
+                  nombre=lista2[h2].descripcionventa;
+                for(var p=0;p< prodNum.length; p++){
+                  if(prodNum[p]==cambio){
+                  sp=1;
+                  }
+//                  
+                  }
+                  
+                    if(sp==0){
+                      prodNum.push(cambio);
+                      prodNum2.push(nombre);
+                 
+                    }                
+                      sp=0;                     
+                    }          
+                  cambio =1;    
+                }}}
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+                     
+                       
+                      
+                    }
+          
+                
+                  cambio =1;  
+                  
+                }
+                  cambio =0;  
+                  pasa=0;
+
+                }
+                 pasa2=0;
+              ////////////////////////////////////////////////////////////////
+              
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+cantidadproducto=0;
+var su=0;
+if(titulos22==''){
+if(prod.length>0){
+   for(var p=0;p< prodNum2.length; p++){
+              
+                  titulos22+='<th class="text-center">'+prodNum2[p]+'</th>';
+//              
+                  }
+}
+
+productoTotal2 = new Array(prodNum.length);
+}
+
+
+
+
+
+
+
+prodNumFinal = new Array(prodNum.length);
+prodNumFinal2 = new Array(prodNum.length);
+
+
+var bor2='';
+if(prodNum.length>0){
+ for(var p=0;p< prodNum.length; p++){
+  if(prodNumFinal[p]==NaN||prodNumFinal[p]==null||prodNumFinal[p]==undefined||prodNumFinal[p]==""){
+         prodNumFinal[p]=0;
+       }
+ for(var p3=0;p3< prod.length; p3++){
+       if(prodNum[p]==prod[p3]){
+         prodNumFinal[p]=prodN[p3];
+
+        
+       }
+
+       }  
+
+       if(productoTotal2[p]==NaN||productoTotal2[p]==null||productoTotal2[p]==undefined||productoTotal2[p]==""){
+         productoTotal2[p]=0;
+       }
+  
+       productoTotal2[p]+=parseFloat(prodNumFinal[p]);
+       
+                 bor+='<td class="text-center">'+ formatoMoneda1(prodNumFinal[p])+'</td>';
+                 productoTotal3+='<td class="text-center">'+ formatoMoneda1(productoTotal2[p])+'</td>';
+                 bor2+='<td class="text-center">'+ formatoMoneda1(prodNumFinal[p])+'</td>';
+
+//bor2+=' - '+ prodNum[p]+' - '+prodNum2[p];        
+                  }
+
+   //alert(bor2);
+
+                }
+               
+           
+       
+        prodN=0;
+         prodC=0;
+         prod =0;
+              
+         if(identificacion==''){html=html;}else{
+
+
+
+ 
+                  
+//            
+
+
+          html+=identificacion+bor+'</tr>';
+          htmlP+=identificacionP+bor+'</tr>';
+          productoTotalS=productoTotal3;
+          productoTotalSP=productoTotalP;
+          
+         }
+
+        productosT='';
+        productosTP='';
+        identificacion='';
+        identificacionP='';
+        bonificacionT=0;
+        credits=0;
+        t_venta_mercaT=0;
+       }
+
+     }
+
+
+
+             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">___CRÉDITOS___</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">________VENTA________</th>'+titulos22;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">________VENTA________</th>'+titulos22;
+         
+if(html!=""){
+          credi+= parseFloat(creditosT);
+          boni+=parseFloat(bonificacionTotal);
+          s_vent+=parseFloat(ventasT);
+
+
+
+  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
+htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
+var renglon = 7+parseInt(arrGlobalCategoria.length)
+
+htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
+
+}
+
+              if(html==undefined){html='';}else{
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataRestauran').html(html); 
+               $('.contCataRestauranP').html(htmlP); 
+              }
+for(var w=0;w<prodTotales.length; w++){
+   var anter =prodT[w];
+         if(anter!=(undefined||NaN||""||null)){anter=prodT[w];}else{
+anter=0;
+         }
+     prodTotales[w]+=parseFloat(anter);
+   
+   }
+prodT=0;
+}
+
+
+function loadVentaDiariaForaneoProductos(lista){ //por mayoreo
+          prodTotales = new Array(100);
+          credi=0;
+          boni=0;
+          s_vent=0;
+          var lista2=lista;
+                    var html = '';
+          var htmlP = '';
+           var identificacion='';
+           var identificacionP='';
+          var bonificacionT=0;
+          var t_venta_mercaT=0;
+          var mer;
+          var pNoVenta;
+          var creditosT=0; 
+          var bonificacionTotal=0; 
+          var ventasT=0; 
+          var productoTotalS=""; 
+          var productoTotal=0; 
+          var productoTotal2=0; 
+          var productoTotalP=0; 
+          var prodT = new Array(100);
+          var porcentajeTotal=0;
+          var credits=0;
+          var encuentra=0;
+          var diferenciaT=0;
+          var pasa2=0;
+          var rut;
+          var titulos22='';
+          var titulos23='';
+          var arrGlobalEmpleados2= arrGlobalEmpleados;
+      for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+        if(arrGlobalEmpleados[hh2].t_venta==3&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
+          
+       for(var j=0;j<arrGlobalF.length; j++){
+
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+          for (var i=0; i < arrGlobalRuta.length; i++) {
+            if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
+              ruta3=arrGlobalRuta[i].nombre;
+              rutas=arrGlobalF[j].ruta;
+            }
+          }
+          mer=arrGlobalF[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          pNoVenta=((mer-arrGlobalF[j].t_venta_merca)*100)/parseFloat(arrGlobalF[j].t_venta_merca);
+          diferenciaT+=( parseFloat(mer) - parseFloat(arrGlobalF[j].t_venta_merca));
+    
+          
+          if(arrGlobalF[j].t_venta_merca==0)pNoVenta=100;
+          if(arrGlobalF[j].t_venta_merca==0)diferenciaT=0;
+if(arrGlobalF[j].otros==null||arrGlobalF[j].otros==NaN||arrGlobalF[j].otros==undefined){
+  bonificacionT+=parseFloat(0);
+  
+}else{
+  bonificacionT+=parseFloat(arrGlobalF[j].otros);
+  
+}
+          t_venta_mercaT+=parseFloat(arrGlobalF[j].t_venta_merca);
+
+
+
+if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].creditos==undefined){
+  credits=0
+  
+}else{
+  credits=arrGlobalF[j].creditos;
+  
+}
+if(diferenciaT==0){
+porcentajeTotal=0;
+}else{
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  
+}
+pasa2=1;
+  encuentra=1; 
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >$ ' + formatoMoneda1(credits)+ '</td> <td >$ ' + formatoMoneda1(bonificacionT)+ '</td>  <td > % ' + formatoMoneda1(porcentajeTotal) + '</td> <td >$ ' + formatoMoneda1(t_venta_mercaT)+ '</td>';
+identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td class="text-right">$ ' + formatoMoneda1(credits) + '</td> <td class="text-right">$ ' + formatoMoneda1(bonificacionT) + '</td>  <td class="text-right"> % ' + formatoMoneda1(porcentajeTotal) + '</td> <td class="text-right">$ ' + formatoMoneda1(t_venta_mercaT) + '</td>';
+      
+        }
+
+        }
+ventasT+=t_venta_mercaT;
+creditosT+=parseFloat(credits);
+bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
+diferenciaT=0;
+t_venta_mercaT=0;
+        var productosT="";
+        var productosTP="";
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+              var nombre='';
+              var bor='';
+              var titulos=""; 
+              var titulosP=""; 
+              var prod = new Array(0);
+              var prodN = new Array(0);
+              var prodC = new Array(0);
+              var prodNum = new Array(0);
+              var prodNum2 = new Array(0);
+              var prodNumFinal; 
+              var prodNumFinal2;
+              var productoTotal3='';
+
+              ////////////////////////////////////////////////////////////////
+
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(lista[h].ruta==arrGlobalEmpleados[hh2].ruta&&pasa2==1&&lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  cambio=lista[h].idProducto;
+                  nombre=lista[h].descripcionventa;
+                for(var p=0;p< prod.length; p++){
+                  if(prod[p]==cambio){
+                  sp=1;
+                  }
+//                  
+                  }
+                  
+                    if(sp==0){
+                      prod.push(cambio);
+                      prodN.push(0);
+                      prodC.push(nombre);
+                 for(var p=0;p< prod.length; p++){
+                  if(prod[p]==cambio){
+                    for(var r=0;r< lista2.length; r++){
+                 
+                  if(lista2[r].ruta==arrGlobalEmpleados[hh2].ruta&&prod[p]==lista2[r].idProducto&&(scv+1)==lista2[r].sfc&&lista2[r].fecharecepcion!=null&&year==((lista2[r].fechadespachof).substring(0,4))){
+                  
+                        if(lista2[r].medida==1){
+                          //l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+
+                          l+=(parseFloat(lista2[r].peso)-parseFloat(lista2[r].pesov));
+                       // alert(prod[p]+' - '+lista2[r].sfc+' - '+lista2[r].ruta+' - '+lista2[r].descripcionventa+' = '+l);
+                        }
+                        if(lista2[r].medida==2){
+                          l+=(parseFloat(lista2[r].piezas)-parseFloat(lista2[r].piezasv));
+                          //lp+=0;
+                        }
+                        if(lista2[r].medida==3){
+                          l+=(parseFloat(lista2[r].piezas)-parseFloat(lista2[r].piezasv));
+                          //lp+=0;
+                          }
+                             pasa=1;
+                  }
+//                  
+                  }
+                  prodN[p]+=parseFloat(l);
+                  
+                l=0;
+                      }
+                    }
+
+                    }
+                      
+                      sp=0;
+
+////////////////////////////////////Titulos////////////////////////////////////////////
+for(var hh3=0;hh3<arrGlobalEmpleados2.length; hh3++){
+        if(arrGlobalEmpleados2[hh3].t_venta==3&&arrGlobalEmpleados2[hh3].tipo==2&&arrGlobalEmpleados2[hh3].estado==1){
+
+for(var h2=0;h2<lista2.length; h2++){
+     if(lista2[h2].ruta==arrGlobalEmpleados2[hh3].ruta&&pasa2==1&&lista2[h2].fecharecepcion!=null&&0==lista2[h2].merma&&(scv+1)==lista2[h2].sfc&&year==((lista2[h2].fechadespachof).substring(0,4))){
+                  cambio=lista2[h2].idProducto;
+                  nombre=lista2[h2].descripcionventa;
+                for(var p=0;p< prodNum.length; p++){
+                  if(prodNum[p]==cambio){
+                  sp=1;
+                  }
+//                  
+                  }
+                  
+                    if(sp==0){
+                      prodNum.push(cambio);
+                      prodNum2.push(nombre);
+                 
+                    }                
+                      sp=0;                     
+                    }          
+                  cambio =1;    
+                }}}
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+                     
+                       
+                      
+                    }
+          
+                
+                  cambio =1;  
+                  
+                }
+                  cambio =0;  
+                  pasa=0;
+
+                }
+                 pasa2=0;
+              ////////////////////////////////////////////////////////////////
+              
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+cantidadproducto=0;
+var su=0;
+if(titulos22==''){
+if(prod.length>0){
+   for(var p=0;p< prodNum2.length; p++){
+              
+                  titulos22+='<th class="text-center">'+prodNum2[p]+'</th>';
+//              
+                  }
+}
+
+productoTotal2 = new Array(prodNum.length);
+}
+
+
+
+
+
+
+
+prodNumFinal = new Array(prodNum.length);
+prodNumFinal2 = new Array(prodNum.length);
+
+
+var bor2='';
+if(prodNum.length>0){
+ for(var p=0;p< prodNum.length; p++){
+  if(prodNumFinal[p]==NaN||prodNumFinal[p]==null||prodNumFinal[p]==undefined||prodNumFinal[p]==""){
+         prodNumFinal[p]=0;
+       }
+ for(var p3=0;p3< prod.length; p3++){
+       if(prodNum[p]==prod[p3]){
+         prodNumFinal[p]=prodN[p3];
+
+        
+       }
+
+       }  
+
+       if(productoTotal2[p]==NaN||productoTotal2[p]==null||productoTotal2[p]==undefined||productoTotal2[p]==""){
+         productoTotal2[p]=0;
+       }
+  
+       productoTotal2[p]+=parseFloat(prodNumFinal[p]);
+       
+                 bor+='<td class="text-center">'+ formatoMoneda1(prodNumFinal[p])+'</td>';
+                 productoTotal3+='<td class="text-center">'+ formatoMoneda1(productoTotal2[p])+'</td>';
+                 bor2+='<td class="text-center">'+ formatoMoneda1(prodNumFinal[p])+'</td>';
+
+//bor2+=' - '+ prodNum[p]+' - '+prodNum2[p];        
+                  }
+
+   //alert(bor2);
+
+                }
+               
+           
+       
+        prodN=0;
+         prodC=0;
+         prod =0;
+              
+         if(identificacion==''){html=html;}else{
+
+
+
+ 
+                  
+//            
+
+
+          html+=identificacion+bor+'</tr>';
+          htmlP+=identificacionP+bor+'</tr>';
+          productoTotalS=productoTotal3;
+          productoTotalSP=productoTotalP;
+          
+         }
+
+        productosT='';
+        productosTP='';
+        identificacion='';
+        identificacionP='';
+        bonificacionT=0;
+        credits=0;
+        t_venta_mercaT=0;
+       }
+
+     }
+
+
+
+             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">___CRÉDITOS___</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">________VENTA________</th>'+titulos22;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">________VENTA________</th>'+titulos22;
+         
+if(html!=""){
+          credi+= parseFloat(creditosT);
+          boni+=parseFloat(bonificacionTotal);
+          s_vent+=parseFloat(ventasT);
+
+
+
+  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
+htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
+var renglon = 7+parseInt(arrGlobalCategoria.length)
+
+htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
+
+}
+
+              if(html==undefined){html='';}else{
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataForaneo').html(html); 
+               $('.contCataForaneoP').html(htmlP); 
+              }
+for(var w=0;w<prodTotales.length; w++){
+   var anter =prodT[w];
+         if(anter!=(undefined||NaN||""||null)){anter=prodT[w];}else{
+anter=0;
+         }
+     prodTotales[w]+=parseFloat(anter);
+   
+   }
+prodT=0;
+}
+
+function loadVentaDiariaDetalleProductos(lista){ //por mayoreo
+          prodTotales = new Array(100);
+          credi=0;
+          boni=0;
+          s_vent=0;
+          var lista2=lista;
+                    var html = '';
+          var htmlP = '';
+           var identificacion='';
+           var identificacionP='';
+          var bonificacionT=0;
+          var t_venta_mercaT=0;
+          var mer;
+          var pNoVenta;
+          var creditosT=0; 
+          var bonificacionTotal=0; 
+          var ventasT=0; 
+          var productoTotalS=""; 
+          var productoTotal=0; 
+          var productoTotal2=0; 
+          var productoTotalP=0; 
+          var prodT = new Array(100);
+          var porcentajeTotal=0;
+          var credits=0;
+          var encuentra=0;
+          var diferenciaT=0;
+          var pasa2=0;
+          var rut;
+          var titulos22='';
+          var titulos23='';
+          var arrGlobalEmpleados2= arrGlobalEmpleados;
+      for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+        if(arrGlobalEmpleados[hh2].t_venta==1&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
+          
+       for(var j=0;j<arrGlobalF.length; j++){
+
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+          for (var i=0; i < arrGlobalRuta.length; i++) {
+            if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
+              ruta3=arrGlobalRuta[i].nombre;
+              rutas=arrGlobalF[j].ruta;
+            }
+          }
+          mer=arrGlobalF[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          pNoVenta=((mer-arrGlobalF[j].t_venta_merca)*100)/parseFloat(arrGlobalF[j].t_venta_merca);
+          diferenciaT+=( parseFloat(mer) - parseFloat(arrGlobalF[j].t_venta_merca));
+    
+          
+          if(arrGlobalF[j].t_venta_merca==0)pNoVenta=100;
+          if(arrGlobalF[j].t_venta_merca==0)diferenciaT=0;
+if(arrGlobalF[j].otros==null||arrGlobalF[j].otros==NaN||arrGlobalF[j].otros==undefined){
+  bonificacionT+=parseFloat(0);
+  
+}else{
+  bonificacionT+=parseFloat(arrGlobalF[j].otros);
+  
+}
+          t_venta_mercaT+=parseFloat(arrGlobalF[j].t_venta_merca);
+
+
+
+if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].creditos==undefined){
+  credits=0
+  
+}else{
+  credits=arrGlobalF[j].creditos;
+  
+}
+if(diferenciaT==0){
+porcentajeTotal=0;
+}else{
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  
+}
+pasa2=1;
+  encuentra=1; 
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >$ ' + formatoMoneda1(credits)+ '</td> <td >$ ' + formatoMoneda1(bonificacionT)+ '</td>  <td > % ' + formatoMoneda1(porcentajeTotal) + '</td> <td >$ ' + formatoMoneda1(t_venta_mercaT)+ '</td>';
+identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[arrGlobalF[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td class="text-right">$ ' + formatoMoneda1(credits) + '</td> <td class="text-right">$ ' + formatoMoneda1(bonificacionT) + '</td>  <td class="text-right"> % ' + formatoMoneda1(porcentajeTotal) + '</td> <td class="text-right">$ ' + formatoMoneda1(t_venta_mercaT) + '</td>';
+      
+        }
+
+        }
+ventasT+=t_venta_mercaT;
+creditosT+=parseFloat(credits);
+bonificacionTotal+=parseFloat(bonificacionT);
+bonificacionT=0;
+diferenciaT=0;
+t_venta_mercaT=0;
+        var productosT="";
+        var productosTP="";
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0; 
+              var nombre='';
+              var bor='';
+              var titulos=""; 
+              var titulosP=""; 
+              var prod = new Array(0);
+              var prodN = new Array(0);
+              var prodC = new Array(0);
+              var prodNum = new Array(0);
+              var prodNum2 = new Array(0);
+              var prodNumFinal; 
+              var prodNumFinal2;
+              var productoTotal3='';
+
+              ////////////////////////////////////////////////////////////////
+
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(lista[h].ruta==arrGlobalEmpleados[hh2].ruta&&pasa2==1&&lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  cambio=lista[h].idProducto;
+                  nombre=lista[h].descripcionventa;
+                for(var p=0;p< prod.length; p++){
+                  if(prod[p]==cambio){
+                  sp=1;
+                  }
+//                  
+                  }
+                  
+                    if(sp==0){
+                      prod.push(cambio);
+                      prodN.push(0);
+                      prodC.push(nombre);
+                 for(var p=0;p< prod.length; p++){
+                  if(prod[p]==cambio){
+                    for(var r=0;r< lista2.length; r++){
+                 
+                  if(lista2[r].ruta==arrGlobalEmpleados[hh2].ruta&&prod[p]==lista2[r].idProducto&&(scv+1)==lista2[r].sfc&&lista2[r].fecharecepcion!=null&&year==((lista2[r].fechadespachof).substring(0,4))){
+                  
+                        if(lista2[r].medida==1){
+                          //l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+
+                          l+=(parseFloat(lista2[r].peso)-parseFloat(lista2[r].pesov));
+                       // alert(prod[p]+' - '+lista2[r].sfc+' - '+lista2[r].ruta+' - '+lista2[r].descripcionventa+' = '+l);
+                        }
+                        if(lista2[r].medida==2){
+                          l+=(parseFloat(lista2[r].piezas)-parseFloat(lista2[r].piezasv));
+                          //lp+=0;
+                        }
+                        if(lista2[r].medida==3){
+                          l+=(parseFloat(lista2[r].piezas)-parseFloat(lista2[r].piezasv));
+                          //lp+=0;
+                          }
+                             pasa=1;
+                  }
+//                  
+                  }
+                  prodN[p]+=parseFloat(l);
+                  
+                l=0;
+                      }
+                    }
+
+                    }
+                      
+                      sp=0;
+
+////////////////////////////////////Titulos////////////////////////////////////////////
+for(var hh3=0;hh3<arrGlobalEmpleados2.length; hh3++){
+        if(arrGlobalEmpleados2[hh3].t_venta==1&&arrGlobalEmpleados2[hh3].tipo==2&&arrGlobalEmpleados2[hh3].estado==1){
+
+for(var h2=0;h2<lista2.length; h2++){
+     if(lista2[h2].ruta==arrGlobalEmpleados2[hh3].ruta&&pasa2==1&&lista2[h2].fecharecepcion!=null&&0==lista2[h2].merma&&(scv+1)==lista2[h2].sfc&&year==((lista2[h2].fechadespachof).substring(0,4))){
+                  cambio=lista2[h2].idProducto;
+                  nombre=lista2[h2].descripcionventa;
+                for(var p=0;p< prodNum.length; p++){
+                  if(prodNum[p]==cambio){
+                  sp=1;
+                  }
+//                  
+                  }
+                  
+                    if(sp==0){
+                      prodNum.push(cambio);
+                      prodNum2.push(nombre);
+                 
+                    }                
+                      sp=0;                     
+                    }          
+                  cambio =1;    
+                }}}
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+                     
+                       
+                      
+                    }
+          
+                
+                  cambio =1;  
+                  
+                }
+                  cambio =0;  
+                  pasa=0;
+
+                }
+                 pasa2=0;
+              ////////////////////////////////////////////////////////////////
+              
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+cantidadproducto=0;
+var su=0;
+if(titulos22==''){
+if(prod.length>0){
+   for(var p=0;p< prodNum2.length; p++){
+              
+                  titulos22+='<th class="text-center">'+prodNum2[p]+'</th>';
+//              
+                  }
+}
+
+productoTotal2 = new Array(prodNum.length);
+}
+
+
+
+
+
+
+
+prodNumFinal = new Array(prodNum.length);
+prodNumFinal2 = new Array(prodNum.length);
+
+
+var bor2='';
+if(prodNum.length>0){
+ for(var p=0;p< prodNum.length; p++){
+  if(prodNumFinal[p]==NaN||prodNumFinal[p]==null||prodNumFinal[p]==undefined||prodNumFinal[p]==""){
+         prodNumFinal[p]=0;
+       }
+ for(var p3=0;p3< prod.length; p3++){
+       if(prodNum[p]==prod[p3]){
+         prodNumFinal[p]=prodN[p3];
+
+        
+       }
+
+       }  
+
+       if(productoTotal2[p]==NaN||productoTotal2[p]==null||productoTotal2[p]==undefined||productoTotal2[p]==""){
+         productoTotal2[p]=0;
+       }
+  
+       productoTotal2[p]+=parseFloat(prodNumFinal[p]);
+       
+                 bor+='<td class="text-center">'+ formatoMoneda1(prodNumFinal[p])+'</td>';
+                 productoTotal3+='<td class="text-center">'+ formatoMoneda1(productoTotal2[p])+'</td>';
+                 bor2+='<td class="text-center">'+ formatoMoneda1(prodNumFinal[p])+'</td>';
+
+//bor2+=' - '+ prodNum[p]+' - '+prodNum2[p];        
+                  }
+
+   //alert(bor2);
+
+                }
+               
+           
+       
+        prodN=0;
+         prodC=0;
+         prod =0;
+              
+         if(identificacion==''){html=html;}else{
+
+
+
+ 
+                  
+//            
+
+
+          html+=identificacion+bor+'</tr>';
+          htmlP+=identificacionP+bor+'</tr>';
+          productoTotalS=productoTotal3;
+          productoTotalSP=productoTotalP;
+          
+         }
+
+        productosT='';
+        productosTP='';
+        identificacion='';
+        identificacionP='';
+        bonificacionT=0;
+        credits=0;
+        t_venta_mercaT=0;
+       }
+
+     }
+
+
+
+             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">___CRÉDITOS___</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">________VENTA________</th>'+titulos22;
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">________VENTA________</th>'+titulos22;
+         
+if(html!=""){
+          credi+= parseFloat(creditosT);
+          boni+=parseFloat(bonificacionTotal);
+          s_vent+=parseFloat(ventasT);
+
+
+
+  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
+htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
+var renglon = 7+parseInt(arrGlobalCategoria.length)
+
+htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
+
+}
+
+              if(html==undefined){html='';}else{
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataDetalle').html(html); 
+               $('.contCataDetalleP').html(htmlP); 
+              }
+for(var w=0;w<prodTotales.length; w++){
+   var anter =prodT[w];
+         if(anter!=(undefined||NaN||""||null)){anter=prodT[w];}else{
+anter=0;
+         }
+     prodTotales[w]+=parseFloat(anter);
+   
+   }
+prodT=0;
+}
+
+
 function loadVentaDiariaDetalle(lista){ //por categoria
            var html = '';
           var htmlP = '';
@@ -13220,12 +14721,53 @@ $('eliminarN').html('');
 $('guardarN').html('');
 }
 function addVendedormodal(){
+  limpiar();
+  var upVendedor1='<button type="button" class="btn btn-success " id="agregarp" onclick="addVendedor()">GUARDAR</button>'
+$('#modalVendedor .addVendedor1').html(upVendedor1);
+
+
+$("#modalVendedor .solicitud").prop('checked', false);
+
+$("#modalVendedor .ine2").prop('checked', false);
+
+$("#modalVendedor .curp2").prop('checked', false);
+
+$("#modalVendedor .rfc2").prop('checked', false);
+
+$("#modalVendedor .nss").prop('checked', false);
+
+$("#modalVendedor .acta").prop('checked', false);
+
+$("#modalVendedor .cdomicilio").prop('checked', false);
+
+$("#modalVendedor .foto").prop('checked', false);
+
+$("#modalVendedor .recomendaciones").prop('checked', false);
+
+$("#modalVendedor .licenciac").prop('checked', false);
+
+$("#modalVendedor .antecedentes").prop('checked', false);
+
+$("#modalVendedor .ineaval").prop('checked', false);
+
+$("#modalVendedor .predial").prop('checked', false);
+
+$("#modalVendedor .comprobanted").prop('checked', false);
+
+$("#modalVendedor .pagare").prop('checked', false);
+
+
+
+
+
 var rutas2 = '<select class="form-control clear rutavende" id:"rutavende" name="rutavende">';
 
 $('#modalVendedor').modal('show');
 for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].n3==null||arrGlobalRuta[i].n3==0||arrGlobalRuta[i].n3==NaN||arrGlobalRuta[i].n3==undefined||arrGlobalRuta[i].n3==""){
+  rutas2+='<option value="'+arrGlobalRuta[i].id+'">'+arrGlobalRuta[i].nombre+'</option>';  
+}
 
-rutas2+='<option value="'+arrGlobalRuta[i].id+'">'+arrGlobalRuta[i].nombre+'</option>';  
 }
 
 rutas2+='</select>';  
@@ -13309,6 +14851,11 @@ $('#modalVendedor').modal('hide');
 
    
   if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+var n3 = nombre_Emple+' '+paterno_Emple+ ' ' +materno_Emple;
+
+var json3 = {n3: n3};
+
+    upRegistro(ruta, json3, 'rutas', loadRutas);
 
     var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare, km:km };
     addRegistro(json, 'empleados', loadVendedores);
@@ -13367,7 +14914,80 @@ getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar
 }
 
 function addModalEmpleado(){
+  limpiar();
+    var upEmpleado1='<button type="button" class="btn btn-success " id="agregarp" onclick="addEmpleado()">GUARDAR</button>'
+$('#modalAdministracion .addEmpleado1').html(upEmpleado1);
+$("#modalAdministracion .solicitud").prop('checked', false);
+
+$("#modalAdministracion .ine2").prop('checked', false);
+
+$("#modalAdministracion .curp2").prop('checked', false);
+
+$("#modalAdministracion .rfc2").prop('checked', false);
+
+$("#modalAdministracion .nss").prop('checked', false);
+
+$("#modalAdministracion .acta").prop('checked', false);
+
+$("#modalAdministracion .cdomicilio").prop('checked', false);
+
+$("#modalAdministracion .foto").prop('checked', false);
+
+$("#modalAdministracion .recomendaciones").prop('checked', false);
+
+$("#modalAdministracion .licenciac").prop('checked', false);
+
+$("#modalAdministracion .antecedentes").prop('checked', false);
+
+
+
+
+
+
+
+
+
+
+
   $('#modalAdministracion').modal('show');
+}
+function addModalFabrica(){
+  limpiar();
+    var upEmpleado1='<button type="button" class="btn btn-success " id="agregarp" onclick="addFabrica()">GUARDAR</button>'
+$('#modalFabrica .addEmpleado1').html(upEmpleado1);
+$("#modalFabrica .solicitud").prop('checked', false);
+
+$("#modalFabrica .ine2").prop('checked', false);
+
+$("#modalFabrica .curp2").prop('checked', false);
+
+$("#modalFabrica .rfc2").prop('checked', false);
+
+$("#modalFabrica .nss").prop('checked', false);
+
+$("#modalFabrica .acta").prop('checked', false);
+
+$("#modalFabrica .cdomicilio").prop('checked', false);
+
+$("#modalFabrica .foto").prop('checked', false);
+
+$("#modalFabrica .recomendaciones").prop('checked', false);
+
+$("#modalFabrica .licenciac").prop('checked', false);
+
+$("#modalFabrica .antecedentes").prop('checked', false);
+
+
+
+
+
+
+
+
+
+
+
+  $('#modalFabrica').modal('show');
 }
 function addECliente(){
   var nombre_Emple = $('#modalECliente .eCliente').val();
@@ -13447,6 +15067,65 @@ function addEmpleado(){
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
 limpiar();
 }
+
+function addFabrica(){
+   $('#modalFabrica').modal('hide');
+  var idEmpleados = $("#modalFabrica .idEmpleado").val();
+  var nombre_Emple = $("#modalFabrica .nombre").val();
+  var paterno_Emple = $("#modalFabrica .a_paterno").val();
+  var materno_Emple = $("#modalFabrica .a_materno").val();
+  var n_seguro = $("#modalFabrica .n_seguro").val();
+  var curp = $("#modalFabrica .curp").val();
+  var domicilio = $("#modalFabrica .domicilio").val();
+  var rfc = $("#modalFabrica .rfc").val();
+  var tipo = 100;
+  var n_licencia = $("#modalFabrica .n_licencia").val();
+  var f_exp = $("#modalFabrica .f_licencia").val();
+  var ruta = $("#modalFabrica .rutavende").val();
+  var t_venta = $("#modalFabrica .tipoventa").val();
+  var tipocontrato = $("#modalFabrica .tipocontrato").val();
+  var iniciocontrato = $("#modalFabrica .iniciocontrato").val();
+  var fincontrato = $("#modalFabrica .fincontrato").val();
+  var telp = $("#modalFabrica .telp").val();
+  var tell = $("#modalFabrica .tell").val();
+  var fnacimiento = $("#modalFabrica .fnacimiento").val();
+
+   
+  var estado = $(" #modalFabrica .estado").val();
+  var ingreso = $("#modalFabrica .fnacimiento").val();
+  var vacaciones = $("#modalFabrica .vacaciones").val();
+  var renuncia = $("#modalFabrica .renuncia").val();
+  var reingresos = $("#modalFabrica .reingresos").val();
+  var razon = $("#modalFabrica .razon").val();
+
+  var solicitud = $("#modalFabrica .solicitud:checked").val();
+  var ine2 = $("#modalFabrica .ine2:checked").val();
+  var curp2 = $("#modalFabrica .curp2:checked").val();
+  var rfc2 = $("#modalFabrica .rfc2:checked").val();
+  var nss = $("#modalFabrica .nss:checked").val();
+  var acta = $("#modalFabrica .acta:checked").val();
+  var cdomicilio = $("#modalFabrica .cdomicilio:checked").val();
+  var foto = $("#modalFabrica .foto:checked").val();
+  var recomendaciones = $("#modalFabrica .recomendaciones:checked").val();
+  var licenciac = $("#modalFabrica .licenciac:checked").val();
+  var antecedentes = $("#modalFabrica .antecedentes:checked").val();
+
+   
+  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
+    
+    addRegistro(json,'empleados', loadFabrica);
+  }
+  else{
+
+      $('#modal .textModal').html('FALTAN DATOS. '); 
+      $('#modal').modal('show');
+  }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadFabrica);
+limpiar();
+}
+
 function addfecha(){
 var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
 
@@ -14794,9 +16473,14 @@ getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar m�
 limpiar();
 }
 
-function delVendedor(idV){
+function delVendedor(idV, idR){
 
 
+var n3=0;
+
+var json3 = {n3: n3};
+
+    upRegistro(idR, json3, 'rutas', loadRutas1);
 
   delRegistro(idV,'empleados', loadVendedores);
 
@@ -14818,6 +16502,16 @@ function delEmpleado(idA){
   delRegistro(idA,'empleados', loadAdministracion);
 
  getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
+
+limpiar();
+}
+function delFabrica(idA){
+
+
+  
+  delRegistro(idA,'empleados', loadFabrica);
+
+ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadFabrica);
 
 limpiar();
 }
@@ -15160,9 +16854,23 @@ $('#modalCliente .addCliente1').html(upCliente1);
 var idVendedor93;
 function upVendedor1(idV){
   addVendedormodal();
+  var rutas2 = '<select class="form-control clear rutavende" id:"rutavende" name="rutavende">';
+
+for (var i=0; i < arrGlobalRuta.length; i++) {
+if(arrGlobalRuta[i].n3==null||arrGlobalRuta[i].n3==0||arrGlobalRuta[i].n3==NaN||arrGlobalRuta[i].n3==undefined||arrGlobalRuta[i].n3==""){
+  rutas2+='<option style="background:green; color: white;" value="'+arrGlobalRuta[i].id+'">'+arrGlobalRuta[i].nombre+'</option>';  
+}else{
+  rutas2+='<option style="background:red; color: white;" value="'+arrGlobalRuta[i].id+'">'+arrGlobalRuta[i].nombre+'</option>';  
+
+}
+
+}
+
+rutas2+='</select>';  
+$('#modalVendedor .noruta').html(rutas2);
   selectVendedores(idV);
 idVendedor93=idV;
-  var upVendedor1='<button type="button" class="btn btn-info addVendedor1" id="agregarp" onclick="upVendedor()">Guardar</button>'
+  var upVendedor1='<button type="button" class="btn btn-info addVendedor1" id="agregarp" onclick="upVendedor()">GUARDAR</button>'
 $('#modalVendedor .addVendedor1').html(upVendedor1);
 
 }
@@ -15252,6 +16960,7 @@ $('#modalVendedor').modal('hide');
   var n_licencia = $("#modalVendedor .n_licencia").val();
   var f_exp = $("#modalVendedor .f_licencia").val();
   var ruta = $("#modalVendedor .rutavende").val();
+ 
   var t_venta = $("#modalVendedor .tipoventa").val();
   var l_credito = $("#modalVendedor .credito").val();
   var l_bon = $("#modalVendedor .bonificacion").val();
@@ -15293,56 +17002,65 @@ $('#modalVendedor').modal('hide');
   var comprobanted = $("#modalVendedor .comprobanted:checked").val();
   var pagare = $("#modalVendedor .pagare:checked").val();
 
-if(solicitud==""||solicitud==undefined||solicitud==null){
-solicitud=0;
-}
-if(ine2==""||ine2==undefined||ine2==null){
-ine2=0;
-}
-if(curp2==""||curp2==undefined||curp2==null){
-curp2=0;
-}
-if(rfc2==""||rfc2==undefined||rfc2==null){
-rfc2=0;
-}
-if(nss==""||nss==undefined||nss==null){
-nss=0;
-}
-if(acta==""||acta==undefined||acta==null){
-acta=0;
-}
-if(cdomicilio==""||cdomicilio==undefined||cdomicilio==null){
-cdomicilio=0;
-}
-if(foto==""||foto==undefined||foto==null){
-foto=0;
-}
-if(recomendaciones==""||recomendaciones==undefined||recomendaciones==null){
-recomendaciones=0;
-}
-if(licenciac==""||licenciac==undefined||licenciac==null){
-licenciac=0;
-}
-if(antecedentes==""||antecedentes==undefined||antecedentes==null){
-antecedentes=0;
-}
-if(ineaval==""||ineaval==undefined||ineaval==null){
-ineaval=0;
-}
-if(predial==""||predial==undefined||predial==null){
-predial=0;
-}
-if(comprobanted==""||comprobanted==undefined||comprobanted==null){
-comprobanted=0;
-}
-if(pagare==""||pagare==undefined||pagare==null){
-pagare=0;
-}
+if(solicitud==""||undefined||null||NaN){
+solicitud=1;
+}else{solicitud=0;}
+
+if(ine2==""||undefined||null||NaN){
+ine2=1;
+}else{ine2=0;}
+if(curp2==""||undefined||null||NaN){
+curp2=1;
+}else{curp2=0;}
+if(rfc2==""||undefined||null||NaN){
+rfc2=1;
+}else{rfc2=0;}
+if(nss==""||undefined||null||NaN){
+nss=1;
+}else{nss=0;}
+if(acta==""||undefined||null||NaN){
+acta=1;
+}else{acta=0;}
+if(cdomicilio==""||undefined||null||NaN){
+cdomicilio=1;
+}else{cdomicilio=0;}
+if(foto==""||undefined||null||NaN){
+foto=1;
+}else{foto=0;}
+if(recomendaciones==""||undefined||null||NaN){
+recomendaciones=1;
+}else{recomendaciones=0;}
+if(licenciac==""||undefined||null||NaN){
+licenciac=1;
+}else{licenciac=0;}
+if(antecedentes==""||undefined||null||NaN){
+antecedentes=1;
+}else{antecedentes=0;}
+if(ineaval==""||undefined||null||NaN){
+ineaval=1;
+}else{ineaval=0;}
+if(predial==""||undefined||null||NaN){
+predial=1;
+}else{predial=0;}
+
+
+if(comprobanted==""||undefined||null||NaN){
+comprobanted=1;
+}else{comprobanted=0;}
+
+if(pagare==""||undefined||null||NaN){
+pagare=1;
+}else{pagare=0;}
     var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare, km:km };
   
 
 
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+var n3 = nombre_Emple+' '+paterno_Emple+ ' ' +materno_Emple;
+
+var json3 = {n3: n3};
+
+    upRegistro(ruta, json3, 'rutas', loadRutas1);
 
     upRegistro(idGlobal, json, 'empleados', loadVendedores);
     
@@ -15353,7 +17071,7 @@ pagare=0;
       $('#modal').modal('show');
   }
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
-var upVendedor1='<button type="button" class="btn btn-success " id="agregarp" onclick="addVendedor()">Ingresar</button>';
+var upVendedor1='<button type="button" class="btn btn-success " id="agregarp" onclick="addVendedor()">INGRESAR</button>';
 limpiar()
 $('#modalVendedor .addVendedor1').html('');
 $('#modalVendedor .addVendedor1').html(upVendedor1);
@@ -15367,14 +17085,21 @@ click_vendedores();
 
 
 
-
 }
 function upEmpleado1(idV){
   addModalEmpleado();
   selectAdministracion12(idV);
 
-  var upEmpleado1='<button type="button" class="btn btn-info addEmpleado1" id="agregarp" onclick="upEmpleado()">Guardar</button>'
+  var upEmpleado1='<button type="button" class="btn btn-info addEmpleado1" id="agregarp" onclick="upEmpleado()">GUARDAR</button>'
 $('#modalAdministracion .addEmpleado1').html(upEmpleado1);
+
+}
+function upFabrica1(idV){
+  addModalFabrica();
+  selectFabrica12(idV);
+
+  var upEmpleado1='<button type="button" class="btn btn-info addEmpleado1" id="agregarp" onclick="upFabrica()">GUARDAR</button>'
+$('#modalFabrica .addEmpleado1').html(upEmpleado1);
 
 }
 
@@ -15414,40 +17139,41 @@ $('#modalAdministracion').modal('hide');
   var recomendaciones = $("#modalAdministracion .recomendaciones:checked").val();
   var licenciac = $("#modalAdministracion .licenciac:checked").val();
   var antecedentes = $("#modalAdministracion .antecedentes:checked").val();
-if(solicitud==""||solicitud==undefined||solicitud==null){
-solicitud=0;
-}
-if(ine2==""||ine2==undefined||ine2==null){
-ine2=0;
-}
-if(curp2==""||curp2==undefined||curp2==null){
-curp2=0;
-}
-if(rfc2==""||rfc2==undefined||rfc2==null){
-rfc2=0;
-}
-if(nss==""||nss==undefined||nss==null){
-nss=0;
-}
-if(acta==""||acta==undefined||acta==null){
-acta=0;
-}
-if(cdomicilio==""||cdomicilio==undefined||cdomicilio==null){
-cdomicilio=0;
-}
-if(foto==""||foto==undefined||foto==null){
-foto=0;
-}
-if(recomendaciones==""||recomendaciones==undefined||recomendaciones==null){
-recomendaciones=0;
-}
-if(licenciac==""||licenciac==undefined||licenciac==null){
-licenciac=0;
-}
-if(antecedentes==""||antecedentes==undefined||antecedentes==null){
-antecedentes=0;
-}
-alert(solicitud+ine2+curp2+rfc2+nss+acta+cdomicilio+foto+recomendaciones+licenciac+antecedentes+" test_line:2813");
+if(solicitud==""||undefined||null||NaN){
+solicitud=1;
+}else{solicitud=0;}
+if(ine2==""||undefined||null||NaN){
+ine2=1;
+}else{ine2=0;}
+if(curp2==""||undefined||null||NaN){
+curp2=1;
+}else{curp2=0;}
+if(rfc2==""||undefined||null||NaN){
+rfc2=1;
+}else{rfc2=0;}
+if(nss==""||undefined||null||NaN){
+nss=1;
+}else{nss=0;}
+if(acta==""||undefined||null||NaN){
+acta=1;
+}else{acta=0;}
+if(cdomicilio==""||undefined||null||NaN){
+cdomicilio=1;
+}else{cdomicilio=0;}
+if(foto==""||undefined||null||NaN){
+foto=1;
+}else{foto=0;}
+if(recomendaciones==""||undefined||null||NaN){
+recomendaciones=1;
+}else{recomendaciones=0;}
+if(licenciac==""||undefined||null||NaN){
+licenciac=1;
+}else{licenciac=0;}
+if(antecedentes==""||undefined||null||NaN){
+antecedentes=1;
+}else{antecedentes=0;}
+
+//alert(solicitud+ine2+curp2+rfc2+nss+acta+cdomicilio+foto+recomendaciones+licenciac+antecedentes+" test_line:2813");
 
     var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
 
@@ -15464,6 +17190,117 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
   }
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
   var upEmpleado1='<button type="button" class="btn btn-success " id="agregarp" onclick="addEmpleado()">Ingresar</button>';
+
+limpiar();
+$('#modalAdministracion .addEmpleado1').html('');
+$('#modalAdministracion .addEmpleado1').html(upEmpleado1);
+
+
+  $("#modalVendedor .solicitud").attr('checked', false);
+$("#modalVendedor .ine2").attr('checked', false);
+
+$("#modalVendedor .curp2").attr('checked', false);
+
+$("#modalVendedor .rfc2").attr('checked', false);
+
+$("#modalVendedor .nss").attr('checked', false);
+
+$("#modalVendedor .acta").attr('checked', false);
+
+$("#modalVendedor .cdomicilio").attr('checked', false);
+
+$("#modalVendedor .foto").attr('checked', false);
+
+$("#modalVendedor .recomendaciones").attr('checked', false);
+
+}
+function upFabrica(){
+$('#modalFabrica').modal('hide');
+  var idEmpleados = $("#modalFabrica .idEmpleado").val();
+  var nombre_Emple = $("#modalFabrica .nombre").val();
+  var paterno_Emple = $("#modalFabrica .a_paterno").val();
+  var materno_Emple = $("#modalFabrica .a_materno").val();
+  var n_seguro = $("#modalFabrica .n_seguro").val();
+  var curp = $("#modalFabrica .curp").val();
+  var domicilio = $("#modalFabrica .domicilio").val();
+  var rfc = $("#modalFabrica .rfc").val();
+  var tipo = $("#modalFabrica .tipoempleado").val();
+  var tipocontrato = $("#modalFabrica .tipocontrato").val();
+  var iniciocontrato = $("#modalFabrica .iniciocontrato").val();
+  var fincontrato = $("#modalFabrica .fincontrato").val();
+  var telp = $("#modalFabrica .telp").val();
+  var tell = $("#modalFabrica .tell").val();
+  var fnacimiento = $("#modalFabrica .fnacimiento").val();
+   
+  var estado = $(" #modalFabrica .estado").val();
+  var ingreso = $("#modalFabrica .fnacimiento").val();
+  var vacaciones = $("#modalFabrica .vacaciones").val();
+  var renuncia = $("#modalFabrica .renuncia").val();
+  var reingresos = $("#modalFabrica .reingresos").val();
+  var razon = $("#modalFabrica .razon").val();
+
+  var solicitud = $("#modalFabrica .solicitud:checked").val();
+  var ine2 = $("#modalFabrica .ine2:checked").val();
+  var curp2 = $("#modalFabrica .curp2:checked").val();
+  var rfc2 = $("#modalFabrica .rfc2:checked").val();
+  var nss = $("#modalFabrica .nss:checked").val();
+  var acta = $("#modalFabrica .acta:checked").val();
+  var cdomicilio = $("#modalFabrica .cdomicilio:checked").val();
+  var foto = $("#modalFabrica .foto:checked").val();
+  var recomendaciones = $("#modalFabrica .recomendaciones:checked").val();
+  var licenciac = $("#modalFabrica .licenciac:checked").val();
+  var antecedentes = $("#modalFabrica .antecedentes:checked").val();
+if(solicitud==""||undefined||null||NaN){
+solicitud=1;
+}else{solicitud=0;}
+if(ine2==""||undefined||null||NaN){
+ine2=1;
+}else{ine2=0;}
+if(curp2==""||undefined||null||NaN){
+curp2=1;
+}else{curp2=0;}
+if(rfc2==""||undefined||null||NaN){
+rfc2=1;
+}else{rfc2=0;}
+if(nss==""||undefined||null||NaN){
+nss=1;
+}else{nss=0;}
+if(acta==""||undefined||null||NaN){
+acta=1;
+}else{acta=0;}
+if(cdomicilio==""||undefined||null||NaN){
+cdomicilio=1;
+}else{cdomicilio=0;}
+if(foto==""||undefined||null||NaN){
+foto=1;
+}else{foto=0;}
+if(recomendaciones==""||undefined||null||NaN){
+recomendaciones=1;
+}else{recomendaciones=0;}
+if(licenciac==""||undefined||null||NaN){
+licenciac=1;
+}else{licenciac=0;}
+if(antecedentes==""||undefined||null||NaN){
+antecedentes=1;
+}else{antecedentes=0;}
+
+//alert(solicitud+ine2+curp2+rfc2+nss+acta+cdomicilio+foto+recomendaciones+licenciac+antecedentes+" test_line:2813");
+
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
+
+ if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+
+    upRegistro(idGlobal, json, 'empleados', loadFabrica);
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadFabrica);
+    
+  }
+  else{
+
+       $('#modal .textModal').html('Seleccione de la tabla el usuario a modificar.'); 
+      $('#modal').modal('show');
+  }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadFabrica);
+  var upEmpleado1='<button type="button" class="btn btn-success " id="agregarp" onclick="addFabrica()">Ingresar</button>';
 
 limpiar();
 $('#modalAdministracion .addEmpleado1').html('');
@@ -15771,7 +17608,6 @@ function upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca){
   var year3 = fechaf.substring(0,4);
   var diasema3= new Date((parseInt(month3))+' '+parseInt(day3)+' ,'+parseInt(year3));
   var dia31=(diasema3.getUTCDay());
-
    if(dia31==1){ ////////////////////// LUNES ////////////////////////////////////////
 for(var h=0;h<arrGlobal4.length; h++){ 
   if (arrGlobal4[h].id==id_vend) {
@@ -15781,7 +17617,7 @@ for(var hh=0;hh<arrGlobal4.length; hh++){
       f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
       credito_manual=1;
       cobrado=f_s_real;
-      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user }
+      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user };
      
       }
     }
@@ -17779,43 +19615,157 @@ function selectAdministracion12(id){
        $("#modalAdministracion .reingresos").val(arrGlobal[a].reingresos);
        $("#modalAdministracion .razon").val(arrGlobal[a].razon);
 if(arrGlobal[a].solicitud==1){
-  $("#modalAdministracion .solicitud").attr('checked', true);
+  $("#modalAdministracion .solicitud").prop('checked', true);
+}else{
+$("#modalAdministracion .solicitud").prop('checked', false);;
 }
 if(arrGlobal[a].ine2==1){
-$("#modalAdministracion .ine2").attr('checked', true);
+$("#modalAdministracion .ine2").prop('checked', true);
+}else{
+$("#modalAdministracion .ine2").prop('checked', false);;
 }
 if(arrGlobal[a].curp2==1){
-$("#modalAdministracion .curp2").attr('checked', true);
+$("#modalAdministracion .curp2").prop('checked', true);
+}else{
+$("#modalAdministracion .curp2").prop('checked', false);;
 }
 if(arrGlobal[a].rfc2==1){
-$("#modalAdministracion .rfc2").attr('checked', true);
+$("#modalAdministracion .rfc2").prop('checked', true);
+}else{
+$("#modalAdministracion .rfc2").prop('checked', false);;
 }
 if(arrGlobal[a].nss==1){
-$("#modalAdministracion .nss").attr('checked', true);
+$("#modalAdministracion .nss").prop('checked', true);
+}else{
+$("#modalAdministracion .nss").prop('checked', false);;
 }
 if(arrGlobal[a].acta==1){
-$("#modalAdministracion .acta").attr('checked', true);
+$("#modalAdministracion .acta").prop('checked', true);
+}else{
+$("#modalAdministracion .acta").prop('checked', false);;
 }
 if(arrGlobal[a].cdomicilio==1){
-$("#modalAdministracion .cdomicilio").attr('checked', true);
+$("#modalAdministracion .cdomicilio").prop('checked', true);
+}else{
+$("#modalAdministracion .cdomicilio").prop('checked', false);;
 }
 if(arrGlobal[a].foto==1){
-$("#modalAdministracion .foto").attr('checked', true);
+$("#modalAdministracion .foto").prop('checked', true);
+}else{
+$("#modalAdministracion .foto").prop('checked', false);;
 }
 if(arrGlobal[a].recomendaciones==1){
-$("#modalAdministracion .recomendaciones").attr('checked', true);
+$("#modalAdministracion .recomendaciones").prop('checked', true);
+}else{
+$("#modalAdministracion .recomendaciones").prop('checked', false);;
 }
 if(arrGlobal[a].licenciac==1){
-$("#modalAdministracion .licenciac").attr('checked', true);
+$("#modalAdministracion .licenciac").prop('checked', true);
+}else{
+$("#modalAdministracion .licenciac").prop('checked', false);;
 }
 if(arrGlobal[a].antecedentes==1){
-$("#modalAdministracion .antecedentes").attr('checked', true);
+$("#modalAdministracion .antecedentes").prop('checked', true);
+}else{
+$("#modalAdministracion .antecedentes").prop('checked', false);;
 }
+
 
     }
   }
 }
+function selectFabrica12(id){
+  idGlobal = id;
 
+  for(var a=0; a<arrGlobal.length; a++){
+    if(arrGlobal[a].id == id){
+       $("#modalFabrica .idEmpleado").val(arrGlobal[a].idEmpleados);
+       $("#modalFabrica .nombre").val(arrGlobal[a].nombre_Emple);
+       $("#modalFabrica .a_paterno").val(arrGlobal[a].paterno_Emple);
+       $("#modalFabrica .a_materno").val(arrGlobal[a].materno_Emple);
+       $("#modalFabrica .n_seguro").val(arrGlobal[a].n_seguro);
+       $("#modalFabrica .curp").val(arrGlobal[a].curp);
+       $("#modalFabrica .domicilio").val(arrGlobal[a].domicilio);
+       $("#modalFabrica .rfc").val(arrGlobal[a].rfc);
+       $("#modalFabrica .tipoempleado").val(arrGlobal[a].tipo);
+       $("#modalFabrica .tipocontrato").val(arrGlobal[a].tipocontrato);
+       $("#modalFabrica .iniciocontrato").val(arrGlobal[a].iniciocontrato);
+       $("#modalFabrica .fincontrato").val(arrGlobal[a].fincontrato);
+       $("#modalFabrica .telp").val(arrGlobal[a].telp);
+       $("#modalFabrica .tell").val(arrGlobal[a].tell);
+       $("#modalFabrica .fnacimiento").val(arrGlobal[a].fnacimiento);
+       $("#modalFabrica .tipocontrato").val(arrGlobal[a].tipocontrato);
+       $("#modalFabrica .iniciocontrato").val(arrGlobal[a].iniciocontrato);
+       $("#modalFabrica .fincontrato").val(arrGlobal[a].fincontrato);
+       $("#modalFabrica .telp").val(arrGlobal[a].telp);
+       $("#modalFabrica .tell").val(arrGlobal[a].tell);
+       $("#modalFabrica .fnacimiento").val(arrGlobal[a].fnacimiento);
+       $("#modalFabrica .estado").val(arrGlobal[a].estado);
+       $("#modalFabrica .fnacimiento").val(arrGlobal[a].ingreso);
+       $("#modalFabrica .vacaciones").val(arrGlobal[a].vacaciones);
+       $("#modalFabrica .renuncia").val(arrGlobal[a].renuncia);
+       $("#modalFabrica .reingresos").val(arrGlobal[a].reingresos);
+       $("#modalFabrica .razon").val(arrGlobal[a].razon);
+if(arrGlobal[a].solicitud==1){
+  $("#modalFabrica .solicitud").prop('checked', true);
+}else{
+$("#modalFabrica .solicitud").prop('checked', false);;
+}
+if(arrGlobal[a].ine2==1){
+$("#modalFabrica .ine2").prop('checked', true);
+}else{
+$("#modalFabrica .ine2").prop('checked', false);;
+}
+if(arrGlobal[a].curp2==1){
+$("#modalFabrica .curp2").prop('checked', true);
+}else{
+$("#modalFabrica .curp2").prop('checked', false);;
+}
+if(arrGlobal[a].rfc2==1){
+$("#modalFabrica .rfc2").prop('checked', true);
+}else{
+$("#modalFabrica .rfc2").prop('checked', false);;
+}
+if(arrGlobal[a].nss==1){
+$("#modalFabrica .nss").prop('checked', true);
+}else{
+$("#modalFabrica .nss").prop('checked', false);;
+}
+if(arrGlobal[a].acta==1){
+$("#modalFabrica .acta").prop('checked', true);
+}else{
+$("#modalFabrica .acta").prop('checked', false);;
+}
+if(arrGlobal[a].cdomicilio==1){
+$("#modalFabrica .cdomicilio").prop('checked', true);
+}else{
+$("#modalFabrica .cdomicilio").prop('checked', false);;
+}
+if(arrGlobal[a].foto==1){
+$("#modalFabrica .foto").prop('checked', true);
+}else{
+$("#modalFabrica .foto").prop('checked', false);;
+}
+if(arrGlobal[a].recomendaciones==1){
+$("#modalFabrica .recomendaciones").prop('checked', true);
+}else{
+$("#modalFabrica .recomendaciones").prop('checked', false);;
+}
+if(arrGlobal[a].licenciac==1){
+$("#modalFabrica .licenciac").prop('checked', true);
+}else{
+$("#modalFabrica .licenciac").prop('checked', false);;
+}
+if(arrGlobal[a].antecedentes==1){
+$("#modalFabrica .antecedentes").prop('checked', true);
+}else{
+$("#modalFabrica .antecedentes").prop('checked', false);;
+}
+
+
+    }
+  }
+}
 
 function selectMantenimiento(id){
   idGlobal = id;
@@ -19257,6 +21207,26 @@ var sfc = (scv+1)+"";
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacion);
   }
 }
+
+function ventaDiariaP(){
+  document.getElementById('loader').style.display = 'block';
+  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+  scv=noSemana;
+  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVProductos()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA POR PRODUCTO (SEMANA: '+(scv+1)+')</h3>');
+  $('.contenidoR').load('/html/ventaDiariaP.html');
+var sfc = (scv+1)+"";
+
+  if(scv != ""){
+      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoProductos);
+     // executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteProductos);
+     // executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoProductos);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleProductos);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaOtros);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMerma);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacion);
+  }
+}
 function totalesCategorias(){
 
 var html= '<tr class="text-center"  style="font-size:9px;   " > <td><strong>TOTALES</strong></td><td></td><td></td><td class="text-right"><strong>$ '+formatoMoneda1(credi)+'</strong></td> <td class="text-right"><strong>$ '+formatoMoneda1(boni)+'</strong></td><td></td><td class="text-right"><strong> $ '+formatoMoneda1(s_vent)+'</strong></td>';
@@ -19349,6 +21319,35 @@ var sfc = (scv+1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacion);
   
 
+  }
+}else{
+    $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+}
+}
+function click_buscarVProductos(){
+ var semanaVS = $('.semanaVD').val();
+          
+        //document.getElementById('loader').style.display = 'block';
+
+if(semanaVS!=""){
+
+
+year =  parseInt(semanaVS.substring(0,4));
+scv = parseInt(semanaVS.substring(6,8))-1;
+  
+  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVProductos()">BUSCAR</button><div class="col-md-3"></div> <button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button> </div> <h3 class="text-center impre">VENTA DIARIA POR PRODUCTO (Semana: '+(scv+1)+')</h3>');
+var sfc = (scv+1);
+
+  if(scv != ""){
+      var json = {where:{sfc:sfc}}
+    executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoProductos);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalle);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaOtros);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMerma);
+    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacion);
   }
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 
@@ -19599,6 +21598,17 @@ function click_administracion(){
  $('.tituloPantalla').html('<h3 class="administracion">  ADMINISTRACIÓN   </h3>');
 
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadAdministracion);
+
+}
+function click_Fabrica(){
+
+
+
+ $('.seccion5').load('/html/fabrica.html');
+
+ $('.tituloPantalla').html('<h3 class="administracion">  FABRICA   </h3>');
+
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadFabrica);
 
 }
 function click_Pedidos(){
@@ -20525,6 +22535,11 @@ function closeModalPedidos(){
 function closeEmpleado(){
 
       $('#modalAdministracion').modal('hide')
+
+}
+function closeFabrica(){
+
+      $('#modalFabrica').modal('hide')
 
 }
 function closeVendedor(){

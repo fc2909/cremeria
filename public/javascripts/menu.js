@@ -9030,8 +9030,8 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
 }
 
               if(html==undefined){html='';}else{
-               $('.titulo2').html(titulos); 
-               $('.titulo2P').html(titulosP); 
+               $('.titulo3').html(titulos); 
+               $('.titulo3P').html(titulosP); 
                $('.contCataRestauran').html(html); 
                $('.contCataRestauranP').html(htmlP); 
               }
@@ -9381,8 +9381,8 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
 }
 
               if(html==undefined){html='';}else{
-               $('.titulo2').html(titulos); 
-               $('.titulo2P').html(titulosP); 
+               $('.titulo4').html(titulos); 
+               $('.titulo4P').html(titulosP); 
                $('.contCataForaneo').html(html); 
                $('.contCataForaneoP').html(htmlP); 
               }
@@ -9731,8 +9731,8 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
 }
 
               if(html==undefined){html='';}else{
-               $('.titulo2').html(titulos); 
-               $('.titulo2P').html(titulosP); 
+               $('.titulo5').html(titulos); 
+               $('.titulo5P').html(titulosP); 
                $('.contCataDetalle').html(html); 
                $('.contCataDetalleP').html(htmlP); 
               }

@@ -13992,6 +13992,45 @@ function loadVentasp2(lista){
 function loadVentaspasadasVF(lista){
      
 }
+var bonificacion_Limite=0;
+var bonificacion_Total=0;
+function loadBonidicacionpasadasVF(lista){
+   var html2 = '';
+          var htmlp = '';
+          var dayVS = today_v.substring(8,10);
+          var monthVS = today_v.substring(5,7);
+          var yearVS = today_v.substring(0,4);
+          var cobrado=noSemana;
+          var mes=month-1;
+          var dia=day-1;
+var fechaf=fechacaptura;
+
+              cobrado = cobrado +1;
+              saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
+          var t_vendido = today;
+        for(var h = 0; h <  lista.length; h++) {
+     if (lista[h].sfc==scv&&lista[h].ruta==rutas&&lista[h].fechaf!=fechaf) {
+            var b=0;
+            var b2=0;
+            if(lista[h].otros==NaN||lista[h].otros==undefined||lista[h].otros==null||lista[h].otros==""){
+                 b=0;
+            }else{
+               b=lista[h].otros;
+            }
+            if(lista[h].bonificacion_p==NaN||lista[h].bonificacion_p==undefined||lista[h].bonificacion_p==null||lista[h].bonificacion_p==""){
+                 b2=0;
+            }else{
+               b2=lista[h].bonificacion_p;
+            }
+      
+            bonificacion_Limite=parseFloat(b2);
+            bonificacion_Total+=parseFloat(b);
+            //  html2+= '<tr class="" onclick="cambiarcolor(this);click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+');" data-id="'+ lista[h].id +'"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + formatoMoneda1(lista[h].creditos) + '</td><td> $' + formatoMoneda1(lista[h].f_s_dia) + '</td><td> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td> $ '+formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
+            // htmlp+= '<tr  style="font-size:7px; "><td class="text-center grisclaro">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].creditos) + '</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].f_s_dia) + '</td><td class="text-center"> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td class="text-center"> $ '+ formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
+        }
+     }
+     
+}
 function loadVentasp3(lista){
             var html = '';
                 arrGlobalE='';
@@ -17503,8 +17542,17 @@ function upRecepcionProducto(){
   var fecharecepcion=today_vv;
   var excedenteC=0;
   var excedenteB=0;
+  var restBon=0;
+  bonificacion_Total+=parseFloat(otros);
+  restBon=bonificacion_Limite - bonificacion_Total;
+
    if(cred<creditos)creditos = cred;
-   if(boni<otros)otros=boni;
+ 
+  if(restBon<0){
+   otros=parseFloat(otros)+parseFloat(restBon);   
+  }
+  bonificacion_Total=0;
+ // alert(bonificacion_Limite+' - '+bonificacion_Total+' = '+restBon+' Otros= '+otros+' Boni= '+boni);
    if(creditos!="" && otros !=""){
 for (var i = 0; i < arrGlobalT.length; i++) {
    if(rutas==arrGlobalT[i].ruta &&arrGlobalT[i].dfc==dscv&&arrGlobalT[i].sfc==scv&&arrGlobalT[i].merma!=1 ){
@@ -22090,6 +22138,10 @@ $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+t
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
  var jsonC = {where:{ruta:ruta}}
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiaria);
+    
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBonidicacionpasadasVF);
 
 if(arrGlobal4[h].despachador==undefined){
   $('.imprimir').html('');

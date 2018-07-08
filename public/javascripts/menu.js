@@ -1703,7 +1703,14 @@ if((lista.length-1)==h&&pasa==1){
                   p=0;
               }else{
                 //formatNumber2(parseFloat(l).toFixed(2));l=cantidad2;formatNumber2(parseFloat(lp).toFixed(2));lp=cantidad2;formatNumber2(parseFloat(l4).toFixed(2));l4=cantidad2;formatNumber2(parseFloat(l2).toFixed(2));l2=cantidad2;formatNumber2(parseFloat(l3).toFixed(2));l3=cantidad2;formatNumber2(parseFloat(l5).toFixed(2));l5=cantidad2;formatNumber2(parseFloat(l6).toFixed(2));l6=cantidad2;formatNumber2(parseFloat(l7).toFixed(2));l7=cantidad2;
-              var p =(diferenciaT*100)/(ventaT-bonT); 
+                var tNV= parseFloat(ventaT)-parseFloat(bonT);
+                var vT= parseFloat(diferenciaT)*100;
+               
+              var p =(vT)/(tNV); 
+                if(p==Infinity)p=100;
+
+            diferenciaT=0;
+          
                   var controlInterno=parseFloat(efecT)-parseFloat(f_s_t);
                 
                   html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">CRÉDITOS</td><td>$ '+formatoMoneda1(l)+' </td><td>$ '+formatoMoneda1(m)+'</td><td>$ '+ formatoMoneda1(x) +' </td><td>$ '+ formatoMoneda1(j)+'  </td><td>$ '+ formatoMoneda1(v) +' </td><td>$ '+ formatoMoneda1(s) +' </td></tr>';
@@ -12178,11 +12185,15 @@ function loadVDiariaR(lista){//modal
             if(contador==0){
                   p=0;
               }else{
-              var p =(diferenciaT*100)/(ventaT-bonT); 
-            diferenciaT=0;
-            ventaT=0;
-            bonT=0;
+                var tNV= parseFloat(ventaT)-parseFloat(bonT);
+                var vT= parseFloat(diferenciaT)*100;
+               
+              var p =(vT)/(tNV); 
+                if(p==Infinity)p=100;
 
+            diferenciaT=0;
+           
+          
 
 
 

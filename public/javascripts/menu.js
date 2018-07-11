@@ -8473,7 +8473,7 @@ t_venta_mercaT=0;
 
               ////////////////////////////////////////////////////////////////
 
-              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+            //  for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
                   if(lista[h].ruta==arrGlobalEmpleados[hh2].ruta&&pasa2==1&&lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                   cambio=lista[h].idProducto;
@@ -8562,7 +8562,7 @@ for(var h2=0;h2<lista2.length; h2++){
                   cambio =0;  
                   pasa=0;
 
-                }
+              //  }
                  pasa2=0;
               ////////////////////////////////////////////////////////////////
               
@@ -8823,7 +8823,7 @@ t_venta_mercaT=0;
 
               ////////////////////////////////////////////////////////////////
 
-              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+          //    for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
                   if(lista[h].ruta==arrGlobalEmpleados[hh2].ruta&&pasa2==1&&lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                   cambio=lista[h].idProducto;
@@ -8912,7 +8912,7 @@ for(var h2=0;h2<lista2.length; h2++){
                   cambio =0;  
                   pasa=0;
 
-                }
+               // }
                  pasa2=0;
               ////////////////////////////////////////////////////////////////
               
@@ -9174,7 +9174,7 @@ t_venta_mercaT=0;
 
               ////////////////////////////////////////////////////////////////
 
-              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+             // for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
                   if(lista[h].ruta==arrGlobalEmpleados[hh2].ruta&&pasa2==1&&lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                   cambio=lista[h].idProducto;
@@ -9263,7 +9263,7 @@ for(var h2=0;h2<lista2.length; h2++){
                   cambio =0;  
                   pasa=0;
 
-                }
+              //  }
                  pasa2=0;
               ////////////////////////////////////////////////////////////////
               
@@ -9524,7 +9524,7 @@ t_venta_mercaT=0;
 
               ////////////////////////////////////////////////////////////////
 
-              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+            //  for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
                   if(lista[h].ruta==arrGlobalEmpleados[hh2].ruta&&pasa2==1&&lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                   cambio=lista[h].idProducto;
@@ -9613,7 +9613,7 @@ for(var h2=0;h2<lista2.length; h2++){
                   cambio =0;  
                   pasa=0;
 
-                }
+              //  }
                  pasa2=0;
               ////////////////////////////////////////////////////////////////
               
@@ -9732,7 +9732,6 @@ if(html!=""){
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>DETALLE</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>DETALLE</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalS+'</tr>';
 var renglon = 7+parseInt(productoTotal2.length)
-  document.getElementById('loader').style.display = 'none';
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
 
@@ -9743,7 +9742,7 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
                $('.titulo5P').html(titulosP); 
                $('.contCataDetalle').html(html); 
                $('.contCataDetalleP').html(htmlP); 
-              }
+              }  
 for(var w=0;w<prodTotales.length; w++){
    var anter =prodT[w];
          if(anter!=(undefined||NaN||""||null)){anter=prodT[w];}else{
@@ -9753,6 +9752,8 @@ anter=0;
    
    }
 prodT=0;
+document.getElementById('loader').style.display = 'none';
+
 }
 
 
@@ -14040,6 +14041,21 @@ var fechaf=fechacaptura;
             // htmlp+= '<tr  style="font-size:7px; "><td class="text-center grisclaro">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].creditos) + '</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].f_s_dia) + '</td><td class="text-center"> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td class="text-center"> $ '+ formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
         }
      }
+     var bon11=0;
+     if(bonificacion_Limite==0){
+for(var h = 0; h <  arrGlobalEmpleados.length; h++) {
+     if (arrGlobalEmpleados[h].ruta==rutas) {
+      if(arrGlobalEmpleados[h].l_bon==null||arrGlobalEmpleados[h].l_bon==NaN||arrGlobalEmpleados[h].l_bon==undefined||arrGlobalEmpleados[h].l_bon==""){
+bon11=0;
+alert("NO SE HA DEFINIDO BONIFICACIÓN PARA ESTE VENDEDOR");
+      }else{
+        bon11=arrGlobalEmpleados[h].l_bon;
+      }
+   bonificacion_Limite=bon11;
+
+     }
+   }
+     }
      
 }
 function loadVentasp3(lista){
@@ -17554,6 +17570,12 @@ function upRecepcionProducto(){
   var excedenteC=0;
   var excedenteB=0;
   var restBon=0;
+  if(otros ==""){
+    otros=0;
+  }
+   if(creditos ==""){
+    creditos=0;
+  }
   bonificacion_Total+=parseFloat(otros);
   restBon=bonificacion_Limite - bonificacion_Total;
 
@@ -17563,8 +17585,9 @@ function upRecepcionProducto(){
    otros=parseFloat(otros)+parseFloat(restBon);   
   }
   bonificacion_Total=0;
- // alert(bonificacion_Limite+' - '+bonificacion_Total+' = '+restBon+' Otros= '+otros+' Boni= '+boni);
-   if(creditos!="" && otros !=""){
+   
+
+  // if(creditos!=""){
 for (var i = 0; i < arrGlobalT.length; i++) {
    if(rutas==arrGlobalT[i].ruta &&arrGlobalT[i].dfc==dscv&&arrGlobalT[i].sfc==scv&&arrGlobalT[i].merma!=1 ){
       validar==1;
@@ -17635,12 +17658,15 @@ for(var m=0;m<arrGlobal4.length; m++){
 
 
 upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca);
-}else{
+
+/*}else{
    $('#modal .textModal').html('FALTAN DATOS. '); 
               $('#modal').modal('show');
-  document.getElementById('loader').style.display = 'none';
 
-}
+
+}*/
+
+  document.getElementById('loader').style.display = 'none';
 }
 function upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca){
 /////////////////////////////// CALCULO DE FALTANTES ////////////////////////////////////////////////
@@ -21393,7 +21419,7 @@ var sfc = (scv+1);
 function click_buscarVProductos(){
  var semanaVS = $('.semanaVD').val();
           
-        //document.getElementById('loader').style.display = 'block';
+        document.getElementById('loader').style.display = 'block';
 
 if(semanaVS!=""){
 
@@ -21407,9 +21433,9 @@ var sfc = (scv+1);
   if(scv != ""){
       var json = {where:{sfc:sfc}}
     executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoProductos);
-    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante);
-    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo);
-    //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalle);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteProductos);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoProductos);
+     executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleProductos);
     //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaOtros);
     //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMerma);
     //  executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacion);
@@ -22151,7 +22177,6 @@ $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+t
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiaria);
     
  var jsonC = {where:{ruta:ruta, sfc:sfc}}
-
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBonidicacionpasadasVF);
 
 if(arrGlobal4[h].despachador==undefined){

@@ -276,9 +276,9 @@
               <div class="row col-md-12 ">
                 <div id="" class=" col-md-12"> 
                 </div>
-                 <label class=" text-center" for="" ><strong>BONIFICACIÓN</strong></label>
                  
-                <input type="number" id="" class="form-control clear bonificacionTF text-center" placeholder="">
+                 
+               
                   <label class=" text-center" for="" ><strong>MERMA</strong></label>
                  
                 <input type="number" id="" class="form-control clear mermaTF text-center" placeholder="">
@@ -702,19 +702,19 @@
         </div>
         <div class="col-md-4 form-group">
           <label class="">ID</label>
-          <input type="number" class="form-control clear idVendedor" placeholder="">
+          <input type="number" pattern="[0-9]{10}" class="form-control clear idVendedor" placeholder="">
         </div>    
         <div class="col-md-4 form-group">
           <label class="">NOMBRE </label>
-          <input type="text" class="form-control clear nombre" placeholder=" ">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear nombre" placeholder=" ">
         </div>
         <div class="col-md-4 form-group">
           <label class="">APELLIDO PATERNO</label>
-          <input type="text" class="form-control clear a_paterno" placeholder=" ">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear a_paterno" placeholder=" ">
         </div>
         <div class="col-md-4 form-group">
           <label class="">APELLIDO MATERNO</label>
-          <input type="text" class="form-control clear a_materno" placeholder=" ">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear a_materno" placeholder=" ">
         </div>
         <div class="col-md-4 form-group">
           <label class="">FECHA DE NACIMIENTO </label>
@@ -722,19 +722,19 @@
         </div>
         <div class="col-md-4 form-group">
           <label class="">N. SEGURO SOCIAL</label>
-          <input type="text" class="form-control clear n_seguro" placeholder=" ">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear n_seguro" placeholder=" ">
         </div>
         <div class="col-md-4 form-group">
           <label class="">CURP</label>
-          <input type="text" class="form-control clear curp" placeholder=" ">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear curp" placeholder=" ">
         </div>
         <div class="col-md-4 form-group">
           <label class="">DOMICILIO</label>
-          <input type="text" class="form-control clear domicilio" placeholder=" ">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear domicilio" placeholder=" ">
         </div>
         <div class=" col-md-4 form-group">
              <label class="">RFC</label>
-             <input type="text" class="form-control clear rfc" placeholder=" ">
+             <input type="text" onkeyup="mayus(this);" class="form-control clear rfc" placeholder=" ">
           </div>
         <div class="col-md-4 form-group exp">
           <label class="">TIPO DE CONTRATO</label>
@@ -762,7 +762,7 @@
         </div>
 
         <div class="col-md-4 form-group licencia">
-          <label class="">N. LICENCIA</label><input type="text" class="form-control clear n_licencia" placeholder=" ">
+          <label class="">N. LICENCIA</label><input type="text" onkeyup="mayus(this);" class="form-control clear n_licencia" placeholder=" ">
         </div>
             
         <div class="col-md-4 form-group exp">
@@ -776,16 +776,14 @@
           <label class="">TIPO DE VENTA</label><select class="form-control clear tipoventa" ><option value="1">DETALLE</option><option value="2">MAYOREO</option><option value="3">DETALLE FORÁNEO</option><option value="4">RESTAURANTES</option></select>
         </div>
          <div class="col-md-4 form-group licencia">
-          <label class="">LIMITE DE CRÉDITO</label><input type="text" class="form-control clear credito" placeholder=" ">
+          <label class="">LIMITE DE CRÉDITO</label><input type="number" pattern="[0-9]{10}" class="form-control clear credito" placeholder=" ">
         </div>
          <div class="col-md-4 form-group licencia">
-          <label class="">LIMITE DE BONIFICACIÓN</label><input type="text" class="form-control clear bonificacion" placeholder=" ">
+          <label class="">LIMITE DE BONIFICACIÓN</label><input type="number" pattern="[0-9]{10}" class="form-control clear bonificacion" placeholder=" ">
         </div>
-         <div class="col-md-4 form-group licencia">
-          <label class="">LIMITE DE MERMA</label><input type="text" class="form-control clear merma" placeholder=" ">
-        </div>
+         
         <div class="col-md-4 form-group f_ahorro">
-          <label class="">FONDO DE AHORRO</label><input type="number" class="form-control clear f_Ahorro" placeholder="" >
+          <label class="">FONDO DE AHORRO</label><input type="number" pattern="[0-9]{10}" class="form-control clear f_Ahorro" placeholder="" >
         </div>
          <div class="col-md-4 form-group licencia">
           <label class="">TELÉFONO PERSONAL</label><input type="phone" class="form-control clear telp" placeholder="" >
@@ -812,10 +810,10 @@
         </div>
         <div id="cantidadPago" style="display: none;" class="col-md-4 form-group">
           <label class="">CANTIDAD</label>
-          <input type="text" class="form-control clear cantidadPago1" placeholder="" >
+          <input type="number" pattern="[0-9]{10}" class="form-control clear cantidadPago1" placeholder="" >
         </div>
         <div class="col-md-12 form-group licencia">
-          <label class="">RAZÓN DE RENUNCIA</label><input type="text" class="form-control clear razon" placeholder="" >
+          <label class="">RAZÓN DE RENUNCIA</label><input type="text" onkeyup="mayus(this);" class="form-control clear razon" placeholder="" >
           <br>
          <label class="">PAPELERÍA</label>
         </div>
@@ -940,15 +938,15 @@
                         
         <div class="col-md-4 form-group">
           <label class="">NOMBRE</label>
-          <input type="text" class="form-control clear nombre" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear nombre" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">APELLIDO PATERNO</label>
-          <input type="text" class="form-control clear a_paterno" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear a_paterno" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">APELLIDO MATERNO</la55bel>
-          <input type="text" class="form-control clear a_materno" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear a_materno" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">FECHA DE NACIMIENTO</label>
@@ -956,22 +954,22 @@
         </div>
         <div class="col-md-4 form-group">
           <label class="">N. SEGURO SOCIAL </label>
-          <input type="text" class="form-control clear n_seguro" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear n_seguro" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">CURP</label>
-          <input type="text" class="form-control clear curp" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear curp" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">DOMICILIO</label>
-          <input type="text" class="form-control clear domicilio" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear domicilio" placeholder="">
         </div>
         <div class=" col-md-4 form-group">
              <label class="">RFC</label>
-             <input type="text" class="form-control clear rfc" placeholder="">
+             <input type="text" onkeyup="mayus(this);" class="form-control clear rfc" placeholder="">
           </div>
        <div class="col-md-4 form-group exp">
-          <label class="">TIPO DE CONTRATO</label><input type="text" class="form-control clear tipocontrato" placeholder="">
+          <label class="">TIPO DE CONTRATO</label><input type="text" onkeyup="mayus(this);" class="form-control clear tipocontrato" placeholder="">
         </div>
         <div class="col-md-4 form-group exp">
           <label class="">INICIO DE CONTRATO</label><input type="date" class="form-control clear iniciocontrato" placeholder="">
@@ -1008,10 +1006,10 @@
           <label class="">RENUNCIA</label><input type="date" class="form-control clear renuncia clear" placeholder="" >
         </div>
         <div class="col-md-4 form-group licencia">
-          <label class="">REINGRESOS</label><input type="text" class="form-control clear reingresos clear" placeholder="" >
+          <label class="">REINGRESOS</label><input type="text" onkeyup="mayus(this);" class="form-control clear reingresos clear" placeholder="" >
         </div>
         <div class="col-md-12 form-group licencia">
-          <label class="">RAZÓN DE RENUNCIA </label><input type="text" class="form-control clear razon clear" placeholder="" >
+          <label class="">RAZÓN DE RENUNCIA </label><input type="text" onkeyup="mayus(this);" class="form-control clear razon clear" placeholder="" >
           <br>
          <label class="">PAPELERÍA </label>
         </div>
@@ -1121,15 +1119,15 @@
                         
         <div class="col-md-4 form-group">
           <label class="">NOMBRE</label>
-          <input type="text" class="form-control clear nombre" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear nombre" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">APELLIDO PATERNO</label>
-          <input type="text" class="form-control clear a_paterno" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear a_paterno" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">APELLIDO MATERNO</la55bel>
-          <input type="text" class="form-control clear a_materno" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear a_materno" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">FECHA DE NACIMIENTO</label>
@@ -1137,22 +1135,22 @@
         </div>
         <div class="col-md-4 form-group">
           <label class="">N. SEGURO SOCIAL </label>
-          <input type="text" class="form-control clear n_seguro" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear n_seguro" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">CURP</label>
-          <input type="text" class="form-control clear curp" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear curp" placeholder="">
         </div>
         <div class="col-md-4 form-group">
           <label class="">DOMICILIO</label>
-          <input type="text" class="form-control clear domicilio" placeholder="">
+          <input type="text" onkeyup="mayus(this);" class="form-control clear domicilio" placeholder="">
         </div>
         <div class=" col-md-4 form-group">
              <label class="">RFC</label>
-             <input type="text" class="form-control clear rfc" placeholder="">
+             <input type="text" onkeyup="mayus(this);" class="form-control clear rfc" placeholder="">
           </div>
        <div class="col-md-4 form-group exp">
-          <label class="">TIPO DE CONTRATO</label><input type="text" class="form-control clear tipocontrato" placeholder="">
+          <label class="">TIPO DE CONTRATO</label><input type="text" onkeyup="mayus(this);" class="form-control clear tipocontrato" placeholder="">
         </div>
         <div class="col-md-4 form-group exp">
           <label class="">INICIO DE CONTRATO</label><input type="date" class="form-control clear iniciocontrato" placeholder="">
@@ -1178,10 +1176,10 @@
           <label class="">RENUNCIA</label><input type="date" class="form-control clear renuncia clear" placeholder="" >
         </div>
         <div class="col-md-4 form-group licencia">
-          <label class="">REINGRESOS</label><input type="text" class="form-control clear reingresos clear" placeholder="" >
+          <label class="">REINGRESOS</label><input type="text" onkeyup="mayus(this);" class="form-control clear reingresos clear" placeholder="" >
         </div>
         <div class="col-md-12 form-group licencia">
-          <label class="">RAZÓN DE RENUNCIA </label><input type="text" class="form-control clear razon clear" placeholder="" >
+          <label class="">RAZÓN DE RENUNCIA </label><input type="text" onkeyup="mayus(this);" class="form-control clear razon clear" placeholder="" >
           <br>
          <label class="">PAPELERÍA </label>
         </div>
@@ -1695,6 +1693,28 @@
           </div>
         </div>
       </div>
+
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalFaltante">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header modalTitulo">
+            <h4 class="modal-title">MENSAJE</h4>
+              
+            </div>
+            <div class="modal-body textModal">
+             <input id="faltanteNomina" type="number" pattern="[0-9]{10}" onchange="siguienteFaltante()"   class="form-control clear faltanteNomina" placeholder="0.00">
+              <input style="display: none;" type="number"   class="indice">
+            </div>
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-modals" onclick="closeModalFaltante()">CANCELAR</button>
+               <button type="button" id="siguienteF" class="btn btn-modals" onchange="document.getElementById('faltanteNomina').focus();"  onclick="siguienteFaltante()">SIGUIENTE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 <div class= "modal fade" tabindex ="-1" role="dialog" id="modalCreditos">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

@@ -1490,6 +1490,7 @@ if((lista.length-1)==h&&pasa==1){
               var l5=0, m5=0, x5=0, j5=0, v5=0, s5=0;
               var l6=0, m6=0, x6=0, j6=0, v6=0, s6=0;
               var l7=0, m7=0, x7=0, j7=0, v7=0, s7=0;
+              var l8=0, m8=0, x8=0, j8=0, v8=0, s8=0;
               var contador =0;
               var promedio =0;
               var ventaT =0;
@@ -1525,6 +1526,7 @@ if((lista.length-1)==h&&pasa==1){
                   l=credits;
                   lp=bon;
                   l2=arrGlobalF[h].t_venta_merca;
+                  l8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
                   l4=mer;
                   l5=efectivos;
                   l6=f_s_dia2;
@@ -1557,6 +1559,7 @@ if((lista.length-1)==h&&pasa==1){
                   mp=bon;
                   m2=arrGlobalF[h].t_venta_merca;
                   m4=mer;
+                  m8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
                   m5=efectivos;
                   m6=f_s_dia2;
                   m7=f_s_real2;
@@ -1587,6 +1590,7 @@ if((lista.length-1)==h&&pasa==1){
                   x2=arrGlobalF[h].t_venta_merca;
                   x4=mer;
                   x5=efectivos;
+                  x8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
                   x6=f_s_dia2;
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
@@ -1615,6 +1619,7 @@ if((lista.length-1)==h&&pasa==1){
                   jp=bon;
                   j2=arrGlobalF[h].t_venta_merca;
                   j4=mer;
+                  j8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
                   j5=efectivos;
                   j6=f_s_dia2;
                   j7=f_s_real2;
@@ -1644,6 +1649,7 @@ if((lista.length-1)==h&&pasa==1){
                   vp=bon;
                   v2=arrGlobalF[h].t_venta_merca;
                   v4=mer;
+                  v8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
                   v5=efectivos;
                   v6=f_s_dia2;
                   v7=f_s_real2;
@@ -1673,6 +1679,7 @@ if((lista.length-1)==h&&pasa==1){
                   sp=bon;
                   s2=arrGlobalF[h].t_venta_merca;
                   s4=mer;
+                  s8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
                   s5=efectivos;
                   s6=f_s_dia2;
                   s7=f_s_real2;
@@ -1703,7 +1710,7 @@ if((lista.length-1)==h&&pasa==1){
                   p=0;
               }else{
                 //formatNumber2(parseFloat(l).toFixed(2));l=cantidad2;formatNumber2(parseFloat(lp).toFixed(2));lp=cantidad2;formatNumber2(parseFloat(l4).toFixed(2));l4=cantidad2;formatNumber2(parseFloat(l2).toFixed(2));l2=cantidad2;formatNumber2(parseFloat(l3).toFixed(2));l3=cantidad2;formatNumber2(parseFloat(l5).toFixed(2));l5=cantidad2;formatNumber2(parseFloat(l6).toFixed(2));l6=cantidad2;formatNumber2(parseFloat(l7).toFixed(2));l7=cantidad2;
-                var tNV= parseFloat(ventaT)-parseFloat(bonT);
+                var tNV= parseFloat(ventaT);
                 var vT= parseFloat(diferenciaT)*100;
                
               var p =(vT)/(tNV); 
@@ -1712,18 +1719,21 @@ if((lista.length-1)==h&&pasa==1){
             diferenciaT=0;
           
                   var controlInterno=parseFloat(efecT)-parseFloat(f_s_t);
+                  var noVentaTotal=parseFloat(l8)+parseFloat(m8)+parseFloat(x8)+parseFloat(j8)+parseFloat(v8)+parseFloat(s8);
+                  var mercanciaTotal=parseFloat(l4)+parseFloat(m4)+parseFloat(x4)+parseFloat(j4)+parseFloat(v4)+parseFloat(s4);
                 
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">CRÉDITOS</td><td>$ '+formatoMoneda1(l)+' </td><td>$ '+formatoMoneda1(m)+'</td><td>$ '+ formatoMoneda1(x) +' </td><td>$ '+ formatoMoneda1(j)+'  </td><td>$ '+ formatoMoneda1(v) +' </td><td>$ '+ formatoMoneda1(s) +' </td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">BONIFICACIÓN</td><td> $ '+formatoMoneda1(lp)+' </td><td>$ '+formatoMoneda1(mp)+'</td><td>$ '+ formatoMoneda1(xp) +' </td><td>$ '+ formatoMoneda1(jp)+'  </td><td>$ '+ formatoMoneda1(vp) +' </td><td>$ '+ formatoMoneda1(sp) +' </td><td><strong>$ '+ formatoMoneda1(bonT) +'</strong> </td></tr>';  
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">MERCANCIA</td><td> $ '+formatoMoneda1(l4)+' </td><td>$ '+formatoMoneda1(m4)+'</td><td>$ '+ formatoMoneda1(x4) +' </td><td>$ '+ formatoMoneda1(j4)+'  </td><td>$ '+ formatoMoneda1(v4) +' </td><td>$ '+ formatoMoneda1(s4) +' </td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">VENTA</td><td>$ '+formatoMoneda1(l2)+' </td><td>$ '+formatoMoneda1(m2)+'</td><td> $ '+ formatoMoneda1(x2) +' </td><td>$ '+ formatoMoneda1(j2)+'  </td><td>$ '+ formatoMoneda1(v2) +' </td><td> $ '+ formatoMoneda1(s2) +' </td><td><strong> $ '+ formatoMoneda1(ventaT) +'</strong> </td></tr>';
-                  html2+= '<tr  class="text-right"  style="font-size:9px;   "><td class="text-left">NO VENTA</td><td><strong> % '+formatoMoneda1(l3)+'</strong> </td><td><strong> % '+formatoMoneda1(m3)+' </strong></td><td> <strong>% '+ formatoMoneda1(x3) +' </strong></td><td><strong> % '+ formatoMoneda1(j3)+'  </strong></td><td><strong> % '+ formatoMoneda1(v3) +'</strong> </td><td><strong> % '+ formatoMoneda1(s3) +' </strong></td><td><strong> % '+  formatoMoneda1(p) +' </strong></td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">EFECTIVO</td><td>$ '+formatoMoneda1(l5)+' </td><td>$ '+formatoMoneda1(m5)+'</td><td> $ '+ formatoMoneda1(x5) +' </td><td>$ '+ formatoMoneda1(j5)+'  </td><td>$ '+ formatoMoneda1(v5) +' </td><td> $ '+ formatoMoneda1(s5) +' </td><td><strong> $ '+ formatoMoneda1(efecT) +'</strong> </td></tr>';
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">FALT/SOB DIA</td><td>$ '+formatoMoneda1(l6)+' </td><td >$ '+formatoMoneda1(m6)+'</td><td> $ '+ formatoMoneda1(x6) +' </td><td>$ '+ formatoMoneda1(j6)+'  </td><td>$ '+ formatoMoneda1(v6) +' </td><td> $ '+ formatoMoneda1(s6) +' </td><td> $ '+ formatoMoneda1(f_s_t) +' </td></tr>';
-                  html2+= '<tr class="text-right" style="font-size:9px;   "><td  class="text-left">CONTROL INTERNO</td><td></td><td ></td><td></td><td></td><td></td><td></td><td>'+formatoMoneda1(controlInterno)+'</td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">CRÉDITOS</td><td>$ '+formatoMoneda1(l)+' </td><td>$ '+formatoMoneda1(m)+'</td><td>$ '+ formatoMoneda1(x) +' </td><td>$ '+ formatoMoneda1(j)+'  </td><td>$ '+ formatoMoneda1(v) +' </td><td>$ '+ formatoMoneda1(s) +' </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">BONIFICACIÓN</td><td> $ '+formatoMoneda1(lp)+' </td><td>$ '+formatoMoneda1(mp)+'</td><td>$ '+ formatoMoneda1(xp) +' </td><td>$ '+ formatoMoneda1(jp)+'  </td><td>$ '+ formatoMoneda1(vp) +' </td><td>$ '+ formatoMoneda1(sp) +' </td><td><strong>$ '+ formatoMoneda1(bonT) +'</strong> </td></tr>';  
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">MERCANCIA</td><td> $ '+formatoMoneda1(l4)+' </td><td>$ '+formatoMoneda1(m4)+'</td><td>$ '+ formatoMoneda1(x4) +' </td><td>$ '+ formatoMoneda1(j4)+'  </td><td>$ '+ formatoMoneda1(v4) +' </td><td>$ '+ formatoMoneda1(s4) +' </td><td> $ '+formatoMoneda1(mercanciaTotal)+'</td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">VENTA</td><td>$ '+formatoMoneda1(l2)+' </td><td>$ '+formatoMoneda1(m2)+'</td><td> $ '+ formatoMoneda1(x2) +' </td><td>$ '+ formatoMoneda1(j2)+'  </td><td>$ '+ formatoMoneda1(v2) +' </td><td> $ '+ formatoMoneda1(s2) +' </td><td><strong> $ '+ formatoMoneda1(ventaT) +'</strong> </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">NO VENTA</td><td>$ '+formatoMoneda1(l8)+' </td><td>$ '+formatoMoneda1(m8)+'</td><td> $ '+ formatoMoneda1(x8) +' </td><td>$ '+ formatoMoneda1(j8)+'  </td><td>$ '+ formatoMoneda1(v8) +' </td><td> $ '+ formatoMoneda1(s8) +' </td><td><strong> $ '+ formatoMoneda1(noVentaTotal) +'</strong> </td></tr>';
+                  html2+= '<tr  class="text-right"  style="font-size:8px;   "><td class="text-left">% NO VENTA</td><td><strong> % '+formatoMoneda1(l3)+'</strong> </td><td><strong> % '+formatoMoneda1(m3)+' </strong></td><td> <strong>% '+ formatoMoneda1(x3) +' </strong></td><td><strong> % '+ formatoMoneda1(j3)+'  </strong></td><td><strong> % '+ formatoMoneda1(v3) +'</strong> </td><td><strong> % '+ formatoMoneda1(s3) +' </strong></td><td><strong> % '+  formatoMoneda1(p) +' </strong></td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">EFECTIVO</td><td>$ '+formatoMoneda1(l5)+' </td><td>$ '+formatoMoneda1(m5)+'</td><td> $ '+ formatoMoneda1(x5) +' </td><td>$ '+ formatoMoneda1(j5)+'  </td><td>$ '+ formatoMoneda1(v5) +' </td><td> $ '+ formatoMoneda1(s5) +' </td><td><strong> $ '+ formatoMoneda1(efecT) +'</strong> </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">FALT/SOB DIA</td><td>$ '+formatoMoneda1(l6)+' </td><td >$ '+formatoMoneda1(m6)+'</td><td> $ '+ formatoMoneda1(x6) +' </td><td>$ '+ formatoMoneda1(j6)+'  </td><td>$ '+ formatoMoneda1(v6) +' </td><td> $ '+ formatoMoneda1(s6) +' </td><td> $ '+ formatoMoneda1(f_s_t) +' </td></tr>';
+                  html2+= '<tr class="text-right" style="font-size:8px;   "><td  class="text-left">CONTROL INTERNO</td><td></td><td ></td><td></td><td></td><td></td><td></td><td> $ '+formatoMoneda1(controlInterno)+'</td></tr>';
                  
-                  html2+= '<tr  class="text-right" style="font-size:9px;   "><td class="text-left">FALT/SOB REAL</td><td>$ '+formatoMoneda1(l7)+' </td><td>$ '+formatoMoneda1(m7)+'</td><td> $ '+ formatoMoneda1(x7) +' </td><td>$ '+ formatoMoneda1(j7)+'  </td><td>$ '+ formatoMoneda1(v7) +' </td><td> $ '+ formatoMoneda1(s7) +' </td><td><strong> $ '+ formatoMoneda1(f_s_tR) +'</strong> </td></tr>';
-                  htmlC+='<tr  class="text-right" style="font-size:9px;   "><td></td><td class="text-right"> $ '+formatoMoneda1(creditosFTemp)+'</td><td class="text-right"> $ - '+formatoMoneda1(creditosITemp)+'</td><td> $ '+formatoMoneda1(creditosFTemp-creditosITemp) +'</td><td> $ '+formatoMoneda1(f_s_t)+'</td><td><strong> $ '+formatoMoneda1((creditosFTemp-creditosITemp)+parseFloat(f_s_t))+' </strong></td></tr>'
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">FALT/SOB REAL</td><td>$ '+formatoMoneda1(l7)+' </td><td>$ '+formatoMoneda1(m7)+'</td><td> $ '+ formatoMoneda1(x7) +' </td><td>$ '+ formatoMoneda1(j7)+'  </td><td>$ '+ formatoMoneda1(v7) +' </td><td> $ '+ formatoMoneda1(s7) +' </td><td><strong> $ '+ formatoMoneda1(f_s_tR) +'</strong> </td></tr>';
+                  htmlC+='<tr  class="text-right" style="font-size:8px;   "><td></td><td class="text-right"> $ '+formatoMoneda1(creditosFTemp)+'</td><td class="text-right"> $ - '+formatoMoneda1(creditosITemp)+'</td><td> $ '+formatoMoneda1(creditosFTemp-creditosITemp) +'</td><td> $ '+formatoMoneda1(f_s_t)+'</td><td><strong> $ '+formatoMoneda1((creditosFTemp-creditosITemp)+parseFloat(f_s_t))+' </strong></td></tr>'
                   
             }
 
@@ -4047,6 +4057,7 @@ function loadNoVentaNomina1(lista){ //por mayoreo
         var productosTP="";
           var totalCred=0;
           var totalCredP=0;
+          var v_mercancia=0;
               
               var titulos=""; 
               var titulosP=""; 
@@ -4064,7 +4075,7 @@ function loadNoVentaNomina1(lista){ //por mayoreo
          }
 
   encuentra=1; 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td class="ventascss">' + ruta3  + '</td><td class="ventascss">'+t_ventas[lista[j].tipo-1]+'</td> <td class="ventascss">' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
       
         }
@@ -4083,20 +4094,66 @@ var longi =  parseInt(scv)-parseInt(scv);
           enc=0;
 if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
  
-if(lista[j].t_venta_merca !=(undefined||NaN||""||null)){
-           creditosT +=  0; // (parseFloat(lista[j].t_venta_merca)-parseFloat(lista[j].otros));
-          }
+          mer=lista[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          pNoVenta=((mer-lista[j].t_venta_merca)*100)/parseFloat(lista[j].t_venta_merca);
+          diferenciaT+=( parseFloat(mer) - parseFloat(lista[j].t_venta_merca));
+    
+          
+          if(lista[j].t_venta_merca==0)pNoVenta=100;
+          if(lista[j].t_venta_merca==0)diferenciaT=0;
+if(lista[j].otros==null||lista[j].otros==NaN||lista[j].otros==undefined){
+  bonificacionT+=parseFloat(0);
+  
+}else{
+  bonificacionT+=parseFloat(lista[j].otros);
+  
+}
+          t_venta_mercaT+=parseFloat(lista[j].t_venta_merca);
 
-productoTotal = '<td>% - </td>';
+
+
+if(lista[j].creditos==null||lista[j].creditos==NaN||lista[j].creditos==undefined){
+  credits=0
+  
+}else{
+  credits=lista[j].creditos;
+  
+}
+if(diferenciaT==0){
+porcentajeTotal=0;
+}else{
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
+  
+}
+var lC="black";
+                if(porcentajeTotal<20){lC="green"}
+                if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
+                if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow; "}
+                if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
+                if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
+productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
 enc=1;
 
         }
 
-        if(enc==0){productoTotal = '<td> % - </td>'; 
+        if(enc==0){
+
+
+          var lC="black";
+                if(porcentajeTotal<20){lC="green"}
+                if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
+                if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow; "}
+                if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
+                if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
+productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
 
       }
-     
+ 
         }
+
+
+
  if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=0;}
 prodT[num22]+= parseFloat(creditosT);
 num22++;
@@ -4107,10 +4164,18 @@ productoTotalSP += productoTotal;
 enc=0;
 creditosT=0;
 productoTotal='';
-}
+//alert(porcentajeTotal+' = '+diferenciaT+' *100/ '+ t_venta_mercaT+' - '+bonificacionT);
 
+ diferenciaT=0;
+     t_venta_mercaT=0;
+     bonificacionT=0;
+     porcentajeTotal=0;
 
 encuentra =0;
+
+
+}
+
 
 
 
@@ -4142,8 +4207,8 @@ totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
 prodTotales2[j2]+=prodT[j2];
 }
 
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
+ // html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td> '+totalCred+'</tr>';
+//htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
 var renglon = 4+parseInt(scv)-parseInt(scv2);
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -4216,7 +4281,8 @@ function loadNoVentaNomina2(lista){ //por mayoreo
          }
 
   encuentra=1; 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td class="ventascss">' + ruta3  + '</td><td class="ventascss">'+t_ventas[lista[j].tipo-1]+'</td> <td class="ventascss">' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
       
         }
@@ -4235,19 +4301,65 @@ var longi =  parseInt(scv)-parseInt(scv);
           enc=0;
 if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
  
-if(lista[j].t_venta_merca !=(undefined||NaN||""||null)){
-         creditosT +=  0; // (parseFloat(lista[j].t_venta_merca)-parseFloat(lista[j].otros));
-          }
+          mer=lista[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          pNoVenta=((mer-lista[j].t_venta_merca)*100)/parseFloat(lista[j].t_venta_merca);
+          diferenciaT+=( parseFloat(mer) - parseFloat(lista[j].t_venta_merca));
+    
+          
+          if(lista[j].t_venta_merca==0)pNoVenta=100;
+          if(lista[j].t_venta_merca==0)diferenciaT=0;
+if(lista[j].otros==null||lista[j].otros==NaN||lista[j].otros==undefined){
+  bonificacionT+=parseFloat(0);
+  
+}else{
+  bonificacionT+=parseFloat(lista[j].otros);
+  
+}
+          t_venta_mercaT+=parseFloat(lista[j].t_venta_merca);
 
-productoTotal = '<td>% - </td>';
+
+
+if(lista[j].creditos==null||lista[j].creditos==NaN||lista[j].creditos==undefined){
+  credits=0
+  
+}else{
+  credits=lista[j].creditos;
+  
+}
+if(diferenciaT==0){
+porcentajeTotal=0;
+}else{
+   porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
+}
+var lC="black";
+                if(porcentajeTotal<20){lC="green"}
+                if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
+                if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow; "}
+                if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
+                if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
+productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
 enc=1;
 
         }
 
-        if(enc==0){productoTotal = '<td> % - </td>'; 
+        if(enc==0){
+
+
+          var lC="black";
+                if(porcentajeTotal<20){lC="green"}
+                if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
+                if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow;"}
+                if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
+                if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
+productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
+
       }
-     
+ 
         }
+
+
+
  if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=0;}
 prodT[num22]+= parseFloat(creditosT);
 num22++;
@@ -4258,10 +4370,18 @@ productoTotalSP += productoTotal;
 enc=0;
 creditosT=0;
 productoTotal='';
-}
+//alert(porcentajeTotal+' = '+diferenciaT+' *100/ '+ t_venta_mercaT+' - '+bonificacionT);
 
+ diferenciaT=0;
+     t_venta_mercaT=0;
+     bonificacionT=0;
+     porcentajeTotal=0;
 
 encuentra =0;
+
+
+}
+
 
 
 
@@ -4294,8 +4414,8 @@ totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
 prodTotales2[j2]+=prodT[j2];
 }
 
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>FORANEO</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>FORANEO</strong></td><td></td>'+totalCred+' </tr>';
+ // html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>FORANEO</td><td></td> '+totalCred+'</tr>';
+//htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>FORANEO</strong></td><td></td>'+totalCred+' </tr>';
 var renglon = 4+parseInt(scv)-parseInt(scv2);
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -4369,7 +4489,8 @@ function loadNoVentaNomina3(lista){ //por mayoreo
          }
 
   encuentra=1; 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td class="ventascss">' + ruta3  + '</td><td class="ventascss">'+t_ventas[lista[j].tipo-1]+'</td> <td class="ventascss">' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
       
         }
@@ -4388,19 +4509,65 @@ var longi =  parseInt(scv)-parseInt(scv);
           enc=0;
 if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
  
-if(lista[j].t_venta_merca !=(undefined||NaN||""||null)){
-         creditosT +=  0; // (parseFloat(lista[j].t_venta_merca)-parseFloat(lista[j].otros));
-          }
+          mer=lista[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          pNoVenta=((mer-lista[j].t_venta_merca)*100)/parseFloat(lista[j].t_venta_merca);
+          diferenciaT+=( parseFloat(mer) - parseFloat(lista[j].t_venta_merca));
+    
+          
+          if(lista[j].t_venta_merca==0)pNoVenta=100;
+          if(lista[j].t_venta_merca==0)diferenciaT=0;
+if(lista[j].otros==null||lista[j].otros==NaN||lista[j].otros==undefined){
+  bonificacionT+=parseFloat(0);
+  
+}else{
+  bonificacionT+=parseFloat(lista[j].otros);
+  
+}
+          t_venta_mercaT+=parseFloat(lista[j].t_venta_merca);
 
-productoTotal = '<td>% - </td>';
+
+
+if(lista[j].creditos==null||lista[j].creditos==NaN||lista[j].creditos==undefined){
+  credits=0
+  
+}else{
+  credits=lista[j].creditos;
+  
+}
+if(diferenciaT==0){
+porcentajeTotal=0;
+}else{
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
+}
+var lC="black";
+                if(porcentajeTotal<20){lC="green"}
+                if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
+                if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow; "}
+                if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
+                if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
+productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
 enc=1;
 
         }
 
-        if(enc==0){productoTotal = '<td> % - </td>'; 
+        if(enc==0){
+
+
+          var lC="black";
+                if(porcentajeTotal<20){lC="green"}
+                if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
+                if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow;"}
+                if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
+                if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
+productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
+
       }
-     
+ 
         }
+
+
+
  if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=0;}
 prodT[num22]+= parseFloat(creditosT);
 num22++;
@@ -4411,10 +4578,18 @@ productoTotalSP += productoTotal;
 enc=0;
 creditosT=0;
 productoTotal='';
-}
+//alert(porcentajeTotal+' = '+diferenciaT+' *100/ '+ t_venta_mercaT+' - '+bonificacionT);
 
+ diferenciaT=0;
+     t_venta_mercaT=0;
+     bonificacionT=0;
+     porcentajeTotal=0;
 
 encuentra =0;
+
+
+}
+
 
 
 
@@ -4447,8 +4622,8 @@ totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
 prodTotales2[j2]+=prodT[j2];
 }
 
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>DETALLE</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>DETALLE</strong></td><td></td>'+totalCred+' </tr>';
+ // html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>DETALLE</td><td></td> '+totalCred+'</tr>';
+//htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>DETALLE</strong></td><td></td>'+totalCred+' </tr>';
 var renglon = 4+parseInt(scv)-parseInt(scv2);
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -4482,7 +4657,7 @@ htmlT2+='<td> $ '+formatoMoneda1(prodTotales2[j2])+'</td>';
 htmlT2+='<tr style="background:black; font-size:10px;"><td>TOTALES</td> <td></td><td></td> '+htmlT2+'</tr>';
 htmlp+='<tr class="grisclaro" style="font-size:8px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ><strong></strong></td><td></td>'+htmlT2+' </tr>';
 //$('.TotalesCred').html(htmlT2); 
-$('.totalNoVentap').html(htmlp); 
+//$('.totalNoVentap').html(htmlp); 
    document.getElementById('loader').style.display = 'none';
         
              }
@@ -4539,7 +4714,7 @@ function loadNoVentaNomina4(lista){ //por mayoreo
          }
 
   encuentra=1; 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td class="ventascss">' + ruta3  + '</td><td class="ventascss">'+t_ventas[lista[j].tipo-1]+'</td> <td class="ventascss">' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';  
 identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
       
         }
@@ -4557,20 +4732,65 @@ var longi =  parseInt(scv)-parseInt(scv);
         for(var j=0;j<lista.length; j++){
           enc=0;
 if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
- 
-if(lista[j].t_venta_merca !=(undefined||NaN||""||null)){
-  creditosT +=  0; // (parseFloat(lista[j].t_venta_merca)-parseFloat(lista[j].otros));
-          }
+  mer=lista[j].v_mercancia;
+          if(mer==""||mer==NaN||mer==undefined)mer=0;
+          pNoVenta=((mer-lista[j].t_venta_merca)*100)/parseFloat(lista[j].t_venta_merca);
+          diferenciaT+=( parseFloat(mer) - parseFloat(lista[j].t_venta_merca));
+    
+          
+          if(lista[j].t_venta_merca==0)pNoVenta=100;
+          if(lista[j].t_venta_merca==0)diferenciaT=0;
+if(lista[j].otros==null||lista[j].otros==NaN||lista[j].otros==undefined){
+  bonificacionT+=parseFloat(0);
+  
+}else{
+  bonificacionT+=parseFloat(lista[j].otros);
+  
+}
+          t_venta_mercaT+=parseFloat(lista[j].t_venta_merca);
 
-productoTotal = '<td>% - </td>';
+
+
+if(lista[j].creditos==null||lista[j].creditos==NaN||lista[j].creditos==undefined){
+  credits=0
+  
+}else{
+  credits=lista[j].creditos;
+  
+}
+if(diferenciaT==0){
+porcentajeTotal=0;
+}else{
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
+}
+var lC="black";
+                if(porcentajeTotal<20){lC="green"}
+                if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
+                if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow;"}
+                if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
+                if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
+productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
 enc=1;
 
         }
 
-        if(enc==0){productoTotal = '<td> % - </td>'; 
+        if(enc==0){
+
+
+          var lC="black";
+                if(porcentajeTotal<20){lC="green"}
+                if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
+                if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow;"}
+                if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
+                if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
+productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
+
       }
-     
+ 
         }
+
+
+
  if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=0;}
 prodT[num22]+= parseFloat(creditosT);
 num22++;
@@ -4581,10 +4801,18 @@ productoTotalSP += productoTotal;
 enc=0;
 creditosT=0;
 productoTotal='';
-}
+//alert(porcentajeTotal+' = '+diferenciaT+' *100/ '+ t_venta_mercaT+' - '+bonificacionT);
 
+ diferenciaT=0;
+     t_venta_mercaT=0;
+     bonificacionT=0;
+     porcentajeTotal=0;
 
 encuentra =0;
+
+
+}
+
 
 
 
@@ -4617,8 +4845,8 @@ totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
 prodTotales2[j2]+=prodT[j2];
 }
 
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>RESTAURANTES</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>RESTAURANTES</strong></td><td></td>'+totalCred+' </tr>';
+//  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>RESTAURANTES</td><td></td> '+totalCred+'</tr>';
+//htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>RESTAURANTES</strong></td><td></td>'+totalCred+' </tr>';
 var renglon = 4+parseInt(scv)-parseInt(scv2);
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -5543,7 +5771,201 @@ for(var w=0;w<prodTotales.length; w++){
 prodT=0;
 
 }
+var idNominaFinal;
+var idNominaFinalNombre;
+function loadVentaDiariaNominaFaltante(lista){ //por mayoreo
+          idNominaFinal = new Array(0);
+          idNominaFinalNombre = new Array(0);
+          prodTotales = new Array(arrGlobalCategoria.length);
+          credi=0;
+          boni=0;
+          s_vent=0;
+      var html = '';
+      var htmlP = '';
+      var identificacion='';
+      var identificacionP='';
+      var bonificacionT=0;
+      var t_venta_mercaT=0;
+      var mer;
+      var pNoVenta;
+      var creditosT=0; 
+      var bonificacionTotal=0; 
+      var ventasT=0; 
+      var productoTotalS=""; 
+      var productoTotal=0; 
+      var productoTotalP=0; 
+      var prodT = new Array(arrGlobalCategoria.length);
+      var porcentajeTotal=0;
+      var credits=0;
+      var mermaT=0;
+      var encuentra=0;
+      var diferenciaT=0;
+      var faltanteT;
+      var f_Ahorro="F";
+      var ret=0;
+      var idMerma="F";
+      var infonavit=0;
+      var idNomina;
+      var nombreVendedor;
+  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+       if(arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
+  for(var j=0;j<arrGlobalF.length; j++){
+       if(arrGlobalEmpleados[hh2].ruta == arrGlobalF[j].ruta && (scv+1)==arrGlobalF[j].sfc && year==((arrGlobalF[j].fechaf).substring(0,4))){
+  for(var i=0; i < arrGlobalRuta.length; i++) {
+       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
+          ruta3=arrGlobalRuta[i].nombre;
+          rutas=arrGlobalEmpleados[hh2].ruta;
+          }
+         }
 
+       if(arrGlobalF[j].id!=(undefined||NaN||""||null)){
+          idNomina = arrGlobalF[j].id;
+           idMerma = arrGlobalF[j].id;
+          }
+          if(arrGlobalF[j].nombre!=(undefined||NaN||""||null)){
+          nombreVendedor = arrGlobalF[j].nombre;
+           
+          }
+        
+      
+       
+         
+var mermaH=0; 
+        
+         identificacion='.'
+     
+        }
+        
+        }
+
+
+
+encuentra =0;
+ventasT+=t_venta_mercaT;
+creditosT+=parseFloat(credits);
+bonificacionTotal=bonificacionTotal-parseFloat(arrGlobalEmpleados[hh2].l_bon);
+
+bonificacionT=0;
+diferenciaT=0;
+t_venta_mercaT=0;
+        var productosT="";
+        var productosTP="";
+          
+              
+              var titulos=""; 
+              var titulosP=""; 
+       
+
+              
+         if(identificacion==''){html=html;}else{
+         
+         if(infonavit==0){infonavit=0;}
+         if(ret==0){ret=0;}
+         if(faltanteT==undefined)faltanteT=0;
+         if(faltanteT>0)faltanteT=0;
+         if(faltanteT<0)faltanteT=(faltanteT)*(-1);
+         if(bonificacionTotal<0){bonificacionTotal=0};
+       // alert(idNomina);
+  idNominaFinal.push(idNomina); 
+  idNominaFinalNombre.push(nombreVendedor); 
+          html+=identificacion+'</td><td>'+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
+          htmlP+=identificacionP+'</td><td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td>  </tr>';
+          bonificacionTotal=0;
+          mermaT=0;
+          faltanteT=0;
+          pago=0;
+          f_Ahorro="F";
+          productoTotalS=productoTotal;
+          productoTotalSP=productoTotalP;
+          totalNomina=0;
+         }
+        productoTotal='';
+        productoTotalP='';
+        productosT='';
+        productosTP='';
+        identificacion='';
+        identificacionP='';
+        bonificacionT=0;
+        credits=0;
+        t_venta_mercaT=0;
+       }
+
+     }
+
+             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 70px; ">__PAGO__</th>'+titulos+'<th class="letras" style="width: 70px; ">___MERMA___ </th> <th>RET/ML</th><th>FONDO DE AHORRO</th><th>INFONAVIT</th><th>FALTANTE</th><th>TOTAL</th>';
+             titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th><th colspan="1" class=" text-center" style="width: 70px; ">___PAGO___</th>'+titulosP+'<th class="" style="width: 70px; ">___MERMA___</th><th  class="text-center">RET/ML</th>  <th class="text-center">FONDO DE AHORRO</th><th class="text-center">INFONAVIT</th><th class="text-center">FALTANTE</th><th>___TOTAL___</th> ';
+         
+if(html!=""){
+          credi+= parseFloat(creditosT);
+          boni+=parseFloat(bonificacionTotal);
+          s_vent+=parseFloat(ventasT);
+var renglon = 9+parseInt(arrGlobalCategoria.length)
+
+html+='<tr class=""><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
+htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
+
+}
+
+              if(html==undefined){html='';}else{
+             //  $('.titulo2PF').html(titulosP); 
+              // $('.contCataMayoreoNF').html(html); 
+               //$('.contCataMayoreoPF').html(htmlP); 
+              }
+
+prodT=0;
+var numero=0;
+ var nombre='FALTANTE ('+idNominaFinalNombre[0]+')';
+      $('#modalFaltante').modal({backdrop: 'static', keyboard: false});
+$('#modalFaltante .modal-title').html(nombre); 
+$('#modalFaltante .indice').val(numero); 
+
+
+}
+function siguienteFaltante(){
+ var faltante = $('#modalFaltante .faltanteNomina').val();
+ var indice = $('#modalFaltante .indice').val();
+
+if(faltante=="")faltante=0;
+
+var numero=parseInt(indice);
+
+if(idNominaFinalNombre[numero]==undefined){
+closeModalFaltante();
+click_buscarNomina1();
+limpiar();
+}else{
+
+
+
+limpiar();
+var idV =idNominaFinal[numero];
+ var cobrado=faltante*(-1);
+ var sfc=scv+1;
+var jsonC = {where:{sfc:sfc}}
+
+ var json2 = {cobrado:cobrado}
+upRegistroA2(idV, json2,jsonC, 'ventaspasada', loadVentaspasadasVF2);
+numero=parseInt(indice)+1;
+if(idNominaFinalNombre[numero]==undefined){
+  closeModalFaltante();
+click_buscarNomina1();
+limpiar();
+}else{
+  var nombre='FALTANTE ('+idNominaFinalNombre[numero]+')';
+$('#modalFaltante .indice').val(numero);
+  $('#modalFaltante .modal-title').html(nombre); 
+}
+ 
+
+
+}
+
+}
+function closeModalFaltante(){
+//   $('#modalFaltante').modal({backdrop: 'dinamic', keyboard: false});
+  $('#modalFaltante').modal('hide');
+  nomina();
+}
 function loadVentaDiariaMayoreoNominaFaltante(lista){ //por mayoreo
           prodTotales = new Array(arrGlobalCategoria.length);
           credi=0;
@@ -5604,7 +6026,7 @@ function loadVentaDiariaMayoreoNominaFaltante(lista){ //por mayoreo
           }else{faltanteT=0;}
 var mermaH=0; 
           if(arrGlobalF[j].n5!=(undefined||NaN||""||null)){
-mermaT += parseFloat(arrGlobalF[j].n5);
+mermaT = parseFloat(arrGlobalF[j].n5);
 mermaH=arrGlobalF[j].n1;
 }else{
 mermaT += 0;
@@ -5648,8 +6070,8 @@ if(arrGlobalEmpleados[hh2].n1!=(undefined||NaN||"")){
           bonificacionTotal=arrGlobalEmpleados[hh2].l_bon;
 faltanteT=0;
            encuentra=1; 
-          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNominaE('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalEmpleados[hh2].id+', '+faltanteT+');"><td >' + ruta3  + '</td><td >'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-          identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNominaE('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalEmpleados[hh2].id+', '+faltanteT+');"><td >' + ruta3  + '</td><td >MAYOREO</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+          identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>MAYOREO</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
     
         }
 encuentra =0;
@@ -5678,7 +6100,7 @@ t_venta_mercaT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
          if(bonificacionTotal<0){bonificacionTotal=0};
         
-          html+=identificacion+'</td><td>   ' +formatoMoneda1(bonificacionTotal)+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
+          html+=identificacion+'</td><td>'+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
           htmlP+=identificacionP+'</td><td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td>  </tr>';
           bonificacionTotal=0;
           mermaT=0;
@@ -5709,7 +6131,7 @@ if(html!=""){
           credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
           s_vent+=parseFloat(ventasT);
-var renglon = 10+parseInt(arrGlobalCategoria.length)
+var renglon = 9+parseInt(arrGlobalCategoria.length)
 
 html+='<tr class=""><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -5784,8 +6206,9 @@ function loadVentaDiariaRestauranteNominaFaltante(lista){ //por mayoreo
           if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
-          if(arrGlobalF[j].n1!=(undefined||NaN||"")){
-mermaT += parseFloat(arrGlobalF[j].n1);
+           if(arrGlobalF[j].n5!=(undefined||NaN||""||null)){
+mermaT += parseFloat(arrGlobalF[j].n5);
+mermaH=arrGlobalF[j].n1;
 }else{
 mermaT += 0;
 
@@ -5829,8 +6252,8 @@ if(arrGlobalEmpleados[hh2].n1!=(undefined||NaN||"")){
           bonificacionTotal=arrGlobalEmpleados[hh2].l_bon;
 faltanteT=0;
            encuentra=1; 
-          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNominaE('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalEmpleados[hh2].id+', '+faltanteT+');"><td >' + ruta3  + '</td><td >'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-          identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNominaE('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalEmpleados[hh2].id+', '+faltanteT+');"><td >' + ruta3  + '</td><td >RESTAURANTES</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+          identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>RESTAURANTES</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
     
         }
 encuentra =0;
@@ -5858,7 +6281,7 @@ t_venta_mercaT=0;
          if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
          if(bonificacionTotal<0){bonificacionTotal=0;}
-            html+=identificacion+'</td><td>   ' +formatoMoneda1(bonificacionTotal)+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
+            html+=identificacion+'</td><td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
           htmlP+=identificacionP+'</td><td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td>  </tr>';
          mermaT=0;
           bonificacionTotal=0;
@@ -5965,8 +6388,9 @@ for(var i=0; i < arrGlobalRuta.length; i++) {
           if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
-          if(arrGlobalF[j].n1!=(undefined||NaN||"")){
-mermaT += parseFloat(arrGlobalF[j].n1);
+          if(arrGlobalF[j].n5!=(undefined||NaN||""||null)){
+mermaT += parseFloat(arrGlobalF[j].n5);
+mermaH=arrGlobalF[j].n1;
 }else{
 mermaT += 0;
 
@@ -6012,8 +6436,8 @@ if(arrGlobalEmpleados[hh2].n1!=(undefined||NaN||"")){
 
 faltanteT=0;
            encuentra=1; 
-          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNominaE('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalEmpleados[hh2].id+', '+faltanteT+');"><td >' + ruta3  + '</td><td >'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-          identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNominaE('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalEmpleados[hh2].id+', '+faltanteT+');"><td >' + ruta3  + '</td><td >DETALLE FORANEO</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+          identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>DETALLE FORANEO</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
     
         }
 encuentra =0;
@@ -6041,7 +6465,7 @@ t_venta_mercaT=0;
          if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
          if(bonificacionTotal<0){bonificacionTotal=0};
-           html+=identificacion+'</td><td>   ' +formatoMoneda1(bonificacionTotal)+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
+           html+=identificacion+'</td><td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
           htmlP+=identificacionP+'</td><td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td>  </tr>';
          bonificacionTotal=0;
          mermaT=0;
@@ -6148,8 +6572,9 @@ for(var i=0; i < arrGlobalRuta.length; i++) {
           if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
-          if(arrGlobalF[j].n1!=(undefined||NaN||"")){
-mermaT += parseFloat(arrGlobalF[j].n1);
+           if(arrGlobalF[j].n5!=(undefined||NaN||""||null)){
+mermaT += parseFloat(arrGlobalF[j].n5);
+mermaH=arrGlobalF[j].n1;
 }else{
 mermaT += 0;
 
@@ -6194,8 +6619,8 @@ if(arrGlobalEmpleados[hh2].n1!=(undefined||NaN||"")){
 
 faltanteT=0;
            encuentra=1; 
-          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNominaE('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalEmpleados[hh2].id+', '+faltanteT+');"><td >' + ruta3  + '</td><td >'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-          identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[ arrGlobalEmpleados[hh2].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+          identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="upNominaE('+ret+', '+f_Ahorro+', '+infonavit+', '+arrGlobalEmpleados[hh2].id+', '+faltanteT+');"><td >' + ruta3  + '</td><td >DETALLE</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+          identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>DETALLE</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
     
         }
 encuentra =0;
@@ -6222,7 +6647,7 @@ t_venta_mercaT=0;
          if(faltanteT>0)faltanteT=0;
          if(faltanteT<0)faltanteT=(faltanteT)*(-1);
          if(bonificacionTotal<0){bonificacionTotal=0;}
-    html+=identificacion+'</td><td>   ' +formatoMoneda1(bonificacionTotal)+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
+    html+=identificacion+'</td><td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> </tr>';
           htmlP+=identificacionP+'</td><td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td>  </tr>';
          mermaT=0;
           faltanteT=0;
@@ -6333,10 +6758,10 @@ prodT=0;
           if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
-          if(arrGlobalF[j].n1!=undefined){
-mermaT += parseFloat(arrGlobalF[j].n1);
+          if(arrGlobalF[j].n5!=undefined){
+mermaT = parseFloat(arrGlobalF[j].n5);
 }else{
-mermaT += 0;
+mermaT = 0;
 
 }
 if(f_Ahorro=="F"){f_Ahorro=100;}
@@ -6690,10 +7115,10 @@ prodT=0;
           if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
-          if(arrGlobalF[j].n1!=undefined){
-mermaT += parseFloat(arrGlobalF[j].n1);
+          if(arrGlobalF[j].n5!=undefined){
+mermaT = parseFloat(arrGlobalF[j].n5);
 }else{
-mermaT += 0;
+mermaT = 0;
 
 }
 if(f_Ahorro=="F"){f_Ahorro=100;}
@@ -7043,10 +7468,10 @@ document.getElementById('loader').style.display = 'none';
           if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
-          if(arrGlobalF[j].n1!=undefined){
-mermaT += parseFloat(arrGlobalF[j].n1);
+          if(arrGlobalF[j].n5!=undefined){
+mermaT = parseFloat(arrGlobalF[j].n5);
 }else{
-mermaT += 0;
+mermaT = 0;
 
 }
 if(f_Ahorro=="F"){f_Ahorro=100;}
@@ -7400,8 +7825,8 @@ prodT=0;
           if(arrGlobalF[j].cobrado !=(undefined||NaN||"")){
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
-          if(arrGlobalF[j].n1!=undefined){
-mermaT += parseFloat(arrGlobalF[j].n1);
+          if(arrGlobalF[j].n5!=undefined){
+mermaT = parseFloat(arrGlobalF[j].n5);
 }else{
 mermaT += 0;
 
@@ -7760,10 +8185,10 @@ function loadVentaDiariaPagoFijoNomina(lista){ //
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
           
-          if(arrGlobalF[j].n1!=undefined){
-mermaT += parseFloat(arrGlobalF[j].n1);
+          if(arrGlobalF[j].n5!=undefined){
+mermaT = parseFloat(arrGlobalF[j].n5);
 }else{
-mermaT += 0;
+mermaT = 0;
 
 }
 
@@ -7989,7 +8414,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
   
 }
 
@@ -8425,7 +8850,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
   
 }
 pasa2=1;
@@ -8775,7 +9200,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
   
 }
 pasa2=1;
@@ -9126,7 +9551,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
   
 }
 pasa2=1;
@@ -9476,7 +9901,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
   
 }
 pasa2=1;
@@ -9820,7 +10245,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
   
 }
          encuentra=1; 
@@ -10159,11 +10584,11 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
   credits=arrGlobalF[j].creditos;
   
 }
-porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
 if(diferenciaT==0){
 porcentajeTotal=0;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
   
 }
          encuentra=1; 
@@ -10501,7 +10926,7 @@ if(arrGlobalF[j].creditos==null||arrGlobalF[j].creditos==NaN||arrGlobalF[j].cred
 if(diferenciaT==0){
 porcentajeTotal=100;
 }else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT)-parseFloat(bonificacionT));
+  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
 }
          encuentra=1; 
 identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td><td >$ ' + formatoMoneda1(credits)+ '</td> <td >$ ' + formatoMoneda1(bonificacionT)+ '</td>  <td > % ' + formatoMoneda1(porcentajeTotal) + '</td> <td >$ ' + formatoMoneda1(t_venta_mercaT)+ '</td>';
@@ -11681,7 +12106,7 @@ function loadMermaG(lista){ //merma general
 
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(1==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].horarecepcion!=1&&1==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                     if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
                       pasa=1;
                       if(lista[h].dfc==1){
@@ -11974,6 +12399,7 @@ function loadVDiariaR(lista){//modal
               var l5=0, m5=0, x5=0, j5=0, v5=0, s5=0;
               var l6=0, m6=0, x6=0, j6=0, v6=0, s6=0;
               var l7=0, m7=0, x7=0, j7=0, v7=0, s7=0;
+              var l8=0, m8=0, x8=0, j8=0, v8=0, s8=0;
               var contador =0;
               var promedio =0;
               var ventaT =0;
@@ -12010,6 +12436,7 @@ function loadVDiariaR(lista){//modal
                   lp=bon;
                   l2=arrGlobalF[h].t_venta_merca;
                   l4=mer;
+                  l8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);//-parseFloat(bon);
                   l5=efectivos;
                   l6=f_s_dia2;
                   l7=f_s_real2;
@@ -12040,6 +12467,8 @@ function loadVDiariaR(lista){//modal
                   m=credits;
                   mp=bon;
                   m2=arrGlobalF[h].t_venta_merca;
+                  m8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);//-parseFloat(bon);
+
                   m4=mer;
                   m5=efectivos;
                   m6=f_s_dia2;
@@ -12069,6 +12498,8 @@ function loadVDiariaR(lista){//modal
                   x=credits;
                   xp=bon;
                   x2=arrGlobalF[h].t_venta_merca;
+                  x8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);//-parseFloat(bon);
+
                   x4=mer;
                   x5=efectivos;
                   x6=f_s_dia2;
@@ -12098,7 +12529,7 @@ function loadVDiariaR(lista){//modal
                   j=credits;
                   jp=bon;
                   j2=arrGlobalF[h].t_venta_merca;
-                  j4=mer;
+                  j8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);//-parseFloat(bon);
                   j5=efectivos;
                   j6=f_s_dia2;
                   j7=f_s_real2;
@@ -12127,6 +12558,8 @@ function loadVDiariaR(lista){//modal
                   v=credits;
                   vp=bon;
                   v2=arrGlobalF[h].t_venta_merca;
+                  v8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);//-parseFloat(bon);
+
                   v4=mer;
                   v5=efectivos;
                   v6=f_s_dia2;
@@ -12156,6 +12589,8 @@ function loadVDiariaR(lista){//modal
                   s=credits;
                   sp=bon;
                   s2=arrGlobalF[h].t_venta_merca;
+                  s8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);//-parseFloat(bon);
+
                   s4=mer;
                   s5=efectivos;
                   s6=f_s_dia2;
@@ -12186,7 +12621,7 @@ function loadVDiariaR(lista){//modal
             if(contador==0){
                   p=0;
               }else{
-                var tNV= parseFloat(ventaT)-parseFloat(bonT);
+                var tNV= parseFloat(ventaT);//-parseFloat(bonT);
                 var vT= parseFloat(diferenciaT)*100;
                
               var p =(vT)/(tNV); 
@@ -12256,16 +12691,17 @@ function loadVDiariaR(lista){//modal
                 if(v6>0){vC2="green"}else{vC2="red"}
                 if(s6>0){sC2="green"}else{sC2="red"}
                   var controlInterno=parseFloat(efecT)-parseFloat(f_s_t);
-                
+                var noVentaT=parseFloat(l8)+parseFloat(m8)+parseFloat(x8)+parseFloat(j8)+parseFloat(v8)+parseFloat(s8);
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>CRÉDITOS</td><td>$ '+formatoMoneda1(l)+' </td><td>$ '+formatoMoneda1(m)+'</td><td>$ '+ formatoMoneda1(x) +' </td><td>$ '+formatoMoneda1(j)+'  </td><td>$ '+ formatoMoneda1(v) +' </td><td>$ '+ formatoMoneda1(s)+' </td></tr>';
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>BONIFICACIÓN</td><td> $ '+formatoMoneda1(lp)+' </td><td>$ '+formatoMoneda1(mp)+'</td><td>$ '+ formatoMoneda1(xp) +' </td><td>$ '+ formatoMoneda1(jp)+'  </td><td>$ '+ formatoMoneda1(vp) +' </td><td>$ '+ formatoMoneda1(sp) +' </td><td>$ '+ formatoMoneda1(bonT) +' </td></tr>';  
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>MERCANCIA</td><td> $ '+formatoMoneda1(l4)+' </td><td>$ '+formatoMoneda1(m4)+'</td><td>$ '+ formatoMoneda1(x4) +' </td><td>$ '+ formatoMoneda1(j4)+'  </td><td>$ '+ formatoMoneda1(v4) +' </td><td>$ '+ formatoMoneda1(s4) +' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>MERCANCIA</td><td> $ '+formatoMoneda1(l4)+' </td><td>$ '+formatoMoneda1(m4)+'</td><td>$ '+ formatoMoneda1(x4) +' </td><td>$ '+ formatoMoneda1(j4)+'  </td><td>$ '+ formatoMoneda1(v4) +' </td><td>$ '+ formatoMoneda1(s4) +' </td><td></td></tr>';
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>VENTA</td><td>$ '+formatoMoneda1(l2)+' </td><td>$ '+formatoMoneda1(m2)+'</td><td> $ '+ formatoMoneda1(x2) +' </td><td>$ '+ formatoMoneda1(j2)+'  </td><td>$ '+ formatoMoneda1(v2) +' </td><td> $ '+formatoMoneda1(s2) +' </td><td> $ '+ formatoMoneda1(ventaT) +' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>NO VENTA</td><td>$ '+formatoMoneda1(l8)+' </td><td>$ '+formatoMoneda1(m8)+'</td><td> $ '+ formatoMoneda1(x8) +' </td><td>$ '+ formatoMoneda1(j8)+'  </td><td>$ '+ formatoMoneda1(v8) +' </td><td> $ '+formatoMoneda1(s8) +' </td><td> $ '+ formatoMoneda1(noVentaT) +' </td></tr>';
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>EFECTIVO</td><td>$ '+formatoMoneda1(l5)+' </td><td>$ '+formatoMoneda1(m5)+'</td><td> $ '+ formatoMoneda1(x5) +' </td><td>$ '+ formatoMoneda1(j5)+'  </td><td>$ '+ formatoMoneda1(v5) +' </td><td> $ '+formatoMoneda1(s5) +' </td><td> $ '+ formatoMoneda1(efecT) +' </td></tr>';
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB DIA</td><td style="background:'+lC2+'">$ '+formatoMoneda1(l6)+' </td><td style="background:'+mC2+'">$ '+formatoMoneda1(m6)+'</td><td style="background:'+xC2+'"> $ '+ formatoMoneda1(x6) +' </td><td style="background:'+jC2+'">$ '+ formatoMoneda1(j6)+'  </td><td style="background:'+vC2+'">$ '+ formatoMoneda1(v6) +' </td><td style="background:'+sC2+'"> $ '+ formatoMoneda1(s6) +' </td></tr>';
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>CONTROL INTERNO</td><td></td><td ></td><td></td><td></td><td></td><td></td><td>'+formatoMoneda1(controlInterno)+'</td></tr>';
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>FALT/SOB REAL</td><td>$ '+formatoMoneda1(l7)+' </td><td>$ '+formatoMoneda1(m7)+'</td><td> $ '+ formatoMoneda1(x7) +' </td><td>$ '+ formatoMoneda1(j7)+'  </td><td>$ '+ formatoMoneda1(v7) +' </td><td> $ '+formatoMoneda1(s7) +' </td><td> $ '+ formatoMoneda1(s7) +' </td></tr>';
-                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>NO VENTA</td><td  id="lunes" style="background:'+lC+'"> % '+formatoMoneda1(l3)+' </td><td  id="martes" style="background:'+mC+'"> % '+formatoMoneda1(m3)+'</td><td  id="miercoles" style="background:'+xC+'"> % '+ formatoMoneda1(x3) +' </td><td  id="jueves" style="background:'+jC+'"> % '+ formatoMoneda1(j3) +'  </td><td  id="viernes" style="background:'+vC+'"> % '+ formatoMoneda1(v3) +' </td><td id="sabado" style="background:'+sC+'"> % '+ formatoMoneda1(s3) +' </td><td id="totalP" style="background:'+tC+'"> % '+  formatoMoneda1(p) +' </td></tr>';
+                  html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>% NO VENTA</td><td  id="lunes" style="background:'+lC+'"> % '+formatoMoneda1(l3)+' </td><td  id="martes" style="background:'+mC+'"> % '+formatoMoneda1(m3)+'</td><td  id="miercoles" style="background:'+xC+'"> % '+ formatoMoneda1(x3) +' </td><td  id="jueves" style="background:'+jC+'"> % '+ formatoMoneda1(j3) +'  </td><td  id="viernes" style="background:'+vC+'"> % '+ formatoMoneda1(v3) +' </td><td id="sabado" style="background:'+sC+'"> % '+ formatoMoneda1(s3) +' </td><td id="totalP" style="background:'+tC+'"> % '+  formatoMoneda1(p) +' </td></tr>';
                  
                   $('.contCataModalD').html(html2);
                   $('.contCataModal').html(html);
@@ -12292,7 +12728,7 @@ function loadMermaModal(lista){//modal Merma
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(1==lista[h].merma&&rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].horarecepcion!=1&&1==lista[h].merma&&rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                     if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
                       pasa=1;
                       if(lista[h].dfc==1){
@@ -13669,7 +14105,8 @@ function loadMerma(lista){
               var htmlm = '';
               var totalMerma =0 ;
               for(var h=0;h<lista.length; h++){
-                if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
+                if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1&&lista[h].horarecepcion!=1){
+
                   htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMerma('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
                 totalMerma += parseFloat(lista[h].valorMercancia);
                 }
@@ -13722,7 +14159,7 @@ function loadMermaP(lista){
               var htmlm = '';
               var totalMerma =0 ;
               for(var h=0;h<lista.length; h++){
-                if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
+                if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1&&lista[h].horarecepcion!=1){
                   htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMermaP('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
                 totalMerma += parseFloat(lista[h].valorMercancia);
                 }
@@ -14003,6 +14440,10 @@ function loadVentasp2(lista){
 }
 function loadVentaspasadasVF(lista){
      
+}
+function loadVentaspasadasVF2(lista){
+    arrGlobalF=lista; 
+
 }
 var bonificacion_Limite=0;
 var bonificacion_Total=0;
@@ -17725,6 +18166,7 @@ if(credito_manual==0){ ////////////// NO ENCUENTRA CREDITO DE LA SEMANA PASADA /
   var med=arrGlobal4.length;
   var hk=20;
   var hhc=20;
+
 for(var h=0;h<arrGlobal4.length; h++){
    if (arrGlobal4[h].id==id_vend) {///// PIVOTE CARGA PRINCIPAL /////////////
      var SemanaPivote = arrGlobal4[h].sfc;
@@ -17809,7 +18251,12 @@ if(hk==20){
   for (var FF = 0; FF < arrGlobal4.length; FF++) {
     if(arrGlobal4[FF].sfc==(scv-1)&&arrGlobal4[FF].ruta==rutas&&arrGlobal4[FF].dsfc==6){
     hk=1;
+  
     loquedeberiatraer=parseFloat(arrGlobal41[FF].creditos)-parseFloat(f_s_dia);
+  if(arrGlobal41[FF].creditos==null){
+    alert("¡URGENTE! LA CARGA DEL SABADO NO HA SIDO COMPLETADA, POR FAVOR REGRESE A LA SEMANA ANTERIOR Y GUARDE CAMBIOS");
+    loquedeberiatraer=0;
+  }
   f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
 modalCreditos1=1;
       cobrado=f_s_real;
@@ -18275,6 +18722,7 @@ if(km=="")km=0;
 if(n1=="")n1=0;
 if(infonavit=="")infonavit=0;
 if(cobrado=="")cobrado=0;
+
 closeModalNom();
 limpiar();
   $('.contCataMayoreoN').html(''); 
@@ -18291,8 +18739,11 @@ scv = parseInt(semanaVS1.substring(6,8))-1;
 
 
      var sfc = (scv+1)+"";
+     if(n5==0)n5=mermaTF2;
+     if(mermaTF2==0)mermaTF2=n5;
+ n5 =  parseFloat(mermaTF);//-parseFloat(mermaTF2)+parseFloat(n5);
 
- n5 =  parseFloat(mermaTF)-parseFloat(mermaTF2)+parseFloat(n5);
+if(cobrado>0)cobrado=0;
 var ruta = rutas;
 var json2 = {n5:n5};
 var jsonC = {where:{ruta:ruta}}
@@ -20936,6 +21387,22 @@ $('.btn-nav').removeClass('hidden');
 
 
 }
+function faltanteNomina(){
+ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+         // scv=noSemana;
+    
+      
+var sfc = (scv+1)+"";
+  if(scv != ""){
+
+      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaNominaFaltante);
+  
+  
+  }
+
+}
+
 function nomina(){
   document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -20947,6 +21414,7 @@ var sfc = (scv+1)+"";
 
 $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>');
       var json = {where:{sfc:sfc}}
+ //     executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaNominaFaltante);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNomina);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNomina);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNomina);
@@ -21295,7 +21763,7 @@ var sfc = (scv+1)+"";
 }
 
 function ventaDiariaP(){
-  document.getElementById('loader').style.display = 'block';
+  //document.getElementById('loader').style.display = 'block';
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVProductos()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA POR PRODUCTO (SEMANA: '+(scv+1)+')</h3>');
@@ -21360,10 +21828,10 @@ var sfc = (scv+1);
 }
 function click_buscarNomina1(){
    var semanaVS1 = $('.semanaNomina1').val();
-        document.getElementById('loader').style.display = 'block';
+     
 if(semanaVS1!=""){
 
-
+   document.getElementById('loader').style.display = 'block';
 year =  parseInt(semanaVS1.substring(0,4));
 scv = parseInt(semanaVS1.substring(6,8))-1;
   
@@ -21382,6 +21850,7 @@ var sfc = (scv+1);
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 
       $('#modal').modal('show');
+click_nomina();
 }
 }
 function click_buscarVCategorias(){
@@ -22094,6 +22563,7 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ   </h3>');
  $('.seccion3').load('/html/recep.html');
+
 mermaRec2 = arrGlobal4[h].n1;
 vehiculoRec2 = arrGlobal4[h].vehiculo;
  nombre_vend = arrGlobal4[h].nombre;

@@ -6207,7 +6207,7 @@ function loadVentaDiariaRestauranteNominaFaltante(lista){ //por mayoreo
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
            if(arrGlobalF[j].n5!=(undefined||NaN||""||null)){
-mermaT += parseFloat(arrGlobalF[j].n5);
+mermaT = parseFloat(arrGlobalF[j].n5);
 mermaH=arrGlobalF[j].n1;
 }else{
 mermaT += 0;
@@ -6389,7 +6389,7 @@ for(var i=0; i < arrGlobalRuta.length; i++) {
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
           if(arrGlobalF[j].n5!=(undefined||NaN||""||null)){
-mermaT += parseFloat(arrGlobalF[j].n5);
+mermaT = parseFloat(arrGlobalF[j].n5);
 mermaH=arrGlobalF[j].n1;
 }else{
 mermaT += 0;
@@ -6573,7 +6573,7 @@ for(var i=0; i < arrGlobalRuta.length; i++) {
            faltanteT = arrGlobalF[j].cobrado;
           }else{faltanteT=0;}
            if(arrGlobalF[j].n5!=(undefined||NaN||""||null)){
-mermaT += parseFloat(arrGlobalF[j].n5);
+mermaT = parseFloat(arrGlobalF[j].n5);
 mermaH=arrGlobalF[j].n1;
 }else{
 mermaT += 0;

@@ -14448,6 +14448,7 @@ function loadVentaspasadasVF2(lista){
 var bonificacion_Limite=0;
 var bonificacion_Total=0;
 function loadBonidicacionpasadasVF(lista){
+  //alert(scv);
    var html2 = '';
           var htmlp = '';
           var dayVS = today_v.substring(8,10);
@@ -14456,7 +14457,7 @@ function loadBonidicacionpasadasVF(lista){
           var cobrado=noSemana;
           var mes=month-1;
           var dia=day-1;
-var fechaf=fechacaptura;
+          var fechaf=fechacaptura;
 
               cobrado = cobrado +1;
               saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
@@ -14468,12 +14469,26 @@ var fechaf=fechacaptura;
             if(lista[h].otros==NaN||lista[h].otros==undefined||lista[h].otros==null||lista[h].otros==""){
                  b=0;
             }else{
-               b=lista[h].otros;
+        
+             b=lista[h].otros;
             }
             if(lista[h].bonificacion_p==NaN||lista[h].bonificacion_p==undefined||lista[h].bonificacion_p==null||lista[h].bonificacion_p==""){
                  b2=0;
             }else{
-               b2=lista[h].bonificacion_p;
+
+
+              for(var h2O = 0; h2O <  arrGlobalEmpleados.length; h2O++) {
+           //
+           if(lista[h].ruta==arrGlobalEmpleados[h2O].ruta){
+            var bon;
+            if(arrGlobalEmpleados[h2O].l_bon==null){bon=0;}else{
+              bon=arrGlobalEmpleados[h2O].l_bon;
+              b2=bon;
+            }
+            
+           }
+        }
+             //  b2=lista[h].bonificacion_p;
             }
       
             bonificacion_Limite=parseFloat(b2);
@@ -22633,6 +22648,7 @@ $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+t
  var fechaf = fechacaptura;
  var ruta = rutas;
  var sfc = noSemana+1;
+   //alert(sfc);
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
 
  var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}

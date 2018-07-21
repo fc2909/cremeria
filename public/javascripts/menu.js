@@ -1202,10 +1202,15 @@ function loadFabrica(lista){
 }
 function loadEClientes(lista){
           var html = '';
-          for(var h=0;h<lista.length; h++)
+          for(var h=0;h<lista.length; h++){
             if(lista[h].km == 1 ){
               html+= '<tr class=" letras"  ><td>'+lista[h].idEmpleados+'</td><td >' + lista[h].nombre_Emple + '</td><td><div class="btn-group" data-toggle="buttons"></button> <button type="button" class="btn btn-danger btn-sm" onclick="delECliente1('+ lista[h].id +');">ELIMINAR</button></div> </td></tr>';
             }
+            if(lista[h].km == "F" ){
+              html+= '<tr class=" letras" style="background:black;"  ><td> FACTURAS: '+lista[h].idEmpleados+'</td><td >' + lista[h].nombre_Emple + '</td><td><div class="btn-group" data-toggle="buttons"></button> <button type="button" class="btn btn-danger btn-sm" onclick="delECliente1('+ lista[h].id +');">ELIMINAR</button></div> </td></tr>';
+            }
+          }
+            
             $('.contCata').html(html);
             arrGlobal = lista;
 }
@@ -1214,11 +1219,17 @@ var arrGlobalPedidos;
 function loadPedidos(lista){
 
           var html = '';
-          for(var h=0;h<lista.length; h++)
+          for(var h=0;h<lista.length; h++){
+
             if(lista[h].km == 1 ){
               html+= '<tr class=" letras" onclick="click_SPedidos('+lista[h].id +','+h+')" ><td>'+lista[h].idEmpleados+'</td><td >' + lista[h].nombre_Emple + '</td></tr>';
            
             }
+            if(lista[h].km == "F" ){
+              html+= '<tr class=" letras" style="background: black;" onclick="click_SPedidosF('+lista[h].id +','+h+')" ><td> FACTURAS: '+lista[h].idEmpleados+'</td><td >' + lista[h].nombre_Emple + '</td></tr>';
+           
+            }
+          }
             $('.contCata').html(html);
             arrGlobalPedidos = lista;
         document.getElementById('loader').style.display = 'none';
@@ -5077,8 +5088,8 @@ var longi =  parseInt(scv)-parseInt(scv);
           enc=0;
 if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
  
-if(lista[j].n1 !=(undefined||NaN||""||null)){
-           creditosT += (parseFloat(lista[j].n1));
+if(lista[j].n5 !=(undefined||NaN||""||null)){
+           creditosT = (parseFloat(lista[j].n5));
           }
 
 productoTotal = '<td>$ '+formatoMoneda1(creditosT)+'</td>';
@@ -6026,10 +6037,10 @@ function loadVentaDiariaMayoreoNominaFaltante(lista){ //por mayoreo
           }else{faltanteT=0;}
 var mermaH=0; 
           if(arrGlobalF[j].n5!=(undefined||NaN||""||null)){
-mermaT = parseFloat(arrGlobalF[j].n5);
+mermaT=parseFloat(arrGlobalF[j].n5);
 mermaH=arrGlobalF[j].n1;
 }else{
-mermaT += 0;
+mermaT = 0;
 
 }
           if(arrGlobalF[j].otros!=(undefined||NaN||"")){
@@ -6210,7 +6221,7 @@ function loadVentaDiariaRestauranteNominaFaltante(lista){ //por mayoreo
 mermaT = parseFloat(arrGlobalF[j].n5);
 mermaH=arrGlobalF[j].n1;
 }else{
-mermaT += 0;
+mermaT = 0;
 
 }
    if(arrGlobalF[j].otros!=(undefined||NaN||"")){
@@ -6392,7 +6403,7 @@ for(var i=0; i < arrGlobalRuta.length; i++) {
 mermaT = parseFloat(arrGlobalF[j].n5);
 mermaH=arrGlobalF[j].n1;
 }else{
-mermaT += 0;
+mermaT = 0;
 
 }
           if(arrGlobalF[j].otros!=(undefined||NaN||"")){
@@ -6576,7 +6587,7 @@ for(var i=0; i < arrGlobalRuta.length; i++) {
 mermaT = parseFloat(arrGlobalF[j].n5);
 mermaH=arrGlobalF[j].n1;
 }else{
-mermaT += 0;
+mermaT = 0;
 
 }
 if(arrGlobalF[j].otros!=(undefined||NaN||"")){
@@ -12085,7 +12096,15 @@ prodT=0;
 
 
 
-
+var total1=0;
+var total2=0;
+var total3=0;
+var p1=0;
+var p12=0;
+var p13=0;
+var p14=0;
+var p15=0;
+var p16=0;
 function loadMermaG(lista){ //merma general
               var html = '';
               var htmlp = '';
@@ -12101,96 +12120,137 @@ function loadMermaG(lista){ //merma general
               var jp=0;
               var vp=0;
               var sp=0;
+                var lu=0;
+              var mu=0;
+              var xu=0;
+              var ju=0;
+              var vu=0;
+              var su=0;
               var cambio=0;
               var pasa=0; 
 
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(lista[h].horarecepcion!=1&&1==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if("0"==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
                     if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
-                      pasa=1;
+                     pasa=1;
+
                       if(lista[h].dfc==1){
                         if(lista[h].medida==1){
                           l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                           lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        lu+= parseFloat(lista[h].precioUnitario)*parseFloat(lp);
                         }
                         if(lista[h].medida==2){
                           l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                           lp+=0;
+                          lu+= parseFloat(lista[h].precioUnitario)*parseFloat(l);
                         }
                         if(lista[h].medida==3){
                           l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                           lp+=0;
+                          lu+= parseFloat(lista[h].precioUnitario)*parseFloat(l);
+
                           }
                         }
                         if(lista[h].dfc==2){
                           if(lista[h].medida==1){
                             m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             mp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          mu+= parseFloat(lista[h].precioUnitario)*parseFloat(m);
+                         
                           }
                           if(lista[h].medida==2){
                             m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             mp+=0;
+                          mu+= parseFloat(lista[h].precioUnitario)*parseFloat(m);
+
                           }
                           if(lista[h].medida==3){
                             m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             mp+=0;
+                          mu+= parseFloat(lista[h].precioUnitario)*parseFloat(m);
+
                           }
                         }
                         if(lista[h].dfc==3){
                           if(lista[h].medida==1){
                             x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          xu+= parseFloat(lista[h].precioUnitario)*parseFloat(xp);
+                          
                           }
                           if(lista[h].medida==2){
                             x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             xp+=0;
+                          xu+= parseFloat(lista[h].precioUnitario)*parseFloat(x);
+                          
                           }
                           if(lista[h].medida==3){
                             x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             xp+=0;
+                          xu+= parseFloat(lista[h].precioUnitario)*parseFloat(x);
+                          
                           }
                         }
                         if(lista[h].dfc==4){
                           if(lista[h].medida==1){
                             j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             jp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          ju+= parseFloat(lista[h].precioUnitario)*parseFloat(jp);
+                          
                           }
                           if(lista[h].medida==2){
                             j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             jp+=0;
+                          ju+= parseFloat(lista[h].precioUnitario)*parseFloat(j);
+                          
                           }
                           if(lista[h].medida==3){
                             j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             jp+=0;
+                          ju+= parseFloat(lista[h].precioUnitario)*parseFloat(j);
+                          
                           }
                         }
                         if(lista[h].dfc==5){
                           if(lista[h].medida==1){
                             v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             vp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          vu+= parseFloat(lista[h].precioUnitario)*parseFloat(vp);
+                          
                           }
                           if(lista[h].medida==2){
                             v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             vp+=0;
+                          vu+= parseFloat(lista[h].precioUnitario)*parseFloat(v);
+                          
                           }
                           if(lista[h].medida==3){
                             v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             vp+=0;
+                          vu+= parseFloat(lista[h].precioUnitario)*parseFloat(v);
+                          
                           }
                         }
                         if(lista[h].dfc==6){
                           if(lista[h].medida==1){
                             s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             sp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          su+= parseFloat(lista[h].precioUnitario)*parseFloat(sp);
+                          
                           }
                           if(lista[h].medida==2){
                             s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             sp+=0;
+                          su+= parseFloat(lista[h].precioUnitario)*parseFloat(s);
+                          
                           }
                           if(lista[h].medida==3){
                             s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
                             sp +=0;
+                          su+= parseFloat(lista[h].precioUnitario)*parseFloat(s);
+                          
                           }
                         }
                       }
@@ -12198,22 +12258,31 @@ function loadMermaG(lista){ //merma general
               if((lista.length-1)==h&&pasa==1){
               var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
               var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+              var suma3= parseFloat(lu)+parseFloat(mu)+parseFloat(xu)+parseFloat(ju)+parseFloat(vu)+parseFloat(su);
                 if(l==0){l=""}else{l=formatoMoneda1(l);}
                 if(lp==0){lp=""}else{lp=formatoMoneda2(lp);}
+                if(lu==0){lu=""}else{lu=" $ "+formatoMoneda1(lu);}
                 if(m==0){m=""}else{m=formatoMoneda1(m);}
                 if(mp==0){mp=""}else{mp=formatoMoneda2(mp);}
+                if(mu==0){mu=""}else{mu=" $ "+formatoMoneda1(mu);}
                 if(x==0){x=""}else{x=formatoMoneda1(x);}
                 if(xp==0){xp=""}else{xp=formatoMoneda2(xp);}
+                if(xu==0){xu=""}else{xu=" $ "+formatoMoneda1(xu);}
                 if(j==0){j=""}else{j=formatoMoneda1(j);}
                 if(jp==0){jp=""}else{jp=formatoMoneda2(jp);}
+                if(ju==0){ju=""}else{ju=" $ "+formatoMoneda1(ju);}
                 if(v==0){v=""}else{v=formatoMoneda1(v);}
                 if(vp==0){vp=""}else{vp=formatoMoneda2(vp);}
+                if(vu==0){vu=""}else{vu=" $ "+formatoMoneda1(vu);}
                 if(s==0){s=""}else{s=formatoMoneda1(s);}
                 if(sp==0){sp=""}else{sp=formatoMoneda2(sp);}
-                if(suma==0){suma=""}else{suma=formatoMoneda1(suma);}
-                if(suma2==0){suma2=""}else{suma2=formatoMoneda2(suma2);}
-                  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td>'+lp+'</td><td>'+m+' </td><td>'+mp+'</td><td>'+ x +'</td><td> '+xp+' </td><td>'+ j+' </td><td>'+jp+'  </td><td>'+ v +' </td><td>'+vp+' </td><td>'+ s +' </td><td>'+sp+' </td><td style="background:black;">'+suma+'</td><td style="background:black;"> '+suma2+' </td></tr>';
-                  htmlp+= '<tr class="text-right " style="font-size: 7px;" ><td class="text-left grisclaro">' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td>'+lp+'</td><td>'+m+' </td><td>'+mp+'</td><td>'+ x +'</td><td> '+xp+' </td><td>'+ j+' </td><td>'+jp+'  </td><td>'+ v +' </td><td>'+vp+' </td><td>'+ s +' </td><td>'+sp+' </td><td >'+suma+'</td><td > '+suma2+' </td></tr>';
+                if(su==0){su=""}else{su=" $ "+formatoMoneda1(su);}
+                if(suma==0){suma=""}else{p1+=suma; suma=formatoMoneda1(suma);}
+                if(suma2==0){suma2=""}else{p12+=suma2; suma2=formatoMoneda2(suma2);}
+                if(suma3==0){suma3=""}else{total1+=suma3; suma3=" $ "+formatoMoneda1(suma3);}
+                  
+                  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td>'+lp+'</td><td>'+lu+'</td><td>'+m+' </td><td>'+mp+'</td><td>'+mu+'</td><td>'+ x +'</td><td> '+xp+' </td><td>'+xu+'</td><td>'+ j+' </td><td>'+jp+'  </td><td>'+ju+'</td><td>'+ v +' </td><td>'+vp+' </td><td>'+vu+'</td><td>'+ s +' </td><td>'+sp+' </td><td>'+su+'</td><td style="background:black;">'+suma+'</td><td style="background:black;"> '+suma2+' </td><td>'+suma3+'</td></tr>';
+                  htmlp+= '<tr class="text-right " style="font-size: 7px;" ><td class="text-left grisclaro">' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td>'+lp+'</td><td>'+lu+'</td><td>'+m+' </td><td>'+mp+'</td><td>'+mu+'</td><td>'+ x +'</td><td> '+xp+' </td><td>'+xu+'</td><td>'+ j+' </td><td>'+jp+'  </td><td>'+ju+'</td><td>'+ v +' </td><td>'+vp+' </td><td>'+vu+'</td><td>'+ s +' </td><td>'+sp+' </td><td>'+su+'</td><td >'+suma+'</td><td > '+suma2+' </td><td>'+suma3+'</td></tr>';
                   l=0;
                   m=0;
                   x=0;
@@ -12226,14 +12295,239 @@ function loadMermaG(lista){ //merma general
                   jp=0;
                   vp=0;
                   sp= 0;
+                  lu=0;
+                  mu=0;
+                  xu=0;
+                  ju=0;
+                  vu=0;
+                  su= 0;
                   cambio =1;  
                   }
                 }
                   cambio =0;  
                   pasa=0;
                 }
+                  html+= '<tr class="seleccionar" ><td>TOTAL</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td >'+formatoMoneda1(p1)+'</td><td >'+formatoMoneda1(p12)+'</td><td> $ '+formatoMoneda1(total1)+'</td></tr>';
+                  htmlp+= '<tr class="text-right " style="font-size: 7px;" ><td class="text-left grisclaro">TOTAL</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td >'+formatoMoneda1( p1)+'</td><td >'+formatoMoneda1( p12)+'</td><td> $ '+formatoMoneda1( total1)+'</td></tr>';
+p15+=p1;
+p16+=p12;
+total3+=total1;
                   $('.contCataR').html(html);
                   $('.ventaDiariaSemanal').html(htmlp);
+        document.getElementById('loader').style.display = 'none';
+
+}
+function loadMermaGVendedores(lista){ //merma general
+              var html = '';
+              var htmlp = '';
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var lu=0;
+              var mu=0;
+              var xu=0;
+              var ju=0;
+              var vu=0;
+              var su=0;
+              var cambio=0;
+              var pasa=0; 
+
+              for(var hh=0;hh<arrGlobalInventario.length; hh++){
+                for(var h=0;h<lista.length; h++){
+                  if(lista[h].ruta!=0 &&lista[h].horarecepcion!=1&&1==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                    if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                      pasa=1;
+                      if(lista[h].dfc==1){
+                        if(lista[h].medida==1){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                        lu+= parseFloat(lista[h].precioUnitario)*parseFloat(lp);
+                        }
+                        if(lista[h].medida==2){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                          lu+= parseFloat(lista[h].precioUnitario)*parseFloat(l);
+                        }
+                        if(lista[h].medida==3){
+                          l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                          lp+=0;
+                          lu+= parseFloat(lista[h].precioUnitario)*parseFloat(l);
+
+                          }
+                        }
+                        if(lista[h].dfc==2){
+                          if(lista[h].medida==1){
+                            m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            mp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          mu+= parseFloat(lista[h].precioUnitario)*parseFloat(m);
+                         
+                          }
+                          if(lista[h].medida==2){
+                            m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            mp+=0;
+                          mu+= parseFloat(lista[h].precioUnitario)*parseFloat(m);
+
+                          }
+                          if(lista[h].medida==3){
+                            m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            mp+=0;
+                          mu+= parseFloat(lista[h].precioUnitario)*parseFloat(m);
+
+                          }
+                        }
+                        if(lista[h].dfc==3){
+                          if(lista[h].medida==1){
+                            x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          xu+= parseFloat(lista[h].precioUnitario)*parseFloat(xp);
+                          
+                          }
+                          if(lista[h].medida==2){
+                            x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            xp+=0;
+                          xu+= parseFloat(lista[h].precioUnitario)*parseFloat(x);
+                          
+                          }
+                          if(lista[h].medida==3){
+                            x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            xp+=0;
+                          xu+= parseFloat(lista[h].precioUnitario)*parseFloat(x);
+                          
+                          }
+                        }
+                        if(lista[h].dfc==4){
+                          if(lista[h].medida==1){
+                            j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            jp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          ju+= parseFloat(lista[h].precioUnitario)*parseFloat(jp);
+                          
+                          }
+                          if(lista[h].medida==2){
+                            j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            jp+=0;
+                          ju+= parseFloat(lista[h].precioUnitario)*parseFloat(j);
+                          
+                          }
+                          if(lista[h].medida==3){
+                            j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            jp+=0;
+                          ju+= parseFloat(lista[h].precioUnitario)*parseFloat(j);
+                          
+                          }
+                        }
+                        if(lista[h].dfc==5){
+                          if(lista[h].medida==1){
+                            v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            vp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          vu+= parseFloat(lista[h].precioUnitario)*parseFloat(vp);
+                          
+                          }
+                          if(lista[h].medida==2){
+                            v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            vp+=0;
+                          vu+= parseFloat(lista[h].precioUnitario)*parseFloat(v);
+                          
+                          }
+                          if(lista[h].medida==3){
+                            v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            vp+=0;
+                          vu+= parseFloat(lista[h].precioUnitario)*parseFloat(v);
+                          
+                          }
+                        }
+                        if(lista[h].dfc==6){
+                          if(lista[h].medida==1){
+                            s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            sp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                          su+= parseFloat(lista[h].precioUnitario)*parseFloat(sp);
+                          
+                          }
+                          if(lista[h].medida==2){
+                            s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            sp+=0;
+                          su+= parseFloat(lista[h].precioUnitario)*parseFloat(s);
+                          
+                          }
+                          if(lista[h].medida==3){
+                            s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                            sp +=0;
+                          su+= parseFloat(lista[h].precioUnitario)*parseFloat(s);
+                          
+                          }
+                        }
+                      }
+                    }
+              if((lista.length-1)==h&&pasa==1){
+              var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+              var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+              var suma3= parseFloat(lu)+parseFloat(mu)+parseFloat(xu)+parseFloat(ju)+parseFloat(vu)+parseFloat(su);
+                if(l==0){l=""}else{l=formatoMoneda1(l);}
+                if(lp==0){lp=""}else{lp=formatoMoneda2(lp);}
+                if(lu==0){lu=""}else{lu=" $ "+formatoMoneda1(lu);}
+                if(m==0){m=""}else{m=formatoMoneda1(m);}
+                if(mp==0){mp=""}else{mp=formatoMoneda2(mp);}
+                if(mu==0){mu=""}else{mu=" $ "+formatoMoneda1(mu);}
+                if(x==0){x=""}else{x=formatoMoneda1(x);}
+                if(xp==0){xp=""}else{xp=formatoMoneda2(xp);}
+                if(xu==0){xu=""}else{xu=" $ "+formatoMoneda1(xu);}
+                if(j==0){j=""}else{j=formatoMoneda1(j);}
+                if(jp==0){jp=""}else{jp=formatoMoneda2(jp);}
+                if(ju==0){ju=""}else{ju=" $ "+formatoMoneda1(ju);}
+                if(v==0){v=""}else{v=formatoMoneda1(v);}
+                if(vp==0){vp=""}else{vp=formatoMoneda2(vp);}
+                if(vu==0){vu=""}else{vu=" $ "+formatoMoneda1(vu);}
+                if(s==0){s=""}else{s=formatoMoneda1(s);}
+                if(sp==0){sp=""}else{sp=formatoMoneda2(sp);}
+                if(su==0){su=""}else{su=" $ "+formatoMoneda1(su);}
+                               if(suma==0){suma=""}else{p13+=suma; suma=formatoMoneda1(suma);}
+                if(suma2==0){suma2=""}else{p14+=suma2; suma2=formatoMoneda2(suma2);}
+                if(suma3==0){suma3=""}else{total2+=suma3; suma3=" $ "+formatoMoneda1(suma3);}
+                  
+                  html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td>'+lp+'</td><td>'+lu+'</td><td>'+m+' </td><td>'+mp+'</td><td>'+mu+'</td><td>'+ x +'</td><td> '+xp+' </td><td>'+xu+'</td><td>'+ j+' </td><td>'+jp+'  </td><td>'+ju+'</td><td>'+ v +' </td><td>'+vp+' </td><td>'+vu+'</td><td>'+ s +' </td><td>'+sp+' </td><td>'+su+'</td><td style="background:black;">'+suma+'</td><td style="background:black;"> '+suma2+' </td><td>'+suma3+'</td></tr>';
+                  htmlp+= '<tr class="text-right " style="font-size: 7px;" ><td class="text-left grisclaro">' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +'</td><td>'+lp+'</td><td>'+lu+'</td><td>'+m+' </td><td>'+mp+'</td><td>'+mu+'</td><td>'+ x +'</td><td> '+xp+' </td><td>'+xu+'</td><td>'+ j+' </td><td>'+jp+'  </td><td>'+ju+'</td><td>'+ v +' </td><td>'+vp+' </td><td>'+vu+'</td><td>'+ s +' </td><td>'+sp+' </td><td>'+su+'</td><td >'+suma+'</td><td > '+suma2+' </td><td>'+suma3+'</td></tr>';
+                  l=0;
+                  m=0;
+                  x=0;
+                  j=0;
+                  v=0;
+                  s=0;
+                  lp=0;
+                  mp=0;
+                  xp=0;
+                  jp=0;
+                  vp=0;
+                  sp= 0;
+                  lu=0;
+                  mu=0;
+                  xu=0;
+                  ju=0;
+                  vu=0;
+                  su= 0;
+                  cambio =1;  
+                  }
+                }
+                  cambio =0;  
+                  pasa=0;
+                }
+                  html+= '<tr class="seleccionar" ><td>TOTAL</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td >'+formatoMoneda1(p13)+'</td><td >'+formatoMoneda1(p14)+'</td><td> $ '+formatoMoneda1(total2)+'</td></tr>';
+                  htmlp+= '<tr class="text-right " style="font-size: 7px;" ><td class="text-left grisclaro">TOTAL</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td >'+formatoMoneda1(p13)+'</td><td >'+formatoMoneda1(p14)+'</td><td> $ '+formatoMoneda1(total2)+'</td></tr>';
+p15+=p13;
+p16+=p14;
+total3+=total2;
+                 html+= '<tr class="seleccionar" ><td>TOTALES</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td >'+formatoMoneda1(p15)+'</td><td >'+formatoMoneda1(p16)+'</td><td> $ '+formatoMoneda1(total3)+'</td></tr>';
+                  htmlp+= '<tr class="text-right " style="font-size: 7px;" ><td class="text-left grisclaro">TOTALES</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td >'+formatoMoneda1(p15)+'</td><td >'+formatoMoneda1(p16)+'</td><td> $ '+formatoMoneda1(total3)+'</td></tr>';
+
+                  $('.contCataR2').html(html);
+                  $('.ventaDiariaSemanal2').html(htmlp);
         document.getElementById('loader').style.display = 'none';
 
 }
@@ -14104,11 +14398,13 @@ function loadVPedidos(lista){
 function loadMerma(lista){
               var htmlm = '';
               var totalMerma =0 ;
+        
               for(var h=0;h<lista.length; h++){
                 if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1&&lista[h].horarecepcion!=1){
 
                   htmlm+= '<tr class="seleccionar"  onclick="cambiarcolor(this); selectMerma('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" ><td>' + dias[parseInt(lista[h].dfc)-1]+ '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + parseFloat(lista[h].piezas).toFixed(2) + '</td><td>' +parseFloat(lista[h].peso).toFixed(3) + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + parseFloat(lista[h].valorMercancia).toFixed(2) +'</td></tr>';
                 totalMerma += parseFloat(lista[h].valorMercancia);
+                
                 }
               }
             
@@ -14120,11 +14416,10 @@ var n1 = totalMerma;
 var n5 = totalMerma;
 
 var ruta = rutas;
-var json2 = {n1:n1, n5:n5};
+var json2 = {n1:n1};
  var jsonC = {where:{ruta:ruta}}
 upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
        executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasSV);
-
 
  totalMerma=0; 
 }
@@ -14173,7 +14468,7 @@ var n1 = totalMerma;
 var n5 = totalMerma;
 var ruta = rutas;
 
-var json2 = {n1:n1, n5:n5};   
+var json2 = {n1:n1};   
 var jsonC = {where:{ruta:ruta}}
 upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasSV);
@@ -14425,7 +14720,7 @@ function loadVentasp2(lista){
               var html3 = '';
                   arrGlobalE='';
           for(var h=0;h<lista.length; h++){
-            if(lista[h].fechaf == today_vv && lista[h].efectivo != null){
+            if(lista[h].ruta!="F"&&lista[h].fechaf == today_vv && lista[h].efectivo != null){
               for (var ii=0; ii < arrGlobalRuta.length; ii++) {
                 if(arrGlobalRuta[ii].id==lista[h].ruta){
                   ruta3=arrGlobalRuta[ii].nombre;
@@ -14458,14 +14753,17 @@ function loadBonidicacionpasadasVF(lista){
           var mes=month-1;
           var dia=day-1;
           var fechaf=fechacaptura;
-
+var n5=0;
               cobrado = cobrado +1;
               saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
           var t_vendido = today;
         for(var h = 0; h <  lista.length; h++) {
+        
      if (lista[h].sfc==scv&&lista[h].ruta==rutas&&lista[h].fechaf!=fechaf) {
             var b=0;
             var b2=0;
+          
+
             if(lista[h].otros==NaN||lista[h].otros==undefined||lista[h].otros==null||lista[h].otros==""){
                  b=0;
             }else{
@@ -14513,6 +14811,49 @@ alert("NO SE HA DEFINIDO BONIFICACIÓN PARA ESTE VENDEDOR");
    }
      }
      
+
+
+}
+
+function loadMermapasadasVF(lista){
+  //alert(scv);
+   var html2 = '';
+          var htmlp = '';
+          var dayVS = today_v.substring(8,10);
+          var monthVS = today_v.substring(5,7);
+          var yearVS = today_v.substring(0,4);
+          var cobrado=noSemana;
+          var mes=month-1;
+          var dia=day-1;
+          var fechaf=fechacaptura;
+          var n5=0;
+              cobrado = cobrado +1;
+              saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
+          var t_vendido = today;
+        for(var h = 0; h <  lista.length; h++) {
+          
+     if (lista[h].sfc==scv&&lista[h].ruta==rutas&&yearVS==lista[h].fechaf.substring(0,4)) {
+           
+          if(lista[h].n1==NaN||lista[h].n1==undefined||lista[h].n1==null||lista[h].n1==""){
+                 n5+=0;
+            }else{
+        
+             n5+=parseFloat(lista[h].n1);
+             //alert(lista[h].fecha+' = '+n5);
+            }
+
+            
+        }
+     }
+     
+     //alert('Final'+n5);
+var ruta = rutas;
+var json2 = { n5:n5};
+ var jsonC = {where:{ruta:ruta}}
+upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
+       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasSV);
+
+
 }
 function loadVentasp3(lista){
             var html = '';
@@ -14520,7 +14861,7 @@ function loadVentasp3(lista){
             var rutav ='<select class="form-control rv clear" id="rv" name="select">';
             var conta=1;
         for(var i = 0; i <  arrGlobalF.length; i++) {
-          if(arrGlobalF[i].fechaf==dateCash2 && arrGlobalF[i].efectivo==null ){
+          if(arrGlobalF[i].ruta!="F"&&arrGlobalF[i].fechaf==dateCash2 && arrGlobalF[i].efectivo==null ){
             for (var ii=0; ii < arrGlobalRuta.length; ii++) {
               if(arrGlobalRuta[ii].id==arrGlobalF[i].ruta){
                 ruta3=arrGlobalRuta[ii].nombre;
@@ -14533,7 +14874,7 @@ function loadVentasp3(lista){
                 rutav +='</select>';
                 $("#modalEfectivo .selectCash").html(rutav);
         for(var h=0;h<lista.length; h++)
-          if(lista[h].fechaf == dateCash2 && lista[h].efectivo != null){
+          if(lista[h].ruta!="F"&&lista[h].fechaf == dateCash2 && lista[h].efectivo != null){
             for (var ii=0; ii < arrGlobalRuta.length; ii++) {
               if(arrGlobalRuta[ii].id==lista[h].ruta){
                 ruta3=arrGlobalRuta[ii].nombre;
@@ -14553,7 +14894,7 @@ function loadVentaspasadasRS(lista){
         for(var h=0;h<lista.length; h++){
           if(dianum==6){
             if(lista[h].fechaf==today_v||lista[h].sfc==(noSemana)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
-              html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+formatoMoneda1(parseFloat(lista[h].credito_p).toFixed(2)) + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
+              html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+', '+lista[h].n5+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+formatoMoneda1(parseFloat(lista[h].credito_p).toFixed(2)) + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
             }
           }else{
             if(lista[h].fechaf==today_v||lista[h].sfc==(noSemana+1)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
@@ -14569,7 +14910,7 @@ function loadVentaspasadas(lista){
           var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
           var dianum=(diasema.getUTCDay());
       for(var h=0;h<lista.length; h++){
-        if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)){
+        if (lista[h].ruta!="F"&&lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)){
           var f=lista[h].fechaf;
           var dayp = f.substring(8,10);
           var monthp = f.substring(5,7);
@@ -14599,7 +14940,7 @@ function loadVentaspasadasMerma(lista){
           var html2 = '<tr class="seleccionar" onclick="click_mer2();" ><td>  </td><td>CUARTO FRIÓ </td><td></td><td> </td><td></td><td> </td><td></td></tr>';
 
       for(var h=0;h<lista.length; h++){
-        if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)){
+        if(lista[h].ruta!="F"&&lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)){
           var f=lista[h].fechaf;
           var dayp = f.substring(8,10);
           var monthp = f.substring(5,7);
@@ -14629,7 +14970,7 @@ function loadVentaspasadasDeg(lista){
           var html2 = '<tr class="seleccionar" onclick="click_Deg2();" ><td>  </td><td>PROMOTORIA </td><td></td><td> </td><td></td><td> </td><td></td></tr>';
 
       for(var h=0;h<lista.length; h++){
-        if (lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)){
+        if (lista[h].ruta!="F"&& lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)){
           var f=lista[h].fechaf;
           var dayp = f.substring(8,10);
           var monthp = f.substring(5,7);
@@ -14671,7 +15012,7 @@ function loadVentaspasadasTF(lista){
               saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
           var t_vendido = today;
       for(var h=0;h<lista.length; h++){
-        if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined) {
+        if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined&&yearVS==lista[h].fechaf.substring(0,4)) {
               html2+= '<tr class="" onclick="cambiarcolor(this);click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+');" data-id="'+ lista[h].id +'"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + formatoMoneda1(lista[h].creditos) + '</td><td> $' + formatoMoneda1(lista[h].f_s_dia) + '</td><td> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td> $ '+formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
               htmlp+= '<tr  style="font-size:7px; "><td class="text-center grisclaro">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].creditos) + '</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].f_s_dia) + '</td><td class="text-center"> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td class="text-center"> $ '+ formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
         }
@@ -14948,6 +15289,139 @@ function loadVentaDiariaR(lista){
         document.getElementById('loader').style.display = 'none';
 
 }
+function loadFacturas3(lista){
+          var html = '';
+          var total=0;
+      for(var h=0;h<lista.length; h++){
+       // alert(lista[h].t_venta_merca);
+              html+= '<tr class="seleccionar text-center" ><td >' + lista[h].idVentap  + '</td><td >' + lista[h].nombre + '</td> <td> $ '+formatoMoneda1(parseFloat(lista[h].t_venta_merca))+'<button  onclick="delFactura('+ lista[h].id+','+lista[h].t_venta_merca+'); " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"><span aria-hidden="true">&times;</span></button></td></tr>';
+   
+      total+=parseFloat(lista[h].t_venta_merca);      
+      } 
+            
+              html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td ></td> <td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+
+       $('.facturas3').html(html); 
+              //arrGlobal2 = lista;
+              $('.imprimir').html('');
+//        document.getElementById('loader').style.display = 'none';
+var credito_p=year2;
+var sfc=scv;
+var ruta="F";
+    var jsonC = {where:{sfc:sfc, ruta:ruta, credito_p:credito_p}}
+    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas2);
+  
+}
+function loadFacturas1(lista){
+          var html = '';
+          var total=0;
+          var total2=0;
+          var dia1 = '';
+          var pasa=0;
+      for(var h=0;h<lista.length; h++){
+       // alert(lista[h].t_venta_merca);
+              html+= '<tr style="color:yellow" class="seleccionar text-center" ><td >' + lista[h].idVentap  + '</td><td >' + lista[h].nombre + '</td> <td></td><td></td><td></td><td></td><td><button  onclick="addProductosF('+ lista[h].idVentap+'); " type="button" class="close" style="background:green; color:white; height:100%; width:100%;" data-dismiss="modal" aria-label="Open"><span aria-hidden="true"><strong>+</strong></span></button></td></tr>';
+   dia1=dias[lista[h].dsfc-1];
+          
+var merma=lista[h].idVentap;
+
+      for(var j=0;j<facturasHtml.length; j++){
+if(facturasHtml[j].merma==merma){
+ pasa=1;
+            html+= '<tr class="seleccionar text-center" ><td >' + facturasHtml[j].idProducto  + '</td><td >' + facturasHtml[j].descripcionventa + '</td> <td> ' +formatoMoneda1(facturasHtml[j].piezas) + ' </td><td> ' +formatoMoneda2(facturasHtml[j].peso) + '</td><td>$ ' +formatoMoneda1(facturasHtml[j].precioUnitario) + '</td><td>$ ' + formatoMoneda1(facturasHtml[j].valorMercancia) + '</td><td style="background:red"><button  onclick="delProductosF('+ facturasHtml[j].id+'); " type="button" class="close" style="background:red; color:white;  height:100%; width:100%;" data-dismiss="modal" aria-label="Open"><span aria-hidden="true">&times;</span></button></td></tr>';
+total+=parseFloat(facturasHtml[j].valorMercancia); 
+total2+=parseFloat(facturasHtml[j].valorMercancia); 
+var idF = lista[h].id; 
+capturarTotal(idF, merma, total2)
+
+}
+
+}
+if(pasa==0){
+  total+=0; 
+total2+=0; 
+var idF = lista[h].id; 
+capturarTotal(idF, merma, total2)
+pasa=1
+}
+pasa=0;
+  
+              html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td >'+dia1+'</td>  <td> </td><td> </td><td> </td> <td> $ '+formatoMoneda1(parseFloat(total2))+'</td></tr>';
+ total2=0;
+//alert(executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF));
+      } 
+            
+              html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTALES</td><td >'+dia1+'</td>  <td> </td><td> </td><td> </td> <td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+
+       $('.facturas1').html(html); 
+              //arrGlobal2 = lista;
+              $('.imprimir').html('');
+//        document.getElementById('loader').style.display = 'none';
+
+}
+function capturarTotal(id, idVentap, t_venta_merca){
+    var jsonC = {where:{idVentap: idVentap}}
+  //var idVentap = parseFloat(total);
+  var json = {t_venta_merca: t_venta_merca}
+ 
+   
+   upRegistroA2(id,json,jsonC, 'ventaspasada', loadFF);
+
+ var fechaf= today_v;
+ var ruta="F";
+ var jsonC = {where:{fechaf:fechaf, ruta:ruta}}
+
+       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
+       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
+      
+
+}
+function loadFF(){}
+function loadFacturas2(lista){
+          var html = '';
+          var total=0;
+          var merma = 0;
+      for(var h=0;h<lista.length; h++){
+       // alert(lista[h].t_venta_merca);
+              html+= '<tr class="seleccionar text-center" ><td >' + lista[h].idVentap  + '</td><td>'+dias[lista[h].dsfc-1]+'</td><td >' + lista[h].nombre + '</td> <td> $ '+formatoMoneda1(parseFloat(lista[h].t_venta_merca))+'</td></tr>';
+    merma = lista[h].merma;
+      total+=parseFloat(lista[h].t_venta_merca);      
+      } 
+ 
+
+              html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td ></td><td ></td> <td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+
+       $('.facturas2').html(html); 
+              //arrGlobal2 = lista;
+              $('.imprimir').html('');
+//        document.getElementById('loader').style.display = 'none';
+
+}
+var facturasHtml='';
+function loadProductoF(lista){
+                   
+facturasHtml=lista;
+       
+      for(var h=0;h<lista.length; h++){
+       // alert(lista[h].t_venta_merca);
+            //  facturasHtml+= '<tr class="seleccionar text-center" ><td >' + lista[h].idProducto  + '</td><td >' + lista[h].descripcionventa + '</td> <td> ' + lista[h].piezas + ' </td><td> ' + lista[h].peso + '</td><td> ' + lista[h].precioUnitario + '</td><td> ' + lista[h].valorMercancia + '</td><td><button  onclick="addProductosF('+ lista[h].idVentap+'); " type="button" class="close" style="background:green; color:white;" data-dismiss="modal" aria-label="Open"><span aria-hidden="true"><strong>+</strong></span></button></td></tr>';
+   //dia1=dias[lista[h].dsfc-1];
+      //total+=parseFloat(lista[h].t_venta_merca);      
+
+      
+
+     } 
+            
+  //facturasHtml+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td >'+dia1+'</td>  <td> </td><td> </td><td> </td> <td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+
+
+              //arrGlobal2 = lista;
+//        document.getElementById('loader').style.display = 'none';
+ var fechaf= today_v;
+ var ruta="F";
+ var jsonC = {where:{fechaf:fechaf, ruta:ruta}}
+       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas1);
+}
 function loadVentaDiariaR2(lista){
           var html = '';
       for(var h=0;h<lista.length; h++)
@@ -15145,6 +15619,10 @@ $('#modalCliente .ruta').val(n);
 
   
 }
+function addModalClienteFacturas(){
+  $('#modalCliente').modal('show');
+$('#modalCliente .ruta').val(n); 
+}
 function closeCliente(){
   $('#modalCliente').modal('hide');
 
@@ -15177,6 +15655,55 @@ $('#modalCliente').modal('hide');
   }
 getFunction('clientes', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas3);
 
+}
+function addFacturas1(){
+ 
+ var idVentap = $('#modalFacturas .idECliente3').val();
+ var nombre = $('#modalFacturas .eCliente3').val();
+  var fecha = today_vv;
+  var fechaf = today_v;
+  var tipo = "F";
+  var fechadespacho = today_vv;
+  var fechadespachof = today_v;
+  var ruta = "F";
+  var credito_p = today_v.substring(0,4);
+var t_venta="F"
+  var bonificacion_p = "F";
+     saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+    
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+    var dsfc=(diasema.getUTCDay());
+    var sfc= scv;
+    var t_venta_merca=0;
+  //   alert(today_v+' - '+today_vv+' - '+scv)
+//alert("idVentap: "+idVentap+", fecha: "+fecha+", ruta: "+ruta+", nombre: "+nombre+", tipo: "+tipo+", credito_p: "+credito_p+", bonificacion_p: "+bonificacion_p+", t_venta: "+t_venta+", dsc: "+dsc+", sc: "+sc+", fechaf: "+fechaf+", dsfc: "+dsfc+", sfc: "+sfc);
+$('#modalFacturas').modal('hide');
+  if(idVentap != ""&&nombre != ""){
+ var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, t_venta: t_venta, fechaf: fechaf, dsfc: dsfc, sfc: sfc,t_venta_merca:t_venta_merca};
+  var jsonC = {where:{fechaf:fechaf, ruta:ruta}}
+   addRegistroA(json2,jsonC, 'ventaspasada', loadFF);
+    
+var fechadespachof = fechaf;
+
+      var jsonC = {where:{fechadespachof:fechadespachof}}
+       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
+      
+ //addRegistro2(json2, 'ventaspasada', loadVentasp);
+     
+  }
+  else{
+      
+
+   //   $('#modal .textModal').html('FALTAN DATOS. '); 
+    //  $('#modal').modal('show');
+  }
+limpiar();
+var id=f_Ahorro;
+var h=0;
+//click_SPedidosF(id,h);
+  var jsonC = {where:{fechadespachof:fechadespachof}}
+//       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
+      
 }
 
 
@@ -15533,6 +16060,49 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 limpiar();
 $('#modalECliente').modal('hide');
 }
+function addEClienteFacturas(){
+  var nombre_Emple = $('#modalECliente2 .eCliente2').val();
+var tipo = 44;
+var km = "F";
+var ruta = nombre_Emple;
+var idEmpleados = $('#modalECliente2 .idECliente2').val();
+if(idEmpleados != "" && nombre_Emple != ""){
+
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, tipo:tipo, km:km, ruta: ruta };   
+    //var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
+    addRegistro(json,'empleados', loadEClientes);
+  }
+  else{
+
+      $('#modal .textModal').html('FALTAN DATOS. '); 
+      $('#modal').modal('show');
+  }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEClientes);
+limpiar();
+$('#modalECliente').modal('hide');
+}
+function addFacturas(){
+  var nombre_Emple = $('#modalFacturas .eCliente3').val();
+var tipo = 44;
+var km = "F";
+var ruta = nombre_Emple;
+var idEmpleados = $('#modalFacturas .idECliente3').val();
+if(idEmpleados != "" && nombre_Emple != ""){
+
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, tipo:tipo, km:km, ruta: ruta };   
+    //var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento};
+    addRegistro(json,'empleados', loadEClientes);
+  }
+  else{
+
+      $('#modal .textModal').html('FALTAN DATOS. '); 
+      $('#modal').modal('show');
+  }
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEClientes);
+limpiar();
+$('#modalECliente').modal('hide');
+}
+
 function addEmpleado(){
    $('#modalAdministracion').modal('hide');
   var idEmpleados = $("#modalAdministracion .idEmpleado").val();
@@ -16220,6 +16790,10 @@ if(noSemana==52&&dc==6){
  
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMerma);
 
+var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
 
 
 
@@ -16233,7 +16807,11 @@ if(noSemana==52&&dc==6){
  
   
 limpiar();
-    
+    var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
     
 
 }
@@ -16398,6 +16976,11 @@ if(noSemana==52&&dc==6){
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaP);
 
 
+var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
 
 
 
@@ -16412,6 +16995,12 @@ if(noSemana==52&&dc==6){
 limpiar();
     
     
+
+var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
 
 }
 
@@ -16730,6 +17319,153 @@ if(noSemana==52&&dc==6){
 limpiar();
     
     
+
+}
+
+function addRecarga(){   
+  var idProducto = $(".idProducto").val();
+  var descripcionventa = $(".descripcion").val();
+  var piezas = $(".piezas").val();
+  var peso = $(".peso").val();
+  var precioUnitario = $(".pUnitario2").val();
+  var merma = $(".folioFactura").val();
+  var vendedor=0;
+  if(peso==""||peso==NaN||peso==undefined){
+    peso=0;
+  }
+ var pesov=0;
+ var piezasv=0;
+  var hora = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
+  var horadespacho = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(); 
+  var empleado =0// id_vend;
+  var fecha = today_v;
+  var sc,dc,dsfc,sfc;
+
+
+  var num = 0;
+  var num2 = 0;
+  var dfc,sfc;
+  var t_venta=today;
+  var valorMercancia,medida, bonificacion, credito;
+  if(today_v!=today_vv){
+    saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+    
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+    dfc=(diasema.getUTCDay());
+if(noSemana==52&&dfc==6){
+    noSemana=0;
+   }
+if(noSemana==52){
+    noSemana=0;
+   } 
+     
+   
+     sfc=noSemana+1;
+    saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+    diasema= new Date((parseInt(month))+' '+parseInt(day)+' ,'+parseInt(year));
+    dc=(diasema.getUTCDay());
+if(noSemana==52&&dc==6){
+    noSemana=0;
+   }
+   if(noSemana==52){
+    noSemana=0;
+   }
+
+    
+     sc=noSemana+1;
+    
+  
+    
+   
+
+  }else{
+    saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+     var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
+   dc=(diasema.getUTCDay());
+  if(noSemana==52&&dc==6){
+    noSemana=0;
+    dc=6;
+   }
+   if(noSemana==52){
+    noSemana=0;
+   } 
+   
+   sc=noSemana+1;
+   dfc=dc;
+   sfc=sc;
+  }
+  dsfc=dfc;
+
+
+
+     
+         if(peso==0){//si es pieza y litros
+             medida=2;
+            
+                
+                 valorMercancia=precioUnitario*piezas;
+                 peso=0;
+                 
+                
+              
+              
+
+         }else{//si es kg
+              medida=1;
+            
+                
+                 valorMercancia=precioUnitario*peso;
+              
+
+             
+             }
+   
+
+ 
+  if(idProducto != "" && descripcionventa != "" && piezas != ""){
+  var id = rutas;
+  var idVentap = id_vend;
+  var fecha = today_vv;
+  var fechaf = today_v;
+  var fechadespacho = today_vv;
+  var fechadespachof = today_v;
+  var ruta = "F";
+  var nombre = nombre_vend;
+  var tipo = t_vende;
+  var credito_p = cred;
+  
+  var despachador2=despachador22;
+  var bonificacion_p = boni;
+  var v_mercancia = parseFloat(total_mercancia) + parseFloat(valorMercancia);
+
+
+     var jsonC = {where:{fechadespachof:fechadespachof}}
+  //var jsonC = {where:{merma: merma}}
+  var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, piezasv: piezasv, pesov: pesov, medida: medida, precioUnitario: precioUnitario, valorMercancia: valorMercancia, horadespacho: horadespacho, empleado: empleado, ruta:ruta, fechadespacho: fechadespacho, user: user, dc: dc, sc: sc, vendedor: vendedor, fechadespachof: fechadespachof, dfc: dfc, sfc: sfc, merma: merma};
+//alert(merma);
+  addRegistroA(json,jsonC, 'ventadiaria', loadProductoF);
+     executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
+
+
+
+  }else{
+
+      $('#modal .textModal').html('FALTAN DATOS. '); 
+      $('#modal').modal('show');
+  }
+ 
+ 
+  
+limpiar();
+    
+   var id=f_Ahorro;
+var h=0;
+//click_SPedidosF(id,h); 
+
+var fechadespachof = fechaf;
+
+     //var jsonC = {where:{fechadespachof:fechadespachof}}
+    //   executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
 
 }
 
@@ -17056,6 +17792,48 @@ function delCliente(idc){
 limpiar();
 
 }
+function delFactura(idc, merT){
+var ruta="F";
+var fechaf=today_v;
+ if(merT==0){
+  var jsonC = {where:{fechaf:fechaf, ruta:ruta}}
+   delRegistroA(idc,jsonC,'ventaspasada', loadFacturas3);
+       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
+
+var fechadespachof = fechaf;
+
+      var jsonC = {where:{fechadespachof:fechadespachof}}
+       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
+      
+ }else{
+  $('#modal .textModal').html('NO SE PUEDE ELIMINAR PORQUE LA FACTURA AUN TIENE PRODUCTO'); 
+      $('#modal').modal('show');
+ }
+ 
+limpiar();
+
+}
+function delProductosF(idc){
+var ruta="F";
+var fechadespachof=today_v;
+ var sfc=scv;
+ fechaf=today_v;
+
+  var jsonC = {where:{fechadespachof:fechadespachof}}
+   delRegistroA(idc,jsonC,'ventadiaria', loadProductoF);
+ executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
+ executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
+
+
+//alert(fechaf+' - '+ruta+' - '+sfc+' - '+credito_p+' - '+year2);
+    
+// click_SPedidosF();
+
+
+ 
+limpiar();
+
+}
 function delCategoria(){
 
   delRegistro(idGlobal,'categorias', loadCategorias);
@@ -17176,6 +17954,10 @@ var fechadespachof = fechacaptura;
  
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMerma);
 
+var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
 
 
 
@@ -17190,6 +17972,11 @@ var fechadespachof = fechacaptura;
 }
 
 limpiar();
+var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
 }
 function delMermaP(){
   var idProducto = $(".idProductoMP").val();
@@ -17210,6 +17997,12 @@ var fechadespachof = today_v;
 
 
 
+var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
+
 
 
 
@@ -17222,6 +18015,13 @@ var fechadespachof = today_v;
 }
 
 limpiar();
+
+var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
+
 }
 
 function delDeg(){
@@ -17255,6 +18055,7 @@ var horarecepcion =1;
 }
 
 limpiar();
+
 }
 
 
@@ -19163,7 +19964,11 @@ if(noSemana==52&&dc==6){
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMerma);
 
 
-  
+  var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
    
   }else{
 
@@ -19175,7 +19980,11 @@ if(noSemana==52&&dc==6){
   
 limpiar();
     
-    
+    var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
 
 }
 
@@ -19339,6 +20148,12 @@ if(noSemana==52&&dc==6){
  
       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaP);
 
+var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
+
 
   
    
@@ -19352,7 +20167,13 @@ if(noSemana==52&&dc==6){
   
 limpiar();
     
-    
+   
+var sfc = scv;
+
+ var jsonC = {where:{ruta:ruta, sfc:sfc}}
+      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
+ 
 
 }
 
@@ -22084,13 +22905,14 @@ function mermaD(){
 scv=noSemana;
   $('.tituloResp').html('<div class=" row col-md-12"><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6  semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="buscarMermaD()">BUSCAR</button> </div> <div class="col-md-6 "><div class="col-md-6"></div> <button class="btn btn-warning impre totala col-md-6" value="Imprimir" onclick="mermaGeneralPrint();"  >IMPRIMIR</button> </div> </div>  <h3 class="text-center impre">MERMA GENERAL (SEMANA: '+(scv+1)+')</h3> ');
   
-  $('.contenidoR').load('/html/ventaGeneral.html');
+  $('.contenidoR').load('/html/mermaGeneral.html');
   var sfc = (scv+1);
   var merma = 1;
 
   if(scv != ""){
       var json = {where:{sfc:sfc, merma:merma}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaG);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaGVendedores);
  }
 
 }
@@ -22383,6 +23205,69 @@ $("#modalDesp .vehiculol").html("<strong>VEHICULO:</strong> "+vehiculoA2);
 
 
 }
+function click_SPedidosF(id,h){
+  var num = 0;
+  var num2 = 0;
+ n_vend=h;
+ f_Ahorro = id;
+ var vendedor = id;
+   $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ   </h3>');
+ $('.seccion5').load('/html/pedidosV2.html');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos(); ">PEDIDOS  </li>  <span class="border border-white"></span>  <div class="imprimir"></div></ul> </div>');
+
+var pedidosNombre="";
+for(var p=0;p<arrGlobalPedidos.length;p++){
+  if(id==arrGlobalPedidos[p].id){
+pedidosNombre=arrGlobalPedidos[p].ruta;
+  }
+}
+
+
+ var dayD = today_v.substring(8,10);
+ var monthD = today_v.substring(5,7);
+ var yearD = today_v.substring(0,4);
+var diasemaD= new Date((parseInt(monthD))+' '+parseInt(dayD)+' ,'+parseInt(yearD));
+   var diaD=(diasemaD.getUTCDay());
+    var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[parseInt(monthD)]+" DEL "+yearD+".";
+ 
+   $('.tituloPantalla').html('<h3 class="vendedor impre"> CONTROL DE VENTAS Y COBRANZA DE PEDIDOS </h3> <p>( '+fechaDespachoD+' ) - '+pedidosNombre+' </p>');
+
+
+getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
+
+var ruta= "F";
+var fechaf=today_v;
+var sfc = scv;
+var credito_p=yearD;
+  if(ruta!= ""&&fechaf!= ""){
+var fechadespachof = fechaf;
+
+      var jsonC = {where:{fechadespachof:fechadespachof}}
+       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
+      
+    // var jsonC = {where:{fechaf:fechaf, ruta:ruta}}
+
+     //  executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
+     //  executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas1);
+     //  executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas1);
+      // executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
+       
+var credito_p=year2;
+   var jsonC = {where:{sfc:sfc, ruta:ruta, credito_p:credito_p}}
+   executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas2);
+   // executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas2);
+
+ }
+
+
+}
+
+
+
+
+
+
 function click_Salida(id , h, ruta, tipo, credito, bonificaciones,f_ahorro){
   var num = 0;
   var num2 = 0;
@@ -22525,6 +23410,22 @@ $("#modalDesp .vehiculol").html("Vehiculo: "+vehiculo);
 function addModalECliente(){
 $('#modalECliente').modal('show');
 }
+function addFactura(){
+
+$('#modalFacturas').modal('show');
+
+}
+function addProductosF(folio){
+  var tituloF='<h2>FACTURA: '+folio+'</h2>'
+$('#modalProductoFactura .titulo').html(tituloF);
+$('#modalProductoFactura .folioFactura').val(folio);
+$('#modalProductoFactura').modal('show');
+
+}
+
+function addModalEClienteFacturas(){
+$('#modalECliente2').modal('show');
+}
 function closeModalDesp(){
 $('#modalDesp').modal('hide');
 }
@@ -22536,6 +23437,12 @@ $('#modalNominaE').modal('hide');
 }
 function closeModalECliente(){
   $('#modalECliente').modal('hide');
+}
+function closeModalEClienteFacturas(){
+  $('#modalECliente2').modal('hide');
+}
+function closeFacturas(){
+  $('#modalFacturas').modal('hide');
 }
 var despachador22;
 function click_Salida2(){
@@ -22572,8 +23479,9 @@ $('#modalDesp2 .despachador').html(selectdes);
 
 }
 var despachadorR,  n_vend1, vehiculoRec2, mermaRec2;
-function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc){
+function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc,mermaTl){
         document.getElementById('loader').style.display = 'block';
+//        alert(mermaTl);
  
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ   </h3>');
@@ -22664,6 +23572,8 @@ $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+t
     
  var jsonC = {where:{ruta:ruta, sfc:sfc}}
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBonidicacionpasadasVF);
+//      executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
+
 
 if(arrGlobal4[h].despachador==undefined){
   $('.imprimir').html('');
@@ -22855,7 +23765,7 @@ $('#modalRecarga').modal('show');
 }
 function closeModalRecarga(){
 
-$('#modalRecarga').modal('hide');
+$('#modalProductoFactura').modal('hide');
 }
 function closeVD(){
 
@@ -22962,7 +23872,7 @@ if(efectivo=="")efectivo=0;
 for (var i = 0; i < arrGlobalE.length; i++) {
   
 
-  if (arrGlobalE[i].id==rVendedor && arrGlobalE[i].fechaf==dateCash2 && arrGlobalE[i].fechaf!=today_v){
+  if (arrGlobalE[i].ruta!="F"&&arrGlobalE[i].id==rVendedor && arrGlobalE[i].fechaf==dateCash2 && arrGlobalE[i].fechaf!=today_v){
    
 
      if(arrGlobalE[i].otros==null || arrGlobalE[i].otros==undefined){
@@ -23087,7 +23997,7 @@ var conta=1;
 
 
 for (var i = 0; i <  arrGlobalF.length; i++) {
-   if(arrGlobalF[i].fechaf==today_vv && arrGlobalF[i].efectivo==null ){
+   if(arrGlobalF[i].ruta!="F"&&arrGlobalF[i].fechaf==today_vv && arrGlobalF[i].efectivo==null ){
     for (var ii=0; ii < arrGlobalRuta.length; ii++) {
 if(arrGlobalRuta[ii].id==arrGlobalF[i].ruta){
 ruta3=arrGlobalRuta[ii].nombre;
@@ -23290,22 +24200,23 @@ $("#modalMerma .pesosM").html(peso);
 
 
 function updateListaRecarga(){
-    var tipo = $("modalRecarga .idProducto").val();
+    var tipo = $("#modalProductoFactura .idProducto").val();
     var html ="";
      var add = "'add'";
     var encontrado = 0;
-    var peso = ' <label class="letras impre" >Peso</label><input type="text" id="peso" class="peso form-control clear peso impre" onchange="document.getElementById('+add+').focus();" placeholder="Kg.">';
+    var peso = ' <label class=" impre" >PESO</label><input type="text" id="peso" class="peso form-control clear peso impre" onchange="document.getElementById('+add+').focus();" placeholder="">';
    for (var f=0; f<arrGlobalInventario.length;f++){
         if(arrGlobalInventario[f].idInventario == tipo){   
           encontrado = 1;     
-          $("#modalMerma .descripcion").val(arrGlobalInventario[f].descripcion);
+          $("#modalProductoFactura .descripcion").val(arrGlobalInventario[f].descripcion);
+        //  $("#modalProductoFactura .pUnitario").val(arrGlobalInventario[f].detalle);
 
       if(arrGlobalInventario[f].medida ==1){
         
-$("#modalRecarga .pesos").html(peso);
+$("#modalProductoFactura .pesos").html(peso);
       }else{
-     $('#modalRecarga .pesos').removeClass('hidden');
-     $('#modalRecarga .pesos').html('');
+     $('#modalProductoFactura .pesos').removeClass('hidden');
+     $('#modalProductoFactura .pesos').html('');
   }
         } 
     }  

@@ -44,8 +44,85 @@
 
 
     </div>
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalFacturas">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">FACTURA</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal">
+              <div class="row ">
+                <div class="col-md-12 despachador">  
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="row col-md-12">  
+         <div class="col-md-6">
+          <label for="">FOLIO</label>
+            <input type="number" pattern="[0-9]{10}" id="NEC3" class="form-control clear idECliente3" autocomplete="off" onchange="document.getElementById('EC3').focus();" placeholder="">
+         </div>
+            <div class="col-md-6">
+              <label for="">CLIENTE</label>
+              <input type="text" onkeyup="mayus(this);" id="EC3" class="form-control clear eCliente3" autocomplete="off" onchange="addFacturas1();document.getElementById('agregarEC3').focus();" placeholder="">
 
-   <div class= "modal fade" tabindex ="-1" role="dialog" id="modalECliente">
+
+            </div>   
+   
+    
+                
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-dark" onclick="closeFacturas(); ">CANCELAR</button>
+               <button type="button" class="btn btn btn-modals " id="agregarEC3" onclick="addFacturas1()">AGREGAR</button>
+            </div>
+          </div>
+        </div>
+      </div>
+   <div class= "modal fade" tabindex ="-1" role="dialog" id="modalECliente2">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">CLIENTE DE FACTURAS</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal">
+              <div class="row ">
+                <div class="col-md-12 despachador">  
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="row col-md-12">  
+         <div class="col-md-6">
+          <label for="">ID</label>
+            <input type="number" pattern="[0-9]{10}" id="NEC2" class="form-control clear idECliente2" autocomplete="off" onchange="document.getElementById('EC2').focus();" placeholder="">
+         </div>
+            <div class="col-md-6">
+              <label for="">NOMBRE</label>
+              <input type="text" onkeyup="mayus(this);" id="EC2" class="form-control clear eCliente2" autocomplete="off" onchange="addEClienteFacturas();document.getElementById('agregarEC2').focus();" placeholder="">
+
+
+            </div>   
+   
+    
+                
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-dark" onclick="closeModalEClienteFacturas(); ">CANCELAR</button>
+               <button type="button" class="btn btn btn-modals " id="agregarEC2" onclick="addEClienteFacturas()">INGRESAR</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class= "modal fade" tabindex ="-1" role="dialog" id="modalECliente">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -466,11 +543,11 @@
         </div>
       </div>
 
-  <div class= "modal fade" tabindex ="-1" role="dialog" id="modalRecarga">
+  <div class= "modal fade" tabindex ="-1" role="dialog" id="modalProductoFactura">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-             <h2 class="modal-title">RECARGA</h2>
+             <h2 class="modal-title titulo">FACTURAS FOLIO:</h2>
              <div class=""></div>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
               </button>
@@ -480,20 +557,25 @@
              
               <div class="row col-md-12 ">
                  <div class="row">
-        <div class="col-md-3 impre form-group">
+        <div class="col-md-2 impre form-group">
           <label class="" >ID</label>
-          <input type="text" id="idProducto2" class="form-control clear idProducto" onchange="updateListaRecarga();document.getElementById('piezas2').focus();" placeholder="#" onload="">
+          <input type="text" id="idProducto2" class="form-control clear idProducto" onchange="updateListaRecarga();document.getElementById('pUnitario2').focus();" placeholder="" onload="">
         </div>
         <div class="col-md-3 impre form-group">
-          <label class="">Descripción</label>
-          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="Descripción">
+          <label class="">DESCRIPCIÓN </label>
+          <input type="text" class="form-control clear descripcion" style="color:green;" onchange="updateListaVentaMedida(); " disabled placeholder="">
+        </div>
+        <div class="col-md-3 impre form-group">
+          <label class="">PRECIO UNITARIO</label>
+          <input type="text" id="pUnitario2" class="form-control clear pUnitario2" style="color:green;" onchange="document.getElementById('piezas2').focus(); " placeholder="">
         </div>
         
-        <div class="col-md-3 impre form-group piezasventas">
-          <label class="">Piezas</label>
-          <input type="text" id="piezas2" class="form-control clear piezas" onchange="cambio(); " placeholder="#">
+        <div class="col-md-2 impre form-group piezasventas">
+          <label class="">PIEZAS</label>
+          <input type="text" id="piezas2" class="form-control clear piezas" onchange="cambio(); " placeholder="">
+          <input type="text" style="display: none;" id="" class="form-control  folioFactura" onchange=" " placeholder="">
         </div>
-       <div class="col-md-3 form-group pesos">
+       <div class="col-md-2 form-group pesos">
           
         </div>
 <div class="col-xs-3 impre col-md-3">

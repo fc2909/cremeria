@@ -18836,9 +18836,9 @@ function upRecepcionProducto(){
   bonificacion_Total+=parseFloat(otros);
   restBon=bonificacion_Limite - bonificacion_Total;
 
-   if(cred<creditos)creditos = cred;
+   if(cred<=creditos)creditos = cred;
  
-  if(restBon<0){
+  if(restBon<=0){
    otros=parseFloat(otros)+parseFloat(restBon);   
   }
   bonificacion_Total=0;

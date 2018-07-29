@@ -24293,8 +24293,8 @@ var id= arrGlobalEmpleados[j].id;
 var l_credito = credito_p;
 var l_bon = bonificacion_p;
 var json2 = {l_credito: l_credito, l_bon: l_bon};
-  upRegistro3(id,json2,'empleados',loadEmpleados3)
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
+ // upRegistro3(id,json2,'empleados',loadEmpleados3)
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 
 }
 }
@@ -24318,8 +24318,8 @@ var id= arrGlobalEmpleados[j].id;
 var l_credito = credito_p;
 var l_bon = bonificacion_p;
 var json2 = {l_credito: l_credito, l_bon: l_bon};
-  upRegistro3(id,json2,'empleados',loadEmpleados3)
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
+ // upRegistro3(id,json2,'empleados',loadEmpleados3)
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 
 }
 }
@@ -24357,8 +24357,8 @@ var id= arrGlobalEmpleados[j].id;
 var l_credito = credito_p;
 var l_bon = bonificacion_p;
 var json2 = {l_credito: l_credito, l_bon: l_bon};
-  upRegistro3(id,json2,'empleados',loadEmpleados3)
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
+//  upRegistro3(id,json2,'empleados',loadEmpleados3)
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 
 }
 }
@@ -24381,8 +24381,8 @@ var id= arrGlobalEmpleados[j].id;
 var l_credito = credito_p;
 var l_bon = bonificacion_p;
 var json2 = {l_credito: l_credito, l_bon: l_bon};
-  upRegistro3(id,json2,'empleados',loadEmpleados3)
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
+//  upRegistro3(id,json2,'empleados',loadEmpleados3)
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 
 }
 }

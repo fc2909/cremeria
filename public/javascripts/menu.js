@@ -1414,7 +1414,7 @@ function loadInventarios(lista){
 
             }
           }
-          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td> <td>' + lista[h].s_max + '</td><td>' + categoria + '</td> <td>' + lista[h].proporcion + '</td> </tr>';
+          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td> <td>' + lista[h].s_max + '</td><td>' + categoria + '</td> <td>' + lista[h].proporcion + '</td> <td>' + lista[h].pesaje + '</td></tr>';
 
           }
           $('.contCata').html(html);
@@ -1494,7 +1494,7 @@ function loadCategorias2(lista){
 function loadInventario(lista){
         var html = '';
         for(var h=0;h<lista.length; h++)
-          html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td><td>' + lista[h].s_max + '</td></tr>';
+          html+= '<tr class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td> <td>' + lista[h].s_max + '</td> </tr>';
           $('.contCata').html(html);
           arrGlobalInventario = lista;
 }
@@ -13368,7 +13368,7 @@ t_venta_mercaT=0;
                 }
 cantidadproducto=0;
 var su=0;
-
+var sumaProductos=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
@@ -13380,8 +13380,14 @@ var su=0;
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
               }else{
-                     productosT+= '<td >  </td>';
+                if(arrGlobalCategoria[y].descripcion==3){
+                     productosT+= '<td class="negro1"> =  </td>';
+                     productosTP+= '<td class="negro1"> = </td>';
+                }else{
+                  productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
+                }
+                     
              prodT[y]+=0;
               
               }

@@ -8,12 +8,26 @@
           <label class="letras">NOMBRE</label>
           <input onkeyup="mayus(this);" class="form-control clear nombre" >
         </div>
-        <div class="col-md-9 impre form-group">
-          <label class="letras">DESCRIPCIÓN</label>
-          <input onkeyup="mayus(this);" class="form-control clear descripcion1">
+        <div class="col-md-9 letras fondo impre form-control form-group">
+       <!--   <label class="letras">DESCRIPCIÓN</label>-->
+       <!--   <input onkeyup="mayus(this);" class="form-control clear descripcion1">-->
+        <div class="col-md-6">
+ <label for="">ACTIVIDAD </label>
+  <div class="radio">
+  <label><input type="radio" value="1" class="radio1 clear"  name="optradio" onclick="funcionCategoria1(value)"> NINGUNA</label>
+</div>
+<div class="radio">
+  <label><input type="radio" value="2" class="radio2 clear"  name="optradio" onclick="funcionCategoria2(value)"> SUMA</label>
+</div>
+<div class="radio">
+  <label><input type="radio" value="3" class="radio3 clear"  name="optradio" onclick="funcionCategoria3(value)"> TOTAL</label>
+</div>
+
+
+ </div>  
         </div>
         <div class="col-md-2 impre form-group">
-          <label class="letras">JERARQUÍA</label>
+          <label class="letras">ORDEN</label>
           <input type="number" pattern="[0-9]{10}" class="form-control clear  jerarquia">
         </div>
         
@@ -44,7 +58,7 @@
       <tr class="letras text-center impre">
         <th class="letras">NUM</th>
         <th class="letras">NOMBRE</th>
-        <th class="letras">DESCRIPCIÓN </th>    
+        <th class="letras">ACTIVIDAD </th>    
         <th class="letras">PRODUCTO</th>    
       </tr>
     </thead>

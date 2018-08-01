@@ -240,7 +240,8 @@ class ApplicationController < ActionController::Base
 			metodo = "#{request.method_symbol}"
 			fecha = Time.new.strftime("%Y-%m-%d")
 			hora = Time.new.strftime("%H:%M")
-			puts 'sesion'
+			
+			puts 'sesion '
 			puts session.as_json
 			log_params = {url: "#{params[:controller]}/#{params[:action]}", data: small_params, tipo: metodo, idUsuario: session.to_json, fecha: fecha, hora: hora}
 			unless Log.create(log_params)

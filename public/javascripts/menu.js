@@ -13210,6 +13210,7 @@ t_venta_mercaT=0;
               var prod = new Array(arrGlobalCategoria.length);
               var prodN = new Array(arrGlobalCategoria.length);
               var prodC = new Array(arrGlobalCategoria.length);
+              var prodP = new Array(arrGlobalCategoria.length);
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
@@ -13316,6 +13317,7 @@ t_venta_mercaT=0;
                        
                             
                            suma=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma);
+                        prodP[y] = arrGlobalInventario[hh].pesaje;
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0}
                            prod[y]+= parseFloat(suma);
                       
@@ -13328,6 +13330,7 @@ t_venta_mercaT=0;
 
                            prodN[y]=arrGlobalCategoria[y].nombre;
                            prodC[y]=arrGlobalInventario[hh].tipoP;
+                           
                            } 
                     }
                  
@@ -13338,7 +13341,7 @@ t_venta_mercaT=0;
                            suma2=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma2);
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0;}
                            prod[y]+= parseFloat(suma2);
-                 
+                          prodP[y] = arrGlobalInventario[hh].pesaje;
 
 
 
@@ -13376,13 +13379,28 @@ var sumaProductos=0;
           
 
               if(prodC[y]==arrGlobalCategoria[y].id){
-                     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
+if(arrGlobalCategoria[y].descripcion==2){
+  productosT+= '<td class="gris1">'+formatoMoneda1(prod[y])+' </td>';
+                     productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
+                      prodT[y]+=parseFloat(prod[y]);
+ sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
+ 
+}else{
+    productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
+}
+
+
+
+                   
               }else{
                 if(arrGlobalCategoria[y].descripcion==3){
-                     productosT+= '<td class="negro1"> =  </td>';
-                     productosTP+= '<td class="negro1"> = </td>';
+                     productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+               
+                prodT[y]+=parseFloat(sumaProductos);
+                 sumaProductos=0;
                 }else{
                   productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
@@ -15043,9 +15061,10 @@ t_venta_mercaT=0;
               
               var titulos=""; 
               var titulosP=""; 
-              var prod = new Array(arrGlobalCategoria.length);
+             var prod = new Array(arrGlobalCategoria.length);
               var prodN = new Array(arrGlobalCategoria.length);
               var prodC = new Array(arrGlobalCategoria.length);
+              var prodP = new Array(arrGlobalCategoria.length);
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
@@ -15152,6 +15171,7 @@ t_venta_mercaT=0;
                        
                             
                            suma=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma);
+                        prodP[y] = arrGlobalInventario[hh].pesaje;
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0}
                            prod[y]+= parseFloat(suma);
                       
@@ -15164,6 +15184,7 @@ t_venta_mercaT=0;
 
                            prodN[y]=arrGlobalCategoria[y].nombre;
                            prodC[y]=arrGlobalInventario[hh].tipoP;
+                           
                            } 
                     }
                  
@@ -15176,7 +15197,7 @@ t_venta_mercaT=0;
                            prod[y]+= parseFloat(suma2);
                  
 
-
+                         prodP[y] = arrGlobalInventario[hh].pesaje;
 
                            prodN[y]=arrGlobalCategoria[y].nombre;
                            prodC[y]=arrGlobalInventario[hh].tipoP;
@@ -15204,25 +15225,47 @@ t_venta_mercaT=0;
                 }
 cantidadproducto=0;
 var su=0;
-
+var sumaProductos=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
-          titulos+='<th class="letras text-center">'+arrGlobalCategoria[y].nombre+'</th>';
+          titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
+          
 
               if(prodC[y]==arrGlobalCategoria[y].id){
-                     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
+if(arrGlobalCategoria[y].descripcion==2){
+  productosT+= '<td class="gris1">'+formatoMoneda1(prod[y])+' </td>';
+                     productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
+                      prodT[y]+=parseFloat(prod[y]);
+ sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
+ 
+}else{
+    productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
+}
+
+
+
+                   
               }else{
-                     productosT+= '<td >  </td>';
+                if(arrGlobalCategoria[y].descripcion==3){
+                     productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                prodT[y]+=parseFloat(sumaProductos);
+                sumaProductos=0;
+                }else{
+                  productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
+                }
+                     
              prodT[y]+=0;
               
               }
              
           productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
           productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
+          if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
           
         }
         
@@ -15390,6 +15433,7 @@ t_venta_mercaT=0;
               var prod = new Array(arrGlobalCategoria.length);
               var prodN = new Array(arrGlobalCategoria.length);
               var prodC = new Array(arrGlobalCategoria.length);
+              var prodP = new Array(arrGlobalCategoria.length);
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
@@ -15496,6 +15540,7 @@ t_venta_mercaT=0;
                        
                             
                            suma=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma);
+                        prodP[y] = arrGlobalInventario[hh].pesaje;
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0}
                            prod[y]+= parseFloat(suma);
                       
@@ -15508,6 +15553,7 @@ t_venta_mercaT=0;
 
                            prodN[y]=arrGlobalCategoria[y].nombre;
                            prodC[y]=arrGlobalInventario[hh].tipoP;
+                           
                            } 
                     }
                  
@@ -15518,7 +15564,7 @@ t_venta_mercaT=0;
                            suma2=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma2);
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0;}
                            prod[y]+= parseFloat(suma2);
-                 
+                            prodP[y] = arrGlobalInventario[hh].pesaje;
 
 
 
@@ -15548,26 +15594,48 @@ t_venta_mercaT=0;
                 }
 cantidadproducto=0;
 var su=0;
-
+var sumaProductos=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
-          titulos+='<th class="letras text-center">'+arrGlobalCategoria[y].nombre+'</th>';
+          titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
+          
 
               if(prodC[y]==arrGlobalCategoria[y].id){
-                     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
+if(arrGlobalCategoria[y].descripcion==2){
+  productosT+= '<td class="gris1">'+formatoMoneda1(prod[y])+' </td>';
+                     productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
+                      prodT[y]+=parseFloat(prod[y]);
+ sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
+ 
+}else{
+    productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
+}
+
+
+
+                   
               }else{
-                     productosT+= '<td >  </td>';
+                if(arrGlobalCategoria[y].descripcion==3){
+                     productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                prodT[y]+=parseFloat(sumaProductos);
+                sumaProductos=0;
+                }else{
+                  productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
+                }
+                     
              prodT[y]+=0;
               
               }
              
           productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
           productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
-         
+          if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
+          
         }
         
         prodN=0;
@@ -15724,9 +15792,10 @@ t_venta_mercaT=0;
               
               var titulos=""; 
               var titulosP=""; 
-              var prod = new Array(arrGlobalCategoria.length);
+             var prod = new Array(arrGlobalCategoria.length);
               var prodN = new Array(arrGlobalCategoria.length);
               var prodC = new Array(arrGlobalCategoria.length);
+              var prodP = new Array(arrGlobalCategoria.length);
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
@@ -15827,12 +15896,13 @@ t_venta_mercaT=0;
                 
                
                   
-                  if(suma2==0){
+                   if(suma2==0){
                     for(var y=0;y<arrGlobalCategoria.length; y++){
                            if(arrGlobalInventario[hh].tipoP==arrGlobalCategoria[y].id){
                        
                             
                            suma=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma);
+                        prodP[y] = arrGlobalInventario[hh].pesaje;
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0}
                            prod[y]+= parseFloat(suma);
                       
@@ -15845,6 +15915,7 @@ t_venta_mercaT=0;
 
                            prodN[y]=arrGlobalCategoria[y].nombre;
                            prodC[y]=arrGlobalInventario[hh].tipoP;
+                           
                            } 
                     }
                  
@@ -15857,7 +15928,7 @@ t_venta_mercaT=0;
                            prod[y]+= parseFloat(suma2);
                  
 
-
+prodP[y] = arrGlobalInventario[hh].pesaje;
 
                            prodN[y]=arrGlobalCategoria[y].nombre;
                            prodC[y]=arrGlobalInventario[hh].tipoP;
@@ -15885,26 +15956,48 @@ t_venta_mercaT=0;
                 }
 cantidadproducto=0;
 var su=0;
-
+var sumaProductos=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
-          titulos+='<th class="letras text-center">'+arrGlobalCategoria[y].nombre+'</th>';
+          titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
+          
 
               if(prodC[y]==arrGlobalCategoria[y].id){
-                     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
+if(arrGlobalCategoria[y].descripcion==2){
+  productosT+= '<td class="gris1">'+formatoMoneda1(prod[y])+' </td>';
+                     productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
+                      prodT[y]+=parseFloat(prod[y]);
+ sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
+ 
+}else{
+    productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
+}
+
+
+
+                   
               }else{
-                     productosT+= '<td >  </td>';
+                if(arrGlobalCategoria[y].descripcion==3){
+                     productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+               prodT[y]+=parseFloat(sumaProductos);
+                sumaProductos=0;
+                }else{
+                  productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
+                }
+                     
              prodT[y]+=0;
               
               }
              
           productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
           productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
-         
+          if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
+          
         }
         
         prodN=0;
@@ -16028,6 +16121,7 @@ t_venta_mercaT=0;
               var prod = new Array(arrGlobalCategoria.length);
               var prodN = new Array(arrGlobalCategoria.length);
               var prodC = new Array(arrGlobalCategoria.length);
+              var prodP = new Array(arrGlobalCategoria.length);
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
@@ -16131,7 +16225,7 @@ t_venta_mercaT=0;
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0}
                            prod[y]+= parseFloat(suma);
                       
-                      
+                           prodP[y]=arrGlobalInventario[hh].proporcion;
 
 
                       
@@ -16150,7 +16244,8 @@ t_venta_mercaT=0;
                            suma2=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma2);
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0;}
                            prod[y]+= parseFloat(suma2);
-                 
+                           prodP[y]=arrGlobalInventario[hh].proporcion;
+                           
 
 
 
@@ -16179,26 +16274,47 @@ t_venta_mercaT=0;
                   pasa=0;
                 }
 cantidadproducto=0;
-var su=0;
-
-        for(var y=0;y<arrGlobalCategoria.length; y++){
-          titulos+='<th class="letras text-center">'+arrGlobalCategoria[y].nombre+'</th>';
+var sumaProductos =0; 
+  for(var y=0;y<arrGlobalCategoria.length; y++){
+          titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
+          
 
               if(prodC[y]==arrGlobalCategoria[y].id){
-                     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
+if(arrGlobalCategoria[y].descripcion==2){
+  productosT+= '<td class="gris1">'+formatoMoneda1(prod[y])+' </td>';
+                     productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
+                      prodT[y]+=parseFloat(prod[y]);
+ sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
+ 
+}else{
+    productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
+}
+
+
+
+                   
               }else{
-                     productosT+= '<td >  </td>';
+                if(arrGlobalCategoria[y].descripcion==3){
+                     productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                prodT[y]+=parseFloat(sumaProductos);
+                sumaProductos=0;
+                }else{
+                  productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
+                }
+                     
              prodT[y]+=0;
               
               }
              
           productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
           productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
+          if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
           
         }
         
@@ -20552,15 +20668,16 @@ function addInventario(){
   var foraneo = $(".foraneo").val();
   var restaurante = $(".restaurante").val();
   var cantidad = $(".cantidad").val();
+  var pesaje = $(".pesaje").val();
   var medida = $(".medida").val();
   var s_min = $(".s_min").val();
   var s_max = $(".s_max").val();
   var tipoP = $(".selectCategoria").val();
   var proporcion = $(".proporcion").val();
 if(proporcion=="")proporcion=1;
-  if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""&& tipoP != ""){
+  if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""&& tipoP != ""&& pesaje != ""){
 
-    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP, proporcion: proporcion};
+    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP, proporcion: proporcion, pesaje:pesaje};
     addRegistro(json, 'inventarios', loadInventarios);
   }
   else{
@@ -23094,6 +23211,7 @@ function upInventario(){
   var foraneo = $(".foraneo").val();
   var restaurante = $(".restaurante").val();
   var cantidad = $(".cantidad").val();
+  var pesaje = $(".pesaje").val();
   var medida = $(".medida").val();
   var s_min = $(".s_min").val();
   var s_max = $(".s_max").val();
@@ -23102,7 +23220,7 @@ function upInventario(){
 if(proporcion=="")proporcion=1;
   if(idInventario != "" && descripcion != "" && detalle != "" && mayoreo != "" && foraneo != "" && restaurante != "" && cantidad != "" && medida != "" && s_min != "" && s_max != ""&& tipoP != ""){
 
-    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP, proporcion: proporcion};
+    var json = {idInventario: idInventario, descripcion: descripcion, detalle: detalle, mayoreo: mayoreo, foraneo: foraneo, restaurante: restaurante, cantidad: cantidad, medida: medida, s_min: s_min, s_max: s_max, tipoP: tipoP, proporcion: proporcion, pesaje:pesaje};
      upRegistro(idGlobal,json, 'inventarios', loadInventarios);
   }
   else{
@@ -25133,6 +25251,7 @@ function selectInventario(id){
       $(".foraneo").val(arrGlobal[a].foraneo);
       $(".restaurante").val(arrGlobal[a].restaurante);
       $(".cantidad").val(arrGlobal[a].cantidad);
+      $(".pesaje").val(arrGlobal[a].pesaje);
       $(".medida").val(arrGlobal[a].medida);
       $(".s_min").val(arrGlobal[a].s_min);
       $(".s_max").val(arrGlobal[a].s_max);

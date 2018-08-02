@@ -30,7 +30,11 @@
         </div>
         <div class="col-md-2 form-group">
           <label class="letras">RESTAURANTE </label>
-          <input type="number" pattern="[0-9]{10}" id="restaurante" class="form-control clear restaurante" onchange="document.getElementById('cantidad').focus();" placeholder="">
+          <input type="number" pattern="[0-9]{10}" id="restaurante" class="form-control clear restaurante" onchange="document.getElementById('pesaje').focus();" placeholder="">
+        </div>
+        <div class="col-md-2 form-group">
+          <label class="letras">PESAJE</label>
+          <input type="number" pattern="[0-9]{10}" id="pesaje" class="form-control clear pesaje" onchange="document.getElementById('cantidad').focus();" placeholder="">
         </div>
         <div class="col-md-2 form-group">
           <label class="letras">CANTIDAD</label>
@@ -57,7 +61,6 @@
           <label class="letras">PROPORCIÓN</label>
           <input type="number" pattern="[0-9]{10}" id="proporcion" class="form-control clear proporcion" placeholder="" onchange="document.getElementById('add').focus();">
         </div>
-        <div  class="cate col-md-3"> </div>
         <div  class=" col-md-6"> </div>
         <div class="col-md-1"> </div>
         <div class="col-md-2 guardariC"> </div>
@@ -100,6 +103,7 @@
         <th class="letras">STOCK MÁXIMO</th>
         <th class="letras">CATEGORÍA</th>
         <th class="letras">PROPORCIÓN</th>
+        <th class="letras">PESAJE</th>
       
       </tr>
     </thead>

@@ -30538,6 +30538,7 @@ function selectMermaP3(id, valorM,h){
   idVentas2=id;
   var peso = ' <label class=" impre letras " >PESO</label><input type="text" id="pesoMP" class=" impre form-control clear pesoMP" onchange="document.getElementById("addMP").focus();" placeholder="">';
  var delventas1 = '<button type="button" class="btn btn-ventas btn-ventas eliminar" onclick="delMermaP2()">ELIMINAR</button>';
+  alert("30541");
   var seleccionado;
   for(var a=0; a<arrGlobalMerma.length; a++){
     if(arrGlobalMerma[a].id == id){

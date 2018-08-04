@@ -23494,7 +23494,7 @@ upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
 
 
 function loadDeg(lista){
-  alert("30541");
+
               var htmlm = '';
               var htmlmp = '';
               var imprimir = '<li class="impre imprimirList text-center"  onclick="imprimirDegustaciones(); ">IMPRIMIR </li>  ';
@@ -23620,7 +23620,7 @@ function loadDeg2(lista){
               var totalMerma =0 ;
               for(var h=0;h<lista.length; h++){
                 if(1==lista[h].ruta && today_v == lista[h].fechadespachof&&lista[h].merma==1){
-                   htmlm+= '<tr class="seleccionar" id ="'+h+'" onclick="cambiarcolor(this); selectVentas('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" data-id="'+ lista[h].id +'"><td>' + lista[h].horadespacho + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda1(lista[h].peso) + '</td><td> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) +'</td></tr>';
+                   htmlm+= '<tr class="seleccionar" id ="'+h+'" onclick="cambiarcolor(this); selectDeg2('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" data-id="'+ lista[h].id +'"><td>' + lista[h].horadespacho + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda1(lista[h].peso) + '</td><td> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) +'</td></tr>';
                         htmlmp+= '<tr class=" " style="font-size:8px;"><td class="text-center">' + no + '</td><td class="text-center">' + lista[h].horadespacho + '</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td class="text-right">' +formatoMoneda1(lista[h].peso) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"><strong> $ ' + formatoMoneda1(lista[h].valorMercancia) +'<strong></td></tr>';
                         total_merc =parseFloat(total_merc) + parseFloat(lista[h].valorMercancia);
                         no++;

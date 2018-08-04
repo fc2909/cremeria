@@ -23494,6 +23494,7 @@ upRegistroA2(id_vend,json2,jsonC,  'ventaspasada', loadVentaspasadasSV);
 
 
 function loadDeg(lista){
+  alert("30541");
               var htmlm = '';
               var htmlmp = '';
               var imprimir = '<li class="impre imprimirList text-center"  onclick="imprimirDegustaciones(); ">IMPRIMIR </li>  ';
@@ -30566,7 +30567,7 @@ function selectDeg2(id, valorM,h){
   var peso = ' <label class=" impre letras " >PESO</label><input type="text" id="pesoMP" class=" impre form-control clear pesoMP" onchange="document.getElementById("addMP").focus();" placeholder="">';
  var delventas1 = '<button type="button" class="btn btn-ventas btn-ventas eliminar" onclick="delDeg2()">ELIMINAR</button>';
   var seleccionado;
-   alert("30541");
+
   for(var a=0; a<arrGlobalMerma.length; a++){
     if(arrGlobalMerma[a].id == id){
        $(".upventaMP").html(delventas1);

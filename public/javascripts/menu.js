@@ -25018,6 +25018,8 @@ function addVendedor(){
   var l_bon = $("#modalVendedor .bonificacion").val();
   var merma = $("#modalVendedor .merma").val();
   var km = $("#modalVendedor .f_Ahorro").val();
+  var infonavit = $("#modalVendedor .infonavit").val();
+  var n1 = $("#modalVendedor .retV").val();
   var tipocontrato = $("#modalVendedor .tipocontrato").val();
   var iniciocontrato = $("#modalVendedor .iniciocontrato").val();
   var fincontrato = $("#modalVendedor .fincontrato").val();
@@ -25061,7 +25063,7 @@ var json3 = {n3: n3};
 
     upRegistro(ruta, json3, 'rutas', loadRutas);
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare, km:km };
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare, km:km, infonavit:infonavit, n1:n1 };
     addRegistro(json, 'empleados', loadVendedores);
   }
   else{
@@ -27497,6 +27499,8 @@ $('#modalVendedor').modal('hide');
   var l_bon = $("#modalVendedor .bonificacion").val();
   var merma = $("#modalVendedor .merma").val();
   var km = $("#modalVendedor .f_Ahorro").val();
+  var infonavit = $("#modalVendedor .infonavit").val();
+  var n1 = $("#modalVendedor .retV").val();
   var tipocontrato = $("#modalVendedor .tipocontrato").val();
   var iniciocontrato = $("#modalVendedor .iniciocontrato").val();
   var fincontrato = $("#modalVendedor .fincontrato").val();
@@ -27582,7 +27586,7 @@ comprobanted=1;
 if(pagare==""||undefined||null||NaN){
 pagare=1;
 }else{pagare=0;}
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare, km:km };
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare, km:km, n1:n1, infonavit:infonavit };
   
 
 
@@ -29579,6 +29583,9 @@ function selectVendedores(id){
        $("#modalVendedor .credito").val(arrGlobal[a].l_credito);
        $("#modalVendedor .bonificacion").val(arrGlobal[a].l_bon);
        $("#modalVendedor .merma").val(arrGlobal[a].merma);
+       $("#modalVendedor .f_Ahorro").val(arrGlobal[a].km);
+       $("#modalVendedor .infonavit").val(arrGlobal[a].infonavit);
+       $("#modalVendedor .retV").val(arrGlobal[a].n1);
        $("#modalVendedor .tipocontrato").val(arrGlobal[a].tipocontrato);
        $("#modalVendedor .iniciocontrato").val(arrGlobal[a].iniciocontrato);
        $("#modalVendedor .fincontrato").val(arrGlobal[a].fincontrato);

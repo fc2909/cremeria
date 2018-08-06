@@ -13861,6 +13861,7 @@ function loadVentaDiariaMayoreo2(lista){ //por mayoreo
           var prodT = new Array(arrGlobalCategoria.length);
           var porcentajeTotal=0;
           var credits=0;
+          ventasT=0;
           var encuentra=0;
           t_venta_mercaT=0;
           var diferenciaT=0;

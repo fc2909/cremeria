@@ -14191,6 +14191,7 @@ if(html!=""){
           boni+=parseFloat(bonificacionTotal);
 
           s_vent+=parseFloat(ventasT);
+           alert(s_vent+' - '+ventasT);
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -18320,7 +18321,7 @@ function loadVentaDiariaRestaurante2(lista){ //por categoria
           var credits=0;
           var encuentra=0;
           var diferenciaT=0;
-          alert(s_vent+' - '+ventasT);
+
       for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
         if(arrGlobalEmpleados[hh2].t_venta==4&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
           

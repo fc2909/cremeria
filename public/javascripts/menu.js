@@ -14189,7 +14189,6 @@ if(html!=""){
           credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
           s_vent+=parseFloat(ventasT);
-          alert(s_vent);
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -16421,8 +16420,6 @@ if(html!=""){
   credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
           s_vent+=parseFloat(ventasT);
-          alert(s_vent);
-
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>DETALLE</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>DETALLE</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong> $ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -17535,8 +17532,6 @@ if(html!=""){
   credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
           s_vent+=parseFloat(ventasT);
-          alert(s_vent);
-
   html+='<tr  style="background:black; font-size:12px;"><td>TOTAL</td> <td>FORANEO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td>$ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>FORANEO</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -18371,6 +18366,7 @@ identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong>
 
         }
 ventasT+=t_venta_mercaT;
+alert(ventasT);
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
 bonificacionT=0;
@@ -18645,8 +18641,6 @@ if(html!=""){
   credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
           s_vent+=parseFloat(ventasT);
-          alert(s_vent);
-
   html+='<tr  style="background:black; font-size:12px;"><td>TOTAL</td> <td>RESTAURANTE</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td>$ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>RESTAURANTES</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -19665,8 +19659,6 @@ if(html!=""){
           credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
           s_vent+=parseFloat(ventasT);
-          alert(s_vent);
-          
           html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>PEDIDOS</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
           htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong> $ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
       var renglon = 7+parseInt(arrGlobalCategoria.length)

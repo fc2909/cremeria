@@ -18302,6 +18302,7 @@ prodT=0;
 }
 
 function loadVentaDiariaRestaurante2(lista){ //por categoria
+                    alert(s_vent+' - '+ventasT);
                    var html = '';
           var htmlP = '';
            var identificacion='';
@@ -18321,8 +18322,8 @@ function loadVentaDiariaRestaurante2(lista){ //por categoria
           var credits=0;
           var encuentra=0;
           var diferenciaT=0;
-           alert(s_vent+' - '+ventasT);
           
+
 
       for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
         if(arrGlobalEmpleados[hh2].t_venta==4&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){

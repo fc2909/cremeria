@@ -13839,6 +13839,7 @@ anter=0;
    }
 prodT=0;
 }
+var totalVentaT=0;
 function loadVentaDiariaMayoreo2(lista){ //por mayoreo
           prodTotales = new Array(arrGlobalCategoria.length);
           credi=0;
@@ -14190,7 +14191,7 @@ if(html!=""){
           credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
 
-          s_vent+=parseFloat(ventasT);
+          totalVentaT+=parseFloat(ventasT);
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -14217,7 +14218,7 @@ prodT=0;
 var sfc = (scv+1)+"";
 var json = {where:{sfc:sfc}}
 
-           alert(s_vent+' - '+ventasT);
+          
 
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante2);
 
@@ -16425,7 +16426,7 @@ if(arrGlobalCategoria[y].descripcion==2){
 if(html!=""){
   credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
-          s_vent+=parseFloat(ventasT);
+         totalVentaT+=parseFloat(ventasT);
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>DETALLE</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>DETALLE</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong> $ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -17537,7 +17538,7 @@ if(arrGlobalCategoria[y].descripcion==2){
 if(html!=""){
   credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
-          s_vent+=parseFloat(ventasT);
+          totalVentaT+=parseFloat(ventasT);
   html+='<tr  style="background:black; font-size:12px;"><td>TOTAL</td> <td>FORANEO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td>$ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>FORANEO</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -18648,7 +18649,7 @@ if(arrGlobalCategoria[y].descripcion==2){
 if(html!=""){
   credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
-          s_vent+=parseFloat(ventasT);
+          totalVentaT+=parseFloat(ventasT);
   html+='<tr  style="background:black; font-size:12px;"><td>TOTAL</td> <td>RESTAURANTE</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td>$ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>RESTAURANTES</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
 var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -19666,7 +19667,7 @@ ventasT+=VOtrosT;
 if(html!=""){
           credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
-          s_vent+=parseFloat(ventasT);
+          totalVentaT+=parseFloat(ventasT);
           html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>PEDIDOS</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td>$ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
           htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong>$ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong> $ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';
       var renglon = 7+parseInt(arrGlobalCategoria.length)
@@ -32102,8 +32103,8 @@ function totalesCategorias4(){
       var titulos=' <th class="letras text-center "></th> <th class="letras"></th> <th class="letras" style="width: 70px; "></th> <th class="letras" style="width: 150px; ">_____CRÉDITOS_____</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">_____VENTA_____</th>'+titulos;
       var titulosP=' <th   class=" text-center" style="width: 50px; font-size:8px;"></th> <th colspan="1" class=" text-center" style="width: 70px; "></th> <th colspan="1" class=" text-center" style="width: 70px; "></th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">______VENTA______</th>'+titulosP;
 
-var html= '<tr class="text-center"  style="font-size:9px;   " > <td><strong>TOTALES</strong></td><td></td><td></td><td class="text-right"><strong>$ '+formatoMoneda1(credi)+'</strong></td> <td class="text-right"><strong>$ '+formatoMoneda1(boni)+'</strong></td><td></td><td class="text-right"><strong> $ '+formatoMoneda1(s_vent)+'</strong></td>';
-var html2= '<tr class=" text-center"  style="font-size:12px; background:black;  " > <td><strong>TOTALES</strong></td><td></td><td></td><td class=""><strong>$ '+formatoMoneda1(credi)+'</strong></td> <td class=""><strong>$ '+formatoMoneda1(boni)+'</strong></td><td></td><td class=""><strong> $ '+formatoMoneda1(s_vent)+'</strong></td>';
+var html= '<tr class="text-center"  style="font-size:9px;   " > <td><strong>TOTALES</strong></td><td></td><td></td><td class="text-right"><strong>$ '+formatoMoneda1(credi)+'</strong></td> <td class="text-right"><strong>$ '+formatoMoneda1(boni)+'</strong></td><td></td><td class="text-right"><strong> $ '+formatoMoneda1(totalVentaT)+'</strong></td>';
+var html2= '<tr class=" text-center"  style="font-size:12px; background:black;  " > <td><strong>TOTALES</strong></td><td></td><td></td><td class=""><strong>$ '+formatoMoneda1(credi)+'</strong></td> <td class=""><strong>$ '+formatoMoneda1(boni)+'</strong></td><td></td><td class=""><strong> $ '+formatoMoneda1(totalVentaT)+'</strong></td>';
   for(var h=0;h<prodTotales.length; h++){
     //alert(prodTotales[h]);
     if(categoriasCortas[h]!=0){
@@ -32141,6 +32142,7 @@ $('.contCataTotales').html(html2);
 credi=0;
           boni=0;
           s_vent=0;
+          totalVentaT=0;
 
 }
 var categoriasCortas;

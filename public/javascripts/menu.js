@@ -82,7 +82,7 @@ $(document).ready(function(){
  function cargarVentas(){
           saberSemana(parseInt(day), (parseInt(month)-1), parseInt(yy));
 
-var sfc = noSemana
+var sfc = noSemana+1;
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
   var jsonC = {where:{sfc:sfc}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);

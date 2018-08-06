@@ -18582,6 +18582,7 @@ if(arrGlobalCategoria[y].descripcion==2){
                      productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
  sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
+ 
 }else{
     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
@@ -18620,6 +18621,7 @@ if(arrGlobalCategoria[y].descripcion==2){
         prodN=0;
          prodC=0;
          prod =0;
+              
               
          if(identificacion==''){html=html;}else{
           html+=identificacion+productosT+'</tr>';
@@ -19028,10 +19030,10 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
 
               if(html==undefined){html='';}else{
 
-               $('.titulo2').html(titulos); 
-               $('.titulo2P').html(titulosP); 
-               $('.contCataRestaurante').html(html); 
-               $('.contCataRestauranteP').html(htmlP); 
+         //      $('.titulo2').html(titulos); 
+          //     $('.titulo2P').html(titulosP); 
+           //    $('.contCataRestaurante').html(html); 
+            //   $('.contCataRestauranteP').html(htmlP); 
               }
               //arrGlobal2 = lista;
              // $('.imprimir').html('');

@@ -14160,7 +14160,7 @@ if(arrGlobalCategoria[y].descripcion==2){
         prodN=0;
          prodC=0;
          prod =0;
-              
+              alert("try");
          if(identificacion==''){html=html;}else{
           html+=identificacion+productosT+'</tr>';
           htmlP+=identificacionP+productosTP+'</tr>';

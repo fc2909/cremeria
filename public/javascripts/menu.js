@@ -19529,8 +19529,7 @@ t_venta_mercaT=0;
 
                            prodN[y]=arrGlobalCategoria[y].nombre;
                            prodC[y]=arrGlobalInventario[hh].tipoP;
-                            alert(prodC[y]+' - '+prodN[y]+' - '+prodP[y]+' - '+prod[y]);
-                           
+
                            } 
                     }
                  
@@ -19548,7 +19547,7 @@ t_venta_mercaT=0;
 
                            prodN[y]=arrGlobalCategoria[y].nombre;
                            prodC[y]=arrGlobalInventario[hh].tipoP;
-                            alert(prodC[y]+' - '+prodN[y]+' - '+prodP[y]+' - '+prod[y]);
+                            alert(arrGlobalInventario[hh].idProducto+' - '+prodC[y]+' - '+prodN[y]+' - '+prodP[y]+' - '+prod[y]);
                            } 
                     }
                   }

@@ -13918,6 +13918,8 @@ identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong>
 
         }
 ventasT+=t_venta_mercaT;
+alert(s_vent+' - '+ventasT);
+
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
 bonificacionT=0;
@@ -18366,7 +18368,6 @@ identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong>
 
         }
 ventasT+=t_venta_mercaT;
-alert(s_vent);
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
 bonificacionT=0;

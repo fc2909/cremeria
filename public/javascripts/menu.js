@@ -18661,10 +18661,10 @@ htmlP+='<tr class="gris" ><td colspan="'+renglon+'" style="font-size:6px;" class
 
               if(html==undefined){html='';}else{
 
-          //     $('.titulo2').html(titulos); 
-          //     $('.titulo2P').html(titulosP); 
-          //     $('.contCataRestaurante').html(html); 
-          //     $('.contCataRestauranteP').html(htmlP); 
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataRestaurante').html(html); 
+               $('.contCataRestauranteP').html(htmlP); 
               }
               //arrGlobal2 = lista;
              // $('.imprimir').html('');

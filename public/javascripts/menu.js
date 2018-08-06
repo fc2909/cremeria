@@ -19571,15 +19571,18 @@ t_venta_mercaT=0;
                   pasa=0;
                 }
 cantidadproducto=0;
-var sumaProductos =0; 
-  for(var y=0;y<arrGlobalCategoria.length; y++){
 
-if(categoriasCortas!=0){
 
-          titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
+var sumaProductos=0;
+        for(var y=0;y<arrGlobalCategoria.length; y++){
+         
+              if(categoriasCortas[y]!=0){
+ titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
           
+
+
 
               if(prodC[y]==arrGlobalCategoria[y].id){
 if(arrGlobalCategoria[y].descripcion==2){
@@ -19587,8 +19590,6 @@ if(arrGlobalCategoria[y].descripcion==2){
                      productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
  sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
-
- 
 }else{
     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
@@ -19602,8 +19603,9 @@ if(arrGlobalCategoria[y].descripcion==2){
                 if(arrGlobalCategoria[y].descripcion==3){
                      productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
                      productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+               
                 prodT[y]+=parseFloat(sumaProductos);
-                sumaProductos=0;
+                 sumaProductos=0;
                 }else{
                   productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
@@ -19612,12 +19614,16 @@ if(arrGlobalCategoria[y].descripcion==2){
              prodT[y]+=0;
               
               }
-             
+
           productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
           productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
           if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
+
+            }
+             
+
           
-        }}
+        }
         
         prodN=0;
          prodC=0;
@@ -19658,10 +19664,10 @@ if(html!=""){
 }
 
               if(html==undefined){html='';}else{
-            //   $('.titulo2').html(titulos); 
-           //    $('.titulo2P').html(titulosP); 
-          //     $('.contCataOtros').html(html); 
-           //  $('.contCataOtrosP').html(htmlP); 
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataOtros').html(html); 
+               $('.contCataOtrosP').html(htmlP); 
               }
            for(var w=0;w<prodTotales.length; w++){
         var anter =prodT[w];

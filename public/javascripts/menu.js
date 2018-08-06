@@ -14121,7 +14121,7 @@ if(arrGlobalCategoria[y].descripcion==2){
                      productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
  sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
- alert(arrGlobalCategoria[y].nombre+' - '+sumaProductos);
+ alert(arrGlobalCategoria[y].nombre+' - '+sumaProductos+' = '+prodP[y]+' * '+prodT[y]);
 }else{
     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
@@ -14160,7 +14160,7 @@ if(arrGlobalCategoria[y].descripcion==2){
         prodN=0;
          prodC=0;
          prod =0;
-              alert("try");
+              
          if(identificacion==''){html=html;}else{
           html+=identificacion+productosT+'</tr>';
           htmlP+=identificacionP+productosTP+'</tr>';

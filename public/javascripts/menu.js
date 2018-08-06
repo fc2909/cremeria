@@ -14121,7 +14121,6 @@ if(arrGlobalCategoria[y].descripcion==2){
                      productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
  sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
- alert(arrGlobalCategoria[y].nombre+' - '+sumaProductos+' = '+prodP[y]+' * '+prodT[y]);
 }else{
     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';
@@ -19587,6 +19586,8 @@ if(arrGlobalCategoria[y].descripcion==2){
                      productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
  sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
+ alert(arrGlobalCategoria[y].nombre+' - '+sumaProductos+' = '+prodP[y]+' * '+prodT[y]);
+ 
  
 }else{
     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
@@ -32221,8 +32222,8 @@ var sfc = (scv+1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalle1);
 
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaOtros1);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMerma2);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacion2);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMermaTotales);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacionTotales);
   
 
   }

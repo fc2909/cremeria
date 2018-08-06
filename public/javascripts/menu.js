@@ -13918,7 +13918,6 @@ identificacionP= '<tr style="font-size:10px; " class="text-center" ><td><strong>
 
         }
 ventasT+=t_venta_mercaT;
-alert(s_vent+' - '+ventasT);
 
 creditosT+=parseFloat(credits);
 bonificacionTotal+=parseFloat(bonificacionT);
@@ -14190,6 +14189,8 @@ if(arrGlobalCategoria[y].descripcion==2){
 if(html!=""){
           credi+= parseFloat(creditosT);
           boni+=parseFloat(bonificacionTotal);
+alert(s_vent+' - '+ventasT);
+          
           s_vent+=parseFloat(ventasT);
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td><td>$ '+formatoMoneda1(creditosT)+'</td> <td> $ '+formatoMoneda1(bonificacionTotal)+'</td><td></td><td> $ '+formatoMoneda1(ventasT)+'</td> '+productoTotalS+'</tr>';
 htmlP+='<tr class="grisclaro" style="font-size:10px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td><td class=" text-right" ><strong> $ '+ formatoMoneda1(creditosT)+'</strong></td> <td class=" text-right" ><strong> $ '+formatoMoneda1(bonificacionTotal)+'</strong></td><td></td><td class=" text-right" ><strong>$ '+formatoMoneda1(ventasT)+'</strong></td> '+productoTotalSP+'</tr>';

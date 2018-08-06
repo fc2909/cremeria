@@ -14216,7 +14216,7 @@ anter=0;
 prodT=0;
 var sfc = (scv+1)+"";
 var json = {where:{sfc:sfc}}
-alert(s_vent+' - '+ventasT);
+
 
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante2);
 
@@ -18320,6 +18320,7 @@ function loadVentaDiariaRestaurante2(lista){ //por categoria
           var credits=0;
           var encuentra=0;
           var diferenciaT=0;
+          alert(s_vent+' - '+ventasT);
       for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
         if(arrGlobalEmpleados[hh2].t_venta==4&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
           

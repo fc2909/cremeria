@@ -12773,8 +12773,8 @@ var su=0;
          prod =0;
               
          if(identificacion==''){html=html;}else{
-          html+=identificacion+'<td>'+formatoMoneda1(VOtrosT)+'</td>'+productosT+'</tr>';
-          htmlP+=identificacionP+'<td>'+formatoMoneda1(VOtrosT)+'</td>'+productosTP+'</tr>';
+          html+=identificacion+'<td>$ '+formatoMoneda1(VOtrosT)+'</td>'+productosT+'</tr>';
+          htmlP+=identificacionP+'<td>$ '+formatoMoneda1(VOtrosT)+'</td>'+productosTP+'</tr>';
           productoTotalS=productoTotal;
           productoTotalSP=productoTotalP;
           
@@ -13060,8 +13060,8 @@ var su=0;
          prod =0;
               
          if(identificacion==''){html=html;}else{
-          html+=identificacion+'<td>'+formatoMoneda1(VOtrosT)+'</td>'+productosT+'</tr>';
-          htmlP+=identificacionP+'<td>'+formatoMoneda1(VOtrosT)+'</td>'+productosTP+'</tr>';
+          html+=identificacion+'<td>$ '+formatoMoneda1(VOtrosT)+'</td>'+productosT+'</tr>';
+          htmlP+=identificacionP+'<td>$ '+formatoMoneda1(VOtrosT)+'</td>'+productosTP+'</tr>';
           productoTotalS=productoTotal;
           productoTotalSP=productoTotalP;
           

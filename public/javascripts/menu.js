@@ -13862,6 +13862,7 @@ function loadVentaDiariaMayoreo2(lista){ //por mayoreo
           var porcentajeTotal=0;
           var credits=0;
           var encuentra=0;
+          t_venta_mercaT=0;
           var diferenciaT=0;
       for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
         if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
@@ -19200,7 +19201,7 @@ t_venta_mercaT=0;
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0}
                            prod[y]+= parseFloat(suma);
                       
-                           prodP[y]=arrGlobalInventario[hh].proporcion;
+                           prodP[y]=arrGlobalInventario[hh].pesaje;
 
 
                       
@@ -19219,7 +19220,7 @@ t_venta_mercaT=0;
                            suma2=parseFloat(arrGlobalInventario[hh].proporcion)*parseFloat(suma2);
                            if(prod[y]==NaN||prod[y]==""||prod[y]==undefined||prod[y]==null){prod[y]=0;}
                            prod[y]+= parseFloat(suma2);
-                           prodP[y]=arrGlobalInventario[hh].proporcion;
+                           prodP[y]=arrGlobalInventario[hh].pesaje;
                            
 
 

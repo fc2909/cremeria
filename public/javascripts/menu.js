@@ -18303,7 +18303,6 @@ prodT=0;
 }
 
 function loadVentaDiariaRestaurante2(lista){ //por categoria
-                    alert(s_vent+' - '+ventasT);
                    var html = '';
           var htmlP = '';
            var identificacion='';

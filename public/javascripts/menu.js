@@ -19658,10 +19658,10 @@ if(html!=""){
 }
 
               if(html==undefined){html='';}else{
-               $('.titulo2').html(titulos); 
-               $('.titulo2P').html(titulosP); 
-               $('.contCataOtros').html(html); 
-             $('.contCataOtrosP').html(htmlP); 
+            //   $('.titulo2').html(titulos); 
+           //    $('.titulo2P').html(titulosP); 
+          //     $('.contCataOtros').html(html); 
+           //  $('.contCataOtrosP').html(htmlP); 
               }
            for(var w=0;w<prodTotales.length; w++){
         var anter =prodT[w];

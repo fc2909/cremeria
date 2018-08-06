@@ -14121,7 +14121,7 @@ if(arrGlobalCategoria[y].descripcion==2){
                      productosTP+= '<td class="grisclaro">'+formatoMoneda1(prod[y])+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
  sumaProductos += (parseFloat(prod[y])*parseFloat(prodP[y]));
- 
+ alert(arrGlobalCategoria[y].nombre+' - '+sumaProductos);
 }else{
     productosT+= '<td >'+formatoMoneda1(prod[y])+' </td>';
                      productosTP+= '<td >'+formatoMoneda1(prod[y])+' </td>';

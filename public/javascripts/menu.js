@@ -7444,9 +7444,12 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
            //    $('.contCataMayoreoP').html(htmlP); 
 
               }
-for(var w=0;w<prodTotales.length; w++){
+              categoriasCortas=prodT;
+
+for(var w=0;w<arrGlobalCategoria.length; w++){
      prodTotales[w]+=parseFloat(prodT[w]);
-      alert(prodT[w]);
+      
+     
 }
 prodT=0;
 
@@ -7712,6 +7715,7 @@ cantidadproducto=0;
 var su=0;
  var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
+          if(categoriasCortas!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
@@ -7741,8 +7745,7 @@ var su=0;
           productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
           productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
           if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
-          
-        }
+          }}
         
         prodN=0;
          prodC=0;
@@ -7760,7 +7763,7 @@ var su=0;
         
           html+=identificacion+'<td> '+formatoMoneda1( pago)+'</td>'+productosT+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+' </td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
           htmlP+=identificacionP+'<td> '+formatoMoneda1( pago)+'</td>'+productosTP+'<td>   '+formatoMoneda1(mermaT)+'</td> <td>'+formatoMoneda1(ret)+' </td> <td>   '+formatoMoneda1(f_Ahorro)+'</td> <td>  '+formatoMoneda1(infonavit)+' </td> <td>  '+formatoMoneda1(faltanteT)+'</td> <td> '+formatoMoneda1(totalNomina)+' </td> </tr>';
-          html+=productoTotal;
+      
           mermaT=0;
           faltanteT=0;
           pago=0;
@@ -8070,6 +8073,7 @@ cantidadproducto=0;
 var su=0;
  var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
+          if(categoriasCortas!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
@@ -8078,10 +8082,10 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n1==undefined){
+                   if(arrGlobalCategoria[y].n2==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n1)*parseFloat(prod[y]);
+                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
 
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -8091,6 +8095,7 @@ var su=0;
               }else{
                      productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
+              //productoTotal+=0;
              prodT[y]+=0;
               
               }
@@ -8098,8 +8103,7 @@ var su=0;
           productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
           productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
           if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
-          
-        }
+          }}
         
         prodN=0;
          prodC=0;
@@ -8423,6 +8427,7 @@ cantidadproducto=0;
 var su=0;
  var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
+          if(categoriasCortas!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
@@ -8431,10 +8436,10 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n3==undefined){
+                   if(arrGlobalCategoria[y].n2==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n3)*parseFloat(prod[y]);
+                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
 
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -8452,8 +8457,7 @@ var su=0;
           productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
           productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
           if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
-          
-        }
+          }}
         //alert("vendedor "+arrGlobalCategoria.length+" - "+prod.length);
         
         prodN=0;
@@ -8780,6 +8784,7 @@ cantidadproducto=0;
 var su=0;
  var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
+          if(categoriasCortas!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
@@ -8788,11 +8793,11 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n4==undefined){
+                   if(arrGlobalCategoria[y].n2==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n4)*parseFloat(prod[y]);
-                      
+                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
+
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
                      productosTP+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -8801,6 +8806,7 @@ var su=0;
               }else{
                      productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
+              //productoTotal+=0;
              prodT[y]+=0;
               
               }
@@ -8808,8 +8814,7 @@ var su=0;
           productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
           productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
           if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
-          
-        }
+          }}
         
         prodN=0;
          prodC=0;
@@ -9003,7 +9008,9 @@ t_venta_mercaT=0;
               
 cantidadproducto=0;
 var su=0;
+ var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
+          if(categoriasCortas!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
@@ -9018,21 +9025,22 @@ var su=0;
                     comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
 
                    }
-                     productosT+= '<td > </td>';
-                     productosTP+= '<td >  </td>';
+                     productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
+                     productosTP+= '<td > '+formatoMoneda1(comision)+' </td>';
                       prodT[y]+=parseFloat(prod[y]);
+                      pago+=parseFloat(comision);
               }else{
                      productosT+= '<td >  </td>';
                      productosTP+= '<td >  </td>';
+              //productoTotal+=0;
              prodT[y]+=0;
               
               }
              
-          productoTotal+='<td  style="background:black;" ></td>';
-          productoTotalP+='<td  class="text-center" ><strong></strong></td>';
+          productoTotal+='<td  style="background:black;" >'+formatoMoneda1(prodT[y])+' </td>';
+          productoTotalP+='<td  class="text-center" ><strong>'+formatoMoneda1(prodT[y])+' </strong></td>';
           if(prodTotales[y]==NaN||prodTotales[y]==""||prodTotales[y]==undefined||prodTotales[y]==null){prodTotales[y]=0;}
-          
-        }
+          }}
         
         prodN=0;
          prodC=0;

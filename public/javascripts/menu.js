@@ -8082,10 +8082,10 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n2==undefined){
+                   if(arrGlobalCategoria[y].n1==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
+                    comision = parseFloat(arrGlobalCategoria[y].n1)*parseFloat(prod[y]);
 
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -8436,10 +8436,10 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n2==undefined){
+                   if(arrGlobalCategoria[y].n3==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
+                    comision = parseFloat(arrGlobalCategoria[y].n3)*parseFloat(prod[y]);
 
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -8793,10 +8793,10 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n2==undefined){
+                   if(arrGlobalCategoria[y].n4==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
+                    comision = parseFloat(arrGlobalCategoria[y].n4)*parseFloat(prod[y]);
 
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -9019,10 +9019,10 @@ var su=0;
               if(prodC[y]==arrGlobalCategoria[y].id){
                    var comision;
                    // productoTotal+=parseFloat(prod[y]);
-                   if(arrGlobalCategoria[y].n2==undefined){
+                   if(arrGlobalCategoria[y].n1==undefined){
                      comision=0;
                    }else{
-                    comision = parseFloat(arrGlobalCategoria[y].n2)*parseFloat(prod[y]);
+                    comision = parseFloat(arrGlobalCategoria[y].n1)*parseFloat(prod[y]);
 
                    }
                      productosT+= '<td > '+formatoMoneda1(comision)+' </td>';
@@ -32336,7 +32336,7 @@ function ventaDiariaC(){
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
   var sfc = (scv+1)+"";
-  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias('+sfc+')">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3>');
+  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3>');
   $('.contenidoR').load('/html/ventaDiariaC.html');
 
 
@@ -32626,21 +32626,21 @@ var sfc = (scv+1);
       $('#modal').modal('show');
 }
 }
-function click_buscarVCategorias(sfc){
+function click_buscarVCategorias(){
  var semanaVS = $('.semanaVD').val();
           
         document.getElementById('loader').style.display = 'block';
 
 if(semanaVS!=""){
 
-alert(sfc);
+
 
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
   
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias()">BUSCAR</button><div class="col-md-3"></div> <button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button> </div> <h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
 var sfc = (scv+1);
-alert(sfc);
+
 
   if(scv != ""){
       var json = {where:{sfc:sfc}}

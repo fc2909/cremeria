@@ -24,7 +24,7 @@ var dias = ['LUNES',' MARTES ',' MIÉRCOLES ',' JUEVES ',' VIERNES ',' SÁBADO '
 
 //--------------------------------------------- Datos cargados --------------------------------------------------------//
 
-//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
 getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV2);
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas1);
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventario2);
@@ -82,10 +82,10 @@ $(document).ready(function(){
  function cargarVentas(){
           saberSemana(parseInt(day), (parseInt(month)-1), parseInt(yy));
 
-var sfc = noSemana+1;
+//var sfc = noSemana+1;
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
-  var jsonC = {where:{sfc:sfc}}
-    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
+ // var jsonC = {where:{sfc:sfc}}
+  //  executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
    
 
       }

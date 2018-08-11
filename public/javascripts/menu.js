@@ -7451,6 +7451,7 @@ for(var w=0;w<arrGlobalCategoria.length; w++){
       
      
 }
+categoriasCortas=prodTotales;
 prodT=0;
 
 }

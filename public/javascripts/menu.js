@@ -7125,7 +7125,7 @@ function loadVentaDiariaNominaTotales(lista){ //por mayoreo
           var idNomina;
 
       for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
-        if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
+        if(arrGlobalEmpleados[hh2].km!=1&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
           
        for(var j=0;j<arrGlobalF.length; j++){
 

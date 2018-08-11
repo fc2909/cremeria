@@ -7442,9 +7442,11 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
              //  $('.titulo2P').html(titulosP); 
            //    $('.contCataMayoreoN').html(html); 
            //    $('.contCataMayoreoP').html(htmlP); 
+
               }
 for(var w=0;w<prodTotales.length; w++){
      prodTotales[w]+=parseFloat(prodT[w]);
+      alert(prodT[w]);
 }
 prodT=0;
 

@@ -7715,7 +7715,7 @@ cantidadproducto=0;
 var su=0;
  var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
-          if(categoriasCortas!=0){
+          if(categoriasCortas[y]!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
@@ -8073,7 +8073,7 @@ cantidadproducto=0;
 var su=0;
  var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
-          if(categoriasCortas!=0){
+         if(categoriasCortas[y]!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
@@ -8427,7 +8427,7 @@ cantidadproducto=0;
 var su=0;
  var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
-          if(categoriasCortas!=0){
+          if(categoriasCortas[y]!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
@@ -8784,7 +8784,7 @@ cantidadproducto=0;
 var su=0;
  var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
-          if(categoriasCortas!=0){
+         if(categoriasCortas[y]!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}
@@ -9010,7 +9010,7 @@ cantidadproducto=0;
 var su=0;
  var pago=0;
         for(var y=0;y<arrGlobalCategoria.length; y++){
-          if(categoriasCortas!=0){
+          if(categoriasCortas[y]!=0){
           titulos+='<th class="letras">'+arrGlobalCategoria[y].nombre+'</th>';
           titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[y].nombre+'</th>';
           if(prodT[y]==NaN||prodT[y]==""||prodT[y]==undefined||prodT[y]==null){prodT[y]=0;}

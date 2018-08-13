@@ -24387,11 +24387,11 @@ function loadVentaspasadasRS(lista){
         for(var h=0;h<lista.length; h++){
           if(dianum==6){
             if(lista[h].fechaf==today_v||lista[h].sfc==(noSemana)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
-              html2+= '<tr class="seleccionar" onclick="" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+formatoMoneda1(parseFloat(lista[h].credito_p).toFixed(2)) + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
+              html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+', '+lista[h].n5+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+formatoMoneda1(parseFloat(lista[h].credito_p).toFixed(2)) + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>';
             }
           }else{
             if(lista[h].fechaf==today_v||lista[h].sfc==(noSemana+1)) {//alert(lista[h].sfc+" --- "+lista[h].sfc);
-              html2+= '<tr class="seleccionar" onclick="" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+formatoMoneda1(parseFloat(lista[h].credito_p).toFixed(2)) + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>'; 
+              html2+= '<tr class="seleccionar" onclick="click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+')" data-id="'+ lista[h].id +'"><td>' + t_rutas[parseInt(lista[h].ruta)-1] + '</td><td>' + lista[h].nombre + '</td><td>' + lista[h].tipo + '</td><td>'+formatoMoneda1(parseFloat(lista[h].credito_p).toFixed(2)) + '</td><td> $ ' + lista[h].bonificacion_p +  '</td><td> $ ' + parseFloat(lista[h].v_mercancia).toFixed(2) + '</td><td>'+lista[h].fechaf +'</td></tr>'; 
           }
         }
       }
@@ -24506,7 +24506,7 @@ function loadVentaspasadasTF(lista){
           var t_vendido = today;
       for(var h=0;h<lista.length; h++){
         if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined&&yearVS==lista[h].fechaf.substring(0,4)) {
-              html2+= '<tr class="" onclick="cambiarcolor(this);click_Rec('+ lista[h].id +', '+h+', '+lista[h].ruta+', '+lista[h].tipo+', '+lista[h].credito_p+', '+lista[h].bonificacion_p+', '+(lista[h].fechaf+"")+','+lista[h].dsfc+','+lista[h].sfc+');" data-id="'+ lista[h].id +'"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + formatoMoneda1(lista[h].creditos) + '</td><td> $' + formatoMoneda1(lista[h].f_s_dia) + '</td><td> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td> $ '+formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
+              html2+= '<tr class="" onclick="cambiarcolor(this);"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + formatoMoneda1(lista[h].creditos) + '</td><td> $' + formatoMoneda1(lista[h].f_s_dia) + '</td><td> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td> $ '+formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
               htmlp+= '<tr  style="font-size:7px; "><td class="text-center grisclaro">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].creditos) + '</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].f_s_dia) + '</td><td class="text-center"> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td class="text-center"> $ '+ formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
         }
 

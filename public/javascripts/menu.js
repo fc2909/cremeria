@@ -24403,7 +24403,7 @@ function loadVentaspasadas(lista){
           var diasema= new Date((parseInt(month2))+' '+parseInt(day2)+' ,'+parseInt(year2));
           var dianum=(diasema.getUTCDay());
       for(var h=0;h<lista.length; h++){
-        if (lista[h].ruta!="F"&&lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined)){
+        if (lista[h].ruta!="F"&&lista[h].fechaf==today_v||(lista[h].sfc==(noSemana+1)&&lista[h].f_s_real==undefined&&lista[h].bonificacion_p!="F")){
           var f=lista[h].fechaf;
           var dayp = f.substring(8,10);
           var monthp = f.substring(5,7);

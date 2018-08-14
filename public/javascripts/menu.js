@@ -2331,7 +2331,7 @@ if(encuentraRuta==0){
 html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td> ';      
 
  if(arrGlobalF[j].despachador!=undefined){
-html+='<td style=" color:white;"><strong>'+fechap+': $ '+formatoMoneda1(arrGlobalF[j].f_s_real)+'</strong> </td>';
+html+='<td style=" color:white;"><strong>'+fechap+': $'+formatoMoneda1(arrGlobalF[j].f_s_real)+'</strong> </td>';
 
    }else{
     html+='<td style="background:yellow; color:black;"><strong>'+fechap+'</strong></td>';
@@ -2341,7 +2341,7 @@ html+='<td style=" color:white;"><strong>'+fechap+': $ '+formatoMoneda1(arrGloba
 }else{
   if(rutatemp==rutas){
       if(arrGlobalF[j].despachador!=undefined){
-html+='<td style=" color:white;">  <strong>'+fechap+': $ '+formatoMoneda1(arrGlobalF[j].f_s_real)+'</strong> </td>';
+html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(arrGlobalF[j].f_s_real)+'</strong> </td>';
 
    }else{
     html+='<td style="background:yellow; color:black;">  <strong>'+fechap+'</strong> </td>';
@@ -2353,7 +2353,7 @@ html+='<td style=" color:white;">  <strong>'+fechap+': $ '+formatoMoneda1(arrGlo
     encuentraRuta=1;
 html+='</tr><tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';      
  if(arrGlobalF[j].despachador!=undefined){
-html+='<td style=" color:white;">  <strong>'+fechap+': $ '+formatoMoneda1(arrGlobalF[j].f_s_real)+'</strong>   </td>';
+html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(arrGlobalF[j].f_s_real)+'</strong>   </td>';
 
    }else{
     html+='<td style="background:yellow; color:black"> <strong>'+fechap+'</strong></td>';

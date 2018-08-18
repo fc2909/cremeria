@@ -4578,7 +4578,7 @@ if( arrGlobalproductosT[i].medida==2){
 }
   }
     
-          productoTotal = '<td>$ '+formatoMoneda1(productosT2)+'</td>'; 
+          productoTotal = '<td> '+formatoMoneda1(productosT2)+'</td>'; 
       
              if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=parseFloat(productosT2);}else{
               prodT[num22]+= parseFloat(productosT2);
@@ -4771,7 +4771,7 @@ if( arrGlobalproductosT[i].medida==2){
 }
   }
     
-          productoTotal = '<td>$ '+formatoMoneda1(productosT2)+'</td>'; 
+          productoTotal = '<td> '+formatoMoneda1(productosT2)+'</td>'; 
       
              if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=parseFloat(productosT2);}else{
               prodT[num22]+= parseFloat(productosT2);
@@ -4965,7 +4965,7 @@ if( arrGlobalproductosT[i].medida==2){
 }
   }
     
-          productoTotal = '<td>$ '+formatoMoneda1(productosT2)+'</td>'; 
+          productoTotal = '<td> '+formatoMoneda1(productosT2)+'</td>'; 
       
              if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=parseFloat(productosT2);}else{
               prodT[num22]+= parseFloat(productosT2);
@@ -5157,7 +5157,7 @@ if( arrGlobalproductosT[i].medida==2){
 }
   }
     
-          productoTotal = '<td>$ '+formatoMoneda1(productosT2)+'</td>'; 
+          productoTotal = '<td> '+formatoMoneda1(productosT2)+'</td>'; 
       
              if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=parseFloat(productosT2);}else{
               prodT[num22]+= parseFloat(productosT2);
@@ -5872,7 +5872,7 @@ htmlp+='<tr class="grisclaro" style="font-size:8px;   " class=" text-right" ><td
   var longi2= parseFloat(scv)-parseFloat(scv2);
 
         for(var j2=0;j2<=longi2; j2++){
-htmlT2+='<td> $ '+formatoMoneda1(prodTotales2[j2])+'</td>';
+htmlT2+='<td>  '+formatoMoneda1(prodTotales2[j2])+'</td>';
 }
   
 

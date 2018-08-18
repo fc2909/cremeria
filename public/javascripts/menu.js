@@ -651,7 +651,7 @@ function pagare(){
     var nombreVendedor = "RUTA _<u><strong>"+ruta3+". </strong></u>_ VENDEDOR: _<u><strong> "+nombre_vend+". </strong></u>_  VEHICULO: _<u><strong> "+vehiculoA+". </strong></u>_";
     var despachadorV = "DESPACHADOR:<strong> "+despachador+"</strong>";
     var controlC = '<strong class="text-center">CONTROL DE VENTAS Y COBRANZA</strong>';
-    var pagare = '<p class="text-justify " >YO _<u> <strong>'+ nombre_vend+'</strong> </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RAMSES VAZQUEZ RODRIGUEZ TORRES EN ESTA CIUDAD EL DIA _<u><strong> '+fechaDespachoD+' </strong></u>_ LA CANTIDAD DE _<u><strong> $ '+cantidad +' ('+cantidadEnTexto+') </strong></u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p>';
+    var pagare = '<p class="text-justify " >YO _<u> <strong>'+ nombre_vend+'</strong> </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RAMSES VAZQUEZ RODRIGUEZ EN ESTA CIUDAD EL DIA _<u><strong> '+fechaDespachoD+' </strong></u>_ LA CANTIDAD DE _<u><strong> $ '+cantidad +' ('+cantidadEnTexto+') </strong></u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p>';
     var fechaDespachoDD ='DESPACHO : <strong>'+fechaDespachoD+'</strong>';
      var linea =' <p class="text-center">___________________________________________</p>';
     var vendedorFirma ='<p class="text-center"><strong>'+nombre_vend+'.</strong> </p> ';
@@ -2347,7 +2347,7 @@ if(encuentraRuta==0){
 html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td> ';      
 
  if(arrGlobalF[j].despachador!=undefined){
-html+='<td style=" color:white;"><strong>'+fechap+': $'+formatoMoneda1(arrGlobalF[j].f_s_real)+'</strong> </td>';
+html+='<td style=" color:white;"><strong>'+fechap+': $'+formatoMoneda1(arrGlobalF[j].otros)+'</strong> </td>';
 
    }else{
     html+='<td style="background:yellow; color:black;"><strong>'+fechap+'</strong></td>';
@@ -2357,7 +2357,7 @@ html+='<td style=" color:white;"><strong>'+fechap+': $'+formatoMoneda1(arrGlobal
 }else{
   if(rutatemp==rutas){
       if(arrGlobalF[j].despachador!=undefined){
-html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(arrGlobalF[j].f_s_real)+'</strong> </td>';
+html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(arrGlobalF[j].otros)+'</strong> </td>';
 
    }else{
     html+='<td style="background:yellow; color:black;">  <strong>'+fechap+'</strong> </td>';
@@ -2369,7 +2369,7 @@ html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(arrGlob
     encuentraRuta=1;
 html+='</tr><tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[arrGlobalF[j].tipo-1]+'</td> <td >' + arrGlobalF[j].nombre + '</td>';      
  if(arrGlobalF[j].despachador!=undefined){
-html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(arrGlobalF[j].f_s_real)+'</strong>   </td>';
+html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(arrGlobalF[j].otros)+'</strong>   </td>';
 
    }else{
     html+='<td style="background:yellow; color:black"> <strong>'+fechap+'</strong></td>';

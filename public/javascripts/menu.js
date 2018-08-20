@@ -4543,9 +4543,9 @@ if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[
      for(var f=0; f < arrGlobalInventario.length; f++) {
       if(arrGlobalInventario[f].idInventario==clavesProductos[ii]){
 if( arrGlobalproductosT[i].medida==2){
-      productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion);
+      productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
     }else{
-      productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion);
+      productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion*parseFloat(arrGlobalInventario[f].pesaje));
     }
 
       }
@@ -4736,10 +4736,10 @@ if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[
      for(var f=0; f < arrGlobalInventario.length; f++) {
       if(arrGlobalInventario[f].idInventario==clavesProductos[ii]){
 if( arrGlobalproductosT[i].medida==2){
-      productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion);
+       productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
     }else{
-      productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion);
-    }
+      productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion*parseFloat(arrGlobalInventario[f].pesaje));
+       }
 
       }
     
@@ -4930,10 +4930,10 @@ if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[
      for(var f=0; f < arrGlobalInventario.length; f++) {
       if(arrGlobalInventario[f].idInventario==clavesProductos[ii]){
 if( arrGlobalproductosT[i].medida==2){
-      productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion);
+       productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
     }else{
-      productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion);
-    }
+      productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion*parseFloat(arrGlobalInventario[f].pesaje));
+         }
 
       }
     
@@ -5121,10 +5121,10 @@ if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[
      for(var f=0; f < arrGlobalInventario.length; f++) {
       if(arrGlobalInventario[f].idInventario==clavesProductos[ii]){
 if( arrGlobalproductosT[i].medida==2){
-      productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion);
+        productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
     }else{
-      productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion);
-    }
+      productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion*parseFloat(arrGlobalInventario[f].pesaje));
+          }
 
       }
     
@@ -33227,7 +33227,7 @@ executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulari
 var json='{where:{';//idProducto: idProducto2}};
 var json2 = "";//idProducto: idProducto2}};
 var entra =0;
-var merma =0;
+
 
 for (var i = 0; i < arrGlobalCategoria.length ; i++) {
 
@@ -33251,14 +33251,16 @@ json2+=', idProducto:'+arrGlobalInventario[ii].idInventario;
 
 
 if(arrGlobalCategoria[i].id==tipoBId){
-    tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
+    tipoBusqueda=arrGlobalCategoria[i].nombre
 json += json2
+ json2="";
 break;
 }
 if(arrGlobalCategoria[i].descripcion==3){
 entra =0;
 json2 = "";
 json='{where:{';
+clavesCategoriasTotales = new Array(0);
 }
 
 
@@ -33268,10 +33270,10 @@ json='{where:{';
 entra=0;
 var merma =0;
 json +=', merma:'+merma+'}}';
- alert(json);
-opcionReportes=2;
-idProductoR=tipoBId;
 
+opcionReportes=3;
+idProductoR=tipoBId;
+ alert(json);
 executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 
 

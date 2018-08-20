@@ -5205,7 +5205,7 @@ for(var w=0;w<prodTotales.length; w++){
 prodT=0;
 
 }
-function loadVentaDiariaProductos(lista){ //por mayoreo
+function loadVentaDiariaProductos5(lista){ //por mayoreo
   var longi2= parseFloat(scv)-parseFloat(scv2);
    
           credi=0;

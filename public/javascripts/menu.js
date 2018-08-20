@@ -4523,27 +4523,7 @@ var enc=0;
 var num22=0;
 var longi =  parseInt(scv)-parseInt(scv);
       for(var jj=scv;jj>=scv2; jj--){
-        for(var j=0;j<lista.length; j++){
-          enc=0;
-          
-if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
- 
-if(lista[j].creditos !=(undefined||NaN||""||null)){
-           creditosT = lista[j].creditos;
-          }
-
-//productoTotal = '<td>$ '+formatoMoneda1(0)+'</td>';
-enc=1;
-
-        }
-
-        if(enc==0){
-           
-           ruta =lista[j].ruta;
-           sfc=lista[j].sfc;
-      }
-     
-        }
+   
 
 
 num22++;
@@ -4556,7 +4536,7 @@ var productosT2= 0; //alert(idProducto+" - "+ruta+" - "+sfc+" -"+ productosT2);
      //alert(rutas+" - "+jj+" - "+year)
      
  for(var ii=0; ii < clavesProductos.length; ii++){
-
+alert(clavesProductos[ii]);
 
      for(var i=0; i < arrGlobalproductosT.length; i++) {
 if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[i].ruta==rutas&&arrGlobalproductosT[i].sfc==jj&&arrGlobalproductosT[i].merma==0&&year==((arrGlobalproductosT[i].fechadespachof).substring(0,4))){
@@ -33250,7 +33230,7 @@ var entra =0;
 for (var i = 0; i < arrGlobalCategoria.length ; i++) {
 
 if(arrGlobalCategoria[i].id<tipoBId&&arrGlobalCategoria[i].descripcion==2){
-tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
+
  for (var ii = 0; ii < arrGlobalInventario.length ; ii++) {
 if(arrGlobalInventario[ii].tipoP==arrGlobalCategoria[i].id){
   clavesProductos.push(arrGlobalInventario[ii].idInventario);
@@ -33265,6 +33245,7 @@ json2+=', idProducto:'+arrGlobalInventario[ii].idInventario
 }
 }
 if(arrGlobalCategoria[i].descripcion==3){
+  tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
 json = '{where:{'
 }
 

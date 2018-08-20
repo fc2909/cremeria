@@ -33161,6 +33161,7 @@ function click_buscarProductosR(){
  semana1 = $('.semanac1NV').val();
  semana2 = $('.semanac2NV').val();
  tipoBusqueda = $('.opcionP').val();
+ var jerarquiaP = $('.jerarquia').val();
  var tipoBId = $('#sP').val();
  var tipoBNombre ="";
  if(tipoBusqueda==1){
@@ -33231,7 +33232,7 @@ var entra =0;
 
 for (var i = 0; i < arrGlobalCategoria.length ; i++) {
 
-if(arrGlobalCategoria[i].id<=tipoBId&&arrGlobalCategoria[i].descripcion==2){
+if(arrGlobalCategoria[i].id<=jerarquiaP&&arrGlobalCategoria[i].descripcion==2){
 
  for (var ii = 0; ii < arrGlobalInventario.length ; ii++) {
 if(arrGlobalInventario[ii].tipoP==arrGlobalCategoria[i].id){
@@ -33274,7 +33275,7 @@ json +=', merma:'+merma+'}}';
 
 opcionReportes=3;
 idProductoR=tipoBId;
- alert(json+clavesCategoriasTotales.length+" --"+tipoBId);
+ alert(json+clavesCategoriasTotales.length+" --"+jerarquiaP);
 executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 
 
@@ -33432,6 +33433,7 @@ var sfc = (scv+1)+"";
       }
 }
 function funcionProducto(option){
+  var jPro=0;
 var select ='<select class="form-control sP clear" id="sP" name="selectProductD">'
   if(option==1){
 for (var i = 0; i < arrGlobalInventario.length ; i++) {
@@ -33453,12 +33455,15 @@ for (var i = 0; i < arrGlobalCategoria.length ; i++) {
 if(arrGlobalCategoria[i].descripcion==3){
 
   select += '<option value="'+arrGlobalCategoria[i].id+'" class="form-control">'+arrGlobalCategoria[i].nombre+'</option>';
+jPro=arrGlobalCategoria[i].jerarquia;
 }
+
 }
   }
   select+='</select>';
   $(".selectProducto").html(select);
   $(".opcionP").val(option)
+  $(".jerarquia").val(jPro)
 }
 
 function totalesCategorias3(){

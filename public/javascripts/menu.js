@@ -33260,7 +33260,7 @@ if(arrGlobalCategoria[i].descripcion==3){
 entra =0;
 json2 = "";
 json='{where:{';
-clavesCategoriasTotales = new Array();
+clavesProductos = new Array(0);
 
 }
 

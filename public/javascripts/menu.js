@@ -4536,7 +4536,7 @@ var productosT2= 0; //alert(idProducto+" - "+ruta+" - "+sfc+" -"+ productosT2);
      //alert(rutas+" - "+jj+" - "+year)
      
  for(var ii=0; ii < clavesProductos.length; ii++){
-alert(clavesProductos[ii]);
+
 
      for(var i=0; i < arrGlobalproductosT.length; i++) {
 if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[i].ruta==rutas&&arrGlobalproductosT[i].sfc==jj&&arrGlobalproductosT[i].merma==0&&year==((arrGlobalproductosT[i].fechadespachof).substring(0,4))){

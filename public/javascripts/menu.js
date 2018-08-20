@@ -5362,8 +5362,8 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
               if(html==undefined){html='';}else{
                $('.titulo2PF').html(titulos); 
                $('.tituloP').html(titulosP); 
-               $('.contCataDetalle').html(html); 
-               $('.contCataDetalleP').html(htmlP); 
+               $('.contCataOtros').html(html); 
+               $('.contCataOtrosP').html(htmlP); 
                //$('.contCataMayoreoPF').html(htmlP); 
         document.getElementById('imprimirProductos').style.display = 'block';
           calcularTotalesP();   

@@ -33245,7 +33245,7 @@ json2+=', idProducto:'+arrGlobalInventario[ii].idInventario
 }
 }
 if(arrGlobalCategoria[i].descripcion==3){
-
+entra =0;
 json = '{where:{'
 }
 

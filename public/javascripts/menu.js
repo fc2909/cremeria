@@ -5292,10 +5292,8 @@ if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[
 if( arrGlobalproductosT[i].medida==2){
 
         productosT2 += parseFloat(arrGlobalproductosT[i].piezas)*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
-    alert(jj+" -- "+productosT2+" -- "+arrGlobalproductosT[i].piezas+" * "+arrGlobalInventario[f].proporcion+" * "+arrGlobalInventario[f].pesaje);
     }else{
       productosT2 += parseFloat(arrGlobalproductosT[i].peso)*parseFloat(arrGlobalInventario[f].proporcion*parseFloat(arrGlobalInventario[f].pesaje));
-    alert(jj+" -- "+productosT2+" -- "+arrGlobalproductosT[i].peso+" * "+arrGlobalInventario[f].proporcion+" * "+arrGlobalInventario[f].pesaje);
           }
 
       }

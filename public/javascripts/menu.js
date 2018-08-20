@@ -5288,6 +5288,7 @@ var productosT2= 0; //alert(idProducto+" - "+ruta+" - "+sfc+" -"+ productosT2);
 if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[i].vendedor==arrGlobalEmpleados[hh2].id&&arrGlobalproductosT[i].sfc==jj&&arrGlobalproductosT[i].merma==0&&year==((arrGlobalproductosT[i].fechadespachof).substring(0,4))){
      for(var f=0; f < arrGlobalInventario.length; f++) {
       if(arrGlobalInventario[f].idInventario==clavesProductos[ii]){
+        alert(arrGlobalInventario[f].idInventario);
 if( arrGlobalproductosT[i].medida==2){
         productosT2 += (parseFloat(arrGlobalproductosT[i].piezas))*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
     }else{

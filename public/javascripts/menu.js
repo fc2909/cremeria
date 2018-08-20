@@ -33245,13 +33245,14 @@ json2+=', idProducto:'+arrGlobalInventario[ii].idInventario
 }
 }
 if(arrGlobalCategoria[i].descripcion==3){
-  tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
+
 json = '{where:{'
 }
 
 
 
 if(arrGlobalCategoria[i].id==tipoBId){
+    tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
 json += json2
 }
 
@@ -33265,8 +33266,7 @@ json +='}}';
 
 opcionReportes=2;
 idProductoR=tipoBId;
-
-var idProducto2=110;
+alert(json);
 executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 
 

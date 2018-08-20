@@ -33273,7 +33273,7 @@ json +=', merma:'+merma+'}}';
 
 opcionReportes=3;
 idProductoR=tipoBId;
- alert(json);
+ alert(json+clavesCategoriasTotales.length);
 executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 
 

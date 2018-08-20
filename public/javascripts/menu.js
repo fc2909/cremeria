@@ -4820,7 +4820,6 @@ for(var w=0;w<prodTotales.length; w++){
 prodT=0;
 
 }
-
 function loadVentaDiariaProductos3(lista){ //por mayoreo
   var longi2= parseFloat(scv)-parseFloat(scv2);
           
@@ -5016,7 +5015,8 @@ prodT=0;
 }
 function loadVentaDiariaProductos4(lista){ //por mayoreo
   var longi2= parseFloat(scv)-parseFloat(scv2);
-   
+          
+       
           credi=0;
              
           boni=0;
@@ -5111,6 +5111,7 @@ titulos+='<th class="text-center">SEMANA: '+jj+'</th>';
 titulosP+='<th class="text-center grisclaro">SEMANA_'+jj+'</th>';
 var productosT2= 0; //alert(idProducto+" - "+ruta+" - "+sfc+" -"+ productosT2);
   
+
          var idProducto=idProductoR;
      //alert(rutas+" - "+jj+" - "+year)
      
@@ -5122,10 +5123,10 @@ if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[
      for(var f=0; f < arrGlobalInventario.length; f++) {
       if(arrGlobalInventario[f].idInventario==clavesProductos[ii]){
 if( arrGlobalproductosT[i].medida==2){
-        productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
+       productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
     }else{
       productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion*parseFloat(arrGlobalInventario[f].pesaje));
-          }
+         }
 
       }
     
@@ -5193,11 +5194,11 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
               if(html==undefined){html='';}else{
                $('.titulo2PF').html(titulos); 
                $('.tituloP').html(titulosP); 
-               $('.contCataDetalle').html(html); 
-               $('.contCataDetalleP').html(htmlP); 
+               $('.contCataForaneo').html(html); 
+               $('.contCataForaneoP').html(htmlP); 
                //$('.contCataMayoreoPF').html(htmlP); 
         document.getElementById('imprimirProductos').style.display = 'block';
-         // calcularTotalesP();   
+          
               }
 for(var w=0;w<prodTotales.length; w++){
      prodTotales[w]+=parseFloat(prodT[w]);
@@ -5205,6 +5206,7 @@ for(var w=0;w<prodTotales.length; w++){
 prodT=0;
 
 }
+
 function loadVentaDiariaProductos5(lista){ //por mayoreo
   var longi2= parseFloat(scv)-parseFloat(scv2);
    

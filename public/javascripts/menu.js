@@ -5194,8 +5194,8 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
               if(html==undefined){html='';}else{
                $('.titulo2PF').html(titulos); 
                $('.tituloP').html(titulosP); 
-               $('.contCataForaneo').html(html); 
-               $('.contCataForaneoP').html(htmlP); 
+               $('.contCataDetalle').html(html); 
+               $('.contCataDetalleP').html(htmlP); 
                //$('.contCataMayoreoPF').html(htmlP); 
         document.getElementById('imprimirProductos').style.display = 'block';
           

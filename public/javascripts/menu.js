@@ -33223,7 +33223,7 @@ executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulari
 }
  if(tipoBusqueda==3){
 //var json = {where:{idProducto: idProducto2}};
-var json;//idProducto: idProducto2}};
+var json='{where:{';//idProducto: idProducto2}};
 var json2 = "";//idProducto: idProducto2}};
 var entra =0;
 
@@ -33244,10 +33244,7 @@ json2+=', idProducto:'+arrGlobalInventario[ii].idInventario
   }
 }
 }
-if(arrGlobalCategoria[i].descripcion==3){
-entra =0;
-json = '{where:{'
-}
+
 
 
 
@@ -33255,7 +33252,10 @@ if(arrGlobalCategoria[i].id==tipoBId){
     tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
 json += json2
 }
-
+if(arrGlobalCategoria[i].descripcion==3){
+entra =0;
+json2 = "";
+}
 
 
 }

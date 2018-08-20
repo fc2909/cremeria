@@ -4628,8 +4628,8 @@ prodT=0;
 }
 function loadVentaDiariaProductos2(lista){ //por mayoreo
   var longi2= parseFloat(scv)-parseFloat(scv2);
-          prodTotales = new Array(longi2);
-          prodTotales2 = new Array(longi2);
+          
+         
           credi=0;
              
           boni=0;
@@ -4822,8 +4822,8 @@ prodT=0;
 
 function loadVentaDiariaProductos3(lista){ //por mayoreo
   var longi2= parseFloat(scv)-parseFloat(scv2);
-          prodTotales = new Array(longi2);
-          prodTotales2 = new Array(longi2);
+          
+       
           credi=0;
              
           boni=0;
@@ -5015,8 +5015,7 @@ prodT=0;
 }
 function loadVentaDiariaProductos4(lista){ //por mayoreo
   var longi2= parseFloat(scv)-parseFloat(scv2);
-          prodTotales = new Array(longi2);
-          prodTotales2 = new Array(longi2);
+   
           credi=0;
              
           boni=0;
@@ -5840,7 +5839,7 @@ htmlT2+='<td> $ '+formatoMoneda1(prodTotales2[j2])+'</td>';
   
 
 htmlT2+='<tr style="background:black; font-size:10px;"><td>TOTALES</td> <td></td><td></td> '+htmlT2+'</tr>';
-htmlp+='<tr class="grisclaro" style="font-size:8px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ><strong></strong></td><td></td>'+htmlT2+' </tr>';
+htmlp+='<tr class="grisclaro" style="font-size:8px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ><strong></strong></td>'+htmlT2+' </tr>';
 //$('.TotalesCred').html(htmlT2); 
 //$('.totalNoVentap').html(htmlp); 
    document.getElementById('loader').style.display = 'none';
@@ -33177,7 +33176,8 @@ opcionReportes=1;
 idProductoR=tipoBId;
 clavesProductos.push(idProductoR);
 var idProducto=tipoBId;
-var json = {where:{idProducto: idProducto}}
+var merma=0;
+var json = {where:{idProducto: idProducto, merma:merma}}
 executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 
 
@@ -33226,6 +33226,7 @@ executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulari
 var json='{where:{';//idProducto: idProducto2}};
 var json2 = "";//idProducto: idProducto2}};
 var entra =0;
+var merma =0;
 
 for (var i = 0; i < arrGlobalCategoria.length ; i++) {
 
@@ -33238,7 +33239,7 @@ if(arrGlobalInventario[ii].tipoP==arrGlobalCategoria[i].id){
 json2+='idProducto:'+arrGlobalInventario[ii].idInventario
 entra=1;
   }else{
-json2+=', idProducto:'+arrGlobalInventario[ii].idInventario
+json2+=', idProducto:'+arrGlobalInventario[ii].idInventario+', merma:'+merma;
   }
   
   }

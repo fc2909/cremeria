@@ -33268,7 +33268,7 @@ json='{where:{';
 entra=0;
 var merma =0;
 json +=', merma:'+merma+'}}';
-
+ alert(json);
 opcionReportes=2;
 idProductoR=tipoBId;
 

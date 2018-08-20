@@ -4799,7 +4799,7 @@ prodTotales2[j2]+=prodT[j2];
 }
 
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>RESTAURANTES</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
+htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>RESTAURANTES</strong></td><td></td>'+totalCred+' </tr>';
 var renglon = 4+parseInt(scv)-parseInt(scv2);
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -4993,7 +4993,7 @@ prodTotales2[j2]+=prodT[j2];
 }
 
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>FORANEO</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
+htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>FORANEO</strong></td><td></td>'+totalCred+' </tr>';
 var renglon = 4+parseInt(scv)-parseInt(scv2);
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -5184,7 +5184,7 @@ prodTotales2[j2]+=prodT[j2];
 }
 
   html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>DETALLE</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
+htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>DETALLE</strong></td><td></td>'+totalCred+' </tr>';
 var renglon = 4+parseInt(scv)-parseInt(scv2);
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -5287,9 +5287,9 @@ if(arrGlobalproductosT[i].idProducto==clavesProductos[ii] &&arrGlobalproductosT[
      for(var f=0; f < arrGlobalInventario.length; f++) {
       if(arrGlobalInventario[f].idInventario==clavesProductos[ii]){
 if( arrGlobalproductosT[i].medida==2){
-        productosT2 += (parseFloat(arrGlobalproductosT[i].piezas)-parseFloat(arrGlobalproductosT[i].piezasv))*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
+        productosT2 += (parseFloat(arrGlobalproductosT[i].piezas))*parseFloat(arrGlobalInventario[f].proporcion)*parseFloat(arrGlobalInventario[f].pesaje);
     }else{
-      productosT2 += (parseFloat(arrGlobalproductosT[i].peso)-parseFloat(arrGlobalproductosT[i].pesov))*parseFloat(arrGlobalInventario[f].proporcion*parseFloat(arrGlobalInventario[f].pesaje));
+      productosT2 += (parseFloat(arrGlobalproductosT[i].peso))*parseFloat(arrGlobalInventario[f].proporcion*parseFloat(arrGlobalInventario[f].pesaje));
           }
 
       }
@@ -5348,8 +5348,8 @@ totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
 prodTotales2[j2]+=prodT[j2];
 }
 
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>DETALLE</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
+  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>PEDIDOS</td><td></td> '+totalCred+'</tr>';
+htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td>'+totalCred+' </tr>';
 var renglon = 4+parseInt(scv)-parseInt(scv2);
 
 htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
@@ -33441,7 +33441,7 @@ json +=', merma:'+merma+'}}';
 
 opcionReportes=3;
 idProductoR=tipoBId;
- alert(json+clavesCategoriasTotales.length+" --"+jerarquiaP);
+// alert(json+clavesCategoriasTotales.length+" --"+jerarquiaP);
 executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 
 

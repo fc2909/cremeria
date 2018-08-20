@@ -20444,8 +20444,8 @@ function loadVentaDiariaOtros(lista){ //por categoria
      if(arrGlobalEmpleados[hh2].km==1){
        for(var j=0;j<arrGlobalF.length; j++){
         
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >PEDIDOS</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td><td ></td> <td ></td>  <td ></td> ';
-identificacionP= '<tr style="font-size:10px; " class="text-center" ><td></td><td >PEDIDOS</td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td class="text-right"></td> <td class="text-right"></td>  <td class="text-right"></td> ';
+identificacion= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >PEDIDOS</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+identificacionP= '<tr style="font-size:10px; " class="text-center" ><td></td><td >PEDIDOS</td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td> ';
         
         
 

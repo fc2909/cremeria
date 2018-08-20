@@ -33188,7 +33188,7 @@ executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulari
 var json = '{where:{'//idProducto: idProducto2}};
 var json2 = "";//idProducto: idProducto2}};
 var entra =0;
-var merma =0;
+
 
 for (var i = 0; i < arrGlobalCategoria.length ; i++) {
 if(arrGlobalCategoria[i].id==tipoBId){
@@ -33200,7 +33200,7 @@ if(arrGlobalInventario[ii].tipoP==arrGlobalCategoria[i].id){
 json+='idProducto:'+arrGlobalInventario[ii].idInventario
 entra=1;
   }else{
-json+=', idProducto:'+arrGlobalInventario[ii].idInventario+', merma:'+merma;
+json+=', idProducto:'+arrGlobalInventario[ii].idInventario;
   }
   
   }
@@ -33209,7 +33209,8 @@ json+=', idProducto:'+arrGlobalInventario[ii].idInventario+', merma:'+merma;
 
 }
 entra=0;
-json +='}}';
+var merma =0;
+json +=', merma:'+merma+'}}';
 
 opcionReportes=2;
 idProductoR=tipoBId;
@@ -33239,7 +33240,7 @@ if(arrGlobalInventario[ii].tipoP==arrGlobalCategoria[i].id){
 json2+='idProducto:'+arrGlobalInventario[ii].idInventario
 entra=1;
   }else{
-json2+=', idProducto:'+arrGlobalInventario[ii].idInventario+', merma:'+merma;
+json2+=', idProducto:'+arrGlobalInventario[ii].idInventario;
   }
   
   }
@@ -33264,7 +33265,8 @@ json2 = "";
 
 
 entra=0;
-json +='}}';
+var merma =0;
+json +=', merma:'+merma+'}}';
 
 opcionReportes=2;
 idProductoR=tipoBId;

@@ -33258,6 +33258,7 @@ break;
 if(arrGlobalCategoria[i].descripcion==3){
 entra =0;
 json2 = "";
+json='{where:{';
 }
 
 
@@ -33270,7 +33271,7 @@ json +=', merma:'+merma+'}}';
 
 opcionReportes=2;
 idProductoR=tipoBId;
-alert(json);
+
 executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 
 

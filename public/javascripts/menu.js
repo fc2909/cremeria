@@ -5855,7 +5855,7 @@ htmlT2+='<td>  '+formatoMoneda1(prodTotales2[j2])+'</td>';
 }
   
 
-htmlT2+='<tr style="background:black; font-size:10px;"><td>TOTALES</td> <td></td><td></td> '+htmlT2+'</tr>';
+htmlT2+='<tr style="background:black; font-size:10px;"><td>TOTALES</td> <td></td>'+htmlT2+'</tr>';
 htmlp+='<tr class="grisclaro" style="font-size:8px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ><strong></strong></td><td></td>'+htmlT2+' </tr>';
 //$('.TotalesCred').html(htmlT2); 
 $('.totalProductoP').html(htmlp); 
@@ -33252,6 +33252,7 @@ json2+=', idProducto:'+arrGlobalInventario[ii].idInventario+', merma:'+merma;
 if(arrGlobalCategoria[i].id==tipoBId){
     tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
 json += json2
+break;
 }
 if(arrGlobalCategoria[i].descripcion==3){
 entra =0;

@@ -33231,7 +33231,7 @@ var entra =0;
 
 for (var i = 0; i < arrGlobalCategoria.length ; i++) {
 
-if(arrGlobalCategoria[i].id<tipoBId&&arrGlobalCategoria[i].descripcion==2){
+if(arrGlobalCategoria[i].id<=tipoBId&&arrGlobalCategoria[i].descripcion==2){
 
  for (var ii = 0; ii < arrGlobalInventario.length ; ii++) {
 if(arrGlobalInventario[ii].tipoP==arrGlobalCategoria[i].id){
@@ -33274,7 +33274,7 @@ json +=', merma:'+merma+'}}';
 
 opcionReportes=3;
 idProductoR=tipoBId;
- alert(json+clavesCategoriasTotales.length);
+ alert(json+clavesCategoriasTotales.length+" --"+tipoBId);
 executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 
 

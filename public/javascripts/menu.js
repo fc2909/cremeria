@@ -5850,13 +5850,13 @@ htmlp+='<tr class="grisclaro" style="font-size:8px;   " class=" text-right" ><td
   var htmlp='';       
   var longi2= parseFloat(scv)-parseFloat(scv2);
 
-        for(var j2=0;j2<=longi2; j2++){
+        for(var j2=0;j2<=(longi2+1); j2++){
 htmlT2+='<td>  '+formatoMoneda1(prodTotales2[j2])+'</td>';
 }
   
 
 htmlT2+='<tr style="background:black; font-size:10px;"><td>TOTALES</td> <td></td>'+htmlT2+'</tr>';
-htmlp+='<tr class="grisclaro" style="font-size:8px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ><strong></strong></td><td></td>'+htmlT2+' </tr>';
+htmlp+='<tr class="grisclaro" style="font-size:8px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ><strong></strong></td>'+htmlT2+' </tr>';
 //$('.TotalesCred').html(htmlT2); 
 $('.totalProductoP').html(htmlp); 
    document.getElementById('loader').style.display = 'none';

@@ -4599,7 +4599,7 @@ encuentra =0;
 var totalCred=0;       
 
         for(var j2=1;j2<=(longi2+1); j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
+totalCred+='<td>  '+formatoMoneda1(prodT[j2])+'</td>';
  if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
  if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
 prodTotales2[j2]+=prodT[j2];
@@ -4792,7 +4792,7 @@ encuentra =0;
 var totalCred=0;       
 
         for(var j2=1;j2<=(longi2+1); j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
+totalCred+='<td>  '+formatoMoneda1(prodT[j2])+'</td>';
  if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
  if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
 prodTotales2[j2]+=prodT[j2];
@@ -4985,7 +4985,7 @@ encuentra =0;
 var totalCred=0;       
 
         for(var j2=1;j2<=(longi2+1); j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
+totalCred+='<td> '+formatoMoneda1(prodT[j2])+'</td>';
  if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
  if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
 prodTotales2[j2]+=prodT[j2];
@@ -5178,7 +5178,7 @@ encuentra =0;
 var totalCred=0;       
 
         for(var j2=1;j2<=(longi2+1); j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
+totalCred+='<td>  '+formatoMoneda1(prodT[j2])+'</td>';
  if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
  if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
 prodTotales2[j2]+=prodT[j2];
@@ -5346,7 +5346,7 @@ encuentra =0;
 var totalCred=0;       
 
         for(var j2=1;j2<=(longi2+1); j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
+totalCred+='<td>  '+formatoMoneda1(prodT[j2])+'</td>';
  if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
  if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
 prodTotales2[j2]+=prodT[j2];

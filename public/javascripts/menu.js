@@ -34771,7 +34771,7 @@ ruta3=arrGlobalRuta[i].nombre;
 }
 }
  if(arrGlobal4[h].f_s_real==undefined){
-  alert(id);
+
   modalDespachador2();
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre despachoList text-center" href="#seccion3" aria-controls="seccion3" id="desp" data-toggle="tab" onclick="click_Recepcion();" role="tab">RECEPCIÓN </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"> </span>  <li class="impre  text-center mermaList"  onclick="modalMerma()">MERMA </li>  <span class="border border-warning"> </span> <div class="imprimir"></div></ul> </div>');
 

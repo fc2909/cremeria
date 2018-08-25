@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  folio: MyString
+  importe: MyString
+  ppd: MyString
+  fc: MyString
+  fechaf: MyString
+  totalValor: MyString
+  depositoT: MyString
+  tipo: MyString
+  totaDepos: MyString
+  totalFacturarString: MyString
+  activo: 1
+
+two:
+  folio: MyString
+  importe: MyString
+  ppd: MyString
+  fc: MyString
+  fechaf: MyString
+  totalValor: MyString
+  depositoT: MyString
+  tipo: MyString
+  totaDepos: MyString
+  totalFacturarString: MyString
+  activo: 1

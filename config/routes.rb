@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :logistica
   resources :reportes
   resources :categorias
+  resources :remision
   resources :bitacoras
   resources :logs
   resources :talleres

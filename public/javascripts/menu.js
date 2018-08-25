@@ -39,6 +39,8 @@ $(document).ready(function(){
       menu="/html/menu_";
   if(usuario == 1){
       menu+='director';
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Pagare();" role="tab">PAGARE </li> <span class="border border-white"></span> <li class="impre productosList text-center"  onclick="click_Remisiones() ">REMISIONES </li>  <span class="border border-white"> </span>  <div class="imprimir"></div></ul> </div>');
+
   }
   if(usuario == 2){
       menu+='administrador';
@@ -2311,7 +2313,93 @@ function loadVDiariaR3(lista){ //venta general
 
 }
   var prodTotales; 
-  
+  function loadRemision(lista){ //por mayoreo
+         var deposito = $('.deposito').val();
+if(deposito==""){
+  deposito=0;
+}
+       var html = '';
+       var htmlV = '';
+       var htmlp = '';
+       var totalRem=0;
+      for(var i=0;i<lista.length; i++){
+        if(lista[i].n7=="1"){
+          var dayR = lista[i].fechaf.substring(8,10);
+var monthR = lista[i].fechaf.substring(5,7);
+var yearR = lista[i].fechaf.substring(0,4);
+html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td><td style="" ><button  onclick="delRemision('+lista[i].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>'; 
+htmlp+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';
+totalRem += parseFloat(lista[i].t_venta_merca);      
+
+        }else{
+var dayR = lista[i].fechaf.substring(8,10);
+var monthR = lista[i].fechaf.substring(5,7);
+var yearR = lista[i].fechaf.substring(0,4);
+htmlV+= '<tr style="font-size:12px; color:white; " class=" seleccionar text-center" onclick="cambiarcolor(this); selectVR('+lista[i].id+','+dayR+','+monthR+','+yearR+')" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';      
+
+        }
+
+}
+html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >TOTAL</td> <td ></td><td>$'+formatoMoneda1(totalRem)+'</td> ';      
+totalGeneral=parseFloat(totalVendedores)-parseFloat(deposito);
+totalVendedores = totalRem;
+      totalFacturas = parseFloat(totalVendedores)-(parseFloat(totalContado)+parseFloat(totalPPD));    
+               $('.totalVendedores').html(formatoMoneda1(totalVendedores)); 
+               $('.total2').html(formatoMoneda1(totalFacturas)); 
+               $('.total1').html(formatoMoneda1(totalGeneral)); 
+               $('.contCataRemision').html(html); 
+               $('#modalRemision .contCata3').html(htmlV); 
+          
+
+   document.getElementById('loader').style.display = 'none';
+
+}
+  function loadRemisionTotales(lista){ //por mayoreo
+      var boton = '<button class="btn btn-success" onclick="GuardarRemision()">GUARDAR</button><button class="btn btn-warning " onclick="printRemision()">IMPRIMIR</button>';
+      for(var i=0;i<lista.length; i++){
+        if (lista[i].tipo==1) {
+          $('.deposito').val(lista[i].depositoT); 
+               document.getElementById('depositoR').style.color = 'green';
+               $('.existRemision').html(boton); 
+        }
+}
+
+
+}
+function  loadRemisionTotal(lista){
+         
+       var html = '';
+       var htmlV = '';
+       var htmlp = '';
+       var totalRem=0;
+      for(var i=0;i<lista.length; i++){
+        if(lista[i].n7=="1"){
+          var dayR = lista[i].fechaf.substring(8,10);
+var monthR = lista[i].fechaf.substring(5,7);
+var yearR = lista[i].fechaf.substring(0,4);
+html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td><td style="" ><button  onclick="delRemision('+lista[i].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>'; 
+htmlp+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';
+totalRem += parseFloat(lista[i].t_venta_merca);      
+
+        }else{
+var dayR = lista[i].fechaf.substring(8,10);
+var monthR = lista[i].fechaf.substring(5,7);
+var yearR = lista[i].fechaf.substring(0,4);
+htmlV+= '<tr style="font-size:12px; color:white; " class=" seleccionar text-center" onclick="cambiarcolor(this); selectVR('+lista[i].id+','+dayR+','+monthR+','+yearR+')" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';      
+
+        }
+
+}
+html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >TOTAL</td> <td ></td><td>$'+formatoMoneda1(totalRem)+'</td> ';      
+
+          
+               $('.contCataRemision').html(html); 
+               $('#modalRemision .contCata3').html(htmlV); 
+          
+
+   document.getElementById('loader').style.display = 'none';
+
+}
 function loadVentaDiariaMapa(lista){ //por mayoreo
          
                     var html = '';
@@ -25815,7 +25903,7 @@ function loadFacturas3(lista){
           var total=0;
       for(var h=0;h<lista.length; h++){
        // alert(lista[h].t_venta_merca);
-              html+= '<tr class="seleccionar text-center" ><td >' + lista[h].idVentap  + '</td><td >' + lista[h].nombre + '</td> <td> $ '+formatoMoneda1(parseFloat(lista[h].t_venta_merca))+'<button  onclick="delFactura('+ lista[h].id+','+lista[h].t_venta_merca+'); " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"><span aria-hidden="true">&times;</span></button></td></tr>';
+              html+= '<tr class="seleccionar text-center" ><td >' + lista[h].idVentap  + '</td><td >' + lista[h].nombre + '</td> <td> $ '+formatoMoneda1(parseFloat(lista[h].t_venta_merca))+'<button  onclick="delFactura('+ lista[h].id+','+lista[h].t_venta_merca+'); " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
    
       total+=parseFloat(lista[h].t_venta_merca);      
       } 
@@ -25900,6 +25988,64 @@ function capturarTotal(id, idVentap, t_venta_merca){
 
 }
 function loadFF(){}
+function loadFacturasContado(lista){
+          var html = '';
+          var total=0;
+          var merma = 0;
+      for(var h=0;h<lista.length; h++){
+
+  var dayR = lista[h].fechaf.substring(8,10);
+var monthR = lista[h].fechaf.substring(5,7);
+var yearR = lista[h].fechaf.substring(0,4);
+
+       // alert(lista[h].t_venta_merca);
+              html+= '<tr class="seleccionar text-center" ><td >' + lista[h].folio  + '</td><td> $ '+formatoMoneda1(lista[h].importe)+'</td><td ><button  onclick="delRFacturas('+lista[h].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
+      total+=parseFloat(lista[h].importe);      
+      } 
+ 
+
+              html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+totalContado = total;
+          
+               $('.totalContado').html(formatoMoneda1(totalContado)); 
+              
+       $('.facturasContado').html(html); 
+              //arrGlobal2 = lista;
+              $('.imprimir').html('');
+//        document.getElementById('loader').style.display = 'none';
+var json={where:{fechaf:today_v}};
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+
+}
+function loadFacturasPPD(lista){
+          var html = '';
+          var total=0;
+          var merma = 0;
+      for(var h=0;h<lista.length; h++){
+          var dayR = lista[h].fechaf.substring(8,10);
+var monthR = lista[h].fechaf.substring(5,7);
+var yearR = lista[h].fechaf.substring(0,4);
+       // alert(lista[h].t_venta_merca);
+              html+= '<tr class="seleccionar text-center" ><td >' + lista[h].folio  + '</td><td> $ '+formatoMoneda1(lista[h].importe)+'</td><td ><button  onclick="delRFacturas2('+lista[h].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
+      total+=parseFloat(lista[h].importe);      
+      } 
+ 
+
+              html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+totalPPD = total;
+          
+               $('.totalPPD').html(formatoMoneda1(totalPPD));
+       $('.facturasPPD').html(html); 
+              //arrGlobal2 = lista;
+              $('.imprimir').html('');
+//        document.getElementById('loader').style.display = 'none';
+
+
+var json={where:{fechaf:today_v}};
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+
+
+}
 function loadFacturas2(lista){
           var html = '';
           var total=0;
@@ -26231,6 +26377,85 @@ var h=0;
 //       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
       
 }
+function addFacturasContado(){
+ 
+ var folio = $('#modalFacturasContado .fC').val();
+ var importe = $('#modalFacturasContado .iC').val();
+  var fechaf = today_v;
+  var tipo = 2;
+ $('#modalFacturasContado').modal('hide');
+  if(folio != ""&&importe != ""){
+ var json2 = {folio: folio, importe: importe, tipo: tipo, fechaf: fechaf, tipo: tipo};
+  var jsonC = {where:{fechaf:fechaf,tipo:2}}
+   addRegistroA(json2,jsonC, 'remision', loadFacturasContado);
+
+       executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasContado);
+      
+     
+  }
+  else{
+      
+
+     $('#modal .textModal').html('FALTAN DATOS. '); 
+    $('#modal').modal('show');
+  }
+limpiar();
+  
+}
+function calcularRemisionT(){
+ 
+ var depositoT = $('.deposito').val();
+
+  var ppd = totalPPD;
+  var fc = totalContado;
+  var totalFacturarString = totalFacturas;
+  var totaDepos = totalGeneral;
+  var fechaf = today_v;
+  var tipo = 1;
+  if(depositoT != ""){
+ var json2 = {ppd: ppd, fc:fc, tipo: tipo, fechaf: fechaf, tipo: tipo, totalFacturarString:totalFacturarString,totaDepos:totaDepos, depositoT:depositoT};
+  var jsonC = {where:{fechaf:fechaf,tipo:tipo}}
+   addRegistroA(json2,jsonC, 'remision', loadRemisionTotales);
+       executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemisionTotales);
+      
+     
+  }
+  else{
+      
+
+     $('#modal .textModal').html('FALTAN DATOS. '); 
+    $('#modal').modal('show');
+  }
+
+  
+}
+function addFacturasPPD(){
+ 
+ var folio = $('#modalFacturasPPD .fPPD').val();
+ var importe = $('#modalFacturasPPD .iPPD').val();
+  var fechaf = today_v;
+  var tipo = 3;
+ $('#modalFacturasPPD').modal('hide');
+  if(folio != ""&&importe != ""){
+ var json2 = {folio: folio, importe: importe, tipo: tipo, fechaf: fechaf, tipo: tipo};
+  var jsonC = {where:{fechaf:fechaf,tipo:3}}
+
+   addRegistroA(json2,jsonC, 'remision', loadFacturasPPD);
+
+       executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
+      
+     
+  }
+  else{
+      
+
+     $('#modal .textModal').html('FALTAN DATOS. '); 
+    $('#modal').modal('show');
+  }
+limpiar();
+  
+}
+
 
 
 
@@ -26748,6 +26973,72 @@ function addFabrica(){
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadFabrica);
 limpiar();
 }
+function addfechaR(){
+var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
+
+
+$('.imprimir').html('');
+
+
+
+
+var fecha = $(".selectfecha").val(); 
+
+if(fecha!=""){
+
+var day3 = fecha.substring(8,10);
+var month3 = fecha.substring(5,7);
+var year3 = fecha.substring(0,4);
+
+
+var dia= ""+day3+"";
+if(dia.length == 1){
+  dia = "0"+dia;
+}
+var mes= ""+month3+"";
+if(mes.length == 1){
+  mes = "0"+mes;
+}
+
+today_v = year3+'-'+mes+'-'+dia;
+var diasemaD= new Date((parseInt(mes))+' '+parseInt(dia)+' ,'+parseInt(year3));
+   var diaD=(diasemaD.getUTCDay());
+if(diaD==0)diaD=7;
+$('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p style="color:yellow;">( '+dias[diaD -1]+', '+dia+' DE '+months[parseInt(mes)]+' DEL '+year+' )</p>');   
+
+
+ document.getElementById('loader').style.display = 'block';
+          scv=noSemana;
+    
+
+          var fechaf=fecha; 
+               var fechaf=year3+"-"+month3+"-"+day3; 
+var json={where:{fechaf:fechaf}};
+
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+   var json={where:{fechaf:fechaf,tipo:2}};
+    
+      executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasContado);
+var json={where:{fechaf:fechaf,tipo:3}};
+    
+      executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
+   
+var json={where:{fechaf:fechaf}};
+
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+   var jsonC={where:{fechaf:fechaf,tipo:1}};
+
+  executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemisionTotales);
+      
+   
+
+
+}
+
+
+
+  }
+
 
 function addfecha(){
 var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
@@ -28257,6 +28548,40 @@ function delRuta(){
 }
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas);
 limpiar();
+}
+function delRemision(id,dia, mes, anio){
+var fechaf=today_v;
+  var jsonC={where:{fechaf:fechaf}};
+  var json2={n7:0}
+upRegistroA2(id, json2,jsonC, 'ventaspasada', loadRemision);
+   executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+   executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+   
+
+}
+
+function delRFacturas(id,dia, mes, anio){
+var fechaf=today_v;
+  var jsonC = {where:{fechaf:fechaf,tipo:2}}
+
+  var json2={n7:0}
+delRegistroA(id, jsonC, 'remision', loadFacturasContado);
+   executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasContado);
+   executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasContado);
+   
+
+}
+function delRFacturas2(id,dia, mes, anio){
+var fechaf=today_v;
+  var jsonC={where:{fechaf:fechaf}};
+  var jsonC = {where:{fechaf:fechaf,tipo:3}}
+
+  var json2={n7:0}
+delRegistroA(id, jsonC, 'remision', loadFacturasPPD);
+   executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
+   executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
+   
+
 }
 function delNota(){
   
@@ -30911,6 +31236,17 @@ function selectnotas(id){
   }
 }
 
+function selectVR(id,dia, mes, anio){
+var fechaf=today_v;
+  var jsonC={where:{fechaf:fechaf}};
+  var json2={n7:1}
+upRegistroA2(id, json2,jsonC, 'ventaspasada', loadRemision);
+   executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+   executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+   
+
+}
+
 function selectControlVehicular (id){
   idGlobal = id;
  
@@ -32331,6 +32667,9 @@ getFunction('notase', "Ocurrio un error al cargar el formulario, reintentar más
 function closeModalNota(){
   $('#modalNotas').modal('hide');
 }
+function closeModalRemision(){
+  $('#modalRemision').modal('hide');
+}
 function click_empleados(){
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
@@ -32542,6 +32881,47 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 }
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadasDeg);
 $('.imprimir').html('');
+}
+function click_Pagare(){
+$('#modal').modal('show');
+$('#modal .textModal').html('MODULO EN CONSTRUCCION');
+}
+var totalVendedores=0;
+var totalDeposito=0;
+var totalContado=0;
+var totalPPD=0;
+var totalFacturas=0;
+var totalGeneral=0;
+function click_Remisiones(){
+ newTimer();
+  if(today==0)
+    today=7;
+  $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').html('<h3> MENÚ  </h3>');
+ $('#contenido').load('/html/remisiones.html');
+ $('.tituloPantalla').html('<h3 class="ventas impre"> REMISIONES </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');
+
+   document.getElementById('loader').style.display = 'block';
+ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+          scv=noSemana;
+     $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); 
+    
+     var fechaf=year+"-"+month+"-"+day; 
+today_v=fechaf;var json={where:{fechaf:fechaf,tipo:2}};
+    
+      executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasContado);
+var json={where:{fechaf:fechaf,tipo:3}};
+    
+      executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
+   
+var json={where:{fechaf:fechaf}};
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+var jsonC={where:{fechaf:fechaf,tipo:1}};
+
+  executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemisionTotales);
+      
+
+
 }
 function click_Recepcion(){
  $('.btn-nav').removeClass('hidden');
@@ -34699,6 +35079,12 @@ function closeModalEClienteFacturas(){
 function closeFacturas(){
   $('#modalFacturas').modal('hide');
 }
+function closeFacturas1(){
+  $('#modalFacturasContado').modal('hide');
+}
+function closeFacturas2(){
+  $('#modalFacturasPPD').modal('hide');
+}
 var despachador22;
 function click_Salida2(){
  var despachadorV = $('#modalDesp .selectDespachador ').val();
@@ -35018,6 +35404,15 @@ $('#modalMerma').modal('show');
 }
 function modalRecarga(){
 $('#modalRecarga').modal('show');
+}
+function modalVendedorRemision(){
+$('#modalRemision').modal('show');
+}
+function modalFacturaContado(){
+$('#modalFacturasContado').modal('show');
+}
+function modalFacturaPDD(){
+$('#modalFacturasPPD').modal('show');
 }
 function closeModalRecarga(){
 

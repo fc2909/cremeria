@@ -83,6 +83,88 @@
           </div>
         </div>
       </div>
+
+      <div class= "modal fade" tabindex ="-1" role="dialog" id="modalFacturasContado">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">FACTURA AL CONTADO</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal">
+              <div class="row ">
+                <div class="col-md-12 despachador">  
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="row col-md-12">  
+         <div class="col-md-6">
+          <label for="">FOLIO</label>
+            <input type="number" pattern="[0-9]{10}" id="NEC3" class="form-control clear fC" autocomplete="off" onchange="document.getElementById('EC3').focus();" placeholder="">
+         </div>
+            <div class="col-md-6">
+              <label for="">IMPORTE</label>
+              <input type="number" pattern="[0-9]{10}" id="EC3" class="form-control clear iC" autocomplete="off" onchange="addFacturasContado();" placeholder="">
+
+
+            </div>   
+   
+    
+                
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-dark" onclick="closeFacturas1(); ">CERRAR</button>
+               <button type="button" class="btn btn btn-modals " id="agregarEC3" onclick="addFacturasContado()">AGREGAR</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class= "modal fade" tabindex ="-1" role="dialog" id="modalFacturasPPD">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">FACTURA PPD</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal">
+              <div class="row ">
+                <div class="col-md-12 despachador">  
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="row col-md-12">  
+         <div class="col-md-6">
+          <label for="">FOLIO</label>
+            <input type="number" pattern="[0-9]{10}" id="NEC3" class="form-control clear fPPD" autocomplete="off" onchange="document.getElementById('EC3').focus();" placeholder="">
+         </div>
+            <div class="col-md-6">
+              <label for="">IMPORTE</label>
+              <input type="number" pattern="[0-9]{10}" id="EC3" class="form-control clear iPPD" autocomplete="off" onchange="addFacturasPPD();"  placeholder="">
+
+
+            </div>   
+   
+    
+                
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-dark" onclick="closeFacturas2(); ">CANCELAR</button>
+               <button type="button" class="btn btn btn-modals " id="agregarEC3" onclick="addFacturasPPD()">AGREGAR</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
    <div class= "modal fade" tabindex ="-1" role="dialog" id="modalECliente2">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -605,6 +687,57 @@
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-modals" onclick="closeModalRecarga();">CERRAR</button>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+  <div class= "modal fade" tabindex ="-1" role="dialog" id="modalRemision">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">SELECCION DE VENDEDORES</h2>
+             <div class="nombreempleado"></div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+             
+              <div class="row col-md-12 ">
+                
+
+<br>
+
+<br>
+
+  <div class="table-responsive tabla ">
+  <table class="table table-hover col-md-12 table-condensed text-center">
+    <thead class="text-center">
+      <tr class="letras text-center">
+        <th class="text-center">NOMBRE</th>
+        <th class="text-center">TIPO</th>
+        <th class="text-center">IMPORTE</th>
+      </tr>
+    </thead>
+    <tbody class="contCata3 ventascss" >
+     
+    </tbody>
+  </table>
+</div>
+
+
+              
+
+                
+              </div>
+              <br>
+      
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-modals" onclick="closeModalRemision();  ">CERRAR</button>
                
             </div>
           </div>

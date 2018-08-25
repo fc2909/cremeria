@@ -1,0 +1,110 @@
+ <div class="col-md-12 fondo row">
+          <div class="row col-md-12 form-group">
+            <input type="date" class="form-control clear fecha selectfecha" >
+            <button class="btn btn-modals fecha" onclick="addfechaR()">ESTABLECER FECHA</button>
+            <br>
+            <br>
+        
+        <div class="fecha_hoy text-center">
+        </div></div>
+        <br>
+        <br>
+     
+        </div>
+      
+      <br> 
+<div class="col-md-12 row">
+    <div class=" fondo table-responsive col-md-6 tabla">
+      <button class="btn btn-info" onclick="modalVendedorRemision()">AGREGAR VENDEDOR</button>
+  <table class="col-md-12  table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras">
+
+        <th class="letras text-center">NOMBRE</th>
+        <th class="letras text-center">TIPO</th>
+        <th class="letras text-center">VENTA</th>
+
+      </tr>
+    </thead>
+    <tbody class="contCataRemision ventascss" >
+     
+    </tbody>
+  </table>
+  <div class="row col-md-12 form-group letras">
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">TOTAL VENDEDORES =  $ </label></div>
+    <div class="col-md-6 text-right"><label class="totalVendedores" for=""></label></div>
+    
+</div>
+  <div class="row col-md-12 form-group">
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">EFECTIVO DEPOSITADO = - $ </label></div>
+    <div class="col-md-6"><input type="number" pattern="[0-9]{10}" id="depositoR" style="color: red;" class="form-control text-right  deposito" autocomplete="off"  placeholder="0.00"></div>
+    
+</div>
+<div class="row col-md-12 form-group letras">
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">TOTAL  =  $ </label></div>
+    <div class="col-md-6 text-right"><label class="total1" for=""></label></div>
+    
+</div>
+
+<div class="existRemision"> <button class="btn btn-modals fecha" onclick="calcularRemisionT()">CALCULAR</button></div>
+
+</div>
+
+            
+
+  <div class=" fondo table-responsive col-md-6 tabla">
+<button class="btn btn-info" onclick="modalFacturaContado()">AGREGAR FACTURA DE CONTADO</button>
+  <table class="table  table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras">
+
+        <th class="letras">FOLIO</th>
+        <th class="letras">IMPORTE</th>
+        
+
+      </tr>
+    </thead>
+    <tbody class="facturasContado ventascss" >
+     
+    </tbody>
+  </table>
+  <button class="btn btn-info" onclick="modalFacturaPDD()">AGREGAR FACTURA PPD</button>
+  <table class="table  table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras">
+
+        <th class="letras">FOLIO</th>
+        <th class="letras">IMPORTE</th>
+        
+
+      </tr>
+    </thead>
+    <tbody class="facturasPPD ventascss" >
+     
+    </tbody>
+  </table>
+   <div class="row col-md-12 form-group letras">
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">TOTAL VENDEDORES =  $ </label></div>
+    <div class="col-md-6 text-right"><label class="totalVendedores" for=""></label></div>
+    
+</div>
+    <div class="row col-md-12 form-group letras">
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">FACTURA DE CONTADO = - $ </label></div>
+    <div class="col-md-6 text-right"><label class="totalContado" for=""></label></div>
+    
+</div>
+<div class="row col-md-12 form-group letras">
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">FACTURA PPD = - $ </label></div>
+    <div class="col-md-6 text-right"><label class="totalPPD" for=""></label></div>
+    
+</div>
+ 
+<div class="row col-md-12 form-group letras">
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">TOTAL A FACTURAR  =  $ </label></div>
+    <div class="col-md-6 text-right"><label class="total2" for=""></label></div>
+    
+</div>
+</div>
+ 
+</div>
+  

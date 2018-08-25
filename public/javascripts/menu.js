@@ -32585,6 +32585,7 @@ function executeFunctionDone2(data, url, mensajes, done){
 
 
 function click_usuarios(){
+   $('.barraIzq').html('');
         document.getElementById('loader').style.display = 'block';
 
   $('.btn-nav').removeClass('hidden');
@@ -32598,7 +32599,7 @@ getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar m�
 }
 function click_inventario(){
  document.getElementById('loader').style.display = 'block';
-
+ $('.barraIzq').html('');
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  
@@ -32672,6 +32673,7 @@ function closeModalRemision(){
   $('#modalRemision').modal('hide');
 }
 function click_empleados(){
+   $('.barraIzq').html('');
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mEmpleados.html');
@@ -32994,7 +32996,7 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 }
 }
 function click_clientes(){
-
+ $('.barraIzq').html('');
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mRutas.html');
@@ -33154,11 +33156,13 @@ getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar m�
  
 }
 function click_vehiculos(){
+   $('.barraIzq').html('');
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
 click_CVehicular()
 }
 function click_mvehicular(){
+   $('.barraIzq').html('');
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mVehiculat.html');
@@ -33271,7 +33275,7 @@ $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>'
 
 }
 function click_nomina(){
-
+ $('.barraIzq').html('');
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  
@@ -33297,7 +33301,7 @@ $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>'
   }
 }
 function click_manuales(){
-
+ $('.barraIzq').html('');
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  
@@ -33871,6 +33875,7 @@ sfc=scv;
 
 }
 function click_reportes() {
+   $('.barraIzq').html('');
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mReportes.html');
@@ -34597,6 +34602,7 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 
 }
 function click_bitacoras(){
+   $('.barraIzq').html('');
 $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mBitacoras.html');

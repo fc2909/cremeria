@@ -32630,6 +32630,7 @@ function click_inventario2(){
  }
 function click_ventas(){
  newTimer();
+   $('.barraIzq').html('');
   if(today==0)
     today=7;
   $('.btn-nav').removeClass('hidden');

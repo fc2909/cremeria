@@ -1178,6 +1178,17 @@ function imprimirRBonificacion(){
         document.getElementById('fondoBlanco').style.display = 'none';
 
 }
+function  printRemision(){
+        document.getElementById('creditosReporte2').style.display = 'none';
+        document.getElementById('remisionP').style.display = 'block';
+        
+    var controlC = 'BONIFICACIÓN (SEMANAS: '+scv+' - '+scv2+')';
+        $('.controlCP').html(controlC);
+        window.print(); 
+        document.getElementById('creditosReporte2').style.display = 'block';
+        document.getElementById('remisionP').style.display = 'none';
+
+}
 function imprimirRVenta(){
         document.getElementById('creditosReporte3').style.display = 'none';
         document.getElementById('ocultoVentaN').style.display = 'block';

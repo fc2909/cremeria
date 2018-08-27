@@ -1,4 +1,4 @@
- <div class="col-md-12 fondo row">
+ <div class="col-md-12 fondo impre row">
           <div class="row col-md-12 form-group">
             <input type="date" class="form-control clear fecha selectfecha" >
             <button class="btn btn-modals fecha" onclick="addfechaR()">ESTABLECER FECHA</button>
@@ -13,15 +13,15 @@
         </div>
       
       <br> 
-<div class="col-md-12 row">
+<div class="col-md-12 impre row">
     <div class=" fondo table-responsive col-md-6 tabla">
       <button class="btn btn-info" onclick="modalVendedorRemision()">AGREGAR VENDEDOR</button>
   <table class="col-md-12  table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
       <tr class="letras">
 
-        <th class="letras text-center">NOMBRE</th>
         <th class="letras text-center">TIPO</th>
+        <th class="letras text-center">NOMBRE</th>
         <th class="letras text-center">VENTA</th>
 
       </tr>
@@ -36,7 +36,7 @@
     
 </div>
   <div class="row col-md-12 form-group">
-    <div class="col-md-6 letras text-right"><label class="text-right" for="">DEPOSITO D3EL DIA - $ </label></div>
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">DEPOSITO DEL DIA - $ </label></div>
     <div class="col-md-6"><input type="number" pattern="[0-9]{10}" id="depositoR" style="color: red;" class="form-control text-right  deposito" autocomplete="off"  placeholder="0.00"></div>
     
 </div>
@@ -54,7 +54,7 @@
 
   <div class=" fondo table-responsive col-md-6 tabla">
 <button class="btn btn-info" onclick="modalFacturaContado()">AGREGAR FACTURA DE CONTADO</button>
-  <table class="table  table-active table-hover table-bordered table-inverse  text-center">
+  <table style="width: 100%;" class="  table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
       <tr class="letras">
 
@@ -69,7 +69,7 @@
     </tbody>
   </table>
   <button class="btn btn-info" onclick="modalFacturaPDD()">AGREGAR FACTURA PPD</button>
-  <table class="table  table-active table-hover table-bordered table-inverse  text-center">
+  <table style="width: 100%;" class="  table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
       <tr class="letras">
 
@@ -84,24 +84,24 @@
     </tbody>
   </table>
    <div class="row col-md-12 form-group letras">
-    <div class="col-md-6 letras text-right"><label class="text-right" for="">TOTAL VENDEDORES $ </label></div>
-    <div class="col-md-6 text-right"><label class="totalVendedores" for=""></label></div>
+    <div class="col-md-8 letras text-right"><label class="text-right" for="">TOTAL VENDEDORES $ </label></div>
+    <div class="col-md-4 text-right"><label class="totalVendedores" for=""></label></div>
     
 </div>
     <div class="row col-md-12 form-group letras">
-    <div class="col-md-6 letras text-right"><label class="text-right" for="">FACTURA DE CONTADO - $ </label></div>
-    <div class="col-md-6 text-right"><label class="totalContado" for=""></label></div>
+    <div class="col-md-8 letras text-right"><label class="text-right" for="">FACTURA DE CONTADO -$ </label></div>
+    <div class="col-md-4 text-right"><label class="totalContado" for=""></label></div>
     
 </div>
 <div class="row col-md-12 form-group letras">
-    <div class="col-md-6 letras text-right"><label class="text-right" for="">FACTURA PPD - $ </label></div>
-    <div class="col-md-6 text-right"><label class="totalPPD" for=""></label></div>
+    <div class="col-md-8 letras text-right"><label class="text-right" for="">FACTURA PPD -$ </label></div>
+    <div class="col-md-4 text-right"><label class="totalPPD" for=""></label></div>
     
 </div>
  
 <div class="row col-md-12 form-group letras">
-    <div class="col-md-6 letras text-right"><label class="text-right" for="">TOTAL A FACTURAR $ </label></div>
-    <div class="col-md-6 text-right"><label class="total2" for=""></label></div>
+    <div class="col-md-8 letras text-right"><label class="text-right" for="">TOTAL A FACTURAR $ </label></div>
+    <div class="col-md-4 text-right"><label class="total2" for=""></label></div>
     
 </div>
 </div>
@@ -109,19 +109,41 @@
 </div>
 
 <div id="remisionP" class="col-md-12 row" style="display: none;">
-    <div class="col-md-6">
-  <table class="col-md-12  table-bordered">
-    <thead class="text-center">
-      <tr class="">
+    <div class="col-md-12 text-center tituloPantalla2"><h3>REMISIONES</h3></div>
 
-        <th class=" text-center">NOMBRE</th>
+    <div class="col-md-6 tabla1Remision">
+      <p>REMISIONES DE VENDEDORES</p>
+  <table style="width: 100%;" class="  ">
+    <thead class="text-center">
+      <tr class="grisclaro">
+
         <th class=" text-center">TIPO</th>
+        <th class=" text-center">NOMBRE</th>
         <th class=" text-center">VENTA</th>
 
       </tr>
     </thead>
     <tbody class="contCataRemisionp" >
      
+    </tbody>
+
+
+  </table>
+  <br>
+    <table style="width: 100%;" class="  ">
+   
+
+<thead class="text-center">
+      <tr class="grisclaro">
+
+        <th class=" text-center">DESCRIPCION</th>
+        <th class=" text-center">OPERACION</th>
+        
+
+      </tr>
+    </thead>
+    <tbody class="contCataRemisionp2" >
+    
     </tbody>
   </table>
  
@@ -131,13 +153,15 @@
 
             
 
-  <div class=" fondo table-responsive col-md-6 tabla">
-  <table class="table-bordered ">
-    <thead class="text-center">
-      <tr class="">
+  <div class="  col-md-6 tabla1Remision2 ">
+  <p>FACTURAS AL CONTADO</p>
 
-        <th class="">FOLIO</th>
-        <th class="">IMPORTE</th>
+  <table style="width: 100%;" class=" ">
+    <thead class="text-center ">
+      <tr class=" grisclaro">
+
+        <th class="text-center">FOLIO</th>
+        <th class="text-center">IMPORTE</th>
         
 
       </tr>
@@ -146,13 +170,14 @@
      
     </tbody>
   </table>
-  
-  <table class="table-bordered ">
+  <br>
+  <p>FACTURAS PPD</p>
+  <table style="width: 100%;" class=" ">
     <thead class="text-center">
-      <tr class="letras">
+      <tr class=" grisclaro">
 
-        <th class="">FOLIO</th>
-        <th class="">IMPORTE</th>
+        <th class="text-center">FOLIO</th>
+        <th class="text-center">IMPORTE</th>
         
 
       </tr>
@@ -160,9 +185,25 @@
     <tbody class="facturasPPDp " >
      
     </tbody>
-  </table>
-  
 
+    
+  </table>
+  <br>
+<table style="width: 100%;" class=" ">
+   <thead class="text-center">
+      <tr class="grisclaro">
+
+        
+        <th class=" text-center">DESCRIPCION</th>
+        <th class=" text-center">OPERACION</th>
+        
+
+      </tr>
+    </thead>
+    <tbody class="contCataFacturas2" >
+    
+    </tbody>
+  </table>
 </div>
  
 </div>

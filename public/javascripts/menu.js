@@ -1179,13 +1179,13 @@ function imprimirRBonificacion(){
 
 }
 function  printRemision(){
-        document.getElementById('creditosReporte2').style.display = 'none';
+       // document.getElementById('creditosReporte2').style.display = 'none';
         document.getElementById('remisionP').style.display = 'block';
         
     var controlC = 'BONIFICACIÓN (SEMANAS: '+scv+' - '+scv2+')';
         $('.controlCP').html(controlC);
         window.print(); 
-        document.getElementById('creditosReporte2').style.display = 'block';
+       // document.getElementById('creditosReporte2').style.display = 'block';
         document.getElementById('remisionP').style.display = 'none';
 
 }
@@ -2330,6 +2330,8 @@ if(deposito==""){
   deposito=0;
 }
        var html = '';
+       var html1 = '';
+       var html2 = '';
        var htmlV = '';
        var htmlp = '';
        var totalRem=0;
@@ -2339,7 +2341,7 @@ if(deposito==""){
 var monthR = lista[i].fechaf.substring(5,7);
 var yearR = lista[i].fechaf.substring(0,4);
 html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td><td style="" ><button  onclick="delRemision('+lista[i].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>'; 
-htmlp+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';
+htmlp+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td class="text-right" >$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';
 totalRem += parseFloat(lista[i].t_venta_merca);      
 
         }else{
@@ -2352,13 +2354,34 @@ htmlV+= '<tr style="font-size:12px; color:white; " class=" seleccionar text-cent
 
 }
 html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >TOTAL</td> <td ></td><td>$'+formatoMoneda1(totalRem)+'</td> ';      
+htmlp+= '<tr style="font-size:12px; " class="text-center grisclaro" onclick="" ><td >TOTAL</td> <td ></td><td class="text-right" >$'+formatoMoneda1(totalRem)+'</td> ';      
+
 totalGeneral=parseFloat(totalVendedores)-parseFloat(deposito);
 totalVendedores = totalRem;
       totalFacturas = parseFloat(totalVendedores)-(parseFloat(totalContado)+parseFloat(totalPPD));    
+html1+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >TOTAL VENDEDORES</td><td class="text-right" >$'+formatoMoneda1(totalVendedores)+'</td> ';
+html1+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >DEPOSITO DEL DIA</td><td class="text-right" >-$'+formatoMoneda1(deposito)+'</td> ';
+html1+= '<tr style="font-size:12px; " class="seleccionar text-center grisclaro" onclick="" ><td >TOTAL A DEPOSITAR</td><td class="text-right" >$'+formatoMoneda1(totalGeneral)+'</td> ';
+html2+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >TOTAL VENDEDORES</td><td class="text-right" >$'+formatoMoneda1(totalVendedores)+'</td> ';
+html2+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >FACTURAS DE CONTADO</td><td class="text-right" >-$'+formatoMoneda1(totalContado)+'</td> ';
+html2+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >FACTURAS PPD</td><td class="text-right" >-$'+formatoMoneda1(totalPPD)+'</td> ';
+html2+= '<tr style="font-size:12px; " class="seleccionar text-center grisclaro" onclick="" ><td >TOTAL A FACTURAR</td><td class="text-right" >$'+formatoMoneda1(totalFacturas)+'</td> ';
+var  day2 = today_v.substring(8,10);
+ var month2 = today_v.substring(5,7);
+ var year2 = today_v.substring(0,4);
+  saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
+
+             $('.tituloPantalla2').html('<h3 class=""> REMISIONES </h3><p class="text-right">'+day2+' DE '+months[parseInt(month2)]+' DEL '+year2+' </p>');
+  
+
+
                $('.totalVendedores').html(formatoMoneda1(totalVendedores)); 
                $('.total2').html(formatoMoneda1(totalFacturas)); 
                $('.total1').html(formatoMoneda1(totalGeneral)); 
                $('.contCataRemision').html(html); 
+               $('.contCataRemisionp').html(htmlp); 
+               $('.contCataRemisionp2').html(html1); 
+               $('.contCataFacturas2').html(html2); 
                $('#modalRemision .contCata3').html(htmlV); 
           
 
@@ -2366,7 +2389,7 @@ totalVendedores = totalRem;
 
 }
   function loadRemisionTotales(lista){ //por mayoreo
-      var boton = '<button class="btn btn-success" onclick="GuardarRemision()">GUARDAR</button><button class="btn btn-warning " onclick="printRemision()">IMPRIMIR</button>';
+      var boton = '<button class="btn btn-success" onclick="calcularRemisionT(); actualizarRemision();">GUARDAR</button><button class="btn btn-warning " onclick="printRemision()">IMPRIMIR</button>';
       for(var i=0;i<lista.length; i++){
         if (lista[i].tipo==1) {
           $('.deposito').val(lista[i].depositoT); 
@@ -2389,8 +2412,9 @@ function  loadRemisionTotal(lista){
 var monthR = lista[i].fechaf.substring(5,7);
 var yearR = lista[i].fechaf.substring(0,4);
 html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td><td style="" ><button  onclick="delRemision('+lista[i].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>'; 
-htmlp+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';
+//htmlp+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';
 totalRem += parseFloat(lista[i].t_venta_merca);      
+//htmlp+= '<tr style="font-size:10px; "  ><td  class="text-center">'+t_ventas[lista[i].tipo-1]+'</td> <td  class="text-center">' + lista[i].nombre + '</td><td class="text-right">$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';      
 
         }else{
 var dayR = lista[i].fechaf.substring(8,10);
@@ -2402,8 +2426,8 @@ htmlV+= '<tr style="font-size:12px; color:white; " class=" seleccionar text-cent
 
 }
 html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >TOTAL</td> <td ></td><td>$'+formatoMoneda1(totalRem)+'</td> ';      
+//htmlp+= '<tr style="font-size:10px; " ><td class="text-center">TOTAL</td> <td ></td><td class="text-right">$'+formatoMoneda1(totalRem)+'</td> ';      
 
-          
                $('.contCataRemision').html(html); 
                $('#modalRemision .contCata3').html(htmlV); 
           
@@ -26001,6 +26025,7 @@ function capturarTotal(id, idVentap, t_venta_merca){
 function loadFF(){}
 function loadFacturasContado(lista){
           var html = '';
+          var htmlp = '';
           var total=0;
           var merma = 0;
       for(var h=0;h<lista.length; h++){
@@ -26011,16 +26036,19 @@ var yearR = lista[h].fechaf.substring(0,4);
 
        // alert(lista[h].t_venta_merca);
               html+= '<tr class="seleccionar text-center" ><td >' + lista[h].folio  + '</td><td> $ '+formatoMoneda1(lista[h].importe)+'</td><td ><button  onclick="delRFacturas('+lista[h].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
+              htmlp+= '<tr class="text-center" ><td >' + lista[h].folio  + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].importe)+'</td></tr>';
       total+=parseFloat(lista[h].importe);      
       } 
  
 
               html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+              htmlp+= '<tr style="" class="text-center grisclaro" ><td >TOTAL</td><td class="text-right"> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
 totalContado = total;
           
                $('.totalContado').html(formatoMoneda1(totalContado)); 
               
        $('.facturasContado').html(html); 
+       $('.facturasContadop').html(htmlp); 
               //arrGlobal2 = lista;
               $('.imprimir').html('');
 //        document.getElementById('loader').style.display = 'none';
@@ -26030,6 +26058,7 @@ var json={where:{fechaf:today_v}};
 }
 function loadFacturasPPD(lista){
           var html = '';
+          var htmlp = '';
           var total=0;
           var merma = 0;
       for(var h=0;h<lista.length; h++){
@@ -26038,15 +26067,18 @@ var monthR = lista[h].fechaf.substring(5,7);
 var yearR = lista[h].fechaf.substring(0,4);
        // alert(lista[h].t_venta_merca);
               html+= '<tr class="seleccionar text-center" ><td >' + lista[h].folio  + '</td><td> $ '+formatoMoneda1(lista[h].importe)+'</td><td ><button  onclick="delRFacturas2('+lista[h].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
+              htmlp+= '<tr class="text-center" ><td >' + lista[h].folio  + '</td><td class="seleccionar text-right" > $ '+formatoMoneda1(lista[h].importe)+'</td></tr>';
       total+=parseFloat(lista[h].importe);      
       } 
  
 
               html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+              htmlp+= '<tr style="" class="text-center grisclaro" ><td >TOTAL</td><td class="text-right"> $'+formatoMoneda1(parseFloat(total))+'</td></tr>';
 totalPPD = total;
           
                $('.totalPPD').html(formatoMoneda1(totalPPD));
        $('.facturasPPD').html(html); 
+       $('.facturasPPDp').html(htmlp); 
               //arrGlobal2 = lista;
               $('.imprimir').html('');
 //        document.getElementById('loader').style.display = 'none';
@@ -32936,6 +32968,23 @@ var jsonC={where:{fechaf:fechaf,tipo:1}};
       
 
 
+}
+function actualizarRemision(){
+
+     var fechaf=today_v;
+today_v=fechaf;var json={where:{fechaf:fechaf,tipo:2}};
+    
+      executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasContado);
+var json={where:{fechaf:fechaf,tipo:3}};
+    
+      executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
+   
+var json={where:{fechaf:fechaf}};
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+var jsonC={where:{fechaf:fechaf,tipo:1}};
+
+  executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemisionTotales);
+     
 }
 function click_Recepcion(){
  $('.btn-nav').removeClass('hidden');

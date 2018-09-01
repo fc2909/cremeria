@@ -27058,7 +27058,7 @@ $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p style="color
 
           var fechaf=fecha; 
                var fechaf=year3+"-"+month3+"-"+day3; 
-var json={where:{n6:fechaf}};
+var json={where:{fechaf:fechaf}};
 
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
    var json={where:{fechaf:fechaf,tipo:2}};
@@ -27068,7 +27068,7 @@ var json={where:{fechaf:fechaf,tipo:3}};
     
       executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
    
-var json={where:{n6:fechaf}};
+var json={where:{fechaf:fechaf}};
 
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
    var jsonC={where:{fechaf:fechaf,tipo:1}};

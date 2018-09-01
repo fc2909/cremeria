@@ -26052,7 +26052,7 @@ totalContado = total;
               //arrGlobal2 = lista;
               $('.imprimir').html('');
 //        document.getElementById('loader').style.display = 'none';
-var json={where:{fechaf:today_v}};
+var json={where:{fechaf:fechaf,n6::today_v}};
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
 
 }
@@ -27058,7 +27058,7 @@ $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p style="color
 
           var fechaf=fecha; 
                var fechaf=year3+"-"+month3+"-"+day3; 
-var json={where:{fechaf:fechaf}};
+var json={where:{fechaf:fechaf,n6:fechaf}};
 
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
    var json={where:{fechaf:fechaf,tipo:2}};

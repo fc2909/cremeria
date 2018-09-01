@@ -26052,7 +26052,7 @@ totalContado = total;
               //arrGlobal2 = lista;
               $('.imprimir').html('');
 //        document.getElementById('loader').style.display = 'none';
-var json={where:{fechaf:fechaf}};
+var json={where:{fechaf:today_v}};
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
 
 }

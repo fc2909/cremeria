@@ -30104,6 +30104,8 @@ credito_manual=0;
   }
 }
 $('.guardarR').html('');
+                    $('.imprimir').html(imprimir);
+
 }
 
 function upRecepcion55(){

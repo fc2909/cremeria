@@ -2527,93 +2527,6 @@ html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(arrGlob
    document.getElementById('loader').style.display = 'none';
 
 }
-
-function loadVentaDiariaMapa2(lista){ //por mayoreo
-         
-        var html = '';
-       var encuentraRuta=0;
-       var rutatemp=0;
-       var diaCarga=1;
-      for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
-        if(arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){
-          
-       for(var j=0;j<lista.length; j++){
-
-        if(arrGlobalEmpleados[hh2].ruta==lista[j].ruta&&(scv+1)==lista[j].sfc&&year==((lista[j].fechaf).substring(0,4))){
-          for (var i=0; i < arrGlobalRuta.length; i++) {
-            if(arrGlobalRuta[i].id==lista[j].ruta){
-              ruta3=arrGlobalRuta[i].nombre;
-              rutas=lista[j].ruta;
-            }
-          }
-
-
-
-  
- var f=lista[j].fechaf;
-          var dayp = f.substring(8,10);
-          var monthp = f.substring(5,7);
-          var yearp = f.substring(0,4);
-          var nomdiap = new Date((parseInt(monthp))+' '+parseInt(dayp)+' ,'+parseInt(yearp));
-          var fechap = dias[nomdiap.getUTCDay()-1];
-if(encuentraRuta==0){
-  encuentraRuta=1; 
-  rutatemp=rutas;
-
-html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + lista[j].nombre + '</td> ';      
-
- if(lista[j].despachador!=undefined){
-html+='<td style=" color:white;"><strong>'+fechap+': $'+formatoMoneda1(lista[j].otros)+'</strong> </td>';
-
-   }else{
-    html+='<td style="background:yellow; color:black;"><strong>'+fechap+'</strong></td>';
-
-   }
-
-}else{
-  if(rutatemp==rutas){
-      if(lista[j].despachador!=undefined){
-html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(lista[j].otros)+'</strong> </td>';
-
-   }else{
-    html+='<td style="background:yellow; color:black;">  <strong>'+fechap+'</strong> </td>';
-
-   }
-  }else{
-
-    rutatemp=rutas;
-    encuentraRuta=1;
-html+='</tr><tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + lista[j].nombre + '</td>';      
- if(lista[j].despachador!=undefined){
-html+='<td style=" color:white;">  <strong>'+fechap+': $'+formatoMoneda1(lista[j].otros)+'</strong>   </td>';
-
-   }else{
-    html+='<td style="background:yellow; color:black"> <strong>'+fechap+'</strong></td>';
-
-   }
-
-
-  }
-}  
-
-        }
-
-        }
-
-       
-       }
-
-     }
-         
-
-
-              if(html==undefined){html='';}else{
-               $('.contCataMapa').html(html); 
-              }
-
-   document.getElementById('loader').style.display = 'none';
-
-}
 var prodTotales2;
 function loadCreditos(lista){ //por mayoreo
   var longi2= parseFloat(scv)-parseFloat(scv2);
@@ -27219,7 +27132,7 @@ $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p style="color
 var sfc = (scv+1)+"";
   if(scv != ""){
       var json = {where:{sfc:sfc}}
-      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa2);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa);
    
 
 }
@@ -32787,7 +32700,7 @@ var sfc = (scv+1)+"";
   if(scv != ""){
       var json = {where:{sfc:sfc}}
 //      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa);
-      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa2);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa);
    
 
 }
@@ -32917,12 +32830,7 @@ $('.tituloPantalla').html('<h3 class="ventas impre"> DESPACHO </h3><p>( '+dias[d
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDays);
    
 }
-//alert(today_v);
-      var json = {where:{fechaf:today_v}}
-//      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa);
-      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp);
-   
-//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
 
 }
  function click_Recepcion1(){
@@ -33114,12 +33022,7 @@ if( fecha == NaN || fecha == undefined || fecha == "" || fecha == today_v){
   month2 = today_v.substring(5,7);
   year2 = today_v.substring(0,4);
   saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
-  var sfc= noSemana+1;
-  //alert(sfc);
-  //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadas);
-         var json = {where:{sfc:sfc}}
-//      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa);
-      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadas);
+  getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadas);
    
 $('.tituloPantalla').html('<h3 class="ventas impre"> RECEPCIÓN  </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');   
 
@@ -33131,20 +33034,10 @@ $('.tituloPantalla').html('<h3 class="ventas impre"> RECEPCIÓN  </h3><p>( '+dia
  year2 = fecha.substring(0,4);
  saberSemana(parseInt(day2), (parseInt(month2)-1) ,parseInt(year2));
 $('.tituloPantalla').html('<h3 class="ventas impre"> RECEPCIÓN  </h3><p>( '+today_v+' )</p>');  
-//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadas);
-             var sfc= noSemana+1;
-            var json = {where:{sfc:sfc}}
-//      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa);
-      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadas);
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadas);
    
 }
-//getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadas);
-          var sfc= noSemana+1;
-         var json = {where:{sfc:sfc}}
-//      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa);
-      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadas);
-   
-
+getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaspasadas);
 $('.imprimir').html('');
 }
 function VentaspasadasRS(){
@@ -35392,7 +35285,7 @@ $('.tituloPantalla').html('<h3 class="vendedor impre"> RECEPCIÓN </h3> <p>( '+t
  var jsonC = {where:{ruta:ruta}}
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
  var jsonC = {where:{ruta:ruta}}
- //     executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiaria);
+      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiaria);
     
  var jsonC = {where:{ruta:ruta, sfc:sfc}}
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBonidicacionpasadasVF);

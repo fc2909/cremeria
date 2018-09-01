@@ -26052,7 +26052,7 @@ totalContado = total;
               //arrGlobal2 = lista;
               $('.imprimir').html('');
 //        document.getElementById('loader').style.display = 'none';
-var json={where:{fechaf:today_v,n6:today_v}};
+var json={where:{fechaf:today_v}};
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
 
 }
@@ -26085,7 +26085,7 @@ totalPPD = total;
 
 
 //var json={where:{fechaf:today_v, }};
-var json={where:{fechaf:today_v, }};
+var json={where:{fechaf:today_v}};
 
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
 
@@ -27068,11 +27068,10 @@ var json={where:{fechaf:fechaf,tipo:3}};
     
       executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
    
-var json={where:{fechaf:fechaf}};
+var json={where:{fechaf:fechaf,n6:fechaf}};
 
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
    var jsonC={where:{fechaf:fechaf,tipo:1}};
-
   executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemisionTotales);
       
    

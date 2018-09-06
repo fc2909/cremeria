@@ -1434,7 +1434,7 @@ function loadEmpleados2(lista){
 function loadEmpleados3(lista){
         
         arrGlobalEmpleados = lista;
-        document.getElementById('loader').style.display = 'none';
+      //  document.getElementById('loader').style.display = 'none';
 
 }
 function loadNotas(lista){

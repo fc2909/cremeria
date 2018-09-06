@@ -26227,7 +26227,7 @@ totalContado = total;
               //arrGlobal2 = lista;
               $('.imprimir').html('');
 //        document.getElementById('loader').style.display = 'none';
-var json={where:{n6:today_v}};
+var json={where:{fecha:today_v}};
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
 
 }
@@ -26260,7 +26260,7 @@ totalPPD = total;
 
 
 //var json={where:{fechaf:today_v, }};
-var json={where:{n6:today_v}};
+var json={where:{fecha:today_v}};
 
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
 
@@ -27226,7 +27226,7 @@ $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p style="color
           var fechaf=fecha; 
                var fechaf=year3+"-"+month3+"-"+day3; 
 
-var json={where:{n6:fechaf}};
+var json={where:{fecha:fechaf}};
 
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
    var json={where:{fechaf:fechaf,tipo:2}};
@@ -27236,7 +27236,7 @@ var json={where:{fechaf:fechaf,tipo:3}};
     
       executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
    
-var json={where:{n6:fechaf}};
+var json={where:{fecha:fechaf}};
 
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
    var jsonC={where:{fechaf:fechaf,tipo:1}};
@@ -33171,7 +33171,7 @@ var json={where:{fechaf:fechaf,tipo:3}};
     
       executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
    
-var json={where:{n6:fechaf}};
+var json={where:{fecha:fechaf}};
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
 var jsonC={where:{fechaf:fechaf,tipo:1}};
 
@@ -33190,7 +33190,7 @@ var json={where:{fechaf:fechaf,tipo:3}};
     
       executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
    
-var json={where:{n6:fechaf}};
+var json={where:{fecha:fechaf}};
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
 var jsonC={where:{fechaf:fechaf,tipo:1}};
 

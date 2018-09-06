@@ -30099,7 +30099,8 @@ for(var hh=0;hh<arrGlobal4.length; hh++){
       f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
       credito_manual=1;
       cobrado=f_s_real;
-      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user,n6:today_v };
+      var fecha=today_vv;
+      json2={fecha:fecha, creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user,n6:today_v };
      
       }
     }
@@ -30113,8 +30114,8 @@ if(credito_manual==0){ ////////////// NO ENCUENTRA CREDITO DE LA SEMANA PASADA /
       f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
       credito_manual=1;
       cobrado=f_s_real;
-
-      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user,n6:today_v}
+var fecha=today_vv;
+      json2={fecha:fecha,creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd, km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user,n6:today_v}
       }
     }
   }else{ ////////////////////////////////////// OTRO DIA DE LA SEMANA ////////////////////////////////
@@ -30138,8 +30139,8 @@ for(var hh=0;hh<arrGlobal41.length; hh++){
     if(arrGlobal4[hh].loquedeberiatraer!=null){
       credito_manual=1;
       cobrado=f_s_real;
-
-      json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user,n6:today_v}
+var fecha=today_vv;
+      json2={fecha:fecha,creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador, user: user,n6:today_v}
   break;
 }else{
   $('#modal .textModal').html('La carga anterior, no ha sido recibida o regrese a rutas '); 
@@ -30167,8 +30168,8 @@ for(var hh=0;hh<arrGlobal41.length; hh++){
   f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
 modalCreditos1=1;
       cobrado=f_s_real;
-
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user,n6:today_v}
+var fecha=today_vv;
+      json2={fecha:fecha,creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user,n6:today_v}
   
   }else{
      $('#modal .textModal').html('La carga anterior, no ha sido recibida.'); 
@@ -30215,8 +30216,8 @@ if(hk==20){
   f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
 modalCreditos1=1;
       cobrado=f_s_real;
-
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user,n6:today_v}
+var fecha=today_vv;
+      json2={fecha:fecha,creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user,n6:today_v}
   
    
   }else{
@@ -30234,8 +30235,8 @@ loquedeberiatraer=parseFloat(modalCreditos1)-parseFloat(f_s_dia);
 f_s_real=parseFloat(creditos)-parseFloat(loquedeberiatraer);
  credito_manual=1;
       cobrado=f_s_real;
-
-json2={creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user,n6:today_v}
+var fecha=today_vv;
+      json2={fecha:fecha,creditos: creditos, t_venta_merca: t_venta_merca, otros: otros, f_s_dia: f_s_dia, cobrado: cobrado, t_vendido: t_vendido, loquedeberiatraer: loquedeberiatraer, f_s_real: f_s_real, dsd: dsd, sd: sd,  km: km, gasolina: gasolina, gas: gas, diesel: diesel, tipoCombustible: tipoCombustible, despachador: despachador,user: user,n6:today_v}
 
 
 }

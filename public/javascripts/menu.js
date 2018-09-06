@@ -28777,7 +28777,7 @@ limpiar();
 }
 function delRemision(id,dia, mes, anio){
 var fechaf=today_v;
-  var jsonC={where:{n6:fechaf}};
+  var jsonC={where:{fecha:today_v}};
   var json2={n7:0}
 upRegistroA2(id, json2,jsonC, 'ventaspasada', loadRemision);
    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
@@ -31475,7 +31475,7 @@ function selectnotas(id){
 
 function selectVR(id,dia, mes, anio){
 var fechaf=today_v;
-  var jsonC={where:{n6:fechaf}};
+  var jsonC={where:{fecha:fechaf}};
   var json2={n7:1}
 upRegistroA2(id, json2,jsonC, 'ventaspasada', loadRemision);
    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);

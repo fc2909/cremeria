@@ -37,7 +37,17 @@
 </div>
   <div class="row col-md-12 form-group">
     <div class="col-md-6 letras text-right"><label class="text-right" for="">DEPOSITO DEL DIA - $ </label></div>
-    <div class="col-md-6"><input type="number" pattern="[0-9]{10}" id="depositoR" style="color: red;" class="form-control text-right  deposito" autocomplete="off"  placeholder="0.00"></div>
+    <div class="col-md-6"><input type="number" pattern="[0-9]{10}" id="depositoR" style="color: red;" class="form-control text-right  deposito" onkeyup="updateData(this);" autocomplete="off"  placeholder="0.00"></div>
+    
+</div>
+<div class="row col-md-12 form-group letras">
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">FACTURAS PPD -$ </label></div>
+    <div class="col-md-6 text-right"><label class="totalPPD" for=""></label></div>
+    
+</div>
+<div class="row col-md-12 form-group">
+    <div class="col-md-6 letras text-right"><label class="text-right" for="">CHEQUES VARIOS - $ </label></div>
+    <div class="col-md-6"><input type="number" pattern="[0-9]{10}" id="chequesV" style="color: red;" class="form-control text-right  chequesV" onkeyup="updateData(this);" autocomplete="off"  placeholder="0.00"></div>
     
 </div>
 <div class="row col-md-12 form-group letras">
@@ -207,4 +217,62 @@
 </div>
  
 </div>
+<div id="oculto1" style="display:none; font-size:7px;" class="">
+<p id="" class="nombreVendedor "></p>
+<p id="" class="fechaDespacho text-right"></p>
+<p id="" class="linea"></p>
+<p id="" class="vendedorFirma"></p>
+
   
+
+
+</div>
+<div id="oculto2" style="display:none; font-size:7px;" class="row col-md-12">
+<div class="col-md-12"><p id="" class="nombreVendedor "></p>
+<p id="" class="fechaDespacho text-right"></p>
+<p id="" class="linea"></p>
+<p id="" class="vendedorFirma"></p></div>
+
+<p id="" class="pagareD2"></p>
+<div class="col-md-6"><p id="" class="pagarel1 text-center"></p></div>
+<div class="col-md-6"><p id="" class="pagarel2 text-center"></p></div>
+
+
+  
+
+
+</div>
+ <table id="oculto" class="tablaImprimir  " style="display:none; ">
+    <thead  class="" style="font-size:7px; ">
+        <tr class="  " style="">
+        <th class="text-center grisclaro" colspan="12" style="width: 1000px"> PRODUCTOS PARA VENTA </th>
+        </tr>
+
+        <tr class=" ">
+        <th colspan="3" class="grisclaro" > </th>
+        <th colspan="2" class="text-center grisclaro">INVENTARIO INICIAL</th>
+        <th colspan="2" class="text-center grisclaro">INVENTARIO FINAL</th>
+        <th colspan="2" class="text-center grisclaro">CANTIDAD VENDIDA</th>
+        <th colspan="3" class="grisclaro"></th>
+        </tr>
+        <tr class=" text-center grisclaro">
+        <th class="text-center">NO</th>
+        <th class="text-center">CÓDIGO  </th>
+        <th class="text-center">DESCRIPCIÓN  </th>
+        <th class="text-center">PIEZAS</th>
+        <th class="text-center">PESO</th>
+        <th class="text-center">PIEZAS</th>
+        <th class="text-center">PESO</th>
+        <th class="text-center">PIEZAS</th>
+        <th class="text-center">PESO</th>
+        <th class="text-center">PRECIO UNITARIO</th>
+        <th class="text-center">VALOR MERCANCIA</th>      
+        <th class="text-center">TOTAL VENTA</th>      
+      </tr>
+    </thead>
+    <tbody class="contCatap" >
+     
+    </tbody>
+     
+  </table>
+  <div id="oculto3" style="font-size:20px; display:none; background: white; " class="controlCR text-center col-md-12 row"></div>

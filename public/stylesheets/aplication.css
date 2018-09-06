@@ -393,8 +393,15 @@ width: 550px;
  .controlC{
   position: absolute;
    text-align: center;
-   top: 0px;
+   top: -1px;
    left: 30%;
+ z-index: 5;
+   
+ }
+  .controlCR{
+  position: absolute;
+   top: 0px;
+width: 110%;
  z-index: 5;
    
  }
@@ -423,6 +430,31 @@ width: 550px;
   width: 95%;
    top: 980px;
    left: 5%;
+   margin: 10px;
+   z-index: 6;
+}
+.pagareD2 {
+  position: absolute;
+  width: 95%;
+   top: 900px;
+  
+   margin: 10px;
+   z-index: 6;
+}
+.pagarel1{
+  position: absolute;
+  width: 50%;
+   top: 850px;
+   left: 5%;
+
+   margin: 10px;
+   z-index: 6;
+}
+.pagarel2 {
+  position: absolute;
+  width: 50%;
+   top: 850px;
+   left: 50%;
    margin: 10px;
    z-index: 6;
 }

@@ -29,7 +29,6 @@ getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas1);
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventario2);
 getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias2);
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
 
 //--------------------------------------------- cargar tipo de usuarios -----------------------------------------------//
@@ -88,6 +87,7 @@ var sfc2 = noSemana+1;
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
   var jsonC = {where:{sfc:sfc2}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
    
 
       }
@@ -1434,7 +1434,7 @@ function loadEmpleados2(lista){
 function loadEmpleados3(lista){
         
         arrGlobalEmpleados = lista;
-      //  document.getElementById('loader').style.display = 'none';
+        document.getElementById('loader').style.display = 'none';
 
 }
 function loadNotas(lista){

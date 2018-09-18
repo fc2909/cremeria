@@ -30,6 +30,7 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventario2);
 getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias2);
 getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
+getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare2);
 
 //--------------------------------------------- cargar tipo de usuarios -----------------------------------------------//
 $(document).ready(function(){
@@ -628,6 +629,7 @@ document.getElementById('pepe').value=arreglar(moneda);
 //-------------------------------------------- Impresion -----------------------------------------------------------------// 
     var cantidadEnTexto;
 function pagare(){
+
     var usuario;
     for (var i=0; i < arrGlobalRuta.length; i++) {
     if(arrGlobalRuta[i].id==rutas){
@@ -663,7 +665,7 @@ function pagare(){
     var nombreVendedor = "RUTA _<u><strong>"+ruta3+". </strong></u>_ VENDEDOR: _<u><strong> "+nombre_vend+". </strong></u>_  VEHICULO: _<u><strong> "+vehiculoA+". </strong></u>_";
     var despachadorV = "DESPACHADOR:<strong> "+despachador+"</strong>";
     var controlC = '<strong class="text-center">CONTROL DE VENTAS Y COBRANZA</strong>';
-    var pagare = '<p class="text-justify " >YO _<u> <strong>'+ nombre_vend+'</strong> </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RAMSES VAZQUEZ RODRIGUEZ EN ESTA CIUDAD EL DIA _<u><strong> '+fechaDespachoD+' </strong></u>_ LA CANTIDAD DE _<u><strong> $ '+cantidad +' ('+cantidadEnTexto+') </strong></u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p>';
+    var pagare = '<p class="text-justify " >YO _<u> <strong>'+ nombre_vend+'</strong> </u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE '+name+' EN ESTA CIUDAD EL DIA _<u><strong> '+fechaDespachoD+' </strong></u>_ LA CANTIDAD DE _<u><strong> $ '+cantidad +' ('+cantidadEnTexto+') </strong></u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p>';
     var fechaDespachoDD ='DESPACHO : <strong>'+fechaDespachoD+'</strong>';
      var linea =' <p class="text-center">___________________________________________</p>';
     var vendedorFirma ='<p class="text-center"><strong>'+nombre_vend+'.</strong> </p> ';
@@ -763,6 +765,7 @@ function imprimirDegustaciones(){
 }
 function pagare2(){
     var usuario;
+
     if(gasolina!=""||gasolina!=undefined||gasolina!=NaN){ 
     }
     if(km!=""||km!=undefined||km!=NaN){
@@ -816,7 +819,7 @@ function pagare2(){
     var nombreVendedor = "RUTA: <strong> "+ruta3+".</strong>       VENDEDOR: <strong>"+nombre_vend+". </strong>";
     var despachadorV = "DESPACHADOR:<strong> "+despachadorR+"</strong>";
     var controlC = "<strong>CONTROL DE VENTAS Y COBRANZA</strong>";
-    var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombre_vend+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RAMSES VAZQUEZ RODRIGUEZ EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(total_merc)+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p> ';
+    var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombre_vend+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE '+name+' EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(total_merc)+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p> ';
     var fechaRecepcionDD ='RECEPCIÓN: '+fechaRecepcionD;
     var linea =' <p class="text-center">___________________________________________</p>';
     var vendedorFirma ='<p class="text-center"><strong>'+nombre_vend+'.</strong> </p> ';
@@ -948,6 +951,7 @@ function imprimirDegustaciones2(){
 }
 function pagare21(){
     var usuario;
+
     if(gasolina!=""||gasolina!=undefined||gasolina!=NaN){ 
     }
     if(km!=""||km!=undefined||km!=NaN){
@@ -1001,7 +1005,7 @@ function pagare21(){
     var nombreVendedor = "RUTA: <strong> "+ruta3+".</strong>       VENDEDOR: <strong>"+nombre_vend+". </strong>";
     var despachadorV = "DESPACHADOR:<strong> "+despachadorR+"</strong>";
     var controlC = "<strong>CONTROL DE VENTAS Y COBRANZA</strong>";
-    var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombre_vend+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RAMSES VAZQUEZ RODRIGUEZ EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(total_merc)+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p> ';
+    var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombre_vend+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE '+name+' EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(total_merc)+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p> ';
     var fechaRecepcionDD ='RECEPCIÓN: '+fechaRecepcionD;
     var linea =' <p class="text-center">___________________________________________</p>';
     var vendedorFirma ='<p class="text-center"><strong>'+nombre_vend+'.</strong> </p> ';
@@ -1414,13 +1418,36 @@ function click_regresar(){
 function loadUsuarios(lista){
         var html = '';
         for(var h=0;h<lista.length; h++){
-        html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectUsuario('+ lista[h].idUsuario +')" data-id="'+ lista[h].idUsuario +'"><td>' + lista[h].usuario + '</td><td>' + lista[h].contrasenia +'</td><td>' + lista[h].pin +'</td><td>' + tipoUsuario[lista[h].tipo - 1] + '</td></tr>';
+          if(lista[h].tipo!=100){
+             html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectUsuario('+ lista[h].idUsuario +')" data-id="'+ lista[h].idUsuario +'"><td>' + lista[h].usuario + '</td><td>' + lista[h].contrasenia +'</td><td>' + lista[h].pin +'</td><td>' + tipoUsuario[lista[h].tipo - 1] + '</td></tr>';
+        
+          }
+       
+        }
         $('.contCata').html('');
         $('.contCata').html(html);
-        }
         arrGlobal = lista;
         document.getElementById('loader').style.display = 'none';
 
+}
+var arrGlobalPagare;
+  var name;
+function loadPagare(lista){
+        var html = '';
+        for(var h=0;h<lista.length; h++){
+             html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectPagare('+ lista[h].id+')" ><td>' + lista[h].nombre + '</td></tr>';        
+        }
+
+        $('#modalPagare .contCata3').html(html);
+        arrGlobalPagare= lista;
+       
+              getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare2);
+ document.getElementById('loader').style.display = 'none';
+}
+function loadPagare2(lista){
+        for(var h=0;h<lista.length; h++){
+name= lista[h].nombre;
+        }
 }
 function loadEmpleados2(lista){
         var html = '';
@@ -26734,6 +26761,21 @@ limpiar();
 $('eliminarN').html('');
 $('guardarN').html('');
 }
+
+
+function addPagare(){
+          var nombre = $(".nombrePagare").val();
+
+            if(nombre!= ""){
+          var json = {nombre: nombre};
+              addRegistro(json, 'pagares', loadPagare);
+            }else{
+              $('#modal .textModal').html('FALTAN DATOS. '); 
+              $('#modal').modal('show');
+            }
+              getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare);
+}
+
 function addVendedormodal(){
   limpiar();
   var upVendedor1='<button type="button" class="btn btn-success " id="agregarp" onclick="addVendedor()">GUARDAR</button>'
@@ -28736,6 +28778,21 @@ getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar m�
  
 }
 getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
+limpiar();
+}
+function delPagare(){
+  var nombre = $(".nombrePagare").val();
+
+  if(nombre!= ""){
+  delRegistro(idGlobal, 'pagares', loadPagare);
+getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare);
+
+}else {
+   $('#modal .textModal').html('Seleccione de la tabla el usuario a eliminar.'); 
+      $('#modal').modal('show');
+ 
+}
+getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare);
 limpiar();
 }
 
@@ -31325,9 +31382,6 @@ var sfc = scv;
 
  var jsonC = {where:{ruta:ruta, sfc:sfc}}
       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermapasadasVF);
-
- 
-
 }
 
 
@@ -31336,15 +31390,11 @@ var sfc = scv;
 function u(){
     $('.guardau').html('');
     $('.eliminau').html('');
-
 }
 function selectUsuario(id){
   idGlobal = id;
   var guardau=' <button type="button" class="btn usuario1 modificar" onclick="upUsuario()">GUARDAR</button>';
   var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="delUsuario()">ELIMINAR</button>';
-    
-
-
   for(var a=0; a<arrGlobal.length; a++){
     if(arrGlobal[a].idUsuario == id){
       $(".nombre").val(arrGlobal[a].usuario);
@@ -31356,23 +31406,30 @@ function selectUsuario(id){
     }
   }
 }
+function selectPagare(id){
+  idGlobal = id;
+  var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="delPagare()">ELIMINAR</button>';
+  for(var a=0; a<arrGlobalPagare.length; a++){
+    if(arrGlobalPagare[a].id == id){
+      $(".nombrePagare").val(arrGlobalPagare[a].nombre);
+    $('#modalPagare .eliminarP').html(eliminau);
+    }
+  }
+}
 function selectRuta(id){
 var guardau=' <button type="button" class="btn usuario1 modificar" onclick="upRuta()">GUARDAR</button>';
 var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="delRuta()">ELIMINAR</button>';
      idGlobal=id;
     for(var a=0; a<arrGlobalRuta.length; a++){
-     
     if(arrGlobalRuta[a].id == id){
-            $(".nombre").val(arrGlobalRuta[a].nombre);
-      $(".descripcion").val(arrGlobalRuta[a].descripcion);
-     
+    $(".nombre").val(arrGlobalRuta[a].nombre);
+    $(".descripcion").val(arrGlobalRuta[a].descripcion);
     $('.guardarR').html(guardau);
     $('.eliminarR').html(eliminau);
     }
   }
 }
 function inv(){
-
 $(".eliminari").html('');
 $(".agregari").html('');
 }
@@ -31381,7 +31438,6 @@ function selectInventario(id){
   var eliminari='<button type="button" class="btn botoninv eliminar" onclick="delInventario()">ELIMINAR</button>';
   var agregari='<button type="button" class="btn botoninv modificar" onclick="modalInventario()">AGREGAR INVENTARIO</button>';
   var guardari='<button type="button" class="btn botoninv modificar" onclick="upInventario()">GUARDAR</button>';
-
   for(var a=0; a<arrGlobal.length; a++){
     if(arrGlobal[a].id == id){
       $(".idInventario").val(arrGlobal[a].idInventario);
@@ -31403,17 +31459,14 @@ function selectInventario(id){
     }
   }
 }
-
 function selectTaller(id){
   idGlobal = id;
   var eliminari='<button type="button" class="btn botoninv eliminar" onclick="delTaller()">ELIMINAR</button>';
   var guardari='<button type="button" class="btn botoninv modificar" onclick="upTaller()">GUARDAR</button>';
-
   for(var a=0; a<arrGlobalTalleres.length; a++){
     if(arrGlobalTalleres[a].id == id){
       $(".nombreTaller").val(arrGlobalTalleres[a].nombre);
       $(".direccionTaller").val(arrGlobalTalleres[a].direccion);
-    
       $(".eliminarT").html(eliminari);
       $(".guardarT").html(guardari);
     }
@@ -31423,7 +31476,6 @@ function selectCategoria(id){
   idGlobal = id;
   var eliminari='<button type="button" class="btn btn-ventas eliminar" onclick="delCategoria()">ELIMINAR</button>';
   var guardari='<button type="button" class="btn btn-ventas modificar" onclick="upCategoria()">GUARDAR</button>';
-
   for(var a=0; a<arrGlobalCategoria.length; a++){
     if(arrGlobalCategoria[a].id == id){
       //$(".descripcion1").val(arrGlobalCategoria[a].descripcion);
@@ -31437,8 +31489,7 @@ function selectCategoria(id){
        if(arrGlobalCategoria[a].descripcion==3){
        $(".radio3").prop('checked', true);
       }
-     $(".jerarquia").val(arrGlobalCategoria[a].jerarquia);
-     
+      $(".jerarquia").val(arrGlobalCategoria[a].jerarquia);
       $(".eliminarC").html(eliminari);
       $(".guardarC").html(guardari);
     }
@@ -31446,7 +31497,6 @@ function selectCategoria(id){
 }
 function selectComision(id){
   idGlobal = id;
-
   for(var a=0; a<arrGlobalCategoria.length; a++){
     if(arrGlobalCategoria[a].id == id){
       $(".nombreC").val(arrGlobalCategoria[a].nombre);
@@ -31454,7 +31504,6 @@ function selectComision(id){
       $(".mayoreoC").val(arrGlobalCategoria[a].n2);
       $(".foraneoC").val(arrGlobalCategoria[a].n3);
       $(".restauranteC").val(arrGlobalCategoria[a].n4);
-
     }
   }
 }
@@ -32918,6 +32967,9 @@ getFunction('notase', "Ocurrio un error al cargar el formulario, reintentar más
 function closeModalNota(){
   $('#modalNotas').modal('hide');
 }
+function closeModalPagare(){
+  $('#modalPagare').modal('hide');
+}
 function closeModalRemision(){
   $('#modalRemision').modal('hide');
 }
@@ -33038,8 +33090,8 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 
 }
  function click_Recepcion1(){
-      
-      $('#modalPin2').modal('show');
+
+     $('#modalPin2').modal('show');
 
 }
 function click_Merma1(){
@@ -33141,8 +33193,9 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 $('.imprimir').html('');
 }
 function click_Pagare(){
-$('#modal').modal('show');
-$('#modal .textModal').html('MODULO EN CONSTRUCCION');
+$('#modalPagare').modal('show');
+              getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare);
+
 }
 var totalVendedores=0;
 var totalDeposito=0;
@@ -34485,6 +34538,10 @@ click_nomina();
 }
 }
 function click_buscarVCategorias4(){
+  $('.contCataMayoreo').html('');
+  $('.contCataRestaurante').html('');
+  $('.contCataForaneo').html('');
+  $('.contCataDetalle').html('');
  var semanaVS = $('.semanaVD').val();
           
         document.getElementById('loader').style.display = 'block';
@@ -34499,6 +34556,8 @@ var sfc = (scv+1);
 
   if(scv != ""){
      var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
+
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo1);
@@ -34529,12 +34588,12 @@ var sfc = (scv+1);
 
 
   if(scv != ""){
+
       var json = {where:{sfc:sfc}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalle);
-
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaOtros);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMerma);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacion);
@@ -34616,7 +34675,7 @@ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
 scv=noSemana;
 var sfc = (scv+1);
 if(scv != ""){
-      var json = {where:{sfc:sfc, ruta:ruta}}
+     var json = {where:{sfc:sfc, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR);
   }
 
@@ -34626,7 +34685,7 @@ rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
 var sfc = (scv+1);
 if(scv != ""){
-      var json = {where:{sfc:sfc, ruta:ruta}}
+     var json = {where:{sfc:sfc, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR);
   } 
 }
@@ -34706,6 +34765,7 @@ var sfc = (scv+1);
 
   if(scv != ""){
       var json = {where:{sfc:sfc}}
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR3);
  }
 
@@ -34870,6 +34930,9 @@ year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
   $('.tituloResp').html('   <div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div> <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+semanaVS.substring(6,8)+')</h3> ');
 
+var sfc2=scv+1;
+ var jsonC = {where:{sfc:sfc2}}
+ executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
 
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaVG);
 
@@ -36467,6 +36530,7 @@ function agregarPedido(){
 function agregarpin2(){
 
   var data =  $("#modalPin2 .pin").val();
+
   for(var h=0;h<upin.length; h++){
       if(data==upin[h].pin){
         closeModalPin2();

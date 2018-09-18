@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :remision
   resources :bitacoras
   resources :logs
+  resources :pagares
   resources :talleres
   resources :ventaspasada
   resources :historiales_inventarios

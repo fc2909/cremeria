@@ -13,7 +13,7 @@ class Usuario < ApplicationRecord
 
 	# --------------------------- Scopes ------------------------------- #
 	default_scope { where(activo: 1) }
-	default_scope { order(:usuario) }
+	default_scope { order(:idUsuario) }
 	scope :by_campo, -> (campo, valor) {  where("#{campo.parameterize.to_s} = :valor", {valor:valor}) if campo.present? && valor.present? }
 	#scope :activos, -> { where(activo: 1) }
 end

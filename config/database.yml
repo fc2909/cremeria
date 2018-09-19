@@ -53,3 +53,4 @@ production:
   database: cremeria_LT_production
   username: cremeria_LT
   password: <%= ENV['CREMERIA_LT_DATABASE_PASSWORD'] %>
+

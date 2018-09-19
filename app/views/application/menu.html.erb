@@ -164,7 +164,50 @@
           </div>
         </div>
       </div>
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalFacturasMPE">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">FACTURAS C/ METODO DE PAGO ESPECIFICO</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal">
+              <div class="row ">
+                <div class="col-md-12 despachador">  
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="row col-md-12">  
+         <div class="col-md-4">
+          <label for="">TIPO</label>
+            <input type="number" pattern="[0-9]{10}" id="MPE" class="form-control clear nMPE" autocomplete="off" onchange="document.getElementById('MPE2').focus();" placeholder="">
+         </div>
+         <div class="col-md-4">
+          <label for="">FOLIO</label>
+            <input type="number" pattern="[0-9]{10}" id="MPE2" class="form-control clear fMPE" autocomplete="off" onchange="document.getElementById('MPE3').focus();" placeholder="">
+         </div>
+            <div class="col-md-4">
+              <label for="">IMPORTE</label>
+              <input type="number" pattern="[0-9]{10}" id="MPE3" class="form-control clear iMPE" autocomplete="off" onchange="addFacturasMPE();"  placeholder="">
 
+
+            </div>   
+   
+    
+                
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-dark" onclick="closeFacturasMPE(); ">CANCELAR</button>
+               <button type="button" class="btn btn btn-modals " id="agregarEC3" onclick="addFacturasMPE()">AGREGAR</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
    <div class= "modal fade" tabindex ="-1" role="dialog" id="modalECliente2">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

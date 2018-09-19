@@ -2377,13 +2377,15 @@ if(chequesV==""){
        var htmlp = '';
        var totalRem=0;
 
+      for(var j=0;j<arrGlobalEmpleados.length; j++){
       for(var i=0;i<lista.length; i++){
+        if(lista[i].ruta==arrGlobalEmpleados[j].ruta){
         if(lista[i].n7=="1"){
           var dayR = lista[i].fechaf.substring(8,10);
 var monthR = lista[i].fechaf.substring(5,7);
 var yearR = lista[i].fechaf.substring(0,4);
 html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(parseFloat(lista[i].t_venta_merca)-parseFloat(lista[i].otros) )+'</td><td style="" ><button  onclick="selectRemision('+lista[i].id+')" " type="button" class="close" style="background:YELLOW; color:black; " data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true"> &Pi;</span> </button> <button  onclick="delRemision('+lista[i].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>'; 
-htmlp+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td class="text-right" >$'+formatoMoneda1(parseFloat(lista[i].t_venta_merca)-parseFloat(lista[i].otros))+'</td> ';
+htmlp+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td class="text-right" >$'+formatoMoneda1(parseFloat(lista[i].t_venta_merca)-parseFloat(lista[i].otros))+'</td> ';
 totalRem += parseFloat(lista[i].t_venta_merca)-parseFloat(lista[i].otros);      
 
         }else{
@@ -2392,23 +2394,28 @@ var monthR = lista[i].fechaf.substring(5,7);
 var yearR = lista[i].fechaf.substring(0,4);
 htmlV+= '<tr style="font-size:12px; color:white; " class=" seleccionar text-center" onclick="cambiarcolor(this); selectVR('+lista[i].id+','+dayR+','+monthR+','+yearR+')" ><td >'+t_ventas[lista[i].tipo-1]+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';      
         }
+        }
 
 }
+}
 html+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >TOTAL</td> <td ></td><td>$'+formatoMoneda1(totalRem)+'</td> ';      
-htmlp+= '<tr style="font-size:12px; " class="text-center grisclaro" onclick="" ><td >TOTAL</td> <td ></td><td class="text-right" >$'+formatoMoneda1(totalRem)+'</td> ';      
+htmlp+= '<tr style="font-size:9px; " class="text-center grisclaro" onclick="" ><td >TOTAL</td> <td ></td><td class="text-right" >$'+formatoMoneda1(totalRem)+'</td> ';      
 
-totalGeneral=parseFloat(totalVendedores)-parseFloat(deposito)- parseFloat(totalPPD)-parseFloat(chequesV);
+totalGeneral=parseFloat(totalVendedores)-parseFloat(deposito)- parseFloat(totalPPD)-parseFloat(totalMPE)-parseFloat(chequesV);
 totalVendedores = totalRem;
-      totalFacturas = parseFloat(totalVendedores)-(parseFloat(totalContado)+parseFloat(totalPPD));    
-html1+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >TOTAL VENDEDORES</td><td class="text-right" >$'+formatoMoneda1(totalVendedores)+'</td> ';
-html1+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >DEPOSITO DEL DIA</td><td class="text-right" >-$'+formatoMoneda1(deposito)+'</td> ';
-html1+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >FACTURAS PPD</td><td class="text-right" >-$'+formatoMoneda1(totalPPD)+'</td> ';
-html1+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >CHEQUES VARIOS</td><td class="text-right" >-$'+formatoMoneda1(chequesV)+'</td> ';
-html1+= '<tr style="font-size:12px; " class="seleccionar text-center grisclaro" onclick="" ><td >TOTAL A DEPOSITAR</td><td class="text-right" >$'+formatoMoneda1(totalGeneral)+'</td> ';
-html2+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >TOTAL VENDEDORES</td><td class="text-right" >$'+formatoMoneda1(totalVendedores)+'</td> ';
-html2+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >FACTURAS DE CONTADO</td><td class="text-right" >-$'+formatoMoneda1(totalContado)+'</td> ';
-html2+= '<tr style="font-size:12px; " class="seleccionar text-center" onclick="" ><td >FACTURAS PPD</td><td class="text-right" >-$'+formatoMoneda1(totalPPD)+'</td> ';
-html2+= '<tr style="font-size:12px; " class="seleccionar text-center grisclaro" onclick="" ><td >TOTAL A FACTURAR</td><td class="text-right" >$'+formatoMoneda1(totalFacturas)+'</td> ';
+      totalFacturas = parseFloat(totalVendedores)-(parseFloat(totalContado)+parseFloat(totalPPD)+parseFloat(totalMPE));    
+html1+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >TOTAL VENDEDORES</td><td class="text-right" >$'+formatoMoneda1(totalVendedores)+'</td> ';
+html1+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >DEPOSITO DEL DIA</td><td class="text-right" >-$'+formatoMoneda1(deposito)+'</td> ';
+html1+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >FACTURAS PPD</td><td class="text-right" >-$'+formatoMoneda1(totalPPD)+'</td> ';
+
+html1+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >CHEQUES VARIOS</td><td class="text-right" >-$'+formatoMoneda1(chequesV)+'</td> ';
+html1+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >F. C/ METODO DE PAGO ESPECIFICO</td><td class="text-right" >-$'+formatoMoneda1(totalMPE)+'</td> ';
+html1+= '<tr style="font-size:9px; " class="seleccionar text-center grisclaro" onclick="" ><td >TOTAL A DEPOSITAR</td><td class="text-right" >$'+formatoMoneda1(totalGeneral)+'</td> ';
+html2+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >TOTAL VENDEDORES</td><td class="text-right" >$'+formatoMoneda1(totalVendedores)+'</td> ';
+html2+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >FACTURAS DE CONTADO</td><td class="text-right" >-$'+formatoMoneda1(totalContado)+'</td> ';
+html2+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >FACTURAS PPD</td><td class="text-right" >-$'+formatoMoneda1(totalPPD)+'</td> ';
+html2+= '<tr style="font-size:9px; " class="seleccionar text-center" onclick="" ><td >F. C/ METODO DE PAGO ESPECIFICO</td><td class="text-right" >-$'+formatoMoneda1(totalMPE)+'</td> ';
+html2+= '<tr style="font-size:9px; " class="seleccionar text-center grisclaro" onclick="" ><td >TOTAL A FACTURAR</td><td class="text-right" >$'+formatoMoneda1(totalFacturas)+'</td> ';
 var  day2 = today_v.substring(8,10);
  var month2 = today_v.substring(5,7);
  var year2 = today_v.substring(0,4);
@@ -26238,13 +26245,13 @@ var yearR = lista[h].fechaf.substring(0,4);
 
        // alert(lista[h].t_venta_merca);
               html+= '<tr class="seleccionar text-center" ><td >' + lista[h].folio  + '</td><td> $ '+formatoMoneda1(lista[h].importe)+'</td><td ><button  onclick="delRFacturas('+lista[h].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
-              htmlp+= '<tr class="text-center" ><td >' + lista[h].folio  + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].importe)+'</td></tr>';
+              htmlp+= '<tr style="font-size:9px; " class="text-center" ><td >' + lista[h].folio  + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].importe)+'</td></tr>';
       total+=parseFloat(lista[h].importe);      
       } 
  
 
               html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
-              htmlp+= '<tr style="" class="text-center grisclaro" ><td >TOTAL</td><td class="text-right"> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+              htmlp+= '<tr style="font-size:9px; " class="text-center grisclaro" ><td >TOTAL</td><td class="text-right"> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
 totalContado = total;
           
                $('.totalContado').html(formatoMoneda1(totalContado)); 
@@ -26269,18 +26276,53 @@ var monthR = lista[h].fechaf.substring(5,7);
 var yearR = lista[h].fechaf.substring(0,4);
        // alert(lista[h].t_venta_merca);
               html+= '<tr class="seleccionar text-center" ><td >' + lista[h].folio  + '</td><td> $ '+formatoMoneda1(lista[h].importe)+'</td><td ><button  onclick="delRFacturas2('+lista[h].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
-              htmlp+= '<tr class="text-center" ><td >' + lista[h].folio  + '</td><td class="seleccionar text-right" > $ '+formatoMoneda1(lista[h].importe)+'</td></tr>';
+              htmlp+= '<tr style="font-size:9px; "  class="text-center" ><td >' + lista[h].folio  + '</td><td class="seleccionar text-right" > $ '+formatoMoneda1(lista[h].importe)+'</td></tr>';
       total+=parseFloat(lista[h].importe);      
       } 
  
 
               html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
-              htmlp+= '<tr style="" class="text-center grisclaro" ><td >TOTAL</td><td class="text-right"> $'+formatoMoneda1(parseFloat(total))+'</td></tr>';
+              htmlp+= '<tr  style="font-size:9px; " style="" class="text-center grisclaro" ><td >TOTAL</td><td class="text-right"> $'+formatoMoneda1(parseFloat(total))+'</td></tr>';
 totalPPD = total;
           
                $('.totalPPD').html(formatoMoneda1(totalPPD));
        $('.facturasPPD').html(html); 
        $('.facturasPPDp').html(htmlp); 
+              //arrGlobal2 = lista;
+              $('.imprimir').html('');
+//        document.getElementById('loader').style.display = 'none';
+
+
+//var json={where:{fechaf:today_v, }};
+var json={where:{fecha:today_v}};
+
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
+
+
+}
+function loadFacturasMPE(lista){
+          var html = '';
+          var htmlp = '';
+          var total=0;
+          var merma = 0;
+      for(var h=0;h<lista.length; h++){
+          var dayR = lista[h].fechaf.substring(8,10);
+var monthR = lista[h].fechaf.substring(5,7);
+var yearR = lista[h].fechaf.substring(0,4);
+       // alert(lista[h].t_venta_merca);
+              html+= '<tr class="seleccionar text-center" ><td>02</td><td >' + lista[h].folio  + '</td><td> $ '+formatoMoneda1(lista[h].importe)+'</td><td ><button  onclick="delRFacturas3('+lista[h].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
+              htmlp+= '<tr style="font-size:9px; " class="text-center" ><td>02</td><td >' + lista[h].folio  + '</td><td class="seleccionar text-right" > $ '+formatoMoneda1(lista[h].importe)+'</td></tr>';
+      total+=parseFloat(lista[h].importe);      
+      } 
+ 
+
+              html+= '<tr style="background:black" class="seleccionar text-center" ><td></td><td >TOTAL</td><td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
+              htmlp+= '<tr style="font-size:9px; " style="" class="text-center grisclaro" ><td></td><td >TOTAL</td><td class="text-right"> $'+formatoMoneda1(parseFloat(total))+'</td></tr>';
+totalMPE = total;
+          
+               $('.totalMPE').html(formatoMoneda1(totalMPE));
+       $('.facturasMPE').html(html); 
+       $('.facturasMPEp').html(htmlp); 
               //arrGlobal2 = lista;
               $('.imprimir').html('');
 //        document.getElementById('loader').style.display = 'none';
@@ -26694,7 +26736,27 @@ function addFacturasPPD(){
 limpiar();
   
 }
-
+function addFacturasMPE(){
+ 
+ var numeral = $('#modalFacturasMPE .nMPE').val();
+ var folio = $('#modalFacturasMPE .fMPE').val();
+ var importe = $('#modalFacturasMPE .iMPE').val();
+  var fechaf = today_v;
+  var tipo = 4;
+ $('#modalFacturasMPE').modal('hide');
+  if(numeral != ""&&folio != ""&&importe != ""){
+   var json2 = {folio: folio, importe: importe, tipo: tipo, fechaf: fechaf,totalValor: numeral};
+   var jsonC = {where:{fechaf:fechaf,tipo:4}}
+   addRegistroA(json2,jsonC, 'remision', loadFacturasMPE);
+   executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasMPE);
+  }
+  else{
+    $('#modal .textModal').html('FALTAN DATOS. '); 
+    $('#modal').modal('show');
+  }
+limpiar();
+  
+}
 
 
 
@@ -28863,6 +28925,18 @@ var fechaf=today_v;
 delRegistroA(id, jsonC, 'remision', loadFacturasPPD);
    executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
    executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
+   
+
+}
+function delRFacturas3(id,dia, mes, anio){
+var fechaf=today_v;
+  var jsonC={where:{fechaf:fechaf}};
+  var jsonC = {where:{fechaf:fechaf,tipo:4}}
+
+  var json2={n7:0}
+delRegistroA(id, jsonC, 'remision', loadFacturasMPE);
+   executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasMPE);
+   executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasMPE);
    
 
 }
@@ -33201,6 +33275,7 @@ var totalVendedores=0;
 var totalDeposito=0;
 var totalContado=0;
 var totalPPD=0;
+var totalMPE=0;
 var totalFacturas=0;
 var totalGeneral=0;
 function click_Remisiones(){
@@ -33216,21 +33291,19 @@ function click_Remisiones(){
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
      $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); 
-    
      var fechaf=year+"-"+month+"-"+day; 
 today_v=fechaf;var json={where:{fechaf:fechaf,tipo:2}};
-    
       executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasContado);
 var json={where:{fechaf:fechaf,tipo:3}};
-    
       executeFunctionDone(json, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasPPD);
-   
+    var jsonC={where:{fechaf:fechaf,tipo:4}};
+      executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturasMPE);
+        
 var json={where:{fecha:fechaf}};
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
 var jsonC={where:{fechaf:fechaf,tipo:1}};
+      executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemisionTotales);
 
-  executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemisionTotales);
-      
 
 
 }
@@ -34044,7 +34117,6 @@ function click_buscarProductosR(){
   clavesCategorias = new Array(0);
   clavesCategoriasTotales = new Array(0);
      // getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
- 
  semana1 = $('.semanac1NV').val();
  semana2 = $('.semanac2NV').val();
  tipoBusqueda = $('.opcionP').val();
@@ -34314,11 +34386,6 @@ var radioButton = '<div class="col-md-6"><label for="">ACTIVIDAD </label><div cl
 
  // $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVProductos()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA POR PRODUCTO Y CATEGORÍAS (SEMANA: '+(scv+1)+')</h3>');
   $('.contenidoR').load('/html/reportesR.html');
-var sfc = (scv+1)+"";
-
-  if(scv != ""){
-      var json = {where:{sfc:sfc}}
-      }
 }
 function funcionProducto(option){
   var jPro=0;
@@ -35424,6 +35491,10 @@ function closeFacturas1(){
 function closeFacturas2(){
   $('#modalFacturasPPD').modal('hide');
 }
+function closeFacturasMPE(){
+  $('#modalFacturasMPE').modal('hide');
+}
+
 var despachador22;
 function click_Salida2(){
  var despachadorV = $('#modalDesp .selectDespachador ').val();
@@ -35755,6 +35826,9 @@ $('#modalFacturasContado').modal('show');
 }
 function modalFacturaPDD(){
 $('#modalFacturasPPD').modal('show');
+}
+function modalFacturaMPE(){
+$('#modalFacturasMPE').modal('show');
 }
 function closeModalRecarga(){
 

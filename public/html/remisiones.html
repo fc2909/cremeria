@@ -51,6 +51,11 @@
     
 </div>
 <div class="row col-md-12 form-group letras">
+    <div class="col-md-8 letras text-right"><label class="text-right" for="">F. C/ METODO DE PAGO ESPECIFICO -$ </label></div>
+    <div class="col-md-4 text-right"><label class="totalMPE" for=""></label></div>
+    
+</div>
+<div class="row col-md-12 form-group letras">
     <div class="col-md-6 letras text-right"><label class="text-right" for="">TOTAL A DEPOSITAR  =  $ </label></div>
     <div class="col-md-6 text-right"><label class="total1" for=""></label></div>
     
@@ -93,6 +98,22 @@
      
     </tbody>
   </table>
+    <button class="btn btn-info" onclick="modalFacturaMPE()">AGREGAR FACTURA C/ METODO DE PAGO ESPECIFICO</button>
+  <table style="width: 100%;" class="  table-active table-hover table-bordered table-inverse  text-center">
+    <thead class="text-center">
+      <tr class="letras">
+
+        <th class="letras">#</th>
+        <th class="letras">FOLIO</th>
+        <th class="letras">IMPORTE</th>
+        
+
+      </tr>
+    </thead>
+    <tbody class="facturasMPE ventascss" >
+     
+    </tbody>
+  </table>
    <div class="row col-md-12 form-group letras">
     <div class="col-md-8 letras text-right"><label class="text-right" for="">TOTAL VENDEDORES $ </label></div>
     <div class="col-md-4 text-right"><label class="totalVendedores" for=""></label></div>
@@ -106,6 +127,11 @@
 <div class="row col-md-12 form-group letras">
     <div class="col-md-8 letras text-right"><label class="text-right" for="">FACTURA PPD -$ </label></div>
     <div class="col-md-4 text-right"><label class="totalPPD" for=""></label></div>
+    
+</div>
+<div class="row col-md-12 form-group letras">
+    <div class="col-md-8 letras text-right"><label class="text-right" for="">F. C/ METODO DE PAGO ESPECIFICO -$ </label></div>
+    <div class="col-md-4 text-right"><label class="totalMPE" for=""></label></div>
     
 </div>
  
@@ -122,14 +148,14 @@
     <div class="col-md-12 text-center tituloPantalla2"><h3>REMISIONES</h3></div>
 
     <div class="col-md-6 tabla1Remision">
-      <p>REMISIONES DE VENDEDORES</p>
+      <p >REMISIONES DE VENDEDORES</p>
   <table style="width: 100%;" class="  ">
     <thead class="text-center">
       <tr class="grisclaro">
 
-        <th class=" text-center">TIPO</th>
-        <th class=" text-center">NOMBRE</th>
-        <th class=" text-center">VENTA</th>
+        <th style="font-size:9px; " class=" text-center">TIPO</th>
+        <th style="font-size:9px; " class=" text-center">NOMBRE</th>
+        <th style="font-size:9px; " class=" text-center">VENTA</th>
 
       </tr>
     </thead>
@@ -146,8 +172,8 @@
 <thead class="text-center">
       <tr class="grisclaro">
 
-        <th class=" text-center">DESCRIPCION</th>
-        <th class=" text-center">OPERACION</th>
+        <th style="font-size:9px; " class=" text-center">DESCRIPCION</th>
+        <th style="font-size:9px; " class=" text-center">OPERACION</th>
         
 
       </tr>
@@ -164,14 +190,14 @@
             
 
   <div class="  col-md-6 tabla1Remision2 ">
-  <p>FACTURAS AL CONTADO</p>
+  <p >FACTURAS AL CONTADO</p>
 
   <table style="width: 100%;" class=" ">
     <thead class="text-center ">
       <tr class=" grisclaro">
 
-        <th class="text-center">FOLIO</th>
-        <th class="text-center">IMPORTE</th>
+        <th style="font-size:9px; " class="text-center">FOLIO</th>
+        <th style="font-size:9px; " class="text-center">IMPORTE</th>
         
 
       </tr>
@@ -181,13 +207,13 @@
     </tbody>
   </table>
   <br>
-  <p>FACTURAS PPD</p>
+  <p >FACTURAS PPD</p>
   <table style="width: 100%;" class=" ">
     <thead class="text-center">
       <tr class=" grisclaro">
 
-        <th class="text-center">FOLIO</th>
-        <th class="text-center">IMPORTE</th>
+        <th style="font-size:9px; " class="text-center">FOLIO</th>
+        <th style="font-size:9px; " class="text-center">IMPORTE</th>
         
 
       </tr>
@@ -199,13 +225,32 @@
     
   </table>
   <br>
+  <p >F. C/ METODO DE PAGO ESPECIFICO</p>
+  <table style="width: 100%;" class=" ">
+    <thead class="text-center">
+      <tr class=" grisclaro">
+
+        <th style="font-size:9px; " class="text-center">#</th>
+        <th style="font-size:9px; " class="text-center">FOLIO</th>
+        <th style="font-size:9px; " class="text-center">IMPORTE</th>
+        
+
+      </tr>
+    </thead>
+    <tbody class="facturasMPEp " >
+     
+    </tbody>
+
+    
+  </table>
+  <br>
 <table style="width: 100%;" class=" ">
    <thead class="text-center">
       <tr class="grisclaro">
 
         
-        <th class=" text-center">DESCRIPCION</th>
-        <th class=" text-center">OPERACION</th>
+        <th style="font-size:9px; "  class=" text-center">DESCRIPCION</th>
+        <th style="font-size:9px; "  class=" text-center">OPERACION</th>
         
 
       </tr>

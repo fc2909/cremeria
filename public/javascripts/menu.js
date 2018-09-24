@@ -26742,7 +26742,7 @@ function addFacturasMPE(){
  var importe = $('#modalFacturasMPE .iMPE').val();
   var fechaf = today_v;
   var tipo = 4;
-  alert(numeral);
+
  $('#modalFacturasMPE').modal('hide');
   if(numeral != ""&&folio != ""&&importe != ""){
    var json2 = {folio: folio, importe: importe, tipo: tipo, fechaf: fechaf,totalValor: numeral};

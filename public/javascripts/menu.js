@@ -27609,6 +27609,8 @@ if(noSemana==52&&dc==6){
 
  
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
+     var jsonC = {where:{ruta:rutas, fechaf: today_v}}
+    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp);
    
  //  getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
  

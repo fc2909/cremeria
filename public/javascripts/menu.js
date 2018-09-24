@@ -7791,7 +7791,6 @@ for(var w=0;w<prodTotales.length; w++){
      prodTotales[w]+=parseFloat(prodT[w]);
 }
 prodT=0;
-
 }
 
 
@@ -26310,8 +26309,8 @@ function loadFacturasMPE(lista){
 var monthR = lista[h].fechaf.substring(5,7);
 var yearR = lista[h].fechaf.substring(0,4);
        // alert(lista[h].t_venta_merca);
-              html+= '<tr class="seleccionar text-center" ><td>02</td><td >' + lista[h].folio  + '</td><td> $ '+formatoMoneda1(lista[h].importe)+'</td><td ><button  onclick="delRFacturas3('+lista[h].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
-              htmlp+= '<tr style="font-size:9px; " class="text-center" ><td>02</td><td >' + lista[h].folio  + '</td><td class="seleccionar text-right" > $ '+formatoMoneda1(lista[h].importe)+'</td></tr>';
+              html+= '<tr class="seleccionar text-center" ><td>' + lista[h].totalValor  + '</td><td >' + lista[h].folio  + '</td><td> $ '+formatoMoneda1(lista[h].importe)+'</td><td ><button  onclick="delRFacturas3('+lista[h].id+','+dayR+','+monthR+','+yearR+')" " type="button" class="close" style="background:red; color:white; height:100%;" data-dismiss="modal" aria-label="OPEN"> <span aria-hidden="true">&times;</span> </button></td></tr>';
+              htmlp+= '<tr style="font-size:9px; " class="text-center" ><td>' + lista[h].totalValor  + '</td><td >' + lista[h].folio  + '</td><td class="seleccionar text-right" > $ '+formatoMoneda1(lista[h].importe)+'</td></tr>';
       total+=parseFloat(lista[h].importe);      
       } 
  
@@ -26743,6 +26742,7 @@ function addFacturasMPE(){
  var importe = $('#modalFacturasMPE .iMPE').val();
   var fechaf = today_v;
   var tipo = 4;
+  alert(numeral);
  $('#modalFacturasMPE').modal('hide');
   if(numeral != ""&&folio != ""&&importe != ""){
    var json2 = {folio: folio, importe: importe, tipo: tipo, fechaf: fechaf,totalValor: numeral};
@@ -27462,6 +27462,9 @@ var sfc = (scv+1)+"";
 
 function addVenta(){ 
    newTimer();
+      var jsonC = {where:{ruta:rutas, fechaf: today_v}}
+    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp);
+   
 var dateVenta = new Date();  
   var idProducto = $(".idProducto").val();
   var descripcionventa = $(".descripcion").val();
@@ -27606,8 +27609,6 @@ if(noSemana==52&&dc==6){
 
  
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
-      var jsonC = {where:{ruta:rutas, fechaf: today_v}}
-    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp);
    
  //  getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
  
@@ -30858,22 +30859,17 @@ var json={cobrado:cobrado}
 
 upRegistroA2(idNominaT, json, json2,'ventaspasada',  loadVentasp4);
     executeFunctionDone(json2, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
-    executeFunctionDone(json2, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
    
 var sfc = (scv+1);
 
   if(scv != ""){
   var json = {where:{sfc:sfc}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
-      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
+
  
 
  }
@@ -30881,8 +30877,6 @@ var sfc = (scv+1);
 
 
 
-
-click_nomina();
 
     }
 
@@ -30929,16 +30923,11 @@ var sfc = (scv+1);
   if(scv != ""){
       var json = {where:{sfc:sfc}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
-      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
- 
-   executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
+
  
 
  }
@@ -33699,10 +33688,10 @@ var sfc = (scv+1)+"";
 $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>');
       var json = {where:{sfc:sfc}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
   }
 }
 function click_manuales(){
@@ -34592,10 +34581,10 @@ var sfc = (scv+1);
   if(scv != ""){
       var json = {where:{sfc:sfc}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
  
  }
 }else{

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :reportes
   resources :categorias
   resources :remision
+  resources :permisos
   resources :bitacoras
   resources :logs
   resources :pagares

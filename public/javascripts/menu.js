@@ -11,7 +11,7 @@ var t_v2;
 var arrGlobalEmpleados, arrGlobalNotas;
 var piezasT, year2, month2, day2; 
 var user, vahiculoA, vahiculoA2, tipoCombustible;
-var tipoUsuario = ['DIRECTOR','ADMINISTRADOR','CONTADOR','DESPACHADOR','VENTAS','VEHÍCULAR']
+var tipoUsuario = ['DIRECTOR','PERSONALIZADO','SIN ASIGNAR']
 var tipoCategoria = ['NINGUNA','SUMA','TOTAL'];
 var tipoMantinimiento = ['PREDICTIVO','PREVENTIVO','CORRECTIVO','NINGUNO'];
 var tipoEstado = ['SUSPENDIDO','RUTA'];
@@ -21,7 +21,7 @@ var t_rutas = ['C1','C2','C3','C4','C5','C6','C7','C8'];
 var t_ventas = ['DETALLE','MAYOREO','DETALLE FORANEO','RESTAURANTES'];
 var t_Empleado = ['AYUDANTE GENERAL','VENTAS','GERENTE DE VENTAS','GERENTE DE OPERACIONES','SUPERVISOR','ADMINISTRADOR','CONSEJO'];
 var dias = ['LUNES',' MARTES ',' MIÉRCOLES ',' JUEVES ',' VIERNES ',' SÁBADO ',' DOMINGO '];
-
+var usuarioPrincipal;
 //--------------------------------------------- Datos cargados --------------------------------------------------------//
 
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
@@ -31,20 +31,22 @@ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar
 getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias2);
 getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
 getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare2);
-
 //--------------------------------------------- cargar tipo de usuarios -----------------------------------------------//
 $(document).ready(function(){
       user = window.usuario.idUsuario;
+      usuarioPrincipal = user;
   var usuario = window.usuario.tipo;
+
       menu="/html/menu_";
   if(usuario == 1){
       menu+='director';
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Pagare();" role="tab">PAGARE </li> <span class="border border-white"></span> <li class="impre productosList text-center"  onclick="click_Remisiones() ">REMISIONES </li>  <span class="border border-white"> </span>  <div class="imprimir"></div></ul> </div>');
 
-  }
+  } 
   if(usuario == 2){
-      menu+='administrador';
-  }
+      menu+='personalizado';
+
+  }/*
   if(usuario == 3){
       menu+='contador';
   }
@@ -56,11 +58,16 @@ $(document).ready(function(){
   }
    if(usuario == 6){
       menu+='vehicular';
-  }
+  }*/
       $('#contenido').load(menu + '.html');
       $('.btnMenu').removeClass('hidden');
       $('.btnMenu').html('SALIR ');
+ getFunction('permisos', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPermisosL);
+
 });
+
+
+
 //-------------------------------------------- Calculo de fecha actual ----------------------------------------------//
     var months = new makeArray('ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE');
     var date = new Date();
@@ -1428,7 +1435,18 @@ function loadUsuarios(lista){
         $('.contCata').html(html);
         arrGlobal = lista;
         document.getElementById('loader').style.display = 'none';
-
+selectPermiso();
+}
+function loadUsuariosDel(lista){
+        for(var h=0;h<lista.length; h++){
+        for(var hh=0;hh<arrGlobal.length; hh++){
+        if (lista[h].user == arrGlobal[hh].idUsuario) {
+         var idPer =lista[h].id;
+          delRegistro2(idPer, 'permisos', loadPermisos2);
+alert(idPer);
+        }        
+        }
+        }
 }
 var arrGlobalPagare;
   var name;
@@ -1479,6 +1497,265 @@ function loadNotas(lista){
 function loadUsuarios2(lista){
         upin = lista;
 }
+function loadPermisosL(lista){
+       arrGlobalPermisosIn = lista;
+
+      for(var hh=0;hh<arrGlobalPermisosIn.length; hh++){
+        if (user == arrGlobalPermisosIn[hh].user) {
+         
+         if (arrGlobalPermisosIn[hh].ventas==1) {
+          var ventasPe = '<img class="imagenes" src="/images/ventas.png" onclick="click_ventas()">';
+          $("#ventasPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].movimientos==1) {
+          
+          var ventasPe = '<img class="imagenes" src="/images/movimientos.png" onclick="modalEfectivos()">';
+          $("#movimientosPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].inventario==1) {
+          var ventasPe = '<img class="imagenes" src="/images/inventario.png" onclick="click_inventario()">';
+          $("#inventarioPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].clientes==1) {
+          var ventasPe = '<img class="imagenes" src="/images/clientes.png" onclick="click_clientes()">';
+          $("#clientesPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].vehiculos==1) {
+          var ventasPe = '<img class="imagenes" src="/images/mvehicular.png" onclick="click_vehiculos()">';
+          $("#vehiculosPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].logistica==1) {
+          var ventasPe = '<img class="imagenes" src="/images/logistica.png" onclick="click_mvehicular()">';
+          $("#logisticaPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].nomina==1) {
+          var ventasPe = '<img class="imagenes" src="/images/nomina.png" onclick="click_nomina()">';
+          $("#nominaPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].empleados==1) {
+          var ventasPe = '<img class="imagenes" src="/images/empleados.png" onclick="click_empleados()">';
+          $("#empleadosPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].reportes==1) {
+          var ventasPe = '<img class="imagenes" src="/images/reportes.png" onclick="click_reportes()">';
+          $("#reportesPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].bitacoras==1) {
+          var ventasPe = '<img class="imagenes" src="/images/bitacoras.png" onclick="click_bitacoras()">';
+          $("#bitacorasPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].manuales==1) {
+          var ventasPe = '<img class="imagenes" src="/images/manuales.png" onclick="click_manuales()">';
+          $("#manualesPersonalizado").html(ventasPe);
+         }
+         if (arrGlobalPermisosIn[hh].remisiones==1) {
+          $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Pagare();" role="tab">PAGARE </li> <span class="border border-white"></span> <li class="impre productosList text-center"  onclick="click_Remisiones() ">REMISIONES </li>  <span class="border border-white"> </span>  <div class="imprimir"></div></ul> </div>');
+
+         }
+        }
+        
+        }
+}
+function loadPermisos2(lista){
+       
+}
+function loadPermisos(lista){
+        var html = '';
+        var user= "Undefined";
+        for(var h=0;h<lista.length; h++){
+        for(var hh=0;hh<arrGlobal.length; hh++){
+        if (lista[h].user == arrGlobal[hh].idUsuario) {
+          user =arrGlobal[hh].usuario;
+        }
+        
+        }
+             html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); " ><td>' + user + '</td> <td><input type="checkbox" class="form-check-input ventas'+lista[h].user+'" value="1" onchange="ventasP('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input movimientos'+lista[h].user+'" value="1" onchange="movimientosP('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input inventario'+lista[h].user+'" value="1" onchange="inventarioPed('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input clientes'+lista[h].user+'" value="1" onchange="clientesP('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input vehiculos'+lista[h].user+'" value="1" onchange="vehiculosP('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input logistica'+lista[h].user+'" value="1" onchange="logisticaP('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input nomina'+lista[h].user+'" value="1" onchange="nominaP('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input empleados'+lista[h].user+'" value="1" onchange="empleadosP('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input reportes'+lista[h].user+'" value="1" onchange="reportesP('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input manuales'+lista[h].user+'" value="1" onchange="manualesP('+lista[h].user+','+lista[h].id+')" id="" ></td>  <td><input type="checkbox" class="form-check-input remisiones'+lista[h].user+'" value="1" onchange="remisionesP('+lista[h].user+','+lista[h].id+')" id="" ></td> </tr>';        
+        }
+
+        $('#modalPermisos .contCataPermisos').html(html);
+    arrGlobalPermisosIn = lista;
+actualizartabla();
+}
+function ventasP(idU,idP){
+valor =  $("#modalPermisos .ventas"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {ventas: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function movimientosP(idU,idP){
+valor =  $("#modalPermisos .movimientos"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {movimientos: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function inventarioPed(idU,idP){
+valor =  $("#modalPermisos .inventario"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {inventario: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function clientesP(idU,idP){
+valor =  $("#modalPermisos .clientes"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {clientes: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function vehiculosP(idU,idP){
+valor =  $("#modalPermisos .vehiculos"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {vehiculos: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function logisticaP(idU,idP){
+valor =  $("#modalPermisos .logistica"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {logistica: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function nominaP(idU,idP){
+valor =  $("#modalPermisos .nomina"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {nomina: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function empleadosP(idU,idP){
+valor =  $("#modalPermisos .empleados"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {empleados: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function reportesP(idU,idP){
+valor =  $("#modalPermisos .reportes"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {reportes: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function bitacorasP(idU,idP){
+valor =  $("#modalPermisos .bitacoras"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {bitacoras: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function remisionesP(idU,idP){
+valor =  $("#modalPermisos .remisiones"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {remisiones: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function manualesP(idU,idP){
+valor =  $("#modalPermisos .manuales"+idU+":checked").val();
+if (valor==undefined) {
+  valor=0;
+}
+var json3 = {manuales: valor };
+  upRegistro3(idP, json3, 'permisos', loadPermisos2);
+}
+function actualizartabla(){
+  for(var a=0; a<arrGlobalPermisosIn.length; a++){
+if(arrGlobalPermisosIn[a].ventas==1){
+  $("#modalPermisos .ventas"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .ventas"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].movimientos==1){
+  $("#modalPermisos .movimientos"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .movimientos"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].inventario==1){
+  $("#modalPermisos .inventario"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .inventario"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].clientes==1){
+  $("#modalPermisos .clientes"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .clientes"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].vehiculos==1){
+  $("#modalPermisos .vehiculos"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .vehiculos"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].logistica==1){
+  $("#modalPermisos .logistica"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .logistica"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].nomina==1){
+  $("#modalPermisos .nomina"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .nomina"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].empleados==1){
+  $("#modalPermisos .empleados"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .empleados"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].reportes==1){
+  $("#modalPermisos .reportes"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .reportes"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].bitacoras==1){
+  $("#modalPermisos .bitacoras"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .bitacoras"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].manuales==1){
+  $("#modalPermisos .manuales"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .manuales"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+if(arrGlobalPermisosIn[a].remisiones==1){
+  $("#modalPermisos .remisiones"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .remisiones"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+if(arrGlobalPermisosIn[a].fabrica==1){
+  $("#modalPermisos .fabrica"+arrGlobalPermisosIn[a].user+"").prop('checked', true);
+}else{
+$("#modalPermisos .fabrica"+arrGlobalPermisosIn[a].user+"").prop('checked', false);
+}
+
+
+
+}
+}
+var arrGlobalPermisosIn;
 function loadInventarios(lista){
         var html = '';
         for(var h=0;h<lista.length; h++){
@@ -25491,6 +25768,11 @@ function nextInput2(num){
                 }
               }
 }
+function loadVentasp33(lista){
+                  arrGlobal4 = lista;
+ $('.addV').html('');
+
+}
 function loadVentasp(lista){
                   arrGlobal4 = lista;
         document.getElementById('loader').style.display = 'none';
@@ -27462,9 +27744,7 @@ var sfc = (scv+1)+"";
 
 function addVenta(){ 
    newTimer();
-      var jsonC = {where:{ruta:rutas, fechaf: today_v}}
-    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp);
-   
+    
 var dateVenta = new Date();  
   var idProducto = $(".idProducto").val();
   var descripcionventa = $(".descripcion").val();
@@ -27609,8 +27889,8 @@ if(noSemana==52&&dc==6){
 
  
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
-     var jsonC = {where:{ruta:rutas, fechaf: today_v}}
-    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp);
+       var jsonC = {where:{ruta:rutas, fechaf: today_v}}
+    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp33);
    
  //  getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
  
@@ -27658,13 +27938,14 @@ if(noSemana==52&&dc==6){
 
 
   if(num==0 && num2==0){
+
  $('.addV').html('');
     document.getElementById('loader').style.display = 'block';
    var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2, t_venta_merca: t_venta_merca, n2:n2};
 var jsonC = {where:{ruta:rutas, fechaf: today_v}}
-   addRegistroA2(json2, jsonC, 'ventaspasada', loadVentasp);
+   addRegistroA2(json2, jsonC, 'ventaspasada', loadVentasp33);
           
-    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp);
+    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp33);
    
    //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
 
@@ -28834,7 +29115,10 @@ function delUsuario(){
   var tipo = $(".tipo").val();
 
   if(nombre!= "" && contrasenia != "" && tipo != ""){
+
   delRegistro(idGlobal, 'usuarios', loadUsuarios);
+  getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuariosDel);
+  
 getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
 
 }else {
@@ -32666,6 +32950,9 @@ function v(){
 function closeModalMerma(){
   $('#modalMerma').modal('hide');
 }
+function closeModalPermisos(){
+  $('#modalPermisos').modal('hide');
+}
 function vP(){
   $(".upventaMP").html('')
   $(".delventaMP").html('')
@@ -32947,7 +33234,8 @@ function executeFunctionDone2(data, url, mensajes, done){
 
 
 function click_usuarios(){
-   $('.barraIzq').html('');
+    $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Permisos();" role="tab">MÓDULOS</li> <span class="border border-white"></span> </ul> </div>');
+
         document.getElementById('loader').style.display = 'block';
 
   $('.btn-nav').removeClass('hidden');
@@ -32959,6 +33247,60 @@ function click_usuarios(){
 getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
 
 }
+
+function click_Permisos(){
+    $('#modalPermisos').modal('show');
+ getFunction('permisos', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPermisos);
+ getFunction('permisos', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPermisos);
+
+}
+function selectPermiso(){
+
+   var usuariosSelect = '<select class="form-control clear usuariosP" id:"usuariosP" >';
+var cont =0;
+for (var i=0; i < arrGlobal.length; i++) {
+if(arrGlobal[i].tipo!=100){
+  if (arrGlobal[i].tipo!=2) {
+    if (arrGlobal[i].tipo!=1) {
+  usuariosSelect+='<option class="" value="'+arrGlobal[i].idUsuario+'">'+arrGlobal[i].usuario+'</option>';  
+   cont++;
+     var per = '<label class="" >.</label><button type="button" class="btn btn-ventas " onclick="addPermiso(); ">AGREGAR</button>';
+$('#modalPermisos .usuariosAdd').html(per);
+    }
+  }
+}
+
+}
+usuariosSelect+='</select>';  
+
+
+
+$('#modalPermisos .usuariosSelect').html(usuariosSelect);
+if (cont==0) {
+$('#modalPermisos .usuariosAdd').html('');
+}
+}
+
+function addPermiso(){
+  $('#modalPermisos .usuariosAdd').html('');
+var idUser = $('#modalPermisos .usuariosP').val();
+
+   if (idUser!="") {
+    var json2 = {user: idUser, ventas:0, movimientos:0, inventario:0, clientes:0, vehiculos:0, logistica:0, nomina:0, empleados:0, usuarios:0, reportes:0, bitacoras:0, manuales:0, remisiones:0, fabrica:0, n1:0, n2:0, n3:0};
+    addRegistro3(json2, 'permisos', loadPermisos);
+var json3 = {tipo: 2};
+   upRegistro3(idUser, json3, 'usuarios', loadUsuarios);
+
+ getFunction('permisos', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPermisos);
+ getFunction('permisos', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPermisos);
+ getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
+ getFunction('usuarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadUsuarios);
+  
+   }
+
+   selectPermiso();
+
+  }
 function click_inventario(){
  document.getElementById('loader').style.display = 'block';
  $('.barraIzq').html('');

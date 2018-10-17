@@ -33848,7 +33848,6 @@ function getFunction(url, mensajes, functionFinal){
  
 }
 function executeFunctionDone(data, url, mensajes, done){
-   
   $.ajax({    
     url : url,    
     data : data,    
@@ -34820,14 +34819,9 @@ function click_manuales(){
           scv=noSemana;
     
       
-var sfc = (scv+1)+"";
-  if(scv != ""){
 
 $('.tituloPantalla').html('<h3 class="nomina"> MANUALES </h3>');
-      var json = {where:{sfc:sfc}}
-     
-
-  }
+     manuales();
 
 }
 function manuales(){

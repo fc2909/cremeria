@@ -1327,6 +1327,43 @@ function vehiculosPrint(){
         document.getElementById('fondoBlanco').style.display = 'none';
 
 }
+function imprimirNominaFabrica(){
+        document.getElementById('NominaFabrica').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        window.print(); 
+        //window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#NominaFabrica').html()));
+        document.getElementById('NominaFabrica').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
+function imprimirNominaAdmon(){
+        document.getElementById('NominaAdmon').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        window.print(); 
+        //window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#NominaFabrica').html()));
+        document.getElementById('NominaAdmon').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
+function ExcelNominaAdmon(){
+        document.getElementById('NominaAdmon').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#NominaAdmon').html()));
+        document.getElementById('NominaAdmon').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
+function ExcelNominaFabrica(){
+        document.getElementById('NominaFabrica').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        var controlC = '<h3 class="text-center">VEHÍCULOS</h3>';
+        $('.controlC').html(controlC);
+        //window.print(); 
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#NominaFabrica').html()));
+        document.getElementById('NominaFabrica').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
 function cambio(){
     var peso = $(".peso").val();
     if(peso == ""){
@@ -1476,11 +1513,547 @@ function loadEmpleados2(lista){
         }
         arrGlobalEmpleados = lista; 
 }
+
+function loadEmpleadosFabrica(lista){
+         arrEmpleadosFabrica=lista;
+        var base = [];
+         for(var h=0;h<lista.length; h++){
+        
+        if(lista[h].tipo==100){     
+
+        //html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this);" ><td>' +  lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple +'</td> <td>' +  lista[h].reingresos +'</td>  <td>' +  lista[h].infonavit +'</td> <td>' +  lista[h].n1 +'</td>  </tr>';
+var array2 = [];
+        var array ={idEmpleado:lista[h].id ,nombre: lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple, importe: lista[h].reingresos, infonavit: lista[h].infonavit, prestamo: lista[h].n1, semana: (scv+1), amio: year, columnas:columnas, importes:array2};
+        base.push(array); 
+        }
+        }
+        //$('.contCataNominaFabrica').html(html);
+       buscarFabrica(base);
+        //arrGlobalEmpleados = lista; 
+}
+var arrEmpleadosAdmon;
+var arrEmpleadosFabrica;
+function loadEmpleadosAdmon(lista){
+       arrEmpleadosAdmon=lista;
+        var base = [];
+         for(var h=0;h<lista.length; h++){
+        
+         if(lista[h].tipo != 2&&lista[h].tipo != 100&&lista[h].km != "F"){   
+
+        //html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this);" ><td>' +  lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple +'</td> <td>' +  lista[h].reingresos +'</td>  <td>' +  lista[h].infonavit +'</td> <td>' +  lista[h].n1 +'</td>  </tr>';
+var array2 = [];
+        var array ={idEmpleado:lista[h].id ,nombre: lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple, importe: lista[h].reingresos, infonavit: lista[h].infonavit, prestamo: lista[h].n1, semana: (scv+1), amio: year, columnas:columnas, importes:array2};
+        base.push(array); 
+        }
+        }
+        //$('.contCataNominaFabrica').html(html);
+       
+       buscarAdmon(base);
+        //arrGlobalEmpleados = lista; 
+}
 function loadEmpleados3(lista){
         
         arrGlobalEmpleados = lista;
         document.getElementById('loader').style.display = 'none';
 
+}
+var empleadosFabrica;
+var empleadosAdmon;
+function buscarFabrica(base){
+  var html = '';
+  var htmlP = '';
+  var total =0;
+var cantidadImporte =[];
+for(var h=0;h<base.length; h++){
+    html+= '<tr class="seleccionar letras text-right" style="font-size:12px;   "  onclick="cambiarcolor(this); modalNominaImporte2('+h+')" ><td>' +  base[h].nombre +'</td> <td> $ ' + formatoMoneda1(base[h].importe)+'</td>  <td> $ -' + formatoMoneda1(base[h].infonavit) +'</td> <td> $ -' + formatoMoneda1(base[h].prestamo) +'</td>';
+    htmlP+= '<tr style="font-size:10px;"><td>' +  base[h].nombre +'</td> <td class="text-right"> $ ' + formatoMoneda1(base[h].importe)+'</td>  <td class="text-right"> $ -' + formatoMoneda1(base[h].infonavit) +'</td> <td class="text-right"> $ -' + formatoMoneda1(base[h].prestamo) +'</td>';
+       total = parseFloat(base[h].importe)- parseFloat(base[h].infonavit)-parseFloat(base[h].prestamo)
+        var num=true;
+        var num2=0;
+for(var hh=0;hh<importeFabricaN.length; hh++){
+  
+        if (base[h].idEmpleado == importeFabricaN[hh].idEmpleado) {
+          total += parseFloat(importeFabricaN[hh].cantidad);
+          html+= '<td>$ '+formatoMoneda1(importeFabricaN[hh].cantidad)+'</td>';
+          htmlP+= '<td class="text-right">$ '+formatoMoneda1(importeFabricaN[hh].cantidad)+'</td>';
+          cantidadImporte.push(importeFabricaN[hh].cantidad);
+          num =false;
+          num2++;
+        }
+}
+
+        if(num){
+          num2=base[h].columnas.length+20;
+          for(var ff=0;ff<base[h].columnas.length; ff++){
+        //html+= '<td></td>';
+  
+  var json2 = {idEmpleado: base[h].idEmpleado, idColumna: 2, cantidad: 0, n1:  numSemana};
+  var jsonC = {where:{idColumna:2 , n1: numSemana}}
+  //addRegistroA(json2,jsonC, 't_nomina', loadImportes);
+  //executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+   
+
+        }
+        }
+   
+        html += ' <td> $ '+formatoMoneda1(total)+'</td></tr>';
+        htmlP += ' <td class="text-right"> $ '+formatoMoneda1(total)+'</td></tr>';
+        
+      }
+        $('.contCataNominaFabrica').html(html);
+        $('.contCataNominaFabricaP').html(htmlP);
+empleadosFabrica = base;
+}
+function buscarAdmon(base){
+  var html = '';
+  var htmlP = '';
+  var total =0;
+var cantidadImporte =[];
+for(var h=0;h<base.length; h++){
+    html+= '<tr class="seleccionar letras text-right" style="font-size:12px;   "  onclick="cambiarcolor(this); modalNominaImporteAdmon('+h+')" ><td>' +  base[h].nombre +'</td> <td> $ ' + formatoMoneda1(base[h].importe)+'</td>  <td> $ -' + formatoMoneda1(base[h].infonavit) +'</td> <td> $ -' + formatoMoneda1(base[h].prestamo) +'</td>';
+    htmlP+= '<tr style="font-size:10px;"><td>' +  base[h].nombre +'</td> <td class="text-right"> $ ' + formatoMoneda1(base[h].importe)+'</td>  <td class="text-right"> $ -' + formatoMoneda1(base[h].infonavit) +'</td> <td class="text-right"> $ -' + formatoMoneda1(base[h].prestamo) +'</td>';
+       total = parseFloat(base[h].importe)- parseFloat(base[h].infonavit)-parseFloat(base[h].prestamo)
+        var num=true;
+        var num2=0;
+for(var hh=0;hh<importeAdmonN.length; hh++){
+  
+        if (base[h].idEmpleado == importeAdmonN[hh].idEmpleado) {
+          total += parseFloat(importeAdmonN[hh].cantidad);
+          html+= '<td>$ '+formatoMoneda1(importeAdmonN[hh].cantidad)+'</td>';
+          htmlP+= '<td class="text-right">$ '+formatoMoneda1(importeAdmonN[hh].cantidad)+'</td>';
+          cantidadImporte.push(importeAdmonN[hh].cantidad);
+          num =false;
+          num2++;
+        }
+}
+
+        if(num){
+          num2=base[h].columnas.length+20;
+          for(var ff=0;ff<base[h].columnas.length; ff++){
+        //html+= '<td></td>';
+  
+  //addRegistroA(json2,jsonC, 't_nomina', loadImportes);
+  //executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+   
+
+        }
+        }
+   
+        html += ' <td> $ '+formatoMoneda1(total)+'</td></tr>';
+        htmlP += ' <td class="text-right"> $ '+formatoMoneda1(total)+'</td></tr>';
+        
+      }
+        $('.contCataNominaAdmon').html(html);
+        $('.contCataNominaAdmonP').html(htmlP);
+empleadosAdmon = base;
+}
+function modalNominaImporte(num){
+
+  $('#modalNominaImportes').modal('show');
+  $('.tituloF').html(empleadosFabrica[num].nombre);
+  var inputs = '<div class=" row col-md-12">'
+ for(var f=0;f<empleadosFabrica[num].columnas.length; f++){
+          inputs+='<div class="col-md-6  text-right"><label>'+empleadosFabrica[num].columnas[f].nombre+' <label></div>';
+          inputs+='<div class="col-md-6  text-right"><input type="number" class="columna'+f+'"></div>';
+        }
+       
+        puts = '</div>'
+  $('.textModalF').html(inputs);
+  var botones ='<button type="button" class="btn btn-dark" onclick="closeModalFabricaN()">CANCELAR</button>';
+      botones +='<button type="button" class="btn btn btn-modals " onclick="upFabricaModalN()" >AGREGAR</button>';
+  $('.footerF').html(botones);
+idGlobal=num;
+
+
+var n=0;
+  for(var hh=0;hh<importeFabricaN.length; hh++){
+        if (empleadosFabrica[num].idEmpleado == importeFabricaN[hh].idEmpleado) {
+        $('#modalNominaImportes .columna'+n+'').val(importeFabricaN[hh].cantidad);
+        n++;    
+        }
+      }
+      if(n!=0){
+      botones ='<button type="button" class="btn btn-dark" onclick="closeModalFabricaN()">CANCELAR</button>';
+      botones +='<button type="button" class="btn btn btn-info " onclick="upFabricaModalN()" >GUARDAR</button>';
+  $('.footerF').html(botones);
+
+ if(n<empleadosFabrica[num].columnas.length){
+
+
+  n++;
+
+  var json2 = {idEmpleado: empleadosFabrica[num].idEmpleado, idColumna: 2, cantidad: 0, n1:  numSemana, n2:empleadosFabrica[num].columnas[empleadosFabrica[num].columnas.length-1].id};
+  var jsonC = {where:{idColumna:2 , n1: numSemana}}
+   addRegistroA(json2,jsonC, 't_nomina', loadImportes);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+   
+        }
+
+      }
+}
+var typeN;
+function modalNominaImporte2(num){
+
+  $('#modalNominaImportes').modal('show');
+  $('.tituloF').html(empleadosFabrica[num].nombre);
+  var inputs = '<div class=" row col-md-12">'
+ for(var f=0;f<empleadosFabrica[num].columnas.length; f++){
+          inputs+='<div class="col-md-6  text-right"><label>'+empleadosFabrica[num].columnas[f].nombre+' <label></div>';
+          inputs+='<div class="col-md-6  text-right"><input type="number" class="columna'+f+'"></div>';
+        }
+       
+        puts = '</div>'
+  $('.textModalF').html(inputs);
+  var botones ='<button type="button" class="btn btn-dark" onclick="closeModalFabricaN()">CANCELAR</button>';
+      botones +='<button type="button" class="btn btn btn-modals " value="1" onclick="upFabricaModalN(this)" >AGREGAR</button>';
+  typeN=1;
+
+  $('.footerF').html(botones);
+idGlobal=num;
+
+
+var n=0;
+  for(var hh=0;hh<importeFabricaN.length; hh++){
+        if (empleadosFabrica[num].idEmpleado == importeFabricaN[hh].idEmpleado) {
+        $('#modalNominaImportes .columna'+n+'').val(importeFabricaN[hh].cantidad);
+        n++;    
+        }
+      }
+      if(n!=0){
+      botones ='<button type="button" class="btn btn-dark" onclick="closeModalFabricaN()">CANCELAR</button>';
+      botones +='<button type="button" class="btn btn btn-info " value="2" onclick="upFabricaModalN(this)" >GUARDAR</button>';
+typeN=2;
+
+
+  $('.footerF').html(botones);
+if(n<empleadosFabrica[num].columnas.length){
+
+
+  n++;
+
+  var json2 = {idEmpleado: empleadosFabrica[num].idEmpleado, idColumna: 2, cantidad: 0, n1:  numSemana, n2:empleadosFabrica[num].columnas[empleadosFabrica[num].columnas.length-1].id};
+  var jsonC = {where:{idColumna:2 , n1: numSemana}}
+   addRegistroA(json2,jsonC, 't_nomina', loadImportes);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+   
+        }
+
+        
+
+      }
+}
+
+function modalNominaImporteAdmon(num){
+var n1=0;
+  
+  $('.tituloF').html(empleadosAdmon[num].nombre);
+  var inputs = '<div class=" row col-md-12">'
+ for(var f=0;f<empleadosAdmon[num].columnas.length; f++){
+          inputs+='<div class="col-md-6  text-right"><label>'+empleadosAdmon[num].columnas[f].nombre+' <label></div>';
+          inputs+='<div class="col-md-6  text-right"><input type="number" class="columna'+f+'"></div>';
+        n1++;
+        }
+       
+        puts = '</div>'
+  $('.textModalF').html(inputs);
+  var botones ='<button type="button" class="btn btn-dark" onclick="closeModalAdmonN()">CANCELAR</button>';
+      botones +='<button type="button" class="btn btn btn-modals " value="1" onclick="upAdmonModalN(this)" >AGREGAR</button>';
+  typeN=1;
+
+  $('.footerF').html(botones);
+idGlobal=num;
+
+
+var n=0;
+  for(var hh=0;hh<importeAdmonN.length; hh++){
+        if (empleadosAdmon[num].idEmpleado == importeAdmonN[hh].idEmpleado) {
+        $('#modalNominaImportes .columna'+n+'').val(importeAdmonN[hh].cantidad);
+        n++;   
+        n1=n; 
+        }
+      }
+      if(n1!=0){
+        $('#modalNominaImportes').modal('show');
+      botones ='<button type="button" class="btn btn-dark" onclick="closeModalAdmonN()">CANCELAR</button>';
+      botones +='<button type="button" class="btn btn btn-info " value="2" onclick="upAdmonModalN(this)" >GUARDAR</button>';
+typeN=2;
+
+
+  $('.footerF').html(botones);
+
+if(n<empleadosAdmon[num].columnas.length){
+ $('#modalNominaImportes').modal('hide');
+
+  n++;
+
+  var json2 = {idEmpleado: empleadosAdmon[num].idEmpleado, idColumna: 4, cantidad: 0, n1:  numSemana, n2:empleadosAdmon[num].columnas[empleadosAdmon[num].columnas.length-1].id};
+  var jsonC = {where:{idColumna:4 , n1: numSemana}};
+  addRegistroA(json2,jsonC, 't_nomina', loadImportesAdmon);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+   
+        }
+
+        
+
+      }
+}
+
+
+function upFabricaModalN(){
+
+  var cantidades = [];
+  var num =true;
+   for(var f=0;f<empleadosFabrica[idGlobal].columnas.length; f++){
+
+    var importe = $('#modalNominaImportes .columna'+f+'').val();
+    if (importe=="") {
+     num=false;
+       $('#modalNominaImportes').modal('hide');
+    }else{
+      cantidades.push(importe);
+    }
+        }
+   
+if(typeN==1){
+      var n=0;
+    for(var hh=0;hh<cantidades.length; hh++){
+      
+   //  alert(empleadosFabrica[idGlobal].columnas[hh].id+" ---- "+hh+" ---- "+cantidades[hh]);
+ var json2 = {idEmpleado: empleadosFabrica[idGlobal].idEmpleado, idColumna: 2, cantidad: cantidades[hh], n1:  numSemana, n2:empleadosFabrica[idGlobal].columnas[n].id};
+
+  var jsonC = {where:{idColumna:2 , n1: numSemana}}
+  agregarFila(json2,jsonC);
+
+
+  
+  n++;
+        
+
+}
+
+  var jsonC = {where:{idColumna:2 , n1: numSemana}}
+  //addRegistroA(json2,jsonC, 't_nomina', loadImportes);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+   
+}else{
+        if (num) {
+          var n=0;
+    for(var hh=0;hh<importeFabricaN.length; hh++){
+        if (empleadosFabrica[idGlobal].idEmpleado == importeFabricaN[hh].idEmpleado) {
+          var idCol=columnas[n].id;
+          var json2 = {cantidad: cantidades[n], n2: idCol};
+           var jsonC = {where:{idColumna:2 , n1: numSemana}}
+  idI=importeFabricaN[hh].id;
+
+   upRegistroA2(idI,json2,jsonC, 't_nomina', loadImportes2);
+  
+  n++;
+        }
+
+}
+
+
+           var jsonC = {where:{idColumna:2 , n1: numSemana}}
+
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+  
+        }else{
+          $('#modalNominaImportes .textModalF').html('FALTAN DATOS.'); 
+          $('.footerF').html('');
+      $('#modalNominaImportes').modal('show');
+        }
+
+  }
+}
+function agregarFila(json2,jsonC) {
+   addRegistroA(json2,jsonC, 't_nomina', loadImportes2);
+}
+function sleep(miliseconds) {
+   var currentTime = new Date().getTime();
+
+   while (currentTime + miliseconds >= new Date().getTime()) {
+   }
+}
+function upAdmonModalN(){
+ $('#modalNominaImportes').modal('hide');
+  var cantidades = [];
+  var num =true;
+   for(var f=0;f<empleadosAdmon[idGlobal].columnas.length; f++){
+
+    var importe = $('#modalNominaImportes .columna'+f+'').val();
+    if (importe=="") {
+     num=false;
+      
+    }else{
+      cantidades.push(importe);
+    }
+        }
+   
+if(typeN==1){
+      var n=0;
+    for(var hh=0;hh<cantidades.length; hh++){
+     
+
+//alert(empleadosAdmon[idGlobal].columnas[hh].nombre+" -- " + cantidades[hh]);
+ var json2 = {idEmpleado: empleadosAdmon[idGlobal].idEmpleado, idColumna: 4, cantidad: cantidades[hh], n1:  numSemana, n2:empleadosAdmon[idGlobal].columnas[hh].id};
+
+  var jsonC = {where:{idColumna:4 , n1: numSemana}}
+  addRegistroA2(json2,jsonC, 't_nomina', loadImportes2); 
+
+  
+  n++;
+        
+
+}
+
+  var jsonC = {where:{idColumna:4 , n1: numSemana}}
+  //addRegistroA(json2,jsonC, 't_nomina', loadImportes);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+  executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+   
+}else{
+        if (num) {
+          var n=0;
+    for(var hh=0;hh<importeAdmonN.length; hh++){
+        if (empleadosAdmon[idGlobal].idEmpleado == importeAdmonN[hh].idEmpleado) {
+          var idCol=columnas[n].id;
+          var json2 = {cantidad: cantidades[n], n2: idCol};
+           var jsonC = {where:{idColumna:4 , n1: numSemana}}
+  idI=importeAdmonN[hh].id;
+
+   upRegistroA2(idI,json2,jsonC, 't_nomina', loadImportes2);
+  
+  n++;
+        }
+
+}
+
+
+           var jsonC = {where:{idColumna:4 , n1: numSemana}}
+
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+  
+        }else{
+          $('#modalNominaImportes .textModalF').html('FALTAN DATOS.'); 
+          $('.footerF').html('');
+      $('#modalNominaImportes').modal('show');
+        }
+
+  }
+}
+function closeModalFabricaN(){
+  $('#modalNominaImportes').modal('hide');
+}
+function closeModalAdmonN(){
+  $('#modalNominaImportes').modal('hide');
+}
+var columnas = [];
+function loadColumnas2(lista){}
+function loadColumnas(lista){
+          var htmlT = '<th>EMPLEADOS</th><th>IMPORTE</th><th>INFONAVIT</th><th>PRESTAMO</th>';
+          var htmlTP = '<th class="text-center">EMPLEADOS</th><th class="text-center">IMPORTE</th><th class="text-center">INFONAVIT</th><th class="text-center">PRESTAMO</th>';
+         columnas = [];
+        
+         for(var h=0;h<lista.length; h++){
+
+          htmlT += '<th>'+lista[h].n2+'<span style="color:red;" class="seleccionar" onClick="delColumna('+lista[h].id+')" aria-hidden="true">&times;</span></th>';
+          htmlTP += '<th class="text-center">'+lista[h].n2+'</th>';
+          columnas.push({id:lista[h].id, nombre: lista[h].n2, suma: lista[h].n3})
+         }
+htmlT+='<th>TOTAL</th>'
+htmlTP+='<th class="text-center">TOTAL</th>'
+          $('.tituloNominaFabrica').html(htmlT);
+          $('.tituloNominaFabricaP').html(htmlTP);
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleadosFabrica);
+
+}
+function loadColumnasAdmon(lista){
+          var htmlT = '<th>EMPLEADOS</th><th>IMPORTE</th><th>INFONAVIT</th><th>PRESTAMO</th>';
+          var htmlTP = '<th class="text-center">EMPLEADOS</th><th class="text-center">IMPORTE</th><th class="text-center">INFONAVIT</th><th class="text-center">PRESTAMO</th>';
+         columnas = [];
+         for(var h=0;h<lista.length; h++){
+          htmlT += '<th>'+lista[h].n2+'<span style="color:red;" class="seleccionar" onClick="delColumnaAdmon('+lista[h].id+')" aria-hidden="true">&times;</span></th>';
+          htmlTP += '<th class="text-center">'+lista[h].n2+'</th>';
+          columnas.push({id:lista[h].id, nombre: lista[h].n2, suma: lista[h].n3})
+         }
+htmlT+='<th>TOTAL</th>'
+htmlTP+='<th class="text-center">TOTAL</th>'
+          $('.tituloNominaAdmon').html(htmlT);
+          $('.tituloNominaAdmonP').html(htmlTP);
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleadosAdmon);
+
+}
+var importeFabricaN;
+var importeAdmonN;
+function loadImportes(lista){
+      $('#modalNominaImportes').modal('hide');
+      importeFabricaN =lista;
+         var jsonC2 = {where:{idColumna:1 , n1:numSemana}}
+      executeFunctionDone(jsonC2, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadColumnas);
+
+}
+function loadImportesAdmon(lista){
+      $('#modalNominaImportes').modal('hide');
+      
+      importeAdmonN =lista;
+
+         var jsonC2 = {where:{idColumna:3 , n1:numSemana}}
+      executeFunctionDone(jsonC2, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadColumnasAdmon);
+
+}
+function loadImportesAdmon2(lista){
+       for(var h=0;h<lista.length; h++){ 
+        
+          if(lista[h].n2==nuevaColumna){
+       for(var f=0;f<arrEmpleadosAdmon.length; f++){ 
+         if(arrEmpleadosAdmon[f].tipo != 2&&arrEmpleadosAdmon[f].tipo != 100&&arrEmpleadosAdmon[f].km != "F"){   
+var json2 = {idEmpleado: arrEmpleadosAdmon[f].id, idColumna: 4, cantidad: 0, n1:  numSemana, n2:lista[h].id};
+ 
+          var jsonC = {where:{idColumna:4 , n1: numSemana}};
+          addRegistroA(json2,jsonC, 't_nomina', loadImportes2);
+}          
+               }
+          }
+        }
+        var jsonC = {where:{idColumna:4 , n1:numSemana}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+
+
+
+}
+function loadImportesFabrica2(lista){
+       for(var h=0;h<lista.length; h++){ 
+          if(lista[h].n2==nuevaColumna){
+       for(var f=0;f<arrEmpleadosFabrica.length; f++){ 
+         if(arrEmpleadosFabrica[f].tipo==100){  
+var json2 = {idEmpleado: arrEmpleadosFabrica[f].id, idColumna: 2, cantidad: 0, n1:  numSemana, n2:lista[h].id};
+          var jsonC = {where:{idColumna:2 , n1: numSemana}};
+          addRegistroA(json2,jsonC, 't_nomina', loadImportes2);
+}          
+               }
+          }
+        }
+         
+        var jsonC = {where:{idColumna:2 , n1:numSemana}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+
+   
+
+}
+function loadImportes2(lista){
+}
+function loadImportes3(lista){
+  importeFabricaN =lista;
+}
+function loadImportes3A(lista){
+  importeAdmonN =lista;
 }
 function loadNotas(lista){
         var html = '';
@@ -1499,10 +2072,71 @@ function loadUsuarios2(lista){
 }
 function loadPermisosL(lista){
        arrGlobalPermisosIn = lista;
-
+html='';
       for(var hh=0;hh<arrGlobalPermisosIn.length; hh++){
         if (user == arrGlobalPermisosIn[hh].user) {
-         
+         if (arrGlobalPermisosIn[hh].ventas==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/ventas.png" onclick="click_ventas()">';
+          html += '</div>';
+          
+         }
+         if (arrGlobalPermisosIn[hh].movimientos==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/movimientos.png" onclick="modalEfectivos()">';
+          html += '</div>';
+         }
+         if (arrGlobalPermisosIn[hh].inventario==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/inventario.png" onclick="click_inventario()">';
+          html += '</div>';
+         }
+         if (arrGlobalPermisosIn[hh].clientes==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/clientes.png" onclick="click_clientes()">';
+          html += '</div>';
+         }
+         if (arrGlobalPermisosIn[hh].vehiculos==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/mvehicular.png" onclick="click_vehiculos()">';
+          html += '</div>';
+         }
+         if (arrGlobalPermisosIn[hh].logistica==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/logistica.png" onclick="click_mvehicular()">';
+          html += '</div>';
+         }
+         if (arrGlobalPermisosIn[hh].nomina==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/nomina.png" onclick="click_nomina()">';
+          html += '</div>';
+         }
+         if (arrGlobalPermisosIn[hh].empleados==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/empleados.png" onclick="click_empleados()">';
+          html += '</div>';
+         }
+         if (arrGlobalPermisosIn[hh].reportes==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/reportes.png" onclick="click_reportes()">';
+          html += '</div>';
+         }
+         if (arrGlobalPermisosIn[hh].bitacoras==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/bitacoras.png" onclick="click_bitacoras()">';
+          html += '</div>';         }
+         if (arrGlobalPermisosIn[hh].manuales==1) {
+          html += '<div class="col-md-3">';
+          html += '<img class="imagenes" src="/images/manuales.png" onclick="click_manuales()">';
+          html += '</div>';
+         }
+         if (arrGlobalPermisosIn[hh].remisiones==1) {
+          $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Pagare();" role="tab">PAGARE </li> <span class="border border-white"></span> <li class="impre productosList text-center"  onclick="click_Remisiones() ">REMISIONES </li>  <span class="border border-white"> </span>  <div class="imprimir"></div></ul> </div>');
+
+         }
+
+$('.menuPrincipal').html(html);
+/*
          if (arrGlobalPermisosIn[hh].ventas==1) {
           var ventasPe = '<img class="imagenes" src="/images/ventas.png" onclick="click_ventas()">';
           $("#ventasPersonalizado").html(ventasPe);
@@ -1552,6 +2186,10 @@ function loadPermisosL(lista){
           $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Pagare();" role="tab">PAGARE </li> <span class="border border-white"></span> <li class="impre productosList text-center"  onclick="click_Remisiones() ">REMISIONES </li>  <span class="border border-white"> </span>  <div class="imprimir"></div></ul> </div>');
 
          }
+*/
+
+
+
         }
         
         }
@@ -26093,10 +26731,19 @@ function loadVentaspasadasTF(lista){
               cobrado = cobrado +1;
               saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
           var t_vendido = today;
+          var numC=0;
+          var creditoInicial;
       for(var h=0;h<lista.length; h++){
         if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined&&yearVS==lista[h].fechaf.substring(0,4)) {
+              
               html2+= '<tr class="" onclick="cambiarcolor(this);"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + formatoMoneda1(lista[h].creditos) + '</td><td> $' + formatoMoneda1(lista[h].f_s_dia) + '</td><td> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td> $ '+formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
               htmlp+= '<tr  style="font-size:7px; "><td class="text-center grisclaro">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].creditos) + '</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].f_s_dia) + '</td><td class="text-center"> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td class="text-center"> $ '+ formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
+        numC++;
+        if(numC==1){
+          creditoInicial=parseFloat(lista[h].loquedeberiatraer)+parseFloat(lista[h].f_s_dia);
+        
+        $('.creditoInicial').html("$ "+formatoMoneda1(creditoInicial));
+        }
         }
 
 
@@ -26750,6 +27397,8 @@ function ocultar(){
 }
 function ocultar2(){
 click_nomina();
+   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
+ $('.superior').html('');
 }
 function loadRec(lista){
           var html = '';
@@ -27477,13 +28126,14 @@ function addEmpleado(){
   var telp = $("#modalAdministracion .telp").val();
   var tell = $("#modalAdministracion .tell").val();
   var fnacimiento = $("#modalAdministracion .fnacimiento").val();
-
+  var km = $("#modalAdministracion .f_Ahorro").val();
+  var infonavit = $("#modalAdministracion .infonavit").val();
+  var n1 = $("#modalAdministracion .retV").val();
    
   var estado = $(" #modalAdministracion .estado").val();
   var ingreso = $("#modalAdministracion .fnacimiento").val();
   var vacaciones = $("#modalAdministracion .vacaciones").val();
   var renuncia = $("#modalAdministracion .renuncia").val();
-  var reingresos = $("#modalAdministracion .reingresos").val();
   var razon = $("#modalAdministracion .razon").val();
 
   var solicitud = $("#modalAdministracion .solicitud:checked").val();
@@ -27501,7 +28151,7 @@ function addEmpleado(){
    
   if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, reingresos:km, n1:n1, infonavit, infonavit};
     
     addRegistro(json,'empleados', loadAdministracion);
   }
@@ -27535,13 +28185,15 @@ function addFabrica(){
   var telp = $("#modalFabrica .telp").val();
   var tell = $("#modalFabrica .tell").val();
   var fnacimiento = $("#modalFabrica .fnacimiento").val();
+  var infonavit = $("#modalFabrica .infonavit").val();
+  var n1 = $("#modalFabrica .retV").val();
+  var reingresos = $("#modalFabrica .cantidadPago1").val();
 
    
   var estado = $(" #modalFabrica .estado").val();
   var ingreso = $("#modalFabrica .fnacimiento").val();
   var vacaciones = $("#modalFabrica .vacaciones").val();
   var renuncia = $("#modalFabrica .renuncia").val();
-  var reingresos = $("#modalFabrica .reingresos").val();
   var razon = $("#modalFabrica .razon").val();
 
   var solicitud = $("#modalFabrica .solicitud:checked").val();
@@ -27559,7 +28211,7 @@ function addFabrica(){
    
   if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple,n1:n1,infonavit:infonavit, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
     
     addRegistro(json,'empleados', loadFabrica);
   }
@@ -27685,11 +28337,7 @@ var sfc = (scv+1)+"";
 
 }
 }
-
-
-
   }
-
   function addfechaBitacora(){
 var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
 
@@ -29998,12 +30646,13 @@ $('#modalAdministracion').modal('hide');
   var telp = $("#modalAdministracion .telp").val();
   var tell = $("#modalAdministracion .tell").val();
   var fnacimiento = $("#modalAdministracion .fnacimiento").val();
-   
+  var km = $("#modalAdministracion .f_Ahorro").val();
+  var infonavit = $("#modalAdministracion .infonavit").val();
+  var n1 = $("#modalAdministracion .retV").val();
   var estado = $(" #modalAdministracion .estado").val();
   var ingreso = $("#modalAdministracion .fnacimiento").val();
   var vacaciones = $("#modalAdministracion .vacaciones").val();
   var renuncia = $("#modalAdministracion .renuncia").val();
-  var reingresos = $("#modalAdministracion .reingresos").val();
   var razon = $("#modalAdministracion .razon").val();
 
   var solicitud = $("#modalAdministracion .solicitud:checked").val();
@@ -30053,7 +30702,7 @@ antecedentes=1;
 
 //alert(solicitud+ine2+curp2+rfc2+nss+acta+cdomicilio+foto+recomendaciones+licenciac+antecedentes+" test_line:2813");
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, infonavit:infonavit, reingresos:km, n1:n1};
 
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
@@ -30114,7 +30763,9 @@ $('#modalFabrica').modal('hide');
   var ingreso = $("#modalFabrica .fnacimiento").val();
   var vacaciones = $("#modalFabrica .vacaciones").val();
   var renuncia = $("#modalFabrica .renuncia").val();
-  var reingresos = $("#modalFabrica .reingresos").val();
+  var reingresos = $("#modalFabrica .cantidadPago1").val();
+  var infonavit = $("#modalFabrica .infonavit").val();
+  var n1 = $("#modalFabrica .retV").val();
   var razon = $("#modalFabrica .razon").val();
 
   var solicitud = $("#modalFabrica .solicitud:checked").val();
@@ -30164,7 +30815,7 @@ antecedentes=1;
 
 //alert(solicitud+ine2+curp2+rfc2+nss+acta+cdomicilio+foto+recomendaciones+licenciac+antecedentes+" test_line:2813");
 
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
+    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, n1:n1,infonavit:infonavit,  paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes};
 
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
@@ -32549,6 +33200,9 @@ function selectAdministracion12(id){
        $("#modalAdministracion .fincontrato").val(arrGlobal[a].fincontrato);
        $("#modalAdministracion .telp").val(arrGlobal[a].telp);
        $("#modalAdministracion .tell").val(arrGlobal[a].tell);
+       $("#modalAdministracion .f_Ahorro").val(arrGlobal[a].reingresos);
+       $("#modalAdministracion .infonavit").val(arrGlobal[a].infonavit);
+       $("#modalAdministracion .retV").val(arrGlobal[a].n1);
        $("#modalAdministracion .fnacimiento").val(arrGlobal[a].fnacimiento);
        $("#modalAdministracion .tipocontrato").val(arrGlobal[a].tipocontrato);
        $("#modalAdministracion .iniciocontrato").val(arrGlobal[a].iniciocontrato);
@@ -32560,7 +33214,6 @@ function selectAdministracion12(id){
        $("#modalAdministracion .fnacimiento").val(arrGlobal[a].ingreso);
        $("#modalAdministracion .vacaciones").val(arrGlobal[a].vacaciones);
        $("#modalAdministracion .renuncia").val(arrGlobal[a].renuncia);
-       $("#modalAdministracion .reingresos").val(arrGlobal[a].reingresos);
        $("#modalAdministracion .razon").val(arrGlobal[a].razon);
 if(arrGlobal[a].solicitud==1){
   $("#modalAdministracion .solicitud").prop('checked', true);
@@ -32652,8 +33305,10 @@ function selectFabrica12(id){
        $("#modalFabrica .fnacimiento").val(arrGlobal[a].ingreso);
        $("#modalFabrica .vacaciones").val(arrGlobal[a].vacaciones);
        $("#modalFabrica .renuncia").val(arrGlobal[a].renuncia);
-       $("#modalFabrica .reingresos").val(arrGlobal[a].reingresos);
+       $("#modalFabrica .cantidadPago1").val(arrGlobal[a].reingresos);
        $("#modalFabrica .razon").val(arrGlobal[a].razon);
+       $("#modalFabrica .infonavit").val(arrGlobal[a].infonavit);
+       $("#modalFabrica .retV").val(arrGlobal[a].n1);
 if(arrGlobal[a].solicitud==1){
   $("#modalFabrica .solicitud").prop('checked', true);
 }else{
@@ -34006,11 +34661,127 @@ $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>'
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNomina);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNomina);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaPagoFijoNomina);
-
-  
   }
+}
+function closeModalConceoto(){
+  $("#modalConcepto").modal("hide");
+  }
+  function closeModalConceptoAdmon(){
+  $("#modalConceptoAdmon").modal("hide");
+  }
+function modalConcepto(){
+  $("#modalConcepto").modal("show");
+}
+function modalConceptoAdmon(){
+  $("#modalConceptoAdmon").modal("show");
+}
+function addConcepto(){
+    $("#modalConcepto").modal("hide");
+    var n2 = $("#modalConcepto .concepto").val();
+    var n3 = $("#modalConcepto .checkConcepto:checked").val();
+    var idEmpleado=0;
+    var idColumna=1
+columnas = [];
+
+ 
+    if(n3=="on"){
+      n3=1;
+    }
+  if(n3==undefined){
+      n3=0;
+    }
+
+     var json2 = {idEmpleado: 0, idColumna: 1, cantidad: 0, n1:  numSemana, n2: n2, n3: n3};
+    nuevaColumna=n2;
+  var jsonC = {where:{idColumna:1 , n1:numSemana}}
+   addRegistroA(json2,jsonC, 't_nomina', loadColumnas2);
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesFabrica2);
+
+   var jsonC = {where:{idColumna:2 , n1:numSemana}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+  
+}
+var nuevaColumna;
+function addConceptoAdmon(){
+    $("#modalConceptoAdmon").modal("hide");
+    var n2 = $("#modalConceptoAdmon .concepto").val();
+    var n3;
+    var idEmpleado=0;
+    var idColumna=1
+columnas = [];
+
+ 
+    if(n3=="on"){
+      n3=1;
+    }
+  if(n3==undefined){
+      n3=0;
+    }
+
+     var json2 = {idEmpleado: 0, idColumna: 3, cantidad: 0, n1:  numSemana, n2: n2, n3: n3};
+   nuevaColumna=n2;
+  var jsonC = {where:{idColumna:3 , n1:numSemana}}
+   addRegistroA(json2,jsonC, 't_nomina', loadColumnas2);
+   executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon2);
+
+   var jsonC = {where:{idColumna:4 , n1:numSemana}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+}
+
+function delColumna(id){
+  cascada(id);
+columnas = [];
+
+var jsonC = {where:{idColumna:1 , n1:numSemana}}
+   delRegistroA2(id,jsonC,'t_nomina', loadColumnas);
+var jsonC = {where:{idColumna:2 , n1:numSemana}}       
+       executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes3);
+       executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
 
 
+}
+function delColumnaAdmon(id){
+  cascadaAdmon(id);
+columnas = [];
+
+var jsonC = {where:{idColumna:3 , n1:numSemana}}
+   delRegistroA2(id,jsonC,'t_nomina', loadColumnasAdmon);
+var jsonC = {where:{idColumna:4 , n1:numSemana}}       
+       executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes3A);
+       executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+
+}
+function cascada(idCascada){
+           var jsonC = {where:{n2:idCascada}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadAllImportes);
+  var jsonC = {where:{idColumna:2 , n1:numSemana}}
+        var n1= $(".fabricaNomina").val();
+
+       executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+       executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+
+}
+function cascadaAdmon(idCascada){
+           var jsonC = {where:{n2:idCascada}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadAllImportesAdmon);
+  var jsonC = {where:{idColumna:4 , n1:numSemana}}
+       
+
+       executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+       executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+
+}
+function  loadAllImportes(lista){
+ for(var h=0;h<lista.length; h++){
+  var jsonC = {where:{idColumna:1}}
+ delRegistroA2(lista[h].id, jsonC, 't_nomina', loadImportes2);
+   }
+}
+function  loadAllImportesAdmon(lista){
+ for(var h=0;h<lista.length; h++){
+  var jsonC = {where:{idColumna:3}}
+ delRegistroA2(lista[h].id, jsonC, 't_nomina', loadImportes2);
+   }
 }
 function click_nomina(){
  $('.barraIzq').html('');
@@ -34018,18 +34789,15 @@ function click_nomina(){
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  
  $('#contenido').load('/html/mNomina.html');
-   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">TOTALES</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
+   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
    //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">PEDIDOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">MERMA </li>  <span class="border border-warning"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_Degustaciones1(); "> DEGUSTACIONES</li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
      
         document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
-    
-      
 var sfc = (scv+1)+"";
   if(scv != ""){
-
-$('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>');
+$('.tituloPantalla').html('<h3 class="nomina"> NÓMINA VENTAS SEMANA: '+(scv+1)+'</h3>');
       var json = {where:{sfc:sfc}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
@@ -34174,10 +34942,87 @@ function click_Comision(){
  getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
 
 }
+function click_administracionNomina(){
+        // document.getElementById('loader').style.display = 'block';
+      $('.btn-nav').removeClass('hidden');
+      $('.btn-nav').html('<h3> MENÚ  </h3>');
+      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
+      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA ADMINISTRACION SEM: '+(scv+1)+' </h3>');
+      $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span></ul> </div>');
+       // document.getElementById('loader').style.display = 'block';
+      saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+          scv=noSemana;
+var sfc = (scv+1)+"";
+var n1= $(".AdmonNomina").val();
+    if(n1==""){
+n1 = year+"-W"+sfc; 
+    }
+  if(scv != ""){
+    numSemana = n1;
+        var jsonC = {where:{idColumna:4 , n1: numSemana}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+   }
+}
+function click_buscarNominaAdmon(){
+      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
+
+var n1= $(".AdmonNomina").val();
+      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA ADMINISTRACION SEM: '+n1.substring(6,8)+' </h3>');
+    if(n1==""){
+     $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+    }else{
+      numSemana = n1;
+          var jsonC = {where:{idColumna:4 , n1: numSemana}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
+    }
+
+    
+}
+function click_fabricaNomina1(){
+       // document.getElementById('loader').style.display = 'block';
+      $('.btn-nav').removeClass('hidden');
+      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
+
+      $('.btn-nav').html('<h3> MENÚ  </h3>');
+      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA FABRICA SEM: '+(scv+1)+' </h3>');
+      $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span></ul> </div>');
+       // document.getElementById('loader').style.display = 'block';
+      saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+          scv=noSemana;
+var sfc = (scv+1)+"";
+var n1= $(".fabricaNomina").val();
+    if(n1==""){
+n1 = year+"-W"+sfc; 
+    }
+  if(scv != ""){
+    numSemana = n1;
+        var jsonC = {where:{idColumna:2 , n1: numSemana}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+   }
+}
+var numSemana;
+function click_buscarNominaFabrica(){
+      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
+
+var n1= $(".fabricaNomina").val();
+      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA FABRICA SEM: '+n1.substring(6,8)+' </h3>');
+    if(n1==""){
+     $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+    }else{
+      numSemana = n1;
+          var jsonC = {where:{idColumna:2 , n1: numSemana}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+    }
+
+    
+}
+
 function click_creditos(){
      // document.getElementById('loader').style.display = 'block';
 
-  $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion4').load('/html/creditos.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3>');
@@ -34228,6 +35073,7 @@ function click_nMerma(){
 var scv2;
 function click_buscarCreditos1(){
  semana1 = $('.semanac1').val();
+ alert(semana1);
  semana2 = $('.semanac2').val();
   var mes=month-1;
   var dia=day-1;

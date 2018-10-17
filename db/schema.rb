@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181002222001) do
+ActiveRecord::Schema.define(version: 20181008023143) do
+
+  create_table "avisos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "descripcion"
+    t.string   "fecha1"
+    t.string   "fecha2"
+    t.integer  "activo"
+    t.string   "n1"
+    t.string   "n2"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "categoria", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "idCategoria"
@@ -129,6 +140,17 @@ ActiveRecord::Schema.define(version: 20181002222001) do
     t.integer  "activo"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "columnas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "nombre"
+    t.string   "tipo"
+    t.string   "modulo"
+    t.string   "n1"
+    t.string   "n2"
+    t.integer  "activo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "empleados", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -300,6 +322,29 @@ ActiveRecord::Schema.define(version: 20181002222001) do
     t.integer  "activo"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "t_nominas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "idEmpleado"
+    t.string   "idColumna"
+    t.string   "cantidad"
+    t.integer  "activo"
+    t.string   "n1"
+    t.string   "n2"
+    t.string   "n3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "t_venta", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "idProduct"
+    t.string   "nProduct"
+    t.string   "idColumna"
+    t.string   "nColumna"
+    t.integer  "activo"
+    t.string   "n1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tallers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -1,0 +1,2 @@
+class TVentum < ApplicationRecord
+end

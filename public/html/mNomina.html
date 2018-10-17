@@ -17,13 +17,15 @@
             <input class="form-control col-md-3 semanaNomina1" type="week" value="" id="">
             <button class="btn btn-dark form-control col-md-3" onclick="click_buscarNomina1();">BUSCAR</button>
          </div>
-          <div class="row col-md-3">
+         <div class="row col-md-12">
+           <div class="row col-md-3">
     
            <button class="btn btn-info impre totala " value="Imprimir" onclick="faltanteNomina();"  >FALTANTES</button>
-      
-  </div>
+      <br><br>
+  </div> </div>
+         
 
-         <div class="row table-responsive  text-center ">
+         <div class="row table-responsive col-md-12  text-center ">
 
   <table id="" style="display:block;" class="table table-active table-hover table-bordered table-inverse  text-center ">
     <thead class="text-center">
@@ -82,6 +84,7 @@
         <div class="col-md-3">
            <button class="btn btn-warning impre totala " value="Imprimir" onclick="imprimirNomina();"  >IMPRIMIR</button>
         </div>    
+
            </div>
  
 
@@ -173,6 +176,85 @@
       <div role="tabpanel" class="tab-pane seccion7 col-md-12" id="seccion7">
       </div>
       <div role="tabpanel" class="tab-pane seccion8 col-md-12" id="seccion8">
+      </div>
+  <div role="tabpanel" class="fondo tab-pane seccion9 col-md-12" id="seccion9">
+      
+   <div class=" row tamañoEstandarCuadro form-group">
+        <input class=" form-control tamañoEstandar  fabricaNomina" type="week" value="" id="">
+        <button class="btn  btn-dark tamañoEstandar  form-control " onclick="click_buscarNominaFabrica();">BUSCAR</button>
+        <button class="btn  tamañoEstandar btn-warning impre  " value="Imprimir" onclick="imprimirNominaFabrica();"  >IMPRIMIR</button>
+        <button class="btn  tamañoEstandar btn-info impre  " value="Imprimir" onclick="modalConcepto();"  >AGREGAR COLUMNA</button>
+   </div>
+    <br>
+    <br>
+    <div class="row table-responsive   ">
+      <table id="ocultoNominaF" style="display:block;" class="table  table-hover table-bordered table-inverse table-responsive ">
+          <thead class="text-center">
+            <tr style="font-size:15px;" class="letras text-center tituloNominaFabrica">
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="contCataNominaFabrica ventascss" >
+          </tbody>
+      </table>
+    </div>
+    <div id="NominaFabrica" class=" negro " style="display:none;">
+        <div class="text-center controlCP tituloPantalla" style=" font-size:20px;   background: white; "></div>
+     <table id="ocultoNominaFa" class="tablaImprimirVDCT   " style=" width: 650px;   border-collapse: collapse; ">
+          <thead class="text-center">
+            <tr class="text-center tituloNominaFabricaP grisclaro " style="font-size:12px;   ">
+            </tr>
+          </thead>
+          <tbody class="contCataNominaFabricaP " >
+          </tbody>
+     </table>
+      <div id="ocultoImagen2" style="" class="">
+        <img class="ImagenDurango" src="/images/logoD.png" onclick="">
+      </div>
+    </div>
+  </div>
+
+
+<div role="tabpanel" class="tab-pane seccion10 col-md-12 fondo" id="seccion10">
+        
+   <div class=" row tamañoEstandarCuadro form-group">
+        <input class=" form-control tamañoEstandar  AdmonNomina" type="week" value="" id="">
+        <button class="btn  btn-dark tamañoEstandar  form-control " onclick="click_buscarNominaAdmon();">BUSCAR</button>
+        <button class="btn  tamañoEstandar btn-warning impre  " value="Imprimir" onclick="imprimirNominaAdmon();"  >IMPRIMIR</button>
+        <button class="btn  tamañoEstandar btn-info impre  " value="Imprimir" onclick="modalConceptoAdmon();"  >AGREGAR COLUMNA</button>
+   </div>
+    <br>
+    <br>
+    <div class="row table-responsive   ">
+      <table id="ocultoAdmonF" style="display:block;" class="table  table-hover table-bordered table-inverse table-responsive ">
+          <thead class="text-center">
+            <tr style="font-size:15px;" class="letras text-center tituloNominaAdmon">
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="contCataNominaAdmon ventascss" >
+          </tbody>
+      </table>
+    </div>
+    <div id="NominaAdmon" class=" negro " style="display:none;">
+        <div class="text-center controlCP tituloPantalla col-md-12" style=" font-size:10px;   background: white; "></div>
+     <table id="ocultoNominaAdmon" class="tablaImprimirVDCT   " style=" width: 650px;   border-collapse: collapse; ">
+          <thead class="text-center">
+            <tr class="text-center tituloNominaAdmonP grisclaro " style="font-size:12px;   ">
+            </tr>
+          </thead>
+          <tbody class="contCataNominaAdmonP " >
+          </tbody>
+     </table>
+      <div id="ocultoImagen2" style="" class="">
+        <img class="ImagenDurango" src="/images/logoD.png" onclick="">
+      </div>
+    </div>
+
+
+
+
+
       </div>
     </div>
     <br>

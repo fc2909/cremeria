@@ -1,0 +1,2 @@
+class TVentaController < ApplicationController
+end

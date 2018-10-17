@@ -34941,7 +34941,7 @@ function click_administracionNomina(){
       $('.btn-nav').removeClass('hidden');
       $('.btn-nav').html('<h3> MENÚ  </h3>');
       $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
-      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA ADMINISTRACION SEM: '+(scv+1)+' </h3>');
+      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA ADMON SEM: '+(scv+1)+' </h3>');
       $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span></ul> </div>');
        // document.getElementById('loader').style.display = 'block';
       saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -34961,7 +34961,7 @@ function click_buscarNominaAdmon(){
       $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
 
 var n1= $(".AdmonNomina").val();
-      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA ADMINISTRACION SEM: '+n1.substring(6,8)+' </h3>');
+      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA ADMON SEM: '+n1.substring(6,8)+' </h3>');
     if(n1==""){
      $('#modal .textModal').html('Seleccione una semana.'); 
       $('#modal').modal('show');

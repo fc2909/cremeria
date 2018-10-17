@@ -34905,6 +34905,7 @@ $('.tituloPantalla').html('<h3 class="nomina"> MANUAL NOMINA </h3>');
 function manualEmpleados(){
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
+ alert("Pass");
  $('#contenido').load('/html/manualEmpleados.html');
 $('.tituloPantalla').html('<h3 class="nomina"> MANUAL EMPLEADOS </h3>');
 }

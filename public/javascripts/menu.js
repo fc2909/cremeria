@@ -1117,6 +1117,19 @@ function ventaDiariaCPrint(){
         document.getElementById('fondoBlanco').style.display = 'none';
 
 }
+function ExcelventaDiariaCPrint(){
+
+        document.getElementById('ocultoVDC').style.display = 'block';
+        document.getElementById('ocultoVDCT').style.display = 'block';
+        
+    var controlC = 'VENTA DIARIA (SEMANA: '+(scv+1)+')';
+        $('.controlCP').html(controlC);
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#ventaDiariaExcel').html()));
+         
+        document.getElementById('ocultoVDC').style.display = 'none';
+        document.getElementById('ocultoVDCT').style.display = 'none';
+
+}
 function ventaGeneralPrint(){
           document.getElementById('ocultoVGT').style.display = 'block';
         document.getElementById('ocultoVGTT').style.display = 'block';
@@ -1148,6 +1161,7 @@ function mermaGeneralPrint(){
 
 }
 function imprimirNomina(){
+        document.getElementById('nomina').style.display = 'block';
         document.getElementById('ocultoNominaO').style.display = 'none';
         document.getElementById('ocultoNomina').style.display = 'block';
         document.getElementById('ocultoNominaT').style.display = 'block';
@@ -1162,13 +1176,32 @@ function imprimirNomina(){
         document.getElementById('ocultoNominaT').style.display = 'none';
         document.getElementById('ocultoImagen2').style.display = 'none';
         document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('nomina').style.display = 'none';
+
+
+}
+function ExcelNomina(){
+        document.getElementById('nomina').style.display = 'block';
+        document.getElementById('ocultoNominaO').style.display = 'none';
+        document.getElementById('ocultoNomina').style.display = 'block';
+        document.getElementById('ocultoNominaT').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        
+    var controlC = 'NOMINA (SEMANA: '+(scv+1)+')';
+        $('.controlCP').html(controlC);
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#nomina').html()));
+        
+        document.getElementById('ocultoNominaO').style.display = 'block';
+        document.getElementById('ocultoNomina').style.display = 'none';
+        document.getElementById('ocultoNominaT').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('nomina').style.display = 'none';
 
 }
 
 function imprimirRCreditos(){
+        document.getElementById('creditosNomina').style.display = 'block';
         document.getElementById('creditosReporte').style.display = 'none';
-        document.getElementById('ocultoCreditos').style.display = 'block';
-        document.getElementById('ocultoCreditosT').style.display = 'block';
         document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
@@ -1176,13 +1209,51 @@ function imprimirRCreditos(){
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte').style.display = 'block';
-        document.getElementById('ocultoCreditos').style.display = 'none';
-        document.getElementById('ocultoCreditosT').style.display = 'none';
         document.getElementById('ocultoImagen2').style.display = 'none';
         document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('creditosNomina').style.display = 'none';
+
+}
+function ExcelNominaCredits(){
+        document.getElementById('creditosNomina').style.display = 'blok';
+        document.getElementById('creditosReporte').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        document.getElementById('creditosNomina').style.display = 'none';
+
+        
+    var controlC = 'CREDITOS  (SEMANAS: '+scv+' - '+scv2+')';
+        $('.controlCP').html(controlC);
+
+   
+
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#creditosNomina').html())); 
+        document.getElementById('creditosReporte').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('creditosNomina').style.display = 'none';
+
+}
+
+
+function ExcelNominaBonificacion(){
+        document.getElementById('creditosReporte2').style.display = 'none';
+        document.getElementById('bonificacion').style.display = 'block';
+        document.getElementById('ocultoBonificacion').style.display = 'block';
+        document.getElementById('ocultoBonificacionT').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        
+    var controlC = 'BONIFICACION (SEMANAS: '+scv+' - '+scv2+')';
+        $('.controlCP').html(controlC);
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#bonificacion').html())); 
+        document.getElementById('creditosReporte2').style.display = 'block';
+        document.getElementById('ocultoBonificacion').style.display = 'none';
+        document.getElementById('ocultoBonificacionT').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('bonificacion').style.display = 'none';
 
 }
 function imprimirRBonificacion(){
+        document.getElementById('bonificacion').style.display = 'block';
+
         document.getElementById('creditosReporte2').style.display = 'none';
         document.getElementById('ocultoBonificacion').style.display = 'block';
         document.getElementById('ocultoBonificacionT').style.display = 'block';
@@ -1197,6 +1268,7 @@ function imprimirRBonificacion(){
         document.getElementById('ocultoBonificacionT').style.display = 'none';
         //document.getElementById('ocultoImagen2').style.display = 'none';
         document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('bonificacion').style.display = 'none';
 
 }
 function  printRemision(){
@@ -1211,6 +1283,8 @@ function  printRemision(){
 
 }
 function imprimirRVenta(){
+        document.getElementById('venta').style.display = 'block';
+
         document.getElementById('creditosReporte3').style.display = 'none';
         document.getElementById('ocultoVentaN').style.display = 'block';
         document.getElementById('ocultoVentaNT').style.display = 'block';
@@ -1225,9 +1299,31 @@ function imprimirRVenta(){
         document.getElementById('ocultoVentaNT').style.display = 'none';
         //document.getElementById('ocultoImagen2').style.display = 'none';
         document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('venta').style.display = 'none';
+
+}
+function ExcelNominaVenta(){
+        document.getElementById('creditosReporte3').style.display = 'none';
+        document.getElementById('venta').style.display = 'block';
+        document.getElementById('ocultoVentaN').style.display = 'block';
+        document.getElementById('ocultoVentaNT').style.display = 'block';
+       // document.getElementById('ocultoImagen2').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        
+    var controlC = 'VENTA (SEMANAS: '+scv+' - '+scv2+')';
+        $('.controlCP').html(controlC);
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#venta').html())); 
+        document.getElementById('creditosReporte3').style.display = 'block';
+        document.getElementById('ocultoVentaN').style.display = 'none';
+        document.getElementById('ocultoVentaNT').style.display = 'none';
+        //document.getElementById('ocultoImagen2').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('venta').style.display = 'none';
 
 }
 function imprimirRMerma(){
+        document.getElementById('merma').style.display = 'block';
+
         document.getElementById('creditosReporte4').style.display = 'none';
         document.getElementById('ocultoMermaN').style.display = 'block';
         document.getElementById('ocultoMermaNT').style.display = 'block';
@@ -1242,13 +1338,30 @@ function imprimirRMerma(){
         document.getElementById('ocultoMermaNT').style.display = 'none';
         //document.getElementById('ocultoImagen2').style.display = 'none';
         document.getElementById('fondoBlanco').style.display = 'none';
-}
+        document.getElementById('merma').style.display = 'none';
 
+}
+function ExcelNominaMerma(){
+        document.getElementById('creditosReporte4').style.display = 'none';
+        document.getElementById('merma').style.display = 'block';
+        document.getElementById('ocultoMermaN').style.display = 'block';
+        document.getElementById('ocultoMermaNT').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+    var controlC = 'MERMA (SEMANAS: '+scv+' - '+scv2+')';
+        $('.controlCP').html(controlC);
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#merma').html())); 
+        document.getElementById('creditosReporte4').style.display = 'block';
+        document.getElementById('ocultoMermaN').style.display = 'none';
+        document.getElementById('ocultoMermaNT').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('merma').style.display = 'none';
+
+}
 function imprimirRNoVenta(){
+        document.getElementById('noventa').style.display = 'block';
         document.getElementById('creditosReporte55').style.display = 'none';
         document.getElementById('ocultoNoVenta').style.display = 'block';
         document.getElementById('ocultoNoVentaT').style.display = 'block';
-       // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
     var controlC = '% NO VENTA (SEMANAS: '+scv+' - '+scv2+')';
@@ -1257,8 +1370,26 @@ function imprimirRNoVenta(){
         document.getElementById('creditosReporte55').style.display = 'block';
         document.getElementById('ocultoNoVenta').style.display = 'none';
         document.getElementById('ocultoNoVentaT').style.display = 'none';
-        //document.getElementById('ocultoImagen2').style.display = 'none';
         document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('noventa').style.display = 'none';
+
+}
+function ExcelNominaNoVenta(){
+        document.getElementById('creditosReporte55').style.display = 'none';
+        document.getElementById('noventa').style.display = 'block';
+        document.getElementById('ocultoNoVenta').style.display = 'block';
+        document.getElementById('ocultoNoVentaT').style.display = 'block';
+        document.getElementById('fondoBlanco').style.display = 'block';
+        
+    var controlC = '% NO VENTA (SEMANAS: '+scv+' - '+scv2+')';
+        $('.controlCP').html(controlC);
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#noventa').html())); 
+        document.getElementById('creditosReporte55').style.display = 'block';
+        document.getElementById('ocultoNoVenta').style.display = 'none';
+        document.getElementById('ocultoNoVentaT').style.display = 'none';
+        document.getElementById('fondoBlanco').style.display = 'none';
+        document.getElementById('noventa').style.display = 'none';
+
 }
 function imprimirProductosT(){
         document.getElementById('creditosReporte55').style.display = 'none';
@@ -34642,6 +34773,8 @@ var sfc = (scv+1)+"";
 }
 
 function nomina(){
+      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNomina()"  >Descargar Excel</button>');
+
   document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
@@ -34941,7 +35074,7 @@ function click_administracionNomina(){
       $('.btn-nav').removeClass('hidden');
       $('.btn-nav').html('<h3> MENÚ  </h3>');
       $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
-      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA ADMON SEM: '+(scv+1)+' </h3>');
+      $('.tituloPantalla').html('<h3 class="nomina"> NOMINA ADMON SEM: '+(scv+1)+' </h3>');
       $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span></ul> </div>');
        // document.getElementById('loader').style.display = 'block';
       saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -34961,7 +35094,7 @@ function click_buscarNominaAdmon(){
       $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
 
 var n1= $(".AdmonNomina").val();
-      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA ADMON SEM: '+n1.substring(6,8)+' </h3>');
+      $('.tituloPantalla').html('<h3 class="nomina"> NOMINA ADMON SEM: '+n1.substring(6,8)+' </h3>');
     if(n1==""){
      $('#modal .textModal').html('Seleccione una semana.'); 
       $('#modal').modal('show');
@@ -34979,7 +35112,7 @@ function click_fabricaNomina1(){
       $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
 
       $('.btn-nav').html('<h3> MENÚ  </h3>');
-      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA FABRICA SEM: '+(scv+1)+' </h3>');
+      $('.tituloPantalla').html('<h3 class="nomina"> NOMINA FABRICA SEM: '+(scv+1)+' </h3>');
       $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span></ul> </div>');
        // document.getElementById('loader').style.display = 'block';
       saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -35000,7 +35133,7 @@ function click_buscarNominaFabrica(){
       $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
 
 var n1= $(".fabricaNomina").val();
-      $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA FABRICA SEM: '+n1.substring(6,8)+' </h3>');
+      $('.tituloPantalla').html('<h3 class="nomina"> NOMINA FABRICA SEM: '+n1.substring(6,8)+' </h3>');
     if(n1==""){
      $('#modal .textModal').html('Seleccione una semana.'); 
       $('#modal').modal('show');
@@ -35015,7 +35148,8 @@ var n1= $(".fabricaNomina").val();
 
 function click_creditos(){
      // document.getElementById('loader').style.display = 'block';
-
+  $('.superior').html('');
+  
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion4').load('/html/creditos.html');
@@ -35025,7 +35159,8 @@ function click_creditos(){
 }
 function click_bonificacion(){
      // document.getElementById('loader').style.display = 'block';
-
+  $('.superior').html('');
+  
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion5').load('/html/bonificacion.html');
@@ -35035,7 +35170,8 @@ function click_bonificacion(){
 }
 function click_ventaN(){
      // document.getElementById('loader').style.display = 'block';
-
+  $('.superior').html('');
+  
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion6').load('/html/ventaNomina.html');
@@ -35045,7 +35181,8 @@ function click_ventaN(){
 }
 function click_noVenta(){
      // document.getElementById('loader').style.display = 'block';
-
+  $('.superior').html('');
+  
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion7').load('/html/noVenta.html');
@@ -35056,7 +35193,8 @@ function click_noVenta(){
 
 function click_nMerma(){
      // document.getElementById('loader').style.display = 'block';
-
+  $('.superior').html('');
+  
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion8').load('/html/nMerma.html');
@@ -35066,8 +35204,8 @@ function click_nMerma(){
 }
 var scv2;
 function click_buscarCreditos1(){
+   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaCredits()" download="Creditos.xls" ><br>Descargar Excel</button>');
  semana1 = $('.semanac1').val();
- alert(semana1);
  semana2 = $('.semanac2').val();
   var mes=month-1;
   var dia=day-1;
@@ -35109,6 +35247,8 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
    
 }
 function click_buscarBonificacion1(){
+   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaBonificacion()" download="Creditos.xls" ><br>Descargar Excel</button>');
+
  semana1 = $('.semanac1B').val();
  semana2 = $('.semanac2B').val();
   var mes=month-1;
@@ -35150,6 +35290,8 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
        document.getElementById('loader').style.display = 'block'; 
 }
 function click_buscarVenta1(){
+   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaVenta()" download="Creditos.xls" ><br>Descargar Excel</button>');
+
  semana1 = $('.semanac1V').val();
  semana2 = $('.semanac2V').val();
   var mes=month-1;
@@ -35193,6 +35335,8 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 }
 
 function click_buscaMerma1(){
+   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaMerma()" download="Creditos.xls" ><br>Descargar Excel</button>');
+
  semana1 = $('.semanac1M').val();
  semana2 = $('.semanac2M').val();
   var mes=month-1;
@@ -35235,6 +35379,7 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
    
 }
 function click_buscarnoVenta1(){
+   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaNoVenta()" download="Creditos.xls" ><br>Descargar Excel</button>');
  
  semana1 = $('.semanac1NV').val();
  semana2 = $('.semanac2NV').val();
@@ -35488,7 +35633,7 @@ function ventaDiariaC3(){
   document.getElementById('loader').style.display = 'block';
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
-  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3>');
+  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button> <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></div><h3 class="text-center impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3>');
   $('.contenidoR').load('/html/ventaDiariaC.html');
 var sfc = (scv+1)+"";
 
@@ -35791,7 +35936,7 @@ if(semanaVS!=""){
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
   
-  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div> <button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button> </div> <h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
+  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div> <button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button>  <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></div></div> <h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
 var sfc = (scv+1);
 
   if(scv != ""){

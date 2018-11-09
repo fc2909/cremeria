@@ -1649,8 +1649,7 @@ function loadEmpleadosFabrica(lista){
          arrEmpleadosFabrica=lista;
         var base = [];
          for(var h=0;h<lista.length; h++){
-        
-        if(lista[h].tipo==100){     
+        if(lista[h].tipo==100&&lista[h].estado==1){     
 
         //html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this);" ><td>' +  lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple +'</td> <td>' +  lista[h].reingresos +'</td>  <td>' +  lista[h].infonavit +'</td> <td>' +  lista[h].n1 +'</td>  </tr>';
 var array2 = [];
@@ -1668,11 +1667,9 @@ function loadEmpleadosAdmon(lista){
        arrEmpleadosAdmon=lista;
         var base = [];
          for(var h=0;h<lista.length; h++){
-        
-         if(lista[h].tipo != 2&&lista[h].tipo != 100&&lista[h].km != "F"){   
-
+         if(lista[h].tipo != 2&&lista[h].tipo != 100&&lista[h].km != "F"&&lista[h].estado==1){   
         //html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this);" ><td>' +  lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple +'</td> <td>' +  lista[h].reingresos +'</td>  <td>' +  lista[h].infonavit +'</td> <td>' +  lista[h].n1 +'</td>  </tr>';
-var array2 = [];
+        var array2 = [];
         var array ={idEmpleado:lista[h].id ,nombre: lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple, importe: lista[h].reingresos, infonavit: lista[h].infonavit, prestamo: lista[h].n1, semana: (scv+1), amio: year, columnas:columnas, importes:array2};
         base.push(array); 
         }
@@ -2094,9 +2091,10 @@ function loadColumnas(lista){
         
          for(var h=0;h<lista.length; h++){
 
-          htmlT += '<th>'+lista[h].n2+'<span style="color:red;" class="seleccionar" onClick="delColumna('+lista[h].id+')" aria-hidden="true">&times;</span></th>';
+     htmlT += '<th>'+lista[h].n2+'<span style="color:red;" class="seleccionar" onClick="delColumna('+lista[h].id+')" aria-hidden="true">&times;</span></th>';
           htmlTP += '<th class="text-center">'+lista[h].n2+'</th>';
           columnas.push({id:lista[h].id, nombre: lista[h].n2, suma: lista[h].n3})
+
          }
 htmlT+='<th>TOTAL</th>'
 htmlTP+='<th class="text-center">TOTAL</th>'
@@ -2551,6 +2549,47 @@ selectCategoria +='</select>';
 $('.cate').html(selectCategoria);
         document.getElementById('loader').style.display = 'none';
 
+}
+function loadInventarioTVenta(lista){
+
+
+        var html = '';
+        var num=0;
+        for(var h=0;h<lista.length; h++){
+          var categoria="-----";
+          for(var j=0;j<arrGlobalCategoria.length; j++){
+            if(lista[h].tipoP==arrGlobalCategoria[j].id){
+
+             categoria=arrGlobalCategoria[j].nombre;
+
+            }
+          }
+          num++;
+          var may ="";
+          var rest ="";
+          var fora ="";
+          var det ="";
+          if (lista[h].mayoreo==0) may=' <td style="background:red">' + lista[h].mayoreo + '</td> '; else may=' <td style="">' + lista[h].mayoreo + '</td> ';
+          if (lista[h].restaurante==0) rest =' <td style="background:red">' + lista[h].restaurante + '</td> '; else rest=' <td style="">' + lista[h].restaurante + '</td> ';
+          if (lista[h].foraneo==0) fora=' <td style="background:red">' + lista[h].foraneo + '</td> '; else fora=' <td style="">' + lista[h].foraneo + '</td> ';
+          if (lista[h].detalle==0) det=' <td style="background:red">' + lista[h].detalle + '</td> '; else det=' <td style="">' + lista[h].detalle + '</td> ';
+          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); modalInventarioC('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>'+num+'</td><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td>'+may+rest+fora+det+'</tr>';
+          }
+          $('.contCataTVenta').html(html);
+          //arrGlobal = lista;
+          var selectCategoria= '<label class="letras">CATEGORÍA</label><select name="selectCat" id="selC" class="selectCategoria col-md-8 form-control"><option value="0"></option>'
+
+for(var h=0;h<arrGlobalCategoria.length; h++)
+selectCategoria+= ' <option value="'+arrGlobalCategoria[h].id+'">' +arrGlobalCategoria[h].nombre +'</option>';
+    
+selectCategoria +='</select>';
+
+$('.cate').html(selectCategoria);
+        document.getElementById('loader').style.display = 'none';
+
+}
+function modalInventarioC(id){
+alert("here");
 }
 function loadInventario2(lista){
         
@@ -26045,18 +26084,15 @@ function loadVDiaria(lista){
         document.getElementById('loader').style.display = 'none';
                   $('.ventaDiariaSemanal').html(htmlp);
 }
+var newCarga= true;
 function loadVentas(lista){
+  newCarga=true;
               var html = '';
               var htmlm = '';
               var htmlp = '';
               var no=1;
                   total_merc =0;
               var imprimir = '<li class="impre imprimirList text-center"  onclick="pagare(); ">IMPRIMIR </li>  ';
-               
-
-
-
-
               var num=0;
               for(var h=0;h<lista.length; h++){
                 if(rutas==lista[h].ruta && today_v == lista[h].fechadespachof){
@@ -26067,7 +26103,7 @@ function loadVentas(lista){
                   if(lista[h].merma==1){
                         htmlm+= '<tr class="seleccionar" id ="'+h+'" onclick="selectVentas('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" style="background: red;" data-id="'+ lista[h].id +'"><td>' + lista[h].horadespacho + '</td><td>' + lista[h].idProducto + '</td><td style="color:red;">' + lista[h].descripcionventa + ' (MERMA)</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda2(lista[h].peso) + '</td><td> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) +'</td></tr>';
                   }else{
-                        
+                        newCarga=false;
                         html+= '<tr class="seleccionar" id ="'+h+'" onclick="cambiarcolor(this); selectVentas('+ lista[h].id +', '+lista[h].valorMercancia+', '+h+')" data-id="'+ lista[h].id +'"><td>' + lista[h].horadespacho + '</td><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda1(lista[h].peso) + '</td><td> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) +'</td></tr>';
                         htmlp+= '<tr class=" " style="font-size:8px;"><td class="text-center">' + no + '</td><td class="text-center">' + lista[h].horadespacho + '</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td class="text-right">' +formatoMoneda1(lista[h].peso) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"><strong> $ ' + formatoMoneda1(lista[h].valorMercancia) +'<strong></td></tr>';
                         total_merc =parseFloat(total_merc) + parseFloat(lista[h].valorMercancia);
@@ -27193,7 +27229,7 @@ function loadVentaDiariaR(lista){
               ruta3=arrGlobalRuta[i].nombre;
             }
           }
-              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td><td onClick=""><button class="btn btn-warning" onclick="rutasRP('+ lista[h].ruta+', '+h+'); ">IMPRIMIR</button></td></tr>';
+              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td><td onClick=""><button class="btn btn-warning" onclick="rutasRP('+ lista[h].ruta+', '+h+'); ">IMPRIMIR</button> <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></td></tr>';
         }
               $('.contCataR').html(html); 
               arrGlobal2 = lista;
@@ -28716,16 +28752,13 @@ if(noSemana==52&&dc==6){
    var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2};
 
 
-  if(num==0 && num2==0){
-
+  if(num==0 && num2==0&&newCarga){
  $('.addV').html('');
     document.getElementById('loader').style.display = 'block';
    var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2, t_venta_merca: t_venta_merca, n2:n2};
 var jsonC = {where:{ruta:rutas, fechaf: today_v}}
    addRegistroA2(json2, jsonC, 'ventaspasada', loadVentasp33);
-          
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp33);
-   
    //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp);
 
 num2=1;
@@ -34096,11 +34129,18 @@ function click_inventario(){
  //$('.seccion1').html('/html/inventario.html');
  $('.tituloPantalla').html('<h3 class="inventario"> INVENTARIO </h3>');
 // $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">INVENTARIO</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-success"></span></ul> </div>');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">INVENTARIO</li> <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-white"></span> <li role="presentation" actived class="impre productosList text-center" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_TVenta();">T. VENTA</li> <span class="border border-white"></span> </ul>   </div>');
           
 
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
+}
+function click_TVenta(){
+
+
+  $('#modal .textModal').html('Modulo en construccion. '); 
+              $('#modal').modal('show');
+ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioTVenta);
 }
 
 function click_Categorias(){
@@ -34108,8 +34148,9 @@ function click_Categorias(){
   $('.btn-nav').removeClass('hidden');
   $('.btn-nav').html('<h3> MENÚ  </h3>');
   $('.seccion2').load('/html/categoria.html');
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">INVENTARIO</li> <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-white"></span> <li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_TVenta();">T. VENTA</li> <span class="border border-white"></span> </ul>   </div>');
 
-  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); ">INVENTARIO</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-success"></span></ul> </div>');
+//  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); ">INVENTARIO</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-success"></span></ul> </div>');
 
  getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias);
 
@@ -34228,18 +34269,11 @@ function click_Pedidos1(){
 function click_Despacho(){
         document.getElementById('loader').style.display = 'block';
 
-  $('.btn-nav').removeClass('hidden');
+ $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion2').load('/html/salida_venta.html');
-   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar()">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <s<div class="imprimir"></div></ul> </div>');
-
-
+ $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar()">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <s<div class="imprimir"></div></ul> </div>');
 var fecha = $(".selectfecha").val(); 
-
-
-
-
-
 var dia= ""+day+"";
 if(dia.length == 1){
   dia = "0"+dia;
@@ -34248,19 +34282,14 @@ var mes= ""+month+"";
 if(mes.length == 1){
   mes = "0"+mes;
 }
-
 today_v = year+'-'+mes+'-'+dia;
-
 if( fecha == NaN || fecha == undefined || fecha == "" || fecha == today_v){
   //alert(today_v+"hey");
-  day2 = today_v.substring(8,10);
+ day2 = today_v.substring(8,10);
  month2 = today_v.substring(5,7);
  year2 = today_v.substring(0,4);
-
-   getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDays);
-   
+   getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadDays); 
 $('.tituloPantalla').html('<h3 class="ventas impre"> DESPACHO </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>');   
-
 }else{
  today_v = fecha; 
  day2 = fecha.substring(8,10);
@@ -37499,8 +37528,15 @@ function modalInventario(){
 
       $('#modalInventario').modal('show');
      updateListaModal();
-
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+
+}
+function modalTVenta(){
+      $('#modalTventa').modal('show');
+}
+function agregarTVenta(){
+alert("XD");
+      $('#modalTventa').modal('hide');
 
 }
 function modalVentas1(){

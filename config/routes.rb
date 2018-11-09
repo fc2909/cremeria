@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :permisos
   resources :bitacoras
   resources :t_nomina
+  resources :t_venta
   resources :columnas
   resources :logs
   resources :pagares

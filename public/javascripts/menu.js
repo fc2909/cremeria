@@ -2103,6 +2103,31 @@ htmlTP+='<th class="text-center">TOTAL</th>'
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleadosFabrica);
 
 }
+var datosTVenta;
+function loadDatosTVenta(lista){
+   datosTVenta = lista;
+}
+
+function loadColumnasTVenta(lista){
+          var htmlT = `<th class="letras">ID</th>
+                      <th class="letras">NOMBRE</th>
+                      <th class="letras">MAYOREO</th>
+                      <th class="letras">RESTAURANTE</th>
+                      <th class="letras">FORÁNEO</th>
+                      <th class="letras">DETALLE</th>`;
+         columnas = [];
+        
+         for(var h=0;h<lista.length; h++){
+
+     htmlT += '<th>'+lista[h].nColumna+'<span style="color:red;" class="seleccionar" onClick="delColumnaTV('+lista[h].id+')" aria-hidden="true">&times;</span></th>';
+          columnas.push({id:lista[h].id, nombre: lista[h].nColumna});
+         }
+          $('.titulo').html(htmlT);
+ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioTVenta);
+
+//getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleadosFabrica);
+
+}
 function loadColumnasAdmon(lista){
           var htmlT = '<th>EMPLEADOS</th><th>IMPORTE</th><th>INFONAVIT</th><th>PRESTAMO</th>';
           var htmlTP = '<th class="text-center">EMPLEADOS</th><th class="text-center">IMPORTE</th><th class="text-center">INFONAVIT</th><th class="text-center">PRESTAMO</th>';
@@ -2126,18 +2151,25 @@ function loadImportes(lista){
       importeFabricaN =lista;
          var jsonC2 = {where:{idColumna:1 , n1:numSemana}}
       executeFunctionDone(jsonC2, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadColumnas);
+}
+var tventaInventario;
+function loadTVenta(lista){
+      $('#modalTNomima').modal('hide');
+     tventaInventario =lista;
+         var jsonC = {where:{idColumna:1}}
+      executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadColumnasTVenta);
+        var jsonC = {where:{idColumna:2}}
+      executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadDatosTVenta);
 
 }
 function loadImportesAdmon(lista){
       $('#modalNominaImportes').modal('hide');
-      
       importeAdmonN =lista;
-
          var jsonC2 = {where:{idColumna:3 , n1:numSemana}}
       executeFunctionDone(jsonC2, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadColumnasAdmon);
-
 }
 function loadImportesAdmon2(lista){
+
        for(var h=0;h<lista.length; h++){ 
         
           if(lista[h].n2==nuevaColumna){
@@ -2176,6 +2208,26 @@ var json2 = {idEmpleado: arrEmpleadosFabrica[f].id, idColumna: 2, cantidad: 0, n
    
 
 }
+function loadTVenta2(lista){
+
+       for(var h=0;h<lista.length; h++){ 
+          if(lista[h].nColumna==nuevaColumna){
+       for(var f=0;f<arrGlobalInventario.length; f++){ 
+          
+var json2 = {idProduct: arrGlobalInventario[f].idInventario, nProduct:0, idColumna: 2, n1: lista[h].id};
+          var jsonC = {where:{idColumna:2}};
+          addRegistroA(json2,jsonC, 't_venta', loadImportes2);
+         
+               }
+          }
+        }
+         
+        var jsonC = {where:{idColumna:2 }}
+      executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadTVenta);
+
+   
+
+}
 function loadImportes2(lista){
 }
 function loadImportes3(lista){
@@ -2183,6 +2235,9 @@ function loadImportes3(lista){
 }
 function loadImportes3A(lista){
   importeAdmonN =lista;
+}
+function loadTV3(lista){
+  tventaInventario =lista;
 }
 function loadNotas(lista){
         var html = '';
@@ -2551,17 +2606,13 @@ $('.cate').html(selectCategoria);
 
 }
 function loadInventarioTVenta(lista){
-
-
         var html = '';
         var num=0;
         for(var h=0;h<lista.length; h++){
           var categoria="-----";
           for(var j=0;j<arrGlobalCategoria.length; j++){
             if(lista[h].tipoP==arrGlobalCategoria[j].id){
-
              categoria=arrGlobalCategoria[j].nombre;
-
             }
           }
           num++;
@@ -2573,7 +2624,15 @@ function loadInventarioTVenta(lista){
           if (lista[h].restaurante==0) rest =' <td style="background:red">' + lista[h].restaurante + '</td> '; else rest=' <td style="">' + lista[h].restaurante + '</td> ';
           if (lista[h].foraneo==0) fora=' <td style="background:red">' + lista[h].foraneo + '</td> '; else fora=' <td style="">' + lista[h].foraneo + '</td> ';
           if (lista[h].detalle==0) det=' <td style="background:red">' + lista[h].detalle + '</td> '; else det=' <td style="">' + lista[h].detalle + '</td> ';
-          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); modalInventarioC('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>'+num+'</td><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td>'+may+rest+fora+det+'</tr>';
+          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); modalInventarioC2('+ lista[h].id +', '+lista[h].idInventario+')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td>'+may+rest+fora+det;
+
+          for(var i=0;i<datosTVenta.length; i++){
+            
+                  if (datosTVenta[i].idProduct==lista[h].idInventario){
+                  if (datosTVenta[i].nProduct==0) html += ' <td style="background:red">' + datosTVenta[i].nProduct + '</td> '; else html +=' <td style="">' + datosTVenta[i].nProduct + '</td> ';
+                  }
+          }
+          html += '</tr>';
           }
           $('.contCataTVenta').html(html);
           //arrGlobal = lista;
@@ -2589,7 +2648,97 @@ $('.cate').html(selectCategoria);
 
 }
 function modalInventarioC(id){
-alert("here");
+$('#modalTVenta').modal('show')
+}
+function modalInventarioC2(id, idP){
+var html = `
+<h3 class="text-center">TIPO DE VENTA</h3>
+      <div class="col-md-12 text-center">
+              <label >MAYOREO</label>
+              <input   type="number" pattern="[0-9]{10}" class="t_ventaM text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label >RESTAURANTE</label>
+              <input   type="number" pattern="[0-9]{10}" class="t_ventaR text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label >DETALLE FORANEO</label>
+              <input   type="number" pattern="[0-9]{10}" class="t_ventaF text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label >DETALLE</label>
+              <input   type="number" pattern="[0-9]{10}" class="t_ventaD text-center totala">
+                
+              </div>
+`;
+var html2 = `
+<h3 class="text-center">COMISIÓN</h3>
+      <div class="col-md-12 text-center">
+              <label >MAYOREO</label>
+              <input   type="number" pattern="[0-9]{10}" class="t_ventaCM text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label >RESTAURANTE</label>
+              <input   type="number" pattern="[0-9]{10}" class="t_ventaCR text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label >DETALLE FORANEO</label>
+              <input  type="number" pattern="[0-9]{10}" class="t_ventaCF text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label >DETALLE</label>
+              <input   type="number" pattern="[0-9]{10}" class="t_ventaCD text-center totala">
+                
+              </div>
+`;
+var html3 = `
+<h3 class="text-center">CATEGORIA</h3>
+      <div class="col-md-12 text-center categoria">
+              <label >tipo</label>
+              <input   type="number" pattern="[0-9]{10}" class="t_venta text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label  >SUMA</label>                
+              <input id="suma" type="checkbox" value="1" onclick="clickSumacategoria(this)" class=" form-control">
+              </div>
+              <div class="ischecked"></div>
+             
+`;
+
+$('#modalTventaDatos').modal('show');
+
+$('#modalTventaDatos .textModal').html(html);
+$('#modalTventaDatos .textModal2').html(html2);
+$('#modalTventaDatos .textModal3').html(html3);
+$('#modalTventaDatos .tituloTV').html(idP);
+
+ for(var h=0;h<arrGlobalInventario.length; h++){
+   if(arrGlobalInventario[h].idInventario==idP){
+            $('#modalTventaDatos .t_ventaM').val(arrGlobalInventario[h].mayoreo)
+            $('#modalTventaDatos .t_ventaR').val(arrGlobalInventario[h].restaurante)
+            $('#modalTventaDatos .t_ventaF').val(arrGlobalInventario[h].foraneo)
+            $('#modalTventaDatos .t_ventaD').val(arrGlobalInventario[h].detalle)
+            $('#modalTventaDatos .t_ventaCM').val(arrGlobalInventario[h].mayoreo)
+            $('#modalTventaDatos .t_ventaCR').val(arrGlobalInventario[h].mayoreo)
+            $('#modalTventaDatos .t_ventaCF').val(arrGlobalInventario[h].mayoreo)
+            $('#modalTventaDatos .t_ventaCD').val(arrGlobalInventario[h].mayoreo)
+  }
+}
+}
+function clickSumacategoria(value){
+  $(document).on('change','input[type="checkbox"]' ,function(e) {
+    if(this.id=="suma") {
+        if(this.checked) alert(this.value);
+        else alert("");
+    }
+   });
 }
 function loadInventario2(lista){
         
@@ -34136,13 +34285,13 @@ function click_inventario(){
 
 }
 function click_TVenta(){
-
-
   $('#modal .textModal').html('Modulo en construccion. '); 
               $('#modal').modal('show');
- getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioTVenta);
+ //getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioTVenta);
+    var jsonC = {where:{idColumna:2}}
+      executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadTVenta);
+   
 }
-
 function click_Categorias(){
   document.getElementById('loader').style.display = 'block';
   $('.btn-nav').removeClass('hidden');
@@ -34151,7 +34300,7 @@ function click_Categorias(){
  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">INVENTARIO</li> <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-white"></span> <li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_TVenta();">T. VENTA</li> <span class="border border-white"></span> </ul>   </div>');
 
 //  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); ">INVENTARIO</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-success"></span></ul> </div>');
-
+  
  getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias);
 
 
@@ -34862,6 +35011,21 @@ columnas = [];
       executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
   
 }
+function addTipoVenta222222(){
+    $('#modalTventa').modal('hide');
+    var nColumna = $("#modalTventa .t_venta").val();
+    var idProducto=0;
+    var idColumna=1
+columnas = [];
+     var json2 = {idProducto: 0, idColumna: 1, nColumna:  nColumna};
+  var jsonC = {where:{idColumna:1}}
+   addRegistroA(json2,jsonC, 't_venta', loadColumnas2);
+      executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesFabrica2);
+
+   var jsonC = {where:{idColumna:2 , n1:numSemana}}
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportes);
+  
+}
 var nuevaColumna;
 function addConceptoAdmon(){
     $("#modalConceptoAdmon").modal("hide");
@@ -34901,6 +35065,16 @@ var jsonC = {where:{idColumna:2 , n1:numSemana}}
 
 
 }
+function delColumnaTV(id){
+
+  cascadaTV(id);
+columnas = [];
+var jsonC = {where:{idColumna:1}}
+   delRegistroA2(id,jsonC,'t_venta', loadColumnasTVenta);
+var jsonC = {where:{idColumna:2}}       
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadTV3);
+      executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadTVenta);
+}
 function delColumnaAdmon(id){
   cascadaAdmon(id);
 columnas = [];
@@ -34931,6 +35105,21 @@ function cascadaAdmon(idCascada){
        executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
        executeFunctionDone(jsonC, 't_nomina', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadImportesAdmon);
 
+}
+function cascadaTV(idCascada){
+           var jsonC = {where:{n1:idCascada}}
+      executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadAllTV);
+  var jsonC = {where:{idColumna:2}}
+
+       executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadTVenta);
+       executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadTVenta);
+
+}
+function  loadAllTV(lista){
+ for(var h=0;h<lista.length; h++){
+  var jsonC = {where:{idColumna:1}}
+ delRegistroA2(lista[h].id, jsonC, 't_venta', loadImportes2);
+   }
 }
 function  loadAllImportes(lista){
  for(var h=0;h<lista.length; h++){
@@ -37524,19 +37713,28 @@ function closeModal2(){
   $('#modal2').modal('hide');
 }
 function modalInventario(){
-
-
       $('#modalInventario').modal('show');
      updateListaModal();
 getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
-
 }
 function modalTVenta(){
       $('#modalTventa').modal('show');
 }
 function agregarTVenta(){
-alert("XD");
-      $('#modalTventa').modal('hide');
+    $('#modalTventa').modal('hide');
+    var nColumna = $("#modalTventa .t_venta").val();
+       nuevaColumna=nColumna;
+    var idProducto=0;
+    var idColumna=1;
+columnas = [];
+     var json2 = {idProducto: 0, idColumna: 1, nColumna:  nColumna};
+  var jsonC = {where:{idColumna:1}}
+   addRegistroA(json2,jsonC, 't_venta', loadColumnas2);
+      executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadTVenta2);
+
+   var jsonC = {where:{idColumna:2}}
+      executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadTVenta);
+
 
 }
 function modalVentas1(){

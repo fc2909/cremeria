@@ -20,7 +20,7 @@ def index
 			TVentum.find(params[:id]) 
 		end
 		def model_params
-			params.permit(:idEmpleado, :idColumna, :cantidad, :n1, :n2,  :n3)
+			params.permit(:idProduct, :nProduct, :idColumna, :nColumna,:n1)
 		end
 		def delete_model
 			params = ActionController::Parameters.new(activo: 0)

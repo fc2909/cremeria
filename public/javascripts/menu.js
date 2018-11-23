@@ -13,6 +13,7 @@ var piezasT, year2, month2, day2;
 var user, vahiculoA, vahiculoA2, tipoCombustible;
 var tipoUsuario = ['DIRECTOR','PERSONALIZADO','SIN ASIGNAR']
 var tipoCategoria = ['NINGUNA','SUMA','TOTAL'];
+var tamanioProducto = ['CHICO','MEDIANO','GRANDE'];
 var tipoMantinimiento = ['PREDICTIVO','PREVENTIVO','CORRECTIVO','NINGUNO'];
 var tipoEstado = ['SUSPENDIDO','RUTA'];
 var medidas = ['KG.','PZAS.','L'];
@@ -2107,7 +2108,7 @@ var datosTVenta;
 function loadDatosTVenta(lista){
    datosTVenta = lista;
 }
-
+var columnastVenta;
 function loadColumnasTVenta(lista){
           var htmlT = `<th class="letras">ID</th>
                       <th class="letras">NOMBRE</th>
@@ -2122,6 +2123,7 @@ function loadColumnasTVenta(lista){
      htmlT += '<th>'+lista[h].nColumna+'<span style="color:red;" class="seleccionar" onClick="delColumnaTV('+lista[h].id+')" aria-hidden="true">&times;</span></th>';
           columnas.push({id:lista[h].id, nombre: lista[h].nColumna});
          }
+         columnastVenta=lista;
           $('.titulo').html(htmlT);
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioTVenta);
 
@@ -2624,7 +2626,7 @@ function loadInventarioTVenta(lista){
           if (lista[h].restaurante==0) rest =' <td style="background:red">' + lista[h].restaurante + '</td> '; else rest=' <td style="">' + lista[h].restaurante + '</td> ';
           if (lista[h].foraneo==0) fora=' <td style="background:red">' + lista[h].foraneo + '</td> '; else fora=' <td style="">' + lista[h].foraneo + '</td> ';
           if (lista[h].detalle==0) det=' <td style="background:red">' + lista[h].detalle + '</td> '; else det=' <td style="">' + lista[h].detalle + '</td> ';
-          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); modalInventarioC2('+ lista[h].id +', '+lista[h].idInventario+')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td>'+may+rest+fora+det;
+          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); modalInventarioC2('+ lista[h].id +', '+lista[h].idInventario+', '+lista[h].tipoP+')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td>'+may+rest+fora+det;
 
           for(var i=0;i<datosTVenta.length; i++){
             
@@ -2650,74 +2652,125 @@ $('.cate').html(selectCategoria);
 function modalInventarioC(id){
 $('#modalTVenta').modal('show')
 }
-function modalInventarioC2(id, idP){
+function modalInventarioC1(id){
+ 
+  for (var i=0; i < arrGlobalInventario.length; i++) {
+if (id==arrGlobalInventario[i].idInventario) {
+ modalInventarioC2(arrGlobalInventario[i].id,arrGlobalInventario[i].idInventario,arrGlobalInventario[i].tipoP); 
+}
+}
+}
+function modalInventarioC2(id, idP, tCategoria){
 var html = `
 <h3 class="text-center">TIPO DE VENTA</h3>
       <div class="col-md-12 text-center">
               <label >MAYOREO</label>
-              <input   type="number" pattern="[0-9]{10}" class="t_ventaM text-center totala">
+              <input   type="number" pattern="[0-9]{10}" class=" form-control t_ventaM text-center totala">
                 
               </div>
               <div class="col-md-12 text-center">
               <label >RESTAURANTE</label>
-              <input   type="number" pattern="[0-9]{10}" class="t_ventaR text-center totala">
+              <input   type="number" pattern="[0-9]{10}" class=" form-control t_ventaR text-center totala">
                 
               </div>
               <div class="col-md-12 text-center">
               <label >DETALLE FORANEO</label>
-              <input   type="number" pattern="[0-9]{10}" class="t_ventaF text-center totala">
+              <input   type="number" pattern="[0-9]{10}" class=" form-control t_ventaF text-center totala">
                 
               </div>
               <div class="col-md-12 text-center">
               <label >DETALLE</label>
-              <input   type="number" pattern="[0-9]{10}" class="t_ventaD text-center totala">
+              <input   type="number" pattern="[0-9]{10}" class=" form-control t_ventaD text-center totala">
                 
               </div>
 `;
-var html2 = `
-<h3 class="text-center">COMISIÓN</h3>
-      <div class="col-md-12 text-center">
-              <label >MAYOREO</label>
-              <input   type="number" pattern="[0-9]{10}" class="t_ventaCM text-center totala">
-                
-              </div>
-              <div class="col-md-12 text-center">
-              <label >RESTAURANTE</label>
-              <input   type="number" pattern="[0-9]{10}" class="t_ventaCR text-center totala">
-                
-              </div>
-              <div class="col-md-12 text-center">
-              <label >DETALLE FORANEO</label>
-              <input  type="number" pattern="[0-9]{10}" class="t_ventaCF text-center totala">
-                
-              </div>
-              <div class="col-md-12 text-center">
-              <label >DETALLE</label>
-              <input   type="number" pattern="[0-9]{10}" class="t_ventaCD text-center totala">
-                
+for (var i=0; i < tventaInventario.length; i++) {
+if (tventaInventario[i].idProduct==idP){
+for (var j=0; j < columnastVenta.length; j++) {
+if (tventaInventario[i].n1==columnastVenta[j].id) {
+   html += `
+            <div class="col-md-12 text-center">
+              <label >`+columnastVenta[j].nColumna+`</label>
+              <input   type="number" pattern="[0-9]{10}" class=" form-control `+columnastVenta[j].id+` text-center totala">
               </div>
 `;
+}
+}
+}  
+}
 var html3 = `
 <h3 class="text-center">CATEGORIA</h3>
-      <div class="col-md-12 text-center categoria">
-              <label >tipo</label>
-              <input   type="number" pattern="[0-9]{10}" class="t_venta text-center totala">
-                
-              </div>
-              <div class="col-md-12 text-center">
-              <label  >SUMA</label>                
-              <input id="suma" type="checkbox" value="1" onclick="clickSumacategoria(this)" class=" form-control">
-              </div>
-              <div class="ischecked"></div>
-             
 `;
+ var selectCategoria= `
+ <label class="text-center totala">
+ CATEGORÍA
+ </label>
+ <select onClick="comisionConf(value)" name="selectCat" id="selC" class="text-center selectCategoria totala form-control">
+ <option value="0">
+ </option>`;
+
+for(var h=0;h<arrGlobalCategoria.length; h++){
+  if(arrGlobalCategoria[h].descripcion!=3){
+selectCategoria+= ' <option value="'+arrGlobalCategoria[h].id+'">' +arrGlobalCategoria[h].nombre +'</option>';
+    
+  }
+}
+
+    
+html3 += selectCategoria +=`
+</select>
+<label class="text-center totala">
+ TAMAÑO
+ </label>
+<select name="selectTam" id="selT" class="text-center selectTamanio totala form-control">
+ <option value="1">
+ CHICO
+ </option><option value="2">
+ MADIANO
+ </option>
+ <option value="3">
+ GRANDE
+ </option>
+ </select>
+ <h3 class="text-center">PRODUCTO</h3>
+
+              <label class="text-center">EXISTENCIA</label>
+              <input   type="number" pattern="[0-9]{10}" class=" form-control cantidad text-center totala">
+
+              <label >STOCK MINIMO</label>
+              <input   type="number" pattern="[0-9]{10}" class=" form-control sMinimo text-center totala">
+
+              <label >STOCK MAXIMO</label>
+              <input   type="number" pattern="[0-9]{10}" class=" form-control sMaximo text-center totala">
+
+              <label >PROPORCION (COMISION)</label>
+              <input   type="number" pattern="[0-9]{10}" class=" form-control proporcion text-center totala">
+
+              <label >UNIDAD (REPORTES)</label>
+              <input   type="number" pattern="[0-9]{10}" class=" form-control pesaje text-center totala">
+                
+
+`;
+//<u  style="color: blue;" onClick="nuevaCategoria()">AGREGAR NUEVA CATEGORIA</u>
+
+$('.cate').html(selectCategoria);
 
 $('#modalTventaDatos').modal('show');
 
 $('#modalTventaDatos .textModal').html(html);
-$('#modalTventaDatos .textModal2').html(html2);
-$('#modalTventaDatos .textModal3').html(html3);
-$('#modalTventaDatos .tituloTV').html(idP);
+$('#modalTventaDatos .textModal2').html(html3);
+ var productos= '<select style="background:gray; color:white" class="form-control productos"   onchange=" modalInventarioC1(value)"  >';
+for (var i=0; i < arrGlobalInventario.length; i++) {
+productos+='<option value="'+arrGlobalInventario[i].idInventario+'" >'+arrGlobalInventario[i].idInventario+' - '+arrGlobalInventario[i].descripcion+'</option>';
+}
+productos+='</select>'; 
+ 
+$('#modalTventaDatos .producto').html(productos);
+
+if(tCategoria!=undefined){
+$('#modalTventaDatos .selectCategoria').val(tCategoria)
+comisionConf(tCategoria);
+}else $('#modalTventaDatos .textModal3').html('');
 
  for(var h=0;h<arrGlobalInventario.length; h++){
    if(arrGlobalInventario[h].idInventario==idP){
@@ -2725,20 +2778,64 @@ $('#modalTventaDatos .tituloTV').html(idP);
             $('#modalTventaDatos .t_ventaR').val(arrGlobalInventario[h].restaurante)
             $('#modalTventaDatos .t_ventaF').val(arrGlobalInventario[h].foraneo)
             $('#modalTventaDatos .t_ventaD').val(arrGlobalInventario[h].detalle)
-            $('#modalTventaDatos .t_ventaCM').val(arrGlobalInventario[h].mayoreo)
-            $('#modalTventaDatos .t_ventaCR').val(arrGlobalInventario[h].mayoreo)
-            $('#modalTventaDatos .t_ventaCF').val(arrGlobalInventario[h].mayoreo)
-            $('#modalTventaDatos .t_ventaCD').val(arrGlobalInventario[h].mayoreo)
-  }
+            $('#modalTventaDatos .cantidad').val(arrGlobalInventario[h].cantidad)
+            $('#modalTventaDatos .sMinimo').val(arrGlobalInventario[h].s_min)
+            $('#modalTventaDatos .sMaximo').val(arrGlobalInventario[h].s_max)
+            $('#modalTventaDatos .proporcion').val(arrGlobalInventario[h].proporcion)
+            $('#modalTventaDatos .pesaje').val(arrGlobalInventario[h].pesaje)
+            $('#modalTventaDatos .productos').val(arrGlobalInventario[h].idInventario)
+            $('#modalTventaDatos .tituloTV').html(idP +" - "+arrGlobalInventario[h].descripcion);
+           for (var i=0; i < tventaInventario.length; i++) {
+              if (tventaInventario[i].idProduct==idP){
+                for (var j=0; j < columnastVenta.length; j++) {
+                  if (tventaInventario[i].n1==columnastVenta[j].id) {
+            $('#modalTventaDatos .'+columnastVenta[j].id+' ').val(tventaInventario[i].nProduct);
+
+                    }
+                  }
+                }  
+              }
+          }
+        }
+      }
+function agregarTVentaDatos(){
+  $('#modalTventaDatos').modal('hide');
 }
-}
-function clickSumacategoria(value){
-  $(document).on('change','input[type="checkbox"]' ,function(e) {
-    if(this.id=="suma") {
-        if(this.checked) alert(this.value);
-        else alert("");
-    }
-   });
+function comisionConf(value){
+  var html = `
+<h3 class="text-center">COMISIÓN</h3>
+      <div class="col-md-12 text-center">
+              <label >MAYOREO</label>
+              <input   type="number" pattern="[0-9]{10}" class=" form-control t_ventaCM text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label >RESTAURANTE</label>
+              <input   type="number" pattern="[0-9]{10}" class=" form-control t_ventaCR text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label >DETALLE FORANEO</label>
+              <input  type="number" pattern="[0-9]{10}" class=" form-control t_ventaCF text-center totala">
+                
+              </div>
+              <div class="col-md-12 text-center">
+              <label >DETALLE</label>
+              <input   type="number" pattern="[0-9]{10}" class=" form-control t_ventaCD text-center totala">
+                
+              </div>
+`;
+            
+if (value==0)$('#modalTventaDatos .textModal3').html('');
+for(var h=0;h<arrGlobalCategoria.length; h++){
+            if (arrGlobalCategoria[h].id==value) {
+            $('#modalTventaDatos .textModal3').html(html);
+            $('#modalTventaDatos .t_ventaCM').val(arrGlobalCategoria[h].n2)
+            $('#modalTventaDatos .t_ventaCR').val(arrGlobalCategoria[h].n4)
+            $('#modalTventaDatos .t_ventaCF').val(arrGlobalCategoria[h].n3)
+            $('#modalTventaDatos .t_ventaCD').val(arrGlobalCategoria[h].n1)
+            }
+          }
 }
 function loadInventario2(lista){
         
@@ -28901,7 +28998,7 @@ if(noSemana==52&&dc==6){
    var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2};
 
 
-  if(num==0 && num2==0&&newCarga){
+  if(num==0 && num2==0){//&&newCarga
  $('.addV').html('');
     document.getElementById('loader').style.display = 'block';
    var json2 = {idVentap: idVentap, fecha: fecha, ruta: ruta, nombre: nombre, tipo: tipo, credito_p: credito_p, bonificacion_p: bonificacion_p, v_mercancia: v_mercancia, t_venta: t_venta, dsc: dsc, sc: sc, fechaf: fechaf, dsfc: dsfc, sfc: sfc, vehiculo: vehiculo, despachador2: despachador2, t_venta_merca: t_venta_merca, n2:n2};
@@ -34278,7 +34375,27 @@ function click_inventario(){
  //$('.seccion1').html('/html/inventario.html');
  $('.tituloPantalla').html('<h3 class="inventario"> INVENTARIO </h3>');
 // $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">INVENTARIO</li> <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-white"></span> <li role="presentation" actived class="impre productosList text-center" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_TVenta();">T. VENTA</li> <span class="border border-white"></span> </ul>   </div>');
+ $('.barraIzq').html(`
+  <div class="fondo impre" style="height: 100%">
+    <ul class="nav flex-column col-md-12" role="tablist"> 
+      <li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">
+      INVENTARIO
+      </li> 
+      <span class="border border-white"></span>
+      <li role="presentation" class="impre productosList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">
+      CATEGORÍAS 
+      </li> 
+      <span class="border border-white"></span> 
+      <li role="presentation" actived class="impre productosList text-center" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_TVenta();">
+      T. VENTA
+      </li> 
+      <span class="border border-white"></span> 
+      <li role="presentation" actived class="impre productosList text-center" href="#seccion4"  aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_ConfiguracionesI();">
+      CONFIGURACIONES
+      </li> 
+      <span class="border border-white"></span> 
+    </ul>   
+  </div>`);
           
 
  getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
@@ -34297,7 +34414,6 @@ function click_Categorias(){
   $('.btn-nav').removeClass('hidden');
   $('.btn-nav').html('<h3> MENÚ  </h3>');
   $('.seccion2').load('/html/categoria.html');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">INVENTARIO</li> <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-white"></span> <li role="presentation" actived class="impre productosList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_TVenta();">T. VENTA</li> <span class="border border-white"></span> </ul>   </div>');
 
 //  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); ">INVENTARIO</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">CATEGORÍAS </li> <span class="border border-success"></span></ul> </div>');
   

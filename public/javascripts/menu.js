@@ -37954,6 +37954,7 @@ var fechadespachof = fechaf;
 
       var jsonC = {where:{fechadespachof:today_v,vendedor:vendedor}}
        executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF2);
+       executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductoF);
  
  }
 

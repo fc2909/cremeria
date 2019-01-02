@@ -1,7 +1,8 @@
 
-<div role="tabpanel" class="row col-md-12 fondo" >
+<div role="" class="row col-md-12 row" >
+<div role="tabpanel" class="row col-md-12 " >
    
-    <div class="tab-content col-md-12 row" >
+    <div class="tab-content  col-md-12 row" >
       <div role="tabpanel" class="col-md-12 seccion1 tab-pane active " id="seccion1">
         
 
@@ -128,12 +129,37 @@
 
 
       </div>
-      <div role="tabpanel" class="tab-pane seccion3 col-md-12" id="seccion3">
+      <div role="tabpanel" class="tab-pane seccion3 col-md-12 fondo" id="seccion3">
          <div class="col-md-12">
+<div class="col-md-12 row">
+<div class="col-md-4 "><button onclick="modalAddInventario()" class="btn btn-info totala">AGREGAR PRODUCTO</button></div>
+<div class="col-md-4 "><button onclick="modalAddCategoria()" class="btn btn-info totala">AGREGAR CATEGORIA</button> 
+  <br>
+  <br>
+  <select class="form-control medida text-center" id="medida" onchange="cambioInventario(value)">
+            <option class="text-center" value="1">PRODUCTO</option>
+            <option class="text-center" value="2">PRECIO UNITARIO</option>
+            <option class="text-center" value="3">COMISIONES</option>
+            <option class="text-center" value="3">CATEGORIA</option>
+            </select>
+<br>
+<div class="buscar1">
+    
+   
+  </div>
+<div class="form-group row">
 
-<div class="col-md-4"><button onclick="modalTVenta()" class="btn btn-info">AGREGAR TIPO DE VENTA</button></div>
+ 
+ 
+</div>
+ 
+          </div>
+<div class="col-md-4"><button onclick="modalTVenta()" class="btn btn-info totala">AGREGAR TIPO DE VENTA</button></div>
+
+</div>
+
   <div class="table-responsive tabla text-center">
-  <table class="table table-active table-hover table-bordered table-inverse  text-center">
+  <table  class="table table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
       <tr class="titulo" style="font-size:12px;">
          
@@ -151,9 +177,10 @@
  
   </div>
       </div>
-       <div role="tabpanel" class="tab-pane seccion4 col-md-12" id="seccion4">
+       <div role="tabpanel" class="tab-pane seccion4 col-md-12 fondo" id="seccion4">
       </div>
     </div>
     <br>
     <br>
+</div>
 </div>

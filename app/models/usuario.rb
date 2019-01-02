@@ -16,4 +16,5 @@ class Usuario < ApplicationRecord
 	default_scope { order(:idUsuario) }
 	scope :by_campo, -> (campo, valor) {  where("#{campo.parameterize.to_s} = :valor", {valor:valor}) if campo.present? && valor.present? }
 	#scope :activos, -> { where(activo: 1) }
+    mount_uploader :picture, PictureUploader
 end

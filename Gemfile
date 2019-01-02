@@ -7,7 +7,8 @@ end
 
 #gem list
 gem 'jquery-rails'
-
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'bootstrap' , '~> 4.0.0.beta'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'

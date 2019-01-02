@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   resources :t_venta
   resources :columnas
   resources :logs
+  resources :foro
+  resources :aviso
   resources :pagares
   resources :talleres
   resources :ventaspasada

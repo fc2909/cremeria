@@ -8,25 +8,39 @@
 
 </div>
 <div id="fondoBlanco" style="display:none;"></div>
-<nav class="navbar fixed-top navbar-dark bg-dark menunav">
-        <div class=" col-md-2 ">
-        <a href="" class="btn btn-nav impre" onclick="click_regresar()"><h3>SALIR </h3></a>
+<!--<nav class="navbar fixed-top navbar-dark bg-dark menunav">-->
+<nav class="navbar navbar-inverse menunav row">
+  <div class="col-md-2 " >
+    <li class=" navbar-brand letras " onclick="actualizarPagina()">
+        <h3>MENÚ</h3>
+    </li>
+    <div class="letras" onclick="actualizarPagina()">
+        <h3></h3>
+    </div>
+  </div>
+        
+        
+        
+        <div class="col-md-8 text-center tituloPantalla impre">
+           <h3> CREMERÍA LAS TORRES </h3>
+
         </div>
-        <div class="col-xs-8 col-md-8 text-center tituloPantalla impre">
-           <h3> MENÚ </h3>
-        </div>
-        <div class="col-xs-2 col-md-2 ">
+        <div class="col-xs-2 col-md-2 row">
 
           
-            
-<div class="dropdown">
-<img class="user text-center impre dropleft dropdown-toggle" src="/images/user2.png" data-toggle="dropdown">
+          
+<div class="dropdown row">
+  <img class="user text-center impre dropleft dropdown-toggle" src="/images/user2.png" data-toggle="dropdown">
+  <p class="usuarioActivo" style="color: #6CFF00"></p>
+
   
   <div class="dropdown-menu">
-    <!--<a class="dropdown-item" href="">FONDO  <form> <input type="color" name="favcolor" value=""></form></a>-->
-    <a class="dropdown-item" href="">CONFIGURACION</a>
-    <a class="dropdown-item" href="">PERFIL</a>
+    <!--<a class="dropdown-item" href="">FONDO  <form> <input type="color" name="favcolor" value=""></form></a>
+    <li class="dropdown-item text-center usuarioActivo"></li>-->
+    <li class="dropdown-item" onclick="modalPerfil()">PERFIL</li>
+    <li class="dropdown-item" onclick="cerrarSesion()">SALIR</li>
   </div>
+
 </div>
 
 
@@ -34,11 +48,11 @@
           
         </div>
 </nav>
-  <br class="impre"><br  class="impre"><br  class="impre"><br  class="impre"><br  class="impre">
+  <br class="impre"><br class="impre"><br  class="impre"><br  class="impre"><br  class="impre">
 
 		<div class="container-fluid row ">
-<div class="row superior col-md-12" ></div>
-     <div class="col-md-2 barraIzq " style="height: 100%"></div>
+<div class=" superior col-md-12" ></div>
+     <div class="col-md-2 barraIzq" style="height: 100%; width: 100%;"></div>
       <div class=" col-md-10 " id="contenido">
       </div>
 
@@ -154,7 +168,69 @@
           </div>
         </div>
       </div>
+<div class= "modal fade" tabindex ="-1" role="dialog" id="modalPerfil">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header col-md-12 text-center">
+             <h2 class="modal-title "></h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body textModal">
+              <div class="col-md-12 " >
+              <div class="col-md-12 row " >
+                    <input type="file" class="iUser" name="archivo">
+                    <br>
+                    <br>
+                    <br>
 
+             
+               <div class="col-md-6" style="width: 100%;">
+                  <img style="width: 100%;" src="/images/default.png" >
+               </div>
+               <div class="col-md-6 text-center " >
+                  
+                   
+                    <button class="btn-dark btn" onclick="actualizarImagenU()">ACTUALIZAR IMAGEN</button>
+                  
+
+          
+          <label for="">NUEVA CONTRASEÑA</label>
+            <input onkeyup="mayusU(this);" onchange="newAnswer(this);document.getElementById('password2').focus();" type="password" style="align-content: center; background: black; color: white; width:100%" class="text-center letras form-control clear totala clear concepto"  placeholder="">
+         
+         
+          <label for="">ESCRIBA DE NUEVO LA NUEVA CONTRASEÑA</label>
+            <input id="password2" onkeyup="mayusU(this); " onchange="checkAwnser(this);document.getElementById('confUs').focus();" type="password" style="align-content: center; background: black; color: white; width:100%" class="text-center clear letras form-control totala clear concepto"  placeholder="">
+         
+         <p id="vConf" style="color: green"></p>
+         <p id="eConf" style="color: red"></p>
+          <label for="">CONFIRMAR</label>
+            <input onkeyup="mayusU(this);" id="confUs" onchange="valAnswer(this); document.getElementById('saveUs').focus();" disabled type="password" style="align-content: center; background: black; color: white; width:100%" class="text-center letras form-control totala clear concepto"  placeholder="">
+         <p id="eConf2" style="color: red"></p>
+
+
+               </div>
+               </div>
+             
+             
+              </div>
+        
+
+
+                
+            
+              
+         
+         
+    
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-dark" onclick="closeModalPerfil()">CANCELAR</button>
+               <button type="button" id="saveUs" disabled class="btn btn btn-modals " onclick="guardarUsuario()" >GUARDAR</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class= "modal fade" tabindex ="-1" role="dialog" id="modalNominaImportes">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -461,8 +537,7 @@
           <div class="modal-content">
             <div class="modal-header">
              <h2 class="modal-title">DESPACHADOR & VEHÍCULO </h2>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-              </button>
+              
              
             </div>
             <div class="modal-body textModal ">
@@ -1206,7 +1281,7 @@
           <div class="noruta"></div>
         </div>
         <div class="col-md-4 form-group tipovende">
-          <label class="">TIPO DE VENTA</label><select class="form-control clear tipoventa" ><option value="1">DETALLE</option><option value="2">MAYOREO</option><option value="3">DETALLE FORÁNEO</option><option value="4">RESTAURANTES</option></select>
+          <label class="">TIPO DE VENTA</label><select class="form-control clear tipoventa" ></select>
         </div>
          <div class="col-md-4 form-group licencia">
           <label class="">LIMITE DE CRÉDITO</label><input type="number" pattern="[0-9]{10}" class="form-control clear credito" placeholder=" ">
@@ -1859,8 +1934,7 @@
           <div class="modal-content">
             <div class="modal-header">
              <h2 class="modal-title">DESPACHADOR & COMBUSTIBLE</h2>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-              </button>
+              
              
             </div>
             <div class="modal-body textModal">
@@ -1904,7 +1978,7 @@
 
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-dark" onclick="closeModalDesp(); click_Recepcion(); ">CANCELAR</button>
+               <button type="button" class="btn btn-dark" onclick="closeModalDesp2(); click_Recepcion(); ">CANCELAR</button>
                <button type="button" class="btn btn-modals " id="agregarp" onclick="ModalDesp2();">GUARDAR</button>
             </div>
           </div>
@@ -2304,18 +2378,50 @@
        <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header ">
-            <h4 class="modal-title tituloTV">UNDEFINED</h4>
+            <h4 class="modal-title tituloTV"></h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body row col-md-12">
-              <div class="producto col-md-12"></div>
-              <div class="col-md-4 textModal"></div>
-              <div class="col-md-4 textModal2"></div>
+            <div class="modal-body  col-md-12">
+              <div class=" col-md-12 row">
+              <div class="producto col-md-12">
+                  <div class="col-md-12 row ">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                      
+                    </div>
+
+                    <div class="col-md-3 buscarProducto">
+                    </div>
+                  </div>
+                  <div class="col-md-12 row text-center">
+                    <div class="col-md-2" >
+                      <label for="" style="display: none;">#</label>
+                      <input style="display: none;" disabled type="number" pattern="[0-9]{10}"  class="form-control clear idII"  >
+                    </div>
+                    <div class="col-md-5">
+                      <label for="">ID</label>
+                      <input type="number" pattern="[0-9]{10}" id="idProductTV" class="form-control clear text-center idProductoII" disabled autocomplete="off" >
+                    </div>
+                    <div class="col-md-5">
+                      <label for="">NOMBRE</label>
+                      <input type="text" onkeyup="mayus(this)"  class="form-control clear text-center descripcionII" autocomplete="off" >
+                    </div>
+                  </div>
+                <br>
+                
+
+              </div>
+              <br>  
+              <br>  
+              <br>  
+              <div class="col-md-4  textModal"></div>
+              <div class="col-md-4 grisclaro textModal2"></div>
               <div class="col-md-4 textModal3"></div>
+              </div>
             </div>
-            <div class="modal-footer">
-               <button type="button" id="guardarC" class="btn btn-modals" onclick="agregarTVentaDatos()">GUARDAR</button>
+            <div class="modal-footer grardarIProducto">
+            
             </div>
           </div>
         </div>

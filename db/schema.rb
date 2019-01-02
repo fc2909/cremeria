@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008023143) do
+ActiveRecord::Schema.define(version: 20190102060144) do
 
   create_table "avisos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "descripcion"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20181008023143) do
     t.string   "n2"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "fecha"
   end
 
   create_table "categoria", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -208,6 +209,16 @@ ActiveRecord::Schema.define(version: 20181008023143) do
     t.string   "n4"
   end
 
+  create_table "foros", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "nombre"
+    t.string   "tipo"
+    t.integer  "activo"
+    t.string   "n1"
+    t.string   "n2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "inventarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "idInventario"
     t.string   "descripcion"
@@ -228,6 +239,8 @@ ActiveRecord::Schema.define(version: 20181008023143) do
     t.string   "n1"
     t.string   "n2"
     t.string   "n3"
+    t.string   "n4"
+    t.string   "tamanio"
   end
 
   create_table "logs", primary_key: "idLog", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -365,6 +378,7 @@ ActiveRecord::Schema.define(version: 20181008023143) do
     t.string  "pin"
     t.integer "tipo"
     t.integer "activo",                 default: 1, null: false
+    t.string  "picture"
   end
 
   create_table "vehiculos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -423,6 +437,7 @@ ActiveRecord::Schema.define(version: 20181008023143) do
     t.string   "tipoP"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "semana"
   end
 
   create_table "ventaspasadas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -471,6 +486,7 @@ ActiveRecord::Schema.define(version: 20181008023143) do
     t.string   "n5"
     t.string   "n6"
     t.string   "n7"
+    t.string   "semana"
   end
 
 end

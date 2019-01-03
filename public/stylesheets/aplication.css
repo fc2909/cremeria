@@ -671,9 +671,13 @@ z-index: 4;
 #carrucel{
   background: 
 }
+.icono{
+  position: fixed;
+   top: 10px;
+   left: 70%;
+}
 .ImagenDurango2{
-   position: fixed;
-   top: 50px;
+   
 height: 400px;
 left: 35%;
 opacity:.3;

@@ -61,14 +61,6 @@ $(document).ready(function(){
            <h5>FORO</h5> 
            </li>
            <li class="nav-item impre text-center seleccionar2"  onclick="">
-           <h5>ACCIONES</h5> 
-           <select multiple class="form-control avisos" id="exampleFormControlSelect1">
-            <option>.</option>
-            <option>.</option>
-            <option>.</option>
-            <option>.</option>
-            <option>.</option>
-            </select>
            </li>
            </ul> 
           
@@ -1688,12 +1680,15 @@ function loadUsuarios(lista){
         document.getElementById('loader').style.display = 'none';
 selectPermiso();
 }
+
 function loadAviso(lista){
         var html = '';
         for(var h=0;h<lista.length; h++){
              html+= '<option>' + lista[h].descripcion + '</option>';
         }
-        $('.avisos').html(html);
+
+        $('#avisos2').html(html);
+        $('.numAvisos').html(lista.length);
 }
 function loadUsuariosConf(lista){
         $('.usuarioActivo').html('<strong>'+lista[0].usuario+'</strong>');
@@ -2561,14 +2556,8 @@ html='';
            <h5>FORO</h5> 
            </li>
            <li class="nav-item impre text-center seleccionar2"  onclick="">
-           <h5>ACCIONES</h5> 
-           <select multiple class="form-control avisos" id="exampleFormControlSelect1">
-            <option></option>
-            <option></option>
-            <option></option>
-            <option></option>
-            <option></option>
-            </select>
+           
+
            </li>
            </ul>        
 `);
@@ -31416,7 +31405,21 @@ function delVenta(){
   var piezas = $(".piezas").val();
   var peso = $(".peso").val();
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
-  
+  var dateVenta = new Date();  
+  var horaVenta = dateVenta.getHours();
+  var minutosVenta = dateVenta.getMinutes();
+  var segundosVenta = dateVenta.getSeconds();
+      if(horaVenta.length==1){horaVenta="0"+horaVenta;}
+      if(minutosVenta.length==1){minutosVenta="0"+minutosVenta;}
+      if(segundosVenta.length==1){segundosVenta="0"+segundosVenta;}
+      if(peso==""||peso==NaN||peso==undefined){
+        peso=0;
+      }
+      var hora = horaVenta+":"+minutosVenta+":"+segundosVenta;
+
+   descrpcionA='<li class="dropdown-item" style="color:orange" >HORA: '+hora+' - '+usuarioPrincipal2.usuario+' ELIMINO '+idProducto+' EN RUTA: '+ruta3+'</li>';
+  //alert(descrpcionA)
+  addAviso();
 var fechadespachof = today_v;
 var ruta = rutas;
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
@@ -33253,8 +33256,15 @@ var sfc = (scv+1);
 
     }
 
+var descrpcionA;
+function addAviso(){
+  alert(descrpcionA)
+      var json = {descripcion: descrpcionA, fecha:today_vv}
+      var jsonC = {where:{fecha:today_vv}}
+      addRegistroA2(json,jsonC, 'aviso', loadAviso);
+      executeFunctionDone(jsonC, 'aviso', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadAviso);
 
-
+}
 function upVenta(){
 document.getElementById("idProducto").disabled = false;
   var idProducto = $(".idProducto").val();
@@ -33351,7 +33361,9 @@ document.getElementById("idProducto").disabled = false;
     var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, precioUnitario: precioUnitario, valorMercancia: valorMercancia, hora: hora, empleado: empleado, ruta:ruta, fecha: fecha, user: user };
 
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
-    
+     descrpcionA='<li class="dropdown-item">HORA: '+hora+' - '+usuarioPrincipal2.usuario+' MODIFICO '+idProducto+' EN RUTA: '+ruta3+'</li>';
+  
+  addAviso();
 var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
   upRegistroA(idGlobal, json,jsonC, 'ventadiaria', loadVentas);
   var id = id_vend;
@@ -33370,6 +33382,7 @@ for(var j=0;j<arrGlobal4.length; j++){
     var idv= arrGlobal4[j].id;
 var jsonC = {where:{ruta:rutas, fechaf: today_v}}
   upRegistroA2(idv, json2,jsonC, 'ventaspasada', loadVentasppp);   
+ 
   }
 
     }

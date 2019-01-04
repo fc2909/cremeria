@@ -9742,7 +9742,7 @@ function loadVentaDiariaMayoreoNominaFaltante(lista){ //por mayoreo
   for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
        if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
   for(var j=0;j<arrGlobalF.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta == arrGlobalF[j].ruta && (scv+1)==arrGlobalF[j].sfc && year==((arrGlobalF[j].fechaf).substring(0,4))){
+       if(arrGlobalEmpleados[hh2].ruta == arrGlobalF[j].ruta){
   for(var i=0; i < arrGlobalRuta.length; i++) {
        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
           ruta3=arrGlobalRuta[i].nombre;
@@ -9925,7 +9925,7 @@ function loadVentaDiariaRestauranteNominaFaltante(lista){ //por mayoreo
   for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
        if(arrGlobalEmpleados[hh2].t_venta==4&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
   for(var j=0;j<arrGlobalF.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+       if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
  for(var i=0; i < arrGlobalRuta.length; i++) {
        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
           ruta3=arrGlobalRuta[i].nombre;
@@ -10107,7 +10107,7 @@ function loadVentaDiariaForaneoNominaFaltante(lista){ //por mayoreo
   for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
        if(arrGlobalEmpleados[hh2].t_venta==3&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
   for(var j=0;j<arrGlobalF.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+       if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
 for(var i=0; i < arrGlobalRuta.length; i++) {
        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
           ruta3=arrGlobalRuta[i].nombre;
@@ -10291,7 +10291,7 @@ function loadVentaDiariaDetalleNominaFaltante(lista){ //por mayoreo
   for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
        if(arrGlobalEmpleados[hh2].t_venta==1&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
   for(var j=0;j<arrGlobalF.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+       if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
 for(var i=0; i < arrGlobalRuta.length; i++) {
        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
           ruta3=arrGlobalRuta[i].nombre;
@@ -10475,7 +10475,7 @@ function loadVentaDiariaNominaTotales(lista){ //por mayoreo
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -10838,7 +10838,7 @@ prodT=0;
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -11196,7 +11196,7 @@ prodT=0;
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -11550,7 +11550,7 @@ document.getElementById('loader').style.display = 'none';
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -11907,7 +11907,7 @@ prodT=0;
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -12266,7 +12266,7 @@ function loadVentaDiariaPagoFijoNomina(lista){ //
 
 
         
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
    
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
@@ -36061,10 +36061,27 @@ function faltanteNomina(){
          // scv=noSemana;
     
       
-var sfc = (scv+1)+"";
+var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
   if(sfc != ""){
 
-      var json = {where:{sfc:sfc}}
+      var json = {where:{Semana:semanaW}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaNominaFaltante);
   
   
@@ -36079,12 +36096,28 @@ function nomina(){
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
     
-      
-var sfc = (scv+1)+"";
-  if(scv != ""){
+var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+  if(sfc != ""){
 
 $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>');
-      var json = {where:{sfc:sfc}}
+      var json = {where:{semana:semanaW}}
  //     executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaNominaFaltante);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaNominaTotales);
@@ -36279,10 +36312,27 @@ function click_nomina(){
         document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
-var sfc = (scv+1)+"";
-  if(scv != ""){
+var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+  if(sfc != ""){
 $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA VENTAS SEMANA: '+(scv+1)+'</h3>');
-      var json = {where:{sfc:sfc}}
+      var json = {where:{semana:semanaW}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
@@ -37229,10 +37279,27 @@ function click_buscarNomina(){
         year =  parseInt(semanaVS.substring(0,4));
         scv = parseInt(semanaVS.substring(6,8))-1;
   $('.tituloPantalla').html('<h3 class="text-center impre">NÓMINA SEMANA: '+(scv+1)+'</h3>');
-var sfc = (scv+1);
+var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+  if(sfc != ""){
 
-  if(scv != ""){
-      var json = {where:{sfc:sfc}}
+      var json = {where:{semana:semanaW}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaNominaTotales);
@@ -37251,16 +37318,15 @@ function click_buscarNomina1(){
    var semanaVS1 = $('.semanaNomina1').val();
      
 if(semanaVS1!=""){
-
-   document.getElementById('loader').style.display = 'block';
+document.getElementById('loader').style.display = 'block';
 year =  parseInt(semanaVS1.substring(0,4));
 scv = parseInt(semanaVS1.substring(6,8))-1;
   
   $('.tituloPantalla').html('<h3 class="text-center impre">NÓMINA SEMANA: '+(scv+1)+'</h3>');
 var sfc = (scv+1);
 
-  if(scv != ""){
-      var json = {where:{sfc:sfc}}
+  if(sfc != ""){
+      var json = {where:{semana:semanaVS1}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);

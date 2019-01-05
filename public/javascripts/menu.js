@@ -4089,7 +4089,7 @@ if((lista.length-1)==h&&pasa==1){
               var f_s_t=0;
               var f_s_tR=0;
               for(var h=0;h<arrGlobalF.length; h++){
-                if(rutas==arrGlobalF[h].ruta&&(scv+1)==arrGlobalF[h].sfc&&year==((arrGlobalF[h].fechaf).substring(0,4))){
+                if(rutas==arrGlobalF[h].ruta){
                   bon=arrGlobalF[h].otros;
                   mer=arrGlobalF[h].v_mercancia;
                   efectivos=arrGlobalF[h].efectivo;

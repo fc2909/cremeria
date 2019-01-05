@@ -65,6 +65,8 @@ $(document).ready(function(){
            </ul> 
           
 `);
+      //  document.getElementById('notAv').style.display = 'block';
+
   } 
   if(usuario == 2){
       menu+='personalizado';
@@ -3924,7 +3926,7 @@ function loadVDiariaR2(lista){ //imprime en reportes
               
           for(var hh=0;hh<arrGlobalInventario.length; hh++){
             for(var h=0;h<lista.length; h++){
-              if(0==lista[h].merma&&rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+              if(0==lista[h].merma&&rutas==lista[h].ruta){
                 if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
                    pasa=1;
                   if(lista[h].dfc==1){
@@ -4343,7 +4345,7 @@ function loadVDiariaR3(lista){ //venta general
               var pasa=0; 
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(lista[h].fecharecepcion!=null&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].fecharecepcion!=null&&0==lista[h].merma){
                   
                   
                     if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
@@ -25343,6 +25345,7 @@ total3+=total2;
 
 }
 function loadVDiariaR(lista){//modal
+
               var html = '';
               var htmlp = '';
               var html2 = '';
@@ -25362,7 +25365,7 @@ function loadVDiariaR(lista){//modal
               var pasa=0; 
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(0==lista[h].merma&&rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(0==lista[h].merma&&rutas==lista[h].ruta){
                     if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
                       pasa=1;
                       if(lista[h].dfc==1){
@@ -25833,7 +25836,7 @@ function loadMermaModal(lista){//modal Merma
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(lista[h].horarecepcion!=1&&1==lista[h].merma&&rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].horarecepcion!=1&&1==lista[h].merma&&rutas==lista[h].ruta){
                     if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
                       pasa=1;
                       if(lista[h].dfc==1){
@@ -26275,7 +26278,7 @@ function loadMermaPrint(lista){//modal Merma
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(1==lista[h].merma&&rutas==lista[h].ruta&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(1==lista[h].merma&&rutas==lista[h].ruta){
                     if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
                       pasa=1;
                       if(lista[h].dfc==1){
@@ -33146,7 +33149,26 @@ scv = parseInt(semanaVS1.substring(6,8))-1;
 
 
 
-     var sfc = (scv+1)+"";
+    var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2;
+
+
      if(n5==0)n5=mermaTF2;
      if(mermaTF2==0)mermaTF2=n5;
  n5 =  parseFloat(mermaTF);//-parseFloat(mermaTF2)+parseFloat(n5);
@@ -33164,31 +33186,26 @@ n1=n11;
 
 
 var json={n1:n1,infonavit:infonavit,km:km}
-    var json2 = {where:{sfc:sfc}}
+    var json2 = {where:{semana:semanaW}}
 
 upRegistro(idNominaTE, json,'empleados',  loadEmpleados1);
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados1);
  
              
 var json={cobrado:cobrado}
-      var json2 = {where:{sfc:sfc}}
+      var json2 = {where:{semana:semanaW}}
 
 upRegistroA2(idNominaT, json, json2,'ventaspasada',  loadVentasp4);
     executeFunctionDone(json2, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
-   
-var sfc = (scv+1);
 
-  if(scv != ""){
-  var json = {where:{sfc:sfc}}
+  var json = {where:{semana:semanaW}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasp4);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreoNominaFaltante);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestauranteNominaFaltante);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneoNominaFaltante);
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalleNominaFaltante);
 
- 
 
- }
 
 
 
@@ -33258,7 +33275,6 @@ var sfc = (scv+1);
 
 var descrpcionA;
 function addAviso(){
-  alert(descrpcionA)
       var json = {descripcion: descrpcionA, fecha:today_vv}
       var jsonC = {where:{fecha:today_vv}}
       addRegistroA2(json,jsonC, 'aviso', loadAviso);
@@ -37037,10 +37053,29 @@ function ventaDiariaC3(){
   scv=noSemana;
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button> <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></div><h3 class="text-center impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3>');
   $('.contenidoR').load('/html/ventaDiariaC.html');
-var sfc = (scv+1)+"";
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
 
-  if(scv != ""){
-      var json = {where:{sfc:sfc}}
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo1);
@@ -37356,9 +37391,8 @@ scv = parseInt(semanaVS.substring(6,8))-1;
   
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div> <button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button>  <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></div></div> <h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
 var sfc = (scv+1);
-
-  if(scv != ""){
-     var json = {where:{sfc:sfc}}
+  if(semanaVS != ""){
+     var json = {where:{semana:semanaVS}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
 
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo1);
@@ -37477,8 +37511,29 @@ nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGl
 saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
 scv=noSemana;
 var sfc = (scv+1);
-if(scv != ""){
-     var json = {where:{sfc:sfc, ruta:ruta}}
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+
+     var json = {where:{semana:semanaW, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR);
   }
 
@@ -37487,8 +37542,29 @@ function rutasR2(ruta, h){
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
 var sfc = (scv+1);
-if(scv != ""){
-     var json = {where:{sfc:sfc, ruta:ruta}}
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR);
   } 
 }
@@ -37496,8 +37572,29 @@ function rutasRM(ruta, h){
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
 var sfc = (scv+1);
-if(scv != ""){
-      var json = {where:{sfc:sfc, ruta:ruta}}
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaModal);
   } 
 }
@@ -37505,8 +37602,29 @@ function rutasRM2(ruta, h){
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
 var sfc = (scv+1);
-if(scv != ""){
-      var json = {where:{sfc:sfc, ruta:ruta}}
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMermaPrint);
   } 
 }
@@ -37516,8 +37634,29 @@ nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGl
 saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
 scv=noSemana;
 var sfc = (scv+1);
-if(scv != ""){
-      var json = {where:{sfc:sfc, ruta:ruta}}
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR2);
   }
 
@@ -37528,8 +37667,29 @@ nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGl
 
 
 var sfc = (scv+1);
-if(scv != ""){
-      var json = {where:{sfc:sfc, ruta:ruta}}
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR2);
   }
 
@@ -37540,8 +37700,29 @@ nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGl
 
 
 var sfc = (scv+1);
-if(scv != ""){
-      var json = {where:{sfc:sfc, ruta:ruta}}
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW, ruta:ruta}}
   }
 
 }
@@ -37564,13 +37745,10 @@ year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
   $('.tituloResp').html(' <div class=" row col-md-12"><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6  semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button> </div> <div class="col-md-6 "><div class="col-md-6"></div> <button class="btn btn-warning impre totala col-md-6" value="Imprimir" onclick="ventaGeneralPrint();"  >IMPRIMIR</button> </div> </div>  <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+(scv+1)+')</h3> ');
 
-var sfc = (scv+1);
-
-  if(scv != ""){
-      var json = {where:{sfc:sfc}}
+      var json = {where:{semana:semanaVS}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR3);
- }
+ 
 
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 
@@ -37600,10 +37778,29 @@ function ventaGeneral(){
 scv=noSemana;
   $('.tituloResp').html(' <div class=" row col-md-12"><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6  semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button> </div> <div class="col-md-6 "><div class="col-md-6"></div> <button class="btn btn-warning impre totala col-md-6" value="Imprimir" onclick="ventaGeneralPrint();"  >IMPRIMIR</button> </div> </div>  <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+(scv+1)+')</h3> ');
   $('.contenidoR').load('/html/ventaGeneral.html');
- var sfc = (scv+1);
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
 
-  if(scv != ""){
-      var json = {where:{sfc:sfc}}
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR3);
  }
 

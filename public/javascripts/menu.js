@@ -27685,8 +27685,9 @@ function loadVentasPR(lista){
  $('.addV').html('<button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('+idProducto+').focus();">INSERTAR</button>');
 }
 function loadVentasp4(lista){
-  alert(arrGlobalF.length)
                   arrGlobalF = lista;
+
+
 }
 function loadLogs(lista){
               var html = '';

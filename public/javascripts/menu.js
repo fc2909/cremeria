@@ -37093,7 +37093,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
 
 
   if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
-   
+   alert(semanaW)
      var json = {where:{semana:semanaW}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante1);

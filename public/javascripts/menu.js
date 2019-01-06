@@ -119,7 +119,6 @@ scv = noSemana+1;
 var semanaW2;
  var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
 
-alert(sfc.length)
  if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
  semanaW2 = "0"+sfc;
  }else{
@@ -138,7 +137,6 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
 
 
-  alert(semanaW)
      var jsonC = {where:{semana:semanaW}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);

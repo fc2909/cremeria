@@ -37092,7 +37092,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
   }
 }
 function ventaDiariaC3(){
-  document.getElementById('loader').style.display = 'block';
+ // document.getElementById('loader').style.display = 'block';
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button> <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></div><h3 class="text-center impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3>');

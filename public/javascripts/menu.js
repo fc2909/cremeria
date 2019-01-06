@@ -136,7 +136,6 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
       }
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
 
-alert(semanaW)
      var jsonC = {where:{semana:semanaW}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
@@ -17616,7 +17615,7 @@ function loadVentaDiariaMayoreo2(lista){ //por mayoreo
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -17696,7 +17695,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -17961,7 +17960,8 @@ anter=0;
    }
 prodT=0;
 var sfc = (scv+1)+"";
-var json = {where:{sfc:sfc}}
+     var json = {where:{semana:semanaW}}
+
 
           
 
@@ -19852,7 +19852,7 @@ function loadVentaDiariaDetalle2(lista){ //por categoria
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -19930,7 +19930,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -20200,7 +20200,8 @@ anter=0;
 prodT=0;
         document.getElementById('loader').style.display = 'none';
 var sfc = (scv+1)+"";
-var json = {where:{sfc:sfc}}
+     var json = {where:{semana:semanaW}}
+
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaOtros2);
 
 }
@@ -20960,7 +20961,7 @@ function loadVentaDiariaForaneo2(lista){ //por categoria
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -21042,7 +21043,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -21310,7 +21311,8 @@ anter=0;
 }
 prodT=0;
 var sfc = (scv+1)+"";
-var json = {where:{sfc:sfc}}
+     var json = {where:{semana:semanaW}}
+
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDetalle2);
 
 }
@@ -22075,7 +22077,7 @@ function loadVentaDiariaRestaurante2(lista){ //por categoria
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -22153,7 +22155,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(lista[h].fecharecepcion!=null&&arrGlobalEmpleados[hh2].ruta==lista[h].ruta&&0==lista[h].merma){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -22425,7 +22427,8 @@ anter=0;
 }
 prodT=0;
 var sfc = (scv+1)+"";
-var json = {where:{sfc:sfc}}
+     var json = {where:{semana:semanaW}}
+
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo2);
 
 }
@@ -23179,7 +23182,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(arrGlobalEmpleados[hh2].id==lista[h].vendedor&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(arrGlobalEmpleados[hh2].id==lista[h].vendedor&&0==lista[h].merma){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -37244,7 +37247,14 @@ credi=0;
           s_vent=0;
 categoriasCortas = prodTotales;
 var sfc = (scv+1)+"";
-var json = {where:{sfc:sfc}}
+
+
+
+
+
+
+     var json = {where:{semana:semanaW}}
+   
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo2);
 
 }
@@ -37416,6 +37426,7 @@ var sfc = (scv+1);
 click_nomina();
 }
 }
+
 function click_buscarVCategorias4(){
   $('.contCataMayoreo').html('');
   $('.contCataRestaurante').html('');
@@ -37429,11 +37440,10 @@ if(semanaVS!=""){
 
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
-  
+semanaW=semanaVS;  
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div> <button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button>  <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></div></div> <h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
 var sfc = (scv+1);
   if(semanaVS != ""){
-    alert(semanaVS)
      var json = {where:{semana:semanaVS}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
 

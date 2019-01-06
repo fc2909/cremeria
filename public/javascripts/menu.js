@@ -116,8 +116,32 @@ $(document).ready(function(){
           saberSemana(parseInt(day), (parseInt(month)-1), parseInt(yy));
 
 var sfc2 = noSemana+1;
+
+
+
+var semanaW22;
+ if(sfc2.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW22 = "0"+sfc2;
+ }else{
+      semanaW22 = sfc2;
+    }
+ var anioSiguiente2;
+    if(sfc2==1){
+      if(day>29){
+anioSiguiente2 =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente2 = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente2 = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente2+"-W"+semanaW22; // se denomina la busqueda especifica de la semana actual
+
+
+  
+     var jsonC = {where:{semana:semanaW}}
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
-  var jsonC = {where:{sfc:sfc2}}
+  //var jsonC = {where:{sfc:sfc2}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleadosAll);
@@ -37093,7 +37117,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
 
 
   if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
-   alert(semanaW)
+  
      var json = {where:{semana:semanaW}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante1);

@@ -137,7 +137,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
 
 
   
-     var json = {where:{semana:semanaW}}
+     var jsonC = {where:{semana:semanaW}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados3);
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleadosAll);

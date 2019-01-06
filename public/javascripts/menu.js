@@ -37034,10 +37034,29 @@ function ventaDiariaC(){
   var sfc = (scv+1)+"";
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button></div><h3 class="text-center impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3>');
   $('.contenidoR').load('/html/ventaDiariaC.html');
+var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
 
 
-  if(scv != ""){
-      var json = {where:{sfc:sfc}}
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+      var json = {where:{semana:semanaW}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo);
@@ -37424,9 +37443,9 @@ scv = parseInt(semanaVS.substring(6,8))-1;
 var sfc = (scv+1);
 
 
-  if(scv != ""){
+  if(sfc != ""){
 
-      var json = {where:{sfc:sfc}}
+      var json = {where:{semana:semanaW}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMayoreo);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaRestaurante);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaForaneo);

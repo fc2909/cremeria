@@ -137,7 +137,7 @@ anioSiguiente2 =  parseInt(today_vv.substring(0,4))+1;
       }
     semanaW = anioSiguiente2+"-W"+semanaW22; // se denomina la busqueda especifica de la semana actual
 
-
+alert(semanaW);
   
      var jsonC = {where:{semana:semanaW}}
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);

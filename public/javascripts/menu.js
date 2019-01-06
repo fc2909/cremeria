@@ -16322,7 +16322,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if("F"!=lista[h].vendedor&&1==lista[h].merma&& (scv+1)==lista[h].sfc&&lista[h].horarecepcion!=1&& year==((lista[h].fechadespachof).substring(0,4))){
+                  if("F"!=lista[h].vendedor&&1==lista[h].merma&&lista[h].horarecepcion!=1){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -16606,7 +16606,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(1==lista[h].horarecepcion&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(1==lista[h].horarecepcion){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;
@@ -16863,7 +16863,7 @@ function loadVentaDiariaMayoreo1(lista){ //por mayoreo
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -20209,7 +20209,7 @@ function loadVentaDiariaDetalle1(lista){ //por categoria
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -21319,7 +21319,7 @@ function loadVentaDiariaForaneo1(lista){ //por categoria
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -22434,7 +22434,7 @@ function loadVentaDiariaRestaurante1(lista){ //por categoria
           
        for(var j=0;j<arrGlobalF.length; j++){
 
-        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta&&(scv+1)==arrGlobalF[j].sfc&&year==((arrGlobalF[j].fechaf).substring(0,4))){
+        if(arrGlobalEmpleados[hh2].ruta==arrGlobalF[j].ruta){
           for (var i=0; i < arrGlobalRuta.length; i++) {
             if(arrGlobalRuta[i].id==arrGlobalF[j].ruta){
               ruta3=arrGlobalRuta[i].nombre;
@@ -23491,7 +23491,7 @@ t_venta_mercaT=0;
               
               for(var hh=0;hh<arrGlobalInventario.length; hh++){
                 for(var h=0;h<lista.length; h++){
-                  if(arrGlobalEmpleados[hh2].id==lista[h].vendedor&&0==lista[h].merma&&(scv+1)==lista[h].sfc&&year==((lista[h].fechadespachof).substring(0,4))){
+                  if(arrGlobalEmpleados[hh2].id==lista[h].vendedor&&0==lista[h].merma){
                    
                     if(arrGlobalInventario[hh].idInventario==lista[h].idProducto){
                       pasa=1;

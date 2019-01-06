@@ -120,6 +120,7 @@ var sfc2 = noSemana+1;
 
 
 var semanaW22;
+alert(sfc2.length)
  if(sfc2.length == 1){ // si su longitud es 1 se le asicna un 0
  semanaW22 = "0"+sfc2;
  }else{

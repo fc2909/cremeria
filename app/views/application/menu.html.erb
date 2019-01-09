@@ -8,8 +8,10 @@
 
 </div>
 <div id="fondoBlanco" style="display:none;"></div>
+
 <!--<nav class="navbar fixed-top navbar-dark bg-dark menunav">-->
-<nav class="navbar navbar-inverse menunav row">
+<nav class="impre navbar navbar-inverse menunav row col-md-12">
+   <span class="badge numAvisos impre"  onclick="modalNotificaciones()"></span><img class="impre icono icoImage3 text-center impre  dropdown-toggle" src="/images/avisos.png"  onclick="modalNotificaciones()">
   <div class="col-md-2 " >
     <li class=" navbar-brand letras " onclick="actualizarPagina()">
         <h3>MENÚ</h3>
@@ -22,18 +24,13 @@
         
         
         
-        <div class="col-md-8 text-center tituloPantalla impre">
-  <div class="icono row impre col-md-2">
-    <div class="dropdown ">
-
-              <img class="icoImage3 text-center impre dropleft dropdown-toggle" src="/images/avisos.png" data-toggle="dropdown"><span class="badge numAvisos">0</span>
-            
+        <div class="col-md-8 text-center impre tituloPantalla impre">
+  <div class=" row impre col-md-2">
   
-  <div id="avisos2" class="dropdown-menu avisos">
-   
-  </div>
+            
 
-  </div>
+
+  
 
 </div> 
 
@@ -185,6 +182,34 @@
           </div>
         </div>
       </div>
+
+ <div class= "modal fade" tabindex ="-1" role="dialog" id="modalNotificacionesM">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            
+            <div class="modal-body textModal">
+ <div class="table-responsive tabla">
+  <table class="  table-hover table-bordered table-inverse  ">
+    <thead class=" ">
+
+      <tr  class= "totala letras text-center impre">
+        <th style="width: 50%;" class="letras text-center totala">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody class="contCataNot  letras impre" >
+     
+    </tbody>
+     
+  </table>
+
+
+            </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
 <div class= "modal fade" tabindex ="-1" role="dialog" id="modalPerfil">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -1017,6 +1042,34 @@
                 
 
 <br>
+<br>
+<div class="col-md-12 row">
+  <div class="col-md-2 form-group">
+    <input type="radio" name="dias" class="clear" value="1" onclick="diasRemisiones(value)">
+    <label for="">LUNES</label>
+  </div>
+  <div class="col-md-2 form-group">
+    <input type="radio" name="dias" class="clear" value="2" onclick="diasRemisiones(value)">
+    <label for="">MARTES</label>
+  </div>
+  <div class="col-md-2 form-group">
+    <input type="radio" name="dias" class="clear" value="3" onclick="diasRemisiones(value)">
+    <label for="">MIER</label>
+  </div>
+  <div class="col-md-2 form-group">
+    <input type="radio" name="dias" class="clear" value="4" onclick="diasRemisiones(value)">
+    <label for="">JUEVES</label>
+  </div>
+  <div class="col-md-2 form-group">
+    <input type="radio" name="dias" class="clear" value="5" onclick="diasRemisiones(value)">
+    <label for="">VIERNES</label>
+  </div>
+  <div class="col-md-2 form-group">
+    <input type="radio" name="dias" class="clear" value="6" onclick="diasRemisiones(value)">
+    <label for="">SABADO</label>
+  </div>
+</div>
+<br>
 
 <br>
 
@@ -1024,6 +1077,7 @@
   <table class="table table-hover col-md-12 table-condensed text-center">
     <thead class="text-center">
       <tr class="letras text-center">
+        <th class="text-center">DIA</th>
         <th class="text-center">TIPO</th>
         <th class="text-center">NOMBRE</th>
         <th class="text-center">IMPORTE</th>

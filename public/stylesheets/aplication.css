@@ -669,12 +669,20 @@ opacity:.1;
 z-index: 4;
 }
 #carrucel{
-  background: 
+  
+}
+.numAvisos{
+  position: fixed;
+   top: 10px;
+   left: 71.25%;
+   z-index: 4;
+   background: blue;
 }
 .icono{
   position: fixed;
    top: 10px;
    left: 70%;
+   z-index: 3;
 }
 .ImagenDurango2{
    
@@ -687,12 +695,9 @@ z-index: 4;
   border-style: none;
 }
 .icoImage3{
-     -moz-border-radius: 10px;
-        -webkit-border-radius: 1px;
-        border-radius: 20px;
-       
-       
-      
+     -moz-border-radius: 0px;
+        -webkit-border-radius: 0px;
+        border-radius: 30px;
 
 
   height: 30px;

@@ -1707,7 +1707,7 @@ function loadAviso(lista){
         for(var h=0;h<lista.length; h++){
              html+= '<tr><td>' + lista[h].descripcion + '</td></tr>';
         }
-
+if(lista.length!=0)
         $('.numAvisos').html(lista.length);
 
         $('.contCataNot').html(html);
@@ -4529,7 +4529,7 @@ var yearR = lista[i].fecha.substring(0,4);
 var diasemaD= new Date((parseInt(monthR))+' '+parseInt(dayR)+' ,'+parseInt(yearR)); //asigna fecha en especifico
 var diaD=(diasemaD.getUTCDay());
 
-        if(lista[i].ruta==arrGlobalEmpleados[j].ruta&&lista[i].n7!="1"&&diaD==diaRemision){
+        if(lista[i].ruta==arrGlobalEmpleados[j].ruta&&lista[i].n7!="1"&&diaD==diaRemision&&lista[i].f_s_real!=null){
 
 htmlV+= '<tr style="font-size:12px; color:white; " class=" seleccionar text-center" onclick="cambiarcolor(this); selectVRDia('+lista[i].id+','+dayR+','+monthR+','+yearR+')" ><td>'+dias[diaD-1]+'</td><td >'+tVentaNombre+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';      
 
@@ -4567,7 +4567,7 @@ var yearR = lista[i].fecha.substring(0,4);
 var diasemaD= new Date((parseInt(monthR))+' '+parseInt(dayR)+' ,'+parseInt(yearR)); //asigna fecha en especifico
 var diaD=(diasemaD.getUTCDay());
 
-        if(lista[i].ruta==arrGlobalEmpleados[j].ruta&&lista[i].n7!="1"&&diaD==diaRemision){
+        if(lista[i].ruta==arrGlobalEmpleados[j].ruta&&lista[i].n7!="1"&&diaD==diaRemision&&lista[i].f_s_real!=null){
 
 htmlV+= '<tr style="font-size:12px; color:white; " class=" seleccionar text-center" onclick="cambiarcolor(this); selectVRDia('+lista[i].id+','+dayR+','+monthR+','+yearR+')" ><td>'+dias[diaD-1]+'</td><td >'+tVentaNombre+'</td> <td >' + lista[i].nombre + '</td><td>$'+formatoMoneda1(lista[i].t_venta_merca)+'</td> ';      
 
@@ -4609,7 +4609,7 @@ if(chequesV==""){
                 }
               }
       for(var i=0;i<lista.length; i++){
-        if(lista[i].ruta==arrGlobalEmpleados[j].ruta){
+        if(lista[i].ruta==arrGlobalEmpleados[j].ruta&&lista[i].f_s_real!=null){
         if(lista[i].n7=="1"){
           var dayR = lista[i].fechaf.substring(8,10);
 var monthR = lista[i].fechaf.substring(5,7);
@@ -4699,7 +4699,7 @@ if(chequesV==""){
                 }
               }
       for(var i=0;i<lista.length; i++){
-        if(lista[i].ruta==arrGlobalEmpleados[j].ruta){
+        if(lista[i].ruta==arrGlobalEmpleados[j].ruta&&lista[i].f_s_real!=null){
         if(lista[i].n7=="1"){
           var dayR = lista[i].fechaf.substring(8,10);
 var monthR = lista[i].fechaf.substring(5,7);
@@ -29749,7 +29749,7 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 limpiar();
 }
 function addfechaR(){
-  
+
 var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
 
 

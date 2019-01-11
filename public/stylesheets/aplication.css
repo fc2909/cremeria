@@ -228,6 +228,15 @@ li:hover, button:hover, img:hover {
    margin: 10px;
    z-index: 6;
  }
+  .fechaDespachoRem{
+  position: absolute;
+  width: 95%;
+   top: 15px;
+   left: 5%;
+   
+   margin: 10px;
+   z-index: 6;
+ }
  .nombreCapturista {
   position: absolute;
   width: 100px;

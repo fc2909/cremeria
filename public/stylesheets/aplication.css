@@ -202,6 +202,14 @@ li:hover, button:hover, img:hover {
    margin: 10px;
    z-index: 6;
  }
+ .nombreVendedorR {
+  position: absolute;
+  width: 100%;
+   top: 15px;
+   left: 5%;
+   margin: 10px;
+   z-index: 6;
+ }
 
 .nombreVendedorM {
   position: absolute;
@@ -483,6 +491,7 @@ width: 110%;
    margin: 10px;
    z-index: 6;
 }
+
 .vendedorFirma {
   position: absolute;
   width: 95%;
@@ -556,6 +565,15 @@ th {color: black;}
   background: rgba(0,0,0,.6);
   padding-top: 20px;
 }
+
+.izqBar{
+  top: -110px;
+background: #1B1B1B;
+  position: absolute;
+  left: 0px;
+  width: 200px;
+  height: 750px;
+}
 .seleccionar2:hover{
 height: 100%;
 width: 100%;
@@ -565,7 +583,7 @@ background: gray;
 .seleccionar2{
 height: 100%;
 width: 100%;
-background: #1B1B1B;
+background: #151515;
 
 }
 
@@ -673,16 +691,28 @@ z-index: 4;
 }
 .numAvisos{
   position: fixed;
-   top: 10px;
-   left: 71.25%;
-   z-index: 4;
+   top: 120px;
+   left: 97.3%;
+   z-index: 2;
    background: blue;
 }
 .icono{
   position: fixed;
-   top: 10px;
-   left: 70%;
-   z-index: 3;
+   top: 120px;
+   left: 96%;
+   z-index: 1;
+}
+.iconoImprimir{
+   position: fixed;
+  top:170px;
+  left: 96%;
+  z-index: 1;
+}
+.iconoExcel{
+   position: fixed;
+  top:220px;
+  left: 96%;
+  z-index: 1;
 }
 .ImagenDurango2{
    

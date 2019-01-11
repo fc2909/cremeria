@@ -25,7 +25,7 @@ var dias = ['LUNES',' MARTES ',' MIÉRCOLES ',' JUEVES ',' VIERNES ',' SÁBADO '
 var usuarioPrincipal;
 var usuarioPrincipal2;
 //--------------------------------------------- Datos cargados --------------------------------------------------------//
-
+window.scroll(0,0);
 //getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp4);
 getFunction('m_vehicular', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMV2);
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas1);
@@ -50,19 +50,25 @@ $(document).ready(function(){
       menu+='director';
 // $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Pagare();" role="tab">PAGARE </li> <span class="border border-white"></span> <li class="impre productosList text-center"  onclick="click_Remisiones() ">REMISIONES </li>  <span class="border border-white"> </span>  <div class="imprimir"></div></ul> </div>');
  $('.barraIzq').html(`
-          <ul class="nav letras flex-column fondo2 impre">
-           <li class="nav-item impre text-center seleccionar2"  onclick="click_Pagare();">
-           <h5 >PAGARE</h5> 
-           </li> 
-           <li class="nav-item impre text-center seleccionar2"  onclick="click_Remisiones() ">
-           <h5>REMISIONES</h5> 
-           </li>
-           <li class="nav-item impre text-center seleccionar2"  onclick="click_Foro() ">
-           <h5>FORO</h5> 
-           </li>
-           <li class="nav-item impre text-center seleccionar2"  onclick="">
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Pagare();">
+           PAGARE
+           </li>  <span class="border border-white"></span> 
+           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Remisiones() ">
+           REMISIONES
+           </li> <span class="border border-white"></span> 
+           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Foro() ">
+           FORO
+           </li> <span class="border border-white"></span> 
+           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="">
            </li>
            </ul> 
+    </div>
           
 `);
        //document.getElementById('notAv').style.display = 'block';
@@ -2569,23 +2575,10 @@ html='';
           html += '</div>';
          }
          if (arrGlobalPermisosIn[hh].remisiones==1) {
-         $('.barraIzq').html(`
-          <ul class="nav letras flex-column fondo2 impre">
-           <li class="nav-item impre text-center seleccionar2"  onclick="click_Pagare();">
-           <h5 >PAGARE</h5> 
-           </li> 
-           <li class="nav-item impre text-center seleccionar2"  onclick="click_Remisiones() ">
-           <h5>REMISIONES</h5> 
-           </li>
-           <li class="nav-item impre text-center seleccionar2"  onclick="click_Foro() ">
-           <h5>FORO</h5> 
-           </li>
-           <li class="nav-item impre text-center seleccionar2"  onclick="">
-           
+     
 
-           </li>
-           </ul>        
-`);
+
+     //
          }
 
 $('.menuPrincipal').html(html);
@@ -4349,6 +4342,436 @@ if((lista.length-1)==h&&pasa==1){
         document.getElementById('fondoBlanco').style.display = 'none';
 
 }
+
+function loadVDiariaR2E(lista){ //imprime en reportes
+              var html = '';
+              var htmlp = '';
+              var html2 = '';
+              var htmlC = '';
+              var l=0;
+              var m=0;
+              var x=0;
+              var j=0;
+              var v=0;
+              var s=0;
+              var lp=0;
+              var mp=0;
+              var xp=0;
+              var jp=0;
+              var vp=0;
+              var sp=0;
+              var cambio=0;
+              var pasa=0;
+              
+          for(var hh=0;hh<arrGlobalInventario.length; hh++){
+            for(var h=0;h<lista.length; h++){
+              if(0==lista[h].merma&&rutas==lista[h].ruta){
+                if(arrGlobalInventario[hh].descripcion==lista[h].descripcionventa){
+                   pasa=1;
+                  if(lista[h].dfc==1){
+                    if(lista[h].medida==1){
+                      l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      lp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                    }
+                    if(lista[h].medida==2){
+                      l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      lp+=0;
+                    }
+                    if(lista[h].medida==3){
+                      l+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      lp+=0;
+                    }
+                  }
+                  if(lista[h].dfc==2){
+                    if(lista[h].medida==1){
+                      m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      mp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                    }
+                    if(lista[h].medida==2){
+                      m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      mp+=0;
+                    }
+                    if(lista[h].medida==3){
+                      m+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      mp+=0;
+                    }
+                  }
+                  if(lista[h].dfc==3){
+                    if(lista[h].medida==1){
+                      x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      xp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                    }
+                    if(lista[h].medida==2){
+                      x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      xp+=0;
+                    }
+                    if(lista[h].medida==3){
+                      x+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      xp+=0;
+                    }
+                  }
+                  if(lista[h].dfc==4){
+                    if(lista[h].medida==1){
+                      j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      jp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                    }
+                    if(lista[h].medida==2){
+                      j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      jp+=0;
+                    }
+                    if(lista[h].medida==3){
+                      j+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      jp+=0;
+                    }
+                  }
+                  if(lista[h].dfc==5){
+                    if(lista[h].medida==1){
+                      v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      vp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                    }
+                    if(lista[h].medida==2){
+                      v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      vp+=0;
+                    }
+                    if(lista[h].medida==3){
+                      v+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                      vp+=0;
+                      }
+                    }
+                    if(lista[h].dfc==6){
+                      if(lista[h].medida==1){
+                        s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                        sp+=(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov));
+                      }
+                      if(lista[h].medida==2){
+                        s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                        sp+=0;
+                      }
+                      if(lista[h].medida==3){
+                        s+=(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv));
+                        sp +=0;
+                      }
+                    }
+                  }
+                }
+              
+
+if((lista.length-1)==h&&pasa==1){
+              var suma= parseFloat(l)+parseFloat(m)+parseFloat(x)+parseFloat(j)+parseFloat(v)+parseFloat(s);
+              var suma2= parseFloat(lp)+parseFloat(mp)+parseFloat(xp)+parseFloat(jp)+parseFloat(vp)+parseFloat(sp);
+                if(l==0){l=""}else{l=parseFloat(l).toFixed(2)}
+                if(lp==0){lp=""}else{lp=parseFloat(lp).toFixed(3)}
+                if(m==0){m=""}else{m=parseFloat(m).toFixed(2)}
+                if(mp==0){mp=""}else{mp=parseFloat(mp).toFixed(3)}
+                if(x==0){x=""}else{x=parseFloat(x).toFixed(2)}
+                if(xp==0){xp=""}else{xp=parseFloat(xp).toFixed(3)}
+                if(j==0){j=""}else{j=parseFloat(j).toFixed(2)}
+                if(jp==0){jp=""}else{jp=parseFloat(jp).toFixed(3)}
+                if(v==0){v=""}else{v=parseFloat(v).toFixed(2)}
+                if(vp==0){vp=""}else{vp=parseFloat(vp).toFixed(3)}
+                if(s==0){s=""}else{s=parseFloat(s).toFixed(2)}
+                if(sp==0){sp=""}else{sp=parseFloat(sp).toFixed(3)}
+                if(suma==0){suma=""}else{suma="<strong> "+parseFloat(suma).toFixed(2)+"</strong>"}
+                if(suma2==0){suma2=""}else{suma2="<strong> "+parseFloat(suma2).toFixed(3)+"</strong>"}
+                  //html+= '<tr class="seleccionar" id ="'+h+'" ><td>' +  arrGlobalInventario[hh].descripcion +'</td><td>'+ l +' '+lp+'</td><td>'+m+' '+mp+'</td><td>'+ x +' '+xp+' </td><td>'+ j+' '+jp+'  </td><td>'+ v +' '+vp+' </td><td>'+ s +' '+sp+' </td><td style="background:green;">'+suma+' '+suma2+' </td></tr>';
+                  htmlp+= '<tr class="negro" style="font-size:9px; "><td class="text-left"><strong>' +  arrGlobalInventario[hh].descripcion +'</strong></td><td class="text-center">'+ l+' </td><td class="text-center">'+lp+' </td><td class="text-center">'+m+'</td><td class="text-center">'+mp+' </td><td class="text-center">'+ x +'</td><td class="text-center">'+xp+' </td><td class="text-center">'+ j+' </td><td class="text-center">'+jp+' </td><td class="text-center">'+ v +' </td><td class="text-center">'+vp+' </td><td class="text-center">'+ s +'</td><td class="text-center">'+sp+' </td><td class="text-right">'+suma+'</td><td class="text-right">'+suma2+' </td></tr>';
+                  l=0;
+                        m=0;
+                        x=0;
+                        j=0;
+                        v=0;
+                        s=0;
+                        lp=0;
+                        mp=0;
+                        xp=0;
+                        jp=0;
+                        vp=0;
+                        sp= 0;
+                        cambio =1;  
+                      }
+                    }
+                    cambio =0;  
+                    pasa=0;
+                  }
+              var l2=0;
+              var m2=0;
+              var x2=0;
+              var j2=0;
+              var v2=0;
+              var s2=0;
+              var l3=0;
+              var m3=0;
+              var x3=0;
+              var j3=0;
+              var v3=0;
+              var s3= 0;
+              var l4 =0, m4=0, x4=0, j4=0, v4=0, s4=0;
+              var l5=0, m5=0, x5=0, j5=0, v5=0, s5=0;
+              var l6=0, m6=0, x6=0, j6=0, v6=0, s6=0;
+              var l7=0, m7=0, x7=0, j7=0, v7=0, s7=0;
+              var l8=0, m8=0, x8=0, j8=0, v8=0, s8=0;
+              var contador =0;
+              var promedio =0;
+              var ventaT =0;
+              var bon =0;
+              var bonT =0;
+              var efecT =0;
+              var mer =0;
+              var credits =0;
+              var efectivos =0;
+              var f_s_dia2 =0;
+              var f_s_real2 =0;
+              var diferenciaT =0;
+              var pasa2=0;
+              var creditosFTemp=0;
+              var creditosITemp=0;
+              var f_s_t=0;
+              var f_s_tR=0;
+              for(var h=0;h<arrGlobalF.length; h++){
+                if(rutas==arrGlobalF[h].ruta){
+                  bon=arrGlobalF[h].otros;
+                  mer=arrGlobalF[h].v_mercancia;
+                  efectivos=arrGlobalF[h].efectivo;
+                  credits =arrGlobalF[h].creditos;
+                  f_s_dia2 =arrGlobalF[h].f_s_dia;
+                  f_s_real2 =arrGlobalF[h].f_s_real;
+                if(f_s_real2==undefined)f_s_real2=0;
+                if(f_s_dia2==undefined)f_s_dia2=0;
+                if(credits==undefined)credits=0;
+                if(bon==undefined)bon=0;
+                if(mer==""||mer==NaN||mer==undefined)mer=0;
+                if(efectivos==""||efectivos==NaN||efectivos==undefined)efectivos=0;
+                if(arrGlobalF[h].dsfc==1){
+                  l=credits;
+                  lp=bon;
+                  l2=arrGlobalF[h].t_venta_merca;
+                  l8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
+                  l4=mer;
+                  l5=efectivos;
+                  l6=f_s_dia2;
+                  l7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(l3==Infinity){l3=100;}
+                  
+                  contador++;
+                  promedio += l3;
+                  ventaT += parseFloat(l2);
+                  bonT += parseFloat(lp);
+                  efecT += parseFloat(l5);
+                   
+                   if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                  
+                   }
+                  
+                  }
+                if(arrGlobalF[h].dsfc==2){
+                  m=credits;
+                  mp=bon;
+                  m2=arrGlobalF[h].t_venta_merca;
+                  m4=mer;
+                  m8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
+                  m5=efectivos;
+                  m6=f_s_dia2;
+                  m7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(m3==Infinity){m3=100;}
+                  
+                  contador++;
+                  promedio += m3;
+                  ventaT += parseFloat(m2);
+                  bonT += parseFloat(mp);
+                  efecT += parseFloat(m5);
+                   
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }             
+                }
+                if(arrGlobalF[h].dsfc==3){
+                  x=credits;
+                  xp=bon;
+                  x2=arrGlobalF[h].t_venta_merca;
+                  x4=mer;
+                  x5=efectivos;
+                  x8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
+                  x6=f_s_dia2;
+                  x7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(x3==Infinity){x3=100;}
+                  
+                  contador++;
+                  promedio += x3;
+                  ventaT += parseFloat(x2);
+                  bonT += parseFloat(xp);
+                  efecT += parseFloat(x5);
+                   
+                 if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }
+                }
+                if(arrGlobalF[h].dsfc==4){
+                  j=credits;
+                  jp=bon;
+                  j2=arrGlobalF[h].t_venta_merca;
+                  j4=mer;
+                  j8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
+                  j5=efectivos;
+                  j6=f_s_dia2;
+                  j7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(j3==Infinity){j3=100;}
+                  
+                  contador++;
+                  promedio += j3;
+                  ventaT += parseFloat(j2);
+                  bonT += parseFloat(jp);
+                  efecT += parseFloat(j5);
+                   
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }
+                }
+                if(arrGlobalF[h].dsfc==5){
+                  v=credits;
+                  vp=bon;
+                  v2=arrGlobalF[h].t_venta_merca;
+                  v4=mer;
+                  v8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
+                  v5=efectivos;
+                  v6=f_s_dia2;
+                  v7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(v3==Infinity){v3=100;}
+                  
+                  contador++;
+                  promedio += v3;
+                  ventaT += parseFloat(v2);
+                  bonT += parseFloat(vp);
+                  efecT += parseFloat(v5);
+                   
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                   f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                 pasa2=1
+                  }
+                   }
+                }
+                if(arrGlobalF[h].dsfc==6){
+                  s=credits;
+                  sp=bon;
+                  s2=arrGlobalF[h].t_venta_merca;
+                  s4=mer;
+                  s8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);
+                  s5=efectivos;
+                  s6=f_s_dia2;
+                  s7=f_s_real2;
+                  diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
+                  s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  if(s3==Infinity){s3=100;}
+                  
+                  contador++;
+                  promedio += s3;
+                  ventaT += parseFloat(s2);
+                  bonT += parseFloat(sp);
+                  efecT += parseFloat(s5);
+                  
+                  if(f_s_dia2!=0){
+                    creditosFTemp=credits;
+              f_s_t+=parseFloat(f_s_dia2);
+                  f_s_tR=parseFloat(f_s_real2);
+
+                  if(pasa2==0){
+                    creditosITemp=parseFloat(arrGlobalF[h].loquedeberiatraer)+parseFloat(f_s_dia2);
+                  pasa2=1
+                  }
+                   }
+                }
+              }
+            }
+            if(contador==0){
+                  p=0;
+              }else{
+                //formatNumber2(parseFloat(l).toFixed(2));l=cantidad2;formatNumber2(parseFloat(lp).toFixed(2));lp=cantidad2;formatNumber2(parseFloat(l4).toFixed(2));l4=cantidad2;formatNumber2(parseFloat(l2).toFixed(2));l2=cantidad2;formatNumber2(parseFloat(l3).toFixed(2));l3=cantidad2;formatNumber2(parseFloat(l5).toFixed(2));l5=cantidad2;formatNumber2(parseFloat(l6).toFixed(2));l6=cantidad2;formatNumber2(parseFloat(l7).toFixed(2));l7=cantidad2;
+                var tNV= parseFloat(ventaT);
+                var vT= parseFloat(diferenciaT)*100;
+               
+              var p =(vT)/(tNV); 
+                if(p==Infinity)p=100;
+
+            diferenciaT=0;
+          
+                  var controlInterno=parseFloat(efecT)-parseFloat(f_s_t);
+                  var noVentaTotal=parseFloat(l8)+parseFloat(m8)+parseFloat(x8)+parseFloat(j8)+parseFloat(v8)+parseFloat(s8);
+                  var mercanciaTotal=parseFloat(l4)+parseFloat(m4)+parseFloat(x4)+parseFloat(j4)+parseFloat(v4)+parseFloat(s4);
+                
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">CREDITOS</td><td>$ '+formatoMoneda1(l)+' </td><td>$ '+formatoMoneda1(m)+'</td><td>$ '+ formatoMoneda1(x) +' </td><td>$ '+ formatoMoneda1(j)+'  </td><td>$ '+ formatoMoneda1(v) +' </td><td>$ '+ formatoMoneda1(s) +' </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">BONIFICACION</td><td> $ '+formatoMoneda1(lp)+' </td><td>$ '+formatoMoneda1(mp)+'</td><td>$ '+ formatoMoneda1(xp) +' </td><td>$ '+ formatoMoneda1(jp)+'  </td><td>$ '+ formatoMoneda1(vp) +' </td><td>$ '+ formatoMoneda1(sp) +' </td><td><strong>$ '+ formatoMoneda1(bonT) +'</strong> </td></tr>';  
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">MERCANCIA</td><td> $ '+formatoMoneda1(l4)+' </td><td>$ '+formatoMoneda1(m4)+'</td><td>$ '+ formatoMoneda1(x4) +' </td><td>$ '+ formatoMoneda1(j4)+'  </td><td>$ '+ formatoMoneda1(v4) +' </td><td>$ '+ formatoMoneda1(s4) +' </td><td> $ '+formatoMoneda1(mercanciaTotal)+'</td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">VENTA</td><td>$ '+formatoMoneda1(l2)+' </td><td>$ '+formatoMoneda1(m2)+'</td><td> $ '+ formatoMoneda1(x2) +' </td><td>$ '+ formatoMoneda1(j2)+'  </td><td>$ '+ formatoMoneda1(v2) +' </td><td> $ '+ formatoMoneda1(s2) +' </td><td><strong> $ '+ formatoMoneda1(ventaT) +'</strong> </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">NO VENTA</td><td>$ '+formatoMoneda1(l8)+' </td><td>$ '+formatoMoneda1(m8)+'</td><td> $ '+ formatoMoneda1(x8) +' </td><td>$ '+ formatoMoneda1(j8)+'  </td><td>$ '+ formatoMoneda1(v8) +' </td><td> $ '+ formatoMoneda1(s8) +' </td><td><strong> $ '+ formatoMoneda1(noVentaTotal) +'</strong> </td></tr>';
+                  html2+= '<tr  class="text-right"  style="font-size:8px;   "><td class="text-left">% NO VENTA</td><td><strong> % '+formatoMoneda1(l3)+'</strong> </td><td><strong> % '+formatoMoneda1(m3)+' </strong></td><td> <strong>% '+ formatoMoneda1(x3) +' </strong></td><td><strong> % '+ formatoMoneda1(j3)+'  </strong></td><td><strong> % '+ formatoMoneda1(v3) +'</strong> </td><td><strong> % '+ formatoMoneda1(s3) +' </strong></td><td><strong> % '+  formatoMoneda1(p) +' </strong></td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">EFECTIVO</td><td>$ '+formatoMoneda1(l5)+' </td><td>$ '+formatoMoneda1(m5)+'</td><td> $ '+ formatoMoneda1(x5) +' </td><td>$ '+ formatoMoneda1(j5)+'  </td><td>$ '+ formatoMoneda1(v5) +' </td><td> $ '+ formatoMoneda1(s5) +' </td><td><strong> $ '+ formatoMoneda1(efecT) +'</strong> </td></tr>';
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">FALT/SOB DIA</td><td>$ '+formatoMoneda1(l6)+' </td><td >$ '+formatoMoneda1(m6)+'</td><td> $ '+ formatoMoneda1(x6) +' </td><td>$ '+ formatoMoneda1(j6)+'  </td><td>$ '+ formatoMoneda1(v6) +' </td><td> $ '+ formatoMoneda1(s6) +' </td><td> $ '+ formatoMoneda1(f_s_t) +' </td></tr>';
+                  html2+= '<tr class="text-right" style="font-size:8px;   "><td  class="text-left">CONTROL INTERNO</td><td></td><td ></td><td></td><td></td><td></td><td></td><td> $ '+formatoMoneda1(controlInterno)+'</td></tr>';
+                 
+                  html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">FALT/SOB REAL</td><td>$ '+formatoMoneda1(l7)+' </td><td>$ '+formatoMoneda1(m7)+'</td><td> $ '+ formatoMoneda1(x7) +' </td><td>$ '+ formatoMoneda1(j7)+'  </td><td>$ '+ formatoMoneda1(v7) +' </td><td> $ '+ formatoMoneda1(s7) +' </td><td><strong> $ '+ formatoMoneda1(f_s_tR) +'</strong> </td></tr>';
+                  htmlC+='<tr  class="text-right" style="font-size:8px;   "><td></td><td class="text-right"> $ '+formatoMoneda1(creditosFTemp)+'</td><td class="text-right"> $ - '+formatoMoneda1(creditosITemp)+'</td><td> $ '+formatoMoneda1(creditosFTemp-creditosITemp) +'</td><td> $ '+formatoMoneda1(f_s_t)+'</td><td><strong> $ '+formatoMoneda1((creditosFTemp-creditosITemp)+parseFloat(f_s_t))+' </strong></td></tr>'
+                  
+            }
+
+                  $('.contCataModalDC').html(htmlC);
+                  $('.contCataModalDP').html(html2);
+                  $('.ventaDiariaSemanal').html(htmlp);
+        document.getElementById('fondoBlanco').style.display = 'block';
+        document.getElementById('oculto2').style.display = 'block';
+        document.getElementById('ocultoVD2').style.display = 'block';
+             
+              window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#ventaDiariaExcel').html()));
+         
+                  //imprimirVD3();
+                          document.getElementById('oculto2').style.display = 'none';
+        document.getElementById('ocultoVD2').style.display = 'none';
+             
+        document.getElementById('fondoBlanco').style.display = 'none';
+
+}
 function loadVDiariaR3(lista){ //venta general
               var html = '';
               var htmlp = '';
@@ -4773,7 +5196,7 @@ var json={where:{id:id}};
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasRemision);
   }
   function loadRemisionTotales(lista){ //por mayoreo
-      var boton = '<button class="btn btn-success" onclick="calcularRemisionT(); actualizarRemision();">GUARDAR</button><button class="btn btn-warning " onclick="printRemision()">IMPRIMIR</button>';
+      var boton = '<button class="btn btn-success" onclick="calcularRemisionT(); actualizarRemision();">GUARDAR</button>';
       for(var i=0;i<lista.length; i++){
         if (lista[i].tipo==1) {
           $('.deposito').val(lista[i].depositoT); 
@@ -4781,7 +5204,9 @@ var json={where:{id:id}};
                document.getElementById('depositoR').style.color = 'green';
                document.getElementById('chequesV').style.color = 'green';
                $('.existRemision').html(boton); 
-        }
+               $('.iconoImprimir').html('<img class="icoImage3 mainImprimir" src="/images/imprimir.png" onclick="printRemision()">  ');
+                
+        } 
 }
 }
 function  loadRemisionTotal(lista){
@@ -27362,9 +27787,11 @@ function loadVentas(lista){
                 if(total_merc==0){
               var total = ' <h3 class="letras">TOTAL: $ 0.00</h3>';
                   $('.imprimir').html('');
+                  $('.iconoImprimir').html('');
                 }else{
               var total = ' <h3 class="letras">TOTAL: $ '+formatoMoneda1(cantidad)+'</h3>';
-                  $('.imprimir').html(imprimir);
+                 $('.imprimir').html(imprimir);
+                  $('.iconoImprimir').html('<img class="icoImage3 mainImprimir" src="/images/imprimir.png" onclick="pagare();">');
                 }
                   $(".totalVenta").html(total);
 }
@@ -27405,7 +27832,7 @@ function loadVentasRemision(lista){
     document.getElementById('oculto3').style.display = 'block';
    var total_merca = parseFloat(total_venta)-parseFloat(bRemision);
     convertirNumLetras(total_merca);
-        $('.nombreVendedor').html("VENDEDOR: <strong>"+nombreVendedor+". </strong>");
+        $('.nombreVendedorR').html("VENDEDOR: <strong>"+nombreVendedor+". </strong>");
         var fechaRecepcionDD ='RECEPCIÓN: '+fechaRecepcionD;
     var pagare = '<p class="text-justify " >YO _<u><strong> '+ nombreVendedor+' </strong></u>_ POR ESTE PAGARE ME OBLIGO A PAGAR INCONDICIONALMENTE A LA ORDEN DE RAMSES VAZQUEZ RODRIGUEZ EN ESTA CIUDAD EL DIA _<u> <strong>'+fechaRecepcionD+'</strong> </u>_ LA CANTIDAD DE _<u><strong> $ '+formatoMoneda1(parseFloat(total_venta)-parseFloat(bRemision))+' </strong>(<strong>'+cantidadEnTexto+'</strong>) </u>_ ESTE PAGARE CAUSARA EL ______ % MENSUAL SIN QUE SE DE POR AMPLIADO EL PAGO DE SU VENCIMIENTO.</p> ';
   var linea =' <div class="col-md-6"><p>_________________________________________</p><p>'+nombreVendedor+'</p></div>';
@@ -27771,8 +28198,11 @@ function loadVentasr(lista){
                     arrGlobalT = lista;
                   if(despachadorR==undefined){
                     $('.imprimir').html('');
+                    $('.iconoImprimir').html('');
                   }else{
                     $('.imprimir').html(imprimir);
+
+                    $('.iconoImprimir').html('<img class="icoImage3 mainImprimir" src="/images/imprimir.png" onclick="pagare2();">  ');
                   }
 }
 function nextInput(num){
@@ -27830,7 +28260,31 @@ function loadVentaspp(lista){
         $('.addV').html('<button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('+idProducto+').focus();">INSERTAR</button>'); // habilita el boton de insertar
         for(var j=0;j<arrGlobal4.length; j++){
           if(arrGlobal4[j].ruta==rutas && arrGlobal4[j].fechaf==today_v){
-           $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span>  <li class="impre dvList text-center"  onclick="click_modalVehiculo() "> D & V </li>  <span class="border border-info"></span> <div class="imprimir"></div></ul> </div>');
+//           $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span> <div class="imprimir"></div></ul> </div>');
+               $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre ventasList " href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">
+           FECHA
+           </li><span class="border border-danger"></span>
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">
+          DESPACHO 
+          </li><span class="border border-success"></span> 
+           <li class="nav-item impre text-center seleccionar2 impre ventasList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span>
+          <li class="nav-item impre text-center seleccionar2 impre dvList text-center"  onclick="click_modalVehiculo() "> 
+          D & V 
+          </li>  <span class="border border-info"></span> 
+          <div class="imprimir"></div>
+          </ul>
+    </div>
+          
+`);
+
+
             despachador = '<u style="width:100px;">'+ arrGlobal4[j].despachador2+'. </u>';
             vehiculoA = '<u style="width:100px;">'+arrGlobal4[j].vehiculo+ '</u>';
             vehiculoA2=arrGlobal4[j].vehiculo;
@@ -28549,7 +29003,17 @@ function loadVentaDiariaR(lista){
               ruta3=arrGlobalRuta[i].nombre;
             }
           }
-              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td><td onClick=""><button class="btn btn-warning" onclick="rutasRP('+ lista[h].ruta+', '+h+'); ">IMPRIMIR</button> <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></td></tr>';
+
+           var tVentaNombre;
+              if(lista[h].t_venta<4){//lectura normal de tipo de venta
+                tVentaNombre = t_ventas[lista[h].t_venta - 1] ;
+              }else{ // busca los tipo de ventas actuales 
+              for(var hh=0;hh<tventa.length; hh++){
+                if(tventa[hh].id==lista[h].t_venta)
+                  tVentaNombre = tventa[hh].nColumna;
+                }
+              }
+              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR('+ lista[h].ruta+', '+h+');">'+tVentaNombre+'</td><td style="width:10%" onClick=""> <img class="icoImage3 " src="/images/imprimir.png" onclick="rutasRP('+ lista[h].ruta+', '+h+')"> <img class="icoImage3" src="/images/excel.png" onclick=" rutasRPE('+ lista[h].ruta+', '+h+')">   </td></tr>';
         }
               $('.contCataR').html(html); 
               arrGlobal2 = lista;
@@ -28814,7 +29278,17 @@ function loadVentaDiariaVG(lista){
               ruta3=arrGlobalRuta[i].nombre;
             }
           }
-              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">'+t_ventas[lista[h].t_venta-1]+'</td><td onclick=""><button class="btn btn-warning" onclick="rutasRP2('+ lista[h].ruta+', '+h+'); ">IMPRIMIR</button></td></tr>';
+
+           var tVentaNombre;
+              if(lista[h].t_venta<4){//lectura normal de tipo de venta
+                tVentaNombre = t_ventas[lista[h].t_venta - 1] ;
+              }else{ // busca los tipo de ventas actuales 
+              for(var hh=0;hh<tventa.length; hh++){
+                if(tventa[hh].id==lista[h].t_venta)
+                  tVentaNombre = tventa[hh].nColumna;
+                }
+              }
+              html+= '<tr class="seleccionar text-center" ><td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">' + ruta3  + '</td><td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onClick="modal_VDiaria(); rutasR2('+ lista[h].ruta+', '+h+');">'+tVentaNombre+'</td><td style="width:10%" onClick=""> <img class="icoImage3 " src="/images/imprimir.png" onclick="rutasRP2('+ lista[h].ruta+', '+h+')"> <img class="icoImage3" src="/images/excel.png" onclick=" rutasRPE2('+ lista[h].ruta+', '+h+')">   </td>  </tr>';
         }
               $('.contCataR').html(html);
               arrGlobal2 = lista;
@@ -28896,6 +29370,9 @@ var html = '';// tabla
 }
 function ocultar(){
               $('.imprimir').html('');
+
+                  $('.iconoImprimir').html('');
+                  click_ventas();
 }
 function ocultar2(){
 click_nomina();
@@ -35686,7 +36163,46 @@ function click_inventario2(){
   document.getElementById('loader').style.display = 'block';//Cargando 
  $('#contenido').load('/html/ventas.html'); // carga el archivo html en la pantalla
  $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p>( '+dias[today -1]+', '+day+' DE '+months[parseInt(month)]+' DEL '+year+' )</p>'); //agrega titulo a la pagina
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">PEDIDOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">MERMA </li>  <span class="border border-warning"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_Degustaciones1(); "> DEGUSTACIONES</li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>'); // llena la barra izquierda
+// $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist">     </div>'); // llena la barra izquierda
+ 
+
+
+
+
+
+
+ $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre ventasList " href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">
+           FECHA
+           </li><span class="border border-danger"></span>
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">
+          DESPACHO 
+          </li><span class="border border-success"></span> 
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">
+          RECEPCIÓN 
+          </li><span class="border border-primary"></span> 
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre ventasList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">
+          PEDIDOS  
+          </li>  <span class="border border-white"></span> 
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">
+          MERMA 
+          </li>  <span class="border border-warning"></span> 
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre mermaList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_Degustaciones1(); ">
+           DEGUSTACIONES
+          </li>  <span class="border border-warning"></span> 
+          <div class="imprimir"></div>
+          </ul>
+    </div>
+          
+`);
+
+
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year)); // busca en que semana nos encontramos actualmente
  scv=noSemana; // le asignamos a la variable global el resultado de la busqueda de la semana
  $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); //asigna titulo al mapa
@@ -35798,9 +36314,30 @@ function click_Pedidos1(){
 }
 
 function click_Despacho(){
+   $('.iconoImprimir').html('');
 document.getElementById('loader').style.display = 'block'; //carga
  $('.seccion2').load('/html/salida_venta.html'); // carga html
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar()">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <s<div class="imprimir"></div></ul> </div>');
+ //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar()">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> </ul> </div>');
+ $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre ventasList " href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">
+           FECHA
+           </li><span class="border border-danger"></span>
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">
+          DESPACHO 
+          </li><span class="border border-success"></span> 
+          <div class="imprimir"></div>
+          </ul>
+    </div>
+          
+`);
+
+
     var fecha = $(".selectfecha").val(); //se almacena el valor de la fecha
     var dia= ""+day+"";//se convierte en string
         if(dia.length == 1){
@@ -36042,8 +36579,28 @@ var jsonC={where:{fechaf:fechaf,tipo:1}};
      
 }
 function click_Recepcion(){
+  $('.iconoImprimir').html('');
     $('.seccion3').load('/html/rec_venta.html');
-    $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar()">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion3" aria-controls="seccion3" id="desp" data-toggle="tab" onclick="click_Recepcion1()" role="tab">RECEPCIÓN </li> <span class="border border-success"></span> <s<div class="imprimir"></div></ul> </div>');
+    //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar()">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion3" aria-controls="seccion3" id="desp" data-toggle="tab" onclick="click_Recepcion1()" role="tab">RECEPCIÓN </li> <span class="border border-success"></span> <s<div class="imprimir"></div></ul> </div>');
+    $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre ventasList " href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">
+           FECHA
+           </li><span class="border border-danger"></span>
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">
+          RECEPCIÓN 
+          </li><span class="border border-primary"></span> 
+          <div class="imprimir"></div>
+          </ul>
+    </div>
+          
+`);
+
     document.getElementById('loader').style.display = 'block';
     var fecha = $(".selectfecha").val(); 
     var dia= ""+day+"";
@@ -37281,13 +37838,12 @@ sfc=scv;
 
 }
 function click_reportes() {
-   $('.barraIzq').html('');
-$('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
+ //  $('.barraIzq').html('');
  $('#contenido').load('/html/mReportes.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> REPORTES </h3>');
-
+window.scroll(0,0);
 }
+
 function ventaDiariaR(){
   $('.tituloResp').html('<h3 class="text-center impre">VENTA DIARIA</h3>');
   $('.contenidoR').load('/html/ventaDiariaR.html');
@@ -37336,8 +37892,14 @@ function ventaDiariaC3(){
  // document.getElementById('loader').style.display = 'block';
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
-  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div><button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button> <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></div><h3 class="text-center impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3>');
-  $('.contenidoR').load('/html/ventaDiariaC.html');
+  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div></div>');
+  $('.iconoImprimir').html('');
+  $('.iconoExcel').html('');
+  $('.contCataMayoreo').html('');
+  $('.contCataRestaurante').html('');
+  $('.contCataForaneo').html('');
+  $('.contCataDetalle').html('');
+  $('.contenidoR').html('');
  var semanaW2;
  var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
  if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
@@ -37669,22 +38231,26 @@ click_nomina();
 }
 
 function click_buscarVCategorias4(){
+
   $('.contCataMayoreo').html('');
   $('.contCataRestaurante').html('');
   $('.contCataForaneo').html('');
   $('.contCataDetalle').html('');
  var semanaVS = $('.semanaVD').val();
           
-        document.getElementById('loader').style.display = 'block';
 
 if(semanaVS!=""){
+        document.getElementById('loader').style.display = 'block';
 
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
 semanaW=semanaVS;  
-  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategorias4()">BUSCAR</button><div class="col-md-3"></div> <button class="btn btn-warning impre totala col-md-3" value="Imprimir" onclick="ventaDiariaCPrint();"  >IMPRIMIR</button>  <button class="btn btn-success impre totala col-md-3" value="Imprimir" onclick="ExcelventaDiariaCPrint();"  >Descargar Excel</button></div></div> <h3 class="text-center impre">VENTA DIARIA (Semana: '+(scv+1)+')</h3>');
 var sfc = (scv+1);
-  if(semanaVS != ""){
+      $('.tituloResp').html('<div class=" impre row col-md-6 form-group"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark col-md-6 form-control" onClick="click_buscarVCategorias4()">BUSCAR</button></div><div class="col-md-6 text-center"> <h3 class="impre">VENTA DIARIA (SEMANA: '+(scv+1)+')</h3></div>');
+      $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="ventaDiariaCPrint()">  ');
+      $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelventaDiariaCPrint()">  ');
+      $('.contenidoR').load('/html/ventaDiariaC.html');
+ 
      var json = {where:{semana:semanaVS}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
 
@@ -37695,7 +38261,7 @@ var sfc = (scv+1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaOtros1);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMermaTotales);
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacionTotales);
-    }
+
 }else{
     $('#modal .textModal').html('Seleccione una semana.'); 
       $('#modal').modal('show');
@@ -37799,6 +38365,7 @@ var sfc = (scv+1);
 }
 }
 function rutasR(ruta, h){
+
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
 saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -37853,8 +38420,6 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
         anioSiguiente = today_vv.substring(0,4);
       }
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
-
-
   if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
    
      var json = {where:{semana:semanaW, ruta:ruta}}
@@ -37954,7 +38519,41 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
   }
 
 }
+function rutasRPE(ruta, h){
+rutas=ruta;
+nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
+saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+scv=noSemana;
+var sfc = (scv+1);
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW, ruta:ruta}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR2E);
+  }
+
+}
 function rutasRP2(ruta, h){
+  alert()
 rutas=ruta;
 nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
 
@@ -37985,6 +38584,39 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
      var json = {where:{semana:semanaW, ruta:ruta}}
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR2);
   }
+
+}
+function rutasRPE2(ruta, h){
+rutas=ruta;
+nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
+
+
+var sfc = (scv+1);
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+
+
+  if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
+   
+     var json = {where:{semana:semanaW, ruta:ruta}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVDiariaR2E);
+    }
 
 }
 function rutasMP(ruta, h){
@@ -38020,13 +38652,24 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
 
 }
 function ventaDiariaRS(){
-        document.getElementById('loader').style.display = 'block';
+    document.getElementById('loader').style.display = 'block';
+    $('.tituloResp').html('<div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div><div class="col-md-6 text-center"><h3 class="impre">VENTA SEMANAL</h3></div>  ');
+    $('.contenidoR').load('/html/ventaDiariaR.html');
+    $('.contenidoR').html('');
+    $('.iconoImprimir').html('');
+    $('.iconoExcel').html('');
 
-  $('.tituloResp').html('<div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div><h3 class="text-center impre">VENTA SEMANAL</h3>  ');
 
-  $('.contenidoR').load('/html/ventaDiariaR.html');
+    getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR);
+}
+function ventaSemanal(){
+
+  rutas=ruta;
+nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
+  $('.tituloResp').html('<h3 class="text-center">'+nombre_vend+'</h3>');
+
   $('.contenidoR').html('');
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaR);
+
 }
 function click_buscarVG(){
 
@@ -38036,7 +38679,7 @@ if(semanaVS!=""){
 
 year =  parseInt(semanaVS.substring(0,4));
 scv = parseInt(semanaVS.substring(6,8))-1;
-  $('.tituloResp').html(' <div class=" row col-md-12"><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6  semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button> </div> <div class="col-md-6 "><div class="col-md-6"></div> <button class="btn btn-warning impre totala col-md-6" value="Imprimir" onclick="ventaGeneralPrint();"  >IMPRIMIR</button> </div> </div>  <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+(scv+1)+')</h3> ');
+  $('.tituloResp').html(' <div class=" row col-md-12"><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6  semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button> </div> <div class="col-md-6 "><div class="col-md-6"></div> </div> </div>  <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+(scv+1)+')</h3> ');
 
       var json = {where:{semana:semanaVS}}
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
@@ -38048,15 +38691,7 @@ scv = parseInt(semanaVS.substring(6,8))-1;
       $('#modal').modal('show');
 }
 }
-function ventaSemanal(){
 
-  rutas=ruta;
-nombre_vend=arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
-  $('.tituloResp').html('<h3 class="text-center">'+nombre_vend+'</h3>');
-
-  $('.contenidoR').html('');
-
-}
 function ventaDiariaRM(){
   $('.tituloResp').html('<h3 class="text-center">VENTA MENSUAL</h3>');
 
@@ -38069,8 +38704,10 @@ function ventaGeneral(){
 
    saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
 scv=noSemana;
-  $('.tituloResp').html(' <div class=" row col-md-12"><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6  semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button> </div> <div class="col-md-6 "><div class="col-md-6"></div> <button class="btn btn-warning impre totala col-md-6" value="Imprimir" onclick="ventaGeneralPrint();"  >IMPRIMIR</button> </div> </div>  <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+(scv+1)+')</h3> ');
+  $('.tituloResp').html(' <div class=" row col-md-12"><div class=" impre col-md-6 form-group row"><input class="form-control col-md-6  semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVG()">BUSCAR</button> </div> <div class="col-md-6 "><div class="col-md-6"></div></div> </div>  <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+(scv+1)+')</h3> ');
+  $('.iconoImprimir').html('<img class="icoImage3 mainImprimir" src="/images/imprimir.png" onclick="ventaGeneralPrint()">  ');
   $('.contenidoR').load('/html/ventaGeneral.html');
+  $('.iconoExcel').html('');
  var semanaW2;
  var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
  if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
@@ -38216,18 +38853,16 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 }
 }
 function click_buscarVD(){
+    var semanaVS = $('.semanaVD').val();
+    if(semanaVS!=""){
+    year =  parseInt(semanaVS.substring(0,4));
+    scv = parseInt(semanaVS.substring(6,8))-1;
+    $('.tituloResp').html('   <div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div> <div class="col-md-6 text-center">  <h3 class="text-center impre"> VENTA GENERAL (SEMANA: '+semanaVS.substring(6,8)+')</h3></div> ');
+    var sfc2=scv+1;
 
-var semanaVS = $('.semanaVD').val();
-if(semanaVS!=""){
-year =  parseInt(semanaVS.substring(0,4));
-scv = parseInt(semanaVS.substring(6,8))-1;
-  $('.tituloResp').html('   <div class=" impre col-md-6 form-group row"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-6" onClick="click_buscarVD()">BUSCAR</button></div> <h3 class="text-center impre">VENTA GENERAL (SEMANA: '+semanaVS.substring(6,8)+')</h3> ');
-
-var sfc2=scv+1;
- var jsonC = {where:{sfc:sfc2}}
- executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
-
-getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaVG);
+    var jsonC = {where:{semana:semanaVS}}
+    executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
+   getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaDiariaVG);
 
 
 }else{
@@ -38291,8 +38926,27 @@ function click_Pedidos(){
 
  $('.tituloPantalla').html('<h3 class="administracion">  PEDIDOS  </h3>');
 
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">PEDIDOS  </li>  <span class="border border-white"></span>  <div class="imprimir"></div></ul> </div>');
-
+ //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">PEDIDOS  </li>  <span class="border border-white"></span>  <div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre ventasList " href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">
+           FECHA
+           </li><span class="border border-danger"></span>
+          
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre ventasList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">
+          PEDIDOS  
+          </li>  <span class="border border-white"></span> 
+         
+          <div class="imprimir"></div>
+          </ul>
+    </div>
+          
+`);
 
 
         document.getElementById('loader').style.display = 'block';
@@ -38393,7 +39047,7 @@ function click_SPedidos(id,h){
    $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ   </h3>');
  $('.seccion5').load('/html/pedidosV.html');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos(); ">PEDIDOS  </li>  <span class="border border-white"></span>  <div class="imprimir"></div></ul> </div>');
+ //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos(); ">PEDIDOS  </li>  <span class="border border-white"></span>  <div class="imprimir"></div></ul> </div>');
 
 var pedidosNombre="";
 for(var p=0;p<arrGlobalPedidos.length;p++){
@@ -38459,7 +39113,7 @@ for(var j=0;j<arrGlobalPedidos.length; j++){
    
   if(arrGlobalPedidos[j].ruta==rutas && arrGlobal4[j].fechaf==today_v){
    
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span>  <li class="impre dvList text-center"  onclick="click_modalVehiculo() "> D & V </li>  <span class="border border-info"></span> <div class="imprimir"></div></ul> </div>');
+ //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span>  <li class="impre dvList text-center"  onclick="click_modalVehiculo() "> D & V </li>  <span class="border border-info"></span> <div class="imprimir"></div></ul> </div>');
 
    despachador = '<u style="width:100px;">'+ arrGlobal4[j].despachador2+'. </u>';
    vehiculoA = '<u style="width:100px;">'+arrGlobal4[j].vehiculo+ '</u>';
@@ -38491,7 +39145,7 @@ function click_SPedidosF(id,h){
    $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ   </h3>');
  $('.seccion5').load('/html/pedidosV2.html');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos(); ">PEDIDOS  </li>  <span class="border border-white"></span>  <div class="imprimir"></div></ul> </div>');
+//$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos(); ">PEDIDOS  </li>  <span class="border border-white"></span>  <div class="imprimir"></div></ul> </div>');
 
 var pedidosNombre="";
 for(var p=0;p<arrGlobalPedidos.length;p++){
@@ -38543,9 +39197,32 @@ function click_Salida(id , h, ruta, tipo, credito, bonificaciones,f_ahorro){
       var num = 0;
       var num2 = 0;
       f_Ahorro = f_ahorro;
+
+                  $('.iconoImprimir').html('');
       $('.seccion2').load('/html/venta.html');//carga html
       //carga barra izquierda
-      $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span><div class="imprimir"></div></ul> </div>');
+      //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span><div class="imprimir"></div></ul> </div>');
+       $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre ventasList " href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">
+           FECHA
+           </li><span class="border border-danger"></span>
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">
+          DESPACHO 
+          </li><span class="border border-success"></span> 
+           <li class="nav-item impre text-center seleccionar2   impre productosList text-center"  onclick="click_modalProducto() ">
+           PRODUCTOS </li>  <span class="border border-white"></span>
+          <div class="imprimir"></div>
+          </ul>
+    </div>
+          
+`);
+
       //nombre del vendedor y mas datos para el llenado del titulo de la pantalla
       nombre_vend = arrGlobal2[h].nombre_Emple+' '+arrGlobal2[h].paterno_Emple+' '+arrGlobal2[h].materno_Emple;
       id_vend=id;
@@ -38704,6 +39381,7 @@ $('#modalDesp2 .despachador').html(selectdes);
 }
 var despachadorR,  n_vend1, vehiculoRec2, mermaRec2;
 function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, sc,mermaTl){
+  $('.iconoImprimir').html('');
         document.getElementById('loader').style.display = 'block';
         $('.seccion3').load('/html/recep.html');
         mermaRec2 = arrGlobal4[h].n1;
@@ -38746,7 +39424,28 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
   }
  if(arrGlobal4[h].f_s_real==undefined){
     modalDespachador2();
-    $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre despachoList text-center" href="#seccion3" aria-controls="seccion3" id="desp" data-toggle="tab" onclick="click_Recepcion();" role="tab">RECEPCIÓN </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"> </span><div class="imprimir"></div></ul> </div>');
+    //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre despachoList text-center" href="#seccion3" aria-controls="seccion3" id="desp" data-toggle="tab" onclick="click_Recepcion();" role="tab">RECEPCIÓN </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"> </span><div class="imprimir"></div></ul> </div>');
+  $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre ventasList " href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">
+           FECHA
+           </li><span class="border border-danger"></span>
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">
+          RECEPCIÓN 
+          </li><span class="border border-primary"></span> 
+          <li class="nav-item impre text-center seleccionar2   impre productosList text-center"  onclick="click_modalProducto() ">
+            PRODUCTOS 
+            </li>  <span class="border border-white"> </span>
+          <div class="imprimir"></div>
+          </ul>
+    </div>
+          
+`);
   }else{
   despachadorR=arrGlobal4[h].despachador;
   $('#modalDesp2 .despachador819').html(' <strong> DESPACHADOR: </strong>'+despachadorR);

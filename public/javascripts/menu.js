@@ -2577,7 +2577,28 @@ html='';
          if (arrGlobalPermisosIn[hh].remisiones==1) {
      
 
-
+$('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Pagare();">
+           PAGARE
+           </li>  <span class="border border-white"></span> 
+           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Remisiones() ">
+           REMISIONES
+           </li> <span class="border border-white"></span> 
+           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Foro() ">
+           FORO
+           </li> <span class="border border-white"></span> 
+           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="">
+           </li>
+           </ul> 
+    </div>
+          
+`);
      //
          }
 
@@ -27845,7 +27866,7 @@ function loadVentasRemision(lista){
         $('.pagarel1').html(linea2);
         $('.controlCR').html(controlC);
         
-        $('.fechaDespacho').html(fechaRecepcionDD);
+        $('.fechaDespachoRem').html(fechaRecepcionDD);
 
         window.print(); 
     document.getElementById('oculto').style.display = 'none';

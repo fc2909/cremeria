@@ -577,7 +577,7 @@ th {color: black;}
 
 .izqBar{
   position: fixed;
-  top: 110px;
+  top: 0px;
 background: #1B1B1B;
   left: 0px;
   width: 200px;

@@ -184,7 +184,7 @@ function avisos(){
 
 }
 function actualizarPagina(){
-  $(".navbar").html('')
+  //$(".navbar").html('')
 location.reload();
 }
 function newTimer(){

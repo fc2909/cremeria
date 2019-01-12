@@ -29051,7 +29051,7 @@ function loadFacturas3(lista){
               html+= '<tr class="seleccionar text-center" ><td >' + lista[h].idVentap  + '</td><td >' + lista[h].nombre + '</td> <td> $ '+formatoMoneda1(parseFloat(lista[h].t_venta_merca))+'</td><td style="width:10%"> <img class="icoImage3" src="/images/eliminar.png" onclick="delFactura('+ lista[h].id+','+lista[h].t_venta_merca+'); "> </td></tr>';
    
       total+=parseFloat(lista[h].t_venta_merca);    
-      alert(total);  
+    
       } 
             
               html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td ></td> <td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';
@@ -29122,20 +29122,21 @@ function capturarTotal(id, idVentap, t_venta_merca){
   //var idVentap = parseFloat(total);
   
   var json = {t_venta_merca: t_venta_merca, semana:semanaW}
-   
+ 
 
-   upRegistroA2(id,json,jsonC, 'ventaspasada', loadFacturas3);
- var fechaf= today_v;
- var ruta="F";
- var jsonC = {where:{fechaf:today_v, ruta:ruta, t_venta:"F"}}
+   upRegistroA2(id,json,jsonC, 'ventaspasada', loadFF);
+ 
+
+}
+function loadFF(){}
+function loadFF3(lista){
+   var jsonC = {where:{fechaf:today_v, ruta:"F", t_venta:"F", bonificacion_p:"F"}}
 
 //       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
 //       executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
        executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadFacturas3);
-      
-
+   
 }
-function loadFF(){}
 function loadFacturasContado(lista){
           var html = '';
           var htmlp = '';

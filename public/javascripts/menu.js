@@ -29124,7 +29124,7 @@ function capturarTotal(id, idVentap, t_venta_merca){
   var json = {t_venta_merca: t_venta_merca, semana:semanaW}
  
 
-   upRegistroA2(id,json,jsonC, 'ventaspasada', loadFF);
+   upRegistroA2(id,json,jsonC, 'ventaspasada', loadFF3);
  
 
 }

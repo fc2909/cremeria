@@ -29050,7 +29050,8 @@ function loadFacturas3(lista){
        if(lista[h].bonificacion_p=="F")
               html+= '<tr class="seleccionar text-center" ><td >' + lista[h].idVentap  + '</td><td >' + lista[h].nombre + '</td> <td> $ '+formatoMoneda1(parseFloat(lista[h].t_venta_merca))+'</td><td style="width:10%"> <img class="icoImage3" src="/images/eliminar.png" onclick="delFactura('+ lista[h].id+','+lista[h].t_venta_merca+'); "> </td></tr>';
    
-      total+=parseFloat(lista[h].t_venta_merca);      
+      total+=parseFloat(lista[h].t_venta_merca);    
+      alert(total);  
       } 
             
               html+= '<tr style="background:black" class="seleccionar text-center" ><td >TOTAL</td><td ></td> <td> $ '+formatoMoneda1(parseFloat(total))+'</td></tr>';

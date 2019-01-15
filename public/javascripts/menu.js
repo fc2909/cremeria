@@ -18512,7 +18512,7 @@ if(arrGlobalCategoria[y].descripcion==2){
               }else{
                 if(arrGlobalCategoria[y].descripcion==3){
                      productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
-                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class=""><strong> '+formatoMoneda1(sumaProductos)+' KG.</strong></td>';
                
                 prodT[y]+=parseFloat(sumaProductos);
                  sumaProductos=0;
@@ -20748,7 +20748,7 @@ if(arrGlobalCategoria[y].descripcion==2){
               }else{
                 if(arrGlobalCategoria[y].descripcion==3){
                      productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
-                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class=""> <strong>'+formatoMoneda1(sumaProductos)+' KG. </strong></td>';
                
                 prodT[y]+=parseFloat(sumaProductos);
                  sumaProductos=0;
@@ -21861,7 +21861,7 @@ if(arrGlobalCategoria[y].descripcion==2){
               }else{
                 if(arrGlobalCategoria[y].descripcion==3){
                      productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
-                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class=""><strong> '+formatoMoneda1(sumaProductos)+' KG. </strong></td>';
                
                 prodT[y]+=parseFloat(sumaProductos);
                  sumaProductos=0;
@@ -22973,7 +22973,7 @@ if(arrGlobalCategoria[y].descripcion==2){
               }else{
                 if(arrGlobalCategoria[y].descripcion==3){
                      productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
-                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class=""> <strong> '+formatoMoneda1(sumaProductos)+' KG. </strong></td>';
                
                 prodT[y]+=parseFloat(sumaProductos);
                  sumaProductos=0;
@@ -23994,7 +23994,7 @@ if(arrGlobalCategoria[y].descripcion==2){
               }else{
                 if(arrGlobalCategoria[y].descripcion==3){
                      productosT+= '<td class="negro1"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
-                     productosTP+= '<td class="negro1 letras"> '+formatoMoneda1(sumaProductos)+' KG. </td>';
+                     productosTP+= '<td class=""><strong> '+formatoMoneda1(sumaProductos)+' KG.</strong> </td>';
                
                 prodT[y]+=parseFloat(sumaProductos);
                  sumaProductos=0;

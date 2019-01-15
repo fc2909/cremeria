@@ -38137,7 +38137,7 @@ var html2= '<tr class=" text-center"  style="font-size:12px; background:black;  
       if(arrGlobalCategoria[h].descripcion==3){
      titulos+='<th class="letras text-center">'+arrGlobalCategoria[h].nombre+'</th>';
      titulosP+='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[h].nombre+'</th>';
-     html+='<td class="negro1 letras"><strong>'+formatoMoneda1(prodTotales[h])+' KG.</strong></td>';
+     html+='<td class=""><strong>'+formatoMoneda1(prodTotales[h])+' KG.</strong></td>';
      html2+='<td class="negro1 letras"><strong>'+formatoMoneda1(prodTotales[h])+' KG.</strong></td>';
       }
      

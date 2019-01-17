@@ -3764,7 +3764,7 @@ function loadVendedores(lista){
                 }
               }
               var tVentaNombre;
-              if(lista[h].t_venta<4){
+              if(lista[h].t_venta<=4){
                 tVentaNombre = t_ventas[lista[h].t_venta - 1] ;
               }else{
           for(var hh=0;hh<tventa.length; hh++){
@@ -4958,7 +4958,7 @@ function loadRemisiondias(lista){
  for(var j=0;j<arrGlobalEmpleados.length; j++){
         //Parche por la modificacion de agregar nuevos tipo de venta
            var tVentaNombre;
-              if(arrGlobalEmpleados[j].t_venta<4){//lectura normal de tipo de venta
+              if(arrGlobalEmpleados[j].t_venta<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[arrGlobalEmpleados[j].t_venta - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -4996,7 +4996,7 @@ htmlV+= '<tr style="font-size:12px; color:white; " class=" seleccionar text-cent
  for(var j=0;j<arrGlobalEmpleados.length; j++){
         //Parche por la modificacion de agregar nuevos tipo de venta
            var tVentaNombre;
-              if(arrGlobalEmpleados[j].t_venta<4){//lectura normal de tipo de venta
+              if(arrGlobalEmpleados[j].t_venta<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[arrGlobalEmpleados[j].t_venta - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -5044,7 +5044,7 @@ if(chequesV==""){
       for(var j=0;j<arrGlobalEmpleados.length; j++){
         //Parche por la modificacion de agregar nuevos tipo de venta
            var tVentaNombre;
-              if(arrGlobalEmpleados[j].t_venta<4){//lectura normal de tipo de venta
+              if(arrGlobalEmpleados[j].t_venta<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[arrGlobalEmpleados[j].t_venta - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -5134,7 +5134,7 @@ if(chequesV==""){
       for(var j=0;j<arrGlobalEmpleados.length; j++){
         //Parche por la modificacion de agregar nuevos tipo de venta
            var tVentaNombre;
-              if(arrGlobalEmpleados[j].t_venta<4){//lectura normal de tipo de venta
+              if(arrGlobalEmpleados[j].t_venta<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[arrGlobalEmpleados[j].t_venta - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -5370,7 +5370,7 @@ function loadVentaDiariaMapa2(lista){ //por mayoreo
           }
           //Parche por la modificacion de agregar nuevos tipo de venta
            var tVentaNombre;
-              if(vendedoresMapa[hh2].t_venta<4){//lectura normal de tipo de venta
+              if(vendedoresMapa[hh2].t_venta<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[vendedoresMapa[hh2].t_venta - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -28575,7 +28575,7 @@ function loadVentaspasadas(lista){
             }
           }
            var tVentaNombre;
-              if(lista[h].tipo<4){//lectura normal de tipo de venta
+              if(lista[h].tipo<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[lista[h].tipo - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -28613,7 +28613,7 @@ function loadVentaspasadasMerma(lista){
             }
           }
           var tVentaNombre;
-              if(lista[h].tipo<4){//lectura normal de tipo de venta
+              if(lista[h].tipo<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[lista[h].tipo - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -28652,7 +28652,7 @@ function loadVentaspasadasDeg(lista){
             }
           }
           var tVentaNombre;
-              if(lista[h].tipo<4){//lectura normal de tipo de venta
+              if(lista[h].tipo<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[lista[h].tipo - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -29030,7 +29030,7 @@ function loadVentaDiariaR(lista){
           }
 
            var tVentaNombre;
-              if(lista[h].t_venta<4){//lectura normal de tipo de venta
+              if(lista[h].t_venta<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[lista[h].t_venta - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -29307,7 +29307,7 @@ function loadVentaDiariaVG(lista){
           }
 
            var tVentaNombre;
-              if(lista[h].t_venta<4){//lectura normal de tipo de venta
+              if(lista[h].t_venta<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[lista[h].t_venta - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -29379,7 +29379,7 @@ var html = '';// tabla
       }
       //Parche por la modificacion de agregar nuevos tipo de venta
            var tVentaNombre;
-              if(lista[h].t_venta<4){//lectura normal de tipo de venta
+              if(lista[h].t_venta<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[lista[h].t_venta - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -39353,7 +39353,7 @@ function click_Salida(id , h, ruta, tipo, credito, bonificaciones,f_ahorro){
   var fechaDespachoD = dias[diaD-1]+", "+dayD+" DE "+months[parseInt(monthD)]+" DEL "+yearD+".";
    //Parche por la modificacion de agregar nuevos tipo de venta
            var tVentaNombre;
-              if(arrGlobal2[h].t_venta<4){//lectura normal de tipo de venta
+              if(arrGlobal2[h].t_venta<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[arrGlobal2[h].t_venta - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -39506,7 +39506,7 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
         scv=sc;
 
         var tVentaNombre;
-              if(arrGlobal4[h].tipo<4){//lectura normal de tipo de venta
+              if(arrGlobal4[h].tipo<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[arrGlobal4[h].tipo - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -39653,7 +39653,7 @@ function click_Deg(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
  rutas=arrGlobal4[h].ruta;
 
 var tVentaNombre;
-              if(arrGlobal4[h].tipo<4){//lectura normal de tipo de venta
+              if(arrGlobal4[h].tipo<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[arrGlobal4[h].tipo - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
@@ -39731,7 +39731,7 @@ function click_Mer(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
  rutas=arrGlobal4[h].ruta;
 
 var tVentaNombre;
-              if(arrGlobal4[h].tipo<4){//lectura normal de tipo de venta
+              if(arrGlobal4[h].tipo<=4){//lectura normal de tipo de venta
                 tVentaNombre = t_ventas[arrGlobal4[h].tipo - 1] ;
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){

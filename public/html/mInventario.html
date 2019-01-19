@@ -8,7 +8,7 @@
 
     <div class="row col-md-12">
 
-
+<div style="display: none">
         <div class="col-md-2 form-group">
           <label class="letras" >ID</label>
           <input type="number" pattern="[0-9]{10}" id="id" class="form-control clear idInventario" placeholder="" onchange="document.getElementById('descripcion').focus();">
@@ -69,8 +69,7 @@
     
       <br><br><br>
       <br>
-      
-    
+ 
 <div class="col-xs-3 col-md-3">
       <button type="button" id="add" onchange="document.getElementById('id').focus();" class="btn botoninv insertar" onclick="addInventario()">INSERTAR</button>
   </div>
@@ -86,26 +85,21 @@
 
 
   <div class="col-md-12"><br></div>
-
- <div class="col-md-12">
+     
+    </div>
+ <div class="col-md-12 fondo">
 
 
   <div class="table-responsive tabla text-center">
   <table class="table table-active table-hover table-bordered table-inverse  text-center">
     <thead class="text-center">
-      <tr class="letras" style="font-size:12px;">
-         <th class="letras">ID</th>
-        <th class="letras">NOMBRE</th>
-        <th class="letras">PRECIO DETALLE</th>
-        <th class="letras">PRECIO MAYOREO</th>
-        <th class="letras">PRECIO FORÁNEO</th>
-        <th class="letras">PRECIO RESTAURANTE</th>
-        <th class="letras">CANTIDAD</th>
-        <th class="letras">STOCK MÍNIMO</th>
-        <th class="letras">STOCK MÁXIMO</th>
-        <th class="letras">CATEGORÍA</th>
-        <th class="letras">PROPORCIÓN</th>
-        <th class="letras">PESAJE</th>
+      <tr class="letras text-center" style="font-size:12px;">
+         <th class="letras text-center" style="width: 10%">ID</th>
+        <th class="letras text-center" style="width: 10%">NOMBRE</th>
+        <th class="letras text-center" style="width: 10%">CATEGORÍA</th>
+        <th class="letras text-center" style="width: 10%">STOCK MÍNIMO</th>
+        <th class="letras text-center" style="width: 10%">STOCK MÁXIMO</th>
+        <th class="letras text-center" style="width: 50%">CANTIDAD</th>
       
       </tr>
     </thead>

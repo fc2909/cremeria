@@ -2346,10 +2346,11 @@ function loadTVentaProducto(){
       executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadColumnasTVentaAI);
      
  var buscar1 = `
-        <div class="input-group">
+        <div class=" input-group">
        <input type="number" onkeyup="buscarProducto1I(this)" pattern="[0-9]{10}" id="idProduct" class="form-control clear idProductB1" autocomplete="off" onchange="" placeholder="">
+    <button type="button" class="btn btn-modals" onclick="buscarProducto1()">BUSCAR</button>
     </div>
-    <button type="button" class="btn btn-modals" onclick="buscarProducto1()">BUSCAR</button>`;
+    `;
 $('.buscar1').html(buscar1);
 
           var htmlT = `<th class="letras">ID</th>
@@ -2840,7 +2841,8 @@ function loadInventarios(lista){
 
             }
           }
-          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>' + lista[h].detalle + '</td><td>' + lista[h].mayoreo + '</td><td>' + lista[h].foraneo + '</td><td>' + lista[h].restaurante + '</td><td>' + lista[h].cantidad  + ' ' + medidas[lista[h].medida-1] + '</td><td>' + lista[h].s_min + '</td> <td>' + lista[h].s_max + '</td><td>' + categoria + '</td> <td>' + lista[h].proporcion + '</td> <td>' + lista[h].pesaje + '</td></tr>';
+        //  html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this); selectInventario('+ lista[h].id +')" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>'+categoria+'</td><td>' + lista[h].s_min + '</td> <td>' + lista[h].s_max + '</td><td>' +lista[h].cantidad  + '</td></tr>';
+          html+= '<tr style="font-size:12px;" class="seleccionar" onclick="cambiarcolor(this);" data-id="'+ lista[h].id +'"><td>' + lista[h].idInventario + '</td><td>' + lista[h].descripcion + '</td><td>'+categoria+'</td><td>' + lista[h].s_min + '</td> <td>' + lista[h].s_max + '</td><td>' +lista[h].cantidad  + '</td></tr>';
 
           }
           $('.contCata').html(html);
@@ -3233,6 +3235,11 @@ $('.tituloTV').html('');
 
        
       }
+      function modalAddCategoria(){
+$('#modalCategoriaInventario').modal('show');
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+
+      }
       function buscarProductoU(){
 
 var idP = $('#modalTventaDatos .idProductB').val();
@@ -3454,7 +3461,7 @@ addRegistro2(json, 't_venta', loadBorrador);
 var json = {idInventario: idInventario, descripcion: descripcion, medida: medida, cantidad: cantidad, s_min: s_min, s_max:s_max, proporcion: proporcion, pesaje: pesaje, tamanio: tamanio, tipoP: tipoP, mayoreo: mayoreo, detalle: detalle, restaurante: restaurante, foraneo: foraneo, n1: n1, n2: n2, n3: n3 , n4: n4};
 addRegistro2(json,'inventarios', loadInventarioTVenta);
   //     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasSV);
- click_TVentaPrecioU();
+ click_TVenta();
  //getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioTVentaProducto);
 
   $('#modalTventaDatos').modal('hide');
@@ -3691,6 +3698,151 @@ html+= '<tr class="seleccionar negro1" style="" onclick="cambiarcolor(this); sel
           $('.contCataC').html(html);
           arrGlobalCategoria=lista;
         document.getElementById('loader').style.display = 'none';
+
+}
+
+function loadCategoriasModal(lista){
+        var html = '';
+        var producto='';
+        var indiceCategoria=0;
+        var categoriasSuma="";
+        orden=[];
+        for(var h=0;h<lista.length; h++){
+            
+            for(var i=0;i<arrGlobalInventario.length; i++){
+             if(arrGlobalInventario[i].tipoP==lista[h].id){
+             producto += arrGlobalInventario[i].descripcion+', ';
+
+             }
+            }
+            if(lista[h].descripcion!=2&&lista[h].descripcion!=3){
+  orden.push({id:lista[h].id, indice: indiceCategoria});
+  html+= '<tr class=" move" onclick="" ><td  style="font-size:11px;">('+(indiceCategoria+1)+')<img class="icoImage3 " src="/images/subir.png" onclick="subirCategoria('+ lista[h].id +', '+indiceCategoria+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarCategoria('+ lista[h].id +', '+indiceCategoria+');"> </td><td class=""><input type="checkbox" class="form-check-input categoria'+lista[h].id+'" value="2" onchange="categoriaC('+lista[h].id+')"></td><td>' + lista[h].nombre + '</td><td style="font-size:11px;">' + producto + '</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upCategoriaI('+ lista[h].id +', '+h+');"><img class="icoImage3 " src="/images/eliminar.png" onclick="delCategoriaI('+ lista[h].id +', '+producto.length +');"></td></tr>';
+        
+        producto='';
+         indiceCategoria++; 
+            }else{
+              if(lista[h].descripcion==2){
+                orden.push({id:lista[h].id, indice: indiceCategoria});
+                categoriasSuma+=" | "+lista[h].nombre+" |"
+html+= '<tr class=" gris1" style="" onclick="" ><td  style="font-size:11px;">('+(indiceCategoria+1)+')<img class="icoImage3 " src="/images/subir.png" onclick="subirCategoria('+ lista[h].id +', '+indiceCategoria+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarCategoria('+ lista[h].id +', '+indiceCategoria+');"> </td><td class=""><input type="checkbox" class="form-check-input categoria'+lista[h].id+' " checked value="1" onchange="categoriaC('+lista[h].id+')"></td><td>' + lista[h].nombre + '</td><td style="font-size:11px;">' + producto + '</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upCategoriaI('+ lista[h].id +', '+h+');"><img class="icoImage3 " src="/images/eliminar.png" onclick="delCategoriaI('+ lista[h].id +', '+producto.length +');"></td></tr>';
+        producto='';
+         indiceCategoria++; 
+              }
+              if(lista[h].descripcion==3){
+                orden.push({id:lista[h].id, indice: indiceCategoria});
+
+html+= '<tr class=" negro1" style="" onclick="" ><td  style="font-size:11px;">('+(indiceCategoria+1)+')<img class="icoImage3 " src="/images/subir.png" onclick="subirCategoria('+ lista[h].id +', '+indiceCategoria+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarCategoria('+ lista[h].id +', '+indiceCategoria+');"> </td><td></td><td>' + lista[h].nombre + '</td><td style=" color:yellow">' + categoriasSuma+ '</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upCategoriaI('+ lista[h].id +', '+h+');"><img class="icoImage3 " src="/images/eliminar.png" onclick="delCategoriaI('+ lista[h].id +','+categoriasSuma.length+');"></td> </tr>';
+        producto='';
+        categoriasSuma="";
+         indiceCategoria++; 
+              }
+            }
+             
+        
+        }
+          $('#modalCategoriaInventario .categoriasModal').html(html);
+          arrGlobalCategoria=lista;
+        document.getElementById('loader').style.display = 'none';
+$('#modalCategoriaInventario .jerarquia').html(`
+<label >RENGO 1 - `+arrGlobalCategoria.length+`</label>
+<input type="number" pattern="[0-9]{10}"  class="form-control  clear jerarquiaC" placeholder="">
+  `);
+}
+function addCategoriaI(){
+var jerarquia = $('#modalCategoriaInventario .jerarquiaC').val();
+var nombre = $('#modalCategoriaInventario .nombre').val();
+valor =  $("#modalCategoriaInventario .checkCategoria:checked").val();
+
+if (valor==undefined) {
+  valor=1;
+}
+if(jerarquia!=""&&nombre!=""){
+  var json = {jerarquia: jerarquia, nombre: nombre, descripcion: valor};
+   addRegistro3(json,'categorias', loadCategoriasModal);
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+limpiar();
+}
+
+}
+function delCategoriaI(idCate, permiso){
+
+  if(permiso==undefined||permiso==0) {
+  delRegistro3(idCate, 'categorias', loadCategoriasModal);
+     getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+
+}else{
+  alert('IMPOSIBLE ELIMINAR, AUN CONTIENE PRODUCTO ASIGNADO.')
+}
+}
+function upCategoriaI(id, h){
+$('#modalCategoriaInventario .upCategoriaIn').html(`
+ <label > ACTUALIZAR </label>
+<br>
+ <button type="button" class="btn btn-success" onclick="upCategoriaIF(`+arrGlobalCategoria[h].id+`)">GUARDAR</button>
+                  `);
+
+$('#modalCategoriaInventario .jerarquiaC').val(arrGlobalCategoria[h].jerarquia);
+$('#modalCategoriaInventario .nombre').val(arrGlobalCategoria[h].nombre);
+}
+function upCategoriaIF(idCat){
+  $('#modalCategoriaInventario .upCategoriaIn').html('')
+  var jerarquia = $('#modalCategoriaInventario .jerarquiaC').val();
+  var nombre = $('#modalCategoriaInventario .nombre').val();
+ var json = {jerarquia: jerarquia, nombre: nombre};
+    upRegistro3(idCat,json,'categorias', loadCategoriasModal);
+     getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+limpiar();
+
+}
+function subirCategoria(id,ind){
+
+ var borrador=ind-1;
+ if (borrador<0) {borrador=0}else{
+
+  orden.splice(borrador,0,{id:id, indice: ind});
+  orden.splice((ind+1),1);
+   for(var hh=0;hh<orden.length; hh++){
+    var hhh=hh+1;
+  var json = {jerarquia: hhh};
+    upRegistro2(orden[hh].id,json,'categorias', loadFF);
+      //alert(orden[hh].id+" -- "+orden[hh].indice+" -- "+ind+" -- "+hh);
+
+   }
+ }
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+
+
+
+}
+function bajarCategoria(id,ind){
+
+ var borrador=ind+1;
+
+  orden.splice(ind,1);
+  orden.splice(borrador,0,{id:id, indice: ind});
+
+   for(var hh=0;hh<orden.length; hh++){
+    var hhh=hh+1;
+  var json = {jerarquia: hhh};
+     upRegistro2(orden[hh].id,json,'categorias', loadFF);
+        //   alert(orden[hh].id+" --"+orden[hh].indice+" -- "+borrador+" -- "+ind+" -- "+hh);
+
+   }
+
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
+
+}
+function categoriaC(id){
+var value=  $('.categoria'+id+'').val();
+var json = { descripcion: value};
+upRegistro3(id,json,'categorias', loadFF);
+
+ getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
 
 }
 function loadComision(lista){
@@ -35959,6 +36111,15 @@ function upRegistro2(id, json, url, loadFuncion ){
   }
 
 }
+function upRegistro22(id, json, url, loadFuncion ){
+
+  if(id!=null){
+    var mensajes = {success: "", error: "Ocurrio un error al actualizar el registro de la venta", tipo: 'PUT'};
+    executeFunction3(json, url + "/" + id, mensajes);
+    
+  }
+
+}
 
 function delRegistro(id, url, loadLista){
 
@@ -35984,6 +36145,20 @@ function delRegistro2(id, url, loadLista){
 
   }
  
+}
+function delRegistro3(id, url, loadLista){
+
+  if(id!= null){
+    var mensajes = {success: "Registro eliminado", error: "Ocurrio un error al eliminar el registro", tipo: 'DELETE'};
+    executeFunction2(null, url + "/" + id, mensajes);
+    getFunction(url, "Ocurrio un error al actualizar el formulario, reintentar más tarde.", loadLista);
+
+  }
+  else{
+    
+    $('#modal .textModal').html('Seleccionar un registro.'); 
+      $('#modal').modal('show');
+  }
 }
 
 function delRegistroA(id,jsonC,url, loadLista){
@@ -36057,6 +36232,21 @@ function executeFunction2(data, url, mensajes){
      
 
     },    
+
+    error : function(xhr, status) {    
+    $('#modal .textModal').html(mensajes.error); 
+      $('#modal').modal('show');
+     
+    },    
+    complete : function(xhr, status) {        
+    }});
+}
+function executeFunction3(data, url, mensajes){
+  
+  $.ajax({    
+    url : url,    
+    data : data,    
+    type : mensajes.tipo,    
 
     error : function(xhr, status) {    
     $('#modal .textModal').html(mensajes.error); 
@@ -36226,16 +36416,22 @@ function click_inventario(){
           <br>
           <br>
           <ul class="nav letras flex-column totala impre">
-          <li role="presentation" class="nav-item impre text-center seleccionar2  impre ventasList" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_TVenta();">
+          <li role="presentation" class="nav-item impre text-center seleccionar2  impre ventasList" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_inventario();">
            INVENTARIO
-           </li><span class="border border-danger"></span>
+          </li><span class="border border-danger"></span>
+          <li role="presentation" class="nav-item impre text-center seleccionar2  impre ventasList" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="">
+           ENTRADA
+          </li><span class="border border-danger"></span>
+          <li role="presentation" class="nav-item impre text-center seleccionar2  impre ventasList" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_TVenta();">
+           AJUSTES
+          </li><span class="border border-danger"></span>
             </ul>
     </div>
           
 `);  
-    click_TVenta();      
+          
 
- //getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
+ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarios);
 
 }
 function cambioInventario(value){
@@ -36253,8 +36449,8 @@ function cambioInventario(value){
   }
 }
 function click_TVenta(){
-  $('#modal .textModal').html('Modulo en construccion. '); 
-              $('#modal').modal('show');
+  //$('#modal .textModal').html('Modulo en construccion. '); 
+    //          $('#modal').modal('show');
 
  //getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioTVenta);
  loadTVentaProducto();

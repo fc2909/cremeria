@@ -3752,12 +3752,87 @@ function loadInventarioVenta(lista){
           arrGlobalInventario = lista;
 }
           var ruta3;
+           var orden=[];
 function loadVendedores(lista){
           var html = '';
+          orden=[];
+          var indiceVendedor=0;
   $("#modalVendedor .f_Ahorro").val(100);
 
           for(var h=0;h<lista.length; h++)
-            if(lista[h].tipo==2 && lista[h].km!=1){
+            if(lista[h].tipo==2 && lista[h].km!=1 && lista[h].estado==1){
+              for (var i=0; i < arrGlobalRuta.length; i++) {
+                if(arrGlobalRuta[i].id==lista[h].ruta){
+                  ruta3=arrGlobalRuta[i].nombre;
+                }
+              }
+              var tVentaNombre;
+              if(lista[h].t_venta<=4){
+                tVentaNombre = t_ventas[lista[h].t_venta - 1] ;
+              }else{
+          for(var hh=0;hh<tventa.length; hh++){
+             if(tventa[hh].id==lista[h].t_venta)
+                tVentaNombre = tventa[hh].nColumna;
+          
+          }
+                    
+          }
+          
+orden.push({id:lista[h].id, indice: indiceVendedor});
+              html+= '<tr class="seleccionar"  data-id="'+ lista[h].id +'"> <td><img class="icoImage3 " src="/images/subir.png" onclick="subirVendedor('+ lista[h].id +', '+indiceVendedor+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarVendedor('+ lista[h].id +', '+indiceVendedor+');"> </td> <td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onclick="selectVendedores2('+  lista[h].id +')">' +ruta3  + '</td> <td onclick="selectVendedores2('+ lista[h].id +')">' + tVentaNombre + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_credito + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_bon + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].merma +'</td><td onclick="selectVendedores2('+ lista[h].id +')">'+lista[h].telp+'</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upVendedor1('+ lista[h].id +');"></td></tr>';
+             indiceVendedor++;  
+
+            }
+            $('.contCata').html(html);
+            arrGlobal = lista;
+}
+function subirVendedor(id,ind){
+
+ var borrador=ind-1;
+ if (borrador<0) {borrador=0}else{
+
+  orden.splice(borrador,0,{id:id, indice: ind});
+  orden.splice((ind+1),1);
+   for(var hh=0;hh<orden.length; hh++){
+    var hhh=hh+1;
+  var json = {idEmpleados: hhh};
+    upRegistro2(orden[hh].id, json, 'empleados', loadFF);
+           //alert(orden[hh].id+" -- "+orden[hh].vendedor+" -- "+orden[hh].indice+" -- "+ind+" -- "+hh);
+
+   }
+ }
+  getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+  getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+
+
+}
+function bajarVendedor(id,ind){
+
+ var borrador=ind+1;
+
+  orden.splice(ind,1);
+  orden.splice(borrador,0,{id:id, indice: ind});
+
+   for(var hh=0;hh<orden.length; hh++){
+    var hhh=hh+1;
+  var json = {idEmpleados: hhh};
+    upRegistro2(orden[hh].id, json, 'empleados', loadFF);
+        //   alert(orden[hh].id+" --"+orden[hh].indice+" -- "+borrador+" -- "+ind+" -- "+hh);
+
+   }
+
+  getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+  getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+
+}
+function loadVendedoresH(lista){
+          var html = '';
+  $("#modalVendedor .f_Ahorro").val(100);
+  $(".vendedoresSA ").html("<h3 class='letras text-center'>VENDEDORES INACTIVOS</h3>");
+  $(".botonSA ").html('<button type="button" class="btn btn-dark" onclick="click_vendedores()">VENDEDORES ACTIVOS</button>');
+
+          for(var h=0;h<lista.length; h++)
+            if(lista[h].tipo==2 && lista[h].km!=1&& lista[h].estado==2){
               for (var i=0; i < arrGlobalRuta.length; i++) {
                 if(arrGlobalRuta[i].id==lista[h].ruta){
                   ruta3=arrGlobalRuta[i].nombre;
@@ -3774,7 +3849,7 @@ function loadVendedores(lista){
           }
                     
               }
-              html+= '<tr class="seleccionar"  data-id="'+ lista[h].id +'"> <td onclick="selectVendedores2('+  lista[h].id +')">' +lista[h].idEmpleados  + '</td> <td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onclick="selectVendedores2('+  lista[h].id +')">' +ruta3  + '</td> <td onclick="selectVendedores2('+ lista[h].id +')">' + tVentaNombre + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_credito + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_bon + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].merma +'</td><td onclick="selectVendedores2('+ lista[h].id +')">'+lista[h].telp+'</td><td><div class="btn-group" data-toggle="buttons"><button type="button" class="btn btn-primary btn-sm" onclick="upVendedor1('+ lista[h].id +');">EDITAR</button> <button type="button" class="btn btn-danger btn-sm" onclick="delVendedor('+ lista[h].id +', '+lista[h].ruta+');">ELIMINAR</button></div> </td></tr>';
+              html+= '<tr class="seleccionar"  data-id="'+ lista[h].id +'"> <td onclick="selectVendedores2('+  lista[h].id +')"></td> <td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].nombre_Emple + ' ' + lista[h].paterno_Emple + ' ' + lista[h].materno_Emple + '</td> <td onclick="selectVendedores2('+  lista[h].id +')">' +ruta3  + '</td> <td onclick="selectVendedores2('+ lista[h].id +')">' + tVentaNombre + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_credito + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].l_bon + '</td><td onclick="selectVendedores2('+ lista[h].id +')">' + lista[h].merma +'</td><td onclick="selectVendedores2('+ lista[h].id +')">'+lista[h].telp+'</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upVendedor1('+ lista[h].id +');"> <img class="icoImage3" src="/images/eliminar.png" onclick="delVendedor('+ lista[h].id +', '+lista[h].ruta+');"> </td></tr>';
             
             }
             $('.contCata').html(html);
@@ -29867,7 +29942,7 @@ function pago(tipo){
 
 function addVendedor(){
 
-  var idEmpleados = $(" #modalVendedor .idVendedor").val();
+  var idEmpleados =1;// $(" #modalVendedor .idVendedor").val();
   var nombre_Emple = $("#modalVendedor .nombre").val();
   var paterno_Emple = $("#modalVendedor .a_paterno").val();
   var materno_Emple = $("#modalVendedor .a_materno").val();
@@ -29892,6 +29967,7 @@ function addVendedor(){
   var l_bon = $("#modalVendedor .bonificacion").val();
   var merma = $("#modalVendedor .merma").val();
   var km = $("#modalVendedor .f_Ahorro").val();
+  if (km==1) {km=100}
   var infonavit = $("#modalVendedor .infonavit").val();
   var n1 = $("#modalVendedor .retV").val();
   var tipocontrato = $("#modalVendedor .tipocontrato").val();
@@ -29930,15 +30006,15 @@ $('#modalVendedor').modal('hide');
 
 
    
-  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
+  if(nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 var n3 = nombre_Emple+' '+paterno_Emple+ ' ' +materno_Emple;
 
 var json3 = {n3: n3};
 
-    upRegistro(ruta, json3, 'rutas', loadRutas);
+    upRegistro2(ruta, json3, 'rutas', loadRutas);
 
     var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare, km:km, infonavit:infonavit, n1:n1 };
-    addRegistro(json, 'empleados', loadVendedores);
+    addRegistro2(json, 'empleados', loadVendedores);
   }
   else{
 
@@ -32680,9 +32756,9 @@ var n3 = nombre_Emple+' '+paterno_Emple+ ' ' +materno_Emple;
 
 var json3 = {n3: n3};
 
-    upRegistro(ruta, json3, 'rutas', loadRutas1);
+    upRegistro2(ruta, json3, 'rutas', loadRutas1);
 
-    upRegistro(idGlobal, json, 'empleados', loadVendedores);
+    upRegistro2(idGlobal, json, 'empleados', loadVendedores);
     
   }
   else{
@@ -36332,8 +36408,32 @@ function click_empleados(){
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mEmpleados.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> EMPLEADOS </h3>');
-   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick=" click_empleados(); "> NOTAS </li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick=" click_vendedores(); " role="tab">VENTAS </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick=" click_administracion() ">ADMINISTRACIÓN </li>  <span class="border border-primary"></span><li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_EClientes();">CLIENTES</li>  <span class="border border-warning"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Fabrica(); ">FABRICA </li>  <span class="border border-white"></span> <div class="imprimir"></div></ul> </div>');
- 
+  // $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick=" click_empleados(); "> NOTAS </li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick=" click_vendedores(); " role="tab">VENTAS </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick=" click_administracion() ">ADMINISTRACIÓN </li>  <span class="border border-primary"></span><li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_EClientes();">CLIENTES</li>  <span class="border border-warning"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Fabrica(); ">FABRICA </li>  <span class="border border-white"></span> <div class="imprimir"></div></ul> </div>');
+  $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick=" click_empleados(); "> 
+           NOTAS 
+           </li> <span class="border border-danger"></span> 
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick=" click_vendedores(); " role="tab">
+           VENTAS 
+           </li> <span class="border border-success"></span> 
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick=" click_administracion() ">
+           ADMINISTRACIÓN 
+           </li>  <span class="border border-primary"></span>
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_EClientes();">
+           CLIENTES
+           </li>  <span class="border border-warning"></span> 
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Fabrica(); ">
+           FABRICA </li>  <span class="border border-white"></span>
+          </ul>
+    </div>
+          
+`);
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpleados2);
 
 
@@ -38994,14 +39094,12 @@ $('.tituloPantalla').html('<h3 class="ventas impre"> BITÁCORAS </h3>');
    
 }
 function click_vendedores(){
-
-$('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
-
  $('.seccion2').load('/html/vendedores.html');
  $('.tituloPantalla').html('<h3 class="vendedor"> VENDEDORES  </h3>');
-
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+}
+function historialVendedoresmodal(){
+getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedoresH);
 }
 
 function click_administracion(){

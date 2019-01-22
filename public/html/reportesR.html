@@ -1,20 +1,18 @@
-
-<div class="row  col-md-12 fondo">
-<div class=" impre col-md-12 form-group row">
-  <h3 class="letras text-center" for="">SELECCIONE UN RANGO EN LAS SEMANAS</h3>
-
-</div>
-<div class=" impre col-md-12 form-group row">
-            <input class="form-control col-md-3 semanac1NV" type="week" value="" id="">
+<div id="busquedaVProducto" class=" impre col-md-12 form-group fondo" style="display: none">
+            <h3 class="letras text-center" for="">SELECCIONE UN RANGO EN LAS SEMANAS</h3>
+            <div class="form-group col-md-12 row">
+               <input class="form-control col-md-3 semanac1NV" type="week" value="" id="">
             <input class="form-control col-md-3 semanac2NV" type="week" value="" id="">
             <input class="opcionP" type="text" value=""  style="display :none;">
             <input class="jerarquia" type="text" value=""  style="display :none;">
             <button class="btn btn-dark form-control col-md-3" onclick="click_buscarProductosR();">BUSCAR</button>
             <button class="btn btn-warning form-control col-md-3 imprimirProductos" id="imprimirProductos" style="display:none;" onclick="imprimirProductosT();">IMPRIMIR</button>
+            </div>
+           
 
          </div>
 
-         <div class="row table-responsive  text-center ">
+         <div class="table-responsive  text-center ">
 
   <table id="creditosReporte55" style="display:block;" class="table table-active table-hover table-bordered table-inverse  text-center ">
     <thead class="text-center">
@@ -74,5 +72,5 @@
   </table>
 
 </div>
-</div>
+
 

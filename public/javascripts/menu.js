@@ -28578,7 +28578,31 @@ function loadVentaspp(lista){
         $('.addV').html('<button type="button" id="add" class="btn btn-ventas insertar add" onclick="addVenta(); document.getElementById('+idProducto+').focus();">INSERTAR</button>'); // habilita el boton de insertar
         for(var j=0;j<arrGlobal4.length; j++){
           if(arrGlobal4[j].ruta==rutas && arrGlobal4[j].fechaf==today_v){
-           $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span>  <li class="impre dvList text-center"  onclick="click_modalVehiculo() "> D & V </li>  <span class="border border-info"></span> <div class="imprimir"></div></ul> </div>');
+           //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li class="impre productosList text-center"  onclick="click_modalProducto() ">PRODUCTOS </li>  <span class="border border-white"></span>  <li class="impre dvList text-center"  onclick="click_modalVehiculo() "> D & V </li>  <span class="border border-info"></span> <div class="imprimir"></div></ul> </div>');
+                   $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           <li role="presentation" class=" nav-item impre text-center seleccionar2  impre ventasList " href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">
+           FECHA
+           </li><span class="border border-danger"></span>
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">
+          DESPACHO 
+          </li><span class="border border-success"></span> 
+           <li class="nav-item impre text-center seleccionar2   impre productosList text-center"  onclick="click_modalProducto() ">
+           PRODUCTOS </li>  <span class="border border-white"></span>
+          <li class="nav-item impre text-center seleccionar2   impre dvList text-center"  onclick="click_modalVehiculo() ">
+           D & V 
+           </li><span class="border border-info"></span> 
+          </ul>
+    </div>
+          
+`);
+
+
             despachador = '<u style="width:100px;">'+ arrGlobal4[j].despachador2+'. </u>';
             vehiculoA = '<u style="width:100px;">'+arrGlobal4[j].vehiculo+ '</u>';
             vehiculoA2=arrGlobal4[j].vehiculo;

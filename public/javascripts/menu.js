@@ -1298,13 +1298,13 @@ function ExcelNomina(){
 
 }
 
-function imprimirRCreditos(){
+function imprimirRCreditos(s1,s2,a1,a2){
         document.getElementById('creditosNomina').style.display = 'block';
         document.getElementById('creditosReporte').style.display = 'none';
         document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'CRÉDITOS  (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = 'CRÉDITOS  (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte').style.display = 'block';
@@ -38323,7 +38323,7 @@ $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.');
 //////////////////////////////////////////////////////////////////////
 $('.seccion4').load('/html/creditos.html');
 $('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
-$('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRCreditos()">  ');
+$('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRCreditos('+semanaBus1+', '+semanaBus2+','+anio1+','+anio2+'">  ');
 $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaCredits()">  ');
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCreditos);
 ////////////////////////////////////////////////////////////////////////

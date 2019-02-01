@@ -581,6 +581,8 @@ background: #1B1B1B;
   left: 0px;
   width: 15%;
   height: 100%;
+
+z-index: 1;
 }
 .torresF{
   top: 0px;
@@ -641,7 +643,9 @@ box-shadow: 0px 7px 10px black;
 transform: scale(1.05);
 
 }
-
+.nominaA{
+  width: 1000px;
+}
 
 
 

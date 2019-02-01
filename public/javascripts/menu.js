@@ -8452,23 +8452,8 @@ for(var w=0;w<prodTotales.length; w++){
 prodT=0;
 
 }
-function cambiarSemana(){
- getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadActualizarSemanas);
-  
-}
-function loadActualizarSemanas(lista){
-  for(var i=20; i <= 52; i++) {
-    for(var j=0; j < lista.length; j++) {
-        if (i==lista[j].sfc){
-          var sem2018 = "2018-W"+i;
-          var json2 = {semana: sem2018};
-   upRegistro2(lista[j].id,json2, 'ventadiaria', loadFF);
-  
-        }
-    }
-  }
-  alert("LISTO");
-}
+
+
 function buscarNoVenta(semana, ruta, indice){
   var campo = '<td>$ 0.00</td>';
   var campo2 = 0;

@@ -8462,7 +8462,7 @@ function loadActualizarSemanas(lista){
         if (i==lista[j].sfc){
           var sem2018 = "2018-W"+i;
           var json2 = {semana: sem2018};
-   upRegistro2(lista[j].id,json2, 'ventaspasada', loadFF);
+   upRegistro2(lista[j].id,json2, 'ventadiaria', loadFF);
   
         }
     }

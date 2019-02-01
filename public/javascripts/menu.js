@@ -5644,17 +5644,110 @@ function loadVentaDiariaMapa2(lista){ //por mayoreo
    document.getElementById('loader').style.display = 'none'; //cierra cilo de carga
 }
 var prodTotales2;
-function loadCreditos(lista){ //por mayoreo
-  var longi2= parseFloat(scv)-parseFloat(scv2);
+
+function numberTwo(char){
+char = char+"";
+  if(char.length==1)
+    char='0'+char;
+  return char;
+}
+function buscarCredito(semana, ruta, indice){
+  var campo = '<td>$ 0.00</td>';
+  var campo2 = 0;
+  for(var i=0; i < 6; i++) {
+    const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
+    if (cargas!=undefined) {
+     campo='<td>$ '+formatoMoneda1( cargas.creditos)+'</td>';
+     if(isNaN(parseFloat(cargas.creditos))){
+        campo2=0;
+      }else{
+        campo2=cargas.creditos;
+      }
+    }
+  } 
+  tVentaVTotales[indice]+=parseFloat(campo2);
+  tVentaVTotal[indice]+=parseFloat(campo2);
+return campo;
+}
+var cargasV;
+var tVentaVTotales;
+function loadCreditos(lista){
+          cargasV=lista;
+          var titulos=''; 
+          var titulosP=''; 
+          var html = '';
+          var htmlP = '';
+          var identificacion='';
+          var identificacionP='';
+          var totalValor='';
+              tVentaVTotales = new Array(semanaT.length);
+              tVentaVTotal = new Array(semanaT.length);
+              for(var f=0;f<tVentaVTotales.length; f++)tVentaVTotales[f]=0;
+              for(var f=0;f<tVentaVTotal.length; f++)tVentaVTotal[f]=0;
+          var tVentaV = [];
+              tVentaV.push({id:2,tventa:"MAYOREO"});
+              tVentaV.push({id:4,tventa:"RESTAURANTE"});
+              tVentaV.push({id:3,tventa:"DETALLE FORANEO"});
+              tVentaV.push({id:1,tventa:"DETALLE"});
+              for(var hh=0;hh<tventa.length; hh++){
+                tVentaV.push({id:tventa[hh].id,tventa:tventa[hh].nColumna});
+                }
+              for(var hh=0;hh<tVentaV.length; hh++){ // tipo de venta
+                  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){ // lista de vendedores
+                    if(arrGlobalEmpleados[hh2].t_venta==tVentaV[hh].id &&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){ // filtro de vendedores activos segun el tipo de venta      
+                      for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
+                        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){ // busca la lista del vendedor
+                          ruta3=arrGlobalRuta[i].nombre;
+                          rutas=arrGlobalEmpleados[hh2].ruta;
+                        }// cierra busca la lista del vendedor
+                      } // cierra lista de rutas
+                      titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>';
+                      titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>';
+                      identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+                      identificacionP += '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+                      for(var j=0;j<semanaT.length; j++){ // Buscar en las semanas
+                      semanaTemp = semanaT[j].anio+'-W'+numberTwo(semanaT[j].semana);
+                      var rango = {semana:semanaTemp, ruta:rutas};
+                      titulos+='<th class="text-center">SEMANA: '+numberTwo(semanaT[j].semana)+'</th>';
+                      titulosP+='<th class="text-center grisclaro">SEMANA_'+numberTwo(semanaT[j].semana)+'</th>';
+                      var sem = buscarCredito(semanaTemp,rutas,j);
+                      identificacion += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      
+                      //  alert(identificacion);
+                      }// termina buscar en las semanas
+//var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
+ //   executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
+                      
+////////////////// ojo totales ////////////////////
+                    } // vendedores segun el tipo de venta
+
+
+                  } // cierra lista de vendedores
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>'+tVentaV[hh].tventa+'</td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+              } // cierra tipo de venta
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+                  html = identificacion;
+                  htmlP = identificacionP;
+               $('.titulo2PF').html(titulos); 
+               $('.tituloP').html(titulosP); 
+               $('.contCataCreditos').html(html); 
+               $('.contCataCreditosP').html(htmlP); 
+
+  var longi2= semanaT.length-1;
           prodTotales = new Array(longi2);
           prodTotales2 = new Array(longi2);
           credi=0;
           boni=0;
           s_vent=0;
-      var html = '';
-      var htmlP = '';
-      var identificacion='';
-      var identificacionP='';
+      
+      
       var bonificacionT=0;
       var t_venta_mercaT=0;
       var mer;
@@ -5681,14 +5774,13 @@ function loadCreditos(lista){ //por mayoreo
           var totalCred=0;
           var totalCredP=0;
               
-              var titulos=""; 
-              var titulosP=""; 
+              
        
       var idNomina;
   for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
        if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
   for(var j=0;j<lista.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
+       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].semana).substring(0,4))){
   for(var i=0; i < arrGlobalRuta.length; i++) {
        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
           ruta3=arrGlobalRuta[i].nombre;
@@ -5782,21 +5874,25 @@ htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=
 
 
               if(html==undefined){html='';}else{
-               $('.titulo2PF').html(titulos); 
-               $('.tituloP').html(titulosP); 
-               $('.contCataCreditos').html(html); 
-               $('.contCataCreditosP').html(htmlP); 
+              // $('.titulo2PF').html(titulos); 
+              // $('.tituloP').html(titulosP); 
+             //  $('.contCataCreditos').html(html); 
+            //   $('.contCataCreditosP').html(htmlP); 
                //$('.contCataMayoreoPF').html(htmlP); 
-        document.getElementById('imprimirCreditos').style.display = 'block';
+       // document.getElementById('imprimirCreditos').style.display = 'block';
           
               }
 for(var w=0;w<prodTotales.length; w++){
      prodTotales[w]+=parseFloat(prodT[w]);
 }
 prodT=0;
-
+semanaT=[];
+tVentaV=[];
 }
 function loadCreditos2(lista){ //por mayoreo
+      if(scv2<1){
+    scv2=1;
+    }
   var longi2= parseFloat(scv)-parseFloat(scv2);
           prodTotales = new Array(longi2);
           credi=0;
@@ -5951,6 +6047,9 @@ prodT=0;
 }
 
 function loadCreditos3(lista){ //por mayoreo
+      if(scv2<1){
+    scv2=1;
+    }
   var longi2= parseFloat(scv)-parseFloat(scv2);
           prodTotales = new Array(longi2);
           credi=0;
@@ -6122,6 +6221,9 @@ $('.TotalesCredP').html(htmlp);
              }
 
 function loadCreditos4(lista){ //por mayoreo
+      if(scv2<1){
+    scv2=1;
+    }
   var longi2= parseFloat(scv)-parseFloat(scv2);
           prodTotales = new Array(longi2);
           credi=0;
@@ -7698,13 +7800,10 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
 
 }
 function loadVentaDiariaProductos(lista){ //por mayoreo
+    if(scv2<1){
+    scv2=1;
+    }
   var longi2= parseFloat(scv)-parseFloat(scv2);
-  if(scv2>scv){
-    scv2=52-scv2+scv;
-  var longi2= scv2;
-  
-  }
-  alert(scv+' -- '+scv2+' -- '+longi2)
           prodTotales = new Array(longi2);
           prodTotales2 = new Array(longi2);
           credi=0;
@@ -7749,6 +7848,7 @@ function loadVentaDiariaProductos(lista){ //por mayoreo
   for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
        if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
   for(var j=0;j<lista.length; j++){
+
        if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
   for(var i=0; i < arrGlobalRuta.length; i++) {
        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
@@ -7880,13 +7980,10 @@ prodT=0;
 
 }
 function loadVentaDiariaProductos2(lista){ //por mayoreo
+  if(scv2<1){
+    scv2=1;
+    }
   var longi2= parseFloat(scv)-parseFloat(scv2);
-  if(scv2>scv){
-    scv2=52-scv2+scv;
-  var longi2= scv2;
-  
-  }     
-         
           credi=0;
              
           boni=0;
@@ -8077,13 +8174,10 @@ prodT=0;
 
 }
 function loadVentaDiariaProductos3(lista){ //por mayoreo
+   if(scv2<1){
+    scv2=1;
+    }
   var longi2= parseFloat(scv)-parseFloat(scv2);
-  if(scv2>scv){
-    scv2=52-scv2+scv;
-  var longi2= scv2;
-  
-  }      
-       
           credi=0;
              
           boni=0;
@@ -8274,12 +8368,10 @@ prodT=0;
 
 }
 function loadVentaDiariaProductos4(lista){ //por mayoreo
+  if(scv2<1){
+    scv2=1;
+    }
   var longi2= parseFloat(scv)-parseFloat(scv2);
-  if(scv2>scv){
-    scv2=52-scv2+scv;
-  var longi2= scv2;
-  
-  }  
           credi=0;
              
           boni=0;
@@ -8471,12 +8563,10 @@ prodT=0;
 }
 
 function loadVentaDiariaProductos5(lista){ //por mayoreo
+  if(scv2<1){
+    scv2=1;
+    }
   var longi2= parseFloat(scv)-parseFloat(scv2);
-  if(scv2>scv){
-    scv2=52-scv2+scv;
-  var longi2= scv2;
-  
-  }
           credi=0;
              
           boni=0;
@@ -11336,6 +11426,8 @@ prodT=0;
 
 }
 function loadVentaDiariaNominaTotales(lista){ //por mayoreo
+          
+
           prodTotales = new Array(arrGlobalCategoria.length);
           credi=0;
           boni=0;
@@ -28889,6 +28981,7 @@ function loadVentaspasadasMerma(lista){
               }else{ // busca los tipo de ventas actuales 
               for(var hh=0;hh<tventa.length; hh++){
                 if(tventa[hh].id==lista[h].tipo)
+                   tventaVendedor=tventa[hh].id;
                   tVentaNombre = tventa[hh].nColumna;
                 }
               }
@@ -29713,7 +29806,53 @@ function ocultar(){
 }
 function ocultar2(){
 click_nomina();
-   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
+  // $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
+  $('.iconoImprimir').html('');
+      $('.iconoExcel').html('');
+      
+  $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">
+            ADMINISTRACIÓN 
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">
+            FABRICA
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">
+            VENTAS
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">
+            COMISIÓN  
+            </li> <span class="border border-success"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">
+            NÓMINA
+            </li>  <span class="border border-primary"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">
+            CRÉDITOS  
+            </li>  <span class="border border-white"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">
+            BONIFICACIÓN   
+            </li>  <span class="border border-white"></span>   
+            <li role="presentation" class="nav-item impre text-center seleccionar2 productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">
+            VENTA   
+            </li>  <span class="border border-white"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">
+            P. NO VENTA  
+            </li>  <span class="border border-warning"></span>  
+            <li role="presentation" class="nav-item impre text-center seleccionar2 mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">
+            MERMA  
+            </li>  <span class="border border-warning"></span> 
+          </ul>
+    </div>
+          
+`);
+
+
  $('.superior').html('');
 }
 function loadRec(lista){
@@ -32445,8 +32584,9 @@ function delVenta(){
       }
       var hora = horaVenta+":"+minutosVenta+":"+segundosVenta;
 
-   descrpcionA='HORA: '+hora+' - '+usuarioPrincipal2.usuario+' ELIMINO '+idProducto+' EN RUTA: '+ruta3;
-
+   //descrpcionA='HORA: '+hora+' - '+usuarioPrincipal2.usuario+' ELIMINO '+idProducto+' EN RUTA: '+ruta3;
+   descrpcionA='<div><h5  style="color:orange">ELIMINACIÓN DE PRODUCTO</h5>HORA: '+hora+' - '+usuarioPrincipal2.usuario+' ELIMINÓ  '+idProducto+' EN RUTA: '+ruta3+'</div>';
+  
   addAviso();
 var fechadespachof = today_v;
 var ruta = rutas;
@@ -32543,7 +32683,22 @@ function delMerma(){
  var ruta = rutas;
 var fechadespachof = fechacaptura;
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
+ var dateVenta = new Date();  
+  var horaVenta = dateVenta.getHours();
+  var minutosVenta = dateVenta.getMinutes();
+  var segundosVenta = dateVenta.getSeconds();
+      if(horaVenta.length==1){horaVenta="0"+horaVenta;}
+      if(minutosVenta.length==1){minutosVenta="0"+minutosVenta;}
+      if(segundosVenta.length==1){segundosVenta="0"+segundosVenta;}
+      if(peso==""||peso==NaN||peso==undefined){
+        peso=0;
+      }
+      var hora = horaVenta+":"+minutosVenta+":"+segundosVenta;
 
+   //descrpcionA='HORA: '+hora+' - '+usuarioPrincipal2.usuario+' ELIMINO '+idProducto+' EN RUTA: '+ruta3;
+   descrpcionA='<div><h5  style="color:orange">ELIMINACIÓN DE MERMA</h5>HORA: '+hora+' - '+usuarioPrincipal2.usuario+' ELIMINÓ  '+idProducto+' EN RUTA: '+ruta3+'</div>';
+  
+  addAviso();
 
   var jsonC = {where:{ruta:ruta, fechadespachof: fechadespachof, merma: merma}};
     delRegistroA2(idGlobal,jsonC,'ventadiaria', loadMerma);
@@ -32584,7 +32739,22 @@ function delMermaP(){
  var ruta = rutas;
 var fechadespachof = today_v;
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
+ var dateVenta = new Date();  
+  var horaVenta = dateVenta.getHours();
+  var minutosVenta = dateVenta.getMinutes();
+  var segundosVenta = dateVenta.getSeconds();
+      if(horaVenta.length==1){horaVenta="0"+horaVenta;}
+      if(minutosVenta.length==1){minutosVenta="0"+minutosVenta;}
+      if(segundosVenta.length==1){segundosVenta="0"+segundosVenta;}
+      if(peso==""||peso==NaN||peso==undefined){
+        peso=0;
+      }
+      var hora = horaVenta+":"+minutosVenta+":"+segundosVenta;
 
+   //descrpcionA='HORA: '+hora+' - '+usuarioPrincipal2.usuario+' ELIMINO '+idProducto+' EN RUTA: '+ruta3;
+   descrpcionA='<div><h5  style="color:orange">ELIMINACIÓN DE MERMA</h5>HORA: '+hora+' - '+usuarioPrincipal2.usuario+' ELIMINÓ  '+idProducto+' EN RUTA: '+ruta3+'</div>';
+  
+  addAviso();
 
   var jsonC = {where:{ruta:ruta, fechadespachof: fechadespachof, merma: merma}};
     delRegistroA2(idGlobal,jsonC,'ventadiaria', loadMermaP);
@@ -34432,7 +34602,7 @@ document.getElementById("idProducto").disabled = false;
     var json = {idProducto: idProducto, descripcionventa: descripcionventa, piezas: piezas, peso: peso, precioUnitario: precioUnitario, valorMercancia: valorMercancia, hora: hora, empleado: empleado, ruta:ruta, fecha: fecha, user: user };
 
   if(idProducto != "" && descripcionventa != "" && piezas != ""){
-     descrpcionA='HORA: '+hora+' - '+usuarioPrincipal2.usuario+' MODIFICO '+idProducto+' EN RUTA: '+ruta3;
+     descrpcionA='<div><h5 style="color:orange">MODIFICACIÓN DE PRODUCTO</h5>HORA: '+hora+' - '+usuarioPrincipal2.usuario+' MODIFICO '+idProducto+' EN RUTA: '+ruta3+'<div style="color:white; font-size:9px;">DE = PIEZAS: '+oPiezas+' PESO: '+oPeso+' </div><div style="color: yellow;  font-size:9px;">A  = PIEZAS: '+piezas+' PESO: '+peso+'</div></div>';
   
   addAviso();
 var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
@@ -35607,6 +35777,8 @@ function selectControlVehicular2(id){
   $('#modal ').modal('show');
 
 }
+var oEfectivo=0;
+var oVendedor="";
 function selectEV(id){
   
   var rutav ='<select class="form-control rv clear" id="rv" name="select">';
@@ -35642,6 +35814,9 @@ function selectEV(id){
     $("#modalEfectivo .fSR").val(arrGlobalE[i].f_s_real);
     $("#modalEfectivo .cL").val(arrGlobalE[i].credito_p);
     $("#modalEfectivo .bL").val(arrGlobalE[i].bonificacion_p);
+    oEfectivo=arrGlobalE[i].efectivo;
+    oVendedor=arrGlobalE[i].nombre;
+     avisoMod=1;
     }
   }
 }
@@ -35864,6 +36039,8 @@ encuentra = 1;
 }
        
 }
+var oPiezas=0;
+var oPeso=0;
 function selectVentas(id, valorM,h){
   idGlobal = id;
   idVentas2=id;
@@ -35879,12 +36056,18 @@ function selectVentas(id, valorM,h){
        $(".idProducto").val(arrGlobal3[a].idProducto);
        $(".descripcion").val(arrGlobal3[a].descripcionventa);
        $(".piezas").val(arrGlobal3[a].piezas);
+       oPiezas=arrGlobal3[a].piezas;
        if(arrGlobal3[a].medida == "1"){
             $(".pesos").html(peso);
+
             $(".peso").val(arrGlobal3[a].peso);
+       oPeso=arrGlobal3[a].peso;
+       
        }else{
         $('.pesos').removeClass('hidden');
             $('.pesos').html('');
+       oPeso=0;
+       
        }
 valor=valorM;
  
@@ -36378,6 +36561,25 @@ function executeFunctionDone(data, url, mensajes, done){
     complete : function(xhr, status) {        
     }});
 }
+function executeFunctionDoneR(data, url, mensajes, done){
+  var value ='<td>$ 0.00</td>'
+  $.ajax({    
+    url : url,    
+    data : data,    
+    type : mensajes.tipo,    
+    success : function(json) {    
+
+    return value = done(json);
+   
+    },    
+
+    error : function(xhr, status) {    
+    $('#modal .textModal').html(mensajes.error); 
+      $('#modal').modal('show');
+    },    
+    complete : function(xhr, status) {        
+    }});
+}
 function executeFunctionDone2(data, url, mensajes, done){
    
   $.ajax({    
@@ -36401,7 +36603,22 @@ function executeFunctionDone2(data, url, mensajes, done){
 
 
 function click_usuarios(){
-    $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Permisos();" role="tab">MÓDULOS</li> <span class="border border-white"></span> </ul> </div>');
+  //  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"> <ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" class="impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Permisos();" role="tab">MÓDULOS</li> <span class="border border-white"></span> </ul> </div>');
+ $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+           
+           <li role="presentation" class="nav-item impre text-center seleccionar2  impre  impre productosList text-center" href="#seccion1" aria-controls="seccion1" id="desp" data-toggle="tab" onclick="click_Permisos();" role="tab">
+           MÓDULOS
+           </li> <span class="border border-white"></span>
+          </ul>
+    </div>
+          
+`);
 
         document.getElementById('loader').style.display = 'block';
 
@@ -37150,8 +37367,29 @@ $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('#contenido').load('/html/mRutas.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3>');
-  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_clientes();">MAPA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Mapa(); " role="tab">CLIENTES  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Rutas() ">RUTAS</li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
+  //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_clientes();">MAPA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Mapa(); " role="tab">CLIENTES  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Rutas() ">RUTAS</li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+          
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_clientes();">
+          MAPA
+          </li> <span class="border border-danger"></span> 
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Mapa(); " role="tab">
+          CLIENTES  
+          </li> <span class="border border-success"></span> 
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Rutas() ">
+          RUTAS
+          </li>  <span class="border border-primary"></span> 
 
+          </ul>
+    </div>
+          
+`);
 
 }
 getFunction('clientes', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadClientes);
@@ -37163,9 +37401,6 @@ function click_Rutas(){
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion3').load('/html/rutas.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> RUTAS </h3>');
-  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_clientes();">MAPA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Mapa(); " role="tab">CLIENTES  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Rutas() ">RUTAS</li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
-
- //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas);
  
 }
@@ -37274,7 +37509,6 @@ function click_Mapa(){
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion2').load('/html/clientes.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3>');
-  $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_clientes();">MAPA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Mapa(); " role="tab">CLIENTES  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Rutas() ">RUTAS</li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
 
 getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas2);
  
@@ -37290,7 +37524,29 @@ getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más 
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion2').load('/html/clientes1.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CLIENTES </h3><p>RUTA: '+arrGlobalRuta[h].nombre+'</p>');
- $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
+// $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><br class="impre"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="">MAPA</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_Mapa();" role="tab">CLIENTES</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_Rutas()">RUTAS</button></li><div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+          
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_clientes();">
+          MAPA
+          </li> <span class="border border-danger"></span> 
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Mapa(); " role="tab">
+          CLIENTES  
+          </li> <span class="border border-success"></span> 
+          <li role="presentation" class=" nav-item impre text-center seleccionar2 impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Rutas() ">
+          RUTAS
+          </li>  <span class="border border-primary"></span> 
+
+          </ul>
+    </div>
+          
+`);
 n=arrGlobalRuta[h].nombre;
 id_vend=id;
 getFunction('clientes', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas3);
@@ -37317,7 +37573,28 @@ $('.btn-nav').removeClass('hidden');
  $('#contenido').load('/html/mVehiculat.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> MAPA VEHICULAR </h3>');
  //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_mvehicular()">Notificaciones</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-success totala impre" onclick="click_CVehicular()" role="tab">Control Vehicular</button></li><li role="presentation" class="impre" ><button href="#seccion3" aria-controls="seccion3" class="btn btn-primary impre totala" data-toggle="tab" role="tab" onclick="click_MantenimientoV()">Mantenimiento</button></li><div class="imprimir"></div></ul> </div>');
-   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_mvehicular()">MAPA </li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_talleres();" role="tab">TALLERES</li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_MantenimientoV() ">ACTIVIDADES </li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
+   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_mvehicular()">MAPA </li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_talleres();" role="tab">TALLERES</li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_MantenimientoV() ">ACTIVIDADES </li>  <span class="border border-primary"></span> <div class="imprimir"></div></ul> </div>');
+ $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+          
+          <li role="presentation" actived class="nav-item impre text-center impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_mvehicular()">
+          MAPA 
+          </li> <span class="border border-danger"></span> 
+          <li role="presentation" class="nav-item impre text-center impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_talleres();" role="tab">
+          TALLERES
+          </li> <span class="border border-success"></span> 
+          <li role="presentation" class="nav-item impre text-center impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_MantenimientoV() ">
+          ACTIVIDADES 
+          </li>  <span class="border border-primary"></span> 
+          </ul>
+    </div>
+          
+`);
 getFunction('mantenimiento', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMantenimientoTipo);
  
 
@@ -37416,7 +37693,10 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
 }
 
 function nomina(){
-      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNomina()"  >Descargar Excel</button>');
+    $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirNomina()">  ');
+      $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNomina()">  ');
+     
+//      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNomina()"  >Descargar Excel</button>');
 
   document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -37632,7 +37912,50 @@ function click_nomina(){
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  
  $('#contenido').load('/html/mNomina.html');
-   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
+//   $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
+   
+ $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">
+            ADMINISTRACIÓN 
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">
+            FABRICA
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">
+            VENTAS
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">
+            COMISIÓN  
+            </li> <span class="border border-success"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">
+            NÓMINA
+            </li>  <span class="border border-primary"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">
+            CRÉDITOS  
+            </li>  <span class="border border-white"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">
+            BONIFICACIÓN   
+            </li>  <span class="border border-white"></span>   
+            <li role="presentation" class="nav-item impre text-center seleccionar2 productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">
+            VENTA   
+            </li>  <span class="border border-white"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">
+            P. NO VENTA  
+            </li>  <span class="border border-warning"></span>  
+            <li role="presentation" class="nav-item impre text-center seleccionar2 mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">
+            MERMA  
+            </li>  <span class="border border-warning"></span> 
+          </ul>
+    </div>
+          
+`);
+
    //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar(); ">FECHA</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Despacho1(); " role="tab">DESPACHO </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_Recepcion1(); ">RECEPCIÓN </li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_Pedidos1(); ">PEDIDOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_Merma1(); ">MERMA </li>  <span class="border border-warning"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_Degustaciones1(); "> DEGUSTACIONES</li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
      
         document.getElementById('loader').style.display = 'block';
@@ -37789,7 +38112,8 @@ $( "#close" ).click(function() {
 }
 function click_Comision(){
       document.getElementById('loader').style.display = 'block';
-
+ $('.iconoImprimir').html('');
+      $('.iconoExcel').html('');
   $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion2').load('/html/comision.html');
@@ -37798,12 +38122,31 @@ function click_Comision(){
 
 }
 function click_administracionNomina(){
-        // document.getElementById('loader').style.display = 'block';
-      $('.btn-nav').removeClass('hidden');
-      $('.btn-nav').html('<h3> MENÚ  </h3>');
-      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
-      $('.tituloPantalla').html('<h3 class="nomina"> NOMINA ADMON SEM: '+(scv+1)+' </h3>');
-      $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span></ul> </div>');
+      $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirNominaAdmon()">  ');
+      $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaAdmon()">  ');
+      $('.tituloPantalla').html('<h3 class="nomina"> NOMINA ADMON SEMANA: '+(scv+1)+' </h3>');    
+ $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">
+            ADMINISTRACIÓN 
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">
+            FABRICA
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">
+            VENTAS
+            </li> <span class="border border-danger"></span> 
+            
+          </ul>
+    </div>
+          
+`);
+
        // document.getElementById('loader').style.display = 'block';
       saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
@@ -37836,12 +38179,37 @@ var n1= $(".AdmonNomina").val();
 }
 function click_fabricaNomina1(){
        // document.getElementById('loader').style.display = 'block';
-      $('.btn-nav').removeClass('hidden');
-      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
-
-      $('.btn-nav').html('<h3> MENÚ  </h3>');
+      
+      $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirNominaFabrica()">  ');
+      $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaFabrica()">  ');
+      
+    //  $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
       $('.tituloPantalla').html('<h3 class="nomina"> NOMINA FABRICA SEM: '+(scv+1)+' </h3>');
-      $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span></ul> </div>');
+      //$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span></ul> </div>');
+       $('.barraIzq').html(`
+  <div class="izqBar impre">
+          <br>
+          <br>
+          <br>
+          <br>
+          <ul class="nav letras flex-column totala impre">
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">
+            ADMINISTRACIÓN 
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">
+            FABRICA
+            </li> <span class="border border-danger"></span> 
+            <li role="presentation" class="nav-item impre text-center seleccionar2 ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">
+            VENTAS
+            </li> <span class="border border-danger"></span> 
+            
+          </ul>
+    </div>
+          
+`);
+
+
+
        // document.getElementById('loader').style.display = 'block';
       saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
@@ -37858,8 +38226,7 @@ n1 = year+"-W"+sfc;
 }
 var numSemana;
 function click_buscarNominaFabrica(){
-      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
-
+    //  $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaAdmon()"  >Descargar Excel</button>');
 var n1= $(".fabricaNomina").val();
       $('.tituloPantalla').html('<h3 class="nomina"> NOMINA FABRICA SEM: '+n1.substring(6,8)+' </h3>');
     if(n1==""){
@@ -37875,103 +38242,100 @@ var n1= $(".fabricaNomina").val();
 }
 
 function click_creditos(){
-     // document.getElementById('loader').style.display = 'block';
-  $('.superior').html('');
-  
+ $('.iconoImprimir').html('');
+ $('.iconoExcel').html('');    
+ $('.superior').html('');
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion4').load('/html/creditos.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3>');
- //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
-
 }
 function click_bonificacion(){
-     // document.getElementById('loader').style.display = 'block';
-  $('.superior').html('');
-  
+$('.iconoImprimir').html('');
+ $('.iconoExcel').html('');    
+ $('.superior').html('');
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion5').load('/html/bonificacion.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> BONIFICACIÓN  </h3>');
- //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
-
 }
 function click_ventaN(){
-     // document.getElementById('loader').style.display = 'block';
-  $('.superior').html('');
-  
+ $('.iconoImprimir').html('');
+ $('.iconoExcel').html('');    
+ $('.superior').html('');
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion6').load('/html/ventaNomina.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> VENTA  </h3>');
- //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
-
 }
 function click_noVenta(){
-     // document.getElementById('loader').style.display = 'block';
-  $('.superior').html('');
-  
+ $('.iconoImprimir').html('');
+ $('.iconoExcel').html('');    
+ $('.superior').html('');
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion7').load('/html/noVenta.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> % NO VENTA  </h3>');
- //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
-
 }
 
 function click_nMerma(){
-     // document.getElementById('loader').style.display = 'block';
-  $('.superior').html('');
-  
+ $('.iconoImprimir').html('');
+ $('.iconoExcel').html('');    
+ $('.superior').html('');
  $('.btn-nav').removeClass('hidden');
  $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion8').load('/html/nMerma.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> MERMA  </h3>');
- //getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadComision);
-
 }
 var scv2;
+var semanaT = [];
 function click_buscarCreditos1(){
-   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaCredits()" download="Creditos.xls" ><br>Descargar Excel</button>');
  semana1 = $('.semanac1').val();
  semana2 = $('.semanac2').val();
-  var mes=month-1;
-  var dia=day-1;
- if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
-
-
- var yearD = today_vv.substring(0,4);
-      saberSemana(dia,mes,yearD);
-      semana1=noSemana+1;
-       scv = noSemana+1
- }else{
-  var year =  parseInt(semana1.substring(0,4));
- scv = parseInt(semana1.substring(6,8));
- }
-  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
-var year2=year;
-
-      semana2=scv-5;
-scv2 = semana2;
- }else{
-     var year2 =  parseInt(semana2.substring(0,4));
- scv2 = parseInt(semana2.substring(6,8));
- }
- if(scv2>scv){
-  scv2=scv-5;
- }
-
-sfc=scv;
-
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
- $('.seccion4').load('/html/creditos.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+ if(semana1!=""&&semana2!=""){
+ var anio1 =  parseInt(semana1.substring(0,4));
+ var semanaBus1 = parseInt(semana1.substring(6,8));
+ var anio2 =  parseInt(semana2.substring(0,4));
+ var semanaBus2 = parseInt(semana2.substring(6,8));
+if (anio1<anio2){
+$('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+}else{
+  if (semanaBus1<semanaBus2&&anio1==anio2){
+    $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+    $('#modal').modal('show');
+  }else{ 
+    var semanaBus1Temp;
+    var semanaBus1Temp2=semanaBus1;
+    var anio1Temp=anio1;
+    if (semanaBus1<semanaBus2&&anio1>anio2){
+     semanaBus1Temp=semanaBus1+52;// if we need more weeks, here is the answer key= if we have more years, create a var...
+     for (var i = semanaBus1Temp; i >= semanaBus2; i--) {
+     semanaT.push({semana:semanaBus1Temp2,anio: anio1Temp})
+     semanaBus1Temp2--;
+     if (semanaBus1Temp2==0){semanaBus1Temp2=52; anio1Temp--;}
+    }
+    }else{
+    for (var i = semanaBus1; i >= semanaBus2; i--) {
+     semanaT.push({semana:i,anio:anio1})
+    }
+    }
+//////////////////////////////////////////////////////////////////////
+$('.seccion4').load('/html/creditos.html');
+$('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
+$('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRCreditos()">  ');
+$('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaCredits()">  ');
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCreditos);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCreditos4);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCreditos2);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCreditos3);
-       document.getElementById('loader').style.display = 'block';
+////////////////////////////////////////////////////////////////////////
+ 
+  }
+}
+
+ }else{
+   $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+ }
+   // document.getElementById('loader').style.display = 'block';
    
 }
 function click_buscarBonificacion1(){
@@ -40370,6 +40734,7 @@ historial2=0;
 
 }
 function addEfectivo(){
+
 var efectivo = $("#modalEfectivo .cash").val();
 var rVendedor = $("#modalEfectivo .rv").val();
 var fechacash = $("#modalDateC .dateVC").val();
@@ -40379,6 +40744,12 @@ var loquedeberiatraer = $("#modalEfectivo .lDT").val();
 var f_s_real = $("#modalEfectivo .fSR").val();
 var credito_p = $("#modalEfectivo .cL").val();
 var bonificacion_p = $("#modalEfectivo .bL").val();
+if(avisoMod==1){
+  descrpcionA='<div><h5 style="color:#00F2E3  ">MODIFICACIÓN DE EFECTIVO</h5>'+usuarioPrincipal2.usuario+' MODIFICO EFECTIVO DE '+oVendedor+'<div style="color:white; font-size:9px;">DE = $'+formatoMoneda1(oEfectivo)+'</div><div style="color: yellow;  font-size:9px;">A = '+formatoMoneda1(efectivo)+'</div></div>';
+  
+  addAviso();
+}
+
 //alert(rVendedor+" - "+efectivo+" - "+dateCash2);
 //----------------------------------- Pendiente --------------------------
     if(credito_p==""||bonificacion_p==""){
@@ -40457,6 +40828,7 @@ var bonificacion_p = $("#modalEfectivo .bL").val();
         }
       }
     limpiar();
+     avisoMod=0;
   }
 /*-------------------- modales ----------------------*/
 
@@ -40484,8 +40856,9 @@ var jsonC = {where:{fechaf:dateCash2}}
 $("#modalDateC").modal('hide');
 limpiar();
 }
+var avisoMod;
 function modalEfectivos(){
-
+avisoMod=0;
     var jsonC = {where:{fechaf: today_vv}}
     executeFunctionDone(jsonC,'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentasp2);
     var rutav ='<select class="form-control rv clear" id="rv" name="select">';

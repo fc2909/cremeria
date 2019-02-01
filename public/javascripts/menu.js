@@ -1313,14 +1313,14 @@ function imprimirRCreditos(s1,s2,a1,a2){
         document.getElementById('creditosNomina').style.display = 'none';
 
 }
-function ExcelNominaCredits(){
+function ExcelNominaCredits(s1,s2,a1,a2){
         document.getElementById('creditosNomina').style.display = 'blok';
         document.getElementById('creditosReporte').style.display = 'none';
         document.getElementById('fondoBlanco').style.display = 'block';
         document.getElementById('creditosNomina').style.display = 'none';
 
         
-    var controlC = 'CREDITOS  (SEMANAS: '+scv+' - '+scv2+')';
+   var controlC = 'CREDITOS  (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
 
    
@@ -1333,14 +1333,14 @@ function ExcelNominaCredits(){
 }
 
 
-function ExcelNominaBonificacion(){
+function ExcelNominaBonificacion(s1,s2,a1,a2){
         document.getElementById('creditosReporte2').style.display = 'none';
         document.getElementById('bonificacion').style.display = 'block';
         document.getElementById('ocultoBonificacion').style.display = 'block';
         document.getElementById('ocultoBonificacionT').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'BONIFICACION (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = 'BONIFICACION (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#bonificacion').html())); 
         document.getElementById('creditosReporte2').style.display = 'block';
@@ -1350,7 +1350,7 @@ function ExcelNominaBonificacion(){
         document.getElementById('bonificacion').style.display = 'none';
 
 }
-function imprimirRBonificacion(){
+function imprimirRBonificacion(s1,s2,a1,a2){
         document.getElementById('bonificacion').style.display = 'block';
 
         document.getElementById('creditosReporte2').style.display = 'none';
@@ -1359,7 +1359,7 @@ function imprimirRBonificacion(){
        // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'BONIFICACIÓN (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = 'BONIFICACIÓN (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte2').style.display = 'block';
@@ -1381,7 +1381,7 @@ function  printRemision(){
         document.getElementById('remisionP').style.display = 'none';
 
 }
-function imprimirRVenta(){
+function imprimirRVenta(s1,s2,a1,a2){
         document.getElementById('venta').style.display = 'block';
 
         document.getElementById('creditosReporte3').style.display = 'none';
@@ -1390,7 +1390,7 @@ function imprimirRVenta(){
        // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'VENTA (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = 'VENTA (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte3').style.display = 'block';
@@ -1401,7 +1401,7 @@ function imprimirRVenta(){
         document.getElementById('venta').style.display = 'none';
 
 }
-function ExcelNominaVenta(){
+function ExcelNominaVenta(s1,s2,a1,a2){
         document.getElementById('creditosReporte3').style.display = 'none';
         document.getElementById('venta').style.display = 'block';
         document.getElementById('ocultoVentaN').style.display = 'block';
@@ -1409,7 +1409,7 @@ function ExcelNominaVenta(){
        // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'VENTA (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = 'VENTA (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#venta').html())); 
         document.getElementById('creditosReporte3').style.display = 'block';
@@ -1420,7 +1420,7 @@ function ExcelNominaVenta(){
         document.getElementById('venta').style.display = 'none';
 
 }
-function imprimirRMerma(){
+function imprimirRMerma(s1,s2,a1,a2){
         document.getElementById('merma').style.display = 'block';
 
         document.getElementById('creditosReporte4').style.display = 'none';
@@ -1429,7 +1429,7 @@ function imprimirRMerma(){
        // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = 'MERMA (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = 'MERMA (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte4').style.display = 'block';
@@ -1440,13 +1440,13 @@ function imprimirRMerma(){
         document.getElementById('merma').style.display = 'none';
 
 }
-function ExcelNominaMerma(){
+function ExcelNominaMerma(s1,s2,a1,a2){
         document.getElementById('creditosReporte4').style.display = 'none';
         document.getElementById('merma').style.display = 'block';
         document.getElementById('ocultoMermaN').style.display = 'block';
         document.getElementById('ocultoMermaNT').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
-    var controlC = 'MERMA (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = 'MERMA (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#merma').html())); 
         document.getElementById('creditosReporte4').style.display = 'block';
@@ -1456,14 +1456,14 @@ function ExcelNominaMerma(){
         document.getElementById('merma').style.display = 'none';
 
 }
-function imprimirRNoVenta(){
+function imprimirRNoVenta(s1,s2,a1,a2){
         document.getElementById('noventa').style.display = 'block';
         document.getElementById('creditosReporte55').style.display = 'none';
         document.getElementById('ocultoNoVenta').style.display = 'block';
         document.getElementById('ocultoNoVentaT').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = '% NO VENTA (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = '% NO VENTA (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte55').style.display = 'block';
@@ -1473,14 +1473,14 @@ function imprimirRNoVenta(){
         document.getElementById('noventa').style.display = 'none';
 
 }
-function ExcelNominaNoVenta(){
+function ExcelNominaNoVenta(s1,s2,a1,a2){
         document.getElementById('creditosReporte55').style.display = 'none';
         document.getElementById('noventa').style.display = 'block';
         document.getElementById('ocultoNoVenta').style.display = 'block';
         document.getElementById('ocultoNoVentaT').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = '% NO VENTA (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = '% NO VENTA (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#noventa').html())); 
         document.getElementById('creditosReporte55').style.display = 'block';
@@ -5740,154 +5740,9 @@ function loadCreditos(lista){
                $('.contCataCreditos').html(html); 
                $('.contCataCreditosP').html(htmlP); 
 
-  var longi2= semanaT.length-1;
-          prodTotales = new Array(longi2);
-          prodTotales2 = new Array(longi2);
-          credi=0;
-          boni=0;
-          s_vent=0;
-      
-      
-      var bonificacionT=0;
-      var t_venta_mercaT=0;
-      var mer;
-      var pNoVenta;
-      var creditosT=0; 
-      var bonificacionTotal=0; 
-      var ventasT=0; 
-      var productoTotalS=""; 
-      var productoTotal=0; 
-      var productoTotalP=0; 
-      var prodT = new Array(longi2);
-      var porcentajeTotal=0;
-      var credits=0;
-      var mermaT=0;
-      var encuentra=0;
-      var diferenciaT=0;
-      var faltanteT;
-      var f_Ahorro="F";
-      var ret=0;
-      var idMerma="F";
-      var infonavit=0;
-      var productosT="";
-        var productosTP="";
-          var totalCred=0;
-          var totalCredP=0;
-              
-              
-       
-      var idNomina;
-  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
-       if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
-  for(var j=0;j<lista.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].semana).substring(0,4))){
-  for(var i=0; i < arrGlobalRuta.length; i++) {
-       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
-          ruta3=arrGlobalRuta[i].nombre;
-          rutas=arrGlobalEmpleados[hh2].ruta;
-          }
-         }
-
-  encuentra=1; 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
-      
-        }
-        
-        }
-titulos='';
-titulosP='';
-productoTotalS='';
-productoTotalSP='';
-
-var enc=0;
-var num22=0;
-var longi =  parseInt(scv)-parseInt(scv);
-      for(var jj=scv;jj>=scv2; jj--){
-        for(var j=0;j<lista.length; j++){
-          enc=0;
-if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
- 
-if(lista[j].creditos !=(undefined||NaN||""||null)){
-           creditosT = lista[j].creditos;
-          }
-
-productoTotal = '<td>$ '+formatoMoneda1(creditosT)+'</td>';
-enc=1;
-
-        }
-
-        if(enc==0){productoTotal = '<td>$ '+formatoMoneda1(creditosT)+'</td>'; 
-
-      }
-     
-        }
- if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=0;}
-prodT[num22]+= parseFloat(creditosT);
-num22++;
-titulos+='<th class="text-center">SEMANA: '+jj+'</th>';
-titulosP+='<th class="text-center grisclaro">SEMANA_'+jj+'</th>';
-productoTotalS += productoTotal;
-productoTotalSP += productoTotal;
-enc=0;
-creditosT=0;
-productoTotal='';
-}
-
-
-encuentra =0;
-
-
-
-        
-
-              
-         if(identificacion==''){html=html;}else{
-
-          html+=identificacion+'</td>'+productoTotalS+' </tr>';
-          htmlP+=identificacionP+'</td>'+productoTotalSP+' </tr>';
-          
-         }
-        productoTotal='';
-        productoTotalP='';
-       
-       }
-
-     }
-
-             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>'+titulos;
-             titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>'+titulosP;
-var totalCred=0;       
-
-        for(var j2=0;j2<=longi2; j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
- if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
- if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
-prodTotales2[j2]+=prodT[j2];
-}
-
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
-var renglon = 4+parseInt(scv)-parseInt(scv2);
-
-htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
-
-
-              if(html==undefined){html='';}else{
-              // $('.titulo2PF').html(titulos); 
-              // $('.tituloP').html(titulosP); 
-             //  $('.contCataCreditos').html(html); 
-            //   $('.contCataCreditosP').html(htmlP); 
-               //$('.contCataMayoreoPF').html(htmlP); 
-       // document.getElementById('imprimirCreditos').style.display = 'block';
-          
-              }
-for(var w=0;w<prodTotales.length; w++){
-     prodTotales[w]+=parseFloat(prodT[w]);
-}
-prodT=0;
 semanaT=[];
 tVentaV=[];
+ document.getElementById('loader').style.display = 'none';
 }
 function loadCreditos2(lista){ //por mayoreo
       if(scv2<1){
@@ -6378,158 +6233,90 @@ prodT=0;
 }
 
 /////////////////////// BONIFICACION ///////////////////////////////////
-function loadBonificacion1(lista){ //por mayoreo
-  var longi2= parseFloat(scv)-parseFloat(scv2);
-          prodTotales = new Array(longi2);
-          prodTotales2 = new Array(longi2);
-          credi=0;
-          boni=0;
-          s_vent=0;
-      var html = '';
-      var htmlP = '';
-      var identificacion='';
-      var identificacionP='';
-      var bonificacionT=0;
-      var t_venta_mercaT=0;
-      var mer;
-      var pNoVenta;
-      var creditosT=0; 
-      var bonificacionTotal=0; 
-      var ventasT=0; 
-      var productoTotalS=""; 
-      var productoTotal=0; 
-      var productoTotalP=0; 
-      var prodT = new Array(longi2);
-      var porcentajeTotal=0;
-      var credits=0;
-      var mermaT=0;
-      var encuentra=0;
-      var diferenciaT=0;
-      var faltanteT;
-      var f_Ahorro="F";
-      var ret=0;
-      var idMerma="F";
-      var infonavit=0;
-      var productosT="";
-        var productosTP="";
-          var totalCred=0;
-          var totalCredP=0;
-              
-              var titulos=""; 
-              var titulosP=""; 
-       
-      var idNomina;
-  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
-       if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
-  for(var j=0;j<lista.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
-  for(var i=0; i < arrGlobalRuta.length; i++) {
-       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
-          ruta3=arrGlobalRuta[i].nombre;
-          rutas=arrGlobalEmpleados[hh2].ruta;
-          }
-         }
-
-  encuentra=1; 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
-      
-        }
-        
-        }
-titulos='';
-titulosP='';
-productoTotalS='';
-productoTotalSP='';
-
-var enc=0;
-var num22=0;
-var longi =  parseInt(scv)-parseInt(scv);
-      for(var jj=scv;jj>=scv2; jj--){
-        for(var j=0;j<lista.length; j++){
-          enc=0;
-if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
- 
-if(lista[j].otros !=(undefined||NaN||""||null)){
-           creditosT += parseFloat(lista[j].otros);
-          }
-
-productoTotal = '<td>$ '+formatoMoneda1(creditosT)+'</td>';
-enc=1;
-
-        }
-
-        if(enc==0){productoTotal = '<td>$ '+formatoMoneda1(creditosT)+'</td>'; 
-
+function buscarBonificacion(semana, ruta, indice){
+  var campo = '<td>$ 0.00</td>';
+  var campo2 = 0;
+  for(var i=0; i <= 6; i++) {
+    const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
+    if (cargas!=undefined) {
+     campo='<td>$ '+formatoMoneda1( cargas.bonificacion)+'</td>';
+     if(isNaN(parseFloat(cargas.bonificacion))){
+        campo2=0;
+      }else{
+        campo2=cargas.bonificacion;
       }
-     
-        }
- if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=0;}
-prodT[num22]+= parseFloat(creditosT);
-num22++;
-titulos+='<th class="text-center">SEMANA: '+jj+'</th>';
-titulosP+='<th class="text-center grisclaro">SEMANA_'+jj+'</th>';
-productoTotalS += productoTotal;
-productoTotalSP += productoTotal;
-enc=0;
-creditosT=0;
-productoTotal='';
+    }
+  } 
+  tVentaVTotales[indice]+=parseFloat(campo2);
+  tVentaVTotal[indice]+=parseFloat(campo2);
+return campo;
 }
-
-
-encuentra =0;
-
-
-
-        
-
-              
-         if(identificacion==''){html=html;}else{
-
-          html+=identificacion+'</td>'+productoTotalS+' </tr>';
-          htmlP+=identificacionP+'</td>'+productoTotalSP+' </tr>';
-          
-         }
-        productoTotal='';
-        productoTotalP='';
-       
-       }
-
-     }
-
-             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>'+titulos;
-             titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>'+titulosP;
-var totalCred=0;       
-
-        for(var j2=0;j2<=longi2; j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
- if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
- if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
-
-prodTotales2[j2]+=prodT[j2];
-}
-
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
-var renglon = 4+parseInt(scv)-parseInt(scv2);
-
-htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
-
-
-              if(html==undefined){html='';}else{
+var cargasV;
+var tVentaVTotales;
+function loadBonificacion1(lista){
+          cargasV=lista;
+          var titulos=''; 
+          var titulosP=''; 
+          var html = '';
+          var htmlP = '';
+          var identificacion='';
+          var identificacionP='';
+          var totalValor='';
+              tVentaVTotales = new Array(semanaT.length);
+              tVentaVTotal = new Array(semanaT.length);
+              for(var f=0;f<tVentaVTotales.length; f++)tVentaVTotales[f]=0;
+              for(var f=0;f<tVentaVTotal.length; f++)tVentaVTotal[f]=0;
+          var tVentaV = [];
+              tVentaV.push({id:2,tventa:"MAYOREO"});
+              tVentaV.push({id:4,tventa:"RESTAURANTE"});
+              tVentaV.push({id:3,tventa:"DETALLE FORANEO"});
+              tVentaV.push({id:1,tventa:"DETALLE"});
+              for(var hh=0;hh<tventa.length; hh++){
+                tVentaV.push({id:tventa[hh].id,tventa:tventa[hh].nColumna});
+                }
+              for(var hh=0;hh<tVentaV.length; hh++){ // tipo de venta
+                  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){ // lista de vendedores
+                    if(arrGlobalEmpleados[hh2].t_venta==tVentaV[hh].id &&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){ // filtro de vendedores activos segun el tipo de venta      
+                      for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
+                        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){ // busca la lista del vendedor
+                          ruta3=arrGlobalRuta[i].nombre;
+                          rutas=arrGlobalEmpleados[hh2].ruta;
+                        }// cierra busca la lista del vendedor
+                      } // cierra lista de rutas
+                      titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>';
+                      titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>';
+                      identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+                      identificacionP += '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+                      for(var j=0;j<semanaT.length; j++){ // Buscar en las semanas
+                      semanaTemp = semanaT[j].anio+'-W'+numberTwo(semanaT[j].semana);
+                      var rango = {semana:semanaTemp, ruta:rutas};
+                      titulos+='<th class="text-center">SEMANA: '+numberTwo(semanaT[j].semana)+'</th>';
+                      titulosP+='<th class="text-center grisclaro">SEMANA_'+numberTwo(semanaT[j].semana)+'</th>';
+                      var sem = buscarBonificacion(semanaTemp,rutas,j);
+                      identificacion += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      }// termina buscar en las semanas
+                    } // vendedores segun el tipo de venta
+                  } // cierra lista de vendedores
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>'+tVentaV[hh].tventa+'</td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+              } // cierra tipo de venta
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+                  html = identificacion;
+                  htmlP = identificacionP;
                $('.titulo2PF').html(titulos); 
                $('.tituloP').html(titulosP); 
                $('.contCataBonificacion').html(html); 
                $('.contCataBonificacionp').html(htmlP); 
-               //$('.contCataMayoreoPF').html(htmlP); 
-        document.getElementById('imprimirBonificacionTotal').style.display = 'block';
-          
-              }
-for(var w=0;w<prodTotales.length; w++){
-     prodTotales[w]+=parseFloat(prodT[w]);
-}
-prodT=0;
 
+semanaT=[];
+tVentaV=[];
+ document.getElementById('loader').style.display = 'none';
 }
 function loadBonificacion2(lista){ //por mayoreo
   var longi2= parseFloat(scv)-parseFloat(scv2);
@@ -7146,157 +6933,91 @@ prodT=0;
 
 
 /////////////////////// VENTA ///////////////////////////////////
-function loadVentaNomina1(lista){ //por mayoreo
-  var longi2= parseFloat(scv)-parseFloat(scv2);
-          prodTotales = new Array(longi2);
-          prodTotales2 = new Array(longi2);
-          credi=0;
-          boni=0;
-          s_vent=0;
-      var html = '';
-      var htmlP = '';
-      var identificacion='';
-      var identificacionP='';
-      var bonificacionT=0;
-      var t_venta_mercaT=0;
-      var mer;
-      var pNoVenta;
-      var creditosT=0; 
-      var bonificacionTotal=0; 
-      var ventasT=0; 
-      var productoTotalS=""; 
-      var productoTotal=0; 
-      var productoTotalP=0; 
-      var prodT = new Array(longi2);
-      var porcentajeTotal=0;
-      var credits=0;
-      var mermaT=0;
-      var encuentra=0;
-      var diferenciaT=0;
-      var faltanteT;
-      var f_Ahorro="F";
-      var ret=0;
-      var idMerma="F";
-      var infonavit=0;
-      var productosT="";
-        var productosTP="";
-          var totalCred=0;
-          var totalCredP=0;
-              
-              var titulos=""; 
-              var titulosP=""; 
-       
-      var idNomina;
-  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
-       if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
-  for(var j=0;j<lista.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
-  for(var i=0; i < arrGlobalRuta.length; i++) {
-       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
-          ruta3=arrGlobalRuta[i].nombre;
-          rutas=arrGlobalEmpleados[hh2].ruta;
-          }
-         }
-
-  encuentra=1; 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
-      
-        }
-        
-        }
-titulos='';
-titulosP='';
-productoTotalS='';
-productoTotalSP='';
-
-var enc=0;
-var num22=0;
-var longi =  parseInt(scv)-parseInt(scv);
-      for(var jj=scv;jj>=scv2; jj--){
-        for(var j=0;j<lista.length; j++){
-          enc=0;
-if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
- 
-if(lista[j].t_venta_merca !=(undefined||NaN||""||null)){
-           creditosT += (parseFloat(lista[j].t_venta_merca)-parseFloat(lista[j].otros));
-          }
-
-productoTotal = '<td>$ '+formatoMoneda1(creditosT)+'</td>';
-enc=1;
-
-        }
-
-        if(enc==0){productoTotal = '<td>$ '+formatoMoneda1(creditosT)+'</td>'; 
-
+function buscarVenta(semana, ruta, indice){
+  var campo = '<td>$ 0.00</td>';
+  var campo2 = 0;
+  for(var i=0; i <= 6; i++) {
+    const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
+    if (cargas!=undefined) {
+     campo='<td>$ '+formatoMoneda1(parseFloat(cargas.t_venta_merca)-parseFloat(cargas.otros))+'</td>';
+     if(isNaN(parseFloat(parseFloat(cargas.t_venta_merca)-parseFloat(cargas.otros)))){
+        campo2=0;
+      }else{
+        campo2=parseFloat(cargas.t_venta_merca)-parseFloat(cargas.otros);
       }
-     
-        }
- if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=0;}
-prodT[num22]+= parseFloat(creditosT);
-num22++;
-titulos+='<th class="text-center">SEMANA: '+jj+'</th>';
-titulosP+='<th class="text-center grisclaro">SEMANA_'+jj+'</th>';
-productoTotalS += productoTotal;
-productoTotalSP += productoTotal;
-enc=0;
-creditosT=0;
-productoTotal='';
+    }
+  } 
+  tVentaVTotales[indice]+=parseFloat(campo2);
+  tVentaVTotal[indice]+=parseFloat(campo2);
+return campo;
+
 }
-
-
-encuentra =0;
-
-
-
-        
-
-              
-         if(identificacion==''){html=html;}else{
-
-          html+=identificacion+'</td>'+productoTotalS+' </tr>';
-          htmlP+=identificacionP+'</td>'+productoTotalSP+' </tr>';
-          
-         }
-        productoTotal='';
-        productoTotalP='';
-       
-       }
-
-     }
-
-             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>'+titulos;
-             titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>'+titulosP;
-var totalCred=0;       
-
-        for(var j2=0;j2<=longi2; j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
- if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
- if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
-
-prodTotales2[j2]+=prodT[j2];
-}
-
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
-var renglon = 4+parseInt(scv)-parseInt(scv2);
-
-htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
-
-
-              if(html==undefined){html='';}else{
+var cargasV;
+var tVentaVTotales;
+function loadVentaNomina1(lista){
+          cargasV=lista;
+          var titulos=''; 
+          var titulosP=''; 
+          var html = '';
+          var htmlP = '';
+          var identificacion='';
+          var identificacionP='';
+          var totalValor='';
+              tVentaVTotales = new Array(semanaT.length);
+              tVentaVTotal = new Array(semanaT.length);
+              for(var f=0;f<tVentaVTotales.length; f++)tVentaVTotales[f]=0;
+              for(var f=0;f<tVentaVTotal.length; f++)tVentaVTotal[f]=0;
+          var tVentaV = [];
+              tVentaV.push({id:2,tventa:"MAYOREO"});
+              tVentaV.push({id:4,tventa:"RESTAURANTE"});
+              tVentaV.push({id:3,tventa:"DETALLE FORANEO"});
+              tVentaV.push({id:1,tventa:"DETALLE"});
+              for(var hh=0;hh<tventa.length; hh++){
+                tVentaV.push({id:tventa[hh].id,tventa:tventa[hh].nColumna});
+                }
+              for(var hh=0;hh<tVentaV.length; hh++){ // tipo de venta
+                  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){ // lista de vendedores
+                    if(arrGlobalEmpleados[hh2].t_venta==tVentaV[hh].id &&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){ // filtro de vendedores activos segun el tipo de venta      
+                      for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
+                        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){ // busca la lista del vendedor
+                          ruta3=arrGlobalRuta[i].nombre;
+                          rutas=arrGlobalEmpleados[hh2].ruta;
+                        }// cierra busca la lista del vendedor
+                      } // cierra lista de rutas
+                      titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>';
+                      titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>';
+                      identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+                      identificacionP += '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+                      for(var j=0;j<semanaT.length; j++){ // Buscar en las semanas
+                      semanaTemp = semanaT[j].anio+'-W'+numberTwo(semanaT[j].semana);
+                      var rango = {semana:semanaTemp, ruta:rutas};
+                      titulos+='<th class="text-center">SEMANA: '+numberTwo(semanaT[j].semana)+'</th>';
+                      titulosP+='<th class="text-center grisclaro">SEMANA_'+numberTwo(semanaT[j].semana)+'</th>';
+                      var sem = buscarVenta(semanaTemp,rutas,j);
+                      identificacion += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      }// termina buscar en las semanas
+                    } // vendedores segun el tipo de venta
+                  } // cierra lista de vendedores
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>'+tVentaV[hh].tventa+'</td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+              } // cierra tipo de venta
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+                  html = identificacion;
+                  htmlP = identificacionP;
                $('.titulo2PF').html(titulos); 
                $('.tituloP').html(titulosP); 
                $('.contCataVentaNomina').html(html); 
                $('.contCataVentaNominap').html(htmlP); 
-               //$('.contCataMayoreoPF').html(htmlP); 
-        document.getElementById('imprimirVentaTotal').style.display = 'block';
-          
-              }
-for(var w=0;w<prodTotales.length; w++){
-     prodTotales[w]+=parseFloat(prodT[w]);
-}
-prodT=0;
+
+semanaT=[];
+tVentaV=[];
+ document.getElementById('loader').style.display = 'none';
 
 }
 function loadVentaNomina2(lista){ //por mayoreo
@@ -8731,213 +8452,119 @@ for(var w=0;w<prodTotales.length; w++){
 prodT=0;
 
 }
-
-function loadNoVentaNomina1(lista){ //por mayoreo
-  var longi2= parseFloat(scv)-parseFloat(scv2);
-          prodTotales = new Array(longi2);
-          prodTotales2 = new Array(longi2);
-          credi=0;
-          boni=0;
-          s_vent=0;
-      var html = '';
-      var htmlP = '';
-      var identificacion='';
-      var identificacionP='';
-      var bonificacionT=0;
-      var t_venta_mercaT=0;
-      var mer;
-      var pNoVenta;
-      var creditosT=0; 
-      var bonificacionTotal=0; 
-      var ventasT=0; 
-      var productoTotalS=""; 
-      var productoTotal=0; 
-      var productoTotalP=0; 
-      var prodT = new Array(longi2);
-      var porcentajeTotal=0;
-      var credits=0;
-      var mermaT=0;
-      var encuentra=0;
-      var diferenciaT=0;
-      var faltanteT;
-      var f_Ahorro="F";
-      var ret=0;
-      var idMerma="F";
-      var infonavit=0;
-      var productosT="";
-        var productosTP="";
-          var totalCred=0;
-          var totalCredP=0;
-          var v_mercancia=0;
-              
-              var titulos=""; 
-              var titulosP=""; 
-       
-      var idNomina;
-  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
-       if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
-  for(var j=0;j<lista.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
-  for(var i=0; i < arrGlobalRuta.length; i++) {
-       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
-          ruta3=arrGlobalRuta[i].nombre;
-          rutas=arrGlobalEmpleados[hh2].ruta;
-          }
-         }
-
-  encuentra=1; 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td class="ventascss">' + ruta3  + '</td><td class="ventascss">'+t_ventas[lista[j].tipo-1]+'</td> <td class="ventascss">' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
-      
+function cambiarSemana(){
+ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadActualizarSemanas);
+  
+}
+function loadActualizarSemanas(lista){
+  for(var i=20; i <= 52; i++) {
+    for(var j=0; j < lista.length; j++) {
+        if (i==lista[j].sfc){
+          var sem2018 = "2018-W"+i;
+          var json2 = {semana: sem2018};
+   upRegistro2(lista[j].id,json2, 'ventaspasada', loadFF);
+  
         }
-        
-        }
-titulos='';
-titulosP='';
-productoTotalS='';
-productoTotalSP='';
-
-var enc=0;
-var num22=0;
-var longi =  parseInt(scv)-parseInt(scv);
-      for(var jj=scv;jj>=scv2; jj--){
-        for(var j=0;j<lista.length; j++){
-          enc=0;
-if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
- 
-          mer=lista[j].v_mercancia;
-          if(mer==""||mer==NaN||mer==undefined)mer=0;
-          pNoVenta=((mer-lista[j].t_venta_merca)*100)/parseFloat(lista[j].t_venta_merca);
-          diferenciaT+=( parseFloat(mer) - parseFloat(lista[j].t_venta_merca));
-    
-          
-          if(lista[j].t_venta_merca==0)pNoVenta=100;
-          if(lista[j].t_venta_merca==0)diferenciaT=0;
-if(lista[j].otros==null||lista[j].otros==NaN||lista[j].otros==undefined){
-  bonificacionT+=parseFloat(0);
-  
-}else{
-  bonificacionT+=parseFloat(lista[j].otros);
-  
+    }
+  }
 }
-          t_venta_mercaT+=parseFloat(lista[j].t_venta_merca);
-
-
-
-if(lista[j].creditos==null||lista[j].creditos==NaN||lista[j].creditos==undefined){
-  credits=0
-  
-}else{
-  credits=lista[j].creditos;
-  
-}
-if(diferenciaT==0){
-porcentajeTotal=0;
-}else{
-  porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
-  
-}
-var lC="black";
+function buscarNoVenta(semana, ruta, indice){
+  var campo = '<td>$ 0.00</td>';
+  var campo2 = 0;
+  var diferenciaT = 0;
+  var t_venta_mercaT = 0;
+  var t_venta_mercaT = 0;
+  for(var i=0; i <= 6; i++) {
+    const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
+    if (cargas!=undefined) {
+        diferenciaT+=( parseFloat(cargas.v_mercancia) - parseFloat(cargas.t_venta_merca));
+        t_venta_mercaT+=parseFloat(cargas.t_venta_merca);
+        porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
+        var lC="black";
                 if(porcentajeTotal<20){lC="green"}
                 if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
                 if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow; "}
                 if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
                 if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
-productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
-enc=1;
-
-        }
-
-        if(enc==0){
-
-
-          var lC="black";
-                if(porcentajeTotal<20){lC="green"}
-                if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
-                if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow; "}
-                if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
-                if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
-productoTotal = '<td style="color:'+lC+'"><strong> % '+formatoMoneda1(porcentajeTotal)+' </strong></td>';
-
+     campo='<td style="color:'+lC+'">% '+formatoMoneda1(parseFloat(porcentajeTotal))+'</td>';
+     if(isNaN(parseFloat(porcentajeTotal))){
+        campo2=0;
+      }else{
+        campo2=parseFloat(0);
       }
- 
-        }
-
-
-
- if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=0;}
-prodT[num22]+= parseFloat(creditosT);
-num22++;
-titulos+='<th class="text-center">SEMANA: '+jj+'</th>';
-titulosP+='<th class="text-center grisclaro">SEMANA_'+jj+'</th>';
-productoTotalS += productoTotal;
-productoTotalSP += productoTotal;
-enc=0;
-creditosT=0;
-productoTotal='';
-//alert(porcentajeTotal+' = '+diferenciaT+' *100/ '+ t_venta_mercaT+' - '+bonificacionT);
-
- diferenciaT=0;
-     t_venta_mercaT=0;
-     bonificacionT=0;
-     porcentajeTotal=0;
-
-encuentra =0;
-
+    }
+  } 
+  tVentaVTotales[indice]+=parseFloat(campo2);
+  tVentaVTotal[indice]+=parseFloat(campo2);
+return campo;
 
 }
-
-
-
-
-        
-
-              
-         if(identificacion==''){html=html;}else{
-
-          html+=identificacion+'</td>'+productoTotalS+' </tr>';
-          htmlP+=identificacionP+'</td>'+productoTotalSP+' </tr>';
-          
-         }
-        productoTotal='';
-        productoTotalP='';
-       
-       }
-
-     }
-
-             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>'+titulos;
-             titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>'+titulosP;
-var totalCred=0;       
-
-        for(var j2=0;j2<=longi2; j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
- if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
- if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
-
-prodTotales2[j2]+=prodT[j2];
-}
-
- // html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td> '+totalCred+'</tr>';
-//htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
-var renglon = 4+parseInt(scv)-parseInt(scv2);
-
-htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
-
-
-              if(html==undefined){html='';}else{
+var cargasV;
+var tVentaVTotales;
+function loadNoVentaNomina1(lista){
+          cargasV=lista;
+          var titulos=''; 
+          var titulosP=''; 
+          var html = '';
+          var htmlP = '';
+          var identificacion='';
+          var identificacionP='';
+          var totalValor='';
+              tVentaVTotales = new Array(semanaT.length);
+              tVentaVTotal = new Array(semanaT.length);
+              for(var f=0;f<tVentaVTotales.length; f++)tVentaVTotales[f]=0;
+              for(var f=0;f<tVentaVTotal.length; f++)tVentaVTotal[f]=0;
+          var tVentaV = [];
+              tVentaV.push({id:2,tventa:"MAYOREO"});
+              tVentaV.push({id:4,tventa:"RESTAURANTE"});
+              tVentaV.push({id:3,tventa:"DETALLE FORANEO"});
+              tVentaV.push({id:1,tventa:"DETALLE"});
+              for(var hh=0;hh<tventa.length; hh++){
+                tVentaV.push({id:tventa[hh].id,tventa:tventa[hh].nColumna});
+                }
+              for(var hh=0;hh<tVentaV.length; hh++){ // tipo de venta
+                  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){ // lista de vendedores
+                    if(arrGlobalEmpleados[hh2].t_venta==tVentaV[hh].id &&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){ // filtro de vendedores activos segun el tipo de venta      
+                      for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
+                        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){ // busca la lista del vendedor
+                          ruta3=arrGlobalRuta[i].nombre;
+                          rutas=arrGlobalEmpleados[hh2].ruta;
+                        }// cierra busca la lista del vendedor
+                      } // cierra lista de rutas
+                      titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>';
+                      titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>';
+                      identificacion += '<tr style="font-size:12px; " class=" text-center ventascss"  ><td >' + ruta3  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+                      identificacionP += '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+                      for(var j=0;j<semanaT.length; j++){ // Buscar en las semanas
+                      semanaTemp = semanaT[j].anio+'-W'+numberTwo(semanaT[j].semana);
+                      var rango = {semana:semanaTemp, ruta:rutas};
+                      titulos+='<th class="text-center">SEMANA: '+numberTwo(semanaT[j].semana)+'</th>';
+                      titulosP+='<th class="text-center grisclaro">SEMANA_'+numberTwo(semanaT[j].semana)+'</th>';
+                      var sem = buscarNoVenta(semanaTemp,rutas,j);
+                      identificacion += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      }// termina buscar en las semanas
+                    } // vendedores segun el tipo de venta
+                  } // cierra lista de vendedores
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>'+tVentaV[hh].tventa+'</td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+              } // cierra tipo de venta
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+                  html = identificacion;
+                  htmlP = identificacionP;
                $('.titulo2PF').html(titulos); 
                $('.tituloP').html(titulosP); 
                $('.contCataNoVenta1').html(html); 
                $('.contCataNoVenta1p').html(htmlP); 
-               //$('.contCataMayoreoPF').html(htmlP); 
-        document.getElementById('imprimirNoVentaTotal').style.display = 'block';
-          
-              }
-for(var w=0;w<prodTotales.length; w++){
-     prodTotales[w]+=parseFloat(prodT[w]);
-}
-prodT=0;
+
+semanaT=[];
+tVentaV=[];
+ document.getElementById('loader').style.display = 'none';
 
 }
 function loadNoVentaNomina2(lista){ //por mayoreo
@@ -9733,157 +9360,91 @@ prodT=0;
 
  ///////////////////// MERMA ///////////////////////////////////////
 
-function loadMermaNomina1(lista){ //por mayoreo
-  var longi2= parseFloat(scv)-parseFloat(scv2);
-          prodTotales = new Array(longi2);
-          prodTotales2 = new Array(longi2);
-          credi=0;
-          boni=0;
-          s_vent=0;
-      var html = '';
-      var htmlP = '';
-      var identificacion='';
-      var identificacionP='';
-      var bonificacionT=0;
-      var t_venta_mercaT=0;
-      var mer;
-      var pNoVenta;
-      var creditosT=0; 
-      var bonificacionTotal=0; 
-      var ventasT=0; 
-      var productoTotalS=""; 
-      var productoTotal=0; 
-      var productoTotalP=0; 
-      var prodT = new Array(longi2);
-      var porcentajeTotal=0;
-      var credits=0;
-      var mermaT=0;
-      var encuentra=0;
-      var diferenciaT=0;
-      var faltanteT;
-      var f_Ahorro="F";
-      var ret=0;
-      var idMerma="F";
-      var infonavit=0;
-      var productosT="";
-        var productosTP="";
-          var totalCred=0;
-          var totalCredP=0;
-              
-              var titulos=""; 
-              var titulosP=""; 
-       
-      var idNomina;
-  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
-       if(arrGlobalEmpleados[hh2].t_venta==2&&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){       
-  for(var j=0;j<lista.length; j++){
-       if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&(scv)>=lista[j].sfc&&(scv2)<=lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
-  for(var i=0; i < arrGlobalRuta.length; i++) {
-       if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){
-          ruta3=arrGlobalRuta[i].nombre;
-          rutas=arrGlobalEmpleados[hh2].ruta;
-          }
-         }
-
-  encuentra=1; 
-identificacion= '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+t_ventas[lista[j].tipo-1]+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-identificacionP= '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+t_ventas[lista[j].tipo-1]+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
-      
-        }
-        
-        }
-titulos='';
-titulosP='';
-productoTotalS='';
-productoTotalSP='';
-
-var enc=0;
-var num22=0;
-var longi =  parseInt(scv)-parseInt(scv);
-      for(var jj=scv;jj>=scv2; jj--){
-        for(var j=0;j<lista.length; j++){
-          enc=0;
-if(arrGlobalEmpleados[hh2].ruta == lista[j].ruta &&jj==lista[j].sfc&& year==((lista[j].fechaf).substring(0,4))){
- 
-if(lista[j].n5 !=(undefined||NaN||""||null)){
-           creditosT = (parseFloat(lista[j].n5));
-          }
-
-productoTotal = '<td>$ '+formatoMoneda1(creditosT)+'</td>';
-enc=1;
-
-        }
-
-        if(enc==0){productoTotal = '<td>$ '+formatoMoneda1(creditosT)+'</td>'; 
-
+function buscarMerma(semana, ruta, indice){
+  var campo = '<td>$ 0.00</td>';
+  var campo2 = 0;
+  for(var i=0; i <= 6; i++) {
+    const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
+    if (cargas!=undefined) {
+     campo='<td>$ '+formatoMoneda1(parseFloat(cargas.n1))+'</td>';
+     if(isNaN(parseFloat(cargas.n1))){
+        campo2=0;
+      }else{
+        campo2=parseFloat(cargas.n1);
       }
-     
-        }
- if(prodT[num22]==NaN||prodT[num22]==null||prodT[num22]==undefined){prodT[num22]=0;}
-prodT[num22]+= parseFloat(creditosT);
-num22++;
-titulos+='<th class="text-center">SEMANA: '+jj+'</th>';
-titulosP+='<th class="text-center grisclaro">SEMANA_'+jj+'</th>';
-productoTotalS += productoTotal;
-productoTotalSP += productoTotal;
-enc=0;
-creditosT=0;
-productoTotal='';
+    }
+  } 
+  tVentaVTotales[indice]+=parseFloat(campo2);
+  tVentaVTotal[indice]+=parseFloat(campo2);
+return campo;
+
 }
-
-
-encuentra =0;
-
-
-
-        
-
-              
-         if(identificacion==''){html=html;}else{
-
-          html+=identificacion+'</td>'+productoTotalS+' </tr>';
-          htmlP+=identificacionP+'</td>'+productoTotalSP+' </tr>';
-          
-         }
-        productoTotal='';
-        productoTotalP='';
-       
-       }
-
-     }
-
-             titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>'+titulos;
-             titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>'+titulosP;
-var totalCred=0;       
-
-        for(var j2=0;j2<=longi2; j2++){
-totalCred+='<td> $ '+formatoMoneda1(prodT[j2])+'</td>';
- if(prodTotales2[j2]==NaN||prodTotales2[j2]==null||prodTotales2[j2]==undefined){prodTotales2[j2]=0;}
- if(prodT[j2]==NaN||prodT[j2]==null||prodT[j2]==undefined){prodT[j2]=0;}
-
-prodTotales2[j2]+=prodT[j2];
-}
-
-  html+='<tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>MAYOREO</td><td></td> '+totalCred+'</tr>';
-htmlP+='<tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>MAYOREO</strong></td><td></td>'+totalCred+' </tr>';
-var renglon = 4+parseInt(scv)-parseInt(scv2);
-
-htmlP+='<tr class="gris"><td colspan="'+renglon+'" style="font-size:6px;" class=" text-center">.</td></tr>';
-
-
-              if(html==undefined){html='';}else{
+var cargasV;
+var tVentaVTotales;
+function loadMermaNomina1(lista){
+          cargasV=lista;
+          var titulos=''; 
+          var titulosP=''; 
+          var html = '';
+          var htmlP = '';
+          var identificacion='';
+          var identificacionP='';
+          var totalValor='';
+              tVentaVTotales = new Array(semanaT.length);
+              tVentaVTotal = new Array(semanaT.length);
+              for(var f=0;f<tVentaVTotales.length; f++)tVentaVTotales[f]=0;
+              for(var f=0;f<tVentaVTotal.length; f++)tVentaVTotal[f]=0;
+          var tVentaV = [];
+              tVentaV.push({id:2,tventa:"MAYOREO"});
+              tVentaV.push({id:4,tventa:"RESTAURANTE"});
+              tVentaV.push({id:3,tventa:"DETALLE FORANEO"});
+              tVentaV.push({id:1,tventa:"DETALLE"});
+              for(var hh=0;hh<tventa.length; hh++){
+                tVentaV.push({id:tventa[hh].id,tventa:tventa[hh].nColumna});
+                }
+              for(var hh=0;hh<tVentaV.length; hh++){ // tipo de venta
+                  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){ // lista de vendedores
+                    if(arrGlobalEmpleados[hh2].t_venta==tVentaV[hh].id &&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){ // filtro de vendedores activos segun el tipo de venta      
+                      for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
+                        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){ // busca la lista del vendedor
+                          ruta3=arrGlobalRuta[i].nombre;
+                          rutas=arrGlobalEmpleados[hh2].ruta;
+                        }// cierra busca la lista del vendedor
+                      } // cierra lista de rutas
+                      titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>';
+                      titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>';
+                      identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+                      identificacionP += '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+                      for(var j=0;j<semanaT.length; j++){ // Buscar en las semanas
+                      semanaTemp = semanaT[j].anio+'-W'+numberTwo(semanaT[j].semana);
+                      var rango = {semana:semanaTemp, ruta:rutas};
+                      titulos+='<th class="text-center">SEMANA: '+numberTwo(semanaT[j].semana)+'</th>';
+                      titulosP+='<th class="text-center grisclaro">SEMANA_'+numberTwo(semanaT[j].semana)+'</th>';
+                      var sem = buscarMerma(semanaTemp,rutas,j);
+                      identificacion += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      }// termina buscar en las semanas
+                    } // vendedores segun el tipo de venta
+                  } // cierra lista de vendedores
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>'+tVentaV[hh].tventa+'</td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+              } // cierra tipo de venta
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+                  html = identificacion;
+                  htmlP = identificacionP;
                $('.titulo2PF').html(titulos); 
                $('.tituloP').html(titulosP); 
                $('.contCataMerma1').html(html); 
                $('.contCataMerma1p').html(htmlP); 
-               //$('.contCataMayoreoPF').html(htmlP); 
-        document.getElementById('imprimirMermaTotal').style.display = 'block';
-          
-              }
-for(var w=0;w<prodTotales.length; w++){
-     prodTotales[w]+=parseFloat(prodT[w]);
-}
-prodT=0;
+
+semanaT=[];
+tVentaV=[];
+ document.getElementById('loader').style.display = 'none';
 
 }
 function loadMermaNomina2(lista){ //por mayoreo
@@ -38245,17 +37806,13 @@ function click_creditos(){
  $('.iconoImprimir').html('');
  $('.iconoExcel').html('');    
  $('.superior').html('');
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion4').load('/html/creditos.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3>');
 }
 function click_bonificacion(){
-$('.iconoImprimir').html('');
+ $('.iconoImprimir').html('');
  $('.iconoExcel').html('');    
  $('.superior').html('');
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion5').load('/html/bonificacion.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> BONIFICACIÓN  </h3>');
 }
@@ -38263,8 +37820,6 @@ function click_ventaN(){
  $('.iconoImprimir').html('');
  $('.iconoExcel').html('');    
  $('.superior').html('');
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
  $('.seccion6').load('/html/ventaNomina.html');
  $('.tituloPantalla').html('<h3 class="ventas impre"> VENTA  </h3>');
 }
@@ -38324,7 +37879,8 @@ $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.');
 $('.seccion4').load('/html/creditos.html');
 $('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
 $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRCreditos('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
-$('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaCredits()">  ');
+$('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaCredits('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">  ');
+document.getElementById('loader').style.display = 'block';
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCreditos);
 ////////////////////////////////////////////////////////////////////////
  
@@ -38335,187 +37891,199 @@ getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintenta
    $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
   $('#modal').modal('show');
  }
-   // document.getElementById('loader').style.display = 'block';
-   
 }
 function click_buscarBonificacion1(){
-   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaBonificacion()" download="Creditos.xls" ><br>Descargar Excel</button>');
-
  semana1 = $('.semanac1B').val();
  semana2 = $('.semanac2B').val();
-  var mes=month-1;
-  var dia=day-1;
- if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
-
-
- var yearD = today_vv.substring(0,4);
-      saberSemana(dia,mes,yearD);
-      semana1=noSemana+1;
-       scv = noSemana+1
- }else{
-  var year =  parseInt(semana1.substring(0,4));
- scv = parseInt(semana1.substring(6,8));
- }
-  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
-var year2=year;
-
-      semana2=scv-5;
-scv2 = semana2;
- }else{
-     var year2 =  parseInt(semana2.substring(0,4));
- scv2 = parseInt(semana2.substring(6,8));
- }
- if(scv2>scv){
-  scv2=scv-5;
- }
-
-sfc=scv;
-
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
- $('.seccion5').load('/html/bonificacion.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> BONIFICACIÓN   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+ if(semana1!=""&&semana2!=""){
+ var anio1 =  parseInt(semana1.substring(0,4));
+ var semanaBus1 = parseInt(semana1.substring(6,8));
+ var anio2 =  parseInt(semana2.substring(0,4));
+ var semanaBus2 = parseInt(semana2.substring(6,8));
+if (anio1<anio2){
+$('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+}else{
+  if (semanaBus1<semanaBus2&&anio1==anio2){
+    $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+    $('#modal').modal('show');
+  }else{ 
+    var semanaBus1Temp;
+    var semanaBus1Temp2=semanaBus1;
+    var anio1Temp=anio1;
+    if (semanaBus1<semanaBus2&&anio1>anio2){
+     semanaBus1Temp=semanaBus1+52;// if we need more weeks, here is the answer key= if we have more years, create a var...
+     for (var i = semanaBus1Temp; i >= semanaBus2; i--) {
+     semanaT.push({semana:semanaBus1Temp2,anio: anio1Temp})
+     semanaBus1Temp2--;
+     if (semanaBus1Temp2==0){semanaBus1Temp2=52; anio1Temp--;}
+    }
+    }else{
+    for (var i = semanaBus1; i >= semanaBus2; i--) {
+     semanaT.push({semana:i,anio:anio1})
+    }
+    }
+//////////////////////////////////////////////////////////////////////
+$('.seccion5').load('/html/bonificacion.html');
+$('.tituloPantalla').html('<h3 class="ventas impre"> BONIFICACIÓN   </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
+$('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRBonificacion('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
+$('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaBonificacion('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">  ');
+document.getElementById('loader').style.display = 'block';
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadBonificacion1);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadBonificacion4);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadBonificacion2);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadBonificacion3);
-       document.getElementById('loader').style.display = 'block'; 
+////////////////////////////////////////////////////////////////////////
+ 
+  }
+}
+
+ }else{
+   $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+ }
 }
 function click_buscarVenta1(){
-   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaVenta()" download="Creditos.xls" ><br>Descargar Excel</button>');
-
- semana1 = $('.semanac1V').val();
+semana1 = $('.semanac1V').val();
  semana2 = $('.semanac2V').val();
-  var mes=month-1;
-  var dia=day-1;
- if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
-
-
- var yearD = today_vv.substring(0,4);
-      saberSemana(dia,mes,yearD);
-      semana1=noSemana+1;
-       scv = noSemana+1
- }else{
-  var year =  parseInt(semana1.substring(0,4));
- scv = parseInt(semana1.substring(6,8));
- }
-  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
-var year2=year;
-
-      semana2=scv-5;
-scv2 = semana2;
- }else{
-     var year2 =  parseInt(semana2.substring(0,4));
- scv2 = parseInt(semana2.substring(6,8));
- }
- if(scv2>scv){
-  scv2=scv-5;
- }
-
-sfc=scv;
-
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
+ if(semana1!=""&&semana2!=""){
+ var anio1 =  parseInt(semana1.substring(0,4));
+ var semanaBus1 = parseInt(semana1.substring(6,8));
+ var anio2 =  parseInt(semana2.substring(0,4));
+ var semanaBus2 = parseInt(semana2.substring(6,8));
+if (anio1<anio2){
+$('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+}else{
+  if (semanaBus1<semanaBus2&&anio1==anio2){
+    $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+    $('#modal').modal('show');
+  }else{ 
+    var semanaBus1Temp;
+    var semanaBus1Temp2=semanaBus1;
+    var anio1Temp=anio1;
+    if (semanaBus1<semanaBus2&&anio1>anio2){
+     semanaBus1Temp=semanaBus1+52;// if we need more weeks, here is the answer key= if we have more years, create a var...
+     for (var i = semanaBus1Temp; i >= semanaBus2; i--) {
+     semanaT.push({semana:semanaBus1Temp2,anio: anio1Temp})
+     semanaBus1Temp2--;
+     if (semanaBus1Temp2==0){semanaBus1Temp2=52; anio1Temp--;}
+    }
+    }else{
+    for (var i = semanaBus1; i >= semanaBus2; i--) {
+     semanaT.push({semana:i,anio:anio1})
+    }
+    }
+//////////////////////////////////////////////////////////////////////
  $('.seccion6').load('/html/ventaNomina.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> VENTA   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+$('.tituloPantalla').html('<h3 class="ventas impre">  VENTA     </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
+$('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRVenta('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
+$('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaVenta('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">  ');
+document.getElementById('loader').style.display = 'block';
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaNomina1);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaNomina4);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaNomina2);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVentaNomina3);
-         document.getElementById('loader').style.display = 'block';
-   
+////////////////////////////////////////////////////////////////////////
+ 
+  }
+}
+
+ }else{
+   $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+ }
 }
 
 function click_buscaMerma1(){
-   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaMerma()" download="Creditos.xls" ><br>Descargar Excel</button>');
-
- semana1 = $('.semanac1M').val();
+semana1 = $('.semanac1M').val();
  semana2 = $('.semanac2M').val();
-  var mes=month-1;
-  var dia=day-1;
- if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
-
-
- var yearD = today_vv.substring(0,4);
-      saberSemana(dia,mes,yearD);
-      semana1=noSemana+1;
-       scv = noSemana+1
- }else{
-  var year =  parseInt(semana1.substring(0,4));
- scv = parseInt(semana1.substring(6,8));
- }
-  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
-var year2=year;
-
-      semana2=scv-5;
-scv2 = semana2;
- }else{
-     var year2 =  parseInt(semana2.substring(0,4));
- scv2 = parseInt(semana2.substring(6,8));
- }
- if(scv2>scv){
-  scv2=scv-5;
- }
-
-sfc=scv;
-
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
+ if(semana1!=""&&semana2!=""){
+ var anio1 =  parseInt(semana1.substring(0,4));
+ var semanaBus1 = parseInt(semana1.substring(6,8));
+ var anio2 =  parseInt(semana2.substring(0,4));
+ var semanaBus2 = parseInt(semana2.substring(6,8));
+if (anio1<anio2){
+$('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+}else{
+  if (semanaBus1<semanaBus2&&anio1==anio2){
+    $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+    $('#modal').modal('show');
+  }else{ 
+    var semanaBus1Temp;
+    var semanaBus1Temp2=semanaBus1;
+    var anio1Temp=anio1;
+    if (semanaBus1<semanaBus2&&anio1>anio2){
+     semanaBus1Temp=semanaBus1+52;// if we need more weeks, here is the answer key= if we have more years, create a var...
+     for (var i = semanaBus1Temp; i >= semanaBus2; i--) {
+     semanaT.push({semana:semanaBus1Temp2,anio: anio1Temp})
+     semanaBus1Temp2--;
+     if (semanaBus1Temp2==0){semanaBus1Temp2=52; anio1Temp--;}
+    }
+    }else{
+    for (var i = semanaBus1; i >= semanaBus2; i--) {
+     semanaT.push({semana:i,anio:anio1})
+    }
+    }
+//////////////////////////////////////////////////////////////////////
  $('.seccion8').load('/html/nMerma.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> MERMA   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+$('.tituloPantalla').html('<h3 class="ventas impre">  MERMA     </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
+$('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRMerma('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
+$('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaMerma('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">  ');
+document.getElementById('loader').style.display = 'block';
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaNomina1);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaNomina4);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaNomina2);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadMermaNomina3);
-        document.getElementById('loader').style.display = 'block';
-   
+////////////////////////////////////////////////////////////////////////
+ 
+  }
+}
+
+ }else{
+   $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+ } 
 }
 function click_buscarnoVenta1(){
-   $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNominaNoVenta()" download="Creditos.xls" ><br>Descargar Excel</button>');
- 
  semana1 = $('.semanac1NV').val();
  semana2 = $('.semanac2NV').val();
-  var mes=month-1;
-  var dia=day-1;
- if(semana1==""||semana1==undefined||semana1==NaN||semana1==null){
-
-
- var yearD = today_vv.substring(0,4);
-      saberSemana(dia,mes,yearD);
-      semana1=noSemana+1;
-       scv = noSemana+1
- }else{
-  var year =  parseInt(semana1.substring(0,4));
- scv = parseInt(semana1.substring(6,8));
- }
-  if(semana2==""||semana2==undefined||semana2==NaN||semana2==null){
-var year2=year;
-
-      semana2=scv-5;
-scv2 = semana2;
- }else{
-     var year2 =  parseInt(semana2.substring(0,4));
- scv2 = parseInt(semana2.substring(6,8));
- }
- if(scv2>scv){
-  scv2=scv-5;
- }
-
-sfc=scv;
-
- $('.btn-nav').removeClass('hidden');
- $('.btn-nav').html('<h3> MENÚ  </h3>');
+ if(semana1!=""&&semana2!=""){
+ var anio1 =  parseInt(semana1.substring(0,4));
+ var semanaBus1 = parseInt(semana1.substring(6,8));
+ var anio2 =  parseInt(semana2.substring(0,4));
+ var semanaBus2 = parseInt(semana2.substring(6,8));
+if (anio1<anio2){
+$('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+}else{
+  if (semanaBus1<semanaBus2&&anio1==anio2){
+    $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+    $('#modal').modal('show');
+  }else{ 
+    var semanaBus1Temp;
+    var semanaBus1Temp2=semanaBus1;
+    var anio1Temp=anio1;
+    if (semanaBus1<semanaBus2&&anio1>anio2){
+     semanaBus1Temp=semanaBus1+52;// if we need more weeks, here is the answer key= if we have more years, create a var...
+     for (var i = semanaBus1Temp; i >= semanaBus2; i--) {
+     semanaT.push({semana:semanaBus1Temp2,anio: anio1Temp})
+     semanaBus1Temp2--;
+     if (semanaBus1Temp2==0){semanaBus1Temp2=52; anio1Temp--;}
+    }
+    }else{
+    for (var i = semanaBus1; i >= semanaBus2; i--) {
+     semanaT.push({semana:i,anio:anio1})
+    }
+    }
+//////////////////////////////////////////////////////////////////////
  $('.seccion7').load('/html/noVenta.html');
- $('.tituloPantalla').html('<h3 class="ventas impre"> % NO VENTA   </h3><h4>RANGO SEMANA: '+scv+' A SEMANA: '+scv2+'</h4>');
+$('.tituloPantalla').html('<h3 class="ventas impre">  % NO VENTA     </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
+$('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRNoVenta('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
+$('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaNoVenta('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">  ');
+document.getElementById('loader').style.display = 'block';
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNoVentaNomina1);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNoVentaNomina4);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNoVentaNomina2);
-getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadNoVentaNomina3);
-        document.getElementById('loader').style.display = 'block';
+////////////////////////////////////////////////////////////////////////
  
+  }
+}
 
-   //$('#modal .textModal').html('SUB-MODULO EN CONSTRUCCIÓN'); 
-    //  $('#modal').modal('show');
+ }else{
+   $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.'); 
+  $('#modal').modal('show');
+ } 
 }
 var rango1=0;
 var rango2=0;

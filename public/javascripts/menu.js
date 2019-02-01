@@ -5654,7 +5654,7 @@ char = char+"";
 function buscarCredito(semana, ruta, indice){
   var campo = '<td>$ 0.00</td>';
   var campo2 = 0;
-  for(var i=0; i < 6; i++) {
+  for(var i=0; i <= 6; i++) {
     const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
     if (cargas!=undefined) {
      campo='<td>$ '+formatoMoneda1( cargas.creditos)+'</td>';

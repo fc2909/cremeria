@@ -8467,6 +8467,7 @@ function loadActualizarSemanas(lista){
         }
     }
   }
+  alert("LISTO");
 }
 function buscarNoVenta(semana, ruta, indice){
   var campo = '<td>$ 0.00</td>';

@@ -38323,7 +38323,7 @@ $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.');
 //////////////////////////////////////////////////////////////////////
 $('.seccion4').load('/html/creditos.html');
 $('.tituloPantalla').html('<h3 class="ventas impre"> CRÉDITOS   </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
-$('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRCreditos('+semanaBus1+', '+semanaBus2+','+anio1+','+anio2+'">  ');
+$('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRCreditos('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
 $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaCredits()">  ');
 getFunction('ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCreditos);
 ////////////////////////////////////////////////////////////////////////

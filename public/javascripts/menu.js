@@ -32782,7 +32782,6 @@ pagare=1;
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
 if (estado==2) {
-  alert(ruta)
   var json3 = {n3:""};
     upRegistro2(ruta, json3, 'rutas', loadRutas1);
     ruta=30;

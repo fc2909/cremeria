@@ -30022,6 +30022,7 @@ var json3 = {n3: n3};
   }
   limpiar();
 getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadVendedores);
+getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas1);
 
 }
 function closeControlVehicular(){
@@ -32777,16 +32778,24 @@ comprobanted=1;
 if(pagare==""||undefined||null||NaN){
 pagare=1;
 }else{pagare=0;}
-    var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare, km:km, n1:n1, infonavit:infonavit };
-  
-
 
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
-var n3 = nombre_Emple+' '+paterno_Emple+ ' ' +materno_Emple;
 
+if (estado==2) {
+  alert(ruta)
+  var json3 = {n3:""};
+    upRegistro2(ruta, json3, 'rutas', loadRutas1);
+    ruta=30;
+}else{
 var json3 = {n3: n3};
 
     upRegistro2(ruta, json3, 'rutas', loadRutas1);
+}
+
+var json = {idEmpleados: idEmpleados, nombre_Emple: nombre_Emple, paterno_Emple: paterno_Emple, materno_Emple: materno_Emple, n_seguro: n_seguro, curp: curp, domicilio: domicilio, rfc: rfc, tipo: tipo, n_licencia: n_licencia, f_exp: f_exp, ruta: ruta, t_venta: t_venta, l_credito: l_credito, l_bon: l_bon, merma: merma, tipocontrato: tipocontrato, iniciocontrato: iniciocontrato, fincontrato: fincontrato, telp: telp, tell: tell, fnacimiento: fnacimiento, estado: estado, ingreso: ingreso, vacaciones:vacaciones, renuncia:renuncia, reingresos: reingresos, razon: razon, solicitud: solicitud, ine2: ine2, curp2: curp2, rfc2:rfc2, nss: nss, acta: acta, cdomicilio: cdomicilio, foto: foto, recomendaciones: recomendaciones, licenciac: licenciac, antecedentes: antecedentes, ineaval: ineaval, predial: predial, comprobanted: comprobanted, pagare:pagare, km:km, n1:n1, infonavit:infonavit };
+var n3 = nombre_Emple+' '+paterno_Emple+ ' ' +materno_Emple;
+
+
 
     upRegistro2(idGlobal, json, 'empleados', loadVendedores);
     
@@ -32805,6 +32814,7 @@ selectVendedores(idVendedor93);
 click_vendedores();
 // -*-------------------------------------------------------- checar ------------------------------------------------------- //
 
+getFunction('rutas', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadRutas1);
 
 
 

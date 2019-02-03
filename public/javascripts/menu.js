@@ -6942,7 +6942,7 @@ function buscarVenta(semana, ruta, indice){
   for(var i=0; i <= 6; i++) {
     const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
     if (cargas!=undefined) {
-      ventaNom+=parseFloat(cargas.t_venta_merca)-parseFloat(cargas.otros);
+      ventaNom+=parseFloat(cargas.t_venta_merca);
      campo='<td>$ '+formatoMoneda1(ventaNom)+'</td>';
      if(isNaN(ventaNom)){
         campo2=0;

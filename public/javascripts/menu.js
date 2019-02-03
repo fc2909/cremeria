@@ -6240,7 +6240,7 @@ function buscarBonificacion(semana, ruta, indice){
   for(var i=0; i <= 6; i++) {
     const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
     if (cargas!=undefined) {
-      otrosB += cargas.otros;
+      otrosB += parseFloat(cargas.otros);
      campo='<td>$ '+formatoMoneda1(otrosB)+'</td>';
      if(isNaN(parseFloat(cargas.bonificacion))){
         campo2=0;

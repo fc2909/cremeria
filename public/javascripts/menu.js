@@ -6242,7 +6242,7 @@ function buscarBonificacion(semana, ruta, indice){
     if (cargas!=undefined) {
       otrosB += parseFloat(cargas.otros);
      campo='<td>$ '+formatoMoneda1(otrosB)+'</td>';
-     if(isNaN(otrosB){
+     if(isNaN(otrosB)){
         campo2=0;
       }else{
         campo2=otrosB;

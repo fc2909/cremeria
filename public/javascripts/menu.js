@@ -8543,7 +8543,6 @@ function buscarNoVenta(semana, ruta, indice){
   var noVentaNom = 0;
   var diferenciaT = 0;
   var t_venta_mercaT = 0;
-  var t_venta_mercaT = 0;
   for(var i=0; i <= 6; i++) {
     const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
     if (cargas!=undefined) {
@@ -8551,7 +8550,8 @@ function buscarNoVenta(semana, ruta, indice){
         diferenciaT+=( parseFloat(cargas.v_mercancia) - parseFloat(cargas.t_venta_merca));
         t_venta_mercaT+=parseFloat(cargas.t_venta_merca);
         porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
-        noVentaNom = noVentaNom/conta;
+        noVentaNom += porcentajeTotal;
+        noVentaNom += noVentaNom/conta;
         var lC="black";
                 if(porcentajeTotal<20){lC="green"}
                 if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}

@@ -6234,16 +6234,18 @@ prodT=0;
 
 /////////////////////// BONIFICACION ///////////////////////////////////
 function buscarBonificacion(semana, ruta, indice){
+  var otrosB=0;
   var campo = '<td>$ 0.00</td>';
   var campo2 = 0;
   for(var i=0; i <= 6; i++) {
     const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
     if (cargas!=undefined) {
-     campo='<td>$ '+formatoMoneda1( cargas.bonificacion)+'</td>';
+      otrosB += cargas.otros;
+     campo='<td>$ '+formatoMoneda1(otrosB)+'</td>';
      if(isNaN(parseFloat(cargas.bonificacion))){
         campo2=0;
       }else{
-        campo2=cargas.bonificacion;
+        campo2=otrosB;
       }
     }
   } 

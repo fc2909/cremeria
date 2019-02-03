@@ -6242,7 +6242,7 @@ function buscarBonificacion(semana, ruta, indice){
     if (cargas!=undefined) {
       otrosB += parseFloat(cargas.otros);
      campo='<td>$ '+formatoMoneda1(otrosB)+'</td>';
-     if(isNaN(parseFloat(cargas.bonificacion))){
+     if(isNaN(otrosB){
         campo2=0;
       }else{
         campo2=otrosB;
@@ -6936,16 +6936,18 @@ prodT=0;
 
 /////////////////////// VENTA ///////////////////////////////////
 function buscarVenta(semana, ruta, indice){
+  var ventaNom=0;
   var campo = '<td>$ 0.00</td>';
   var campo2 = 0;
   for(var i=0; i <= 6; i++) {
     const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
     if (cargas!=undefined) {
-     campo='<td>$ '+formatoMoneda1(parseFloat(cargas.t_venta_merca)-parseFloat(cargas.otros))+'</td>';
-     if(isNaN(parseFloat(parseFloat(cargas.t_venta_merca)-parseFloat(cargas.otros)))){
+      ventaNom+=parseFloat(cargas.t_venta_merca)-parseFloat(cargas.otros);
+     campo='<td>$ '+formatoMoneda1(ventaNom)+'</td>';
+     if(isNaN(ventaNom)){
         campo2=0;
       }else{
-        campo2=parseFloat(cargas.t_venta_merca)-parseFloat(cargas.otros);
+        campo2=ventaNom;
       }
     }
   } 
@@ -8537,23 +8539,27 @@ prodT=0;
 function buscarNoVenta(semana, ruta, indice){
   var campo = '<td>$ 0.00</td>';
   var campo2 = 0;
+  var conta = 0;
+  var noVentaNom = 0;
   var diferenciaT = 0;
   var t_venta_mercaT = 0;
   var t_venta_mercaT = 0;
   for(var i=0; i <= 6; i++) {
     const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
     if (cargas!=undefined) {
+      conta++;
         diferenciaT+=( parseFloat(cargas.v_mercancia) - parseFloat(cargas.t_venta_merca));
         t_venta_mercaT+=parseFloat(cargas.t_venta_merca);
         porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
+        noVentaNom = noVentaNom/conta;
         var lC="black";
                 if(porcentajeTotal<20){lC="green"}
                 if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
                 if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow; "}
                 if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
                 if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
-     campo='<td style="color:'+lC+'">% '+formatoMoneda1(parseFloat(porcentajeTotal))+'</td>';
-     if(isNaN(parseFloat(porcentajeTotal))){
+     campo='<td style="color:'+lC+'">% '+formatoMoneda1(parseFloat(noVentaNom))+'</td>';
+     if(isNaN(parseFloat(noVentaNom))){
         campo2=0;
       }else{
         campo2=parseFloat(0);
@@ -9429,14 +9435,16 @@ prodT=0;
 function buscarMerma(semana, ruta, indice){
   var campo = '<td>$ 0.00</td>';
   var campo2 = 0;
+  var mermaNom = 0;
   for(var i=0; i <= 6; i++) {
     const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
     if (cargas!=undefined) {
-     campo='<td>$ '+formatoMoneda1(parseFloat(cargas.n1))+'</td>';
-     if(isNaN(parseFloat(cargas.n1))){
+     mermaNom += parseFloat(cargas.n1);
+     campo='<td>$ '+formatoMoneda1(mermaNom)+'</td>';
+     if(isNaN(parseFloat(mermaNom))){
         campo2=0;
       }else{
-        campo2=parseFloat(cargas.n1);
+        campo2=parseFloat(mermaNom);
       }
     }
   } 

@@ -8574,6 +8574,8 @@ return campo;
 var cargasV;
 var tVentaVTotales;
 function loadNoVentaNomina1(lista){
+  $('#modal .textModal').html('% DE NO VENTA EN CONSTRUCCION.'); 
+  $('#modal').modal('show');
           cargasV=lista;
           var titulos=''; 
           var titulosP=''; 

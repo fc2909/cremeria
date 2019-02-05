@@ -28146,9 +28146,17 @@ function loadVentasr(lista){
                 var p2=p+1;
                     idConta[saltos]='rec'+h;
                     saltos++;
-  
+                    var result;
+                    result=(lista[h].horadespacho).substring(0,2);
+                    if(isNaN(parseFloat(result))){
+                       result="";
+                    }else{
+                      if (result>=10) {
+                       result="#E6E6E6";
+                    } 
+                    }
                     html+= '<tr style="font-size:13px; " class=""  data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td></td><td> <input type="number" pattern="[0-9]{10}"    class="p'+p+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec('+h+', '+lista[h].piezas+', '+lista[h].precioUnitario+', '+v+'); nextInput('+h+');">' + '</td><td>  ' + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td>  <div id="'+h+'"> $ 0.00</div></td></tr>';
-                    htmlp+= '<tr class="" style="font-size:7px; color:black; "><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td ><td class="text-right"></td><td class="text-right">'+formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right"></td><td class="text-right"><strong>'+formatoMoneda1(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</strong></td><td class="text-right"></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+  formatoMoneda1(lista[h].venta)+'</td></tr>';
+                    htmlp+= '<tr class="" style="font-size:7px; color:black;  background:'+result+';"><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td ><td class="text-right"></td><td class="text-right">'+formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right"></td><td class="text-right"><strong>'+formatoMoneda1(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</strong></td><td class="text-right"></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+  formatoMoneda1(lista[h].venta)+'</td></tr>';
                     num++;
                     v++;
                     total_merc2 += parseFloat(lista[h].valorMercancia);
@@ -28159,11 +28167,21 @@ function loadVentasr(lista){
                     saltos++;
                     idConta[saltos]='rec'+h;
                     saltos++;
+                    var result;
+                    result=(lista[h].horadespacho).substring(0,2);
+                    if(isNaN(parseFloat(result))){
+                       result="";
+                    }else{
+                      if (result>=10) {
+                       result="#E6E6E6";
+                    } 
+                    }
+                     
                     html+= '<tr class="" style="font-size:13px; " data-id="'+ lista[h].id +'"><td>' + lista[h].idProducto + '</td><td>' + lista[h].descripcionventa + '</td><td>' + formatoMoneda1(lista[h].piezas) + '</td><td>' +formatoMoneda2(lista[h].peso)+ '</td><td> ' + '<input type="number" pattern="[0-9]{10}"  id="p'+h+'" class="p'+p+' form-control " placeholder="0.00" onchange="nextInput2('+h+');" >' + '</td><td>  ' + '<input type="number" pattern="[0-9]{10}"   class="p'+(p+1)+' form-control " id="rec'+h+'" placeholder="0.00" onchange="totalrec2('+h+', '+lista[h].peso+', '+lista[h].precioUnitario+','+v+'); nextInput('+h+');">'  + '</td><td> $ ' + lista[h].precioUnitario + '</td><td> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td><div id="'+h+'"> $ 0.00</div></td></tr>';
                     p++;
                     
                     
-                    htmlp+= '<tr class="" style="font-size:7px;  color: black;"><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td  class="text-right">'+formatoMoneda2(lista[h].peso)+'</td><td class="text-right">'+ formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right">'+formatoMoneda2(lista[h].pesov)+'</td><td class="text-right"><strong>'+formatoMoneda1(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</strong></td><td class="text-right"><strong> '+formatoMoneda2(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov))+'</strong></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].venta)  +'</td></tr>';
+                    htmlp+= '<tr class="" style="font-size:7px;  color: black; background:'+result+';"><td class="text-center">'+num+'</td><td class="text-center">' + lista[h].idProducto + '</td><td class="text-left">' + lista[h].descripcionventa + '</td><td class="text-right">' + formatoMoneda1(lista[h].piezas) + '</td><td  class="text-right">'+formatoMoneda2(lista[h].peso)+'</td><td class="text-right">'+ formatoMoneda1(lista[h].piezasv) + '</td><td class="text-right">'+formatoMoneda2(lista[h].pesov)+'</td><td class="text-right"><strong>'+formatoMoneda1(parseFloat(lista[h].piezas)-parseFloat(lista[h].piezasv))+'</strong></td><td class="text-right"><strong> '+formatoMoneda2(parseFloat(lista[h].peso)-parseFloat(lista[h].pesov))+'</strong></td><td class="text-right"> $ ' +formatoMoneda1(lista[h].precioUnitario) + '</td><td class="text-right"> $ ' + formatoMoneda1(lista[h].valorMercancia) + '</td><td class="text-right"> $ '+formatoMoneda1(lista[h].venta)  +'</td></tr>';
                     num++;
                     v++;
                     total_merc2 += parseFloat(lista[h].valorMercancia);
@@ -39978,7 +39996,9 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
           <li class="nav-item impre text-center seleccionar2   impre productosList text-center"  onclick="click_modalProducto() ">
             PRODUCTOS 
             </li>  <span class="border border-white"> </span>
-
+            <li class="nav-item impre text-center seleccionar2  impre  text-center mermaList"  onclick="modalMerma()">
+            MERMA 
+            </li>  <span class="border border-warning"> </span>
           </ul>
     </div>
           

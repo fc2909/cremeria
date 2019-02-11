@@ -1490,14 +1490,14 @@ function ExcelNominaNoVenta(s1,s2,a1,a2){
         document.getElementById('noventa').style.display = 'none';
 
 }
-function imprimirProductosT(){
+function imprimirProductosT(s1,s2,a1,a2){
         document.getElementById('creditosReporte55').style.display = 'none';
         document.getElementById('ocultoNoVenta').style.display = 'block';
         document.getElementById('ocultoNoVentaT').style.display = 'block';
        // document.getElementById('ocultoImagen2').style.display = 'block';
         document.getElementById('fondoBlanco').style.display = 'block';
         
-    var controlC = tipoBusqueda+'  (SEMANAS: '+scv+' - '+scv2+')';
+    var controlC = tipoBusqueda;//+'  (SEMANAS: '+s1+' - '+a1+' A '+s2+' - '+a2+')';
         $('.controlCP').html(controlC);
         window.print(); 
         document.getElementById('creditosReporte55').style.display = 'block';
@@ -7505,18 +7505,27 @@ prodT=0;
 
 /////////////////////// PRODUCTOS ///////////////////////////////////
 function buscarProductos(semana, ruta, indice){
-  var campo = '<td>$ 0.00</td>';
+  var campo = '<td> </td>';
   var campo2 = 0;
-  for(var i=0; i <= 6; i++) {
-    const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i && carga.idProducto == idProductoR ); 
-    if (cargas!=undefined) {
-     campo='<td>$ '+formatoMoneda1( cargas.piezas)+'</td>';
-     if(isNaN(parseFloat(cargas.piezas))){
-        campo2=0;
-      }else{
-        campo2=cargas.piezas;
-      }
-    }
+  var cargas = cargasV.filter(carga => carga.semana == semana && carga.ruta == ruta && carga.idProducto == idProductoR );
+  for(var i=0; i < cargas.length; i++) {
+     if (cargas[i].medida==1) {
+      var isNumber=parseFloat(cargas[i].peso)-parseFloat(cargas[i].pesov);
+        if(isNaN(isNumber)){
+          campo2+=0;
+        }else{
+          campo2+=parseFloat(cargas[i].peso)-parseFloat(cargas[i].pesov);
+          campo='<td> '+formatoMoneda2(campo2)+'</td>';
+        }
+     }else{
+      var isNumber=parseFloat(cargas[i].piezas)-parseFloat(cargas[i].piezasv);
+        if(isNaN(isNumber)){
+          campo2+=0;
+        }else{
+          campo2+=parseFloat(cargas[i].piezas)-parseFloat(cargas[i].piezasv);
+          campo='<td> '+formatoMoneda1(campo2)+'</td>';
+        }
+     }
   } 
   tVentaVTotales[indice]+=parseFloat(campo2);
   tVentaVTotal[indice]+=parseFloat(campo2);
@@ -7571,18 +7580,17 @@ function loadProductosT(lista){
                       }// termina buscar en las semanas
                     } // vendedores segun el tipo de venta
                   } // cierra lista de vendedores
-                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
                       identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>'+tVentaV[hh].tventa+'</td><td></td> '+totalValor+'</tr>';
                       identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td>'+totalValor+' </tr>';
                       totalValor='';
               } // cierra tipo de venta
-                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
                       identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td> '+totalValor+'</tr>';
                       identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
                       totalValor='';
                   html = identificacion;
                   htmlP = identificacionP;
-               
                $('.titulo2PF').html(titulos); 
                $('.tituloP').html(titulosP); 
                $('.contCataMayoreo').html(html); 
@@ -7592,7 +7600,208 @@ semanaT=[];
 tVentaV=[];
  //document.getElementById('loader').style.display = 'none';
 }
+/////////////////////// Categorias ///////////////////////////////////
+function buscarProductosC(semana, ruta, indice){
+  var campo = '<td> </td>';
+  var campo2 = 0;
+for(var p=0; p < clavesProductosC.length;p++) {
+  var cargas = cargasV.filter(carga => carga.semana == semana && carga.ruta == ruta && carga.idProducto == clavesProductosC[p]&& carga.merma==0);
+ // console.log(clavesProductosC[p]+" -- "+semana+" -- "+ruta)
+   console.log(cargas.length);
+  for(var i=0; i < cargas.length; i++) {
+     if (cargas[i].medida==1) {
+      const proporcionI = arrGlobalInventario.find(inv => inv.idInventario ==cargas[i].idProducto);
+      var isNumber=(parseFloat(cargas[i].peso)-parseFloat(cargas[i].pesov))*parseFloat(proporcionI.proporcion);
+        if(isNaN(isNumber)){
+          campo2+=0;
+        }else{
+          campo2+=(parseFloat(cargas[i].peso)-parseFloat(cargas[i].pesov))*parseFloat(proporcionI.proporcion);
+          campo='<td> '+formatoMoneda2(campo2)+'</td>';
+        }
+     }else{
+      var isNumber=(parseFloat(cargas[i].piezas)-parseFloat(cargas[i].piezasv))*parseFloat(proporcionI.proporcion);
+        if(isNaN(isNumber)){
+          campo2+=0;
+        }else{
+          campo2+=(parseFloat(cargas[i].piezas)-parseFloat(cargas[i].piezasv))*parseFloat(proporcionI.proporcion);
+          campo='<td> '+formatoMoneda1(campo2)+'</td>';
+        }
+     }
+  } 
+} 
+  tVentaVTotales[indice]+=parseFloat(campo2);
+  tVentaVTotal[indice]+=parseFloat(campo2);
+return campo;
+}
+var cargasV;
+var productosV;
+var tVentaVTotales;
+function loadProductosTC(lista){
+          cargasV=lista;
+          var titulos=''; 
+          var titulosP=''; 
+          var html = '';
+          var htmlP = '';
+          var identificacion='';
+          var identificacionP='';
+          var totalValor='';
+              tVentaVTotales = new Array(semanaT.length);
+              tVentaVTotal = new Array(semanaT.length);
+              for(var f=0;f<tVentaVTotales.length; f++)tVentaVTotales[f]=0;
+              for(var f=0;f<tVentaVTotal.length; f++)tVentaVTotal[f]=0;
+          var tVentaV = [];
+              tVentaV.push({id:2,tventa:"MAYOREO"});
+              tVentaV.push({id:4,tventa:"RESTAURANTE"});
+              tVentaV.push({id:3,tventa:"DETALLE FORANEO"});
+              tVentaV.push({id:1,tventa:"DETALLE"});
+              for(var hh=0;hh<tventa.length; hh++){
+                tVentaV.push({id:tventa[hh].id,tventa:tventa[hh].nColumna});
+                }
+              for(var hh=0;hh<tVentaV.length; hh++){ // tipo de venta
+                  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){ // lista de vendedores
+                    if(arrGlobalEmpleados[hh2].t_venta==tVentaV[hh].id &&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){ // filtro de vendedores activos segun el tipo de venta      
+                      for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
+                        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){ // busca la lista del vendedor
+                          ruta3=arrGlobalRuta[i].nombre;
+                          rutas=arrGlobalEmpleados[hh2].ruta;
+                        }// cierra busca la lista del vendedor
+                      } // cierra lista de rutas
+                      titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>';
+                      titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>';
+                      identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+                      identificacionP += '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+                      for(var j=0;j<semanaT.length; j++){ // Buscar en las semanas
+                      semanaTemp = semanaT[j].anio+'-W'+numberTwo(semanaT[j].semana);
+                      var rango = {semana:semanaTemp, ruta:rutas};
+                      titulos+='<th class="text-center">SEMANA: '+numberTwo(semanaT[j].semana)+'</th>';
+                      titulosP+='<th class="text-center grisclaro">SEMANA_'+numberTwo(semanaT[j].semana)+'</th>';
+                      var sem = buscarProductosC(semanaTemp,rutas,j);
+                      identificacion += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      }// termina buscar en las semanas
+                    } // vendedores segun el tipo de venta
+                  } // cierra lista de vendedores
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>'+tVentaV[hh].tventa+'</td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+              } // cierra tipo de venta
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+                  html = identificacion;
+                  htmlP = identificacionP;
+               $('.titulo2PF').html(titulos); 
+               $('.tituloP').html(titulosP); 
+               $('.contCataMayoreo').html(html); 
+               $('.contCataMayoreoP').html(htmlP); 
+///
+semanaT=[];
+tVentaV=[];
 
+ //document.getElementById('loader').style.display = 'none';
+}
+/////////////////////// Totales Categorias ///////////////////////////////////
+function buscarProductosTotalesC(semana, ruta, indice){
+  var campo = '<td> </td>';
+  var campo2 = 0;
+for(var p=0; p < clavesProductosC.length;p++) {
+  var cargas = cargasV.filter(carga => carga.semana == semana && carga.ruta == ruta && carga.idProducto == clavesProductosC[p]&& carga.merma==0);
+ // console.log(clavesProductosC[p]+" -- "+semana+" -- "+ruta)
+   console.log(cargas.length);
+  for(var i=0; i < cargas.length; i++) {
+     if (cargas[i].medida==1) {
+      const proporcionI = arrGlobalInventario.find(inv => inv.idInventario ==cargas[i].idProducto);
+      var isNumber=(parseFloat(cargas[i].peso)-parseFloat(cargas[i].pesov))*parseFloat(proporcionI.proporcion);
+        if(isNaN(isNumber)){
+          campo2+=0;
+        }else{
+          campo2+=(parseFloat(cargas[i].peso)-parseFloat(cargas[i].pesov))*parseFloat(proporcionI.proporcion);
+          campo='<td> '+formatoMoneda2(campo2)+'</td>';
+        }
+     }else{
+      var isNumber=(parseFloat(cargas[i].piezas)-parseFloat(cargas[i].piezasv))*parseFloat(proporcionI.proporcion);
+        if(isNaN(isNumber)){
+          campo2+=0;
+        }else{
+          campo2+=(parseFloat(cargas[i].piezas)-parseFloat(cargas[i].piezasv))*parseFloat(proporcionI.proporcion);
+          campo='<td> '+formatoMoneda1(campo2)+'</td>';
+        }
+     }
+  } 
+} 
+  tVentaVTotales[indice]+=parseFloat(campo2);
+  tVentaVTotal[indice]+=parseFloat(campo2);
+return campo;
+}
+
+function loadProductosTotalesC(lista){
+          cargasV=lista;
+          var titulos=''; 
+          var titulosP=''; 
+          var html = '';
+          var htmlP = '';
+          var identificacion='';
+          var identificacionP='';
+          var totalValor='';
+              tVentaVTotales = new Array(semanaT.length);
+              tVentaVTotal = new Array(semanaT.length);
+              for(var f=0;f<tVentaVTotales.length; f++)tVentaVTotales[f]=0;
+              for(var f=0;f<tVentaVTotal.length; f++)tVentaVTotal[f]=0;
+          var tVentaV = [];
+              tVentaV.push({id:2,tventa:"MAYOREO"});
+              tVentaV.push({id:4,tventa:"RESTAURANTE"});
+              tVentaV.push({id:3,tventa:"DETALLE FORANEO"});
+              tVentaV.push({id:1,tventa:"DETALLE"});
+              for(var hh=0;hh<tventa.length; hh++){
+                tVentaV.push({id:tventa[hh].id,tventa:tventa[hh].nColumna});
+                }
+              for(var hh=0;hh<tVentaV.length; hh++){ // tipo de venta
+                  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){ // lista de vendedores
+                    if(arrGlobalEmpleados[hh2].t_venta==tVentaV[hh].id &&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){ // filtro de vendedores activos segun el tipo de venta      
+                      for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
+                        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){ // busca la lista del vendedor
+                          ruta3=arrGlobalRuta[i].nombre;
+                          rutas=arrGlobalEmpleados[hh2].ruta;
+                        }// cierra busca la lista del vendedor
+                      } // cierra lista de rutas
+                      titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th>';
+                      titulosP=' <th colspan="1" class=" text-center grisclaro" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center grisclaro" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center  grisclaro" style="width: 70px; ">NOMBRE</th>';
+                      identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
+                      identificacionP += '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
+                      for(var j=0;j<semanaT.length; j++){ // Buscar en las semanas
+                      semanaTemp = semanaT[j].anio+'-W'+numberTwo(semanaT[j].semana);
+                      var rango = {semana:semanaTemp, ruta:rutas};
+                      titulos+='<th class="text-center">SEMANA: '+numberTwo(semanaT[j].semana)+'</th>';
+                      titulosP+='<th class="text-center grisclaro">SEMANA_'+numberTwo(semanaT[j].semana)+'</th>';
+                      var sem = buscarProductosC(semanaTemp,rutas,j);
+                      identificacion += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      }// termina buscar en las semanas
+                    } // vendedores segun el tipo de venta
+                  } // cierra lista de vendedores
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>'+tVentaV[hh].tventa+'</td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+              } // cierra tipo de venta
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td> '+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
+                      totalValor='';
+                  html = identificacion;
+                  htmlP = identificacionP;
+               $('.titulo2PF').html(titulos); 
+               $('.tituloP').html(titulosP); 
+               $('.contCataMayoreo').html(html); 
+               $('.contCataMayoreoP').html(htmlP); 
+///
+semanaT=[];
+tVentaV=[];
+
+ //document.getElementById('loader').style.display = 'none';
+}
 var arrGlobalproductosT;
 function loadProductosT22(lista){
 arrGlobalproductosT=lista;
@@ -38193,8 +38402,9 @@ var rango2=0;
 var idProductoR=0;
 var opcionReportes=0;
 var tipoBusqueda="";
+ clavesProductosC = [];
 function click_buscarProductosR(){
-
+ clavesProductosC = [];
  var tipoBNombre ="";
  semana1 = $('.semanac1NV').val();
  semana2 = $('.semanac2NV').val();
@@ -38231,7 +38441,7 @@ $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.');
     }
 //////////////////////////////////////////////////////////////////////
 $('.seccion7').load('/html/noVenta.html');
-if(tipoBusqueda==1){
+if(tipoBusqueda==1){//por producto
   for (var i = 0; i < arrGlobalInventario.length ; i++) {
    if(arrGlobalInventario[i].idInventario==tipoBId){
        tipoBusqueda="PRODUCTO: "+arrGlobalInventario[i].descripcion}
@@ -38240,13 +38450,62 @@ if(tipoBusqueda==1){
     var merma=0;
     var json = {where:{idProducto: idProductoR, merma:merma}}
     $('.tituloPantalla').html('<h3 class="ventas impre">  '+tipoBusqueda+'     </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
-    $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirRNoVenta('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
+    $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirProductosT('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
     $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaNoVenta('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">  ');
-    //document.getElementById('loader').style.display = 'block';
     executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
-//    executeFunctionDone(json,'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 ////////////////////////////////////////////////////////////////////////
     }
+if(tipoBusqueda==2){//por Categoria
+  for (var i = 0; i < arrGlobalCategoria.length ; i++) {
+    if(arrGlobalCategoria[i].id==tipoBId){
+      tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
+    for (var ii = 0; ii < arrGlobalInventario.length ; ii++) {
+      if(arrGlobalInventario[ii].tipoP==arrGlobalCategoria[i].id){
+        clavesProductosC.push(arrGlobalInventario[ii].idInventario);
+      }
+    }
+    }
+    
+  }
+    var merma=0;
+    var json = {where:{tipoP: tipoBId, merma:merma}}
+    $('.tituloPantalla').html('<h3 class="ventas impre">  '+tipoBusqueda+'     </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
+    $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirProductosT('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
+    $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaNoVenta('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">  ');
+    executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosTC);
+////////////////////////////////////////////////////////////////////////
+    }
+    if(tipoBusqueda==3){//por Totales Categoria
+var inicio=0;
+var fin=arrGlobalCategoria.find(cat => cat.id==tipoBId);
+  for (var i = 0; i < arrGlobalCategoria.length ; i++) {
+    if(arrGlobalCategoria[i].jerarquia>inicio&&arrGlobalCategoria[i].jerarquia<fin.jerarquia){
+      for (var ii = 0; ii < arrGlobalInventario.length ; ii++) {
+        if (arrGlobalCategoria[i].descripcion==3) { inicio=arrGlobalCategoria[i].jerarquia;clavesProductosC=[];}
+        if(arrGlobalInventario[ii].tipoP==arrGlobalCategoria[i].id&&arrGlobalCategoria[i].descripcion==2){
+         clavesProductosC.push(arrGlobalInventario[ii].idInventario);
+        }
+      }
+    }
+  }
+    var json='{where:{';
+  for (var i = 0; i < clavesProductosC.length ; i++) {
+      json+='idProducto:'+clavesProductosC[i]+',';
+  }
+  json+='merma:0}}'
+    //var merma=0;
+    //var merma=0;
+   // var json = {where:{tipoP: tipoBId, merma:merma}}
+    $('.tituloPantalla').html('<h3 class="ventas impre">  '+tipoBusqueda+'     </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
+    $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirProductosT('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
+    $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaNoVenta('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">  ');
+  //  executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosTotalesC2);
+////////////////////////////////////////////////////////////////////////
+$('#modal .textModal').html('SECCION EN  CONSTRUCCION.'); 
+  $('#modal').modal('show');
+    }
+
+
   }
 }
 
@@ -38285,6 +38544,7 @@ function click_buscarProductosR22(){
   var json2 = "";//idProducto: idProducto2}};
   var entra =0;
   for (var i = 0; i < arrGlobalCategoria.length ; i++) {
+
   if(arrGlobalCategoria[i].id==tipoBId){
     tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
     for (var ii = 0; ii < arrGlobalInventario.length ; ii++) {
@@ -38368,7 +38628,6 @@ json +=', merma:'+merma+'}}';
 
 opcionReportes=3;
 idProductoR=tipoBId;
-// alert(json+clavesCategoriasTotales.length+" --"+jerarquiaP);
 executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosT);
 
 

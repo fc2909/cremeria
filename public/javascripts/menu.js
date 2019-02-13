@@ -58,11 +58,6 @@ $(document).ready(function(){
            <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Remisiones() ">
            REMISIONES
            </li> <span class="border border-white"></span> 
-           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Foro() ">
-           FORO
-           </li> <span class="border border-white"></span> 
-           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="">
-           </li>
            <br>
 
            </ul> 
@@ -2585,11 +2580,6 @@ $('.barraIzq').html(`
            <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Remisiones() ">
            REMISIONES
            </li> <span class="border border-white"></span> 
-           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Foro() ">
-           FORO
-           </li> <span class="border border-white"></span> 
-           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="">
-           </li>
            <br>
            </ul> 
     </div>
@@ -7598,7 +7588,7 @@ function loadProductosT(lista){
 ///
 semanaT=[];
 tVentaV=[];
- //document.getElementById('loader').style.display = 'none';
+ document.getElementById('loader').style.display = 'none';
 }
 /////////////////////// Categorias ///////////////////////////////////
 function buscarProductosC(semana, ruta, indice){
@@ -7606,8 +7596,6 @@ function buscarProductosC(semana, ruta, indice){
   var campo2 = 0;
 for(var p=0; p < clavesProductosC.length;p++) {
   var cargas = cargasV.filter(carga => carga.semana == semana && carga.ruta == ruta && carga.idProducto == clavesProductosC[p]&& carga.merma==0);
- // console.log(clavesProductosC[p]+" -- "+semana+" -- "+ruta)
-   console.log(cargas.length);
   for(var i=0; i < cargas.length; i++) {
      if (cargas[i].medida==1) {
       const proporcionI = arrGlobalInventario.find(inv => inv.idInventario ==cargas[i].idProducto);
@@ -7700,16 +7688,14 @@ function loadProductosTC(lista){
 semanaT=[];
 tVentaV=[];
 
- //document.getElementById('loader').style.display = 'none';
+ document.getElementById('loader').style.display = 'none';
 }
 /////////////////////// Totales Categorias ///////////////////////////////////
 function buscarProductosTotalesC(semana, ruta, indice){
   var campo = '<td> </td>';
   var campo2 = 0;
 for(var p=0; p < clavesProductosC.length;p++) {
-  var cargas = cargasV.filter(carga => carga.semana == semana && carga.ruta == ruta && carga.idProducto == clavesProductosC[p]&& carga.merma==0);
- // console.log(clavesProductosC[p]+" -- "+semana+" -- "+ruta)
-   console.log(cargas.length);
+  var cargas = cargasV.filter(carga => carga.semana == semana && carga.ruta == ruta && carga.idProducto == clavesProductosC[p]&& carga.merma==0); 
   for(var i=0; i < cargas.length; i++) {
      if (cargas[i].medida==1) {
       const proporcionI = arrGlobalInventario.find(inv => inv.idInventario ==cargas[i].idProducto);
@@ -7800,7 +7786,7 @@ function loadProductosTotalesC(lista){
 semanaT=[];
 tVentaV=[];
 
- //document.getElementById('loader').style.display = 'none';
+ document.getElementById('loader').style.display = 'none';
 }
 var arrGlobalproductosT;
 function loadProductosT22(lista){
@@ -32813,7 +32799,9 @@ function upVendedor1(idV){
   var rutas2 = '<select class="form-control clear rutavende" id:"rutavende" name="rutavende">';
 
 for (var i=0; i < arrGlobalRuta.length; i++) {
+
 if(arrGlobalRuta[i].n3==null||arrGlobalRuta[i].n3==0||arrGlobalRuta[i].n3==NaN||arrGlobalRuta[i].n3==undefined||arrGlobalRuta[i].n3==""){
+  
   rutas2+='<option style="background:green; color: white;" value="'+arrGlobalRuta[i].id+'">'+arrGlobalRuta[i].nombre+'</option>';  
 }else{
   rutas2+='<option style="background:red; color: white;" value="'+arrGlobalRuta[i].id+'">'+arrGlobalRuta[i].nombre+'</option>';  
@@ -33021,10 +33009,11 @@ pagare=1;
  if(idEmpleados != "" && nombre_Emple != "" && paterno_Emple != "" && materno_Emple != "" && n_seguro != "" && curp != "" && domicilio != "" && rfc != "" && tipo != ""){
 
 if (estado==2) {
-  var json3 = {n3:""};
+  var json3 = {n3:0};
     upRegistro2(ruta, json3, 'rutas', loadRutas1);
     ruta=30;
 }else{
+  var n3 = nombre_Emple+" "+paterno_Emple+" "+materno_Emple;
 var json3 = {n3: n3};
 
     upRegistro2(ruta, json3, 'rutas', loadRutas1);
@@ -36434,6 +36423,24 @@ function executeFunctionDone(data, url, mensajes, done){
     complete : function(xhr, status) {        
     }});
 }
+function executeFunctionDoneCategorias(data,productos, url, mensajes, done){
+  $.ajax({    
+    url : url,    
+    data : data,    
+    type : mensajes.tipo,    
+    success : function(json) {    
+
+      done(json);
+    
+    },    
+
+    error : function(xhr, status) {    
+    $('#modal .textModal').html(mensajes.error); 
+      $('#modal').modal('show');
+    },    
+    complete : function(xhr, status) {        
+    }});
+}
 function executeFunctionDoneR(data, url, mensajes, done){
   var value ='<td>$ 0.00</td>'
   $.ajax({    
@@ -36565,23 +36572,7 @@ function click_inventario(){
  $('#contenido').load('/html/mInventario.html');
  //$('.seccion1').html('/html/inventario.html');
  $('.tituloPantalla').html('<h3 class="inventario"> INVENTARIO </h3>');
-// $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"><li role="presentation" actived class="impre" ><button href="#seccion1" aria-controls="seccion1" class="btn btn-danger totala" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">Inventario</button></li><li role="presentation" class="impre"><button href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" class="btn btn-dark totala impre" onclick="click_Categorias()" role="tab">Categorías</button></li></div>');
- $('.barraIzq2').html(`
-  
-    <ul class="nav flex-column fondo2 impre letras" role="tablist"> 
-      <li role="presentation" actived class="nav-item impre text-center seleccionar2" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="click_inventario(); click_inventario2();">
-      <h5>INVENTARIO</h5>
-      </li> 
-      <li role="presentation" class="nav-item impre text-center seleccionar2" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Categorias(); " role="tab">
-      <h5>CATEGORÍAS  </h5>
-      </li> 
-      <li role="presentation" actived class="nav-item impre text-center seleccionar2" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_TVenta();">
-      <h5>T. VENTA </h5>
-      </li> 
-      <li role="presentation" actived class="nav-item impre text-center seleccionar2" href="#seccion4"  aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_ConfiguracionesI();">
-      <h5>CONFIGURACIONES </h5>
-      </li> 
-    </ul>`);
+
       $('.barraIzq').html(`
   <div class="izqBar impre">
           <br>
@@ -36591,9 +36582,6 @@ function click_inventario(){
           <ul class="nav letras flex-column totala impre">
           <li role="presentation" class="nav-item impre text-center seleccionar2  impre ventasList" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_inventario();">
            INVENTARIO
-          </li><span class="border border-danger"></span>
-          <li role="presentation" class="nav-item impre text-center seleccionar2  impre ventasList" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="">
-           ENTRADA
           </li><span class="border border-danger"></span>
           <li role="presentation" class="nav-item impre text-center seleccionar2  impre ventasList" href="#seccion3"  aria-controls="seccion3" data-toggle="tab" role="tab" onclick="click_TVenta();">
            AJUSTES
@@ -38442,6 +38430,7 @@ $('#modal .textModal').html('SELECCIONE UN RANGO DE SEMANA CORRECTA.');
 //////////////////////////////////////////////////////////////////////
 $('.seccion7').load('/html/noVenta.html');
 if(tipoBusqueda==1){//por producto
+ document.getElementById('loader').style.display = 'block';
   for (var i = 0; i < arrGlobalInventario.length ; i++) {
    if(arrGlobalInventario[i].idInventario==tipoBId){
        tipoBusqueda="PRODUCTO: "+arrGlobalInventario[i].descripcion}
@@ -38456,6 +38445,7 @@ if(tipoBusqueda==1){//por producto
 ////////////////////////////////////////////////////////////////////////
     }
 if(tipoBusqueda==2){//por Categoria
+ document.getElementById('loader').style.display = 'block';
   for (var i = 0; i < arrGlobalCategoria.length ; i++) {
     if(arrGlobalCategoria[i].id==tipoBId){
       tipoBusqueda="CATEGORIA: "+arrGlobalCategoria[i].nombre
@@ -38499,10 +38489,8 @@ var fin=arrGlobalCategoria.find(cat => cat.id==tipoBId);
     $('.tituloPantalla').html('<h3 class="ventas impre">  '+tipoBusqueda+'     </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');
     $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirProductosT('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">');
     $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNominaNoVenta('+semanaBus1+','+semanaBus2+','+anio1+','+anio2+')">  ');
-  //  executeFunctionDone(json,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosTotalesC2);
+    executeFunctionDoneCategorias(json,clavesProductosC,'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadProductosTotalesC2);
 ////////////////////////////////////////////////////////////////////////
-$('#modal .textModal').html('SECCION EN  CONSTRUCCION.'); 
-  $('#modal').modal('show');
     }
 
 
@@ -38722,6 +38710,9 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaDegustacion);
   }
 }
+function ventaDiariaCategorias(){   
+  $('#modal .textModal').html('EN CONSTRUCCION.'); 
+  $('#modal').modal('show');}
 function ventaDiariaC3(){
  // document.getElementById('loader').style.display = 'block';
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -38818,8 +38809,10 @@ function productosR(){
  
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
-  var radioButton = '<div class="col-md-6"><label for="">ACTIVIDAD </label><div class="radio"><label><input type="radio" value="1" class="radio1 clear"  name="optradio" onclick="funcionProducto(value)">PRODUCTO</label></div><div class="radio"><label><input type="radio" value="2" class="radio2 clear"  name="optradio" onclick="funcionProducto(value)">CATEGORIA</label></div><div class="radio"> <label><input type="radio" value="3" class="radio3 clear"  name="optradio" onclick="funcionProducto(value)"> TOTALES</label></div> </div><div class="col-md-6"><div class="col-md-12 selectProducto"></div></div>';
-  $('.tituloResp').html('<div class="row col-md-12"><div class="row col-md-12"><h3 class="ventas impre text-center"> PRODUCTOS CATEGORIAS Y TOTALES  </h3></div><br class="impre"><br class="impre">'+radioButton+'</div>');
+  //var radioButton = '<div class="col-md-6"><label for="">ACTIVIDAD </label><div class="radio"><label><input type="radio" value="1" class="radio1 clear"  name="optradio" onclick="funcionProducto(value)">PRODUCTO</label></div><div class="radio"><label><input type="radio" value="2" class="radio2 clear"  name="optradio" onclick="funcionProducto(value)">CATEGORIA</label></div><div class="radio"> <label><input type="radio" value="3" class="radio3 clear"  name="optradio" onclick="funcionProducto(value)"> TOTALES</label></div> </div><div class="col-md-6"><div class="col-md-12 selectProducto"></div></div>';
+  var radioButton = '<div class="col-md-6"><label for="">ACTIVIDAD </label><div class="radio"><label><input type="radio" value="1" class="radio1 clear"  name="optradio" onclick="funcionProducto(value)">PRODUCTO</label></div><div class="radio"><label><input type="radio" value="2" class="radio2 clear"  name="optradio" onclick="funcionProducto(value)">CATEGORIA</label></div><div class="radio"> <label></div> </div><div class="col-md-6"><div class="col-md-12 selectProducto"></div></div>';
+  //$('.tituloResp').html('<div class="row col-md-12"><div class="row col-md-12"><h3 class="ventas impre text-center"> PRODUCTOS CATEGORIAS Y TOTALES  </h3></div><br class="impre"><br class="impre">'+radioButton+'</div>');
+  $('.tituloResp').html('<div class="row col-md-12"><div class="row col-md-12"><h3 class="ventas impre text-center"> PRODUCTOS Y CATEGORIAS  </h3></div><br class="impre"><br class="impre">'+radioButton+'</div>');
   $('.contenidoR').load('/html/reportesR.html');
 }
 function funcionProducto(option){

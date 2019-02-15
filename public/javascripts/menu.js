@@ -1376,6 +1376,18 @@ function  printRemision(){
         document.getElementById('remisionP').style.display = 'none';
 
 }
+function  ExcelRemision(){
+       // document.getElementById('creditosReporte2').style.display = 'none';
+        document.getElementById('remisionP').style.display = 'block';
+        
+    var controlC = 'BONIFICACIÓN (SEMANAS: '+scv+' - '+scv2+')';
+        $('.controlCP').html(controlC);
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#remisionP').html())); 
+        
+       // document.getElementById('creditosReporte2').style.display = 'block';
+        document.getElementById('remisionP').style.display = 'none';
+
+}
 function imprimirRVenta(s1,s2,a1,a2){
         document.getElementById('venta').style.display = 'block';
 
@@ -3026,7 +3038,7 @@ html3 += selectCategoria +=`
  CHICO
  </option>
  <option value="2">
- MADIANO
+ MEDIANO
  </option>
  <option value="3">
  GRANDE
@@ -3174,7 +3186,7 @@ html3 += selectCategoria +=`
  CHICO
  </option>
  <option value="2">
- MADIANO
+ MEDIANO
  </option>
  <option value="3">
  GRANDE
@@ -3284,7 +3296,7 @@ html3 += selectCategoria +=`
  <option value="1">
  CHICO
  </option><option value="2">
- MADIANO
+ MEDIANO
  </option>
  <option value="3">
  GRANDE
@@ -3730,7 +3742,7 @@ html+= '<tr class=" negro1" style="" onclick="" ><td  style="font-size:11px;">('
           arrGlobalCategoria=lista;
         document.getElementById('loader').style.display = 'none';
 $('#modalCategoriaInventario .jerarquia').html(`
-<label >RENGO 1 - `+arrGlobalCategoria.length+`</label>
+<label >RANGO 1 - `+arrGlobalCategoria.length+`</label>
 <input type="number" pattern="[0-9]{10}"  class="form-control  clear jerarquiaC" placeholder="">
   `);
 }
@@ -5438,6 +5450,7 @@ var json={where:{id:id}};
                document.getElementById('chequesV').style.color = 'green';
                $('.existRemision').html(boton); 
                $('.iconoImprimir').html('<img class="icoImage3 mainImprimir" src="/images/imprimir.png" onclick="printRemision()">  ');
+               $('.iconoExcel').html('<img class="icoImage3 mainExcel" src="/images/excel.png" onclick="ExcelRemision()">  ');
                 
         } 
 }

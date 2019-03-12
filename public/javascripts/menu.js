@@ -40326,7 +40326,6 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
     var sfc = noSemana+1;
     getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadInventarioVenta);
     var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-    alert(fechadespachof+" - "+ruta)
     executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
     executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
     executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMerma);
@@ -40342,6 +40341,7 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
     var semanaAnterior=semanaW.substring(0,6)+diaA;
 
     var jsonC = {where:{ruta:ruta, semana: semanaAnterior, dsfc: "6"}}
+    alert(ruta+" - "+semanaAnterior+" - ")
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasSabado);
     var jsonC = {where:{ruta:ruta, semana: semanaW}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);

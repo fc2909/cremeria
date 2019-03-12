@@ -40334,17 +40334,13 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
     var jsonC = {where:{ruta:ruta, semana: semanaW}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
     var diaA=semanaW.substring(6,8);
-alert(diaA+" // "+semanaW)
     if(diaA<=10){
       diaA="0"+(diaA-1);
-      alert(diaA)
     }else{
       diaA=(diaA-1);
     }
     var semanaAnterior=semanaW.substring(0,6)+diaA;
-
     var jsonC = {where:{ruta:ruta, semana: semanaAnterior, dsfc: "6"}}
-    alert(ruta+" - "+semanaAnterior+" - ")
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasSabado);
     var jsonC = {where:{ruta:ruta, semana: semanaW}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);

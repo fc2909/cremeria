@@ -40334,9 +40334,10 @@ function click_Rec(id , h, ruta, tipo, credito, bonificaciones, fechacap, dsc, s
     var jsonC = {where:{ruta:ruta, semana: semanaW}}
     executeFunctionDone(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspasadasTF);
     var diaA=semanaW.substring(7,8);
-
+alert(diaA)
     if(diaA<10){
       diaA="0"+(diaA-1);
+      alert(diaA)
     }
     var semanaAnterior=semanaW.substring(0,6)+diaA;
 

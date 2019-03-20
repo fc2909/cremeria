@@ -4373,7 +4373,7 @@ if((lista.length-1)==h&&pasa==1){
                   l6=f_s_dia2;
                   l7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(l3==Infinity){l3=100;}
                   
                   contador++;
@@ -4405,7 +4405,7 @@ if((lista.length-1)==h&&pasa==1){
                   m6=f_s_dia2;
                   m7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(m3==Infinity){m3=100;}
                   
                   contador++;
@@ -4435,7 +4435,7 @@ if((lista.length-1)==h&&pasa==1){
                   x6=f_s_dia2;
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(x3==Infinity){x3=100;}
                   
                   contador++;
@@ -4465,7 +4465,7 @@ if((lista.length-1)==h&&pasa==1){
                   j6=f_s_dia2;
                   j7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(j3==Infinity){j3=100;}
                   
                   contador++;
@@ -4495,7 +4495,7 @@ if((lista.length-1)==h&&pasa==1){
                   v6=f_s_dia2;
                   v7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(v3==Infinity){v3=100;}
                   
                   contador++;
@@ -4525,7 +4525,7 @@ if((lista.length-1)==h&&pasa==1){
                   s6=f_s_dia2;
                   s7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(s3==Infinity){s3=100;}
                   
                   contador++;
@@ -4551,7 +4551,13 @@ if((lista.length-1)==h&&pasa==1){
                   p=0;
               }else{
                 //formatNumber2(parseFloat(l).toFixed(2));l=cantidad2;formatNumber2(parseFloat(lp).toFixed(2));lp=cantidad2;formatNumber2(parseFloat(l4).toFixed(2));l4=cantidad2;formatNumber2(parseFloat(l2).toFixed(2));l2=cantidad2;formatNumber2(parseFloat(l3).toFixed(2));l3=cantidad2;formatNumber2(parseFloat(l5).toFixed(2));l5=cantidad2;formatNumber2(parseFloat(l6).toFixed(2));l6=cantidad2;formatNumber2(parseFloat(l7).toFixed(2));l7=cantidad2;
-                var tNV= parseFloat(ventaT);
+                
+                  var controlInterno=parseFloat(efecT)-parseFloat(f_s_t);
+                  var noVentaTotal=parseFloat(l8)+parseFloat(m8)+parseFloat(x8)+parseFloat(j8)+parseFloat(v8)+parseFloat(s8);
+                  var mercanciaTotal=parseFloat(l4)+parseFloat(m4)+parseFloat(x4)+parseFloat(j4)+parseFloat(v4)+parseFloat(s4);
+                
+
+                var tNV= parseFloat(mercanciaTotal);
                 var vT= parseFloat(diferenciaT)*100;
                
               var p =(vT)/(tNV); 
@@ -4559,10 +4565,7 @@ if((lista.length-1)==h&&pasa==1){
 
             diferenciaT=0;
           
-                  var controlInterno=parseFloat(efecT)-parseFloat(f_s_t);
-                  var noVentaTotal=parseFloat(l8)+parseFloat(m8)+parseFloat(x8)+parseFloat(j8)+parseFloat(v8)+parseFloat(s8);
-                  var mercanciaTotal=parseFloat(l4)+parseFloat(m4)+parseFloat(x4)+parseFloat(j4)+parseFloat(v4)+parseFloat(s4);
-                
+                 
                   html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">CRÉDITOS</td><td>$ '+formatoMoneda1(l)+' </td><td>$ '+formatoMoneda1(m)+'</td><td>$ '+ formatoMoneda1(x) +' </td><td>$ '+ formatoMoneda1(j)+'  </td><td>$ '+ formatoMoneda1(v) +' </td><td>$ '+ formatoMoneda1(s) +' </td></tr>';
                   html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">BONIFICACIÓN</td><td> $ '+formatoMoneda1(lp)+' </td><td>$ '+formatoMoneda1(mp)+'</td><td>$ '+ formatoMoneda1(xp) +' </td><td>$ '+ formatoMoneda1(jp)+'  </td><td>$ '+ formatoMoneda1(vp) +' </td><td>$ '+ formatoMoneda1(sp) +' </td><td><strong>$ '+ formatoMoneda1(bonT) +'</strong> </td></tr>';  
                   html2+= '<tr  class="text-right" style="font-size:8px;   "><td class="text-left">MERCANCIA</td><td> $ '+formatoMoneda1(l4)+' </td><td>$ '+formatoMoneda1(m4)+'</td><td>$ '+ formatoMoneda1(x4) +' </td><td>$ '+ formatoMoneda1(j4)+'  </td><td>$ '+ formatoMoneda1(v4) +' </td><td>$ '+ formatoMoneda1(s4) +' </td><td> $ '+formatoMoneda1(mercanciaTotal)+'</td></tr>';
@@ -26384,7 +26387,7 @@ function loadVDiariaR(lista){//modal
                   l6=f_s_dia2;
                   l7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  l3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(l3==Infinity){l3=100;}
                   
                   contador++;
@@ -26417,7 +26420,7 @@ function loadVDiariaR(lista){//modal
                   m6=f_s_dia2;
                   m7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  m3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(m3==Infinity){m3=100;}
                   
                   contador++;
@@ -26448,7 +26451,7 @@ function loadVDiariaR(lista){//modal
                   x6=f_s_dia2;
                   x7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  x3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(x3==Infinity){x3=100;}
                   
                   contador++;
@@ -26472,12 +26475,13 @@ function loadVDiariaR(lista){//modal
                   j=credits;
                   jp=bon;
                   j2=arrGlobalF[h].t_venta_merca;
+                  j4=mer;
                   j8=parseFloat(mer)-parseFloat(arrGlobalF[h].t_venta_merca);//-parseFloat(bon);
                   j5=efectivos;
                   j6=f_s_dia2;
                   j7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  j3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(j3==Infinity){j3=100;}
                   
                   contador++;
@@ -26508,7 +26512,7 @@ function loadVDiariaR(lista){//modal
                   v6=f_s_dia2;
                   v7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  v3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(v3==Infinity){v3=100;}
                   
                   contador++;
@@ -26539,7 +26543,7 @@ function loadVDiariaR(lista){//modal
                   s6=f_s_dia2;
                   s7=f_s_real2;
                   diferenciaT+=(mer-arrGlobalF[h].t_venta_merca);
-                  s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(arrGlobalF[h].t_venta_merca);
+                  s3=((mer-arrGlobalF[h].t_venta_merca)*100)/parseFloat(mer);
                   if(s3==Infinity){s3=100;}
                   
                   contador++;
@@ -26564,7 +26568,7 @@ function loadVDiariaR(lista){//modal
             if(contador==0){
                   p=0;
               }else{
-                var tNV= parseFloat(ventaT);//-parseFloat(bonT);
+                var tNV= parseFloat(ventaT)+parseFloat(diferenciaT);//-parseFloat(bonT);
                 var vT= parseFloat(diferenciaT)*100;
                
               var p =(vT)/(tNV); 
@@ -26633,6 +26637,7 @@ function loadVDiariaR(lista){//modal
                 if(j6>0){jC2="green"}else{jC2="red"}
                 if(v6>0){vC2="green"}else{vC2="red"}
                 if(s6>0){sC2="green"}else{sC2="red"}
+
                   var controlInterno=parseFloat(efecT)-parseFloat(f_s_t);
                 var noVentaT=parseFloat(l8)+parseFloat(m8)+parseFloat(x8)+parseFloat(j8)+parseFloat(v8)+parseFloat(s8);
                   html2+= '<tr class="seleccionar"  style="font-size:12px;   "><td>CRÉDITOS</td><td>$ '+formatoMoneda1(l)+' </td><td>$ '+formatoMoneda1(m)+'</td><td>$ '+ formatoMoneda1(x) +' </td><td>$ '+formatoMoneda1(j)+'  </td><td>$ '+ formatoMoneda1(v) +' </td><td>$ '+ formatoMoneda1(s)+' </td></tr>';

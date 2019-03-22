@@ -7610,6 +7610,7 @@ tVentaV=[];
 function buscarProductosC(semana, ruta, indice){
   var campo = '<td> </td>';
   var campo2 = 0;
+
 for(var p=0; p < clavesProductosC.length;p++) {
   var cargas = cargasV.filter(carga => carga.semana == semana && carga.ruta == ruta && carga.idProducto == clavesProductosC[p]&& carga.merma==0);
   for(var i=0; i < cargas.length; i++) {
@@ -7641,6 +7642,7 @@ var cargasV;
 var productosV;
 var tVentaVTotales;
 function loadProductosTC(lista){
+  alert("Error de consulta encontrado, modulo en construccion")
           cargasV=lista;
           var titulos=''; 
           var titulosP=''; 
@@ -8753,6 +8755,7 @@ function buscarNoVenta(semana, ruta, indice){
   var conta = 0;
   var noVentaNom = 0;
   var diferenciaT = 0;
+  var v_merTotal = 0;
   var t_venta_mercaT = 0;
   for(var i=0; i <= 6; i++) {
     const cargas = cargasV.find(carga => carga.semana == semana && carga.ruta == ruta && carga.dsfc == i ); 
@@ -8760,16 +8763,17 @@ function buscarNoVenta(semana, ruta, indice){
       conta++;
         diferenciaT+=( parseFloat(cargas.v_mercancia) - parseFloat(cargas.t_venta_merca));
         t_venta_mercaT+=parseFloat(cargas.t_venta_merca);
-        porcentajeTotal=(diferenciaT*100)/(parseFloat(t_venta_mercaT));
+        v_merTotal+=parseFloat(cargas.v_mercancia);
+        porcentajeTotal=(diferenciaT*100)/(parseFloat(v_merTotal));
         noVentaNom += porcentajeTotal;
-        noVentaNom += noVentaNom/conta;
+        //noVentaNom += noVentaNom/conta;
         var lC="black";
                 if(porcentajeTotal<20){lC="green"}
                 if(porcentajeTotal>=20&&porcentajeTotal<40){lC="blue"}
                 if(porcentajeTotal>=40&&porcentajeTotal<60){lC="yellow; "}
                 if(porcentajeTotal>=60&&porcentajeTotal<80){lC="orange"}
                 if(porcentajeTotal>=80&&porcentajeTotal<100){lC="red"}
-     campo='<td style="color:'+lC+'">% '+formatoMoneda1(parseFloat(noVentaNom))+'</td>';
+     campo='<td style="color:'+lC+'">% '+formatoMoneda1(parseFloat(porcentajeTotal))+'</td>';
      if(isNaN(parseFloat(noVentaNom))){
         campo2=0;
       }else{
@@ -8785,8 +8789,6 @@ return campo;
 var cargasV;
 var tVentaVTotales;
 function loadNoVentaNomina1(lista){
-  $('#modal .textModal').html('% DE NO VENTA EN CONSTRUCCION.'); 
-  $('#modal').modal('show');
           cargasV=lista;
           var titulos=''; 
           var titulosP=''; 
@@ -38475,6 +38477,7 @@ if(tipoBusqueda==2){//por Categoria
     }
     
   }
+
     var merma=0;
     var json = {where:{tipoP: tipoBId, merma:merma}}
     $('.tituloPantalla').html('<h3 class="ventas impre">  '+tipoBusqueda+'     </h3><h5>RANGO SEMANA: '+semanaBus1+' - '+anio1+' A SEMANA: '+semanaBus2+' - '+anio2+'</h5>');

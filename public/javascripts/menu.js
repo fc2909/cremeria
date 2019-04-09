@@ -17670,6 +17670,11 @@ prodT=0;
         document.getElementById('loader').style.display = 'none';
 
 }
+function loadVentaDiariaSemanal(lista){ //por mayoreo
+alert(arrGlobalF.length+"Here")
+        document.getElementById('loader').style.display = 'none';
+
+}
 function loadVentaDiariaMayoreo1(lista){ //por mayoreo
           prodTotales = new Array(arrGlobalCategoria.length);
           credi=0;
@@ -36752,7 +36757,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
       }
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
 
-
+alert(semanaW2)
   if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
       var json = {where:{tipo: 2, estado: 1}};// se hace la busqueda con esta asignacion
       executeFunctionDone(json, 'empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMapa);//carga con ajax
@@ -38732,8 +38737,35 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
   }
 }
 function ventaDiariaCategorias(){   
-  $('#modal .textModal').html('EN CONSTRUCCION.'); 
-  $('#modal').modal('show');}
+ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+  scv=noSemana;
+  $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategoriasSemanal()">BUSCAR</button><div class="col-md-3"></div></div>');
+  $('.iconoImprimir').html('');
+  $('.iconoExcel').html('');
+  $('.contCataMayoreo').html('');
+  $('.contCataRestaurante').html('');
+  $('.contCataForaneo').html('');
+  $('.contCataDetalle').html('');
+  $('.contenidoR').html('');
+ var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+}
 function ventaDiariaC3(){
  // document.getElementById('loader').style.display = 'block';
   saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
@@ -39076,7 +39108,33 @@ var sfc = (scv+1);
 click_nomina();
 }
 }
+function click_buscarVCategoriasSemanal(){
 
+  $('.contCataMayoreo').html('');
+  $('.contCataRestaurante').html('');
+  $('.contCataForaneo').html('');
+  $('.contCataDetalle').html('');
+ var semanaVS = $('.semanaVD').val();
+          
+
+if(semanaVS!=""){
+        document.getElementById('loader').style.display = 'block';
+year =  parseInt(semanaVS.substring(0,4));
+scv = parseInt(semanaVS.substring(6,8))-1;
+semanaW=semanaVS;  
+var sfc = (scv+1);
+      $('.tituloResp').html('<div class=" impre row col-md-6 form-group"><input class="form-control col-md-6 semanaVD" type="week" value="" id=""><button class="btn btn-dark col-md-6 form-control" onClick="click_buscarVCategoriasSemanal()">BUSCAR</button></div><div class="col-md-6 text-center"> <h3 class="impre">VENTA DIARIA (SEMANA: '+sfc+')</h3></div>');
+      $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="ventaDiariaCPrint()">  ');
+      $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelventaDiariaCPrint()">  ');
+      $('.contenidoR').load('/html/ventaDiariaC.html');
+     var json = {where:{semana:semanaVS}}
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ",  loadVentasp4);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaSemanal);
+}else{
+    $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+}
+}
 function click_buscarVCategorias4(){
 
   $('.contCataMayoreo').html('');

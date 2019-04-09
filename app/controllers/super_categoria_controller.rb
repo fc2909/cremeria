@@ -1,0 +1,2 @@
+class SuperCategoriaController < ApplicationController
+end

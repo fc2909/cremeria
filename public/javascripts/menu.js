@@ -36741,7 +36741,7 @@ function click_inventario2(){
   //$('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); 
  var semanaW2;
  var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
- 
+  alert("Prueba - "+scv+" - "+noSemana+" - "+day) 
  if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
  semanaW2 = "0"+sfc;
  }else{

@@ -159,6 +159,7 @@ function saberSemana(d,m,a){
       semanas=0
     }
       noSemana=semanas;
+      alert("Prueba - "+noSemana)
 }
 cargarVentas();
 
@@ -36757,7 +36758,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
       }
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
 
-alert("Prueba - "+semanaW)
+
   if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
       var json = {where:{tipo: 2, estado: 1}};// se hace la busqueda con esta asignacion
       executeFunctionDone(json, 'empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMapa);//carga con ajax

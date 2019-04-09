@@ -159,7 +159,7 @@ function saberSemana(d,m,a){
       semanas=0
     }
       noSemana=semanas;
-      alert("Prueba - "+noSemana)
+     
 }
 cargarVentas();
 
@@ -36741,6 +36741,7 @@ function click_inventario2(){
   //$('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); 
  var semanaW2;
  var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ alert("Prueba - "+sfc + "  + "+scv)
  if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
  semanaW2 = "0"+sfc;
  }else{
@@ -36758,7 +36759,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
       }
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
 
-
+ 
   if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
       var json = {where:{tipo: 2, estado: 1}};// se hace la busqueda con esta asignacion
       executeFunctionDone(json, 'empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMapa);//carga con ajax

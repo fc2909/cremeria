@@ -30671,8 +30671,8 @@ var fecha = $(".selectfecha").val(); //toma el valor de la fecha asignada
     if(diaD==0)diaD=7; //domingo
     $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p style="color:yellow;">( '+dias[diaD -1]+', '+dia+' DE '+months[parseInt(mes)]+' DEL '+year+' )</p>');   //se agrega titulo 
     document.getElementById('loader').style.display = 'block';
-    saberSemana(parseInt(dia), (parseInt(mes)-1) ,parseInt(year3)); //hace busqueda de la semana segun el dia seleccionado
-    alert(year3+'-'+mes+'-'+dia+' -- '+noSemana)
+    saberSemana(parseInt(day3), (parseInt(month3)-1) ,parseInt(year3)); //hace busqueda de la semana segun el dia seleccionado
+    alert(year3+'-'+month3+'-'+day+' -- '+noSemana)
     scv=noSemana;
     $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); //muestra la semana dsituada en la pantalla 
     var sfc = (scv+1)+"";

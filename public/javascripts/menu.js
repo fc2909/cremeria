@@ -30646,7 +30646,13 @@ var json={where:{fecha:fechaf}};
 
   }
 
-
+Date.prototype.getWeekNumber = function () {
+    var d = new Date(+this);  //Creamos un nuevo Date con la fecha de "this".
+    d.setHours(0, 0, 0, 0);   //Nos aseguramos de limpiar la hora.
+    d.setDate(d.getDate() + 4 - (d.getDay() || 7)); // Recorremos los días para asegurarnos de estar "dentro de la semana"
+    //Finalmente, calculamos redondeando y ajustando por la naturaleza de los números en JS:
+    return Math.ceil((((d - new Date(d.getFullYear(), 0, 1)) / 8.64e7) + 1) / 7);
+};
 function addfecha(){
 //var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
 $('.imprimir').html('');
@@ -30672,7 +30678,8 @@ var fecha = $(".selectfecha").val(); //toma el valor de la fecha asignada
     $('.tituloPantalla').html('<h3 class="ventas impre"> VENTAS </h3><p style="color:yellow;">( '+dias[diaD -1]+', '+dia+' DE '+months[parseInt(mes)]+' DEL '+year+' )</p>');   //se agrega titulo 
     document.getElementById('loader').style.display = 'block';
     saberSemana(parseInt(day3), (parseInt(month3)-1) ,parseInt(year3)); //hace busqueda de la semana segun el dia seleccionado
-    alert(year3+'-'+month3+'-'+day+' -- '+noSemana)
+    var semana2 = new Date(parseInt(year3), (parseInt(month3)-1), parseInt(day3)).getWeekNumber(); 
+    alert(year3+'-'+month3+'-'+day+' -- '+noSemana+' - ' + semana2)
     scv=noSemana;
     $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); //muestra la semana dsituada en la pantalla 
     var sfc = (scv+1)+"";

@@ -161,6 +161,14 @@ function saberSemanaFAAAAAAAAAAAAAIIIIIIIILLLLLLLLLLLLLLL(d,m,a){
       noSemana=semanas;
     //alert("Prueba - "+noSemana) 
 }
+
+Date.prototype.getWeekNumber = function () {
+    var d = new Date(+this);  //Creamos un nuevo Date con la fecha de "this".
+    d.setHours(0, 0, 0, 0);   //Nos aseguramos de limpiar la hora.
+    d.setDate(d.getDate() + 4 - (d.getDay() || 7)); // Recorremos los días para asegurarnos de estar "dentro de la semana"
+    //Finalmente, calculamos redondeando y ajustando por la naturaleza de los números en JS:
+    return Math.ceil((((d - new Date(d.getFullYear(), 0, 1)) / 8.64e7) + 1) / 7);
+};
 function saberSemana(d,m,a){
   var semana2 = new Date(a, m, d).getWeekNumber(); 
 noSemana=parseFloat(semana2)-1;
@@ -30663,13 +30671,6 @@ var json={where:{fecha:fechaf}};
 
 
 
-Date.prototype.getWeekNumber = function () {
-    var d = new Date(+this);  //Creamos un nuevo Date con la fecha de "this".
-    d.setHours(0, 0, 0, 0);   //Nos aseguramos de limpiar la hora.
-    d.setDate(d.getDate() + 4 - (d.getDay() || 7)); // Recorremos los días para asegurarnos de estar "dentro de la semana"
-    //Finalmente, calculamos redondeando y ajustando por la naturaleza de los números en JS:
-    return Math.ceil((((d - new Date(d.getFullYear(), 0, 1)) / 8.64e7) + 1) / 7);
-};
 function addfecha(){
 //var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
 $('.imprimir').html('');

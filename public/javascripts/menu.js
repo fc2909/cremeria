@@ -28923,17 +28923,20 @@ function loadVentaspasadasTF(lista){
           var dayVS = today_v.substring(8,10);
           var monthVS = today_v.substring(5,7);
           var yearVS = today_v.substring(0,4);
-          var cobrado=noSemana;
+          
           var mes=month-1;
           var dia=day-1;
               cobrado = cobrado +1;
               saberSemana(parseInt(dayVS), (parseInt(monthVS)-1), parseInt(yearVS));
+           var semana2 = new Date(parseInt(yearVS), (parseInt(monthVS)-1), parseInt(dayVS)).getWeekNumber(); 
+  
+var cobrado=parseFloat(semana2)-1;
           var t_vendido = today;
           var numC=0;
           var creditoInicial;
       for(var h=0;h<lista.length; h++){
  //       if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined&&yearVS==lista[h].fechaf.substring(0,4)) {
-        if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined) {
+        if (lista[h].sfc==(semana2)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined) {
               
               html2+= '<tr class="" onclick="cambiarcolor(this);"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + formatoMoneda1(lista[h].creditos) + '</td><td> $' + formatoMoneda1(lista[h].f_s_dia) + '</td><td> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td> $ '+formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
               htmlp+= '<tr  style="font-size:7px; "><td class="text-center grisclaro">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].creditos) + '</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].f_s_dia) + '</td><td class="text-center"> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td class="text-center"> $ '+ formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
@@ -30636,7 +30639,7 @@ var json={where:{fecha:fechaf}};
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemision);
    var jsonC={where:{fechaf:fechaf,tipo:1}};
   executeFunctionDone(jsonC, 'remision', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadRemisionTotales);
-      
+     
    
 
 
@@ -30645,6 +30648,16 @@ var json={where:{fecha:fechaf}};
 
 
   }
+
+
+
+
+
+
+
+
+
+
 
 Date.prototype.getWeekNumber = function () {
     var d = new Date(+this);  //Creamos un nuevo Date con la fecha de "this".
@@ -30657,7 +30670,7 @@ function addfecha(){
 //var fecha = '<input type="date" class="form-control clear fecha selectfecha" >';
 $('.imprimir').html('');
 var fecha = $(".selectfecha").val(); //toma el valor de la fecha asignada
-    if(fecha!=""){ //si no encuentra valos no hace la busqueda
+    if(fecha!=""){ //si no encuentra valor no hace la busqueda
       //separa los dias y asigna 0 si su longitud es igual a 1
     var day3 = fecha.substring(8,10);
     var month3 = fecha.substring(5,7);
@@ -33612,10 +33625,13 @@ function upRecepcionFaltante(creditos,otros,f_s_dia,ruta,id_vend,t_venta_merca){
   var mes=month-1;
   var dia=day-1;
       saberSemana(dia,mes,year);
+      var semana2 = new Date(parseInt(year), (parseInt(mes)-1), parseInt(dia)).getWeekNumber(); 
+    //alert(year3+'-'+month3+'-'+day+' -- '+noSemana+' - ' + semana2)
+   // scv= parseInt(semana2)-1;
   var cobrado=0;
   var t_vendido = today;
       dsd=today;
-      sd=noSemana+1;
+      sd=parseInt(semana2);
   var user;
   for(var h=0;h<upin.length; h++){
    if(pin==upin[h].pin){

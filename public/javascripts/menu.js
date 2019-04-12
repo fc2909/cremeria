@@ -145,7 +145,7 @@ getFunction('empleados', "Ocurrio un error al cargar el formulario, reintentar m
 
 //--------------------------------------------- Calculo de semanas ----------------------------------------------//
       anado=[1,7,6,5,4,3,2];
-function saberSemana(d,m,a){
+function saberSemanaFAAAAAAAAAAAAAIIIIIIIILLLLLLLLLLLLLLL(d,m,a){
       fecha=new Date(a,0,1);
       primerDiaDelAno=anado[fecha.getDay()];
       fecha=new Date(a,0,primerDiaDelAno);
@@ -160,6 +160,10 @@ function saberSemana(d,m,a){
     }
       noSemana=semanas;
     //alert("Prueba - "+noSemana) 
+}
+function saberSemana(d,m,a){
+  var semana2 = new Date(a, m, d).getWeekNumber(); 
+noSemana=parseFloat(semana2)-1;
 }
 cargarVentas();
 

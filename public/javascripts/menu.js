@@ -28936,7 +28936,7 @@ var cobrado=parseFloat(semana2)-1;
           var creditoInicial;
       for(var h=0;h<lista.length; h++){
  //       if (lista[h].sfc==(noSemana+1)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined&&yearVS==lista[h].fechaf.substring(0,4)) {
-        if (lista[h].sfc==(semana2)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined) {
+        if (lista[h].semana==(yearVS+"-W"+semana2)&&lista[h].ruta==rutas&&lista[h].despachador!=undefined) {
               
               html2+= '<tr class="" onclick="cambiarcolor(this);"><td> ' +dias[lista[h].dsfc-1]+'</td><td> $' + formatoMoneda1(lista[h].creditos) + '</td><td> $' + formatoMoneda1(lista[h].f_s_dia) + '</td><td> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td> $ '+formatoMoneda1(lista[h].f_s_real) + '</td></tr>';
               htmlp+= '<tr  style="font-size:7px; "><td class="text-center grisclaro">' +dias[lista[h].dsfc-1]+'</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].creditos) + '</td><td class="text-center"> $ ' + formatoMoneda1(lista[h].f_s_dia) + '</td><td class="text-center"> $ ' +formatoMoneda1(lista[h].loquedeberiatraer) + '</td><td class="text-center"> $ '+ formatoMoneda1(lista[h].f_s_real) + '</td></tr>';

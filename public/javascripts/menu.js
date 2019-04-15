@@ -36901,7 +36901,7 @@ function click_inventario2(){
 `);
 
 
- //saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year)); // busca en que semana nos encontramos actualmente
+ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year)); // busca en que semana nos encontramos actualmente
  scv=noSemana; // le asignamos a la variable global el resultado de la busqueda de la semana
  $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); //asigna titulo al mapa
   //$('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); 

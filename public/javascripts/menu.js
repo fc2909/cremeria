@@ -29238,7 +29238,7 @@ function  loadClientesP(lista){
 var vendedoresMapa;
 function  loadMapa(lista){
 vendedoresMapa = lista;
-alert(semanaW)
+
       var json = {where:{semana: semanaW}};// se hace la busqueda con esta asignacion
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa2);//carga con ajax
         
@@ -36869,7 +36869,6 @@ function click_inventario2(){
 
 
 
-
  $('.barraIzq').html(`
   <div class="izqBar impre">
           <br>
@@ -36901,7 +36900,7 @@ function click_inventario2(){
           
 `);
 
-alert(scv)
+
  //saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year)); // busca en que semana nos encontramos actualmente
  scv=noSemana; // le asignamos a la variable global el resultado de la busqueda de la semana
  $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); //asigna titulo al mapa
@@ -36926,7 +36925,8 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
       }
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
 
- 
+ alert(semanaW)
+
   if(sfc != ""){//si no se tiene resultado de la semana no hace la busqueda
       var json = {where:{tipo: 2, estado: 1}};// se hace la busqueda con esta asignacion
       executeFunctionDone(json, 'empleados', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadMapa);//carga con ajax

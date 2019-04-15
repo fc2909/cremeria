@@ -29238,6 +29238,7 @@ function  loadClientesP(lista){
 var vendedoresMapa;
 function  loadMapa(lista){
 vendedoresMapa = lista;
+alert(semanaW)
       var json = {where:{semana: semanaW}};// se hace la busqueda con esta asignacion
       executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa2);//carga con ajax
         
@@ -30834,7 +30835,7 @@ var fecha = $(".selectfecha").val(); //toma el valor de la fecha asignada
     var semana2 = new Date(parseInt(year3), (parseInt(month3)-1), parseInt(day3)).getWeekNumber(); 
     //alert(year3+'-'+month3+'-'+day+' -- '+noSemana+' - ' + semana2)
     scv= noSemana
-    alert(scv)
+   
     $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); //muestra la semana dsituada en la pantalla 
     var sfc = (scv+1)+"";
     var semanaW2;

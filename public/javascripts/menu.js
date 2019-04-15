@@ -30834,6 +30834,7 @@ var fecha = $(".selectfecha").val(); //toma el valor de la fecha asignada
     var semana2 = new Date(parseInt(year3), (parseInt(month3)-1), parseInt(day3)).getWeekNumber(); 
     //alert(year3+'-'+month3+'-'+day+' -- '+noSemana+' - ' + semana2)
     scv= parseInt(semana2)-1;
+    alert(scv)
     $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); //muestra la semana dsituada en la pantalla 
     var sfc = (scv+1)+"";
     var semanaW2;
@@ -36899,7 +36900,7 @@ function click_inventario2(){
           
 `);
 
-
+alert(scv)
  //saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year)); // busca en que semana nos encontramos actualmente
  scv=noSemana; // le asignamos a la variable global el resultado de la busqueda de la semana
  $('.semanaMapa').html('<h4 class="letras text-center" style="color: yellow;">SEMANA '+(scv+1)+'</h4>'); //asigna titulo al mapa

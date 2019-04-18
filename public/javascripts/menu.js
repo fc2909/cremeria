@@ -17683,27 +17683,70 @@ prodT=0;
         document.getElementById('loader').style.display = 'none';
 
 }
-function buscarVentaSemanal(semanaW,rutas,j){
-
+var tipoVentaTotal = 0 
+var tiposVentaTotales = 0
+function buscarVentaSemanalP(semanaW,rutasV,lista,idCategoria){
+//console.log(semanaW+" -- "+rutasV+" ++ "+10+" + + "+idCategoria)
+   var protuctPVal=0
+   tipoVentaTotal = 0
+var product = '<td> </td>'
+  
+var inventario=arrGlobalInventario.filter(inv => inv.tipoP==idCategoria);
+    if (inventario!=undefined) {
+      for(var h=0;h<inventario.length; h++){
+      
+      var productoVenta = lista.filter(producto => producto.semana == semanaW && producto.ruta == rutasV && producto.idProducto == inventario[h].idInventario&& producto.merma==0);
+      for(var i=0; i < productoVenta.length; i++) {
+            if (productoVenta[i].medida==1) {
+              //console.log(productoVenta[i].idProducto)
+                var isNumber=(parseFloat(productoVenta[i].peso)-parseFloat(productoVenta[i].pesov))*parseFloat(inventario[h].proporcion);
+                    if(isNaN(isNumber)){
+                      protuctPVal+=0;
+                    }else{
+                      protuctPVal+=(parseFloat(productoVenta[i].peso)-parseFloat(productoVenta[i].pesov))*parseFloat(inventario[h].proporcion);
+                      product='<td> '+formatoMoneda2(protuctPVal)+'</td>';
+                    }
+                }else{
+                  var isNumber=(parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion);
+                      if(isNaN(isNumber)){
+                          protuctPVal+=0;
+                      }else{
+                        protuctPVal+=(parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion);
+                        product='<td> '+formatoMoneda1(protuctPVal)+'</td>';
+                      }
+                    }
+                  } 
+    }
+  }
+  tipoVentaTotal = parseFloat(protuctPVal)
+  //console.log(product)
+  return product;
 }
-function getResumen(lista){
-
-}
+var productosList
 function loadVentaDiariaSemanal(lista){ 
+  var credsubT = 0
+  var credTotal = 0
+  var bonsubT = 0
+  var bonTotal = 0
+  var ventasubT = 0
+  var ventaTotal = 0
+  var categoria = []
 var cargasList =cargaSemana.reduce(function(a, e) {
   let estKey = (e['ruta']); 
   (a[estKey] ? a[estKey] : (a[estKey] = null || [])).push(e);
   return a;
 }, {});
-var productosList =lista.reduce(function(a, e) {
+ productosList =lista.reduce(function(a, e) {
   let estKey = (e['idProducto']); 
   (a[estKey] ? a[estKey] : (a[estKey] = null || [])).push(e);
   return a;
 }, {});
 var tituloU=""
 var tituloUP=""
-alert(Object.keys(cargasList).length)
+//alert(Object.keys(cargasList).length)
+var addCategoria = false;
     for(var f=0;f<arrGlobalCategoria.length; f++){
+      addCategoria = false;
    var titulo2=""
    var titulo2P=""
       for(var h=0;h<Object.keys(productosList).length; h++){
@@ -17712,27 +17755,31 @@ alert(Object.keys(cargasList).length)
     if(arrGlobalCategoria[f].id==inventario.tipoP){
       titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
       titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+    addCategoria = true;
+   
     }
    }
       }
       if(arrGlobalCategoria[f].descripcion==3){
+        addCategoria = true;
+        
       titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
       titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
       }
+      if(addCategoria){categoria.push(arrGlobalCategoria[f].id)}
       tituloU+=titulo2
       tituloUP+=titulo2P
     }
-console.log(productosList);
          var titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+tituloU;
          var titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">______VENTA______</th>'+tituloUP;
-                      
           var html = '';
           var htmlP = '';
+          var rutasLocal = '';
           var identificacion='';
           var identificacionP='';
           var totalValor='';
-              tVentaVTotales = new Array(semanaT.length);
-              tVentaVTotal = new Array(semanaT.length);
+              tVentaVTotales = new Array(categoria.length);
+              tVentaVTotal = new Array(categoria.length);
               for(var f=0;f<tVentaVTotales.length; f++)tVentaVTotales[f]=0;
               for(var f=0;f<tVentaVTotal.length; f++)tVentaVTotal[f]=0;
           var tVentaV = [];
@@ -17749,7 +17796,7 @@ console.log(productosList);
                       for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
                         if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){ // busca la lista del vendedor
                           ruta3=arrGlobalRuta[i].nombre;
-                          rutas=arrGlobalEmpleados[hh2].ruta;
+                          rutasLocal=arrGlobalEmpleados[hh2].ruta;
                         }// cierra busca la lista del vendedor
                       } // cierra lista de rutas
                      identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
@@ -17760,7 +17807,7 @@ console.log(productosList);
                         var noVenta = 0
                         var venta = 0
                         for(var d=1;d<7; d++){ 
-                          var carga=cargaSemana.find(carga => carga.ruta==rutas && carga.dsfc == d);
+                          var carga=cargaSemana.find(carga => carga.ruta==arrGlobalEmpleados[hh2].ruta && carga.dsfc == d);
                               if (carga!=undefined) {
                                 creditos = parseFloat(carga.creditos)
                                 bonificacion += parseFloat(carga.otros)
@@ -17768,44 +17815,40 @@ console.log(productosList);
                                 venta += parseFloat(carga.t_venta_merca)
                               }
                           }
+                         
                           noVenta = (noVenta-venta)*100/noVenta
-                    var product=""
-                  for(var f=0;f<arrGlobalCategoria.length; f++){
-                    
-                    var protuctPVal=0
-                      for(var h=0;h<Object.keys(productosList).length; h++){
-                        var inventario=arrGlobalInventario.find(inv => inv.idInventario==Object.keys(productosList)[h]);
-                        if (inventario!=undefined) {
-                          if(arrGlobalCategoria[f].id==inventario.tipoP && inventario.ruta == rutas){
-                            protuctPVal+=parseFloat(inventario.piezas)
-                            product='<td> '+formatoMoneda1(protuctPVal)+' </td>'
-                            }
-                          }
-                        }
-      if(arrGlobalCategoria[f].descripcion==3){
-      titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
-      titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
-      }
-      tituloU+=titulo2
-      tituloUP+=titulo2P
-    }
-                      var resumen = getResumen(lista)
-                      var sem = buscarVentaSemanal(rutas);
-                      identificacion += '<td>$ '+formatoMoneda1(creditos) +'</td><td>$ '+ formatoMoneda1(bonificacion) +'</td><td>% '+ formatoMoneda1(noVenta) +'</td><td>$ '+ formatoMoneda1(venta) +'</td>' ; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
-                      identificacionP += sem; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                          var semCat
+
+                      for(var d=0;d<categoria.length; d++){
+                       semCat += buscarVentaSemanalP(semanaW,arrGlobalEmpleados[hh2].ruta,lista,categoria[d]);
+                      tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                      }
+
                       
+                      identificacion += '<td>$ '+formatoMoneda1(creditos) +'</td><td>$ '+ formatoMoneda1(bonificacion) +'</td><td>% '+ formatoMoneda1(noVenta) +'</td><td>$ '+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += '<td>$ '+formatoMoneda1(creditos) +'</td><td>$ '+ formatoMoneda1(bonificacion) +'</td><td>% '+ formatoMoneda1(noVenta) +'</td><td>$ '+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      semCat=""
+                      credsubT += creditos 
+                      bonsubT += bonificacion
+                      ventasubT += venta
 ////////////////// ojo totales ////////////////////
                     } // vendedores segun el tipo de venta
 
 
                   } // cierra lista de vendedores
-                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotal[f]=0}
-                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td> <td>'+tVentaV[hh].tventa+'</td><td></td> '+totalValor+'</tr>';
-                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td>'+totalValor+' </tr>';
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td><td></td> <td>'+tVentaV[hh].tventa+'</td><td> $ '+formatoMoneda1(credsubT)+'</td><td>$ '+formatoMoneda1(bonsubT)+'</td><td> </td><td>$ '+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td><td> $ '+formatoMoneda1(credsubT)+'</td><td>$ '+formatoMoneda1(bonsubT)+'</td><td> </td><td>$ '+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
                       totalValor='';
+                      credTotal += credsubT  
+                      bonTotal += bonsubT 
+                      ventaTotal += ventasubT
+                      credsubT = 0
+                      bonsubT =0
+                      ventasubT =0 
               } // cierra tipo de venta
-                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td> $ '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
-                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td> '+totalValor+'</tr>';
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td><td> $ '+formatoMoneda1(credTotal)+'</td><td>$ '+formatoMoneda1(bonTotal)+'</td><td> </td><td>$ '+formatoMoneda1(ventaTotal)+'</td>'+totalValor+'</tr>';
                       identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
                       totalValor='';
                   html = identificacion;

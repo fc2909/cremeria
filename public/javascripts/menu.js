@@ -30899,7 +30899,7 @@ anioSiguiente =  parseInt(today_v.substring(0,4))+1;
         anioSiguiente = today_v.substring(0,4);
       }
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
- alert(semanaW)
+ 
       //var json = {where:{sfc:sfc}}
       //executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa2);
       var json = {where:{tipo: 2, estado: 1}};// se hace la busqueda con esta asignacion
@@ -33686,6 +33686,7 @@ function upRecepcionProducto(){
    newTimer();
   document.getElementById('loader').style.display = 'block';
   var fechadespachof = fechacaptura;
+  alert(fechadespachof)
   var ruta = rutas; 
   var gasolinaT = $('#modalDesp2 .gasolina1').val();
   var gasT = $('#modalDesp2 .gas1').val();

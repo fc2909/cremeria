@@ -33688,7 +33688,7 @@ function upRecepcionProducto(){
   var fechadespachof = fechacaptura;
 
   var ruta = rutas; 
-  alert(fechadespachof+" -- "+ruta)
+  //alert(fechadespachof+" -- "+ruta)
   var gasolinaT = $('#modalDesp2 .gasolina1').val();
   var gasT = $('#modalDesp2 .gas1').val();
   var dieselT = $('#modalDesp2 .diesel1').val();

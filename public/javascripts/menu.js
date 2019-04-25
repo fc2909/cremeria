@@ -17849,7 +17849,7 @@ var addCategoria = false;
               } // cierra tipo de venta
                   for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
                       identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td><td> $ '+formatoMoneda1(credTotal)+'</td><td>$ '+formatoMoneda1(bonTotal)+'</td><td> </td><td>$ '+formatoMoneda1(ventaTotal)+'</td>'+totalValor+'</tr>';
-                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td>'+totalValor+' </tr>';
+                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td><td> $ '+formatoMoneda1(credTotal)+'</td><td>$ '+formatoMoneda1(bonTotal)+'</td><td> </td><td>$ '+formatoMoneda1(ventaTotal)+'</td>'+totalValor+' </tr>';
                       totalValor='';
                   html = identificacion;
                   htmlP = identificacionP;
@@ -30899,7 +30899,7 @@ anioSiguiente =  parseInt(today_v.substring(0,4))+1;
         anioSiguiente = today_v.substring(0,4);
       }
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
- 
+ alert(semanaW)
       //var json = {where:{sfc:sfc}}
       //executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaMapa2);
       var json = {where:{tipo: 2, estado: 1}};// se hace la busqueda con esta asignacion

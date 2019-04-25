@@ -33740,7 +33740,7 @@ for (var i = 0; i < arrGlobalT.length; i++) {
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
       upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasPR);
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
+     // executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
     
 
       s_vent+=t_v2[i];
@@ -33763,7 +33763,7 @@ for (var i = 0; i < arrGlobalT.length; i++) {
       idc=arrGlobalT[i].id;
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
       upRegistroA2(idc, json1, jsonC, 'ventadiaria', loadVentasPR);
-      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
+      // executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
     
       s_vent+=t_v2[i];
 
@@ -33789,8 +33789,8 @@ for(var m=0;m<arrGlobal4.length; m++){
       }
   }}
   var jsonC = {where:{fechadespachof:fechadespachof, ruta:ruta}}
-      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
-      executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
+      //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasr);
+      //executeFunctionDone(jsonC, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentasF);
 
 
 

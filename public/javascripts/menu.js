@@ -17687,11 +17687,27 @@ var tipoVentaTotal = 0
 var tiposVentaTotales = 0
 function buscarVentaSemanalP(semanaW,rutasV,lista,idCategoria){
 //console.log(semanaW+" -- "+rutasV+" ++ "+10+" + + "+idCategoria)
+  var clase
+    var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == idCategoria);
+ if(SumaCategorias!=undefined){
+
+if(SumaCategorias.descripcion==1){
+ clase = '<td>'
+  }
+  if(SumaCategorias.descripcion==2){
+ clase = '<td class="grisclaro" style="color:black">'
+
+  }
+  if(SumaCategorias.descripcion==3){
+ clase = '<td class="grisclaro" style="color:black">'
+  }
+ }
+
    var protuctPVal=0
    tipoVentaTotal = 0
 var product = '<td> </td>'
   
-var inventario=arrGlobalInventario.filter(inv => inv.tipoP==idCategoria);
+var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
     if (inventario!=undefined) {
       for(var h=0;h<inventario.length; h++){
       
@@ -17704,7 +17720,7 @@ var inventario=arrGlobalInventario.filter(inv => inv.tipoP==idCategoria);
                       protuctPVal+=0;
                     }else{
                       protuctPVal+=(parseFloat(productoVenta[i].peso)-parseFloat(productoVenta[i].pesov))*parseFloat(inventario[h].proporcion);
-                      product='<td> '+formatoMoneda2(protuctPVal)+'</td>';
+                      product=clase+formatoMoneda2(protuctPVal)+'</td>';
                     }
                 }else{
                   var isNumber=(parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion);
@@ -17712,7 +17728,7 @@ var inventario=arrGlobalInventario.filter(inv => inv.tipoP==idCategoria);
                           protuctPVal+=0;
                       }else{
                         protuctPVal+=(parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion);
-                        product='<td> '+formatoMoneda1(protuctPVal)+'</td>';
+                        product=clase+formatoMoneda1(protuctPVal)+'</td>';
                       }
                     }
                   } 
@@ -17818,13 +17834,25 @@ var addCategoria = false;
                          
                           noVenta = (noVenta-venta)*100/noVenta
                           var semCat
-
+                          var totalesCat = 0
                       for(var d=0;d<categoria.length; d++){
-                       semCat += buscarVentaSemanalP(semanaW,arrGlobalEmpleados[hh2].ruta,lista,categoria[d]);
-                      tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
+                        if(SumaCategoriasT!=undefined){
+                          semCat += '<td class="grisclaro" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          tVentaVTotal[d] += parseFloat(totalesCat)
+                          totalesCat = 0
+                        }else{
+                          semCat += buscarVentaSemanalP(semanaW,arrGlobalEmpleados[hh2].ruta,lista,categoria[d]);
+                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
+                          if(SumaCategorias!=undefined){
+                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
+                          var pes = 0
+                          if(pesaje!=undefined){pes = pesaje.pesaje}
+                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
+                           }
+                        }
                       }
-
-                      
                       identificacion += '<td>$ '+formatoMoneda1(creditos) +'</td><td>$ '+ formatoMoneda1(bonificacion) +'</td><td>% '+ formatoMoneda1(noVenta) +'</td><td>$ '+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
                       identificacionP += '<td>$ '+formatoMoneda1(creditos) +'</td><td>$ '+ formatoMoneda1(bonificacion) +'</td><td>% '+ formatoMoneda1(noVenta) +'</td><td>$ '+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
                       semCat=""
@@ -17847,6 +17875,15 @@ var addCategoria = false;
                       bonsubT =0
                       ventasubT =0 
               } // cierra tipo de venta
+              for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){
+               if(arrGlobalEmpleados[hh2].km==1){
+identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >PEDIDOS</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td><td ></td> <td ></td>  <td ></td></tr> ';
+identificacionP+= '<tr style="font-size:10px; " class="text-center" ><td></td><td >PEDIDOS</td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td><td class="text-right"></td> <td class="text-right"></td>  <td class="text-right"></td> </tr>';
+        
+        
+
+        }
+        }
                   for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
                       identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td><td> $ '+formatoMoneda1(credTotal)+'</td><td>$ '+formatoMoneda1(bonTotal)+'</td><td> </td><td>$ '+formatoMoneda1(ventaTotal)+'</td>'+totalValor+'</tr>';
                       identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td><td> $ '+formatoMoneda1(credTotal)+'</td><td>$ '+formatoMoneda1(bonTotal)+'</td><td> </td><td>$ '+formatoMoneda1(ventaTotal)+'</td>'+totalValor+' </tr>';
@@ -33688,7 +33725,7 @@ function upRecepcionProducto(){
   var fechadespachof = fechacaptura;
 
   var ruta = rutas; 
-  //alert(fechadespachof+" -- "+ruta)
+  alert(fechadespachof+" -- "+ruta)
   var gasolinaT = $('#modalDesp2 .gasolina1').val();
   var gasT = $('#modalDesp2 .gas1').val();
   var dieselT = $('#modalDesp2 .diesel1').val();

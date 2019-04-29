@@ -19,7 +19,7 @@ var tipoEstado = ['SUSPENDIDO','RUTA'];
 var medidas = ['KG.','PZAS.','L'];
 var combustibles = ['GASOLINA - MAGNA','GASOLINA - PREMIUM','GASOLINA & GAS','GAS','DIESEL'];
 var t_rutas = ['C1','C2','C3','C4','C5','C6','C7','C8'];
-var t_ventas = ['DETALLE','MAYOREO','DETALLE FORANEO','RESTAURANTES'];
+var t_ventas = ['DETALLE','MAYOREO','FORANEO','RESTAURANTES'];
 var t_Empleado = ['AYUDANTE GENERAL','VENTAS','GERENTE DE VENTAS','GERENTE DE OPERACIONES','SUPERVISOR','ADMINISTRADOR','CONSEJO'];
 var dias = ['LUNES',' MARTES ',' MIÉRCOLES ',' JUEVES ',' VIERNES ',' SÁBADO ',' DOMINGO '];
 var usuarioPrincipal;
@@ -17794,8 +17794,117 @@ var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
   //console.log(product)
   return product;
 }
+function buscarVentaSemanalPMerma(semanaW,mermaV,lista,idCategoria){
+//console.log(semanaW+" -- "+rutasV+" ++ "+10+" + + "+idCategoria)
+  var clase
+    var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == idCategoria);
+ if(SumaCategorias!=undefined){
+
+if(SumaCategorias.descripcion==1){
+ clase = '<td>'
+  }
+  if(SumaCategorias.descripcion==2){
+ clase = '<td class="grisclaro" style="color:black">'
+
+  }
+  if(SumaCategorias.descripcion==3){
+ clase = '<td class="grisclaro" style="color:black">'
+  }
+ }
+
+   var protuctPVal=0
+   tipoVentaTotal = 0
+var product = '<td> </td>'
+  
+var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
+    if (inventario!=undefined) {
+      for(var h=0;h<inventario.length; h++){
+      var productoVenta = lista.filter(producto => producto.semana == semanaW && producto.vendedor != "F" && producto.idProducto == inventario[h].idInventario&& producto.merma==1 && producto.horarecepcion!=1);
+      for(var i=0; i < productoVenta.length; i++) {
+            if (productoVenta[i].medida==1) {
+                var isNumber=(parseFloat(productoVenta[i].peso)-parseFloat(productoVenta[i].pesov))*parseFloat(inventario[h].proporcion);
+                    if(isNaN(isNumber)){
+                      protuctPVal+=0;
+                    }else{
+                      protuctPVal+=(parseFloat(productoVenta[i].peso)-parseFloat(productoVenta[i].pesov))*parseFloat(inventario[h].proporcion);
+                      product=clase+formatoMoneda2(protuctPVal)+'</td>';
+                        VOtrosTotal+=parseFloat(productoVenta[i].valorMercancia);
+                    }
+                }else{
+                  var isNumber=(parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion);
+                      if(isNaN(isNumber)){
+                          protuctPVal+=0;
+                      }else{
+                        protuctPVal+=(parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion);
+                        product=clase+formatoMoneda1(protuctPVal)+'</td>';
+                        VOtrosTotal+=parseFloat(productoVenta[i].valorMercancia);
+                      }
+                    }
+                  } 
+    }
+  }
+  tipoVentaTotal = parseFloat(protuctPVal)
+  //console.log(product)
+  return product;
+}
+function buscarVentaSemanalPDegustacion(semanaW,degV,lista,idCategoria){
+//console.log(semanaW+" -- "+rutasV+" ++ "+10+" + + "+idCategoria)
+  var clase
+    var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == idCategoria);
+ if(SumaCategorias!=undefined){
+
+if(SumaCategorias.descripcion==1){
+ clase = '<td>'
+  }
+  if(SumaCategorias.descripcion==2){
+ clase = '<td class="grisclaro" style="color:black">'
+
+  }
+  if(SumaCategorias.descripcion==3){
+ clase = '<td class="grisclaro" style="color:black">'
+  }
+ }
+
+   var protuctPVal=0
+   tipoVentaTotal = 0
+var product = '<td> </td>'
+  
+var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
+    if (inventario!=undefined) {
+      for(var h=0;h<inventario.length; h++){
+      var productoVenta = lista.filter(producto => producto.semana == semanaW && producto.idProducto == inventario[h].idInventario && producto.horarecepcion==1);
+      for(var i=0; i < productoVenta.length; i++) {
+            if (productoVenta[i].medida==1) {
+                var isNumber=(parseFloat(productoVenta[i].peso)-parseFloat(productoVenta[i].pesov))*parseFloat(inventario[h].proporcion);
+                    if(isNaN(isNumber)){
+                      protuctPVal+=0;
+                    }else{
+                      protuctPVal+=(parseFloat(productoVenta[i].peso)-parseFloat(productoVenta[i].pesov))*parseFloat(inventario[h].proporcion);
+                      product=clase+formatoMoneda2(protuctPVal)+'</td>';
+                        VOtrosTotal+=parseFloat(productoVenta[i].valorMercancia);
+                    }
+                }else{
+                  var isNumber=(parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion);
+                      if(isNaN(isNumber)){
+                          protuctPVal+=0;
+                      }else{
+                        protuctPVal+=(parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion);
+                        product=clase+formatoMoneda1(protuctPVal)+'</td>';
+                        VOtrosTotal+=parseFloat(productoVenta[i].valorMercancia);
+                      }
+                    }
+                  } 
+    }
+  }
+  tipoVentaTotal = parseFloat(protuctPVal)
+  //console.log(product)
+  return product;
+}
+                  
+
 var productosList
 function loadVentaDiariaSemanal(lista){ 
+  var existencia = false
   var credsubT = 0
   var credTotal = 0
   var bonsubT = 0
@@ -17821,18 +17930,32 @@ var addCategoria = false;
       addCategoria = false;
    var titulo2=""
    var titulo2P=""
+
       for(var h=0;h<Object.keys(productosList).length; h++){
     var inventario=arrGlobalInventario.find(inv => inv.idInventario==Object.keys(productosList)[h]);
    if (inventario!=undefined) {
     if(arrGlobalCategoria[f].id==inventario.tipoP){
-      titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
-      titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
-    addCategoria = true;
-   
+      if($('.todo').is(':checked')){
+        titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        addCategoria = true;
+      }
+      if((arrGlobalCategoria[f].descripcion == 2 || arrGlobalCategoria[f].descripcion == 3 ) && $('.sumas').is(':checked')){
+        titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        addCategoria = true;
+      }
+      if(arrGlobalCategoria[f].descripcion == 1 && $('.resto').is(':checked')){
+        titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        addCategoria = true;
+      }
     }
    }
       }
-      if(arrGlobalCategoria[f].descripcion==3){
+     
+
+      if(arrGlobalCategoria[f].descripcion==3 && ($('.todo').is(':checked') || $('.sumas').is(':checked'))){
         addCategoria = true;
         
       titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
@@ -17842,8 +17965,22 @@ var addCategoria = false;
       tituloU+=titulo2
       tituloUP+=titulo2P
     }
+    var rutasEspecificas = []
+    var t_ventasEspecificas = []
+    var nombreEspecificas = []
+     for(var h=0;h<Object.keys(cargasList).length; h++){
+      if(Object.keys(cargasList)[h] != "F"){
+        rutasEspecificas.push(Object.keys(cargasList)[h])
+        var cargasVentas = cargaSemana.find(rutaEs => rutaEs.ruta == Object.keys(cargasList)[h])
+        if(cargasVentas != undefined){
+          t_ventasEspecificas.push(cargasVentas.tipo)
+          nombreEspecificas.push(((cargasVentas.nombre).split(" ").join("_")).substring(0,11))
+        }
+        }
+      }
+      
          var titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+tituloU;
-         var titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">_____CRÉDITOS_____</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">PORCENTAJE NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">______VENTA______</th>'+tituloUP;
+         var titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">CRÉDITOS</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">% NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">VENTA</th>'+tituloUP;
           var html = '';
           var htmlP = '';
           var rutasLocal = '';
@@ -17857,29 +17994,29 @@ var addCategoria = false;
           var tVentaV = [];
               tVentaV.push({id:2,tventa:"MAYOREO"});
               tVentaV.push({id:4,tventa:"RESTAURANTE"});
-              tVentaV.push({id:3,tventa:"DETALLE FORANEO"});
+              tVentaV.push({id:3,tventa:"FORANEO"});
               tVentaV.push({id:1,tventa:"DETALLE"});
               for(var hh=0;hh<tventa.length; hh++){
                 tVentaV.push({id:tventa[hh].id,tventa:tventa[hh].nColumna});
                 }
               for(var hh=0;hh<tVentaV.length; hh++){ // tipo de venta
-                  for(var hh2=0;hh2<arrGlobalEmpleados.length; hh2++){ // lista de vendedores
-                    if(arrGlobalEmpleados[hh2].t_venta==tVentaV[hh].id &&arrGlobalEmpleados[hh2].tipo==2&&arrGlobalEmpleados[hh2].estado==1){ // filtro de vendedores activos segun el tipo de venta      
+                  for(var hh2=0;hh2<rutasEspecificas.length; hh2++){ // lista de vendedores
+                    if(t_ventasEspecificas[hh2]==tVentaV[hh].id){ // filtro de vendedores activos segun el tipo de venta      
                       for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
-                        if(arrGlobalRuta[i].id==arrGlobalEmpleados[hh2].ruta){ // busca la lista del vendedor
+                        if(arrGlobalRuta[i].id==rutasEspecificas[hh2]){ // busca la lista del vendedor
                           ruta3=arrGlobalRuta[i].nombre;
-                          rutasLocal=arrGlobalEmpleados[hh2].ruta;
+                          rutasLocal=rutasEspecificas[hh2];
                         }// cierra busca la lista del vendedor
                       } // cierra lista de rutas
-                     identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + ruta3  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + arrGlobalEmpleados[hh2].nombre_Emple + '</td>';
-                      identificacionP += '<tr style="font-size:8px; " class="text-center" ><td><strong> ' + ruta3  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  arrGlobalEmpleados[hh2].nombre_Emple + '</strong></td>';
-                      
+                     identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + (ruta3).substring(0,7)  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + nombreEspecificas[hh2] + '</td>';
+                      identificacionP += '<tr style="font-size:12px; " class="text-center" ><td><strong> ' + (ruta3).substring(0,10)  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  nombreEspecificas[hh2] + '</strong></td>';
+                      existencia = true
                         var creditos = 0
                         var bonificacion = 0
                         var noVenta = 0
                         var venta = 0
                         for(var d=1;d<7; d++){ 
-                          var carga=cargaSemana.find(carga => carga.ruta==arrGlobalEmpleados[hh2].ruta && carga.dsfc == d);
+                          var carga=cargaSemana.find(carga => carga.ruta==rutasEspecificas[hh2] && carga.dsfc == d);
                               if (carga!=undefined) {
                                 creditos = parseFloat(carga.creditos)
                                 bonificacion += parseFloat(carga.otros)
@@ -17898,7 +18035,7 @@ var addCategoria = false;
                           tVentaVTotal[d] += parseFloat(totalesCat)
                           totalesCat = 0
                         }else{
-                          semCat += buscarVentaSemanalP(semanaW,arrGlobalEmpleados[hh2].ruta,lista,categoria[d]);
+                          semCat += buscarVentaSemanalP(semanaW,rutasEspecificas[hh2],lista,categoria[d]);
                           tVentaVTotal[d] += parseFloat(tipoVentaTotal)
                         var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
                           if(SumaCategorias!=undefined){
@@ -17909,8 +18046,8 @@ var addCategoria = false;
                            }
                         }
                       }
-                      identificacion += '<td>$ '+formatoMoneda1(creditos) +'</td><td>$ '+ formatoMoneda1(bonificacion) +'</td><td>% '+ formatoMoneda1(noVenta) +'</td><td>$ '+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
-                      identificacionP += '<td>$ '+formatoMoneda1(creditos) +'</td><td>$ '+ formatoMoneda1(bonificacion) +'</td><td>% '+ formatoMoneda1(noVenta) +'</td><td>$ '+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacion += '<td class="text-right">$'+formatoMoneda1(creditos) +'</td><td class="text-right">$'+ formatoMoneda1(bonificacion) +'</td><td class="text-right">%'+ formatoMoneda1(noVenta) +'</td><td class="text-right">$'+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += '<td class="text-right">$'+formatoMoneda1(creditos) +'</td><td class="text-right">$'+ formatoMoneda1(bonificacion) +'</td><td class="text-right">%'+ formatoMoneda1(noVenta) +'</td><td class="text-right">$'+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
                       semCat=""
                       credsubT += creditos 
                       bonsubT += bonificacion
@@ -17920,23 +18057,28 @@ var addCategoria = false;
 
 
                   } // cierra lista de vendedores
+                  if(existencia){
                   for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
-                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td><td></td> <td>'+tVentaV[hh].tventa+'</td><td> $ '+formatoMoneda1(credsubT)+'</td><td>$ '+formatoMoneda1(bonsubT)+'</td><td> </td><td>$ '+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
-                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>'+tVentaV[hh].tventa+'</strong></td><td></td><td> $ '+formatoMoneda1(credsubT)+'</td><td>$ '+formatoMoneda1(bonsubT)+'</td><td> </td><td>$ '+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
+                      identificacion +='</tr><tr  class="text-center" style="background:black; font-size:12px;"><td>TOTAL</td><td></td> <td>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</td><td class="text-right"> $'+formatoMoneda1(credsubT)+'</td><td  class="text-right">$'+formatoMoneda1(bonsubT)+'</td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro text-center" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-right" ><strong>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</strong></td><td></td><td  class="text-right"> $'+formatoMoneda1(credsubT)+'</td><td  class="text-right">$'+formatoMoneda1(bonsubT)+'</td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
                       totalValor='';
                       credTotal += credsubT  
                       bonTotal += bonsubT 
                       ventaTotal += ventasubT
+                      }
+                      existencia = false
                       credsubT = 0
                       bonsubT =0
                       ventasubT =0 
               } // cierra tipo de venta
               // otras ventas
                var ventaO = 0
+               existencia = false
               var otrasVentas = arrGlobalEmpleados.filter( otros => otros.km == 1 )
               for(var hh2=0;hh2<otrasVentas.length; hh2++){
-                  identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >PEDIDOS</td> <td >' + otrasVentas[hh2].nombre_Emple + '</td> ';
-                  identificacionP+= '<tr style="font-size:10px; " class="text-center" ><td></td><td >PEDIDOS</td> <td ><strong>' +  otrasVentas[hh2].nombre_Emple + '</strong></td>';
+                  identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >PEDIDOS</td> <td >' +  ((otrasVentas[hh2].nombre_Emple).split(" ").join("_")).substring(0,11) + '</td> ';
+                  identificacionP+= '<tr style="font-size:12px; " class="text-center" ><td></td><td >PEDIDOS</td> <td ><strong>' +  ((otrasVentas[hh2].nombre_Emple).split(" ").join("_")).substring(0,11) + '</strong></td>';
+                    existencia = true
                       var semCat
                       var totalesCat = 0
                      
@@ -17965,21 +18107,90 @@ var addCategoria = false;
                       identificacionP += '<td></td><td></td><td></td><td>$ '+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
                       semCat=""
                       ventaO = 0
-              }
+              }// termina otras ventas
+              if(existencia){
                for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
-                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTAL</td><td></td> <td>PEDIDOS</td><td> </td><td></td><td> </td><td>$ '+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
-                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td><td> $ '+formatoMoneda1(credsubT)+'</td><td>$ '+formatoMoneda1(bonsubT)+'</td><td> </td><td>$ '+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
+                      identificacion +='</tr><tr style="background:black; font-size:12px;" class="grisclaro text-center" ><td>TOTAL</td><td></td> <td>PEDIDOS</td><td> </td><td></td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
+                      identificacionP +='</tr><tr style="font-size:12px;" class="grisclaro text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td><td  class="text-right"></td><td  class="text-right"></td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
                       totalValor='';
                       credTotal += credsubT  
                       bonTotal += bonsubT 
                       ventaTotal += ventasubT
+                      }
+                      existencia = false
                       credsubT = 0
                       bonsubT =0
                       ventasubT =0 
-                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotales[f])+'</td>'};
-                      identificacion +='</tr><tr style="background:black; font-size:12px;"><td>TOTALES</td> <td></td><td></td><td> $ '+formatoMoneda1(credTotal)+'</td><td>$ '+formatoMoneda1(bonTotal)+'</td><td> </td><td>$ '+formatoMoneda1(ventaTotal)+'</td>'+totalValor+'</tr>';
-                      identificacionP +='</tr><tr class="grisclaro" style="font-size:9px;   " class=" text-right" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td><td> $ '+formatoMoneda1(credTotal)+'</td><td>$ '+formatoMoneda1(bonTotal)+'</td><td> </td><td>$ '+formatoMoneda1(ventaTotal)+'</td>'+totalValor+' </tr>';
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td><strong>  '+formatoMoneda1(tVentaVTotales[f])+'</strong></td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;" class="text-center" ><td><strong>TOTALES</strong></td> <td></td><td></td><td class="text-right"> <strong>$'+formatoMoneda1(credTotal)+'</strong></td><td class="text-right"><strong>$'+formatoMoneda1(bonTotal)+'</strong></td><td> </td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+'</tr>';
+                      identificacionP +='</tr><tr style="font-size:12px;   " class="grisclaro text-center" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td><td class="text-right"><strong>$'+formatoMoneda1(credTotal)+'</strong></td><td class="text-right"><strong>$'+formatoMoneda1(bonTotal)+'</strong></td><td> </td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+' </tr>';
                       totalValor='';
+                   // Merma   
+                       var mermaSemanal = arrGlobalEmpleados.filter( otros => otros.km == 1 )
+                      identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >MERMA</td> <td ></td> ';
+                      identificacionP+= '<tr style="font-size:12px; " class="text-center" ><td></td><td >MERMA</td> <td ><strong></strong></td>';
+                      var semCat
+                      var totalesCat = 0
+                     ventaO = 0
+                      for(var d=0;d<categoria.length; d++){
+                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
+                        if(SumaCategoriasT!=undefined){
+                          semCat += '<td class="grisclaro" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          tVentaVTotal[d] += parseFloat(totalesCat)
+                          totalesCat = 0
+                        }else{
+                          semCat += buscarVentaSemanalPMerma(semanaW,"F",lista,categoria[d]);
+                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                          ventasubT += parseFloat(VOtrosTotal)
+                          ventaO += parseFloat(VOtrosTotal)
+                          VOtrosTotal = 0
+                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
+                          if(SumaCategorias!=undefined){
+                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
+                          var pes = 0
+                          if(pesaje!=undefined){pes = pesaje.pesaje}
+                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
+                           }
+                        }
+                      }
+                      identificacion += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      semCat=""
+                      ventaO = 0
+              // termina Merma
+               // Degustacion   
+                       var mermaSemanal = arrGlobalEmpleados.filter( otros => otros.km == 1 )
+                      identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >DEGUSTA</td> <td ></td> ';
+                      identificacionP+= '<tr style="font-size:12px; " class="text-center" ><td></td><td >DEGUSTA</td> <td ><strong></strong></td>';
+                      var semCat
+                      var totalesCat = 0
+                     ventaO = 0
+                      for(var d=0;d<categoria.length; d++){
+                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
+                        if(SumaCategoriasT!=undefined){
+                          semCat += '<td class="grisclaro" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          tVentaVTotal[d] += parseFloat(totalesCat)
+                          totalesCat = 0
+                        }else{
+                          semCat += buscarVentaSemanalPDegustacion(semanaW,"F",lista,categoria[d]);
+                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                          ventasubT += parseFloat(VOtrosTotal)
+                          ventaO += parseFloat(VOtrosTotal)
+                          VOtrosTotal = 0
+                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
+                          if(SumaCategorias!=undefined){
+                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
+                          var pes = 0
+                          if(pesaje!=undefined){pes = pesaje.pesaje}
+                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
+                           }
+                        }
+                      }
+                      identificacion += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; 
+                      identificacionP += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>';
+                      semCat=""
+                      ventaO = 0
+              // termina Merma
                   html = identificacion;
                   htmlP = identificacionP;
                $('.titulo2').html(titulos); 
@@ -39082,6 +39293,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
 function ventaDiariaCategorias(){   
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
+  $('.tituloRespOptions').html('<div class="impre col-md-12 row"><div  class="impre col-md-12"><input type="radio" checked value="1" class="todo"  name="productos" onclick=""><strong>TODO</strong></div ><br><div   class="impre col-md-12"><input type="radio" value="1" class="sumas"  name="productos" onclick=""><strong>SOLO SUMAS</strong></div><br><div   class="impre col-md-12"><input type="radio" value="1" class="resto"  name="productos" onclick=""><strong>RESTO</strong></div><br></div>')
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategoriasSemanal()">BUSCAR</button><div class="col-md-3"></div></div>');
   $('.iconoImprimir').html('');
   $('.iconoExcel').html('');

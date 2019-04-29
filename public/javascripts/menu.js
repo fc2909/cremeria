@@ -17979,8 +17979,8 @@ var addCategoria = false;
         }
       }
       
-         var titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BONIFICACIÓN </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+tituloU;
-         var titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">CRÉDITOS</th> <th colspan="1" class=" text-center" style="width: 70px; ">BONIFICACIÓN</th> <th colspan="1" class=" text-center" style="width: 70px; ">% NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">VENTA</th>'+tituloUP;
+         var titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BON </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+tituloU;
+         var titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">CRÉDITOS</th> <th colspan="1" class=" text-center" style="width: 70px; ">BON</th> <th colspan="1" class=" text-center" style="width: 70px; ">% NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">VENTA</th>'+tituloUP;
           var html = '';
           var htmlP = '';
           var rutasLocal = '';

@@ -17685,27 +17685,27 @@ prodT=0;
 }
 var tipoVentaTotal = 0 
 var tiposVentaTotales = 0
-function buscarVentaSemanalP(semanaW,rutasV,lista,idCategoria){
+function buscarVentaSemanalP(semanaW,rutasV,lista,idCategoria,desa){
 //console.log(semanaW+" -- "+rutasV+" ++ "+10+" + + "+idCategoria)
   var clase
     var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == idCategoria);
  if(SumaCategorias!=undefined){
 
 if(SumaCategorias.descripcion==1){
- clase = '<td>'
+ clase = '<td class="0">'
   }
   if(SumaCategorias.descripcion==2){
- clase = '<td class="grisclaro" style="color:black">'
+ clase = '<td class="grisclaro '+desa+'" style="color:black">'
 
   }
   if(SumaCategorias.descripcion==3){
- clase = '<td class="grisclaro" style="color:black">'
+ clase = '<td class="grisclaro '+desa+'" style="color:black">'
   }
  }
 
    var protuctPVal=0
    tipoVentaTotal = 0
-var product = '<td> </td>'
+var product = clase+' </td>'
   
 var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
     if (inventario!=undefined) {
@@ -17739,27 +17739,27 @@ var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
   return product;
 }
 VOtrosTotal = 0
-function buscarVentaSemanalPOtros(semanaW,otrosV,lista,idCategoria){
+function buscarVentaSemanalPOtros(semanaW,otrosV,lista,idCategoria,desa){
 //console.log(semanaW+" -- "+rutasV+" ++ "+10+" + + "+idCategoria)
   var clase
     var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == idCategoria);
  if(SumaCategorias!=undefined){
 
 if(SumaCategorias.descripcion==1){
- clase = '<td>'
+ clase = '<td class="0">'
   }
   if(SumaCategorias.descripcion==2){
- clase = '<td class="grisclaro" style="color:black">'
+ clase = '<td class="grisclaro '+desa+'" style="color:black">'
 
   }
   if(SumaCategorias.descripcion==3){
- clase = '<td class="grisclaro" style="color:black">'
+ clase = '<td class="grisclaro '+desa+'" style="color:black">'
   }
  }
 
    var protuctPVal=0
    tipoVentaTotal = 0
-var product = '<td> </td>'
+var product = clase+' </td>'
   
 var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
     if (inventario!=undefined) {
@@ -17794,27 +17794,27 @@ var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
   //console.log(product)
   return product;
 }
-function buscarVentaSemanalPMerma(semanaW,mermaV,lista,idCategoria){
+function buscarVentaSemanalPMerma(semanaW,mermaV,lista,idCategoria,desa){
 //console.log(semanaW+" -- "+rutasV+" ++ "+10+" + + "+idCategoria)
   var clase
     var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == idCategoria);
  if(SumaCategorias!=undefined){
 
 if(SumaCategorias.descripcion==1){
- clase = '<td>'
+ clase = '<td class="0">'
   }
   if(SumaCategorias.descripcion==2){
- clase = '<td class="grisclaro" style="color:black">'
+ clase = '<td class="grisclaro '+desa+'" style="color:black">'
 
   }
   if(SumaCategorias.descripcion==3){
- clase = '<td class="grisclaro" style="color:black">'
+ clase = '<td class="grisclaro '+desa+'" style="color:black">'
   }
  }
 
    var protuctPVal=0
    tipoVentaTotal = 0
-var product = '<td> </td>'
+var product = clase+' </td>'
   
 var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
     if (inventario!=undefined) {
@@ -17847,27 +17847,27 @@ var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
   //console.log(product)
   return product;
 }
-function buscarVentaSemanalPDegustacion(semanaW,degV,lista,idCategoria){
+function buscarVentaSemanalPDegustacion(semanaW,degV,lista,idCategoria,desa){
 //console.log(semanaW+" -- "+rutasV+" ++ "+10+" + + "+idCategoria)
   var clase
     var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == idCategoria);
  if(SumaCategorias!=undefined){
 
 if(SumaCategorias.descripcion==1){
- clase = '<td>'
+ clase = '<td class="0">'
   }
   if(SumaCategorias.descripcion==2){
- clase = '<td class="grisclaro" style="color:black">'
+ clase = '<td class="grisclaro '+desa+'" style="color:black">'
 
   }
   if(SumaCategorias.descripcion==3){
- clase = '<td class="grisclaro" style="color:black">'
+ clase = '<td class="grisclaro '+desa+'" style="color:black">'
   }
  }
 
    var protuctPVal=0
    tipoVentaTotal = 0
-var product = '<td> </td>'
+var product = clase+' </td>'
   
 var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
     if (inventario!=undefined) {
@@ -17900,7 +17900,14 @@ var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
   //console.log(product)
   return product;
 }
-                  
+     function verTotales(columa){
+
+  if($('#I'+columa+'').is(':checked')){
+    $("."+columa+"").show();
+  }else{
+    $("."+columa+"").hide();
+  }
+}             
 
 var productosList
 function loadVentaDiariaSemanal(lista){ 
@@ -17912,6 +17919,9 @@ function loadVentaDiariaSemanal(lista){
   var ventasubT = 0
   var ventaTotal = 0
   var categoria = []
+  var categoriadesa = []
+  var desapareceCheck = ''
+var desaparece = 1
 var cargasList =cargaSemana.reduce(function(a, e) {
   let estKey = (e['ruta']); 
   (a[estKey] ? a[estKey] : (a[estKey] = null || [])).push(e);
@@ -17930,26 +17940,39 @@ var addCategoria = false;
       addCategoria = false;
    var titulo2=""
    var titulo2P=""
-
+var tipoCat = 0;
       for(var h=0;h<Object.keys(productosList).length; h++){
     var inventario=arrGlobalInventario.find(inv => inv.idInventario==Object.keys(productosList)[h]);
    if (inventario!=undefined) {
     if(arrGlobalCategoria[f].id==inventario.tipoP){
       if($('.todo').is(':checked')){
-        titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
-        titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        if(arrGlobalCategoria[f].descripcion == 1){
+          titulo2='<th id="0" class="letras text-center  0" >'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th id="0" colspan="1" class=" text-center  0" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
         addCategoria = true;
+      }else{
+        titulo2='<th id="'+desaparece+'" class="letras text-center  '+desaparece+'" >'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center  '+desaparece+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        addCategoria = true;
+      }
+        
+        //categoriadesa.push(desaparece)
       }
       if((arrGlobalCategoria[f].descripcion == 2 || arrGlobalCategoria[f].descripcion == 3 ) && $('.sumas').is(':checked')){
-        titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
-        titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        titulo2='<th id="'+desaparece+'" class="letras text-center  '+desaparece+'" >'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center  '+desaparece+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
         addCategoria = true;
+        //categoriadesa.push(desaparece)
+
       }
       if(arrGlobalCategoria[f].descripcion == 1 && $('.resto').is(':checked')){
-        titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
-        titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        titulo2='<th  id="0"  class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th  id="0"  colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
         addCategoria = true;
+        //categoriadesa.push(0)
+
       }
+
     }
    }
       }
@@ -17957,14 +17980,24 @@ var addCategoria = false;
 
       if(arrGlobalCategoria[f].descripcion==3 && ($('.todo').is(':checked') || $('.sumas').is(':checked'))){
         addCategoria = true;
-        
-      titulo2='<th class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
-      titulo2P='<th colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+       desapareceCheck += '<label><input type="checkbox" id="I'+desaparece+'"  checked value="'+desaparece+'" onchange="verTotales(value)"> '+arrGlobalCategoria[f].nombre+'.   </label>' 
+        //categoriadesa.push(desaparece)
+      titulo2='<th id="'+desaparece+'" class="letras text-center '+desaparece+'" style="">'+arrGlobalCategoria[f].nombre+'</th> '
+      titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center '+desaparece+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+      
       }
-      if(addCategoria){categoria.push(arrGlobalCategoria[f].id)}
+      if(addCategoria){
+        categoria.push(arrGlobalCategoria[f].id)
+          if(arrGlobalCategoria[f].descripcion == 1){categoriadesa.push(0);}
+          if(arrGlobalCategoria[f].descripcion == 2){categoriadesa.push(desaparece); }
+          if(arrGlobalCategoria[f].descripcion == 3){categoriadesa.push(desaparece); desaparece ++}
+    }
       tituloU+=titulo2
       tituloUP+=titulo2P
     }
+    $('#checks').html(desapareceCheck)
+
+
     var rutasEspecificas = []
     var t_ventasEspecificas = []
     var nombreEspecificas = []
@@ -18028,14 +18061,16 @@ var addCategoria = false;
                           noVenta = (noVenta-venta)*100/noVenta
                           var semCat
                           var totalesCat = 0
+                          var desa = 1
                       for(var d=0;d<categoria.length; d++){
                         var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
                         if(SumaCategoriasT!=undefined){
-                          semCat += '<td class="grisclaro" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          semCat += '<td  class="grisclaro '+categoriadesa[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
                           tVentaVTotal[d] += parseFloat(totalesCat)
                           totalesCat = 0
+                          
                         }else{
-                          semCat += buscarVentaSemanalP(semanaW,rutasEspecificas[hh2],lista,categoria[d]);
+                          semCat += buscarVentaSemanalP(semanaW,rutasEspecificas[hh2],lista,categoria[d],categoriadesa[d]);
                           tVentaVTotal[d] += parseFloat(tipoVentaTotal)
                         var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
                           if(SumaCategorias!=undefined){
@@ -18058,7 +18093,7 @@ var addCategoria = false;
 
                   } // cierra lista de vendedores
                   if(existencia){
-                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td class="'+categoriadesa[f]+'">  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
                       identificacion +='</tr><tr  class="text-center" style="background:black; font-size:12px;"><td>TOTAL</td><td></td> <td>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</td><td class="text-right"> $'+formatoMoneda1(credsubT)+'</td><td  class="text-right">$'+formatoMoneda1(bonsubT)+'</td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
                       identificacionP +='</tr><tr class="grisclaro text-center" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-right" ><strong>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</strong></td><td></td><td  class="text-right"> $'+formatoMoneda1(credsubT)+'</td><td  class="text-right">$'+formatoMoneda1(bonsubT)+'</td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
                       totalValor='';
@@ -18081,15 +18116,15 @@ var addCategoria = false;
                     existencia = true
                       var semCat
                       var totalesCat = 0
-                     
+                     var des = 1
                       for(var d=0;d<categoria.length; d++){
                         var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
                         if(SumaCategoriasT!=undefined){
-                          semCat += '<td class="grisclaro" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          semCat += '<td class="grisclaro '+categoriadesa[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
                           tVentaVTotal[d] += parseFloat(totalesCat)
                           totalesCat = 0
                         }else{
-                          semCat += buscarVentaSemanalPOtros(semanaW,otrasVentas[hh2].id,lista,categoria[d]);
+                          semCat += buscarVentaSemanalPOtros(semanaW,otrasVentas[hh2].id,lista,categoria[d],categoriadesa[d]);
                           tVentaVTotal[d] += parseFloat(tipoVentaTotal)
                           ventasubT += parseFloat(VOtrosTotal)
                           ventaO += parseFloat(VOtrosTotal)
@@ -18109,7 +18144,7 @@ var addCategoria = false;
                       ventaO = 0
               }// termina otras ventas
               if(existencia){
-               for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td>  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
+               for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td class="'+categoriadesa[f]+'">  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
                       identificacion +='</tr><tr style="background:black; font-size:12px;" class="grisclaro text-center" ><td>TOTAL</td><td></td> <td>PEDIDOS</td><td> </td><td></td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
                       identificacionP +='</tr><tr style="font-size:12px;" class="grisclaro text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td><td  class="text-right"></td><td  class="text-right"></td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
                       totalValor='';
@@ -18121,10 +18156,17 @@ var addCategoria = false;
                       credsubT = 0
                       bonsubT =0
                       ventasubT =0 
-                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td><strong>  '+formatoMoneda1(tVentaVTotales[f])+'</strong></td>'};
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td class="'+categoriadesa[f]+'"><strong>  '+formatoMoneda1(tVentaVTotales[f])+'</strong></td>'};
                       identificacion +='</tr><tr style="background:black; font-size:12px;" class="text-center" ><td><strong>TOTALES</strong></td> <td></td><td></td><td class="text-right"> <strong>$'+formatoMoneda1(credTotal)+'</strong></td><td class="text-right"><strong>$'+formatoMoneda1(bonTotal)+'</strong></td><td> </td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+'</tr>';
                       identificacionP +='</tr><tr style="font-size:12px;   " class="grisclaro text-center" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td><td class="text-right"><strong>$'+formatoMoneda1(credTotal)+'</strong></td><td class="text-right"><strong>$'+formatoMoneda1(bonTotal)+'</strong></td><td> </td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+' </tr>';
                       totalValor='';
+                      //Oculta
+                  for(var f=0;f<categoriadesa.length; f++){
+                    if(tVentaVTotales[f]==0){
+                      // $("."+categoriadesa[f]+"").hide(); // no aplica por la merma y degustacion que no esta inclueda
+                    }
+                  }
+                      //Oculta
                    // Merma   
                        var mermaSemanal = arrGlobalEmpleados.filter( otros => otros.km == 1 )
                       identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >MERMA</td> <td ></td> ';
@@ -18135,11 +18177,11 @@ var addCategoria = false;
                       for(var d=0;d<categoria.length; d++){
                         var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
                         if(SumaCategoriasT!=undefined){
-                          semCat += '<td class="grisclaro" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          semCat += '<td class="grisclaro '+categoriadesa[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
                           tVentaVTotal[d] += parseFloat(totalesCat)
                           totalesCat = 0
                         }else{
-                          semCat += buscarVentaSemanalPMerma(semanaW,"F",lista,categoria[d]);
+                          semCat += buscarVentaSemanalPMerma(semanaW,"F",lista,categoria[d],categoriadesa[d]);
                           tVentaVTotal[d] += parseFloat(tipoVentaTotal)
                           ventasubT += parseFloat(VOtrosTotal)
                           ventaO += parseFloat(VOtrosTotal)
@@ -18168,11 +18210,11 @@ var addCategoria = false;
                       for(var d=0;d<categoria.length; d++){
                         var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
                         if(SumaCategoriasT!=undefined){
-                          semCat += '<td class="grisclaro" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          semCat += '<td class="grisclaro '+categoriadesa[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
                           tVentaVTotal[d] += parseFloat(totalesCat)
                           totalesCat = 0
                         }else{
-                          semCat += buscarVentaSemanalPDegustacion(semanaW,"F",lista,categoria[d]);
+                          semCat += buscarVentaSemanalPDegustacion(semanaW,"F",lista,categoria[d],categoriadesa[d]);
                           tVentaVTotal[d] += parseFloat(tipoVentaTotal)
                           ventasubT += parseFloat(VOtrosTotal)
                           ventaO += parseFloat(VOtrosTotal)
@@ -39293,7 +39335,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
 function ventaDiariaCategorias(){   
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
-  $('.tituloRespOptions').html('<div class="impre col-md-12 row"><div  class="impre col-md-12"><input type="radio" checked value="1" class="todo"  name="productos" onclick=""><strong>TODO</strong></div ><br><div   class="impre col-md-12"><input type="radio" value="1" class="sumas"  name="productos" onclick=""><strong>SOLO SUMAS</strong></div><br><div   class="impre col-md-12"><input type="radio" value="1" class="resto"  name="productos" onclick=""><strong>RESTO</strong></div><br></div>')
+  $('.tituloRespOptions').html('<div class="impre col-md-12 row"><div  class="impre col-md-12"><input type="radio" checked value="1" class="todo"  name="productos" onclick=""><strong>TODO</strong></div ><br><div   class="impre col-md-12"><input type="radio" value="1" class="sumas"  name="productos" onclick=""><strong>SOLO SUMAS</strong></div><br><div class="impre col-md-12"><input type="radio" value="1" class="resto"  name="productos" onclick=""><strong>RESTO</strong></div><br></div><div id="checks" class="checks row col-md-12 impre letras" >check</div>')
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategoriasSemanal()">BUSCAR</button><div class="col-md-3"></div></div>');
   $('.iconoImprimir').html('');
   $('.iconoExcel').html('');

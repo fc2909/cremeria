@@ -39335,7 +39335,7 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
 function ventaDiariaCategorias(){   
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
-  $('.tituloRespOptions').html('<div class="impre col-md-12 row"><div  class="impre col-md-12"><input type="radio" checked value="1" class="todo"  name="productos" onclick=""><strong>TODO</strong></div ><br><div   class="impre col-md-12"><input type="radio" value="1" class="sumas"  name="productos" onclick=""><strong>SOLO SUMAS</strong></div><br><div class="impre col-md-12"><input type="radio" value="1" class="resto"  name="productos" onclick=""><strong>RESTO</strong></div><br></div><div id="checks" class="checks row col-md-12 impre letras" >check</div>')
+  $('.tituloRespOptions').html('<div class="impre col-md-12 row"><div  class="impre col-md-12"><input type="radio" checked value="1" class="todo"  name="productos" onclick=""><strong>TODO</strong></div ><br><div   class="impre col-md-12"><input type="radio" value="1" class="sumas"  name="productos" onclick=""><strong>SOLO SUMAS</strong></div><br><div class="impre col-md-12"><input type="radio" value="1" class="resto"  name="productos" onclick=""><strong>RESTO</strong></div><br></div><div id="checks" class="checks row col-md-12 impre letras" ></div>')
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategoriasSemanal()">BUSCAR</button><div class="col-md-3"></div></div>');
   $('.iconoImprimir').html('');
   $('.iconoExcel').html('');

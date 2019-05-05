@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :bitacoras
   resources :t_nomina
   resources :t_venta
+  resources :super_categoria
   resources :columnas
   resources :logs
   resources :foro

@@ -2199,6 +2199,67 @@
           </div>
         </div>
         </div>
+        <div class= "modal fade" tabindex ="-1" role="dialog" id="modalEmpresas">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h2 class="modal-title">EMPRESAS</h2>
+             <div class="nombreempleado"></div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+             
+            </div>
+            <div class="modal-body textModal">
+             
+              <div class="row col-md-12 ">
+                
+                <div class=" col-md-12 form-group">
+    <label >NOMBRE</label>
+    <input type="text" onkeyup="mayus(this);" id="empresa" onchange="document.getElementById('adde').focus();" class="form-control  clear nombreEmpresa" placeholder="">
+  </div>
+
+  <div class="col-sm-3 col-md-3">
+      <button type="button" id="adde" class="btn usuario1" onclick="addEmpresa()" >INSERTAR</button>
+  </div>
+   <div class="col-sm-3 col-md-3">
+    <button type="button" class="btn usuario1 limpiar" onclick="limpiar()">LIMPIAR</button>
+  </div>
+
+   <div class="col-sm-3 col-md-3 eliminarP">
+    
+  </div >
+
+<br>
+
+<br>
+
+  <div class="table-responsive tabla ">
+  <table class="table table-hover col-md-12 table-condensed text-center">
+    <thead class="text-center">
+      <tr class="letras text-center">
+        <th class="text-center">NOMBRE</th>
+      </tr>
+    </thead>
+    <tbody class="contCata3 ventascss" >
+     
+    </tbody>
+  </table>
+</div>
+
+
+              
+
+                
+              </div>
+              <br>
+      
+
+<button type="button" class="btn btn-modals seleccionar" onclick=" closeModalEmpresas(); ">CERRAR</button>
+            </div>
+          
+          </div>
+        </div>
+        </div>
     <div class= "modal fade" tabindex ="-1" role="dialog" id="modalPin3">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -2651,6 +2712,10 @@
                 <button type="button" class="btn btn-modals" onclick="addCategoriaI()">AGREGAR</button>
                 
               </div>
+              <div class="col-md-12 superCategoria">
+               
+                
+              </div>
                <div class="col-md-2 upCategoriaIn">
                
                 
@@ -2665,6 +2730,7 @@
         <th class=" text-center" ></th>
         <th class=" text-center" >SUMA</th>
         <th class=" text-center" >NOMBRE</th>
+        <th class=" text-center" >EMPRESA</th>
         <th class=" text-center" >PRODUCTO</th>
        
       </tr>

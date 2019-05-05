@@ -4,6 +4,7 @@ var historial=0;
 var modalCreditos1="F";
 var s_vent=0;
 var s_vent2=0;
+var arrGlobalEmpresa
 var n, w, despachador, noSemana, idVentas2;
 var upin, pin,arrGlobal41, arrGlobalVehiculo, dsc, sc, sfc1;
 var t_v, gas, gasolina, diesel, km;
@@ -33,6 +34,7 @@ getFunction('inventarios', "Ocurrio un error al cargar el formulario, reintentar
 getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategorias2);
 getFunction('talleres', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadTalleres);
 getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare2);
+getFunction('super_categoria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpresas);
 var jsonC = {where:{idColumna:1}}
 executeFunctionDone(jsonC, 't_venta', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadTVentaColumnas);
 var jsonC = {where:{idColumna:2}}
@@ -55,6 +57,9 @@ $(document).ready(function(){
            <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Pagare();">
            PAGARE
            </li>  <span class="border border-white"></span> 
+           <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Empresas();">
+           EMPRESAS
+           </li>  <span class="border border-white"></span>
            <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Remisiones() ">
            REMISIONES
            </li> <span class="border border-white"></span> 
@@ -1769,6 +1774,18 @@ function loadPagare(lista){
               getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare2);
  document.getElementById('loader').style.display = 'none';
 }
+
+
+function loadEmpresas(lista){
+        var html = '';
+        for(var h=0;h<lista.length; h++){
+             html+= '<tr class="seleccionar letras" onclick="cambiarcolor(this); selectEmpresa('+ lista[h].id+')" ><td>' + lista[h].nombre + '</td></tr>';        
+        }
+
+        $('#modalEmpresas .contCata3').html(html);
+       arrGlobalEmpresa = lista
+document.getElementById('loader').style.display = 'none';
+}
 function loadPagare2(lista){
         for(var h=0;h<lista.length; h++){
 name= lista[h].nombre;
@@ -2602,6 +2619,9 @@ $('.barraIzq').html(`
            <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Pagare();">
            PAGARE
            </li>  <span class="border border-white"></span> 
+                      <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Empresas();">
+           EMPRESAS
+           </li>  <span class="border border-white"></span>
            <li class="nav-item impre text-center seleccionar2 ventasList"  onclick="click_Remisiones() ">
            REMISIONES
            </li> <span class="border border-white"></span> 
@@ -3247,6 +3267,12 @@ $('.tituloTV').html('');
       }
       function modalAddCategoria(){
 $('#modalCategoriaInventario').modal('show');
+var empresa ='<label >EMPRESA</label><select class="form-control empresa" id="empresa">';
+for (var i = 0; i < arrGlobalEmpresa.length; i++) {
+  empresa += '<option value="'+arrGlobalEmpresa[i].id+'" class="form-control">'+arrGlobalEmpresa[i].nombre+'</option>';
+}
+empresa +='</select>';
+$("#modalCategoriaInventario .superCategoria").html(empresa);
  getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
 
       }
@@ -3716,6 +3742,8 @@ function loadCategoriasModal(lista){
         var producto='';
         var indiceCategoria=0;
         var categoriasSuma="";
+        var superCat = ""
+        var superCatNombre = ""
         orden=[];
         for(var h=0;h<lista.length; h++){
             
@@ -3725,9 +3753,17 @@ function loadCategoriasModal(lista){
 
              }
             }
+            if(lista[h].idCategoria == null){
+            superCat = "background:red"
+            superCatNombre = ""
+            }else{
+            superCat = ""
+            var nombreCat = arrGlobalEmpresa.find(nombre => nombre.id == lista[h].idCategoria)
+            superCatNombre = nombreCat.nombre 
+            }
             if(lista[h].descripcion!=2&&lista[h].descripcion!=3){
   orden.push({id:lista[h].id, indice: indiceCategoria});
-  html+= '<tr class=" move" onclick="" ><td  style="font-size:11px;">('+(indiceCategoria+1)+')<img class="icoImage3 " src="/images/subir.png" onclick="subirCategoria('+ lista[h].id +', '+indiceCategoria+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarCategoria('+ lista[h].id +', '+indiceCategoria+');"> </td><td class=""><input type="checkbox" class="form-check-input categoria'+lista[h].id+'" value="2" onchange="categoriaC('+lista[h].id+')"></td><td>' + lista[h].nombre + '</td><td style="font-size:11px;">' + producto + '</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upCategoriaI('+ lista[h].id +', '+h+');"><img class="icoImage3 " src="/images/eliminar.png" onclick="delCategoriaI('+ lista[h].id +', '+producto.length +');"></td></tr>';
+  html+= '<tr class=" move" onclick="" ><td  style="font-size:11px;">('+(indiceCategoria+1)+')<img class="icoImage3 " src="/images/subir.png" onclick="subirCategoria('+ lista[h].id +', '+indiceCategoria+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarCategoria('+ lista[h].id +', '+indiceCategoria+');"> </td><td class=""><input type="checkbox" class="form-check-input categoria'+lista[h].id+'" value="2" onchange="categoriaC('+lista[h].id+')"></td><td>' + lista[h].nombre + '</td> <td style="'+superCat+'">'+superCatNombre+'</td> <td style="font-size:11px;">' + producto + '</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upCategoriaI('+ lista[h].id +', '+h+');"><img class="icoImage3 " src="/images/eliminar.png" onclick="delCategoriaI('+ lista[h].id +', '+producto.length +');"></td></tr>';
         
         producto='';
          indiceCategoria++; 
@@ -3735,14 +3771,14 @@ function loadCategoriasModal(lista){
               if(lista[h].descripcion==2){
                 orden.push({id:lista[h].id, indice: indiceCategoria});
                 categoriasSuma+=" | "+lista[h].nombre+" |"
-html+= '<tr class=" gris1" style="" onclick="" ><td  style="font-size:11px;">('+(indiceCategoria+1)+')<img class="icoImage3 " src="/images/subir.png" onclick="subirCategoria('+ lista[h].id +', '+indiceCategoria+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarCategoria('+ lista[h].id +', '+indiceCategoria+');"> </td><td class=""><input type="checkbox" class="form-check-input categoria'+lista[h].id+' " checked value="1" onchange="categoriaC('+lista[h].id+')"></td><td>' + lista[h].nombre + '</td><td style="font-size:11px;">' + producto + '</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upCategoriaI('+ lista[h].id +', '+h+');"><img class="icoImage3 " src="/images/eliminar.png" onclick="delCategoriaI('+ lista[h].id +', '+producto.length +');"></td></tr>';
+html+= '<tr class=" gris1" style="" onclick="" ><td  style="font-size:11px;">('+(indiceCategoria+1)+')<img class="icoImage3 " src="/images/subir.png" onclick="subirCategoria('+ lista[h].id +', '+indiceCategoria+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarCategoria('+ lista[h].id +', '+indiceCategoria+');"> </td><td class=""><input type="checkbox" class="form-check-input categoria'+lista[h].id+' " checked value="1" onchange="categoriaC('+lista[h].id+')"></td><td>' + lista[h].nombre + '</td> <td style="'+superCat+'">'+superCatNombre+'</td> <td style="font-size:11px;">' + producto + '</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upCategoriaI('+ lista[h].id +', '+h+');"><img class="icoImage3 " src="/images/eliminar.png" onclick="delCategoriaI('+ lista[h].id +', '+producto.length +');"></td></tr>';
         producto='';
          indiceCategoria++; 
               }
               if(lista[h].descripcion==3){
                 orden.push({id:lista[h].id, indice: indiceCategoria});
 
-html+= '<tr class=" negro1" style="" onclick="" ><td  style="font-size:11px;">('+(indiceCategoria+1)+')<img class="icoImage3 " src="/images/subir.png" onclick="subirCategoria('+ lista[h].id +', '+indiceCategoria+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarCategoria('+ lista[h].id +', '+indiceCategoria+');"> </td><td></td><td>' + lista[h].nombre + '</td><td style=" color:yellow">' + categoriasSuma+ '</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upCategoriaI('+ lista[h].id +', '+h+');"><img class="icoImage3 " src="/images/eliminar.png" onclick="delCategoriaI('+ lista[h].id +','+categoriasSuma.length+');"></td> </tr>';
+html+= '<tr class=" negro1" style="" onclick="" ><td  style="font-size:11px;">('+(indiceCategoria+1)+')<img class="icoImage3 " src="/images/subir.png" onclick="subirCategoria('+ lista[h].id +', '+indiceCategoria+');"> <img class="icoImage3" src="/images/bajar.png" onclick="bajarCategoria('+ lista[h].id +', '+indiceCategoria+');"> </td><td></td><td>' + lista[h].nombre + '</td> <td style="'+superCat+'">'+superCatNombre+'</td> <td style=" color:yellow">' + categoriasSuma+ '</td><td><img class="icoImage3 " src="/images/editar2.png" onclick="upCategoriaI('+ lista[h].id +', '+h+');"><img class="icoImage3 " src="/images/eliminar.png" onclick="delCategoriaI('+ lista[h].id +','+categoriasSuma.length+');"></td> </tr>';
         producto='';
         categoriasSuma="";
          indiceCategoria++; 
@@ -3763,12 +3799,13 @@ function addCategoriaI(){
 var jerarquia = $('#modalCategoriaInventario .jerarquiaC').val();
 var nombre = $('#modalCategoriaInventario .nombre').val();
 valor =  $("#modalCategoriaInventario .checkCategoria:checked").val();
+var empresa =  $("#modalCategoriaInventario #empresa").val();
 
 if (valor==undefined) {
   valor=1;
 }
-if(jerarquia!=""&&nombre!=""){
-  var json = {jerarquia: jerarquia, nombre: nombre, descripcion: valor};
+if(jerarquia!=""&&nombre!=""&&empresa!=""){
+  var json = {jerarquia: jerarquia, nombre: nombre, descripcion: valor, idCategoria:empresa};
    addRegistro3(json,'categorias', loadCategoriasModal);
  getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
  getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
@@ -3795,12 +3832,15 @@ $('#modalCategoriaInventario .upCategoriaIn').html(`
 
 $('#modalCategoriaInventario .jerarquiaC').val(arrGlobalCategoria[h].jerarquia);
 $('#modalCategoriaInventario .nombre').val(arrGlobalCategoria[h].nombre);
+$('#modalCategoriaInventario #empresa').val(arrGlobalCategoria[h].idCategoria);
 }
 function upCategoriaIF(idCat){
   $('#modalCategoriaInventario .upCategoriaIn').html('')
   var jerarquia = $('#modalCategoriaInventario .jerarquiaC').val();
   var nombre = $('#modalCategoriaInventario .nombre').val();
- var json = {jerarquia: jerarquia, nombre: nombre};
+  var empresa =  $("#modalCategoriaInventario #empresa").val();
+
+ var json = {jerarquia: jerarquia, nombre: nombre, idCategoria:empresa};
     upRegistro3(idCat,json,'categorias', loadCategoriasModal);
      getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
  getFunction('categorias', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadCategoriasModal);
@@ -17692,14 +17732,14 @@ function buscarVentaSemanalP(semanaW,rutasV,lista,idCategoria,desa){
  if(SumaCategorias!=undefined){
 
 if(SumaCategorias.descripcion==1){
- clase = '<td class="0">'
+ clase = '<td class="0 tipo'+SumaCategorias.idCategoria+'">'
   }
   if(SumaCategorias.descripcion==2){
- clase = '<td class="grisclaro '+desa+'" style="color:black">'
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
 
   }
   if(SumaCategorias.descripcion==3){
- clase = '<td class="grisclaro '+desa+'" style="color:black">'
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
   }
  }
 
@@ -17746,14 +17786,14 @@ function buscarVentaSemanalPOtros(semanaW,otrosV,lista,idCategoria,desa){
  if(SumaCategorias!=undefined){
 
 if(SumaCategorias.descripcion==1){
- clase = '<td class="0">'
+ clase = '<td class="0 tipo'+SumaCategorias.idCategoria+'">'
   }
   if(SumaCategorias.descripcion==2){
- clase = '<td class="grisclaro '+desa+'" style="color:black">'
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
 
   }
   if(SumaCategorias.descripcion==3){
- clase = '<td class="grisclaro '+desa+'" style="color:black">'
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
   }
  }
 
@@ -17801,14 +17841,14 @@ function buscarVentaSemanalPMerma(semanaW,mermaV,lista,idCategoria,desa){
  if(SumaCategorias!=undefined){
 
 if(SumaCategorias.descripcion==1){
- clase = '<td class="0">'
+ clase = '<td class="0 tipo'+SumaCategorias.idCategoria+'">'
   }
   if(SumaCategorias.descripcion==2){
- clase = '<td class="grisclaro '+desa+'" style="color:black">'
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
 
   }
   if(SumaCategorias.descripcion==3){
- clase = '<td class="grisclaro '+desa+'" style="color:black">'
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
   }
  }
 
@@ -17854,14 +17894,14 @@ function buscarVentaSemanalPDegustacion(semanaW,degV,lista,idCategoria,desa){
  if(SumaCategorias!=undefined){
 
 if(SumaCategorias.descripcion==1){
- clase = '<td class="0">'
+ clase = '<td class="0 tipo'+SumaCategorias.idCategoria+'">'
   }
   if(SumaCategorias.descripcion==2){
- clase = '<td class="grisclaro '+desa+'" style="color:black">'
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
 
   }
   if(SumaCategorias.descripcion==3){
- clase = '<td class="grisclaro '+desa+'" style="color:black">'
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
   }
  }
 
@@ -17900,6 +17940,23 @@ var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
   //console.log(product)
   return product;
 }
+function verTotalesVista(value){
+  if($('#IVista').is(':checked')){
+    document.getElementById('totalesCa').style.display = 'block';
+  }else{
+        document.getElementById('totalesCa').style.display = 'none';
+  }
+        
+
+
+}
+  function verEmpresas(id){
+  if($('#E'+id+'').is(':checked')){
+    $(".tipo"+id+"").show();
+  }else{
+    $(".tipo"+id+"").hide();
+  }
+} 
      function verTotales(columa){
 
   if($('#I'+columa+'').is(':checked')){
@@ -17919,6 +17976,7 @@ function loadVentaDiariaSemanal(lista){
   var ventasubT = 0
   var ventaTotal = 0
   var categoria = []
+  var superCategoria = []
   var categoriadesa = []
   var desapareceCheck = ''
 var desaparece = 1
@@ -17947,7 +18005,350 @@ var tipoCat = 0;
     if(arrGlobalCategoria[f].id==inventario.tipoP){
       if($('.todo').is(':checked')){
         if(arrGlobalCategoria[f].descripcion == 1){
-          titulo2='<th id="0" class="letras text-center  0" >'+arrGlobalCategoria[f].nombre+'</th> '
+          titulo2='<th id="0" class="letras text-center  0 tipo'+arrGlobalCategoria[f].idCategoria+'" >'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th id="0" colspan="1" class=" text-center  0 tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        addCategoria = true;
+      }else{
+        titulo2='<th id="'+desaparece+'" class="letras text-center  '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" >'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center  '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        addCategoria = true;
+      }
+        
+        //categoriadesa.push(desaparece)
+      }
+      //if((arrGlobalCategoria[f].descripcion == 2 || arrGlobalCategoria[f].descripcion == 3 ) && $('.sumas').is(':checked')){
+      if(arrGlobalCategoria[f].descripcion == 2 || arrGlobalCategoria[f].descripcion == 3 ){
+        titulo2='<th id="'+desaparece+'" class="letras text-center  '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" >'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center  '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        addCategoria = true;
+        //categoriadesa.push(desaparece)
+
+      }
+      //if(arrGlobalCategoria[f].descripcion == 1 && $('.resto').is(':checked')){
+      if(arrGlobalCategoria[f].descripcion == 1){
+        titulo2='<th  id="0"  class="letras text-center 0 tipo'+arrGlobalCategoria[f].idCategoria+'">'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th  id="0"  colspan="1" class=" text-center 0 tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        addCategoria = true;
+        //categoriadesa.push(0)
+
+      }
+
+    }
+   }
+      }
+     
+
+      //if(arrGlobalCategoria[f].descripcion==3 && ($('.todo').is(':checked') || $('.sumas').is(':checked'))){
+      if(arrGlobalCategoria[f].descripcion==3 ){
+        addCategoria = true;
+       desapareceCheck += '<label><input type="checkbox" id="I'+desaparece+'"  checked value="'+desaparece+'" onchange="verTotales(value)"> '+arrGlobalCategoria[f].nombre+'...   </label>' 
+        //categoriadesa.push(desaparece)
+      titulo2='<th id="'+desaparece+'" class="letras text-center '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" style="">'+arrGlobalCategoria[f].nombre+'</th> '
+      titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+      
+      }
+      if(addCategoria){
+        categoria.push(arrGlobalCategoria[f].id)
+        superCategoria.push(arrGlobalCategoria[f].idCategoria)
+          if(arrGlobalCategoria[f].descripcion == 1){categoriadesa.push(0);}
+          if(arrGlobalCategoria[f].descripcion == 2){categoriadesa.push(desaparece); }
+          if(arrGlobalCategoria[f].descripcion == 3){categoriadesa.push(desaparece); desaparece ++}
+    }
+      tituloU+=titulo2
+      tituloUP+=titulo2P
+    }
+    var empresasT = ''
+    for(var e=0;e<arrGlobalEmpresa.length; e++){
+       empresasT += '<label><input type="checkbox" id="E'+arrGlobalEmpresa[e].id+'"  checked value="'+arrGlobalEmpresa[e].id+'" onchange="verEmpresas(value)"> '+arrGlobalEmpresa[e].nombre+'...   </label>' 
+       
+    }
+    empresasT += '<div class="col-md-12"><label style="color:yellow"> <input type="checkbox" id="IVista"  value="0" onchange="verTotalesVista(value)">MAS OPCIONES DE BUSQUEDA </label></div><div id="totalesCa" style="display:none"><div class="col-md-12">TOTALES</div> '+desapareceCheck+'<div class="col-md-12">RESTO</div><label><input type="checkbox" id="I0"  checked value="0" onchange="verTotales(value)">RESTO</label></div>'
+    $('#checks').html(empresasT)
+
+
+    var rutasEspecificas = []
+    var t_ventasEspecificas = []
+    var nombreEspecificas = []
+     for(var h=0;h<Object.keys(cargasList).length; h++){
+      if(Object.keys(cargasList)[h] != "F"){
+        rutasEspecificas.push(Object.keys(cargasList)[h])
+        var cargasVentas = cargaSemana.find(rutaEs => rutaEs.ruta == Object.keys(cargasList)[h])
+        if(cargasVentas != undefined){
+          t_ventasEspecificas.push(cargasVentas.tipo)
+          nombreEspecificas.push(((cargasVentas.nombre).split(" ").join("_")).substring(0,11))
+        }
+        }
+      }
+      
+         var titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BON </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+tituloU;
+         var titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">CRÉDITOS</th> <th colspan="1" class=" text-center" style="width: 70px; ">BON</th> <th colspan="1" class=" text-center" style="width: 70px; ">% NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">VENTA</th>'+tituloUP;
+          var html = '';
+          var htmlP = '';
+          var rutasLocal = '';
+          var identificacion='';
+          var identificacionP='';
+          var totalValor='';
+              tVentaVTotales = new Array(categoria.length);
+              tVentaVTotal = new Array(categoria.length);
+              for(var f=0;f<tVentaVTotales.length; f++)tVentaVTotales[f]=0;
+              for(var f=0;f<tVentaVTotal.length; f++)tVentaVTotal[f]=0;
+          var tVentaV = [];
+              tVentaV.push({id:2,tventa:"MAYOREO"});
+              tVentaV.push({id:4,tventa:"RESTAURANTE"});
+              tVentaV.push({id:3,tventa:"FORANEO"});
+              tVentaV.push({id:1,tventa:"DETALLE"});
+              for(var hh=0;hh<tventa.length; hh++){
+                tVentaV.push({id:tventa[hh].id,tventa:tventa[hh].nColumna});
+                }
+              for(var hh=0;hh<tVentaV.length; hh++){ // tipo de venta
+                  for(var hh2=0;hh2<rutasEspecificas.length; hh2++){ // lista de vendedores
+                    if(t_ventasEspecificas[hh2]==tVentaV[hh].id){ // filtro de vendedores activos segun el tipo de venta      
+                      for(var i=0; i < arrGlobalRuta.length; i++) { // lista de ruras
+                        if(arrGlobalRuta[i].id==rutasEspecificas[hh2]){ // busca la lista del vendedor
+                          ruta3=arrGlobalRuta[i].nombre;
+                          rutasLocal=rutasEspecificas[hh2];
+                        }// cierra busca la lista del vendedor
+                      } // cierra lista de rutas
+                     identificacion += '<tr style="font-size:12px; " class="seleccionar text-center"  ><td >' + (ruta3).substring(0,7)  + '</td><td >'+tVentaV[hh].tventa+'</td> <td >' + nombreEspecificas[hh2] + '</td>';
+                      identificacionP += '<tr style="font-size:12px; " class="text-center" ><td><strong> ' + (ruta3).substring(0,10)  + '</strong></td><td ><strong>'+tVentaV[hh].tventa+'</strong></td> <td ><strong>' +  nombreEspecificas[hh2] + '</strong></td>';
+                      existencia = true
+                        var creditos = 0
+                        var bonificacion = 0
+                        var noVenta = 0
+                        var venta = 0
+                        for(var d=1;d<7; d++){ 
+                          var carga=cargaSemana.find(carga => carga.ruta==rutasEspecificas[hh2] && carga.dsfc == d);
+                              if (carga!=undefined) {
+                                creditos = parseFloat(carga.creditos)
+                                bonificacion += parseFloat(carga.otros)
+                                noVenta += parseFloat(carga.v_mercancia)
+                                venta += parseFloat(carga.t_venta_merca)
+                              }
+                          }
+                         
+                          noVenta = (noVenta-venta)*100/noVenta
+                          var semCat
+                          var totalesCat = 0
+                          var desa = 1
+                      for(var d=0;d<categoria.length; d++){
+                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
+                        if(SumaCategoriasT!=undefined){
+                          semCat += '<td  class="grisclaro '+categoriadesa[d]+'  tipo'+superCategoria[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          tVentaVTotal[d] += parseFloat(totalesCat)
+                          totalesCat = 0
+                          
+                        }else{
+                          semCat += buscarVentaSemanalP(semanaW,rutasEspecificas[hh2],lista,categoria[d],categoriadesa[d]);
+                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
+                          if(SumaCategorias!=undefined){
+                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
+                          var pes = 0
+                          if(pesaje!=undefined){pes = pesaje.pesaje}
+                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
+                           }
+                        }
+                      }
+                      identificacion += '<td class="text-right">$'+formatoMoneda1(creditos) +'</td><td class="text-right">$'+ formatoMoneda1(bonificacion) +'</td><td class="text-right">%'+ formatoMoneda1(noVenta) +'</td><td class="text-right">$'+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += '<td class="text-right">$'+formatoMoneda1(creditos) +'</td><td class="text-right">$'+ formatoMoneda1(bonificacion) +'</td><td class="text-right">%'+ formatoMoneda1(noVenta) +'</td><td class="text-right">$'+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      semCat=""
+                      credsubT += creditos 
+                      bonsubT += bonificacion
+                      ventasubT += venta
+////////////////// ojo totales ////////////////////
+                    } // vendedores segun el tipo de venta
+
+
+                  } // cierra lista de vendedores
+                  if(existencia){
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td class="'+categoriadesa[f]+' tipo'+superCategoria[f]+'">  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr  class="text-center" style="background:black; font-size:12px;"><td>TOTAL</td><td></td> <td>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</td><td class="text-right"> $'+formatoMoneda1(credsubT)+'</td><td  class="text-right">$'+formatoMoneda1(bonsubT)+'</td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
+                      identificacionP +='</tr><tr class="grisclaro text-center" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-right" ><strong>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</strong></td><td></td><td  class="text-right"> $'+formatoMoneda1(credsubT)+'</td><td  class="text-right">$'+formatoMoneda1(bonsubT)+'</td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
+                      totalValor='';
+                      credTotal += credsubT  
+                      bonTotal += bonsubT 
+                      ventaTotal += ventasubT
+                      }
+                      existencia = false
+                      credsubT = 0
+                      bonsubT =0
+                      ventasubT =0 
+              } // cierra tipo de venta
+              // otras ventas
+               var ventaO = 0
+               existencia = false
+              var otrasVentas = arrGlobalEmpleados.filter( otros => otros.km == 1 )
+              for(var hh2=0;hh2<otrasVentas.length; hh2++){
+                  identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >PEDIDOS</td> <td >' +  ((otrasVentas[hh2].nombre_Emple).split(" ").join("_")).substring(0,11) + '</td> ';
+                  identificacionP+= '<tr style="font-size:12px; " class="text-center" ><td></td><td >PEDIDOS</td> <td ><strong>' +  ((otrasVentas[hh2].nombre_Emple).split(" ").join("_")).substring(0,11) + '</strong></td>';
+                    existencia = true
+                      var semCat
+                      var totalesCat = 0
+                     var des = 1
+                      for(var d=0;d<categoria.length; d++){
+                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
+                        if(SumaCategoriasT!=undefined){
+                          semCat += '<td class="grisclaro '+categoriadesa[d]+'  tipo'+superCategoria[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          tVentaVTotal[d] += parseFloat(totalesCat)
+                          totalesCat = 0
+                        }else{
+                          semCat += buscarVentaSemanalPOtros(semanaW,otrasVentas[hh2].id,lista,categoria[d],categoriadesa[d]);
+                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                          ventasubT += parseFloat(VOtrosTotal)
+                          ventaO += parseFloat(VOtrosTotal)
+                          VOtrosTotal = 0
+                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
+                          if(SumaCategorias!=undefined){
+                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
+                          var pes = 0
+                          if(pesaje!=undefined){pes = pesaje.pesaje}
+                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
+                           }
+                        }
+                      }
+                      identificacion += '<td></td><td></td><td></td><td>$ '+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += '<td></td><td></td><td></td><td>$ '+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      semCat=""
+                      ventaO = 0
+              }// termina otras ventas
+              if(existencia){
+               for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td class="'+categoriadesa[f]+'  tipo'+superCategoria[f]+'">  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr style="background:black; font-size:12px;" class="grisclaro text-center" ><td>TOTAL</td><td></td> <td>PEDIDOS</td><td> </td><td></td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
+                      identificacionP +='</tr><tr style="font-size:12px;" class="grisclaro text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td><td  class="text-right"></td><td  class="text-right"></td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
+                      totalValor='';
+                      credTotal += credsubT  
+                      bonTotal += bonsubT 
+                      ventaTotal += ventasubT
+                      }
+                      existencia = false
+                      credsubT = 0
+                      bonsubT =0
+                      ventasubT =0 
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td class="'+categoriadesa[f]+'  tipo'+superCategoria[f]+'"><strong>  '+formatoMoneda1(tVentaVTotales[f])+'</strong></td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;" class="text-center" ><td><strong>TOTALES</strong></td> <td></td><td></td><td class="text-right"> <strong>$'+formatoMoneda1(credTotal)+'</strong></td><td class="text-right"><strong>$'+formatoMoneda1(bonTotal)+'</strong></td><td> </td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+'</tr>';
+                      identificacionP +='</tr><tr style="font-size:12px;   " class="grisclaro text-center" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td><td class="text-right"><strong>$'+formatoMoneda1(credTotal)+'</strong></td><td class="text-right"><strong>$'+formatoMoneda1(bonTotal)+'</strong></td><td> </td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+' </tr>';
+                      totalValor='';
+                      //Oculta
+                  for(var f=0;f<categoriadesa.length; f++){
+                    if(tVentaVTotales[f]==0){
+                      // $("."+categoriadesa[f]+"").hide(); // no aplica por la merma y degustacion que no esta inclueda
+                    }
+                  }
+                      //Oculta
+                   // Merma   
+                       var mermaSemanal = arrGlobalEmpleados.filter( otros => otros.km == 1 )
+                      identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >MERMA</td> <td ></td> ';
+                      identificacionP+= '<tr style="font-size:12px; " class="text-center" ><td></td><td >MERMA</td> <td ><strong></strong></td>';
+                      var semCat
+                      var totalesCat = 0
+                     ventaO = 0
+                      for(var d=0;d<categoria.length; d++){
+                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
+                        if(SumaCategoriasT!=undefined){
+                          semCat += '<td class="grisclaro '+categoriadesa[d]+'  tipo'+superCategoria[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          tVentaVTotal[d] += parseFloat(totalesCat)
+                          totalesCat = 0
+                        }else{
+                          semCat += buscarVentaSemanalPMerma(semanaW,"F",lista,categoria[d],categoriadesa[d]);
+                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                          ventasubT += parseFloat(VOtrosTotal)
+                          ventaO += parseFloat(VOtrosTotal)
+                          VOtrosTotal = 0
+                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
+                          if(SumaCategorias!=undefined){
+                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
+                          var pes = 0
+                          if(pesaje!=undefined){pes = pesaje.pesaje}
+                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
+                           }
+                        }
+                      }
+                      identificacion += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      identificacionP += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      semCat=""
+                      ventaO = 0
+              // termina Merma
+               // Degustacion   
+                       var mermaSemanal = arrGlobalEmpleados.filter( otros => otros.km == 1 )
+                      identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >DEGUSTA</td> <td ></td> ';
+                      identificacionP+= '<tr style="font-size:12px; " class="text-center" ><td></td><td >DEGUSTA</td> <td ><strong></strong></td>';
+                      var semCat
+                      var totalesCat = 0
+                     ventaO = 0
+                      for(var d=0;d<categoria.length; d++){
+                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
+                        if(SumaCategoriasT!=undefined){
+                          semCat += '<td class="grisclaro '+categoriadesa[d]+'  tipo'+superCategoria[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          tVentaVTotal[d] += parseFloat(totalesCat)
+                          totalesCat = 0
+                        }else{
+                          semCat += buscarVentaSemanalPDegustacion(semanaW,"F",lista,categoria[d],categoriadesa[d]);
+                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                          ventasubT += parseFloat(VOtrosTotal)
+                          ventaO += parseFloat(VOtrosTotal)
+                          VOtrosTotal = 0
+                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
+                          if(SumaCategorias!=undefined){
+                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
+                          var pes = 0
+                          if(pesaje!=undefined){pes = pesaje.pesaje}
+                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
+                           }
+                        }
+                      }
+                      identificacion += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; 
+                      identificacionP += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>';
+                      semCat=""
+                      ventaO = 0
+              // termina Merma
+                  html = identificacion;
+                  htmlP = identificacionP;
+               $('.titulo2').html(titulos); 
+               $('.titulo2P').html(titulosP); 
+               $('.contCataMayoreo').html(html); 
+               $('.contCataMayoreoP').html(htmlP); 
+        document.getElementById('loader').style.display = 'none';
+
+}
+
+function loadNominaDiariaSemanal(lista){ 
+  var existencia = false
+  var credsubT = 0
+  var credTotal = 0
+  var bonsubT = 0
+  var bonTotal = 0
+  var ventasubT = 0
+  var ventaTotal = 0
+  var categoria = []
+  var categoriadesa = []
+  var desapareceCheck = ''
+var desaparece = 1
+var cargasList =cargasNomina.reduce(function(a, e) {
+  let estKey = (e['ruta']); 
+  (a[estKey] ? a[estKey] : (a[estKey] = null || [])).push(e);
+  return a;
+}, {});
+ productosList =lista.reduce(function(a, e) {
+  let estKey = (e['idProducto']); 
+  (a[estKey] ? a[estKey] : (a[estKey] = null || [])).push(e);
+  return a;
+}, {});
+var tituloU=""
+var tituloUP=""
+//alert(Object.keys(cargasList).length)
+var addCategoria = false;
+    for(var f=0;f<arrGlobalCategoria.length; f++){
+      addCategoria = false;
+   var titulo2=""
+   var titulo2P=""
+var tipoCat = 0;
+      for(var h=0;h<Object.keys(productosList).length; h++){
+    var inventario=arrGlobalInventario.find(inv => inv.idInventario==Object.keys(productosList)[h]);
+   if (inventario!=undefined) {
+    if(arrGlobalCategoria[f].id==inventario.tipoP){
+      if($('.todo').is(':checked')){
+        if(arrGlobalCategoria[f].descripcion == 1){
+        titulo2='<th id="0" class="letras text-center  0" >'+arrGlobalCategoria[f].nombre+'</th> '
         titulo2P='<th id="0" colspan="1" class=" text-center  0" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
         addCategoria = true;
       }else{
@@ -18235,9 +18636,9 @@ var tipoCat = 0;
               // termina Merma
                   html = identificacion;
                   htmlP = identificacionP;
-               $('.titulo2').html(titulos); 
+               $('.tituloNomina').html(titulos); 
                $('.titulo2P').html(titulosP); 
-               $('.contCataMayoreo').html(html); 
+               $('.contCataMayoreoN').html(html); 
                $('.contCataMayoreoP').html(htmlP); 
         document.getElementById('loader').style.display = 'none';
 
@@ -29157,6 +29558,14 @@ function loadVentasp4(lista){
 
 
 }
+var cargasNomina
+function loadVentaspNomina(lista){
+      cargasNomina = lista;
+       var json = {where:{semana:semanaW}}
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadNominaDiariaSemanal);
+
+}
+
 var cargaSemana;
 function loadVentasCargas(lista){
                   cargaSemana = lista;
@@ -30693,6 +31102,17 @@ function addPagare(){
             }
               getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare);
 }
+function addEmpresa(){
+          var nombre = $(".nombreEmpresa").val();
+            if(nombre!= ""){
+          var json = {nombre: nombre};
+              addRegistro(json, 'super_categoria', loadEmpresas);
+            }else{
+              $('#modal .textModal').html('FALTAN DATOS. '); 
+              $('#modal').modal('show');
+            }
+              getFunction('super_categoria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpresas);
+}limpiar()
 
 function addVendedormodal(){
   limpiar();
@@ -32739,7 +33159,23 @@ getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar má
 getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare);
 limpiar();
 }
+function delEmpresa(){
+  var nombre = $(".nombreEmpresa").val();
+  if(nombre!= ""){
+  delRegistro(idGlobal, 'super_categoria', loadEmpresas);
+getFunction('super_categoria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpresas);
 
+}else {
+   $('#modal .textModal').html('Seleccione de la tabla el usuario a eliminar.'); 
+      $('#modal').modal('show');
+ 
+}
+$('#modalEmpresas .eliminarP').html('');
+getFunction('super_categoria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpresas);
+limpiar();
+    
+
+}
 function delMantenimiento1(){
   
   var descripcion = $(".descripcion").val();
@@ -35533,6 +35969,16 @@ function selectPagare(id){
     }
   }
 }
+function selectEmpresa(id){
+  idGlobal = id;
+  var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="delEmpresa()">ELIMINAR</button>';
+  for(var a=0; a<arrGlobalEmpresa.length; a++){
+    if(arrGlobalEmpresa[a].id == id){
+      $(".nombreEmpresa ").val(arrGlobalEmpresa[a].nombre);
+    $('#modalEmpresas .eliminarP').html(eliminau);
+    }
+  }
+}
 function selectRuta(id){
 var guardau=' <button type="button" class="btn usuario1 modificar" onclick="upRuta()">GUARDAR</button>';
 var eliminau = '<button type="button" class="btn usuario1 eliminar" onclick="delRuta()">ELIMINAR</button>';
@@ -37380,6 +37826,9 @@ function closeModalPagare(){
 function closeModalRemision(){
   $('#modalRemision').modal('hide');
 }
+function closeModalEmpresas(){
+  $('#modalEmpresas').modal('hide');
+}
 function click_empleados(){
    $('.barraIzq').html('');
   $('.btn-nav').removeClass('hidden');
@@ -37664,6 +38113,11 @@ $('.imprimir').html('');
 function click_Pagare(){
 $('#modalPagare').modal('show');
               getFunction('pagares', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadPagare);
+
+}
+function click_Empresas(){
+$('#modalEmpresas').modal('show');
+              getFunction('super_categoria', "Ocurrio un error al cargar el formulario, reintentar más tarde.", loadEmpresas);
 
 }
 function click_Foro(){
@@ -38216,6 +38670,42 @@ $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>'
       executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaPagoFijoNomina);
   }
 }
+function nominaTotal(){
+    $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirNomina()">  ');
+      $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNomina()">  ');
+     
+//      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNomina()"  >Descargar Excel</button>');
+
+  document.getElementById('loader').style.display = 'block';
+ saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
+          scv=noSemana;
+    
+var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+  if(sfc != ""){
+
+$('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>');
+      var json = {where:{semana:semanaW}}
+ //     executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspNomina);
+    }
+}
 function closeModalConceoto(){
   $("#modalConcepto").modal("hide");
   }
@@ -38416,6 +38906,9 @@ function click_nomina(){
             COMISIÓN  
             </li> <span class="border border-success"></span> 
             <li role="presentation" class="nav-item impre text-center seleccionar2 recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">
+            NÓMINA
+            </li>  <span class="border border-primary"></span> 
+             <li role="presentation" class="nav-item impre text-center seleccionar2 recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nominaTotal(); ">
             NÓMINA
             </li>  <span class="border border-primary"></span> 
             <li role="presentation" class="nav-item impre text-center seleccionar2 productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">
@@ -39335,7 +39828,8 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
 function ventaDiariaCategorias(){   
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
   scv=noSemana;
-  $('.tituloRespOptions').html('<div class="impre col-md-12 row"><div  class="impre col-md-12"><input type="radio" checked value="1" class="todo"  name="productos" onclick=""><strong>TODO</strong></div ><br><div   class="impre col-md-12"><input type="radio" value="1" class="sumas"  name="productos" onclick=""><strong>SOLO SUMAS</strong></div><br><div class="impre col-md-12"><input type="radio" value="1" class="resto"  name="productos" onclick=""><strong>RESTO</strong></div><br></div><div id="checks" class="checks row col-md-12 impre letras" ></div>')
+  //$('.tituloRespOptions').html('<div class="impre col-md-12 row"><div  class="impre col-md-12"><input type="radio" checked value="1" class="todo"  name="productos" onclick=""><strong>TODO</strong></div ><br><div   class="impre col-md-12"><input type="radio" value="1" class="sumas"  name="productos" onclick=""><strong>SOLO SUMAS</strong></div><br><div class="impre col-md-12"><input type="radio" value="1" class="resto"  name="productos" onclick=""><strong>RESTO</strong></div><br></div><div id="checks" class="checks row col-md-12 impre letras" ></div>')
+  $('.tituloRespOptions').html('<div id="checks" class="checks row col-md-12 impre letras" ></div>')
   $('.tituloResp').html('<div class=" impre col-md-12 form-group row"><input class="form-control col-md-3 semanaVD" type="week" value="" id=""><button class="btn btn-dark form-control col-md-3" onClick="click_buscarVCategoriasSemanal()">BUSCAR</button><div class="col-md-3"></div></div>');
   $('.iconoImprimir').html('');
   $('.iconoExcel').html('');

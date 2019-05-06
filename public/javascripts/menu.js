@@ -18311,15 +18311,131 @@ var tipoCat = 0;
 
 }
 
-function loadNominaDiariaSemanal(lista){ 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function buscarVentaSemanalPNomina(semanaW,rutasV,lista,idCategoria,desa,t_ventaNom){
+//console.log(semanaW+" -- "+rutasV+" ++ "+10+" + + "+idCategoria)
+  var clase
+  var comision
+    var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == idCategoria);
+ if(SumaCategorias!=undefined){
+
+if(SumaCategorias.descripcion==1){
+ clase = '<td class="0 tipo'+SumaCategorias.idCategoria+'">'
+  }
+  if(SumaCategorias.descripcion==2){
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
+
+  }
+  if(SumaCategorias.descripcion==3){
+ clase = '<td class="grisclaro '+desa+' tipo'+SumaCategorias.idCategoria+'" style="color:black">'
+  }
+ }
+
+   var protuctPVal=0
+   tipoVentaTotal = 0
+var product = clase+' </td>'
+  
+var inventario=arrGlobalInventario.filter (inv => inv.tipoP==idCategoria);
+    if (inventario!=undefined) {
+      for(var h=0;h<inventario.length; h++){
+      if(t_ventaNom<=4){
+          if(t_ventaNom==2){
+            comision = inventario[h].n1
+          }
+          if(t_ventaNom==4){
+            comision = inventario[h].n2
+          }
+          if(t_ventaNom==3){
+            comision = inventario[h].n3
+          }
+          if(t_ventaNom==1){
+            comision = inventario[h].n4
+          }
+      }else{
+var comT_venta = tventaProducto.find(com => com.idProduct==inventario[h].idInventario&&com.n1==t_ventaNom)
+      if(comT_venta!=undefined){
+        comision = comT_venta.nProduct
+      }
+      }
+      var productoVenta = lista.filter(producto => producto.semana == semanaW && producto.ruta == rutasV && producto.idProducto == inventario[h].idInventario&& producto.merma==0);
+      for(var i=0; i < productoVenta.length; i++) {
+            if (productoVenta[i].medida==1) {
+              //console.log(productoVenta[i].idProducto)
+                var isNumber=((parseFloat(productoVenta[i].peso)-parseFloat(productoVenta[i].pesov))*parseFloat(inventario[h].proporcion))*parseFloat(comision);
+                    if(isNaN(isNumber)){
+                      protuctPVal+=0;
+                    }else{
+                      protuctPVal+=((parseFloat(productoVenta[i].peso)-parseFloat(productoVenta[i].pesov))*parseFloat(inventario[h].proporcion))*parseFloat(comision);
+                      product=clase+'$'+formatoMoneda1(protuctPVal)+'</td>';
+                    }
+                }else{
+                  var isNumber=((parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion))*parseFloat(comision);
+                      if(isNaN(isNumber)){
+                          protuctPVal+=0;
+                      }else{
+                        protuctPVal+=((parseFloat(productoVenta[i].piezas)-parseFloat(productoVenta[i].piezasv))*parseFloat(inventario[h].proporcion))*parseFloat(comision);
+                        product=clase+'$'+formatoMoneda1(protuctPVal)+'</td>';
+                      }
+                    }
+                  } 
+    }
+  }
+  tipoVentaTotal = parseFloat(protuctPVal).toFixed(2)
+  //console.log(product)
+  return product;
+}
+
+
+function verTotalesVista(value){
+  if($('#IVista').is(':checked')){
+    document.getElementById('totalesCa').style.display = 'block';
+  }else{
+        document.getElementById('totalesCa').style.display = 'none';
+  }
+        
+
+
+}
+  function verEmpresas(id){
+  if($('#E'+id+'').is(':checked')){
+    $(".tipo"+id+"").show();
+  }else{
+    $(".tipo"+id+"").hide();
+  }
+} 
+     function verTotales(columa){
+
+  if($('#I'+columa+'').is(':checked')){
+    $("."+columa+"").show();
+  }else{
+    $("."+columa+"").hide();
+  }
+}             
+
+var productosList
+function loadVentaDiariaSemanalNonima(lista){ 
   var existencia = false
   var credsubT = 0
   var credTotal = 0
+  var infonavitNomina = 0
+  var ahorroNomina = 0
+  var retNomina = 0
+  var faltanteNomina = 0
+  var mermaNomina = 0
+  var pagarNomina = 0
+  var infonavitNominaT = 0
+  var ahorroNominaT = 0
+  var retNominaT = 0
+  var faltanteNominaT = 0
+  var mermaNominaT = 0
+  var pagarNominaT = 0
   var bonsubT = 0
   var bonTotal = 0
   var ventasubT = 0
   var ventaTotal = 0
   var categoria = []
+  var superCategoria = []
   var categoriadesa = []
   var desapareceCheck = ''
 var desaparece = 1
@@ -18348,27 +18464,29 @@ var tipoCat = 0;
     if(arrGlobalCategoria[f].id==inventario.tipoP){
       if($('.todo').is(':checked')){
         if(arrGlobalCategoria[f].descripcion == 1){
-        titulo2='<th id="0" class="letras text-center  0" >'+arrGlobalCategoria[f].nombre+'</th> '
-        titulo2P='<th id="0" colspan="1" class=" text-center  0" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+          titulo2='<th id="0" class="letras text-center  0 tipo'+arrGlobalCategoria[f].idCategoria+'" >'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th id="0" colspan="1" class=" text-center  0 tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
         addCategoria = true;
       }else{
-        titulo2='<th id="'+desaparece+'" class="letras text-center  '+desaparece+'" >'+arrGlobalCategoria[f].nombre+'</th> '
-        titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center  '+desaparece+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+        titulo2='<th id="'+desaparece+'" class="letras text-center  '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" >'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center  '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
         addCategoria = true;
       }
         
         //categoriadesa.push(desaparece)
       }
-      if((arrGlobalCategoria[f].descripcion == 2 || arrGlobalCategoria[f].descripcion == 3 ) && $('.sumas').is(':checked')){
-        titulo2='<th id="'+desaparece+'" class="letras text-center  '+desaparece+'" >'+arrGlobalCategoria[f].nombre+'</th> '
-        titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center  '+desaparece+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+      //if((arrGlobalCategoria[f].descripcion == 2 || arrGlobalCategoria[f].descripcion == 3 ) && $('.sumas').is(':checked')){
+      if(arrGlobalCategoria[f].descripcion == 2 || arrGlobalCategoria[f].descripcion == 3 ){
+        titulo2='<th id="'+desaparece+'" class="letras text-center  '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" >'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center  '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
         addCategoria = true;
         //categoriadesa.push(desaparece)
 
       }
-      if(arrGlobalCategoria[f].descripcion == 1 && $('.resto').is(':checked')){
-        titulo2='<th  id="0"  class="letras text-center">'+arrGlobalCategoria[f].nombre+'</th> '
-        titulo2P='<th  id="0"  colspan="1" class=" text-center" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+      //if(arrGlobalCategoria[f].descripcion == 1 && $('.resto').is(':checked')){
+      if(arrGlobalCategoria[f].descripcion == 1){
+        titulo2='<th  id="0"  class="letras text-center 0 tipo'+arrGlobalCategoria[f].idCategoria+'">'+arrGlobalCategoria[f].nombre+'</th> '
+        titulo2P='<th  id="0"  colspan="1" class=" text-center 0 tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
         addCategoria = true;
         //categoriadesa.push(0)
 
@@ -18379,16 +18497,18 @@ var tipoCat = 0;
       }
      
 
-      if(arrGlobalCategoria[f].descripcion==3 && ($('.todo').is(':checked') || $('.sumas').is(':checked'))){
+      //if(arrGlobalCategoria[f].descripcion==3 && ($('.todo').is(':checked') || $('.sumas').is(':checked'))){
+      if(arrGlobalCategoria[f].descripcion==3 ){
         addCategoria = true;
-       desapareceCheck += '<label><input type="checkbox" id="I'+desaparece+'"  checked value="'+desaparece+'" onchange="verTotales(value)"> '+arrGlobalCategoria[f].nombre+'.   </label>' 
+       desapareceCheck += '<label><input type="checkbox" id="I'+desaparece+'"  checked value="'+desaparece+'" onchange="verTotales(value)"> '+arrGlobalCategoria[f].nombre+'...   </label>' 
         //categoriadesa.push(desaparece)
-      titulo2='<th id="'+desaparece+'" class="letras text-center '+desaparece+'" style="">'+arrGlobalCategoria[f].nombre+'</th> '
-      titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center '+desaparece+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
+      titulo2='<th id="'+desaparece+'" class="letras text-center '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" style="">'+arrGlobalCategoria[f].nombre+'</th> '
+      titulo2P='<th id="'+desaparece+'" colspan="1" class=" text-center '+desaparece+' tipo'+arrGlobalCategoria[f].idCategoria+'" style="width: 70px; ">'+arrGlobalCategoria[f].nombre+'</th>'
       
       }
       if(addCategoria){
         categoria.push(arrGlobalCategoria[f].id)
+        superCategoria.push(arrGlobalCategoria[f].idCategoria)
           if(arrGlobalCategoria[f].descripcion == 1){categoriadesa.push(0);}
           if(arrGlobalCategoria[f].descripcion == 2){categoriadesa.push(desaparece); }
           if(arrGlobalCategoria[f].descripcion == 3){categoriadesa.push(desaparece); desaparece ++}
@@ -18396,7 +18516,13 @@ var tipoCat = 0;
       tituloU+=titulo2
       tituloUP+=titulo2P
     }
-    $('#checks').html(desapareceCheck)
+    var empresasT = ''
+    for(var e=0;e<arrGlobalEmpresa.length; e++){
+       empresasT += '<label><input type="checkbox" id="E'+arrGlobalEmpresa[e].id+'"  checked value="'+arrGlobalEmpresa[e].id+'" onchange="verEmpresas(value)"> '+arrGlobalEmpresa[e].nombre+'...   </label>' 
+       
+    }
+    empresasT += '<div class="col-md-12"><label style="color:yellow"> <input type="checkbox" id="IVista"  value="0" onchange="verTotalesVista(value)">MAS OPCIONES DE BUSQUEDA </label></div><div id="totalesCa" style="display:none"><div class="col-md-12">TOTALES</div> '+desapareceCheck+'<div class="col-md-12">RESTO</div><label><input type="checkbox" id="I0"  checked value="0" onchange="verTotales(value)">RESTO</label></div>'
+    $('#checks').html(empresasT)
 
 
     var rutasEspecificas = []
@@ -18405,7 +18531,7 @@ var tipoCat = 0;
      for(var h=0;h<Object.keys(cargasList).length; h++){
       if(Object.keys(cargasList)[h] != "F"){
         rutasEspecificas.push(Object.keys(cargasList)[h])
-        var cargasVentas = cargaSemana.find(rutaEs => rutaEs.ruta == Object.keys(cargasList)[h])
+        var cargasVentas = cargasNomina.find(rutaEs => rutaEs.ruta == Object.keys(cargasList)[h])
         if(cargasVentas != undefined){
           t_ventasEspecificas.push(cargasVentas.tipo)
           nombreEspecificas.push(((cargasVentas.nombre).split(" ").join("_")).substring(0,11))
@@ -18413,8 +18539,8 @@ var tipoCat = 0;
         }
       }
       
-         var titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras" style="width: 150px; ">CRÉDITOS</th> <th class="letras">BON </th> <th class="letras text-center">PORCENTAJE NO VENTA</th> <th class="letras">VENTA</th>'+tituloU;
-         var titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">CRÉDITOS</th> <th colspan="1" class=" text-center" style="width: 70px; ">BON</th> <th colspan="1" class=" text-center" style="width: 70px; ">% NO VENTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">VENTA</th>'+tituloUP;
+         var titulos=' <th class="letras">RUTA</th> <th class="letras">TIPO</th> <th class="letras" style="width: 70px; ">NOMBRE</th> <th class="letras">VENTA</th>'+tituloU+' <th class="text-center">MERMA</th><th  class="text-center">RET/ML</th><th  class="text-center">FONDO DE AHORRO</th><th class="text-center">INFONAVIT</th><th  class="text-center">FALTANTE</th><th>TOTAL</th>';
+         var titulosP=' <th colspan="1" class=" text-center" style="width: 50px; ">RUTA</th> <th colspan="1" class=" text-center" style="width: 70px; ">TIPO</th> <th colspan="1" class=" text-center" style="width: 70px; ">NOMBRE</th> <th colspan="1" class=" text-center" style="width: 70px; ">VENTA</th>'+tituloUP+' <th class="text-center">MERMA</th><th  class="text-center">RET/ML</th><th  class="text-center">FONDO DE AHORRO</th><th class="text-center">INFONAVIT</th><th  class="text-center">FALTANTE</th><th>TOTAL</th>';
           var html = '';
           var htmlP = '';
           var rutasLocal = '';
@@ -18449,117 +18575,112 @@ var tipoCat = 0;
                         var bonificacion = 0
                         var noVenta = 0
                         var venta = 0
+                        var infonavit = 0
+                        var ahorro = 0
+                        var ret = 0
+                        var faltante = 0
+                        var merma = 0
                         for(var d=1;d<7; d++){ 
-                          var carga=cargaSemana.find(carga => carga.ruta==rutasEspecificas[hh2] && carga.dsfc == d);
+                          var carga=cargasNomina.filter(carga => carga.ruta==rutasEspecificas[hh2] && carga.dsfc == d);
                               if (carga!=undefined) {
-                                creditos = parseFloat(carga.creditos)
-                                bonificacion += parseFloat(carga.otros)
-                                noVenta += parseFloat(carga.v_mercancia)
-                                venta += parseFloat(carga.t_venta_merca)
+                                for(var n=0; n < carga.length; n++) { // lista de ruras
+
+                                creditos = parseFloat(carga[n].creditos)
+                                bonificacion += parseFloat(carga[n].otros)
+                                noVenta += parseFloat(carga[n].v_mercancia)
+                                venta += parseFloat(carga[n].t_venta_merca)
+                                faltante = parseFloat(carga[n].cobrado)
+                                merma = parseFloat(carga[n].n5)
+                                var empleado = arrGlobalEmpleados.find(nombre => (nombre.nombre_Emple+' '+nombre.paterno_Emple+' '+nombre.materno_Emple)==carga[n].nombre)
+                                if(empleado!=undefined){
+                                  infonavit = empleado.infonavit
+                                  ahorro = empleado.km
+                                  ret = empleado.n1
+                                }
                               }
+                            }
                           }
                          
                           noVenta = (noVenta-venta)*100/noVenta
                           var semCat
                           var totalesCat = 0
                           var desa = 1
+                          var ventaGeneralNomina = 0
                       for(var d=0;d<categoria.length; d++){
                         var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
                         if(SumaCategoriasT!=undefined){
-                          semCat += '<td  class="grisclaro '+categoriadesa[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
+                          semCat += '<td  class="grisclaro '+categoriadesa[d]+'  tipo'+superCategoria[d]+'" style="color:black"><strong>$'+formatoMoneda1(totalesCat)+'</strong></td>'
                           tVentaVTotal[d] += parseFloat(totalesCat)
                           totalesCat = 0
                           
                         }else{
-                          semCat += buscarVentaSemanalP(semanaW,rutasEspecificas[hh2],lista,categoria[d],categoriadesa[d]);
+                          semCat += buscarVentaSemanalPNomina(semanaW,rutasEspecificas[hh2],lista,categoria[d],categoriadesa[d],tVentaV[hh].id);
                           tVentaVTotal[d] += parseFloat(tipoVentaTotal)
+                          ventaGeneralNomina+= parseFloat(tipoVentaTotal)
                         var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
                           if(SumaCategorias!=undefined){
                         var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
                           var pes = 0
                           if(pesaje!=undefined){pes = pesaje.pesaje}
-                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
+                          totalesCat += parseFloat(tipoVentaTotal)
                            }
                         }
                       }
-                      identificacion += '<td class="text-right">$'+formatoMoneda1(creditos) +'</td><td class="text-right">$'+ formatoMoneda1(bonificacion) +'</td><td class="text-right">%'+ formatoMoneda1(noVenta) +'</td><td class="text-right">$'+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
-                      identificacionP += '<td class="text-right">$'+formatoMoneda1(creditos) +'</td><td class="text-right">$'+ formatoMoneda1(bonificacion) +'</td><td class="text-right">%'+ formatoMoneda1(noVenta) +'</td><td class="text-right">$'+ formatoMoneda1(venta) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
+                      var pagar = parseFloat(ventaGeneralNomina) - parseFloat(infonavit)- parseFloat(ahorro)- parseFloat(ret)- parseFloat(merma)- parseFloat(faltante)
+                      identificacion += '<td class="text-right">$'+ formatoMoneda1(ventaGeneralNomina) +'</td>' +semCat+' <td class="text-center">$'+formatoMoneda1(merma)+'</td><td  class="text-center">$'+formatoMoneda1(ret)+'</td><td  class="text-center">$'+formatoMoneda1(ahorro)+'</td><td class="text-center">$'+formatoMoneda1(infonavit)+'</td><td  class="text-center">$'+formatoMoneda1(faltante)+'</td><td>$'+formatoMoneda1(pagar)+'</td></tr>'; 
+                      identificacionP += '<td class="text-right">$'+ formatoMoneda1(ventaGeneralNomina) +'</td>' +semCat+' <td class="text-center">$'+formatoMoneda1(merma)+'</td><td  class="text-center">$'+formatoMoneda1(ret)+'</td><td  class="text-center">$'+formatoMoneda1(ahorro)+'</td><td class="text-center">$'+formatoMoneda1(infonavit)+'</td><td  class="text-center">$'+formatoMoneda1(faltante)+'</td><td>$'+formatoMoneda1(pagar)+'</td></tr>';
                       semCat=""
                       credsubT += creditos 
                       bonsubT += bonificacion
-                      ventasubT += venta
+                      ventasubT += ventaGeneralNomina
+                      infonavitNomina +=parseFloat(infonavit)
+                      ahorroNomina += parseFloat(ahorro)
+                      retNomina += parseFloat(ret)
+                      faltanteNomina += parseFloat(faltante)
+                      mermaNomina += parseFloat(merma)
+                      pagarNomina+=parseFloat(pagar)
+                      ventaGeneralNomina = 0
 ////////////////// ojo totales ////////////////////
                     } // vendedores segun el tipo de venta
 
 
                   } // cierra lista de vendedores
                   if(existencia){
-                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td class="'+categoriadesa[f]+'">  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
-                      identificacion +='</tr><tr  class="text-center" style="background:black; font-size:12px;"><td>TOTAL</td><td></td> <td>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</td><td class="text-right"> $'+formatoMoneda1(credsubT)+'</td><td  class="text-right">$'+formatoMoneda1(bonsubT)+'</td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
-                      identificacionP +='</tr><tr class="grisclaro text-center" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-right" ><strong>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</strong></td><td></td><td  class="text-right"> $'+formatoMoneda1(credsubT)+'</td><td  class="text-right">$'+formatoMoneda1(bonsubT)+'</td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
+                  for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td class="'+categoriadesa[f]+' tipo'+superCategoria[f]+'">  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
+                      identificacion +='</tr><tr  class="text-center" style="background:black; font-size:12px;"><td>TOTAL</td><td></td> <td>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' <td class="text-center">$'+formatoMoneda1(mermaNomina)+'</td><td  class="text-center">$'+formatoMoneda1(retNomina)+'</td><td  class="text-center">$'+formatoMoneda1(ahorroNomina)+'</td><td class="text-center">$'+formatoMoneda1(infonavitNomina)+'</td><td  class="text-center">$'+formatoMoneda1(faltanteNomina)+'</td><td>$'+formatoMoneda1(pagarNomina)+'</td></tr>';
+                      identificacionP +='</tr><tr class="grisclaro text-center" style="font-size:12px;   " class=" text-right" ><td><strong>TOTAL</strong></td> <td class=" text-right" ><strong>'+((tVentaV[hh].tventa).split(" ").join("_")).substring(0,11)+'</strong></td><td></td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' <td class="text-center">$'+formatoMoneda1(mermaNomina)+'</td><td  class="text-center">$'+formatoMoneda1(retNomina)+'</td><td  class="text-center">$'+formatoMoneda1(ahorroNomina)+'</td><td class="text-center">$'+formatoMoneda1(infonavitNomina)+'</td><td  class="text-center">$'+formatoMoneda1(faltanteNomina)+'</td><td>$'+formatoMoneda1(pagarNomina)+'</td></tr>';
                       totalValor='';
                       credTotal += credsubT  
                       bonTotal += bonsubT 
                       ventaTotal += ventasubT
+                      infonavitNominaT +=parseFloat(infonavitNomina)
+                      ahorroNominaT +=parseFloat(ahorroNomina)
+                      retNominaT +=parseFloat(retNomina)
+                      faltanteNominaT +=parseFloat(retNomina)
+                      mermaNominaT +=parseFloat(mermaNomina)
+                      pagarNominaT+=parseFloat(pagarNomina)
+                      infonavitNomina =0
+                      ahorroNomina =0
+                      retNomina =0
+                      faltanteNomina =0
+                      mermaNomina =0
+                      pagarNomina=0
                       }
                       existencia = false
                       credsubT = 0
                       bonsubT =0
                       ventasubT =0 
               } // cierra tipo de venta
-              // otras ventas
-               var ventaO = 0
-               existencia = false
-              var otrasVentas = arrGlobalEmpleados.filter( otros => otros.km == 1 )
-              for(var hh2=0;hh2<otrasVentas.length; hh2++){
-                  identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >PEDIDOS</td> <td >' +  ((otrasVentas[hh2].nombre_Emple).split(" ").join("_")).substring(0,11) + '</td> ';
-                  identificacionP+= '<tr style="font-size:12px; " class="text-center" ><td></td><td >PEDIDOS</td> <td ><strong>' +  ((otrasVentas[hh2].nombre_Emple).split(" ").join("_")).substring(0,11) + '</strong></td>';
-                    existencia = true
-                      var semCat
-                      var totalesCat = 0
-                     var des = 1
-                      for(var d=0;d<categoria.length; d++){
-                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
-                        if(SumaCategoriasT!=undefined){
-                          semCat += '<td class="grisclaro '+categoriadesa[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
-                          tVentaVTotal[d] += parseFloat(totalesCat)
-                          totalesCat = 0
-                        }else{
-                          semCat += buscarVentaSemanalPOtros(semanaW,otrasVentas[hh2].id,lista,categoria[d],categoriadesa[d]);
-                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
-                          ventasubT += parseFloat(VOtrosTotal)
-                          ventaO += parseFloat(VOtrosTotal)
-                          VOtrosTotal = 0
-                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
-                          if(SumaCategorias!=undefined){
-                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
-                          var pes = 0
-                          if(pesaje!=undefined){pes = pesaje.pesaje}
-                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
-                           }
-                        }
-                      }
-                      identificacion += '<td></td><td></td><td></td><td>$ '+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
-                      identificacionP += '<td></td><td></td><td></td><td>$ '+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
-                      semCat=""
-                      ventaO = 0
-              }// termina otras ventas
-              if(existencia){
-               for(var f=0;f<tVentaVTotal.length; f++){totalValor+='<td class="'+categoriadesa[f]+'">  '+formatoMoneda1(tVentaVTotal[f])+'</td>'; tVentaVTotales[f] +=tVentaVTotal[f]; tVentaVTotal[f]=0}
-                      identificacion +='</tr><tr style="background:black; font-size:12px;" class="grisclaro text-center" ><td>TOTAL</td><td></td> <td>PEDIDOS</td><td> </td><td></td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+'</tr>';
-                      identificacionP +='</tr><tr style="font-size:12px;" class="grisclaro text-center" ><td><strong>TOTAL</strong></td> <td class=" text-center" ><strong>PEDIDOS</strong></td><td></td><td  class="text-right"></td><td  class="text-right"></td><td> </td><td  class="text-right">$'+formatoMoneda1(ventasubT)+'</td>'+totalValor+' </tr>';
-                      totalValor='';
-                      credTotal += credsubT  
-                      bonTotal += bonsubT 
-                      ventaTotal += ventasubT
-                      }
+
+              
+          
                       existencia = false
                       credsubT = 0
                       bonsubT =0
                       ventasubT =0 
-                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td class="'+categoriadesa[f]+'"><strong>  '+formatoMoneda1(tVentaVTotales[f])+'</strong></td>'};
-                      identificacion +='</tr><tr style="background:black; font-size:12px;" class="text-center" ><td><strong>TOTALES</strong></td> <td></td><td></td><td class="text-right"> <strong>$'+formatoMoneda1(credTotal)+'</strong></td><td class="text-right"><strong>$'+formatoMoneda1(bonTotal)+'</strong></td><td> </td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+'</tr>';
-                      identificacionP +='</tr><tr style="font-size:12px;   " class="grisclaro text-center" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td><td class="text-right"><strong>$'+formatoMoneda1(credTotal)+'</strong></td><td class="text-right"><strong>$'+formatoMoneda1(bonTotal)+'</strong></td><td> </td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+' </tr>';
+                  for(var f=0;f<tVentaVTotales.length; f++){totalValor+='<td class="'+categoriadesa[f]+'  tipo'+superCategoria[f]+'"><strong>  '+formatoMoneda1(tVentaVTotales[f])+'</strong></td>'};
+                      identificacion +='</tr><tr style="background:black; font-size:12px;" class="text-center" ><td><strong>TOTALES</strong></td> <td></td><td></td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+' <td class="text-center">$'+formatoMoneda1(mermaNominaT)+'</td><td  class="text-center">$'+formatoMoneda1(retNominaT)+'</td><td  class="text-center">$'+formatoMoneda1(ahorroNominaT)+'</td><td class="text-center">$'+formatoMoneda1(infonavitNominaT)+'</td><td  class="text-center">$'+formatoMoneda1(faltanteNominaT)+'</td><td>$'+formatoMoneda1(pagarNominaT)+'</td></tr>';
+                      identificacionP +='</tr><tr style="font-size:12px;   " class="grisclaro text-center" ><td><strong>TOTALES</strong></td> <td class=" text-center" ></td><td></td><td class="text-right"><strong>$'+formatoMoneda1(ventaTotal)+'</strong></td>'+totalValor+' <td class="text-center">$'+formatoMoneda1(mermaNominaT)+'</td><td  class="text-center">$'+formatoMoneda1(retNominaT)+'</td><td  class="text-center">$'+formatoMoneda1(ahorroNominaT)+'</td><td class="text-center">$'+formatoMoneda1(infonavitNominaT)+'</td><td  class="text-center">$'+formatoMoneda1(faltanteNominaT)+'</td><td>$'+formatoMoneda1(pagarNominaT)+'</td></tr>';
                       totalValor='';
                       //Oculta
                   for(var f=0;f<categoriadesa.length; f++){
@@ -18567,78 +18688,11 @@ var tipoCat = 0;
                       // $("."+categoriadesa[f]+"").hide(); // no aplica por la merma y degustacion que no esta inclueda
                     }
                   }
-                      //Oculta
-                   // Merma   
-                       var mermaSemanal = arrGlobalEmpleados.filter( otros => otros.km == 1 )
-                      identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >MERMA</td> <td ></td> ';
-                      identificacionP+= '<tr style="font-size:12px; " class="text-center" ><td></td><td >MERMA</td> <td ><strong></strong></td>';
-                      var semCat
-                      var totalesCat = 0
-                     ventaO = 0
-                      for(var d=0;d<categoria.length; d++){
-                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
-                        if(SumaCategoriasT!=undefined){
-                          semCat += '<td class="grisclaro '+categoriadesa[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
-                          tVentaVTotal[d] += parseFloat(totalesCat)
-                          totalesCat = 0
-                        }else{
-                          semCat += buscarVentaSemanalPMerma(semanaW,"F",lista,categoria[d],categoriadesa[d]);
-                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
-                          ventasubT += parseFloat(VOtrosTotal)
-                          ventaO += parseFloat(VOtrosTotal)
-                          VOtrosTotal = 0
-                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
-                          if(SumaCategorias!=undefined){
-                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
-                          var pes = 0
-                          if(pesaje!=undefined){pes = pesaje.pesaje}
-                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
-                           }
-                        }
-                      }
-                      identificacion += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
-                      identificacionP += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; //executeFunctionDoneR(jsonC, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadBuscarCredito);
-                      semCat=""
-                      ventaO = 0
-              // termina Merma
-               // Degustacion   
-                       var mermaSemanal = arrGlobalEmpleados.filter( otros => otros.km == 1 )
-                      identificacion+= '<tr style="font-size:12px; " class="seleccionar text-center" ><td ></td><td >DEGUSTA</td> <td ></td> ';
-                      identificacionP+= '<tr style="font-size:12px; " class="text-center" ><td></td><td >DEGUSTA</td> <td ><strong></strong></td>';
-                      var semCat
-                      var totalesCat = 0
-                     ventaO = 0
-                      for(var d=0;d<categoria.length; d++){
-                        var SumaCategoriasT = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==3);
-                        if(SumaCategoriasT!=undefined){
-                          semCat += '<td class="grisclaro '+categoriadesa[d]+'" style="color:black"><strong>'+formatoMoneda1(totalesCat)+'KG</strong></td>'
-                          tVentaVTotal[d] += parseFloat(totalesCat)
-                          totalesCat = 0
-                        }else{
-                          semCat += buscarVentaSemanalPDegustacion(semanaW,"F",lista,categoria[d],categoriadesa[d]);
-                          tVentaVTotal[d] += parseFloat(tipoVentaTotal)
-                          ventasubT += parseFloat(VOtrosTotal)
-                          ventaO += parseFloat(VOtrosTotal)
-                          VOtrosTotal = 0
-                        var SumaCategorias = arrGlobalCategoria.find(tipo => tipo.id == categoria[d] && tipo.descripcion ==2);
-                          if(SumaCategorias!=undefined){
-                        var pesaje = arrGlobalInventario.find(tipo => tipo.tipoP == categoria[d]);
-                          var pes = 0
-                          if(pesaje!=undefined){pes = pesaje.pesaje}
-                          totalesCat += (parseFloat(tipoVentaTotal)*parseFloat(pes))
-                           }
-                        }
-                      }
-                      identificacion += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>'; 
-                      identificacionP += '<td></td><td></td><td></td><td class="text-right">$'+ formatoMoneda1(ventaO) +'</td>' +semCat+'</tr>';
-                      semCat=""
-                      ventaO = 0
-              // termina Merma
                   html = identificacion;
                   htmlP = identificacionP;
-               $('.tituloNomina').html(titulos); 
+               $('.titulo2').html(titulos); 
                $('.titulo2P').html(titulosP); 
-               $('.contCataMayoreoN').html(html); 
+               $('.contCataMayoreo').html(html); 
                $('.contCataMayoreoP').html(htmlP); 
         document.getElementById('loader').style.display = 'none';
 
@@ -29562,7 +29616,7 @@ var cargasNomina
 function loadVentaspNomina(lista){
       cargasNomina = lista;
        var json = {where:{semana:semanaW}}
-      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadNominaDiariaSemanal);
+      executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaSemanalNonima);
 
 }
 
@@ -30667,7 +30721,7 @@ function ocultar(){
 }
 function ocultar2(){
 click_nomina();
-  // $('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
+  // ss$('.barraIzq').html('<div class="fondo impre" style="height: 100%"><ul class="nav flex-column col-md-12" role="tablist"> <li role="presentation" actived class="impre ventasList text-center" href="#seccion10"  aria-controls="seccion10" data-toggle="tab" role="tab" onclick="click_administracionNomina(); ">ADMINISTRACIÓN </li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion9"  aria-controls="seccion9" data-toggle="tab" role="tab" onclick="click_fabricaNomina1(); ">FABRICA</li> <span class="border border-danger"></span> <li role="presentation" actived class="impre ventasList text-center" href="#seccion1"  aria-controls="seccion1" data-toggle="tab" role="tab" onclick="ocultar2(); ">VENTAS</li> <span class="border border-danger"></span> <li role="presentation" class="impre despachoList text-center" href="#seccion2" aria-controls="seccion2" id="desp" data-toggle="tab" onclick="click_Comision(); " role="tab">COMISIÓN  </li> <span class="border border-success"></span> <li role="presentation" class="impre recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">NÓMINA</li>  <span class="border border-primary"></span> <li role="presentation" class="impre productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">CRÉDITOS  </li>  <span class="border border-white"></span> <li role="presentation" class="impre productosList text-center" href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab" onclick="click_bonificacion();">BONIFICACIÓN   </li>  <span class="border border-white"></span>   <li role="presentation" class="impre productosList text-center" href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab" onclick="click_ventaN();">VENTA   </li>  <span class="border border-white"></span> <li role="presentation" class="impre mermaList text-center" href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab" onclick="click_noVenta()">P. NO VENTA  </li>  <span class="border border-warning"></span>  <li role="presentation" class="impre mermaList text-center" href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab" onclick="click_nMerma()">MERMA  </li>  <span class="border border-warning"></span> <div class="imprimir"></div></ul> </div>');
   $('.iconoImprimir').html('');
       $('.iconoExcel').html('');
       
@@ -30691,6 +30745,9 @@ click_nomina();
             COMISIÓN  
             </li> <span class="border border-success"></span> 
             <li role="presentation" class="nav-item impre text-center seleccionar2 recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">
+            NÓMINA
+            </li>  <span class="border border-primary"></span>
+             <li role="presentation" class="nav-item impre text-center seleccionar2 recepcionList text-center" href="#seccion11" aria-controls="seccion11" data-toggle="tab" role="tab" onclick="nominaTotal(); ">
             NÓMINA
             </li>  <span class="border border-primary"></span> 
             <li role="presentation" class="nav-item impre text-center seleccionar2 productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">
@@ -38671,12 +38728,10 @@ $('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>'
   }
 }
 function nominaTotal(){
-    $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="imprimirNomina()">  ');
-      $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelNomina()">  ');
-     
+
 //      $('.superior').html('<button class="btn btn-success excel" onclick="ExcelNomina()"  >Descargar Excel</button>');
 
-  document.getElementById('loader').style.display = 'block';
+ // document.getElementById('loader').style.display = 'block';
  saberSemana(parseInt(day), (parseInt(month)-1) ,parseInt(year));
           scv=noSemana;
     
@@ -38700,11 +38755,8 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
     semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
   if(sfc != ""){
 
-$('.tituloPantalla').html('<h3 class="nomina"> NÓMINA SEMANA: '+(scv+1)+'</h3>');
-      var json = {where:{semana:semanaW}}
- //     executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaNominaFaltante);
-      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspNomina);
-    }
+$('.tituloPantalla').html('<h3 class="nomina"> NÓMINA </h3>');
+      }
 }
 function closeModalConceoto(){
   $("#modalConcepto").modal("hide");
@@ -38908,7 +38960,7 @@ function click_nomina(){
             <li role="presentation" class="nav-item impre text-center seleccionar2 recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nomina(); ">
             NÓMINA
             </li>  <span class="border border-primary"></span> 
-             <li role="presentation" class="nav-item impre text-center seleccionar2 recepcionList text-center" href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab" onclick="nominaTotal(); ">
+             <li role="presentation" class="nav-item impre text-center seleccionar2 recepcionList text-center" href="#seccion11" aria-controls="seccion11" data-toggle="tab" role="tab" onclick="nominaTotal(); ">
             NÓMINA
             </li>  <span class="border border-primary"></span> 
             <li role="presentation" class="nav-item impre text-center seleccionar2 productosList text-center" href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab" onclick="click_creditos(); ">
@@ -40131,6 +40183,7 @@ html+='</tr>';
      boni=0;
      s_vent=0;
 }
+
 function click_buscarNomina(){
     var semanaVS = $('.semanaNominaN').val();
         document.getElementById('loader').style.display = 'block';
@@ -40173,6 +40226,48 @@ anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
       $('#modal').modal('show');
 }
 }
+function click_buscarNominaTotales(){
+    var semanaVS = $('.semanaNominaNT').val();
+  $('.tituloRespOptions').html('<div id="checks" class="checks row col-md-12 impre letras" ></div>')
+    
+      $('.iconoImprimir').html('<img class="icoImage3" src="/images/imprimir.png" onclick="ventaDiariaCPrint()">  ');
+      $('.iconoExcel').html('<img class="icoImage3" src="/images/excel.png" onclick="ExcelventaDiariaCPrint()">  ');
+     
+    //    document.getElementById('loader').style.display = 'block';
+     if(semanaVS!=""){
+        year =  parseInt(semanaVS.substring(0,4));
+        scv = parseInt(semanaVS.substring(6,8))-1;
+  $('.tituloPantalla').html('<h3 class="text-center impre">NÓMINA SEMANA: '+(scv+1)+'</h3>');
+var semanaW2;
+ var sfc = (scv+1)+""; //asinamos una variable local denominada en la base de datos
+ if(sfc.length == 1){ // si su longitud es 1 se le asicna un 0
+ semanaW2 = "0"+sfc;
+ }else{
+      semanaW2 = sfc;
+    }
+ var anioSiguiente;
+    if(sfc==1){
+      if(day>29){
+anioSiguiente =  parseInt(today_vv.substring(0,4))+1;
+      }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    }else{
+        anioSiguiente = today_vv.substring(0,4);
+      }
+    semanaW = anioSiguiente+"-W"+semanaW2; // se denomina la busqueda especifica de la semana actual
+  if(sfc != ""){
+
+    var json = {where:{semana:semanaW}}
+ //     executeFunctionDone(json, 'ventadiaria', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaDiariaNominaFaltante);
+      executeFunctionDone(json, 'ventaspasada', "Ocurrio un error al cargar el formulario, reintentar más tarde. ", loadVentaspNomina);
+ }
+}else{
+    $('#modal .textModal').html('Seleccione una semana.'); 
+      $('#modal').modal('show');
+}
+}
+
 function click_buscarNomina1(){
    var semanaVS1 = $('.semanaNomina1').val();
      

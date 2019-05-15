@@ -161,6 +161,7 @@ GEM
 
 PLATFORMS
   x86-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   bootstrap (~> 4.0.0.beta)
